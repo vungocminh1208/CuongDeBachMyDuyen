@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 200 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 200</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 200</small>
+    Chương 200: Kế hoạch kéo dài
+  </h1>
+  <div class="chapter-body">
+    <p>Ngồi trong phòng khách với vẻ thất hồn lạc phách, Liễu Diệc Như bấm mạnh vào cánh tay mình, cảm giác đau đớn giúp nàng nhận ra một thực tế tàn khốc —— vừa rồi, mình thật sự không phải đang nằm mơ!</p>
+    <p>Lão thiên ơi, rốt cuộc đã xảy ra chuyện gì với mình vậy? Tại sao lại xảy ra cái chuyện trùng hợp chết tiệt đó! Liễu Diệc Như buồn rầu ôm lấy đầu. Nàng không hề bài xích cảm giác vừa rồi, bởi vì cảm giác đó thật sự quá tuyệt vời. Đây là lần đầu tiên trong đời nàng có trải nghiệm thư thái đến thế, nên trong lòng nàng chẳng những không bài xích mà ngược lại còn rất ưa thích, thậm chí có khao khát muốn trải qua cảm giác đó mỗi ngày.</p>
+    <p>Chỉ là, tại sao lại cứ phải là hắn? Nếu đổi thành một người đàn ông khác, mình nhất định sẽ vui vẻ tiếp nhận. Nhưng nếu là người khác, mình lại chẳng thể nào động tâm. Còn người duy nhất khiến mình động tâm, lại là kẻ mà mình vốn không thể nào kết hợp. Dẫu rằng sự trùng hợp vừa rồi đã phá vỡ ranh giới đó, nhưng nàng đã quyết định chôn sâu chuyện này trong lòng, biến nó thành một ký ức tốt đẹp.</p>
+    <p>Vấn đề này tựa như một vòng lặp chết chóc quấn lấy tâm trí Liễu Diệc Như, khiến nàng cảm thấy khổ sở vô cùng. Tại sao số phận của mình lại khổ thế này? Nhất định phải chịu cảnh cô độc cả đời sao? Nếu là trước kia, nàng chẳng cảm thấy cô độc vì bên cạnh còn có năm đứa con hiểu chuyện. Nhưng bây giờ thì khác, vì nàng đã xác định mình thật sự động tâm, thậm chí cả thân thể cũng đã hoàn toàn mê luyến hắn. Thế mà hắn lại là người không thể cho mình hạnh phúc, hắn thuộc về Lâm Linh, sớm muộn gì cũng sẽ rời xa nàng.</p>
+    <p>Chỉ cần nghĩ đến đó, tim Liễu Diệc Như lại đau nhói. Nàng thật sự không muốn hắn rời đi. Dù cho từ nay về sau không còn được tận hưởng cảm giác khoái lạc như hôm nay nữa, chỉ cần hắn ở lại bên cạnh, để nàng được mỗi ngày chăm sóc hắn, như vậy nàng cũng đã mãn nguyện lắm rồi. Thế nhưng, ngay cả nguyện vọng nhỏ nhoi đó cũng khó thực hiện hơn cả lên trời.</p>
+    <p>Đúng lúc Liễu Diệc Như đang đắm chìm trong sự dằn vặt, cửa phòng ngủ của Diệp Phi đột ngột mở ra. Trong ánh mắt kinh ngạc của Liễu Diệc Như, Diệp Phi vừa ngáp vừa đi ra, rồi ngồi xuống bên cạnh nàng.</p>
+    <p>"Mẹ, sao con lại ngủ lâu như vậy? Hơn nữa mẹ cũng không gọi con dậy?" Giọng nói của Diệp Phi khiến Liễu Diệc Như nhận ra con trai mình đã thực sự tỉnh lại.</p>
+    <p>"Tiểu Mãn, con tỉnh rồi!" Sự hồi phục của Diệp Phi khiến Liễu Diệc Như tạm quên đi nỗi khổ tâm, nàng vui mừng nhìn Diệp Phi lúc này vẫn còn vẻ rất thiếu sức sống.</p>
+    <p>"Vâng." Diệp Phi gãi đầu, ngơ ngác nói: "Sao con lại ngủ một mạch đến tận trưa thế này? Hơn nữa còn mệt rũ rượi nữa chứ."</p>
+    <p>Liễu Diệc Như lúc này mới biết, hóa ra Diệp Phi còn không hề hay biết mình đã hôn mê rất lâu, hắn cứ ngỡ bây giờ mới chỉ là buổi trưa ngày thứ hai. Hiện tại, nàng không biết thân thể hắn đã hồi phục thế nào nên chưa muốn nói cho hắn biết sự thật, liền hỏi: "Con cảm thấy thân thể mình có chỗ nào không ổn không?"</p>
+    <p>"Không ổn?" Diệp Phi nghi hoặc đưa tay ra xem cánh tay, lại nắm chặt nắm đấm rồi lắc đầu: "Không có gì không ổn cả, vẫn như trước thôi. Nhưng mà mẹ này, mẹ biết không? Lúc ngủ con nằm mơ thấy một giấc mơ rất kỳ lạ."</p>
+    <p>"À? Giấc... giấc mơ gì?" Lòng Liễu Diệc Như thắt lại, chẳng lẽ hắn đã có ý thức? Chỉ là giống như mình, hắn coi chuyện vừa xảy ra là một giấc mơ?</p>
+    <p>"Con mơ thấy mình dùng một loại thiết bị đặc biệt cùng với một môn công pháp gì đó để trở nên mạnh mẽ, sức lực lớn kinh khủng." Diệp Phi cười gượng gạo: "Chắc là do con quá khát khao trở nên mạnh mẽ nên mới mơ như vậy."</p>
+    <p>"Con cảm thấy mọi chuyện con đã trải qua đều là mơ sao?" Dù giấc mơ Diệp Phi nói không phải việc đó, nhưng điều này chẳng những không làm nàng vui mà còn khiến nàng càng thêm khẩn trương.</p>
+    <p>"Đúng vậy, chẳng lẽ không phải mơ ạ?" Diệp Phi nói: "Nhưng giấc mơ đó chân thực lắm, nếu không phải tỉnh dậy rồi vẫn thấy mình toàn thân vô lực như bây giờ, chỉ sợ con đã tưởng đó là thật rồi."</p>
+    <p>Liễu Diệc Như cảm thấy đắng chát trong lòng. Chẳng lẽ lần tẩu hỏa nhập ma này không chỉ khiến con trai mất đi sức mạnh, mà còn làm hỏng cả trí não rồi sao? Dù rất muốn nói cho hắn biết chuyện trước đó không phải là mơ, nhưng Liễu Diệc Như vẫn cố nén nỗi đau, nói với Diệp Phi: "Có lẽ con bị ốm rồi, về phòng nghỉ ngơi trước đi, mẹ sẽ gọi dì Đông Phương đến xem cho con."</p>
+    <p>"Vâng." Diệp Phi ngoan ngoãn gật đầu rồi trở về phòng. Liễu Diệc Như vội vàng cầm điện thoại gọi cho Đông Phương Nhược Lan.</p>
+    <p>Chưa đầy nửa giờ sau, Đông Phương Nhược Lan đã vội vã chạy tới. Vừa vào cửa, bà đã không giấu nổi sự nôn nóng: "Diệc Như, chị nói Tiểu Mãn đã tỉnh rồi sao?"</p>
+    <p>"Đúng vậy." Liễu Diệc Như gật đầu: "Sao thế? Chẳng lẽ nó không nên tỉnh lại nhanh như vậy sao?"</p>
+    <p>Đông Phương Nhược Lan lắc đầu: "Không phải, nhưng mà, mỗi ngày chị giúp nó 'trị liệu' bao nhiêu lần?"</p>
+    <p>Mặt Liễu Diệc Như hơi đỏ lên. Sự ngượng ngùng khiến nàng không muốn trả lời, nhưng chuyện này liên quan đến thân thể Diệp Phi, hơn nữa người hỏi lại là chị em tốt của mình, nên sau khi do dự, nàng nói: "Lúc đầu mỗi ngày một lần, sau đó thấy nó trướng lên dữ dội quá nên đổi thành mỗi ngày hai lần."</p>
+    <p>"Hai lần?" Đông Phương Nhược Lan nhíu mày: "Không thể nào, vì tình trạng của nó rất nghiêm trọng. Nếu muốn tỉnh lại trong mười ngày, ít nhất mỗi ngày phải thực hiện mười lần mới được."</p>
+    <p>"Mười lần?!" Liễu Diệc Như hoảng hốt: "Cô muốn lấy mạng nó sao?"</p>
+    <p>Đông Phương Nhược Lan mỉm cười: "Tất nhiên là không. Tình trạng hiện tại của nó là dương khí quá thừa, làm vậy chẳng những không hại mà còn khiến nó dễ chịu hơn. Nhưng chỉ hai lần mỗi ngày sao có thể làm nó tỉnh lại được? Thật kỳ lạ."</p>
+    <p>Liễu Diệc Như cạn lời, thầm nghĩ nếu cô nói sớm hơn thì có phải tốt không, nếu mỗi ngày nàng giúp hắn mười hai mươi lần thì có lẽ hắn đã tỉnh từ lâu, cũng sẽ không xảy ra chuyện ngoài ý muốn ngày hôm nay.</p>
+    <p>Nghĩ đến đây, Liễu Diệc Như lại giật mình. Nàng nhớ tới chuyện vừa xảy ra, nguyên nhân bệnh của Diệp Phi là dương khí quá thừa, mà lúc nãy khi nàng đạt đến đỉnh điểm, hắn vẫn còn nằm sâu trong cơ thể nàng. Vậy liệu việc hắn tỉnh lại có phải do bị âm khí của nàng xung kích hay không?</p>
+    <p>Càng nghĩ, Liễu Diệc Như càng thấy khả năng này rất lớn, thậm chí trong lòng nàng đã khẳng định. Nhưng chuyện này, dù có đánh chết nàng cũng không bao giờ nói cho người khác biết. Vì vậy, nàng bối rối nói: "Ai mà biết được, có lẽ là do nó tự điều tiết cũng nên, môn công pháp nó tu luyện rất thần kỳ."</p>
+    <p>"À, vậy cũng có khả năng." Đông Phương Nhược Lan gật đầu.</p>
+    <p>Thấy Đông Phương Nhược Lan tin lời mình, Liễu Diệc Như thở phào nhẹ nhõm. Nhưng rồi nàng lại nhớ tới biểu hiện mất trí nhớ của Diệp Phi lúc nãy, liền kể lại cho Đông Phương Nhược Lan và hỏi: "Tiểu Mãn có phải bị tổn thương não không?"</p>
+    <p>"Đương nhiên là không." Đông Phương Nhược Lan cười nói: "Nó chỉ là ngủ quá lâu nên không phân biệt được đâu là thật, đâu là mộng thôi. Chỉ cần chị nói rõ sự thật cho nó, hoặc để nó tự hồi phục hai ngày là ổn."</p>
+    <p>"Vậy thì tốt." Liễu Diệc Như yên tâm hẳn, nhưng câu tiếp theo của Đông Phương Nhược Lan lại khiến nàng căng thẳng.</p>
+    <p>"Nhưng chị có nghĩ tới không, Tiểu Mãn từ nhỏ đã hy vọng mình trở nên mạnh mẽ, nếu biết mình được rồi lại mất, nó có chịu nổi cú sốc này không?"</p>
+    <p>"Vậy phải làm sao đây? Cô có cách nào để nó khôi phục thực lực ban đầu không?" Liễu Diệc Như vội hỏi.</p>
+    <p>"Cách thì hôm qua tôi đã tìm ra rồi." Đông Phương Nhược Lan nói: "Có một loại gọi là Băng Linh Thảo, là linh vật áp chế loại cương dương khí này. Chỉ cần tìm được Băng Linh Thảo cho Tiểu Mãn ăn, thân thể nó không những lập tức khỏe lại mà thực lực còn tiến xa hơn."</p>
+    <p>"Vậy thứ đó ở đâu? Hoặc ai đang giữ, tôi có thể bỏ số tiền lớn ra mua! Chỉ cần Tiểu Mãn khỏe lại, dù có đưa cả tập đoàn Liễu Thị cho họ cũng được!" Trong mắt Liễu Diệc Như, mười cái tập đoàn Liễu Thị cũng không quan trọng bằng Diệp Phi.</p>
+    <p>Đông Phương Nhược Lan cười khổ: "Nếu có người bán thì hôm qua tôi đã nói với chị rồi, đâu cần phiền não thế này. Thứ này tôi chỉ từng thấy trong một cuốn cổ thư y học, còn thực hư thế nào cũng không rõ. Hơn nữa, dù có thật cũng chẳng ai dám mạo hiểm đi thu thập đâu."</p>
+    <p>"Tại sao?" Liễu Diệc Như ngạc nhiên: "Đó là thứ tốt, sao lại không có ai thu thập?"</p>
+    <p>Đông Phương Nhược Lan nói: "Là thứ tốt không sai, nhưng nó chỉ hữu dụng với Tiểu Mãn thôi, những người khác chỉ sợ tránh còn không kịp. Chị nghĩ xem, đàn ông bây giờ đều khao khát có thêm cương dương khí, ai lại đi dùng thứ này để giảm bớt cơ chứ?"</p>
+    <p>Liễu Diệc Như im lặng, nhớ lại nhu cầu của Diệp Phi ngày đó, đó chẳng phải là thể chất mà mọi đàn ông đều khao khát sao? Nếu có rồi, ai lại muốn vứt bỏ?</p>
+    <p>Nhưng chuyện này liên quan đến tương lai của Diệp Phi, Liễu Diệc Như vẫn không từ bỏ: "Trên sách có nói Băng Linh Thảo thường mọc ở đâu không?"</p>
+    <p>Đông Phương Nhược Lan đáp: "Sách không nói địa điểm cụ thể, nhưng có đề cập loại Băng Linh Thảo này là linh vật chí âm chí hàn, thường sinh trưởng ở những nơi có linh khí sung túc tại vùng bóng râm của các ngọn núi lớn."</p>
+    <p>"Trường Bạch sơn?" Liễu Diệc Như nghĩ ngay đến một nơi. Trường Bạch sơn là một ngọn núi lớn ở phía đông bắc, nơi nổi tiếng với nhân sâm, linh khí hẳn là rất dồi dào. Hơn nữa, đó là nơi lạnh nhất Trung Quốc, nên nàng nghĩ ngay đến nó.</p>
+    <p>Đông Phương Nhược Lan gật đầu: "Tôi cũng nghĩ vậy, nếu Băng Linh Thảo còn tồn tại, Trường Bạch sơn chính là nơi có khả năng cao nhất."</p>
+    <p>"Được, ngày mai tôi sẽ đi. Chỉ cần trên Trường Bạch sơn còn Băng Linh Thảo, tôi nhất định sẽ mang về cho Tiểu Mãn!" Thấy được hy vọng, tâm trạng Liễu Diệc Như tốt hơn hẳn.</p>
+    <p>"Với thân thủ của chị, việc thu thập Băng Linh Thảo không khó." Đông Phương Nhược Lan nhíu mày: "Nhưng Tiểu Mãn thì sao?"</p>
+    <p>"Sao là sao?" Liễu Diệc Như sững sờ: "Nó đã tỉnh rồi mà?"</p>
+    <p>Đông Phương Nhược Lan cười khổ: "Tỉnh thì đúng là tỉnh rồi, nhưng chỉ là tạm thời thôi. Nếu không có chị tiếp tục giúp nó 'trị liệu', chỉ sợ không quá hai ngày, nó sẽ lại rơi vào hôn mê."</p>
+    <p>"À?" Liễu Diệc Như hơi choáng váng. Khi Diệp Phi hôn mê thì nàng giúp được, nhưng giờ hắn đã tỉnh, nàng làm sao tiếp tục? Hắn sẽ nhìn người mẹ này thế nào? Vì vậy nàng hỏi: "Để nó tự làm không được sao?"</p>
+    <p>Đông Phương Nhược Lan đáp: "Cũng không phải không được, chỉ sợ nó nếm được ngon ngọt rồi sẽ nghiện. Nó mới mười sáu tuổi, nếu nhiễm thói quen này thì không tốt lắm."</p>
+    <p>"Vậy thì thôi bỏ đi!" Liễu Diệc Như vô thức nói. Nàng biết đó là một thói quen không tốt và không muốn Diệp Phi nhiễm phải. Nhưng nàng lại không ngờ rằng, nếu mình tiếp tục giúp hắn, liệu hắn có nghiện hay không? Và nếu sau này hắn cứ quấn lấy nàng bắt giúp thì phải làm sao? Nhưng lúc này, tâm trí nàng đều dồn hết vào con trai, nàng chỉ nghĩ từ nay về sau vẫn nên tiếp tục giúp hắn là được. Chỉ là nhớ tới việc ngày mai phải đi tìm Băng Linh Thảo, không thể ở bên cạnh hắn, Liễu Diệc Như lại do dự. Nàng muốn giao hắn cho Đông Phương Nhược Lan, nhưng trong lòng lại không đành lòng. Dù là chị em tốt, nhưng nàng vẫn có cảm giác không muốn thứ mình thích bị người khác đoạt mất.</p>
+    <p>"Thực ra tôi giúp chị chăm sóc nó cũng được." Đông Phương Nhược Lan không nhận ra sự thay đổi của Liễu Diệc Như, tiếp lời khiến lòng nàng thắt lại, rồi nói tiếp: "Nhưng có một vấn đề, Băng Linh Thảo là loài thực vật rất kỳ lạ, không thể rời khỏi nơi sinh trưởng. Một khi rời đi, dược hiệu sẽ nhanh chóng mất đi, không quá nửa giờ là héo rũ, nên phải hái xong dùng ngay."</p>
+    <p>"Vậy sao, thế thì tôi mang nó đi cùng vậy." Liễu Diệc Như thở phào một cách khó hiểu. Nàng thầm nghĩ, không phải mình không muốn giao hắn cho cô, cũng không phải muốn tiếp tục cái việc "khốn nạn" mà vừa nãy làm mình thoải mái muốn hét lên kia, mà là vì để hắn kịp thời uống thuốc. Tìm được cái cớ cho lòng mình, nàng rất cam tâm tình nguyện chốt lại.</p>
+    <p>"Được." Đông Phương Nhược Lan gật đầu: "Nhưng chị phải nhớ kỹ, mỗi ngày ít nhất phải 'trị liệu' cho nó ba lần, nếu không nó sẽ nhanh chóng hôn mê trở lại."</p>
+    <p>"Ba lần sao?" Liễu Diệc Như do dự. Trước kia mỗi ngày hai lần, khi hắn hôn mê nàng đã thấy khó cưỡng lại rồi, huống chi giờ đã nếm được vị ngọt, mà hắn lại tỉnh táo, nàng biết phải đối mặt thế nào đây? Cuối cùng, nàng vẫn cắn môi nói: "Được, tôi biết rồi."</p>
+    <p>Hai người vừa nói xong, Diệp Phi đã cúi đầu đi ra khỏi phòng với vẻ thất hồn lạc phách. Hắn không chào Đông Phương Nhược Lan mà chỉ nói với Liễu Diệc Như: "Mẹ, con nhớ ra rồi, những chuyện con trải qua không phải là nằm mơ."</p>
+    <p>Dù Diệp Phi nói không rõ ràng, Liễu Diệc Như vẫn nhận ra nỗi thất lạc sâu sắc đó. Lòng nàng càng thêm kiên định, nắm chặt tay Diệp Phi nói: "Mẹ biết, con yên tâm đi, dì Đông Phương đã tìm được cách hồi phục cho con rồi. Ngày mai mẹ sẽ đưa con đi tìm thứ có thể giúp con khôi phục."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0199.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0201.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

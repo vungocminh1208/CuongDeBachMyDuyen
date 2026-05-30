@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 312 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 312</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 312</small>
+    Chương 312: Thủy Dĩnh chuyện cũ
+  </h1>
+  <div class="chapter-body">
+    <p>"Là một nữ nhân, ta đương nhiên cũng không đồng ý với ngươi." Thủy Dĩnh nói, nhưng khi thấy sắc mặt Diệp Phi càng thêm khổ sở, nàng lại xoay chuyển giọng điệu: "Bất quá điều này cũng không thể nói là sai, bởi vì mọi việc đều phải xem tình huống cụ thể. Nếu như đúng như lời ngươi nói, ngươi đối với các nàng đều là thật tình, mà các nàng cũng không thể rời xa ngươi, vậy thì ngươi không thể buông tay. Bởi vì trong đó ngoài tình yêu ra, còn có vấn đề trách nhiệm. Nếu ngươi không chịu trách nhiệm, rất có thể sẽ dẫn đến bi kịch. Cho nên ta tuy không đồng ý với ngươi, nhưng cũng hiểu được ngươi không thể buông tay."</p>
+    <p>"Lý giải vạn tuế!" Diệp Phi hét lớn một tiếng đầy cao hứng, tiến lên một bước nắm lấy bàn tay nhỏ bé của Thủy Dĩnh. Tên này vốn là cố ý, sau khi cởi bỏ được nút thắt trong lòng, hắn đã khôi phục lại tính cách như trước. Hơn nữa, vì có sự tự tin tuyệt đối rằng dù có bao nhiêu nữ nhân mình cũng có thể chăm sóc tốt, hắn lại càng có xu thế lấn tới. Mà đối với một đại mỹ nhân khuynh quốc khuynh thành như Thủy Dĩnh, hắn làm sao có thể không động tâm?</p>
+    <p>Thủy Dĩnh nào biết tâm tư xấu xa của Diệp Phi? Tuy biết hắn căn bản là một tiểu quỷ đa tình, nhưng nghĩ đến mình lớn hơn hắn nhiều tuổi như vậy, nàng cũng không cho rằng Diệp Phi muốn làm gì đó, chỉ nghĩ rằng hắn đang cao hứng nên hơi càn rỡ mà thôi. Vì vậy, nàng để mặc hắn nắm một hồi mới nhẹ nhàng rút bàn tay mềm mại ra khỏi tay hắn, cười nói: "Chúng ta đừng đứng đây nói chuyện nữa, đến phòng ta ngồi đi."</p>
+    <p>Thứ đằng sau cánh cửa kia, Diệp Phi từ lúc bắt đầu đã muốn nhìn thử, nên lúc này tự nhiên không có ý từ chối. Hắn không chút khách khí đi theo Thủy Dĩnh vào cánh cửa nhỏ, lại phát hiện nơi đây là một gian cư thất được bài trí vô cùng nhã nhặn. Tuy không lớn nhưng giường, bàn, thậm chí cả bàn trang điểm đều đầy đủ cả. Điều này làm Diệp Phi rất kinh ngạc, hỏi: "Tỷ tỷ, rốt cuộc người là ai? Tại sao ngồi tù mà đãi ngộ lại tốt như vậy?"</p>
+    <p>"Ngươi gọi ta là gì?" Thủy Dĩnh khẽ nhíu đôi lông mày thanh tú, hỏi lại.</p>
+    <p>"Tỷ tỷ chứ sao, chẳng lẽ không đúng? Chẳng lẽ ta nên gọi ngươi là muội muội?" Diệp Phi tỏ vẻ vô cùng kỳ quái.</p>
+    <p>Thủy Dĩnh không khỏi dở khóc dở cười, nói: "Nhìn dáng vẻ của ngươi, chắc hẳn còn chưa tới hai mươi tuổi nhỉ? Ta lớn hơn ngươi gấp đôi, ngươi tối thiểu cũng nên gọi một tiếng a di."</p>
+    <p>"A di cái gì chứ, ngươi cũng đâu phải tỷ muội của mẹ ta, chúng ta cũng chẳng có quan hệ huyết thống gì. Người đã lớn hơn ta, ta gọi một tiếng tỷ tỷ là lẽ đương nhiên." Diệp Phi xua xua tay, tùy ý kéo một cái ghế bên cạnh rồi ngồi xuống.</p>
+    <p>"Vậy được rồi, tùy ngươi vậy." Thủy Dĩnh cảm thấy tiểu quỷ này tuy không đứng đắn, nhưng lời nói lại rất có đạo lý, vì vậy cũng không tranh cãi thêm về vấn đề xưng hô. Lúc này, cả hai đều không biết rằng, giữa họ tuy thực sự không có quan hệ huyết thống, nhưng lại có những mối liên hệ khác.</p>
+    <p>"Tỷ tỷ tốt, kể cho ta nghe chuyện của người được không?" Chiêu "được đằng chân lân đằng đầu" này Diệp Phi đã quá quen thuộc, vì vậy Thủy Dĩnh trong miệng hắn đã biến thành "Tỷ tỷ tốt", đang từng bước tiến tới "Tình tỷ tỷ".</p>
+    <p>Dù cách xưng hô này khiến Thủy Dĩnh hơi không quen, nhưng nàng cũng không so đo với Diệp Phi. Hơn nữa, nỗi buồn phiền tích tụ bao năm qua khiến nàng có khao khát muốn thổ lộ cùng ai đó. Quan trọng nhất là, chàng trai khiến mình cảm thấy vui vẻ này làm nàng càng lúc càng thấy gần gũi. Vì vậy, không chút do dự, nàng ngồi xuống bên bàn, nói: "Được rồi, đã gọi ta là tỷ tỷ thì ta sẽ kể cho ngươi nghe."</p>
+    <p>"Được được!" Diệp Phi gật đầu lia lịa, kéo ghế sát lại gần Thủy Dĩnh, hai tay chống lên mặt bàn, chống cằm như một học sinh tiểu học đang chăm chú nghe giảng.</p>
+    <p>Thủy Dĩnh không khỏi bị bộ dạng của Diệp Phi chọc cười, lập tức lại khẽ thở dài, buồn bã nói: "Kỳ thật, tình huống của ta rất giống với mẫu thân của mấy cô gái Cốc gia mà ngươi đã nhắc đến. Ta vốn là đại đệ tử của Cung chủ đời trước tại Thủy Nguyệt cung. Sau đó, vì thích một người đàn ông ở thế tục giới nên đã thoát ly khỏi Thủy Nguyệt cung để đến sống cùng người ấy. Mười tám năm trước, đệ tử trong cung truyền tin sư phụ bệnh tình nguy kịch, lại còn nói muốn ta tiếp chưởng Thủy Nguyệt cung. Tuy rất không nỡ rời xa trượng phu và các con, nhưng sư phụ đã nuôi dạy ta từ nhỏ, ta đương nhiên không thể khiến bà thất vọng. Vì vậy, ta giả vờ bị bệnh qua đời để đánh lừa người nhà rồi vội vã trở về. Thế nhưng, ta không ngờ rằng khi trở lại, sư phụ đã qua đời, sư muội đã nắm giữ tất cả thế lực tại Thủy Nguyệt cung, còn ta vì không biết tình hình nên bị nàng lừa đến đây giam giữ." Dù đã qua nhiều năm, nhưng khi nhắc lại chuyện này, Thủy Dĩnh vẫn có chút chán nản, không biết là vì sư phụ qua đời hay vì sư muội lừa dối.</p>
+    <p>"Nói như vậy, sư phụ của người cũng có khả năng là do sư muội người hại chết?" Diệp Phi như có điều suy nghĩ hỏi.</p>
+    <p>Thủy Dĩnh lắc đầu nói: "Không thể nào, ta và nàng lớn lên cùng nhau, rất hiểu tính cách của nàng. Nàng làm việc có lúc hơi xúc động, tàn nhẫn, nhưng đối với sư phụ như mẹ đẻ, nàng chắc chắn sẽ không làm ra chuyện tổn thương sư phụ."</p>
+    <p>Thấy Thủy Dĩnh khẳng định như vậy, Diệp Phi biết tất cả hẳn là sự thật, không khỏi kỳ quái hỏi: "Đã như vậy, tại sao nàng còn giam người? Ta nghĩ người chắc cũng không muốn tranh giành vị trí Cung chủ với nàng đúng không? Vậy tại sao các ngươi không giảng hòa, để nàng làm Cung chủ, còn người trở về bên cạnh gia đình?"</p>
+    <p>Thủy Dĩnh cười khổ: "Ta đương nhiên là nghĩ như vậy, nhưng nàng lại hoài nghi 《 Thủy Nguyệt bảo điển 》 trấn cung của Thủy Nguyệt cung đang ở trong tay ta, nhất định ép ta phải giao ra. Nhưng ta nào có thứ đó? Cho nên những năm này cứ giằng co như vậy mãi."</p>
+    <p>Diệp Phi khẽ gật đầu, thầm nghĩ xem ra sư muội của Thủy Dĩnh cũng không phải hạng cùng hung cực ác. Dù giam giữ nàng nhưng vẫn đối xử không tệ, bằng không mười tám năm qua đi, dù có thiên sinh lệ chất đến đâu cũng đã tiều tụy, làm sao có thể để hắn thấy một đại mỹ nhân đẹp tuyệt nhân gian như hôm nay?</p>
+    <p>"Chẳng lẽ người chưa từng nghĩ đến việc chạy trốn? Người đã là đại đệ tử của ẩn thế môn phái, chắc hẳn đã sớm bước vào Tiên Thiên rồi chứ? Những thứ bên ngoài kia đối với người mà nói chắc không đáng là bao." Diệp Phi vừa nói vừa nhìn ra hàng rào thô sơ bên ngoài. Thứ này trông thì dọa người, nhưng chỉ là đối với người thường mà thôi. Bất kỳ cao thủ Tiên Thiên nào cũng có thể dễ dàng phá vỡ chúng. Trong mắt Diệp Phi, nó chẳng khác gì sợi mì. Nếu không phải vừa tỉnh lại đã thấy Thủy Dĩnh, e là hắn đã sớm rời khỏi đây để đi tìm những kẻ giam giữ mình tính sổ.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0311.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0313.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

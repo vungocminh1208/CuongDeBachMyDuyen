@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 236 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 236</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 236</small>
+    Chương 236: Phi Long diệt vong
+  </h1>
+  <div class="chapter-body">
+    <p>Sau khi chờ Trương Lâm Tâm mặc quần áo xong, Diệp Phi từ dưới đất ôm lấy Tiêu Phỉ lúc này đã mềm nhũn như một bãi bùn, lấy áo khoác của mình quấn lên thân thể mềm mại của nàng. Nhìn đôi mắt đẹp tuy buồn ngủ nhưng vẫn toát lên vẻ thù hận, hắn không khỏi có chút bất đắc dĩ. Bất quá cũng không sao, hắn có rất nhiều thời gian để "đối đãi" tử tế với nàng.</p>
+    <p>Ba người cùng đi ra cửa tầng hầm. Đám đàn em canh giữ bên ngoài thấy bang chủ đi cùng hai người phụ nữ tuyệt sắc trong tình trạng trang phục hơi xộc xệch, đều tò mò về mối quan hệ của bọn họ nhưng không ai dám hỏi nhiều.</p>
+    <p>Diệp Phi không để ý đến đám đàn em, ôm Tiêu Phỉ cùng Trương Lâm Tâm đi vào một căn phòng xa hoa. Hắn cùng Trương Lâm Tâm giúp Tiêu Phỉ rửa sạch cơ thể, sau đó đặt nàng lên giường rồi nói: "Cô tạm thời ở lại chỗ này đi. Yên tâm, đám đàn em của ta sẽ chăm sóc cô rất chu đáo."</p>
+    <p>Tiêu Phỉ lạnh lùng nhìn Diệp Phi một cái, hiểu rằng hắn đang nhắc nhở mình đừng hòng bỏ trốn vì bên ngoài toàn là người của hắn.</p>
+    <p>Diệp Phi không quan tâm đến Tiêu Phỉ, quay sang nói với Trương Lâm Tâm: "Trương thị trưởng, con gái cô sẽ ở lại đây với ta, tin rằng cô biết mình nên làm gì rồi chứ?"</p>
+    <p>Trên mặt Trương Lâm Tâm hiện lên vẻ "oán hận", gật đầu nói: "Ta biết rồi, ngươi yên tâm đi. Nhưng nếu ngươi dám để gã đàn ông nào khác đụng vào con bé, ta sẽ không tha cho ngươi!"</p>
+    <p>"Cô cam lòng thì ta cũng không cam lòng đâu. Mà này, Trương thị trưởng, từ nay về sau chúng ta nên thân thiết hơn mới phải." Diệp Phi cười tà.</p>
+    <p>Trương Lâm Tâm đỏ bừng mặt, cúi đầu nói: "Không có gì nữa thì ta đi trước đây!" Nói xong, bà rời khỏi phòng.</p>
+    <p>Nhìn mẹ vì mình mà phải ủy khuất cầu toàn, Tiêu Phỉ trong lòng vô cùng đau khổ. Nàng rất hối hận vì đã không nghe lời mẹ, cứ khăng khăng muốn gây sự với Diệp Phi. Nếu cho nàng một cơ hội nữa, nàng nhất định sẽ tránh thật xa, bởi vì loại ác ma này tuyệt đối không phải người nàng có thể đối phó. Nhưng bây giờ mọi chuyện đã muộn, từ nay về sau, hai mẹ con nàng e rằng không thể phủi sạch quan hệ với hắn được nữa. Giây phút này, nàng thậm chí đã nghĩ đến cái chết, nếu như thế, mẹ con nàng có thể được giải thoát chăng?</p>
+    <p>Diệp Phi như nhìn thấu tâm tư của Tiêu Phỉ, khẽ cười: "Cô có thể tự sát, nhưng hậu quả là mẹ cô sẽ phải nhận hình phạt nặng nề hơn. Có ta ở đây, bà ấy tuyệt đối không thể rời khỏi Vọng Hải, nơi này là thiên hạ của ta!"</p>
+    <p>Tiêu Phỉ kinh hãi, không dám nảy sinh ý định tìm chết nữa. Nàng không biết sau khi mình chết, tên ác ma này sẽ đối xử với mẹ ra sao. Để mẹ không phải chịu thêm tổn thương, nàng thà chấp nhận bị hắn nhục nhã như thế này, huống hồ, cảm giác đó thực sự... không tệ.</p>
+    <p>Phải thừa nhận rằng, với khả năng mạnh mẽ đến mức không phải người thường của Diệp Phi, Tiêu Phỉ đã vô tình đắm chìm trong đó lúc nào không hay. Xem ra câu nói kia không hề sai: "Muốn chinh phục một người đàn ông, phải bắt đầu từ dạ dày; còn chinh phục một người phụ nữ, phải bắt đầu từ..." Thấy Tiêu Phỉ đã từ bỏ ý định tự sát, Diệp Phi không quan tâm đến nàng nữa, xoay người rời phòng. Hắn thấy Trương Lâm Tâm đang đứng đợi không xa, lúc này trên mặt bà đã không còn vẻ oán hận như khi ở trước mặt con gái, nhưng sắc mặt vẫn không tốt lắm.</p>
+    <p>Diệp Phi đi tới ôm nhẹ lấy bà, ôn nhu hỏi: "Sao vậy? Có phải trong lòng đang đau vì con gái không?"</p>
+    <p>"Không có, chủ nhân vừa rồi đối với con bé đã rất tốt rồi." Trương Lâm Tâm lắc đầu: "Lâm Tâm chỉ là lo lắng con bé sẽ làm chuyện gì dại dột. Thực ra, được chủ nhân rủ lòng thương là tạo hóa lớn nhất đời nó, sao nó lại không nghĩ thông suốt được cơ chứ?"</p>
+    <p>"Yên tâm đi, cô thương nó, nó cũng thương cô. Vì sợ mình làm chuyện dại dột sẽ liên lụy đến cô nên nó đã từ bỏ ý định đó rồi." Diệp Phi an ủi: "Thực ra nó là một cô gái rất tốt, chỉ là trước kia hơi được chiều hư mà thôi."</p>
+    <p>"Chủ nhân, cảm ơn người!" Trương Lâm Tâm xúc động nói. Bà biết rõ, sở dĩ con gái từ bỏ ý định đó chắc chắn là nhờ công của Diệp Phi.</p>
+    <p>Trước kia, dù Trương Lâm Tâm tuyệt đối phục tùng Diệp Phi, nhưng trong lòng luôn có chút e sợ. Giờ đây, trong ánh mắt nhìn hắn chỉ còn sự nhu tình vô tận. Ánh mắt dịu dàng như nước ấy khiến Diệp Phi cũng cảm thấy mềm lòng, không nhịn được cúi đầu hôn lên đôi môi nhỏ nhắn của bà.</p>
+    <p>Đây là lần đầu tiên Diệp Phi hôn Trương Lâm Tâm. Trước đây, ngay cả trong những khoảnh khắc cuồng nhiệt nhất, hắn cũng chưa từng hôn bà. Trương Lâm Tâm không khỏi kích động, hai tay ôm chặt lấy cổ Diệp Phi, nhiệt tình đáp lại.</p>
+    <p>Mãi đến khi Trương Lâm Tâm không thở nổi, hai người mới tách ra. Trương Lâm Tâm lấy lại tỉnh táo, cảm thấy vô cùng khẩn trương, có chút sợ hãi nhìn Diệp Phi, nhỏ giọng nói: "Chủ nhân, xin lỗi, ta..."</p>
+    <p>Diệp Phi thương cảm nhìn người phụ nữ yếu đuối này, lại ôm bà vào lòng, ôn nhu nói: "Không có gì phải xin lỗi cả, cô là người phụ nữ của ta, chúng ta hôn nhau chẳng phải chuyện rất bình thường sao."</p>
+    <p>"Chủ nhân, cảm ơn người!" Trương Lâm Tâm không nhịn được nghẹn ngào. Giây phút này, bà cảm thấy mình thật hạnh phúc. Diệp Phi cuối cùng đã chịu thừa nhận bà, bà không còn chỉ là nô lệ mà đã trở thành người phụ nữ của hắn. Trương Lâm Tâm cảm thấy điều này còn hạnh phúc hơn cả lúc được làm thị trưởng.</p>
+    <p>Dù ôm cơ thể mềm mại quyến rũ của Trương Lâm Tâm, nhất là khi bộ ngực căng tròn của bà ép sát vào người khiến hắn thấy rất thoải mái, nhưng Diệp Phi biết không thể tiếp tục được nữa. Nơi này tuy toàn là thủ hạ của hắn, nhưng ai dám chắc không có kẻ miệng rộng? Hơn nữa, Trương Lâm Tâm là người của công chúng, nếu chuyện của hắn và bà truyền đến tai mẹ, hắn sẽ gặp rắc rối lớn. Vì vậy, hắn vỗ nhẹ lên lưng ngọc của bà: "Được rồi, chúng ta đi thôi."</p>
+    <p>"Vâng." Trương Lâm Tâm dịu dàng ngoan ngoãn gật đầu, đi theo bên cạnh Diệp Phi hướng về phía cầu thang.</p>
+    <p>Đúng lúc này, Diệp Phi chợt thấy vài bóng người bước chân vội vã lướt qua đầu hành lang, chạy lên lầu. Tâm trí hắn khẽ động, nói với Trương Lâm Tâm: "Cô đi trước đi, ta phải xử lý chút việc."</p>
+    <p>"Vâng." Trương Lâm Tâm lại dịu dàng gật đầu rồi rời đi một mình. Bà không hỏi là chuyện gì, bởi bà hiểu rõ vị trí của mình. Dù hiện tại Diệp Phi đã thừa nhận bà là người phụ nữ của hắn, nhưng có những việc không phải là điều bà nên hỏi. Thứ bà cần làm là cố gắng dành cho hắn thật nhiều sự ôn nhu.</p>
+    <p>Sau khi Trương Lâm Tâm rời đi, Diệp Phi hơi kỳ lạ đuổi theo mấy kẻ không đi thang máy mà chọn lối cầu thang lên lầu ba. Hắn phát hiện cửa phòng họp lầu ba đã có rất nhiều người đang đứng đó nghị luận ồn ào.</p>
+    <p>"Chuyện gì thế?" Diệp Phi bước tới, trầm giọng hỏi. Hắn có chút bất mãn vì đám người này quá thiếu kiên nhẫn, không có chút quy củ nào.</p>
+    <p>Đám người kia hình như không biết Diệp Phi, tuy không vì tuổi tác của hắn mà nói năng khiếm nhã, nhưng cũng chẳng ai thèm để ý đến hắn.</p>
+    <p>"Bang chủ, ngài đây rồi, ta đang định gọi điện thoại cho ngài đây." Đúng lúc này, Trương Nhất Đức từ phía sau đi tới, thấy Diệp Phi liền lộ vẻ vui mừng.</p>
+    <p>Diệp Phi hơi nghi hoặc nhìn Trương Nhất Đức: "Đã xảy ra chuyện gì?"</p>
+    <p>"Chúng ta vào trong rồi nói." Trương Nhất Đức mở cửa phòng họp, nhường Diệp Phi vào trước rồi mới theo vào, để lại đám đông bên ngoài đang xì xào bàn tán.</p>
+    <p>Vừa vào phòng họp, Diệp Phi đã bị cảnh tượng trước mắt làm kinh ngạc. Trong phòng họp rộng lớn ngồi đầy những người bị thương, mà hắn lại không biết một ai. Những người này thấy hắn và Trương Nhất Đức đi vào liền im lặng, nhưng không tỏ vẻ tôn trọng là bao.</p>
+    <p>Sững sờ một chút, Diệp Phi hiểu ra, những người này chắc chắn không phải là người của Lăng Vân Hội. Kết hợp với sự việc ngày hôm qua, hắn đoán họ đến từ Gần Biển.</p>
+    <p>Quả nhiên, suy nghĩ của Diệp Phi chưa dứt thì đám người bị thương đã đổ dồn ánh mắt sùng kính về phía sau lưng hắn. Quay người lại, Diệp Phi thấy Diệp Tuyền vẫn một thân y phục đen đang đi tới, tay trái ôm trước ngực, rõ ràng là bị thương. Đi bên cạnh nàng là một bé gái khoảng mười một, mười hai tuổi, xinh đẹp tựa như tiểu tinh linh.</p>
+    <p>"Bang chủ!" Diệp Tuyền thấy Diệp Phi liền chào hỏi. So với hôm qua, cách xưng hô này thiếu đi một chữ, nhưng ý nghĩa lại khác biệt rất lớn. Điều này chứng tỏ nàng đã thật lòng muốn đầu quân cho Diệp Phi. Nếu không, một bang hội chỉ có một bang chủ, nàng không thể xưng hô với Diệp Phi trực tiếp như vậy.</p>
+    <p>Biểu hiện của Diệp Tuyền khiến Diệp Phi thầm gật đầu. Đây quả là một người phụ nữ vô cùng quyết đoán. Hơn nữa, nhìn đám thủ hạ của nàng, dù đối diện với một tuyệt thế mỹ nhân như vậy mà trong mắt chỉ toàn sự sùng kính, không hề có chút tà niệm, có thể thấy người phụ nữ này có thủ đoạn cao tay hơn người.</p>
+    <p>"Diệp... tỷ tỷ, tay cô sao rồi?" Diệp Phi quan tâm hỏi. Đã Diệp Tuyền tỏ ý đầu quân, hắn không thể gọi nàng là bang chủ nữa, nên sau một hồi chần chừ, hắn quyết định gọi theo cách xưng hô lúc chia tay hôm qua.</p>
+    <p>"Cảm ơn bang chủ quan tâm, ta không sao, chỉ là chút vết thương nhỏ thôi." Diệp Tuyền rất kiên cường, căn bản không coi vết thương là gì, ngược lại còn nói với bé gái bên cạnh: "Thiến Thiến, gọi thúc thúc đi."</p>
+    <p>"Tại sao phải gọi hắn là thúc thúc ạ?" Bé gái có chút không tình nguyện: "Nhìn hắn cũng đâu có lớn hơn con bao nhiêu."</p>
+    <p>Diệp Tuyền ngượng ngùng cười: "Đây là con gái ta, Phương Ngọc Thiến, thường ngày nuông chiều quá nên sinh hư, bang chủ đừng trách."</p>
+    <p>Diệp Phi cười nói: "Không sao, hơn nữa ta cũng đâu có lớn hơn cô bé bao nhiêu. Thiến Thiến à, sau này con muốn gọi thế nào thì gọi."</p>
+    <p>"Vậy con gọi người là đệ đệ được không?" Phương Ngọc Thiến không biết là đang làm khó Diệp Phi hay thế nào mà đột nhiên hỏi một câu như vậy.</p>
+    <p>Diệp Phi cười vươn tay đo chiều cao của cô bé trên đỉnh đầu rồi so với ngực mình, hỏi: "Con thấy thế nào?"</p>
+    <p>Sự hiền hòa của Diệp Phi khiến cô bé có thiện cảm lớn, vui vẻ cười rộ lên, nắm chặt lấy tay Diệp Phi: "Vậy con vẫn gọi người là ca ca nhé. Ca ca thật tốt, không giống mẹ, lúc nào cũng giáo huấn người khác."</p>
+    <p>Diệp Phi cười với Phương Ngọc Thiến một cái, sau đó hỏi Diệp Tuyền: "Rốt cuộc đã xảy ra chuyện gì? Không phải hôm qua mọi chuyện vẫn ổn sao?"</p>
+    <p>Diệp Tuyền thở dài: "Sau khi bàn bạc xong với Đức thúc, chúng ta liền suốt đêm trở về Gần Biển, vốn định thu dọn đồ đạc để tạm thời rút khỏi đó. Không ngờ vừa về tới nơi đã bị đối phương tấn công toàn diện. Rất nhiều anh em của chúng ta bị thương, thậm chí có không ít người đã chết. Đối phương ra tay rất tàn độc, căn bản không giống cách hành sự của hắc đạo thông thường."</p>
+    <p>"Đã tiếp xúc toàn diện như vậy, các cô có xác định được danh tính của bọn chúng không?" Diệp Phi trầm giọng hỏi.</p>
+    <p>Diệp Tuyền gật đầu: "Có thể, nòng cốt của bọn chúng đều là người Nhật Bản. Hơn nữa ta cũng nhìn thấy thủ lĩnh của bọn chúng, cũng là người Nhật. Ở Gần Biển, hắn công khai danh phận là một thương nhân đến đầu tư. Thật không hiểu những kẻ cầm quyền ở Gần Biển ăn cái gì mà ngu muội đến thế. Phi Long bang chúng ta chẳng thiếu cho bọn họ chỗ tốt, vậy mà họ lại để mặc cho một bang phái như vậy đến càn quét."</p>
+    <p>Nhắc đến chuyện này, ngay cả Diệp Tuyền cũng không nhịn được mà than vãn.</p>
+    <p>Diệp Phi trong lòng cũng đầy bất mãn với đám quan chức kia, quyết định sau khi chiếm được Gần Biển sẽ nói chuyện với bọn họ. Nếu không hợp tác thì cút đi, còn nếu cứng đầu thì bắt giữ, ném vào máy móc kia xử lý một lần. Chỉ cần là người đã qua máy đó, đều sẽ tuyệt đối trung thành với hắn. Ngay cả khi hắn không ở đó, hình ảnh của hắn cũng sẽ được in sâu vào não bộ của bọn chúng, nên bất cứ lúc nào bọn chúng cũng sẽ nhận ra hắn.</p>
+    <p>"Người của các cô đã đến hết chưa?" Diệp Phi tiếp tục hỏi.</p>
+    <p>Diệp Tuyền gật đầu: "Đúng vậy, ngoại trừ một số người bị thương quá nặng không thể di chuyển, còn lại đều đã đến. Vì số lượng quá đông nên ta tạm thời cho họ ở ngoài thành, còn đưa số nòng cốt tới trước."</p>
+    <p>Diệp Phi suy nghĩ một chút rồi bảo Trương Nhất Đức: "Đức thúc, ông sắp xếp người đi ngoài thành đón anh em ở Gần Biển về, ai bị thương thì đưa đến bệnh viện, tuyệt đối không được chậm trễ. Còn nữa, gọi thêm vài chiếc xe, đám anh em này đều cần trị liệu." Hắn chỉ chỉ vào đám người bệnh trong phòng.</p>
+    <p>"Bang chủ, cảm ơn ngài." Thấy Diệp Phi sắp xếp chu đáo như vậy, Diệp Tuyền vô cùng cảm kích. Hiện tại Phi Long bang có thể nói là nhà tan cửa nát, việc Diệp Phi thu nhận họ đã là ân huệ lớn, huống hồ còn quan tâm như vậy, Diệp Tuyền biết Diệp Phi hoàn toàn xuất phát từ đạo nghĩa.</p>
+    <p>Lúc này, đám người Phi Long bang cũng thêm phần tôn trọng Diệp Phi. Bất kể vị bang chủ trẻ tuổi này có lợi hại như Diệp Tuyền nói hay không, riêng tấm lòng này cũng đủ để khiến họ cảm kích.</p>
+    <p>"Không có gì, từ nay về sau mọi người là người một nhà, không cần khách khí." Diệp Phi mỉm cười xua tay.</p>
+    <p>Hôm nay ông trời dường như không muốn để Diệp Phi yên ổn. Vừa sắp xếp xong xuôi chuyện của Phi Long bang, đang định quay về trường học thì trong sân đột nhiên truyền đến một tiếng súng, tiếp theo điện thoại của Trương Nhất Đức vang lên.</p>
+    <p>"Bang chủ, bên ngoài có một đám người, tay cầm vũ khí, tuyên bố muốn chúng ta giao nộp Phi Long bang. Ngài xem làm thế nào bây giờ?"</p>
+    <p>Trương Nhất Đức cúp máy rồi báo cáo với Diệp Phi.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0235.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0237.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 289 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 289</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 289</small>
+    Chương 289: Mèo vờn chuột
+  </h1>
+  <div class="chapter-body">
+    <p>Sau khi đợi Diệp Tư Dao ngủ say, Diệp Phi nhẹ nhàng gỡ tứ chi nàng đang quấn trên người mình ra, rồi chậm rãi rút ra khỏi nơi tuyệt vời ấy. Ma sát khoái hoạt đó khiến Diệp Tư Dao bản năng khẽ uốn éo, nhưng vì quá mệt mỏi nên nàng không hề tỉnh giấc. Diệp Phi sở dĩ đứng dậy không phải vì hắn không lưu luyến cảm giác được tỷ tỷ bao bọc mỹ diệu này, kỳ thật giống như tỷ tỷ, hắn cũng hy vọng mình có thể ở lại trong cơ thể nàng suốt cả đêm, chỉ là câu nói cuối cùng của tỷ tỷ trước khi ngủ đã khiến hắn nhận ra một sai lầm của mình. Trước đó vì quá quan tâm đến tỷ tỷ, hắn đã quen thói giao Vương Tiểu Minh cùng Kim Đại Thuận cho Lăng Vân Hội xử lý, sau đó lại hoàn toàn đắm chìm trong phong tình vô tận của tỷ tỷ, cho đến tận lúc này hắn mới nghĩ đến một vấn đề, đó là sự vụ ngày thường của Lăng Vân hiện nay đều do Trương Nhất Đức xử lý, mà việc mình sắp đặt thì khẳng định phải tự mình xử lý. Như vậy, vấn đề đã tới rồi, vạn nhất hai kẻ không biết sống chết kia nói ra những điều không hay ho gì, chỉ sợ sẽ gây ra phiền toái. Tuy hiện tại Diệp Phi đã định thương lượng việc của các tỷ tỷ với mẹ, nhưng đó chỉ là chuyện trong nhà, hắn tạm thời vẫn chưa muốn cho ngoại nhân biết. Huống chi Trương Nhất Đức tuy là thủ hạ của mình, nhưng ông dù sao cũng là tam triều nguyên lão đã ở Lăng Vân Hội từ thời ông nội, không chỉ mình cùng tỷ tỷ, mà ngay cả phụ thân của hắn cũng là do một tay ông nhìn lớn lên. Ông không có con cái, đã sớm coi hắn và các tỷ tỷ như cháu trai cháu gái mình rồi, cho nên Diệp Phi không thể không cân nhắc cảm nhận của ông. Chuyện này có thể chậm một ngày cho ông biết thì vẫn tốt hơn, dù sao ông cũng là một lão nhân, rất có thể sẽ không cách nào tiếp nhận hết thảy chuyện này. Mặc quần áo xong, Diệp Phi đặt một cái gối ôm thật lớn vào vị trí của mình trong lòng tỷ tỷ, sau đó nhanh chóng rời khỏi phòng. Tuy nhiên hắn không lập tức tới tổng bộ Lăng Vân Hội, mà gọi một cú điện thoại trước. Tuy khách sạn này trông cũng không tệ, nhưng Diệp Phi muốn sự an toàn tuyệt đối cho tỷ tỷ, vì vậy mới gọi người tới đây bảo vệ nàng. Nhưng lần này hắn gọi không phải là những thủ hạ bình thường của Lăng Vân Hội, mà là vài cao thủ do chính hắn đào tạo. Những người này tuyệt đối trung thành với hắn, nếu không có lời hắn, thì dù là Trương Nhất Đức cũng đừng hòng biết được bất cứ điều gì từ miệng họ. Rất nhanh, tám cao thủ nhận được lệnh của Diệp Phi đã tới. Sau khi phân phó họ âm thầm canh giữ bên ngoài căn phòng mình vừa thuê, Diệp Phi mới yên tâm rời đi. Mấy phút sau, Diệp Phi đã đứng ở cửa lớn câu lạc bộ đêm Lăng Vân. Tốc độ của hắn hiện nay càng lúc càng nhanh, bất quá Diệp Phi không có tâm tư đi bận tâm những chuyện này, bởi vì vừa rồi hắn cùng tỷ tỷ đã kịch liệt ôn lại tình cảm hơn hai giờ. Lẽ ra thời gian dài như vậy, hai tên Kim Đại Thuận hẳn là đã tỉnh, nên hắn rất lo lắng không biết Trương Nhất Đức có biết được điều gì từ miệng bọn chúng hay không. Đêm nay tổng hội đúng lúc là thời điểm náo nhiệt nhất, Diệp Phi không làm kinh động bất kỳ ai, sau khi ra hiệu cho người quản lý đại sảnh đang định tới chào hỏi, liền từ thông đạo bên trong đi tới văn phòng nằm dưới mặt đất nơi Trương Nhất Đức làm việc. Vì từ trước đến nay chưa lập gia đình, Trương Nhất Đức bình thường đều ở lại tổng bộ Lăng Vân Hội, cho nên Diệp Phi rất dễ dàng tìm thấy ông tại văn phòng kiêm chỗ ở. Dù có chút lo lắng, nhưng Diệp Phi vẫn không đổi sắc mặt hỏi: "Trương gia gia, mấy người kia đã tỉnh chưa?" "Đều đã tỉnh rồi, bất quá hai tên này không quá thành thật, cứ ồn ào đòi gặp Dao Dao cùng một người tên là Phong Thu." Trương Nhất Đức nói. Bởi vì Diệp Ngưng Sương tỷ muội cùng Diệp Tư Kỳ tỷ muội ông đều phải gọi là tiểu thư, rất dễ nhầm lẫn, nên bình thường ông gọi thẳng nhũ danh của đám đời thứ ba Diệp Phi, mà đám người Diệp Phi vốn coi ông là trưởng bối nên đương nhiên cũng không có ý kiến gì. Diệp Phi trong lòng âm thầm buông lỏng, xem ra hai người này tuy tỉnh nhưng cũng không ngốc đến mức nói ra chuyện chén rượu Diệp Tư Dao đã uống. Như vậy Trương Nhất Đức cũng sẽ không hoài nghi gì, vì vậy hắn cười cười nói: "Phong Thu kia chính là con, trong bọn chúng có một kẻ là người theo đuổi Nhị tỷ, để hắn chết tâm, con mới đi giả mạo bạn trai Nhị tỷ một chút, không ngờ tên gia hỏa này thấy không có hy vọng, lại dám nghĩ tới việc hạ thuốc Nhị tỷ." "Cái gì? Vậy Dao Dao thế nào? Không sao chứ?" Trương Nhất Đức không khỏi kinh hãi. Ông vẫn luôn coi đám người Diệp Phi như cháu ruột mà đối đãi, nay nghe tin này, tự nhiên vô cùng khẩn trương. "Không sao, chúng con đã phát hiện từ trước nên đương nhiên không để bọn chúng thực hiện được, chỉ là Nhị tỷ trong lòng có chút không thoải mái mà thôi, con đã đưa chị ấy về võ quán." Diệp Phi tự nhiên sẽ không nói cho Trương Nhất Đức biết việc Diệp Tư Dao vì muốn trút bỏ gánh nặng trong lòng mà ngây ngốc uống chén rượu bị Kim Đại Thuận hạ độc. Chỉ cần nghĩ tới chuyện ngốc nghếch mà tỷ tỷ đã làm, trong lòng hắn không nhịn được mà cảm động khôn cùng. "Vậy là tốt rồi!" Trương Nhất Đức thở phào nhẹ nhõm, sau đó nói: "Đúng rồi, những học viên ở võ quán của Dao Dao ta đã sắp xếp người đưa họ về hết rồi, không vấn đề gì chứ?" "Không có gì, bọn họ đều không liên quan tới chuyện này." Diệp Phi cũng không quan tâm tới đám học viên đó, chỉ thuận miệng hỏi: "Bọn họ thiếu vài người, không hoài nghi gì chứ?" "Không có." Trương Nhất Đức cười nói: "Chủ quán này đúng lúc là người nhà của một huynh đệ trong bang, từng gặp ta một lần, nên ta đã bảo hắn xử lý ổn thỏa rồi." Diệp Phi không ngờ rằng nguyên tổng bộ Hắc Lang bang bây giờ lại coi như là người của mình, hơn nữa nhìn qua sinh ý cũng không tồi. Nhưng những chuyện nhỏ nhặt này hắn cũng lười quản, chỉ khẽ gật đầu, sau đó nói: "Con đi xem mấy tên kia đây, Trương gia gia người nghỉ ngơi sớm đi." "Tốt, nhớ kỹ phải dạy dỗ thật tốt mấy kẻ không biết sống chết kia." Trương Nhất Đức gật đầu nói. Kỳ thật khi biết Vương Tiểu Minh bọn họ dám xuống tay với Diệp Tư Dao, trong lòng Trương Nhất Đức cũng rất muốn tự tay giáo huấn bọn chúng, nhưng giờ Diệp Phi đã ám hiệu không cho ông nhúng tay, ông cũng không đòi hỏi gì thêm. Tuy người nhà họ Diệp đối với ông rất khách khí, nhưng Trương Nhất Đức chưa bao giờ nghĩ tới việc dựa vào thế của chủ mà làm càn. Đây cũng là lý do lớn nhất khiến Diệp Phi coi trọng ông. Điều này không phải Diệp Phi ngang ngược không nghe ý kiến người khác, mà là thân là bang chủ, đôi khi uy nghiêm rất quan trọng. Nếu khi xử lý bang vụ, lúc nào cũng có một lão già đứng bên cạnh khua tay múa chân, chưa kể ông nói đúng hay sai, trước tiên sẽ tạo cho người khác ấn tượng "Ai mới là bang chủ". Về điểm này, Trương Nhất Đức làm rất tốt, dù có ý kiến gì, ông đều nói riêng với Diệp Phi, và Diệp Phi cũng vì vậy mà cực kỳ tôn trọng ông. Lúc này, Vương Tiểu Minh và Kim Đại Thuận đúng như lời Trương Nhất Đức nói, đã tỉnh lại. Vì Trương Nhất Đức trước đó không biết hai kẻ này làm gì nên cũng không làm khó chúng, chỉ nhốt hai người cùng đám vệ sĩ của Vương Tiểu Minh dưới căn phòng tầng hầm. Từ sau khi đám dụng cụ bị đầu trọc mang tới Lâm Hải, nơi này đã trở thành nơi giam giữ chuyên dụng của Lăng Vân Hội. Cùng tựa lưng vào tường ngồi dưới đất, tâm trạng Kim Đại Thuận và Vương Tiểu Minh rất khác nhau. Hồi tưởng lại cảnh Phong Thu vừa đi ra ngoài, Diệp Tư Dao đột nhiên ra tay đánh ngất mình, hắn liền biết việc mình hạ thuốc nàng chắc chắn đã bị phát hiện. Cho nên hiện tại hắn không còn nghĩ tới việc có chiếm được Diệp Tư Dao hay không, mà là liệu mình có còn mạng qua đêm nay hay không. Vì vừa rồi hắn đã gặp Trương Nhất Đức, mà danh tính của Trương Nhất Đức tại Vọng Hải sợ là không mấy ai không biết, nên hiện tại hắn hẳn là đang ở Lăng Vân Hội. Nghĩ tới sự đáng sợ trong truyền thuyết của Diệp Phi, hắn không nhịn được mà rùng mình. Mà Vương Tiểu Minh ngồi bên cạnh Kim Đại Thuận lại thoải mái hơn nhiều. Hắn luôn cho rằng những truyền thuyết về Diệp Phi chỉ là do người Vọng Hải thêu dệt nên. Từng đóng vai đại ca xã hội đen, hắn luôn cảm thấy xã hội đen ở Trung Quốc căn bản chỉ là lũ lưu manh phá phách, tuyệt đối không có gan giết người. Cho nên dù đoán được đây là địa bàn của Lăng Vân Hội, hắn cũng không mấy lo lắng, cho rằng Lăng Vân Hội tối đa cũng chỉ giam mình vài ngày, sau đó sẽ nhìn vào mặt mũi cha nuôi của hắn - người vốn có tiếng tăm khắp Trung Quốc - mà thả hắn ra. Khi hai người đang mang tâm tư khác nhau, chợt nghe cửa phòng tầng hầm mở ra, tiếp đó thấy Diệp Phi sải bước đi vào. Kim Đại Thuận không ngờ người tới lại là hắn, trong lòng không khỏi có chút vui mừng. Hắn vốn tưởng rằng mình làm ra chuyện như vậy với Diệp Tư Dao, Diệp Phi nhất định sẽ đích thân thu thập mình, không ngờ tới lại là Phong Thu, điều này khiến hắn nhìn thấy một tia hy vọng. Bởi vì tuy trước đó hắn từng có chút va chạm với Phong Thu, nhưng người này trông rất dễ nói chuyện, vì vậy vội vàng lên tiếng: "Huynh đệ Phong Thu, ngươi tới rồi, mau thả chúng ta ra đi." Diệp Phi không khỏi cạn lời nhìn về phía Kim Đại Thuận, tên này rốt cuộc là nghĩ thế nào mà còn muốn mình thả hắn ra? Liền hỏi: "Ngươi sẽ không quên mình đã làm chuyện gì rồi chứ?" "Cái này..." Sắc mặt Kim Đại Thuận cứng đờ, bất quá vẫn cố chấp nói: "Ta biết vừa rồi cách làm của mình không đúng, nhưng tổng cộng coi như là ý xấu làm việc tốt đi? Không những bản thân không được chỗ tốt gì, còn khiến huynh đệ ngươi được lợi." "Nói vậy, ta còn phải cảm tạ ngươi?" Diệp Phi cười lạnh hỏi. Kim Đại Thuận dù có ngốc cũng hiểu đối phương không định buông tha mình, không khỏi sợ tới mức rụt cổ lại, không dám nói thêm gì nữa. Bất quá Vương Tiểu Minh bên cạnh đột nhiên hỏi: "Không biết vị huynh đệ này tên thật là gì? Tại Lăng Vân Hội giữ chức vụ gì?" "Ồ?" Diệp Phi không khỏi đầy hứng thú nhìn Vương Tiểu Minh: "Tại sao ngươi lại hỏi như vậy?" Vương Tiểu Minh khẽ mỉm cười nói: "Nếu như ta đoán không sai, nơi này hẳn là tổng bộ Lăng Vân Hội, mà huynh đệ ngươi lại có thể tự do xuất nhập nơi này, nghĩ đến tại Lăng Vân cũng không phải nhân vật nhỏ, mà cái tên Phong Thu này lại chưa từng có ai nghe nói qua, nên cái tên trước kia ngươi dùng hẳn là tên giả, đúng không?" "Không ngờ ngươi cũng rất thông minh." Diệp Phi nói xong, sắc mặt đột nhiên chuyển lạnh: "Bất quá, ta ghét nhất là những kẻ tự cho là thông minh. Cái kế hoạch hạ thuốc kia, hẳn là ngươi hiến kế cho Kim Đại Thuận phải không?" Vương Tiểu Minh thấy Phong Thu nói chuyện rồi bước tới phía mình, không khỏi hoảng sợ. Thực lực của đối phương hắn đã biết rõ, ở trước mặt hắn, mấy tên bảo tiêu bên cạnh dù đã tỉnh cũng chẳng có tác dụng gì, vì vậy vội vàng nói: "Chờ một chút, ta muốn gặp bang chủ của các ngươi - Diệp Phi!" Diệp Phi chỉ là muốn dọa Vương Tiểu Minh một chút, bởi trong lòng hắn, kẻ âm hiểm này còn đáng ghét hơn Kim Đại Thuận nhiều, giết chết hắn ngay lập tức như vậy thật là quá hời cho hắn, vì vậy thuận thế dừng lại, hỏi: "Có chuyện gì không?" Vương Tiểu Minh thấy chiêu này có tác dụng, trong lòng mừng rỡ, nói: "Ta có một chuyện rất quan trọng muốn nói với hắn, chuyện này tuyệt đối có lợi cho hắn." "Chuyện gì, nói đi." Diệp Phi nhàn nhạt nói. "Ngươi vẫn là gọi hắn tới đây đi, chuyện này nói bây giờ, sợ là ngươi không làm chủ được." Vương Tiểu Minh vẫn kiên trì muốn gặp Diệp Phi, vì hắn biết kẻ tên Phong Thu trước mắt này rất ác cảm với mình, chuyện hắn sắp nói tuy có lợi cho Diệp Phi nhưng gã này chưa chắc đã truyền đạt lại. Nếu Diệp Phi đến, chuyện sẽ khác, dù mình từng có ý định hại tỷ tỷ của hắn nhưng cũng chưa thành, tin rằng thân là bang chủ, hắn sẽ đặt lợi ích lên hàng đầu. "Sao ngươi biết ta không làm chủ được?" Diệp Phi cười nhạt hỏi. Vương Tiểu Minh thầm kinh ngạc về thân phận của Diệp Phi. Hắn biết rõ về chuyện trên giang hồ, xã hội đen ở Trung Quốc tuy không ra hồn nhưng quy củ rất nghiêm, là một cấp dưới, dù có là người yêu của tỷ tỷ Diệp Phi đi nữa cũng không thể tùy tiện nói mình có thể làm chủ, cho nên thân phận của hắn có vẻ có chút thần bí. "Rốt cuộc ngươi là ai?" Vương Tiểu Minh suy nghĩ một hồi, không khỏi hỏi lại lần nữa. Diệp Phi khẽ cười nói: "Ngươi không phải rất biết đoán sao? Thử đoán xem!" Vương Tiểu Minh nhíu mày, nhìn gương mặt còn quá trẻ so với tuổi của Diệp Phi, trong lòng đột nhiên chấn động, không dám tin nói: "Ngươi chính là Diệp Phi?" Diệp Phi cười vỗ tay: "Không ngờ ngươi thật sự biết đoán, xem ra để ngươi đóng phim thật sự là lãng phí nhân tài, ngươi nên đi làm thầy bói trên đường phố thì đúng hơn." Vương Tiểu Minh biến sắc, đang muốn nói gì đó thì nghe tiếng vang nhỏ bên cạnh, quay đầu nhìn lại, đã thấy Kim Đại Thuận ngã gục xuống đất, hiển nhiên là sau khi biết người trước mắt là Diệp Phi thì sợ tới mức mất hồn, trong lòng không khỏi thầm khinh bỉ hắn. Diệp Phi không để ý tới Kim Đại Thuận đang sợ hãi, nhìn Vương Tiểu Minh nói: "Không phải ngươi có việc muốn nói với ta sao? Nói đi." Biết Phong Thu chính là Diệp Phi, Vương Tiểu Minh trong lòng ngược lại an tâm. Vì hắn biết những tổng giám đốc tập đoàn, thủ lĩnh bang hội như thế này từ trước đến nay đều lấy lợi ích làm trọng, tin rằng chỉ cần hắn nghe qua đề nghị của mình, tuyệt đối sẽ không làm gì mình nữa, vì vậy nói: "Nghe nói ngươi hiện tại muốn làm công ty giải trí, chỉ cần ngươi bỏ qua chuyện hôm nay, ta có thể gia nhập công ty của ngươi."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0288.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0290.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 144 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 144</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 144</small>
+    Chương 144: Bờ biển mập mờ
+  </h1>
+  <div class="chapter-body">
+    <p>Phù dung là mặt, ngọc là da, Diệp Phi cảm thấy dùng những lời này để miêu tả vị mỹ nhân trước mắt này thật sự vô cùng phù hợp. Tuy đã quen nhìn nàng từ bé, nhưng lúc này Tiêu Hàm Nguyệt vẫn khiến Diệp Phi không khỏi cảm thấy kinh diễm.</p>
+    <p>Tiêu Hàm Nguyệt luôn là người làm việc vô cùng chuyên tâm. Trong ấn tượng của Diệp Phi, nàng gần như ngày nào cũng mặc âu phục công sở, nếu không thì là lễ phục khi dự các buổi tiệc tùng, dù rất xinh đẹp nhưng luôn mang lại cảm giác vô cùng nghiêm túc. Thế nhưng hôm nay nàng lại phá lệ đổi sang một bộ thường phục màu xanh nhạt. Dưới sự tôn lên của bộ đồ mềm mại này, nàng bớt đi vẻ nghiêm túc, lại thêm vài phần kiều mỵ. Hơn nữa, bộ thường phục rất vừa vặn này mặc trên người nàng, càng làm nổi bật dáng người nảy nở đầy thành thục, quyến rũ.</p>
+    <p>Nhìn vị chuẩn mẹ vợ xinh đẹp mặn mà này, Diệp Phi không khỏi ngẩn ngơ, nhất thời chỉ biết ngây người nhìn nàng. Cũng may Lâm Linh sau khi thoát khỏi hắn đã tiến đến bên cạnh Diệp Vân Khinh, cùng Diệp Vân Khinh và Diệp Tĩnh líu ríu trò chuyện, không chú ý tới sự thất thố của Diệp Phi.</p>
+    <p>Lâm Linh không thấy, nhưng Tiêu Hàm Nguyệt lại chú ý tới. Nhìn ánh mắt như muốn "ăn tươi nuốt sống" mình của Diệp Phi, nàng không khỏi hung hăng lườm hắn một cái. Diệp Phi lập tức giật mình tỉnh lại, cười ngượng nghịu vài tiếng rồi quay người sang nói chuyện với Lâm Linh và mọi người.</p>
+    <p>Tiêu Hàm Nguyệt tuy có chút kinh ngạc vì Diệp Phi lại nhìn mình bằng ánh mắt như vậy, mà còn không chỉ một lần, nhưng cũng không để trong lòng. Nàng nhìn hắn lớn lên từ nhỏ nên phạm phải sai lầm giống như những người phụ nữ khác, đó là trong lòng vẫn coi Diệp Phi như một đứa trẻ. Dù hôm đó đã thấy "chỗ đó" cường đại, nhưng trong lòng nàng vẫn không nghĩ hắn đã là một người đàn ông thực thụ. Đồng thời, ánh mắt kinh diễm của Diệp Phi khiến nàng tự hào nhận ra mị lực của mình vẫn chưa hề mất đi. Là một phụ nữ, đặc biệt là một mỹ nữ xuất sắc như nàng, nàng vô cùng để ý đến dung mạo của mình. Dù hiện tại không còn ai khiến nàng rung động để thưởng thức, nhưng điều đó không hề làm giảm bớt sự quan tâm của nàng đối với khía cạnh này, nên khi thấy ánh mắt của Diệp Phi, nàng vẫn cảm thấy chút vui mừng.</p>
+    <p>Chỉnh đốn lại tâm trạng, Tiêu Hàm Nguyệt thấy họ vẫn đang trò chuyện ở cửa, liền cười nói: "Có phải các người định đứng đây nói chuyện cả ngày không?"</p>
+    <p>Lâm Linh lúc này mới sực nhớ ra, vội vàng nói: "Đúng đúng đúng, chúng ta vào trong ngồi rồi hãy nói chuyện đi." Diệp Phi đến hôm nay khiến nàng vui mừng đến mức có chút thất thố.</p>
+    <p>Tuy Tiêu Hàm Nguyệt là cổ đông lớn của Liễu thị tập đoàn, nơi ở cũng là biệt thự xa hoa, nhưng nàng và Lâm Linh không phải là người phô trương. Đồ đạc trong nhà bài trí khá đơn giản, trong phòng khách chỉ đặt một bộ sofa tổ hợp, khiến căn phòng rộng lớn trông có phần trống trải. Đây cũng chính là lý do Diệp Phi yêu quý họ. Nếu cả hai cũng như những người phụ nữ hư vinh kia, ỷ vào quan hệ với Liễu gia mà ngày ngày khoe khoang giàu sang, Diệp Phi đã chẳng ưa thích họ.</p>
+    <p>Mấy người vào phòng khách ngồi xuống sofa. Diệp Tĩnh nha đầu này thập phần bám lấy Diệp Phi, trực tiếp ngồi xuống bên cạnh hắn, bên kia thì để Diệp Vân Khinh nhường cho Lâm Linh. Bây giờ, bất kể làm gì, việc đầu tiên cô bé nghĩ đến chính là Diệp Phi, sau đó mới đến bản thân mình, tình cảm dành cho Diệp Phi đã khắc sâu vào xương tủy.</p>
+    <p>Vì mấy người Diệp Phi đến hơi muộn, lúc này đã sắp đến trưa. Trò chuyện một lúc, Tiêu Hàm Nguyệt liền vào bếp nấu cơm. Không có mẹ ở bên cạnh, Lâm Linh cũng không còn ngượng ngùng như lúc nãy nữa, mềm mại tựa sát vào người Diệp Phi, nhìn gương mặt anh tuấn ấy rồi dịu dàng nói: "Diệp tử ca ca, cảm ơn anh!"</p>
+    <p>Diệp Phi ngạc nhiên, hỏi: "Sao đột nhiên lại cảm ơn anh?"</p>
+    <p>Lâm Linh trầm lặng nói: "Cuối tuần ngày trước đều là một mình em trải qua, hôm nay không những các anh tới, mà mẹ cũng vì các anh tới mà không đi làm, trong nhà bỗng chốc trở nên náo nhiệt hơn nhiều."</p>
+    <p>Nghĩ đến sự cô đơn của Lâm Linh trước đây, Diệp Phi không khỏi đau lòng, siết nhẹ vai nàng nói: "Em yên tâm, từ nay về sau anh sẽ cố gắng dành nhiều thời gian cho em. Đợi thêm một thời gian nữa, em và dì Tiêu dọn qua ở cùng chúng ta, như vậy sẽ càng náo nhiệt hơn."</p>
+    <p>Diệp Vân Khinh cười nói: "Ca ca nói đúng lắm, mẹ các chị cũng nghĩ như vậy đấy. Đến lúc đó để dì Tiêu dọn qua ở cùng mẹ em, chị dọn đến nhà Tĩnh Tĩnh, chúng ta mấy người ở cùng nhau. Tĩnh Tĩnh, em có chịu không?"</p>
+    <p>"Được!" Diệp Tĩnh vỗ tay nhỏ cười nói: "Đến lúc đó ba người chúng ta ngủ cùng nhau, chắc chắn sẽ rất vui!"</p>
+    <p>Mắt Lâm Linh sáng lên, vội vàng gật đầu. Diệp Vân Khinh lại cười bảo: "Tĩnh Tĩnh đừng nói ngốc, đến lúc đó vẫn là hai người chúng ta ngủ cùng nhau, chị Linh Linh sẽ ngủ cùng ca ca."</p>
+    <p>Lâm Linh đỏ mặt, phun một tiếng: "Em mới không cần đâu, muốn ngủ thì em cùng anh ấy ngủ đi."</p>
+    <p>Diệp Tĩnh nhíu đôi mày thanh tú nói: "Nhưng em cũng muốn ngủ cùng ca ca nha, đến lúc đó bốn người chúng ta cùng ngủ được không? Dù sao giường của em rất lớn, chắc chắn không vấn đề gì."</p>
+    <p>Diệp Vân Khinh và Lâm Linh đều bị lời nói ngây thơ của Diệp Tĩnh chọc cười. Diệp Tĩnh bị hai người cười đến ngơ ngác, đôi mắt to chớp chớp, không biết mình đã nói sai chỗ nào.</p>
+    <p>Vì là người nhà, bữa trưa Tiêu Hàm Nguyệt không làm quá long trọng, chỉ làm vài món ăn và một nồi cơm tẻ, vậy mà mấy người vẫn ăn rất ngon miệng. Đặc biệt là Diệp Phi, kẻ đang ấp ủ tà niệm, vừa ăn vừa nhiệt tình khen ngợi. Tên này từ sau khi khai phá não vực, không những thân thể trở nên cường tráng mà cái miệng cũng ngọt hơn không ít, chọc cho Tiêu Hàm Nguyệt cười không khép miệng được. Diệp Phi đột nhiên thể hiện mặt cường đại khiến nàng vừa mừng cho con gái vừa có chút bất an, sợ rằng Diệp Phi lợi hại như thế sẽ chướng mắt con gái mình. Nhưng hiện tại xem ra, Diệp Phi không những không thay đổi với con gái mà ngược lại còn che chở hơn, giờ lại thưởng thức tài nấu nướng của mình, tự nhiên khiến nàng vô cùng vui vẻ.</p>
+    <p>Ăn trưa xong, theo đề nghị của Diệp Vân Khinh, mấy người quyết định ra bờ biển chơi buổi chiều. Tiêu Hàm Nguyệt cũng vui vẻ đồng ý. Nàng vì quá bận công việc nên rất ít thời gian bên con gái, hiếm khi hôm nay con gái vui vẻ như vậy, bản thân lại rảnh rỗi, tất nhiên sẽ không làm mất hứng của lũ trẻ.</p>
+    <p>Thu xếp đơn giản một chút, Diệp Phi mang theo một lớn ba nhỏ, tổng cộng bốn mỹ nhân xuất phát. Tiêu Hàm Nguyệt lái xe, năm người trực tiếp đi xuyên qua nội thành, hướng về bờ biển phía đông Vọng Hải. Trên đường đi, Diệp Vân Khinh còn cố ý đi mua vài bộ áo tắm. Hiện tại tuy đã gần tháng mười, nhưng Vọng Hải nằm ở phía Nam Trung Quốc, thời tiết vẫn còn rất nóng, lúc này đi tắm biển cũng là lựa chọn không tồi.</p>
+    <p>Gần ba giờ chiều, năm người cuối cùng đã tới bờ biển. Tuy hôm nay là cuối tuần nhưng bờ biển không có nhiều người. Mấy người tìm một chỗ vắng vẻ rồi đỗ xe, nhìn sóng biển dập dềnh mà lòng cảm thấy vô cùng thoải mái.</p>
+    <p>Dù Vọng Hải không cách xa biển, nhưng mấy người phụ nữ cũng không có nhiều thời gian ra đây chơi, lúc này vô cùng phấn khích, muốn lập tức lao xuống biển. Thế nhưng lúc thay áo tắm lại gặp chút khó khăn, vì nơi đây không phải khu quy hoạch, xung quanh toàn là bãi cát, ngay cả chỗ che chắn cũng không có. Hiện tại lại có Diệp Phi là con trai ở đây, các nàng tất nhiên đều ngại ngùng khi thay đồ trước mặt hắn, nhất là Tiêu Hàm Nguyệt. Dù nàng vẫn coi Diệp Phi là đứa trẻ, nhưng từng nhìn thấy "chỗ đó" của hắn, nàng biết cậu bé này đã có năng lực kia rồi.</p>
+    <p>Thương lượng một hồi, các nàng đuổi Diệp Phi xuống xe, rồi thay đồ ở bên trong. Thế nhưng khi thay xong lại có chút khó xử, bởi vì Diệp Vân Khinh không mua loại áo tắm liền thân mà là bikini, hơn nữa còn là loại rất kiệm vải. Ba cô gái trẻ mặc thì không sao, nhưng Tiêu Hàm Nguyệt lại đỏ mặt, vì bộ áo tắm đó chỉ gồm ba mảnh vải nhỏ. Phía dưới còn đỡ, nhưng phía trên thì không được rồi, đôi gò bồng đảo của nàng chỉ được che phủ một phần nhỏ ở đỉnh, hơn nửa còn lộ ra bên ngoài, chính giữa lộ ra khe rãnh sâu hoắm.</p>
+    <p>Lâm Linh và Diệp Tĩnh còn chưa trải sự đời nên đỡ hơn. Diệp Vân Khinh nhìn dáng người Tiêu Hàm Nguyệt lại không khỏi ngưỡng mộ, mắt dán chặt vào đôi cực phẩm của Tiêu Hàm Nguyệt, nói: "Dì Tiêu, chỗ của dì lớn thật đấy."</p>
+    <p>Tiêu Hàm Nguyệt cười nói: "Của cháu sau này cũng sẽ lớn thôi."</p>
+    <p>"Thật không ạ?" Diệp Vân Khinh cúi đầu nhìn "núi nhỏ" của mình, có chút không tin.</p>
+    <p>"Đương nhiên, mẹ cháu không so được với dì đâu, cháu được di truyền từ mẹ thì tự nhiên sẽ không nhỏ." Tiêu Hàm Nguyệt cười cười, hỏi: "Khinh Khinh sao đột nhiên lại quan tâm đến cái này thế? Làm sao? Có bạn trai rồi à?"</p>
+    <p>"Đâu có!" Diệp Vân Khinh đỏ mặt: "Con chỉ thấy lớn thì đẹp thôi."</p>
+    <p>"Có gì mà đẹp chứ." Tiêu Hàm Nguyệt lại thấy phiền muộn, chỉ khi ở trước mặt ba cô gái nàng mới dám phóng khoáng, chứ nếu đối mặt với Diệp Phi mà mặc như thế này thì thật ngượng ngùng.</p>
+    <p>Diệp Vân Khinh cũng hiểu sự ngượng ngùng của nàng, liền thò đầu ra ngoài xe gọi Diệp Phi: "Ca, anh đi sang một bên đi, đợi bọn em xuống nước rồi anh hãy tới thay đồ!"</p>
+    <p>Diệp Phi lên tiếng, nhìn xung quanh một vòng rồi dứt khoát đi sang phía bên kia xe, đợi các nàng xuống hết rồi mới lên xe thay đồ.</p>
+    <p>Phơi nắng bên ngoài một lúc, Diệp Phi cũng rất muốn mau chóng xuống nước. Lên xe, hắn nhanh chóng thay quần bơi rồi lập tức xuống xe, nhưng cảnh đẹp trước mắt lại làm hắn ngẩn ngơ, mắt dán chặt vào đôi gò bồng đảo của Tiêu Hàm Nguyệt.</p>
+    <p>Sau khi xuống xe, ba cô gái nhỏ lập tức nhảy xuống nước, còn Tiêu Hàm Nguyệt thì có chút chần chừ. Nàng cũng biết bơi, nhưng đã lâu không tắm ở những nơi như thế này. Không ngờ chỉ chần chừ một chút mà Diệp Phi đã đi ra. Thấy ánh mắt ngây dại của hắn, nàng vội vô thức đưa tay che ngực, mắt trừng hắn đầy oán trách.</p>
+    <p>Động tác của Tiêu Hàm Nguyệt khiến Diệp Phi sực tỉnh, cười ngượng nghịu rồi nhanh chóng chạy xuống biển. Nhưng Tiêu Hàm Nguyệt cũng rất nhạy cảm, nàng nhìn thấy khi hắn chạy, phía dưới quần bơi của hắn bỗng nhiên dựng lên một "chiếc lều" khổng lồ. Trong lòng không hiểu sao lại đột nhiên rất muốn xem "diện mục thật" của nó.</p>
+    <p>Sau khi xuống nước, Diệp Phi chủ động lách mình ra xa. Không phải vì hắn sợ ngượng, mà là trong lòng hắn rất coi trọng Tiêu Hàm Nguyệt, nếu lúc này để lại ấn tượng xấu thì hỏng bét.</p>
+    <p>Tiêu Hàm Nguyệt tự nhiên không biết tâm tư của Diệp Phi, thấy hắn sợ hãi như vậy, trong lòng lại yên tâm hơn, cũng bước xuống nước chơi đùa cùng ba cô gái.</p>
+    <p>Một lát sau, Diệp Phi cũng bơi tới. Lúc này bốn người đang tạt nước lẫn nhau. Thấy Diệp Phi tới, họ đồng loạt tạt nước về phía hắn, Diệp Phi cũng cười đánh trả.</p>
+    <p>Áo tắm của Tiêu Hàm Nguyệt hơi nhỏ, lúc nãy mặc chỉ thắt chặt các dây buộc. Vậy mà nàng vẫn cảm thấy hơi chật, cứ vô thức dùng tay sờ chỉnh dây buộc. Qua lại nhiều lần khiến dây lỏng ra, lúc này nàng bất ngờ thực hiện một động tác mạnh, sợi dây liền tuột hẳn. Bộ áo tắm nhỏ bé rớt xuống khỏi ngực nàng, đôi gò bồng đảo khiến Diệp Phi khát khao không thôi lập tức phơi bày giữa không trung, theo từng động tác của nàng mà nảy lên xuống.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0143.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0145.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

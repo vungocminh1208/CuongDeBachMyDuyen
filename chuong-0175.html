@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 175 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 175</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 175</small>
+    Chương 175: Địch nhân sào huyệt (hạ)
+  </h1>
+  <div class="chapter-body">
+    <p>Chuyện này đến cả Liễu Quân Di cũng có chút không rõ, không hiểu vì sao Thác Khắc lại muốn trèo cây. Khi hai người còn đang khó hiểu, đã thấy Thác Khắc leo lên cao chừng hơn ba thước thì dừng lại, đoạn đưa tay ấn vào một chỗ bên cạnh. Cây đại thụ kia vậy mà nứt ra một lỗ hổng rất lớn từ chính giữa, Thác Khắc không chút do dự chui tọt vào trong. Sau khi hắn vào không lâu, cái lỗ hổng lớn kia liền tự động khép kín.</p>
+    <p>Người xưa có câu "Tài cao mật lớn", Diệp Phi và Liễu Quân Di nhìn nhau, đồng thời gật đầu. Diệp Phi ôm Liễu Quân Di trực tiếp nhảy vọt lên cái cây mà Thác Khắc vừa biến mất. Liễu Quân Di đưa tay sờ vào vị trí Thác Khắc vừa ấn, phát hiện bên trong quả nhiên có cơ quan, nhưng nàng lúc này cũng không nghiên cứu những thứ đó mà ấn mạnh qua vỏ cây.</p>
+    <p>Cùng lúc đó, Diệp Phi cũng triển khai linh giác của mình hướng vào trong đại thụ tìm kiếm. Hắn "nhìn" thấy bên trong thân cây rỗng tuếch, có một đạo cầu thang dẫn thẳng xuống dưới. Cầu thang này kéo dài đến tận ngoài phạm vi linh giác của hắn, nhưng cũng may đoạn đường này không thấy có ai canh gác. Nghĩ đến là kẻ địch cực kỳ tự tin vào chỗ ẩn thân này, lại thêm có những trạm gác ngầm bên ngoài nên mới buông lỏng cảnh giác đối với tổng bộ.</p>
+    <p>Thân cây nứt ra một lỗ hổng lớn như vừa rồi, Diệp Phi chui vào trước. Tuy đã dùng linh giác thăm dò bên trong không có nguy hiểm gì, nhưng ai biết rõ liệu có thứ gì có thể né tránh linh giác của mình hay không, Diệp Phi tự nhiên không nỡ để Liễu Quân Di đi mạo hiểm.</p>
+    <p>Hai người vừa vào, lỗ hổng lần nữa đóng lại, trong thông đạo trở nên tối om, chỉ có thể loáng thoáng nhìn thấy cảnh vật cách người vài mét. Diệp Phi nắm lấy bàn tay nhỏ bé của Liễu Quân Di, bảo nàng theo sát phía sau mình, rồi chậm rãi bước xuống dưới.</p>
+    <p>Nhìn bóng lưng cao lớn vốn đã trở thành nơi che mưa chắn gió cho mình từ lúc nào không hay, lòng Liễu Quân Di thấy vô cùng an ổn. Một cảm giác ngọt ngào nhàn nhạt mà khó lòng hóa giải tràn ngập trong tim, nỗi bất an về mối quan hệ thực tế giữa hai người tan biến trong nháy mắt, phảng phất nơi này không còn là sào huyệt tràn ngập nguy hiểm của kẻ địch, mà là đại lộ quang minh dẫn tới hạnh phúc của hai người.</p>
+    <p>Đường hầm nghiêng xuống phía dưới này kéo dài hơn trăm thước mới đến điểm cuối. Ra khỏi thông đạo, hai người đứng trong một đại sảnh rộng chừng một sân bóng. Nơi này là một không gian dưới lòng đất, hơn nữa kích thước to lớn khiến Diệp Phi cũng không nhịn được phải tắc lưỡi. Bởi vì nơi này không chỉ có một đại sảnh, xung quanh còn có hàng hà sa số gian phòng, và cái đại sảnh này dường như không phải là duy nhất, vì ở sâu bên trong còn có một thông đạo rộng rãi dẫn tới nơi sâu hơn nữa.</p>
+    <p>Lúc này đại sảnh im ắng không một bóng người. Diệp Phi dùng linh giác kiểm tra, xác nhận trong đại sảnh hoàn toàn không có nguy hiểm mới dẫn Liễu Quân Di dán sát mép sảnh đi vào trong. Vừa đi vừa dò xét những gian phòng nhỏ, phát hiện phần lớn vậy mà đều là ký túc xá, mỗi phòng ở không dưới mười gã đại hán đủ loại màu da. Nhẩm tính sơ qua, chỉ riêng xung quanh đại sảnh này đã ở không dưới mấy ngàn người.</p>
+    <p>Vừa đi, Diệp Phi vừa kể những gì mình "nhìn" thấy cho Liễu Quân Di nghe. Sắc mặt Liễu Quân Di càng lúc càng khó coi, đồng thời trong lòng cũng thấy kỳ lạ vì sao Diệp Phi có thể nhìn xuyên qua vách tường, bất quá nàng biết lúc này không phải là lúc hỏi, hơn nữa Diệp Phi càng lợi hại, trong lòng nàng lại càng thấy cao hứng và tự hào.</p>
+    <p>Sắp đến cuối đại sảnh, Diệp Phi thấy một nơi rộng hơn các gian phòng khác rất nhiều. Những thứ bên trong khiến hắn không khỏi hoảng sợ, vì trên vách tường treo không dưới trăm màn hình hiển thị, mỗi cái đều chiếu một hình ảnh khác nhau. Trong đó có mấy cái nhìn khá quen mắt, đúng là những nơi hai người đi qua lúc nãy. Ở giữa căn phòng, mấy chiếc máy phát điện cỡ lớn đang hoạt động, nghĩ đến điện ở đây đều là công lao của chúng rồi.</p>
+    <p>Chứng kiến những thứ này, Diệp Phi không khỏi thấy sợ hãi. Cũng may bọn họ vẫn luôn đi từ trên ngọn cây tới, mà các camera kết nối với những màn hình này chỉ lắp ở phần giữa thân đại thụ, lúc này mới không ghi lại hình ảnh của hai người. Điều khiến hắn thở phào nhẹ nhõm hơn là, có lẽ vì quá tự tin vào nơi này, kẻ địch không lắp bất cứ thiết bị gì trong đại sảnh, bằng không hai người sợ rằng đã bại lộ.</p>
+    <p>Nghe Diệp Phi miêu tả, sắc mặt Liễu Quân Di âm trầm, thấp giọng nói: "Xem ra chỗ này đã được bố trí từ sớm. Hừ, tốn công sức lớn như vậy chỉ để khống chế đặc biệt chiến đội, kẻ này thật đúng là chịu chơi!"</p>
+    <p>"Đặc biệt chiến đội là một cơ cấu cực kỳ trọng yếu, chỉ cần có thể khống chế, dù tốn bao nhiêu tâm tư cũng xứng đáng mà." Diệp Phi khẽ cười nói: "Bất quá ai bảo hắn gặp xui xẻo, vận đen đủi thế nào lại muốn hại tiểu Quân Di của ta, lần này để cho hắn nếm thử tư vị 'trộm gà không được còn mất nắm gạo'!"</p>
+    <p>Đối với cách gọi "tiểu Quân Di của ta" của Diệp Phi, Liễu Quân Di cảm thấy vừa thẹn vừa mừng, miệng gắt: "Ngươi mới là gà ấy!"</p>
+    <p>Diệp Phi cũng biết cách so sánh của mình không thỏa đáng lắm, cười hắc hắc: "Đúng, ta là gà trống lớn, nàng chính là cô gà mái xinh đẹp ta thích nhất."</p>
+    <p>"Đi chết đi, ta thấy ngươi chỉ là một con gà con thì đúng hơn!" Liễu Quân Di nghịch ngợm lè lưỡi, lập tức nghiêm mặt nói: "Chúng ta vào xem một chút đi."</p>
+    <p>Diệp Phi gật đầu, tiếp tục nắm tay nàng đi vào trong. Sau khi xuyên qua một thông đạo dài khoảng 20 mét, bên trong lại xuất hiện một đại sảnh không khác gì bên ngoài.</p>
+    <p>Trải qua chuyện vừa rồi, Diệp Phi càng thận trọng, mỗi bước đi đều dùng linh giác dò xét trước. Bất quá người ở đây dường như quá tự tin, đến mức có phần tự đại, trong này đừng nói là trạm gác, ngay cả camera cũng không lắp cái nào, lại thuận tiện cho hành động của hai người.</p>
+    <p>Đại sảnh này cũng giống hệt cái trước, xung quanh đều là ký túc xá, chỉ là thiếu cái "phòng máy" kia mà thôi. Qua đại sảnh này, bên trong vậy mà còn một cái nữa. Diệp Phi ước tính sơ qua, ba cái đại sảnh này sợ rằng chứa không dưới vạn người. Trong lòng hắn không khỏi thầm tắc lưỡi. Tuy trước đó đã dự đoán địch nhân có lẽ lên tới con số hơn vạn, nhưng đó chỉ là dự đoán theo hướng xấu nhất, giờ tận mắt chứng kiến mới thực sự kinh hãi. Nhiều địch nhân như vậy, nếu muốn "ăn" trọn bọn chúng, sợ rằng thương vong của tiểu tổ cũng sẽ không nhỏ. Diệp Phi thầm quyết định, khi cần thiết dù có phải bộc lộ thực lực nhiều hơn nữa cũng không thể để các chiến hữu đáng yêu kia tổn thất thảm trọng. Dù sao hiện tại tất cả đều chung một chiến tuyến, không sợ họ nói ra ngoài, hơn nữa mình càng thể hiện sự cường đại, lòng kính trọng của họ đối với mình càng lớn, điều này có lợi cho việc thu phục họ sau này.</p>
+    <p>Xuyên qua đại sảnh cuối cùng, hai người rốt cục đi tới nơi sâu nhất của không gian dưới lòng đất. Lại một thông đạo hơn hai mươi mét nữa, cảnh tượng bên trong khác hẳn bên ngoài. Nơi này chỉ có một không gian rộng hơn hai mươi mét vuông được bài trí như phòng khách. Xung quanh "phòng khách" này có mấy gian phòng trông xa hoa hơn hẳn những ký túc xá kia, cực kỳ giống như phòng trong khách sạn. Nghĩ đến đây hẳn là nơi ở của cao tầng địch quân.</p>
+    <p>Diệp Phi dò xét một chút, phát hiện năm phòng thì có bốn phòng trống, vì vậy kéo Liễu Quân Di lặng lẽ đi đến ngoài gian phòng duy nhất có người, rồi nhẹ nhàng nhảy lên, tung một chưởng vỗ nhẹ lên phía trên gian phòng.</p>
+    <p>Không gian này ngoại trừ phần đã được đào mở ra, còn lại toàn là đất đá cứng rắn. Những lớp đất này do chịu áp lực lớn mà đã trở nên cứng hơn nham thạch, bằng không không thể chống đỡ được một không gian rộng lớn như vậy. Thế nhưng dưới chưởng nhìn như bay bổng của Diệp Phi, vậy mà lặng lẽ mở ra một không gian nhỏ đủ để dung nạp hai người.</p>
+    <p>Dưới ánh mắt đầy sùng bái và cuồng nhiệt của Liễu Quân Di, Diệp Phi mang nàng chui vào không gian nhỏ kia, rồi thu bớt số đất đá đào ra vào không gian của mình, chặn ở miệng hở để người ngoài không thể phát hiện. Hắn lại đưa tay điểm một cái xuống dưới, mở ra một lỗ tròn đủ để hai người quan sát bên dưới.</p>
+    <p>Sau khi mở "lỗ nhìn" này, cảnh tượng trong phòng thu hết vào tầm mắt hai người. Chỉ thấy gã đại hán người da đen Thác Khắc đang đứng giữa phòng với vẻ mặt sợ hãi, đối diện hắn là một đại hán cao khoảng 1m90. Dù thân hình này dường như vẫn không bằng Thác Khắc, nhưng gã đại hán kia là người phương Đông, hơn nữa trên người hắn, Diệp Phi cảm nhận được một loại khí tức không thua kém Lý Tư. Điều này cũng dễ hiểu vì sao Thác Khắc lại sợ hắn đến thế.</p>
+    <p>Lúc này người phương Đông kia đang nhắm mắt ngồi trên ghế sô pha, mặc một bộ âu phục kiểu Tôn Trung Sơn rất chỉnh tề, quần thì đã kéo xuống tới đầu gối. Dưới thân hắn, một cô nàng tóc vàng quỳ ở đó, đầu tựa vào chỗ đó không ngừng phục vụ. Cô nàng tóc vàng này trên người không một mảnh vải che thân. Dù không nhìn thấy khuôn mặt của cô nàng phía dưới, nhưng chỉ cần tưởng tượng cũng biết bọn họ đang làm gì.</p>
+    <p>Thấy cảnh này, Liễu Quân Di nhẹ nhàng hừ một tiếng, đỏ mặt quay đi chỗ khác, nhỏ giọng nói: "Không cho phép chàng nhìn!"</p>
+    <p>Thanh âm đầy ghen tuông khiến Diệp Phi khẽ cười, đưa tay vào trong quần Liễu Quân Di, nắm nhẹ lên cặp mông co dãn của nàng, thì thầm bên tai: "Ta làm sao nhìn ả? Phải biết Quân Di của ta mạnh hơn ả gấp trăm lần, có nàng rồi, sao ta có thể có hứng thú với ả?" Những lời này của Diệp Phi không phải nói bừa, dù dáng người cô nàng tóc vàng kia nóng bỏng đến khoa trương, đặc biệt là cặp mông cực đại khi quỳ sấp xuống khiến gã Thác Khắc đứng đối diện không ngừng nuốt nước miếng, nhưng làn da đầy lỗ chân lông to của ả thực sự khiến người ta mất hứng.</p>
+    <p>Câu trả lời của Diệp Phi khiến Liễu Quân Di vô cùng thỏa mãn, nhưng vẫn cố ý làm khó: "Vậy ý chàng là, nếu có người phụ nữ nào tốt hơn ta, chàng sẽ không nhìn ta lấy một cái sao?"</p>
+    <p>Diệp Phi tăng lực tay, khiến Liễu Quân Di phát ra một tiếng yêu kiều yếu ớt trong cổ họng, lúc này mới cười nói: "Có lẽ thế, bất quá ta không thể tưởng tượng được trên đời này còn có ai xinh đẹp hơn Quân Di của ta!"</p>
+    <p>"Phải không?" Liễu Quân Di đột nhiên khúc khích cười: "Nếu chàng nói vậy, chẳng phải ta là người phụ nữ đẹp nhất thế giới sao? Vậy còn Nhị tỷ của ta thì sao? Chẳng lẽ nàng ấy không bằng ta?"</p>
+    <p>Diệp Phi bối rối, hơi trừng phạt bằng cách di chuyển bàn tay to vốn đang hoạt động trên khe mông nàng xuống phía trước, ấn trực tiếp lên nơi tuyệt vời đang hơi ẩm ướt, nhưng không lên tiếng vì lúc này gã đại hán bên dưới đã mở mắt.</p>
+    <p>"Lão Lý vẫn chưa có tin tức sao?" Thanh âm của gã đại hán hùng tráng như thân hình hắn, qua chất giọng kinh thành lưu loát kia, Diệp Phi xác định hắn là người Trung Quốc, hơn nữa có lẽ là tâm phúc của "kẻ đó".</p>
+    <p>Thác Khắc run rẩy nói: "Vâng, từ lúc rời đi hôm qua vẫn chưa trở về."</p>
+    <p>Trên mặt đại hán lộ vẻ dữ tợn, một tay túm lấy cô nàng tóc vàng dưới thân, nhấc bổng đầu ả lên, lộ ra khuôn mặt tuy có chút diễm lệ nhưng không thể coi là xinh đẹp. Diệp Phi vội đưa tay che mắt Liễu Quân Di, vì theo đầu cô nàng tóc vàng rời đi, chỗ phía dưới của đại hán đã lộ ra ngoài không khí. Hắn không muốn người phụ nữ của mình nhìn thấy chỗ đó của nam nhân khác, bất quá hắn đã lo lắng thừa, dù hắn không che mắt Liễu Quân Di cũng sẽ không nhìn, vì ngoài hắn ra, Liễu Quân Di không có hứng thú với bất kỳ nam nhân nào.</p>
+    <p>Cô nàng tóc vàng bị kéo thô bạo cũng không tỏ vẻ bất mãn mà hiểu ý cười khúc khích, sau đó tách chân ngồi lên người đại hán, nhẹ nhàng vặn vẹo. Đại hán vừa hưởng thụ sự phục vụ của ả vừa nói với Thác Khắc: "Ngươi kể lại chuyện hôm qua cho ta nghe một lần nữa, tuyệt đối không được bỏ sót!"</p>
+    <p>Thác Khắc lén nhìn cặp mông đang chuyển động như bay của cô nàng tóc vàng, nuốt nước bọt, lúc này mới kể lại tỉ mỉ chuyện hôm qua cho gã đại hán kia.</p>
+    <p>Đại hán cau mày nói: "Ngươi nói là, lão Lý lúc đuổi theo ra ngoài giống như phát hiện ra điều gì?"</p>
+    <p>"Vâng." Thác Khắc gật đầu: "Ta nghi ngờ lão Lý phát hiện ra điều gì đó nên mới đuổi theo ra xem."</p>
+    <p>"Phát hiện cái gì?" Đại hán đột nhiên cười lạnh: "Ta thấy hắn nhân cơ hội chạy thì đúng hơn. Ta đã sớm nói loại người như hắn không dùng được, chủ nhân lại không nghe!"</p>
+    <p>Thác Khắc dường như biết mâu thuẫn giữa hai người nên không nói gì, chỉ im lặng đứng đó.</p>
+    <p>Đại hán lại hỏi: "Các ngươi đã chuẩn bị xong chưa? Tổng tiến công của bọn chúng là trong mấy ngày tới rồi."</p>
+    <p>Thác Khắc gật đầu: "Vâng, tất cả đều đã chuẩn bị xong."</p>
+    <p>"Tốt." Gã đại hán nhe răng cười: "Đợi ta bắt được lộ tuyến hành động của bọn chúng sẽ phân phối nhiệm vụ cho các ngươi, lần này phải cho chúng tới mà không về được! Ngươi ra ngoài trước đi!" Nói xong liền phất tay với Thác Khắc.</p>
+    <p>Thác Khắc thèm thuồng nhìn cô nàng tóc vàng một cái rồi mới lùi ra ngoài. Sau khi Thác Khắc rời đi, đại hán vỗ mạnh một cái lên mông cô nàng kia, quát: "Dùng sức chút cho ta!"</p>
+    <p>"A..." Cô nàng phát ra một tiếng rên rỉ phóng đãng, sau đó động tác trở nên khoa trương hơn.</p>
+    <p>Mắt thấy không thể nghe thêm được thông tin gì hữu ích, Diệp Phi và Liễu Quân Di tự nhiên không có tâm trí xem bọn chúng biểu diễn, vì vậy nhanh chóng thoát ra khỏi không gian nhỏ, bám theo Thác Khắc rời khỏi không gian dưới lòng đất này.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0174.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0176.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

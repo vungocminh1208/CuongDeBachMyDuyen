@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 337 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 337</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 337</small>
+    Chương 337
+  </h1>
+  <div class="chapter-body">
+    <p>Nhìn ra Thủy Dĩnh không đúng, chỉ có tâm tư nhạy bén Diệp Tư Dao và Diệp Vân Khinh - người hiểu Diệp Phi nhất, mới nhận ra. Từ biểu hiện kỳ quái của mẹ, Diệp Tư Dao dường như nhìn thấy chính mình, từ đó có một suy đoán cực kỳ táo bạo và hoang đường. Tuy nhiên, suy đoán này dù trái với luân lý nhưng nàng không vì vậy mà trách mẹ, ngược lại thầm vui mừng. Bởi nếu suy đoán này là thật, mẹ chắc chắn sẽ không phản đối phần tình cảm có phần trái luân lý của nàng nữa.</p>
+    <p>Mà Diệp Vân Khinh lúc này lại đơn thuần thấy vui, nàng vốn đang thầm lo lắng cho ca ca. Vì kiểu "anh hùng cứu mỹ nhân" tuy cũ kỹ nhưng không thể phủ nhận có hiệu quả to lớn, nên nàng từng thấy "tình địch" của ca ca rất mạnh mẽ. Không ngờ kẻ giả tưởng trong lòng mình lại chính là ca ca, xem ra mình đã lo bò trắng răng. Với tính đào hoa của anh, đối mặt với một đại mỹ nhân khêu gợi như Thủy Dĩnh, sợ là đã ra tay từ lâu, điểm này có thể thấy qua biểu cảm của họ khi gặp mặt.</p>
+    <p>Không quản chúng nữ đang nghĩ gì, Diệp Phi ngoan ngoãn đi đến trước mặt Thủy Dĩnh, gọi một tiếng "Mẹ". Tâm tình của hắn lúc này hoàn toàn khác với Thủy Dĩnh. Với mối quan hệ mới này, hắn không biết sẽ ảnh hưởng thế nào tới chuyện ân ái của hai người, trong lòng ngược lại kích động cực kỳ. Theo nghĩa truyền thống, hắn và Thủy Dĩnh là quan hệ mẹ con chính thức, điều này khiến lòng hắn ngứa ngáy, từ nay về sau mình có hai người mẹ, hắc hắc...</p>
+    <p>Tuy nhiên, Thủy Dĩnh sau khi nghe cách xưng hô này, tâm trạng vốn đang hạ xuống lại trầm thêm. Hắn có ý gì? Chẳng lẽ vì mối quan hệ hiện tại mà định buông tha mình sao? Dù biết đây là lựa chọn tốt nhất, Thủy Dĩnh vẫn cảm thấy đau lòng như muốn vỡ ra, nhưng câu tiếp theo của Diệp Phi lại khiến nàng vui mừng khôn xiết.</p>
+    <p>"Thủy Dĩnh mẹ, người hẳn đã hiểu rõ con, con là đấng nam nhi đầu đội trời chân đạp đất, tuyệt đối sẽ không để thua bất cứ ai có tình cảm với mình!" Diệp Phi thâm tình nhìn Thủy Dĩnh đang tái mặt, kiên định nói.</p>
+    <p>Trong lúc Thủy Dĩnh vui vẻ, Liễu Diệc Như, Diệp Vân Khinh và Diệp Tư Dao đều lộ ra nụ cười hiểu ý. Còn Diệp Tư Kỳ và Diệp Vân Anh không biết rõ nội tình, lại tưởng Diệp Phi đang lấy lòng mẹ, cũng vui vẻ theo.</p>
+    <p>Vì vậy, trong không khí vui vẻ, mọi người giải quyết bữa sáng. Sau bữa sáng, ai nấy đều bận rộn. Diệp Tư Kỳ chuẩn bị gọi điện thông báo cho tất cả người thân tin tức tốt Diệp Phi trở về và Thủy Dĩnh về nhà để cùng chúc mừng. Liễu Diệc Như, Thủy Dĩnh và Diệp Tư Dao thì vào bếp chuẩn bị cơm trưa. Dù gọi đồ bên ngoài tiện hơn, nhưng họ thích cảm giác tự tay nấu nướng. Chỉ là trưa nay mọi người đều tới, cần chuẩn bị khá nhiều nên phải bận rộn ngay.</p>
+    <p>Chuẩn bị vào phòng gọi điện, Diệp Tư Kỳ thấy ba kẻ nhàn rỗi Diệp Phi, Diệp Vân Khinh và Diệp Vân Anh, liền phân phó: "Tiểu Mãn, ba đứa thu dọn phòng khách và nhà ăn một chút, tiện thể từ kho phía sau chuyển thêm ít ghế ra, hôm nay đông người, sợ không đủ chỗ ngồi." Nói xong cô vào phòng.</p>
+    <p>"Hừ, đại tỷ thật bất công, chỉ gọi tên anh!" Diệp Vân Khinh bĩu môi đầy bất mãn.</p>
+    <p>"Việc này em cũng ghen sao?" Diệp Phi bất đắc dĩ cười khổ.</p>
+    <p>"Sao lại không ghen? Hồi nhỏ đại tỷ đối xử với chúng ta đều như nhau, nhưng giờ lại thích nhất anh." Diệp Vân Khinh hừ một tiếng, rồi quay sang Diệp Vân Anh: "Tam tỷ, chị nói có đúng không?"</p>
+    <p>"Đúng, chính là như vậy!" Diệp Vân Anh gật đầu tán thành: "Cũng không biết tên này có gì tốt mà đến cả đại tỷ cũng thích!"</p>
+    <p>Diệp Phi sững sờ, lập tức hiểu ra hai nàng chắc chắn đã biết chuyện của đối phương. Hắn cười hắc hắc: "Anh có chỗ nào tốt, chẳng lẽ hai em còn chưa biết?"</p>
+    <p>"Đại tỷ còn chưa được chiêm ngưỡng chỗ tốt nhất của anh đâu!" Diệp Vân Khinh cười: "Anh phải nhanh cho chị ấy biết đi."</p>
+    <p>"Hơn nữa chị cũng lâu rồi chưa thấy anh thể hiện!" Diệp Vân Anh trừng đôi mắt đẹp, đột nhiên nắm lấy cổ áo Diệp Phi, kéo hắn đi vừa nói: "Đi theo chị, để chị xem anh tốt đến mức nào!"</p>
+    <p>Diệp Phi cười khổ, tam tỷ đúng là tam tỷ, bạo dạn hơn hẳn tiểu muội. Nhưng loại tình thú này hắn không hề phản đối, liền theo tỷ tỷ vào kho ở hậu viện, Diệp Vân Khinh cũng hấp tấp chạy theo.</p>
+    <p>Ba người nhanh chóng vào phòng chứa đồ, Diệp Vân Khinh tiện tay khóa cửa, sau đó hỏi Diệp Vân Anh: "Tỷ tỷ, tên này mất tích ba ngày làm chúng ta lo lắng như vậy, chị nói nên trừng phạt thế nào?"</p>
+    <p>"Ăn hắn!" Đôi mắt đẹp của Diệp Vân Anh lóe lên tia hào hứng, mạnh tay đẩy Diệp Phi ngồi xuống ghế, rồi ngồi xổm trước mặt hắn, bàn tay nhỏ hướng tới thắt lưng.</p>
+    <p>Cởi quần ra, Diệp Vân Anh nắm lấy vật nam tính từng khiến nàng dục tiên dục tử, vừa khuấy động vừa lẩm bẩm: "Cuối cùng cũng thấy nó!" Nói xong liền ngậm lấy.</p>
+    <p>Chỉ tiếc, sự nhiệt tình của Diệp Vân Anh là thật, nhưng kỹ thuật lại quá kém, thêm vào đó vật kia quá lớn, miễn cưỡng ngậm được phần quy đầu, răng nàng không ngừng cọ vào phần nhạy cảm khiến Diệp Phi vừa đau vừa sướng. May mà vật kia của hắn cũng bền bỉ, nếu không chắc đã bị răng của tỷ tỷ làm tổn thương.</p>
+    <p>Diệp Vân Khinh chậm một bước không cướp được, thấy tam tỷ vụng về, liền nở nụ cười xấu xa. Khi tỷ tỷ lần nữa ngậm vào, nàng bất ngờ ấn mạnh đầu tỷ tỷ xuống.</p>
+    <p>"Nôn..." Bất ngờ bị vật cứng đụng vào cổ họng, Diệp Vân Anh nôn khan, miệng cũng bị đau, vội ngẩng đầu lên trách Diệp Vân Khinh: "Khinh Khinh xấu xa, em muốn hại chết chị sao?"</p>
+    <p>"Nào có, em chỉ muốn chị thích ứng một chút thôi." Diệp Vân Khinh ra vẻ ủy khuất.</p>
+    <p>Diệp Vân Anh không tin lời ma quỷ đó, hừ một tiếng: "Lớn như vậy, có thích ứng thế nào cũng không được, sao em không thử?"</p>
+    <p>"Em thích ứng rồi đây." Nói xong, Diệp Vân Khinh ngồi xuống trước mặt Diệp Phi, cầm lấy vật vừa được tỷ tỷ buông ra, đầu lưỡi thơm tho liếm láp vài cái, rồi từ từ nuốt lấy, cho đến khi hơn phân nửa tiến vào miệng, đỉnh quy đầu chạm tận cổ họng mới dừng lại, nhẹ nhàng đong đưa đầu, để vật đó ra vào trong miệng nhỏ.</p>
+    <p>Nhìn động tác thuần thục của tiểu muội, Diệp Vân Anh rất hâm mộ: "Khinh Khinh, em giỏi thật, chắc luyện lâu lắm rồi nhỉ?" Nói đoạn, nàng sực nhớ ra điều gì: "Nói thật xem, hai đứa đã cùng nhau bao lâu rồi?"</p>
+    <p>Diệp Vân Khinh phun ra một chút, giữ trong tay nhỏ khuấy động, cười hi hi: "Dù sao cũng sớm hơn chị."</p>
+    <p>"Được rồi, hai đứa nhóc xấu xa, lại dám lén ăn vụng từ sớm." Diệp Vân Anh trừng mắt làm bộ tỷ tỷ, rồi quay sang Diệp Phi: "Tiểu tử, trước kia chị thường xuyên tắm rửa, vào phòng em, sao em không làm gì? Có phải thấy chị không xinh bằng Khinh Khinh không?"</p>
+    <p>"Chị yêu của em ơi, chị oan uổng em quá, trong lòng em, các chị đều xinh đẹp như nhau." Diệp Phi kêu oan: "Chỉ là lúc đó em không hiểu những chuyện này, hơn nữa thân thể cũng chưa cho phép."</p>
+    <p>"Chị không tin, dù sao em thân với Khinh Khinh trước là bạc đãi chị, giờ chị muốn phạt em!" Diệp Vân Anh sớm đã tin, chỉ mượn cơ hội làm nũng.</p>
+    <p>Diệp Phi biết tâm tư của tỷ tỷ, liền phối hợp làm bộ nhận mệnh: "Được rồi, chị nói phạt thế nào?"</p>
+    <p>"Phạt em làm chị sướng!" Diệp Vân Anh xoay mắt, có ý tưởng, liền vén váy, kéo một chiếc ghế đứng lên, nâng một chân ngọc lên, kéo đầu Diệp Phi dí vào vùng kín đang được bao bọc bởi tất chân và quần lót, nói: "Nhanh liếm cho chị!"</p>
+    <p>Diệp Phi cười thầm, liếm cho tỷ tỷ xinh đẹp như vậy sao gọi là phạt? Rõ ràng là ban thưởng, liền vừa hưởng thụ sự mút mát của muội muội, vừa liếm qua lớp vải vào huyệt nhỏ của tỷ tỷ.</p>
+    <p>Diệp Vân Anh vốn đã dục hỏa bốc cao, lúc này bị liếm, càng khổ sở không thôi, dâm thủy tràn ra làm ướt sũng quần áo. Nàng đè đầu đệ đệ xuống, như sợ hắn liếm không đủ lực.</p>
+    <p>Diệp Phi cảm thấy chưa đủ đã, liền đưa ngón tay rạch một đường, xé rách lớp vải, để đầu lưỡi trực tiếp tiếp xúc với huyệt nhỏ kiều nộn.</p>
+    <p>Diệp Vân Anh bị liếm trực tiếp không chịu nổi khoái cảm mãnh liệt, cơ thể run rẩy, không thể giữ vững tư thế, ngã nhào vào lòng đệ đệ, rồi nhanh chóng nằm lên, dạng chân cưỡi lên người hắn, quay đầu nói với Diệp Vân Khinh: "Tiểu muội, giúp chị một chút, dẫn dụ vào!"</p>
+    <p>Diệp Vân Khinh biết thời gian không nhiều, nhổ vật đó ra, dùng tay nhỏ giữ lấy, nhắm thẳng vào huyệt nhỏ ướt át của tỷ tỷ, dùng quy đầu ma sát vài cái rồi nói: "Tỷ, được rồi!"</p>
+    <p>Diệp Vân Anh dùng sức ngồi xuống, tiếc là huyệt nhỏ chỉ mới được khai phá một lần, làm sao dung nạp được vật lớn như vậy? Nuốt vào được nửa chừng liền không chịu nổi: "Đau quá, đệ đệ xấu xa, sao lại lớn thế?"</p>
+    <p>"Ai bảo chị vội vàng." Diệp Phi cười, ôm lấy eo nhỏ, bắt đầu vận công, để vật nam tính chậm rãi ra vào trong huyệt nhỏ chặt chẽ, ướt át.</p>
+    <p>Sau một lát, Diệp Vân Anh không còn đau mà thay vào đó là khoái cảm vô tận. Nàng dồn sức ngồi xuống, nuốt trọn vật của đệ đệ vào trong, thỏa mãn rên rỉ: "Cuối cùng cũng vào được!"</p>
+    <p>"Hi hi, tỷ tỷ hư hỏng, nghe giọng chị, chắc là mỗi ngày đều muốn ca ca địt chị đúng không?" Diệp Vân Khinh ở bên cạnh xem cuộc chiến cười nói.</p>
+    <p>Diệp Vân Anh ôm cổ Diệp Phi, cơ thể run lên bần bật, để vật của đệ đệ ra vào trong cơ thể, nói: "Đúng thì sao? Chẳng lẽ em không muốn?"</p>
+    <p>"Đương nhiên muốn rồi." Diệp Vân Khinh không giấu giếm, một bên nhìn ca ca và tỷ tỷ, một bên đưa bàn tay nhỏ vào trong váy mình: "Tỷ tỷ tốt, chị đừng nói nữa, nhanh lên để ca ca địt em."</p>
+    <p>Lúc này Diệp Vân Anh đã bay bổng tận mây xanh, không còn tâm trí đâu để nói chuyện, chỉ bản năng dồn lực ngồi dậy.</p>
+    <p>Rất nhanh, Diệp Vân Anh đạt tới cao trào lần đầu tiên, tiếng rên rỉ bị đè nén vang lên, huyệt nhỏ co rút dữ dội, cắn chặt vật cứng rắn của Diệp Phi khiến hắn khoái cảm liên hồi, phun thẳng tinh dịch vào sâu trong hoa tâm nàng.</p>
+    <p>"Đến lượt em!" Sau khi tỷ tỷ thỏa mãn, Diệp Vân Khinh đưa ra yêu cầu "đổi ca".</p>
+    <p>"Tốt muội muội, cho chị thêm một lần nữa không được sao?" Diệp Vân Anh vẫn chưa thỏa mãn, liền cầu xin Diệp Vân Khinh.</p>
+    <p>Biết rõ nếu không đồng ý thì nàng cũng không buông, Diệp Vân Khinh gật đầu: "Được rồi, vậy chị nhanh lên!"</p>
+    <p>"Cảm ơn muội muội tốt của chị!" Diệp Vân Anh vui vẻ, rồi nói với Diệp Phi: "Đệ đệ tốt, nhanh địt chị, tiểu muội còn đang chờ."</p>
+    <p>Diệp Phi nâng mông của tỷ tỷ lên, ra sức thúc mạnh, mỗi cú thúc đều chạm vào điểm nhạy cảm nhất. Diệp Vân Anh không chịu nổi sự điên cuồng này, chẳng mấy chốc lại nghênh đón cao trào.</p>
+    <p>Dù vẫn muốn, nhưng biết thời gian không nhiều, Diệp Vân Anh lưu luyến rời khỏi, để Diệp Phi cho Diệp Vân Khinh, rồi nằm nghỉ trên người hắn.</p>
+    <p>Diệp Vân Khinh cưỡi lên, động tác thuần thục hơn tỷ tỷ nhiều. Diệp Phi cảm thấy sảng khoái không thôi, thì nghe tiếng đại tỷ bên ngoài: "Tiểu Anh, Khinh Khinh, ba đứa làm gì đó? Chuyển cái ghế thôi mà lâu thế?"</p>
+    <p>Diệp Vân Khinh khuôn mặt nhỏ nhắn méo xệch, nàng không nỡ rời khỏi ca ca, nhưng đại tỷ gọi không thể không đáp, liền năn nỉ Diệp Vân Anh: "Tam tỷ tốt, chị mang hai cái ghế ra trước đi, nói với đại tỷ là chúng em đang dọn dẹp trong này."</p>
+    <p>Diệp Vân Anh đành chống cơ thể mềm nhũn, cầm hai cái ghế ra ngoài, đóng cửa lại rồi đi về phía đại tỷ.</p>
+    <p>Thấy tam muội mặt đỏ bừng, phờ phạc, Diệp Tư Kỳ ngạc nhiên: "Tiểu Anh, em sao vậy? Hai đứa kia đâu?"</p>
+    <p>"Đồ đạc trong đó lâu ngày đầy bụi, hai người họ đang lau dọn." Diệp Vân Anh thuận miệng giải thích, trong lòng thấy bất công, hai đứa ở trong kia sướng, lại bắt mình ra nói dối! Nhưng nghĩ lại mình đã sướng trước hai lần, cũng thấy đáng giá.</p>
+    <p>"Ba cái đứa này!" Diệp Tư Kỳ cười bất lực: "Để ghế ở cửa đi, lát chị dọn xong phòng khách sẽ chuyển vào, bảo hai đứa nó nhanh lên, một lát nữa các bác tới rồi."</p>
+    <p>"Dạ dạ!" Diệp Vân Anh vội vã đáp, sau đó trở lại kho, thấy hai người họ đã đổi tư thế, tiểu muội nửa nằm trên ghế, đệ đệ đang ra sức làm việc.</p>
+    <p>Nhìn cảnh tượng đó, Diệp Vân Anh lại thấy ngứa ngáy, không khỏi nói: "Tiểu Mãn, anh bất công, địt người ta thì bắt người ta ở trên, giờ Khinh Khinh chỉ việc hưởng thụ."</p>
+    <p>"Chẳng phải chị thích nhất ở trên sao?" Diệp Phi vừa nói vừa tiếp tục hành sự.</p>
+    <p>"Chị không cần biết, dù sao chị cũng muốn như thế!" Diệp Vân Anh làm nũng.</p>
+    <p>Diệp Phi cười: "Được rồi, từ nay về sau có cơ hội cứ như vậy, xem anh không địt chết chị!"</p>
+    <p>"Chết rồi... Chết rồi... Ca ca tốt... anh làm Khinh Khinh... chết rồi..." Lúc này, Diệp Vân Khinh rên lên, mông nhỏ vặn vẹo điên cuồng, cuối cùng đạt cao trào, Diệp Phi cũng phun tinh dịch vào sâu trong hoa tâm muội muội.</p>
+    <p>Dù chưa đủ, nhưng Diệp Vân Khinh không dám đòi hỏi thêm vì đại tỷ có thể tới bất cứ lúc nào. Cả ba nhanh chóng thu dọn rồi cầm ghế đi ra.</p>
+    <p>Diệp Tư Kỳ đã dọn xong phòng khách, thấy ba người tiến vào, lại thấy Diệp Vân Khinh cũng phờ phạc như Diệp Vân Anh, cô bất lực cười sủng nịch: "Ba đứa lười này, trông chờ vào mấy đứa chuyển ghế mà mất nửa ngày!"</p>
+    <p>"Đâu có đâu!" Diệp Vân Anh cười hi hi: "Đại tỷ vẫn giỏi nhất, làm việc nhanh nhẹn thế, ai cưới được đại tỷ đúng là có phúc, chỉ tiếc tới lúc đó không còn thời gian chiếu cố chúng em nữa."</p>
+    <p>Diệp Vân Khinh mắt đảo một vòng, cười nói: "Đúng vậy, ca ca, hay là anh cưới đại tỷ đi, như vậy nàng có thể chiếu cố chúng em mãi mãi!"</p>
+    <p>Lời của Diệp Vân Khinh vốn là đùa, nhưng lọt vào tai Diệp Tư Kỳ đang có tâm tư riêng lại khác hẳn. Trong lòng cô dâng lên cảm giác vừa xấu hổ vừa rung động, trộm nhìn Diệp Phi một cái, mặt đỏ bừng mắng Diệp Vân Khinh: "Con nhóc này, nói năng bậy bạ gì thế?"</p>
+    <p>Biết đại tỷ da mặt mỏng, Diệp Phi sợ cô xấu hổ, cười nói: "Được thôi, nhưng nói vậy thì phải cưới cả các em nữa, nếu không đại tỷ làm sao chiếu cố mọi người mãi được?"</p>
+    <p>"Được, dù sao lấy anh em cũng không thiệt gì!" Diệp Vân Khinh hừ một tiếng.</p>
+    <p>Diệp Vân Anh cười nói: "Chỉ sợ anh chăm không xuể ấy chứ!" Không khí lúc này đã hoàn toàn là đùa vui, chuyện tỷ đệ đùa nhau như vậy tuy hơi quá, nhưng chẳng ai bận tâm làm gì.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0336.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0338.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

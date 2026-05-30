@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 245 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 245</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 245</small>
+    Chương 245: Đói khát ngưng sương
+  </h1>
+  <div class="chapter-body">
+    <p>"Nơi này do một công ty bảo an chịu trách nhiệm an toàn, tất cả mọi người là đồng nghiệp, tự nhiên có chút người quen, nhờ bọn họ mở cửa sau thôi." Diệp Phi cười giải thích, hắn tất nhiên sẽ không nói cho Hứa cô bé biết mình đi từ cửa chính, chỉ là vì tốc độ quá nhanh, người khác căn bản không nhìn thấy dù chỉ một tia bóng dáng của hắn. Diệp Phi hiện tại phát hiện, tốc độ của mình chẳng những càng lúc càng nhanh, mà còn có thể không mang theo một chút kình phong, còn nguyên nhân vì sao thì chính hắn cũng không rõ, vì căn bản chưa từng có tiền lệ. Bất kể thế nào, Diệp Phi đến đã khiến Hứa cô bé cực kỳ cao hứng, phảng phất trong nháy mắt trở về nhà, không còn khẩn trương như vừa rồi nữa, cô không kìm được duỗi bàn tay nhỏ bé ra giữ chặt lấy Diệp Phi: "Chúng ta lên thôi!" Nhưng khi nhìn thấy ánh mắt có chút kinh ngạc của Diệp Phi, cô mới nhận ra mình thất thố, khuôn mặt đỏ ửng, lập tức buông tay ra, bối rối giải thích: "Ngươi, ngươi đừng hiểu lầm, ta chỉ là, cái đó..." Diệp Phi cười nói: "Ta hiểu, ngươi là Chưởng môn tương lai của Ngọc Nữ môn mà, vừa rồi chỉ là biểu hiện hữu nghị thôi." "Ừ, đúng là như vậy!" Hứa cô bé vội vàng gật đầu, sau đó nhanh chóng chuyển chủ đề: "Thời gian không còn sớm, chúng ta nhanh lên thôi, nói không chừng mẹ ta và Diệp a di đã tới rồi." Diệp Phi mỉm cười, không nói thêm gì nữa, trực tiếp đi theo cô vào thang máy, hướng tới đại sảnh tầng cao nhất. Chỉ là cả hai đều không chú ý tới, tại góc khuất cách đó không xa, hai vị mỹ phụ tuyệt sắc mặc lễ phục dạ hội cùng kiểu dáng nhưng màu tím sẫm đang nấp ở đó, cảnh tượng vừa rồi đã lọt hết vào mắt các nàng. "Thế nào? Ta đã nói con gái ngươi nhất định sẽ có hảo cảm với chất nhi của ta mà, giờ thì tin chưa?" Vị mỹ phụ mặc lễ phục dạ hội màu đen đắc ý nói với vị mỹ phụ mặc lễ phục tím. Nếu Diệp Phi chú ý kỹ hơn một chút, có thể đã phát hiện ra vị bác xinh đẹp của mình đang đứng ngay gần đó. Vị mỹ phụ còn lại, người mà cả dáng người lẫn khuôn mặt đều không thua kém Diệp Ngưng Sương, chính là mẹ của Hứa cô bé – Mộc Linh. Lúc này vẻ mặt bà có chút thất lạc, khẽ thở dài: "Chỉ là Vi Nhi luôn muốn làm một ngọc nữ chân chính, nếu yêu đương thì liệu có ảnh hưởng đến con bé không? Hơn nữa nó hình như còn lớn hơn chất nhi của ngươi bốn tuổi đấy?" "Ai bảo ngọc nữ thì không được có người yêu? Chỉ cần không bị người khác biết thì có sao đâu? Ngươi xem mấy người được gọi là ngọc nữ hiện nay, ai mà chẳng có người bao nuôi? Nhưng hình tượng của họ chẳng phải vẫn được giữ gìn đó sao?" Diệp Ngưng Sương bĩu môi: "Còn về tuổi tác, cái đó càng không phải vấn đề, như ngươi chẳng hạn, chẳng phải cũng nhỏ hơn chồng mình mười tuổi sao?" "Đừng nhắc chuyện đó nữa." Trên dung nhan tuyệt mỹ của Mộc Linh lộ ra một nụ cười đắng chát: "Đều tại năm đó còn quá trẻ, bị vẻ ngoài thành đạt của ông ấy mê hoặc, đần độn thế nào lại gả cho ông ấy." "Sao lại nói vậy?" Diệp Ngưng Sương trong lòng động tâm, vội hỏi: "Ông ấy bây giờ đối xử không tốt với ngươi à?" "Cũng không phải, ông ấy đối với ta và Vi Nhi đều rất tốt, nhưng dù sao cũng đã lớn tuổi, chúng ta đã phân phòng ngủ được hai năm rồi." Ánh mắt Mộc Linh hiện lên nỗi u sầu: "Ngươi cũng biết, phụ nữ ở độ tuổi như chúng ta, nếu như... rất khó nhịn đấy."</p>
+    <p>Diệp Ngưng Sương chẳng những không thương xót cho người bạn lâu năm của mình, ngược lại trong mắt lóe lên tia hưng phấn, nhưng miệng lại thở dài: "Ai, ai mà chẳng vậy, nhưng đây cũng là chuyện không còn cách nào khác. Thôi, đừng nghĩ nữa, chúng ta cũng lên đi." Mộc Linh gật đầu, thu lại tâm trạng, cùng Diệp Ngưng Sương bước vào thang máy. Lại nói đến Diệp Phi và Hứa Vi Nhi, cả hai ngồi thang máy nhanh chóng đến đại sảnh tầng cao nhất. Lúc này nơi đây đã có rất nhiều người, sự xuất hiện của họ không gây ra chút gợn sóng nào. Tuy rằng cả trang phục khác lạ lẫn ngoại hình nổi bật của họ đều đủ để trở thành tâm điểm, nhưng lúc này không ai đoái hoài, tất cả đều đang vây quanh những quầy trưng bày, trầm trồ đánh giá những món trang sức châu báu bên trong. Lần này chủ yếu trưng bày kim cương, nói thật, những món đồ được trưng bày đều là tinh phẩm, đặt ở bên ngoài cũng đều giá trị liên thành, nhưng điều khiến Diệp Phi khó hiểu là, phụ nữ thì không nói, tại sao đàn ông ở đây cũng nhìn những món này với đôi mắt sáng rực? Đúng lúc Diệp Phi đang khó hiểu, Hứa cô bé bên cạnh bỗng chán nản nói: "Sao mẹ và Diệp a di vẫn chưa đến? Chán chết mất!" "Chán sao?" Diệp Phi ngẩn người, chẳng lẽ cô nàng này không hứng thú với những thứ này? Hắn hỏi: "Nhiều đồ tốt thế này, ngươi không định xem qua sao?" "Có gì đẹp đâu? Chẳng qua là một đống đá thôi mà." Hứa cô bé bĩu môi: "Dù có trang trí đẹp đến đâu cũng chỉ là vật vô tri, có thời gian quan tâm đến thứ này, chi bằng làm vài việc có ý nghĩa." Diệp Phi cảm thấy hơi câm nín, không ngờ Hứa cô bé chưa trải sự đời như cô lại có cái nhìn thoáng đến thế về phương diện này. Dù cô nói không sai, những thứ này đơn giản chỉ là đá, nếu không phải người yêu tặng thì chẳng có ý nghĩa gì, nhưng mấy ai lại không có lòng hư vinh? Phải biết rằng những món trang sức kim cương tinh phẩm này, chỉ cần một món mang ra ngoài cũng đủ nâng giá trị của một người phụ nữ lên gấp trăm lần. Điều quan trọng nhất là, rất ít phụ nữ có thể cưỡng lại những thứ lấp lánh này, ngay cả người phụ nữ bên cạnh mình cũng không ngoại lệ, bằng không lúc nhận chiếc nhẫn mình tặng, tiểu di đã không vui đến thế. Nghĩ đến đây, Diệp Phi có chút tự trách, trước kia hắn quả thực chưa từng chú ý đến những thứ này, chỉ quan tâm đến đời sống sinh hoạt của các nàng mà chưa từng nghĩ đến việc tặng quà. Xem ra sau này phải chú ý hơn, tin rằng chỉ cần là quà hắn tặng, dù là gì đi nữa thì các nàng cũng sẽ rất vui. Qua lời Hứa cô bé, Diệp Phi xác định cô bước chân vào giới giải trí tuyệt đối không phải vì lòng hư vinh, mà là thực sự yêu thích nghề này. Nguyên bản hắn chỉ muốn giúp đỡ khi cô cần, nhưng bây giờ đã quyết tâm phải giúp cô thực hiện ước mơ. Dưới trướng Diệp gia cũng có một công ty giải trí, chỉ là trước kia không được coi trọng, quy mô cũng không lớn. Hiện tại Diệp Phi quyết định phải chấn hưng nó. Đến lúc đó, ngoài việc toàn lực lăng xê Hứa Vi Nhi, còn có thể thu hút những minh tinh mới nổi hoặc đã thành danh tham gia. Đến lúc đó... hắc hắc, nụ cười của Diệp Phi vô thức trở nên hơi đê tiện. Tuy những minh tinh đó về nhan sắc, vóc dáng không thể bằng mẹ các nàng, nhưng thân phận của họ sẽ mang lại cho người ta một cảm giác thành tựu đặc biệt! Đang lúc Diệp Phi vì quyết định này mà nuốt nước bọt, Hứa cô bé đột nhiên kéo hắn một cái rồi chạy về một hướng. Diệp Phi đi theo, đồng thời nhìn theo mục tiêu của cô, chỉ thấy hai vị mỹ phụ đang mặc lễ phục đứng sóng vai ở đó. Một người chính là Diệp Ngưng Sương đã gọi hắn đến, người còn lại có ngoại hình khá giống Hứa Vi Nhi, nhưng lại trưởng thành và quyến rũ hơn nhiều. Bộ lễ phục tím vừa vặn ôm sát vòng một nảy nở như muốn chực trào ra, chiếc thắt eo được thắt chặt làm nổi bật vòng eo mảnh mai như thiếu nữ. Bên dưới là lớp váy lễ phục rộng thùng thình che khuất mọi thứ, không để Diệp Phi nhìn thấu, nhưng chỉ cần thấy đôi chân ngọc thon dài trong đôi giày cao gót màu đen và một đoạn bắp chân mềm mại ẩn sau lớp tất mỏng cũng đủ khiến hắn thầm than chuyến này không hề uổng phí. "Mẹ, Diệp a di!" Hứa Vi Nhi bước nhanh đến bên hai vị mỹ phụ, gọi một tiếng ngọt ngào rồi khoác tay vị mỹ phụ mặc lễ phục tím. Mộc Linh mỉm cười với con gái, nhưng ánh mắt vẫn dõi theo Diệp Phi đang đi phía sau, còn Diệp Ngưng Sương thì cười nói với Hứa Vi Nhi: "Vi Nhi, thế nào, bảo tiêu mà Diệp a di tìm cho cháu có vừa ý không?" "Cũng tạm ạ!" Hứa Vi Nhi vốn định mách tội Diệp Phi với Diệp Ngưng Sương, nhưng giờ lại thôi, nhất là khi nhớ lại khoảnh khắc hắn xuất hiện ở tầng một vừa rồi, cô cảm thấy hắn đáng tin hơn bất kỳ bảo tiêu nào. "Vậy thì tốt rồi. Linh tỷ, ngươi và Vi Nhi cứ chơi trước đi, ta có chút việc cần bàn với hắn." Diệp Ngưng Sương mỉm cười, sau đó bảo Diệp Phi: "Tiểu Mãn, ngươi theo ta xuống dưới, ta có việc cần ngươi làm." Nhìn thấy tia khao khát lóe lên trong mắt Diệp Ngưng Sương, Diệp Phi tự nhiên biết nàng muốn làm gì, không chút biến sắc gật đầu, đi theo nàng sang bên cạnh. Đến cửa nhà vệ sinh ở tầng này, Diệp Ngưng Sương thấy hai mẹ con Mộc Linh không còn chú ý đến mình nữa, liền nhanh chóng kéo Diệp Phi vào trong. Đầu tiên nàng hé cửa nhìn vào nhà vệ sinh nữ, thấy không có ai mới kéo Diệp Phi vào, rồi bất ngờ lao vào lòng hắn, giọng đầy u oán: "Thằng nhỏ không có lương tâm này, sao lâu như vậy mới tới tìm ta?" "Bận mà, ngươi cũng không phải không biết, khoảng thời gian này xảy ra quá nhiều chuyện." Diệp Phi cũng đã lâu chưa được thân mật với vị bác xinh đẹp trưởng thành này, trong lòng lập tức nóng rực, một bàn tay vuốt ve tấm lưng trần và mông ngọc của nàng, một bên cười nói: "Hơn nữa, hôm nay chẳng phải ta đã đến thăm ngươi rồi sao?" "Hôm nay nếu không phải ta gọi, ngươi có đến không?" Diệp Ngưng Sương ngoài miệng hờn dỗi, nhưng thân thể lại không hề muốn rời khỏi vòng tay Diệp Phi, nàng còn vặn vẹo thân hình, để cho chỗ cứng cáp bên dưới của hắn chọc vào bụng mình. Diệp Phi tiện tay mở một cánh cửa phòng vệ sinh, ôm Diệp Ngưng Sương vào trong rồi khóa trái lại. Lúc này Diệp Ngưng Sương mới buông cổ hắn ra, cơ thể từ từ ngồi thụp xuống, bàn tay nhỏ bé vươn tới thắt lưng hắn. Giải phóng thứ bảo bối, Diệp Ngưng Sương nâng niu nó trong lòng bàn tay, áp khuôn mặt kiều diễm vào cọ xát, ngẩng đầu nhìn Diệp Phi đầy kiều mị: "Bác mang đến cho cháu hai đại tiểu mỹ nhân này, thằng cháu cưng có vừa lòng không?" Diệp Phi cười tà, dùng thứ đó cọ xát lên làn da non mịn trên mặt vị bác xinh đẹp, hỏi: "Mộc Linh cũng là do ngươi chuẩn bị cho ta sao? Người ta hình như đã có chồng rồi mà?" Diệp Ngưng Sương hôn nhẹ lên đỉnh đầu cự vật của chất nhi, cười nói: "Có chồng thì đã sao? Chỉ cần để con cặc lớn của cháu đút cho nàng một lần, ta không tin nàng sẽ không động lòng với cháu. Chẳng phải ta cũng bị con cặc lớn của cháu chinh phục đó sao?" "Sao nào? Chính mình làm dâm phụ chưa đủ, còn muốn lôi kéo cả bạn tốt à?" Diệp Phi cười dâm tà, hắn nói vậy không phải để nhục mạ vị bác xinh đẹp mình yêu quý, mà là một cách tán tỉnh khác. Quả nhiên, Diệp Ngưng Sương không vì lời nói của Diệp Phi mà tức giận, ngược lại vẻ mặt càng thêm kiều mị nhìn hắn, bàn tay nhanh chóng khuấy động, miệng thốt ra những lời dâm đãng: "Ta chính là thích làm tiểu dâm phụ của cháu, bác hôn nhẹ cháu đây, mau dùng con cặc lớn của cháu trừng phạt ta đi!" Diệp Phi không kìm được sự kích động nguyên thủy nhất khi nhìn bộ dạng dâm đãng của bác, một tay kéo nàng lên, dùng cơ thể ép chặt thân hình gợi cảm của nàng vào vách tường, hất tung lớp váy lễ phục rộng thùng thình, đẩy quần lót đã ướt đẫm sang một bên, rồi mạnh mẽ đâm vào tiểu dâm huyệt sớm đã ướt át của nàng. "A..." Bị cự vật nhung nhớ bấy lâu đâm mạnh vào, Diệp Ngưng Sương không khỏi sung sướng thốt lên, hai tay ôm chặt cổ Diệp Phi, ghé tai hắn thì thầm: "Cháu ngoan, bác nhớ cháu chết mất, mau dùng con cặc lớn của cháu đút cho bác sướng chết đi!" Diệp Phi cũng bị cái tiểu dâm huyệt vừa khít khao như thiếu nữ lại vừa tràn đầy chất lỏng của bác làm cho sướng đến tận óc, hai tay nâng cặp mông lớn của nàng lên, liều mạng ra vào. Mỗi một lần đâm vào đều hung hăng tiến sâu vào hoa tâm kiều nộn, khi rút ra chỉ chừa lại phần quy đầu kẹt trong dâm huyệt. Diệp Ngưng Sương không ngờ trong hoàn cảnh này chất nhi lại có thể ra vào với biên độ lớn như vậy, không kịp chuẩn bị nên suýt chút nữa kêu to thành tiếng. Trong tình thế cấp bách, nàng chỉ đành cắn chặt vào cổ áo Diệp Phi mới kìm nén được tiếng rên rỉ sắp thoát ra. Hai tay siết chặt cổ chất nhi, Diệp Ngưng Sương ép chặt bộ ngực lớn vào lồng ngực rắn chắc của hắn để tự mang lại cho mình nhiều khoái cảm hơn. Dần dần, Diệp Ngưng Sương bị đút đến mức sung sướng đến phát điên, mông lớn vặn vẹo mạnh mẽ, phối hợp với nhịp điệu của chất nhi, đồng thời không nhịn được nữa mà phát ra những tiếng lãng ngâm cực thấp từ trong cổ họng. Ngay lúc Diệp Ngưng Sương sắp sửa đạt đến cao trào, Diệp Phi đột nhiên dừng lại, đồng thời ra hiệu im lặng. Diệp Ngưng Sương đang trong cơn khoái cảm tột độ bỗng tỉnh táo lại, nàng nghe thấy tiếng mở cửa bên ngoài, tiếp đó là một giọng nữ rất dễ nghe vang lên: "Mẹ, người nói Diệp a di và Diệp Phi chạy đâu rồi, sao tìm mãi không thấy nhỉ?" Nghe ra bên ngoài chính là hai mẹ con Mộc Linh và Hứa Vi Nhi, Diệp Ngưng Sương không khỏi khẩn trương. Dù nàng muốn đưa hai mẹ con này đến bên cạnh Diệp Phi, nhưng khi mọi chuyện chưa thành, nàng không muốn để họ biết mối quan hệ không chính đáng giữa mình và chất nhi. Thế nhưng thứ cự vật đang cắm sâu trong âm đạo tự động nảy lên khiến nàng kích động không thôi, rất muốn mặc kệ tất cả mà để cho chất nhi tiếp tục đút mạnh, đưa mình lên đến đỉnh cao trào còn dang dở. "Có lẽ là có chuyện gì cần làm thôi, một lát nữa họ sẽ quay lại." Giọng Mộc Linh lúc này cũng truyền tới, ngày càng gần. Sau đó là tiếng cửa phòng vệ sinh bên cạnh mở ra, hiển nhiên Mộc Linh đã vào phòng kế bên. Một lát sau, từ phòng bên truyền đến tiếng "sột soạt" thay đồ, tiếp đó là tiếng "xì xì", hiển nhiên là tiếng nước tiểu chạm vào bồn cầu. Nghe thấy âm thanh mập mờ này, cự vật của Diệp Phi trong tiểu dâm huyệt của bác không khỏi nhảy lên mạnh mẽ, khiến Diệp Ngưng Sương thốt lên một tiếng nhỏ, rồi nhìn Diệp Phi với ánh mắt dở khóc dở cười. Diệp Phi đỏ mặt, để trừng phạt vị bác dâm đãng này, hắn lập tức vận dụng kỹ thuật mà hắn đã cùng tiểu muội nghiên cứu ra trên lớp học, cơ thể không hề cử động nhưng cự vật trong dâm huyệt của nàng lại bắt đầu chuyển động mạnh mẽ. "Ah..." Trong khoảnh khắc khẩn trương mà lại bị kích thích như vậy, Diệp Ngưng Sương sướng đến lãng ngâm một tiếng, nhưng lập tức định thần lại, vội vàng cắn vào vai Diệp Phi mới không để tiếp tục rên rỉ thành tiếng. Cũng may Mộc Linh bên cạnh không chú ý tới tiếng rên rỉ đó. Sau khi đi vệ sinh xong, bà cùng con gái Hứa Vi Nhi rời đi. Nghe tiếng họ khuất xa, Diệp Ngưng Sương bị chất nhi đút đến dâm thủy giàn giụa không chịu nổi nữa, thì thầm bên tai Diệp Phi: "Cháu ngoan, bác không chịu nổi nữa rồi, cháu mau đút cho bác đi! Dùng sức nhất vào!" Diệp Phi dùng ý niệm kiểm tra, thấy trong nhà vệ sinh chỉ còn hai người, nên không còn kiêng dè gì nữa, mông phi tốc dập tới, đâm rút điên cuồng bên trong dâm huyệt của bác, khiến vị bác xinh đẹp phong tao kia đến tiếng kêu cũng không thoát ra nổi, chỉ biết vặn vẹo cơ thể phối hợp theo nhịp đập. Vì quá lâu không được Diệp Phi yêu thương, hôm nay Diệp Ngưng Sương đặc biệt nhiệt tình, quấn lấy hắn đòi hỏi không biết bao nhiêu lần, cho đến khi tiết ra không còn chút sức lực đứng vững mới thỏa mãn buông tha cho thằng cháu vẫn còn tràn trề tinh lực. Tuy nhiên, sau khi kết thúc, họ không trở lại đại sảnh ngay mà đi xuống lầu để thay một bộ quần áo khác. Sự kiện tổ chức lần này không chỉ là triển lãm mà còn là tiệc rượu nhỏ, rất nhiều người sẽ nhân cơ hội này để mở rộng quan hệ. Thế nên khi Diệp Phi dìu Diệp Ngưng Sương đang nhũn cả người trở lại đại sảnh, vũ hội đã bắt đầu rồi. Vì triển lãm đã kết thúc, tuy các món đồ vẫn được đặt trong tủ kính quanh sảnh nhưng sau sự tò mò ban đầu thì không còn mấy ai chú ý nữa. Vì vậy, cặp mẹ con hoa là Mộc Linh và Hứa Vi Nhi – một người trưởng thành gợi cảm, một người thanh xuân rạng rỡ – đã thu hút sự chú ý của toàn bộ đàn ông tại đây. Không ngừng có người tới mời khiêu vũ khiến họ vô cùng phiền não. Khi nhìn thấy Diệp Ngưng Sương và Diệp Phi, cặp mẹ con tuyệt sắc này như vớ được cọc, vội bước tới: "Sương nhi, hai người chạy đi đâu vậy? Đi một mạch cả tiếng đồng hồ." "Xuống dưới tìm quần áo cho hắn thôi." Diệp Ngưng Sương chỉ vào Diệp Phi đã thay một bộ âu phục, để đánh lạc hướng, nàng hỏi ngược lại: "Các ngươi sao vậy?" "Hừ, lũ ruồi bọ, thật đáng ghét!" Mộc Linh còn chưa kịp lên tiếng, Hứa Vi Nhi đã bĩu môi. Trước kia ở thành phố Cam, mọi người đều biết thân phận của họ, tham gia các buổi tiệc như vậy cũng chẳng ai dám quấy rầy. Nhưng ở Vọng Hải chưa quen thuộc này lại khác, họ vừa rồi thực sự phiền chết đi được. Nhìn ánh mắt tham lam của đám đàn ông kia, nếu không phải vì ở đây là nơi công cộng, chỉ sợ bọn họ đã động tay động chân rồi. "Hiện tại thì không sao rồi, chúng ta qua bên kia ngồi chút đi." Diệp Ngưng Sương lúc này toàn thân vô lực, chỉ muốn ngồi xuống nghỉ ngơi nên đề nghị. "Di, Diệp a di, sao nhìn người mệt mỏi như sắp kiệt sức vậy?" Hứa Vi Nhi lúc này mới chú ý tới trạng thái của Diệp Ngưng Sương có chút không đúng, Mộc Linh cũng nhìn Diệp Ngưng Sương đầy kỳ lạ. Diệp Ngưng Sương đã chuẩn bị từ trước, cười nói: "Vừa rồi xuống dưới lấy quần áo cho hắn, thang máy đột nhiên bị hỏng, kết quả chúng ta phải đi bộ từ dưới lên." Mộc Linh không nghi ngờ gì, chỉ ân cần đỡ Diệp Ngưng Sương sang bên kia, nói: "Xem ra ngươi nên tăng cường rèn luyện đi, không thì cơ thể không tốt đâu." "Ừ." Diệp Ngưng Sương đáp lời, trong lòng thầm đảo mắt. Rèn luyện? Thế thì có ích gì chứ? Không tin lần tới ngươi để hắn dập cuồng dại không nghỉ hơn một tiếng xem, đảm bảo ngươi đi cũng không nổi! Vì đa số người ở đây là dân bản địa Vọng Hải, họ đương nhiên biết rõ thân phận của Diệp Ngưng Sương, nên từ khi nàng đến, không ai dám tới quấy rầy nữa. Nghỉ ngơi một lát, Diệp Ngưng Sương cuối cùng cũng khôi phục chút tinh thần, hỏi cặp mẹ con bên cạnh: "Các ngươi ngồi đây mãi à, không đi nhảy điệu nào sao?" "Còn nhảy gì nữa, nhìn đám người kia là thấy phiền rồi, chẳng lẽ lại bắt con và mẹ đi nhảy à?" Hứa Vi Nhi vẫn còn canh cánh chuyện vừa rồi, hơn nữa cô quen biết Diệp Ngưng Sương từ nhỏ, trong lòng rất thân thiết nên ăn nói không cần kiêng dè gì. Diệp Ngưng Sương cười nói: "Ta thấy thế này đi, Tiểu Mãn, ngươi nhảy một điệu với Mộc a di của ngươi đi, ta và Vi Nhi bàn chút về tiết mục hát lát nữa." Mục đích nàng tới hôm nay là để tạo danh tiếng cho Hứa Vi Nhi, nên định cuối buổi vũ hội sẽ để cô hát một bài. Tuy trong trường hợp này có vẻ không quá phù hợp, nhưng ai dám đắc tội Diệp Ngưng Sương? Tất nhiên là không chút do dự mà đồng ý ngay. Mà Mộc Linh lúc này cũng rất muốn tìm hiểu Diệp Phi, vì bà nhìn ra được, con gái mình hình như thực sự đã có hảo cảm với hắn. Dù loại hảo cảm này hiện tại chỉ dừng ở phạm vi bạn bè, nhưng ai biết được liệu họ có tiến thêm bước nữa hay không?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0244.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0246.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 142 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 142</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 142</small>
+    Chương 142: Ngọc Nhàn cảm động
+  </h1>
+  <div class="chapter-body">
+    <p>Hai người lại ân cần thăm hỏi hồi lâu, Diệp Phi mới dưới sự thúc giục của Tô Ngọc Nhàn chuẩn bị rời đi. Thế nhưng trước khi đi, hắn lại dùng sức ôm lấy nàng, ghé vào tai nàng khẽ nói: "Tỷ tỷ tốt, từ nay về sau nàng chính là của ta!" Nghe câu nói có phần bá đạo ấy, Tô Ngọc Nhàn chẳng những không bài xích, ánh mắt ngược lại còn có chút mơ màng, lẩm bẩm đáp: "Ân, tỷ tỷ là của ngươi!" "Là của riêng một mình ta, trừ ta ra, ai cũng không được đụng vào nàng!" Diệp Phi nhấn mạnh lại lần nữa, ánh mắt vô thức nhìn về phía Minh giáo thụ đang nằm ngủ bên cạnh. Theo ánh mắt của hắn, Tô Ngọc Nhàn hiểu ngay ý hắn là gì. Nhìn dáng vẻ ghen tuông kia, nàng không khỏi khẽ cười nói: "Được rồi, ngươi thật đúng là lo bò trắng răng, ông ấy từ mấy năm trước đã không được rồi, bằng không ngươi cho rằng người ta dễ dàng để ngươi đắc thủ thế sao? Hơn nữa..." Nói đến đây, trên mặt Tô Ngọc Nhàn hiện lên vẻ kiều mỵ, khẽ nói: "Ngươi lợi hại như vậy, người ta đã mê luyến mất rồi, dù ông ấy có khả năng, ta cũng sẽ không để ông ấy đụng vào." Đây là lần đầu tiên Tô Ngọc Nhàn lộ ra vẻ mặt như vậy trước mặt Diệp Phi, khiến lửa giận trong lòng hắn bùng lên, chỉ muốn cùng nàng thêm một lần nữa. Thế nhưng nghĩ đến việc ba người lăn lộn suốt thời gian không ngắn, hiện tại đã gần năm giờ sáng, sợ rằng một lát nữa Minh giáo thụ sẽ tỉnh dậy, vì vậy hắn đành lưu luyến không rời rời khỏi nơi này. Trở lại phòng khách, Diệp Phi nằm xuống. Tuy một đêm không ngủ nhưng hắn vẫn không hề mệt mỏi. Trong đầu hắn không ngừng suy tính làm thế nào để Minh giáo thụ và Tô Ngọc Nhàn tách ra. Hắn vốn là người có tính chiếm hữu cực cao, hiện tại Tô Ngọc Nhàn đã là người của hắn, hắn không muốn nàng ở cùng nam nhân khác, dù là một Minh giáo thụ đã không còn năng lực cũng không được. Thông qua cuộc trò chuyện tối qua, Diệp Phi biết Minh giáo thụ hiện đang nghiên cứu một đề tài nhưng vì thiếu kinh phí nên phải tạm dừng, điều này khiến ông vô cùng bực bội, đành xin nghỉ ở nhà. Mà thứ Diệp Phi không thiếu nhất chính là tiền. Nếu đầu tư cho hạng mục đó, chắc chắn có thể trói buộc được Minh giáo thụ. Ông vốn là người cuồng công việc, nếu tài chính sung túc, ắt sẽ thường xuyên ở lại phòng thí nghiệm, khi đó chẳng phải hắn muốn gặp Tô Ngọc Nhàn lúc nào thì tới lúc đó, không cần phải kiêng dè bất cứ điều gì nữa sao. Nghĩ kỹ rồi, Diệp Phi không nằm nổi nữa, dứt khoát mặc quần áo chỉnh tề đứng dậy. Lúc ra ngoài vừa vặn đụng phải Minh giáo thụ cũng đang từ phòng ngủ đi ra, chuẩn bị đi tập thể dục buổi sáng. Đối mặt với Minh giáo thụ, Diệp Phi ít nhiều vẫn cảm thấy không tự nhiên. Dẫu sao tối qua vừa mới dây dưa với vợ người ta ngay bên cạnh ông, trong lòng hắn có chút áy náy. Tuy nhiên dù có áy náy thế nào, nữ nhân mà hắn đã nhắm trúng thì tuyệt đối sẽ không nhường cho ai. Minh giáo thụ lại không nghĩ nhiều, thấy Diệp Phi dậy sớm như vậy, trong lòng không khỏi càng thêm yêu mến, dù sao bây giờ thanh thiếu niên chịu khó như vậy cũng không nhiều. Được Minh giáo thụ mời, Diệp Phi cùng ông xuống lầu, vừa chạy bộ trong khu chung cư vừa tán gẫu. Diệp Phi rất nhanh đã dẫn dắt câu chuyện vào hạng mục mà Minh giáo thụ đang phụ trách. Nhắc đến chuyện này, thần sắc Minh giáo thụ lập tức ảm đạm, thậm chí còn lộ vẻ tức giận. "Hừ! Những kẻ kia chỉ biết nghiên cứu mấy thứ không đâu vào đâu, còn cái hạng mục lợi quốc lợi dân này thì họ lại bảo thiếu kinh phí, bắt ta phải dừng lại!" Minh giáo thụ rõ ràng cực kỳ bất mãn với những kẻ có quyền trong trường. "Vậy bá phụ thấy cần khoảng bao nhiêu kinh phí?" Diệp Phi thuận miệng hỏi. Hắn biết sơ qua Minh giáo thụ phụ trách một hạng mục về bảo vệ môi trường, nhưng cụ thể là gì thì hắn không rõ, cũng không muốn hỏi nhiều. Dù sao cần bao nhiêu tiền cứ đưa là được, vì người phụ nữ mình thích, dù có tốn thêm bao nhiêu tiền Diệp Phi cũng sẽ không chớp mắt lấy một cái. "Cái này..." Biểu cảm Minh giáo thụ có chút xấu hổ: "Lúc trước trường cấp mười triệu kinh phí, nhưng hạng mục vừa mới khởi sắc thì đã dùng hết rồi. Ta tính toán nếu kiên trì đến khi thành công, khoảng chừng cần năm mươi triệu nữa." Diệp Phi thầm nghĩ: Trách không được trường bắt dừng, số tiền này đúng là hơi nhiều. Nhưng đối với Diệp Phi mà nói thì chẳng đáng là bao, liền hỏi: "Vậy các ông không tìm kiếm tài trợ ở đâu sao?" Minh giáo thụ thở dài: "Chúng tôi cũng nghĩ tới, nhưng dù sao đây cũng là một khoản đầu tư lớn, người bình thường căn bản không kham nổi, mà chúng tôi lại không có mối quan hệ nào, nên đành tạm thời đình chỉ." "Ra là vậy, cháu cũng quen biết một số người, lát nữa sẽ giúp bác hỏi xem có ai muốn đầu tư không." Diệp Phi cười nói. "Thật chứ?" Minh giáo thụ sững sờ, lập tức bừng tỉnh nói: "Đúng đúng đúng, cháu quen biết Diệp Phi, thế thì quá tốt rồi! Nếu có Diệp gia hoặc Liễu gia bỏ vốn thì không thành vấn đề chút nào." Diệp Phi cười khổ trong lòng. Vị Minh giáo thụ này đúng là một kẻ mọt sách, đến cả đối nhân xử thế cũng không hiểu rõ. Khoản tiền lớn như vậy, chỉ cần quen biết là xin được sao? Tuy nhiên hắn cũng không vạch trần, cười nói: "Được rồi, bá phụ cứ tự nhiên, cháu đi gọi điện thoại đây." Đi đến một chỗ không người, Diệp Phi bấm số Diệp Ngưng Sương, kể cho cô nghe chuyện này. Diệp Ngưng Sương không chút suy nghĩ liền đáp ứng ngay, điều này khiến Diệp Phi không khỏi cảm động. Diệp Ngưng Sương bây giờ thực sự toàn tâm toàn ý với hắn. Năm mươi triệu tuy với hắn không là gì, nhưng nếu để Diệp gia xuất ra một khoản lớn như vậy cũng không dễ dàng. Thế mà Diệp Ngưng Sương thậm chí còn không hỏi mục đích, đã miệng đầy đáp ứng. Điểm này nếu không phải là toàn tâm toàn ý muốn trả giá vì hắn thì thật khó mà làm được.</p>
+    <p>Hiệu suất xử lý sự việc của Diệp Ngưng Sương là không thể chê. Diệp Phi và Minh giáo thụ tập thể dục buổi sáng xong, còn chưa kịp ăn sáng, điện thoại từ trường của Minh giáo thụ đã gọi tới, thông báo ông mau chóng quay về trường, bởi vì Diệp thị tập đoàn đã đầu tư một khoản tài chính lớn vào hạng mục của ông, yêu cầu lập tức triển khai. Cúp điện thoại, vị giáo sư đã gần sáu mươi tuổi như đứa trẻ mừng rỡ nhảy cẫng lên. Sau khi bày tỏ lòng cảm ơn với Diệp Phi, ông thậm chí cơm cũng không kịp ăn, vội vàng thu dọn rồi rời khỏi nhà. Qua cuộc trò chuyện giữa Minh giáo thụ và Diệp Phi, Tô Ngọc Nhàn cùng Minh Nguyệt Tâm cũng biết khoản đầu tư này là do Diệp Phi giúp đỡ. Thấy phụ thân vui vẻ như vậy, Minh Nguyệt Tâm tự nhiên cũng rất vui, liên tục nói lời cảm ơn với Diệp Phi. Chỉ có Tô Ngọc Nhàn hiểu rõ, Diệp Phi làm tất cả những điều này đều là vì nàng. Trước kia nàng từng nghe Minh giáo thụ nhắc qua, biết rõ hạng mục này cần bao nhiêu tiền. Hiện tại Diệp Phi vì nàng mà bỏ ra số tiền lớn như vậy, khiến lòng nàng không chỉ xao động mà còn ngọt ngào vô cùng. Ánh mắt nhìn về phía Diệp Phi trở nên cực kỳ dịu dàng, nếu không phải con gái vẫn còn ở đó, sợ rằng nàng đã chủ động dâng lên nụ hôn nồng cháy rồi.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0141.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0143.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

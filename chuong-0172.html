@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 172 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 172</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 172</small>
+    Chương 172: Nghịch thiên năng lực
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi không khỏi có chút ngẩn ngơ, chiếc nhẫn mình lấy được rốt cuộc là chuyện gì xảy ra? Là một sự trùng hợp, hay là vì mấy ngày trước xử lý những người kia thực lực quá yếu, nên mới không rớt ra vật phẩm?</p>
+    <p>Muốn chứng minh việc này kỳ thật rất đơn giản. Hắn nhớ rõ trong kỹ năng của Dã Man Nhân có một hệ liệt gọi là "Tìm kiếm", có thể tìm trên thi thể ra dược phẩm hoặc trang bị, cho nên chỉ cần tìm chút thi thể thử một lần là biết. Thi thể này đương nhiên không thể dùng của Lý Tư, bất quá hắn có thể tự tay tạo ra.</p>
+    <p>Nghĩ tới đây, Diệp Phi từ trên mặt đất nhảy dựng lên, há miệng hét lớn một tiếng. Mấy con chim lớn đậu trên cây bị hắn làm kinh động, vẫy cánh muốn né tránh. Diệp Phi nhặt vài hòn đá nhỏ trên mặt đất, cong ngón tay bắn ra, chỉ nghe vài tiếng "vút vút" vang lên, mấy con chim đáng thương kia đều gào thét một tiếng rồi rơi xuống từ trên không trung.</p>
+    <p>Diệp Phi nhặt mấy cái xác chim, đặt tay lên trên một cái, trong lòng thầm nghĩ "Tìm kiếm vật phẩm". Hắn cảm giác nội lực của mình bị rút đi một tia nhỏ không thể thấy được, nghĩ rằng đây là pháp lực trong trò chơi, bất quá đến chỗ hắn thì biến thành nội lực. Tuy nhiên tốc độ tiêu hao này còn không nhanh bằng khả năng tự hồi phục của Diệp Phi, chỉ cần hắn muốn, thậm chí có thể dùng mãi không thôi. Theo tay hắn rời đi, cái xác chim biến thành một đống tro bụi, nhưng trên mặt đất lại không thấy gì cả.</p>
+    <p>Tuy lần này không tìm ra thứ gì, nhưng Diệp Phi đã có thể khẳng định kỹ năng của mình quả nhiên là dùng được, bằng không cái xác chim không thể biến thành dạng đó, vì vừa rồi hắn căn bản không hề có ý phá hủy cái xác, mà tia nội lực bị rút đi kia cũng không đủ để biến một con chim lớn như vậy thành tro tàn.</p>
+    <p>Phát hiện này làm Diệp Phi mừng rỡ trong lòng, vội vàng tiếp tục thử nghiệm. Quả nhiên, đến lần thứ tư, theo cái xác chim biến mất, một vật có tạo hình hơi kỳ quái nhảy ra, rơi xuống mặt đất bên cạnh. Vật đó dài chừng ba mươi cm, nhìn toàn thể như một khúc gỗ tròn, nhưng đỉnh lại có một lưỡi đao dài ba bốn cm. Diệp Phi nhất thời căn bản không rõ đây rốt cuộc là thứ gì.</p>
+    <p>Hắn cúi người nhặt cái vật không giống chủy thủ cũng chẳng giống gậy gộc kia lên, một dòng thông tin lập tức xuất hiện trong đầu Diệp Phi: Tàn phá chim ngói chi nhận: Được tạo thành từ tinh khí toàn thân của chim ngói không cam lòng khi tử vong, có thể giúp tăng lực công kích của bản thân lên một phần ngàn. Xem ra những vật này vẫn khác với trong trò chơi, nó tăng theo tỉ lệ phần trăm, nhưng một phần ngàn này quả thật quá ít ỏi.</p>
+    <p>Nhìn cái phế phẩm trong tay, Diệp Phi có chút không nói nên lời. Một phần ngàn lực công kích, thật không biết nó có tác dụng gì, chỉ sợ cầm một thanh sắt vụn còn hữu dụng hơn nhiều.</p>
+    <p>Diệp Phi không cam lòng, dứt khoát triển khai một cuộc tàn sát trong cánh rừng rậm này. Chưa đầy hai giờ ngắn ngủi, đã có hơn trăm con chim muông, thú nhỏ chết dưới tay hắn. Cũng may đây là rừng rậm nguyên thủy, nếu không, bị những người bảo vệ động vật biết được, dù không đến mức ngồi tù thì cũng đủ làm hắn đau đầu không dứt.</p>
+    <p>Sau khi dùng sạch phần lớn những cái xác này, Diệp Phi xem như triệt để hết hy vọng. Trên những thi thể đó, hắn lục tục tìm ra hơn hai mươi kiện "trang bị", từ đồ trang sức, vũ khí, quần áo đến đai lưng đủ cả, nhưng phần lớn thuộc tính còn chẳng bằng cái "Tàn phá chim ngói chi nhận" kia. Thứ duy nhất có thể lọt vào mắt xanh của hắn là một chiếc nhẫn gọi là "Lợn rừng giới chỉ", thứ này có thể tăng một phần trăm khả năng phòng ngự, là hắn tìm được trên xác một con lợn rừng. Bất quá không nói đến thuộc tính cùi bắp tăng một phần trăm phòng ngự đó, chỉ riêng cái chiếc nhẫn đen không ra đen, vàng không ra vàng, lại còn khảm một cái đầu lợn rừng nhe răng nanh kia, chỉ sợ trừ những kẻ có ác thú vị, chẳng ai muốn đeo. Tuy nhiên dù sao đi nữa, đây cũng là "trang bị" tốt nhất Diệp Phi có được lúc này, nên hắn vẫn giữ lại làm kỷ niệm.</p>
+    <p>Mười cái xác còn lại, Diệp Phi không muốn lãng phí, vì vậy đổi sang một kỹ năng khác trong hệ tìm kiếm là "Tìm kiếm dược tề". Khi kỹ năng này được sử dụng, Diệp Phi phát hiện nó tiêu hao còn ít hơn cả "Tìm kiếm vật phẩm", gần như không đáng kể.</p>
+    <p>Sau khi mười cái xác kia biến mất, Diệp Phi nhìn bốn viên dược hoàn nhỏ màu tím hình tròn trong lòng bàn tay mà không khỏi cạn lời. May mà chúng không phải màu xanh lam, bằng không dù có hiệu quả tốt đến mấy, cũng chẳng có ai chịu ăn công khai trước mặt người khác. Bất quá vài viên dược hoàn này dù tạo hình không đẹp, nhưng công hiệu lại rất tốt. Bốn viên này đều gọi chung là "Khôi phục hoàn", có thể tức khắc khôi phục một phần trạng thái thân thể cho người sử dụng. Khả năng khôi phục của bốn viên này lần lượt là 0,05, 0,06, 0,08 và mười phần trăm. "Trạng thái thân thể" này theo Diệp Phi đoán hẳn là chỉ mức độ khỏe mạnh của cơ thể, bao gồm cả vết thương, thể lực và nội lực.</p>
+    <p>Đây đúng là thứ tốt, Diệp Phi trong lòng có chút hối hận vì vừa rồi đã dùng quá nhiều thi thể vào cái việc "Tìm kiếm vật phẩm" không có lợi ích gì kia. Bất quá đây không phải là nan đề, bởi trong rừng rậm nguyên thủy, thứ không thiếu nhất ngoài cây cối chính là các loại động vật. Diệp Phi tuy không phải kẻ tàn nhẫn, nhưng tuyệt đối không phải loại người thấy con kiến chết cũng rơi lệ, hay kiểu ngụy quân tử ăn chay ngoài mặt nhưng sau lưng lại ăn thịt. Vì vậy, việc hy sinh một ít dị chủng sinh mệnh để bảo đảm hơn cho mạng sống của người thân, bằng hữu thì hắn vẫn làm được.</p>
+    <p>Kết quả là lũ động vật trong cánh rừng này gặp họa. Chỉ trong một buổi chiều, đã có hơn một ngàn con vật chết dưới tay "đao phủ" Diệp Phi, đổi lại là mấy trăm viên dược hoàn nhỏ trong không gian của hắn.</p>
+    <p>Những dược hoàn thu được sau đó cũng không khác gì bốn viên trước, khả năng khôi phục đều dao động từ 0,05 đến mười phần trăm. Hắn nghĩ là do thực lực lũ động vật ở đây khá đồng đều, nên muốn có loại hồi phục nhiều hơn thì phải tìm trên người những cao thủ thực thụ. Bất quá bấy nhiêu đây đã là quá đủ, vì vật phẩm ở đây không giống trong trò chơi là có thời gian chờ, chỉ cần trên thân thể có gì bất ổn, hoàn toàn có thể uống liên tục. Mà nếu có xác cao thủ, Diệp Phi còn muốn tìm vài món trang bị tốt cho người nhà nữa.</p>
+    <p>Nhìn những viên dược hoàn nằm tĩnh lặng trong không gian, Diệp Phi cảm khái không thôi. Hiện tại, ngay cả chính hắn cũng cảm thấy năng lực này có chút nghịch thiên. Từ nay về sau, dù gặp phải kẻ địch nào, chỉ cần không thể giết hắn trong một chiêu, thì hắn hoàn toàn có thể dùng những dược hoàn này mà tiêu hao đối phương đến chết. Bất quá với thực lực hiện tại của hắn, liệu có ai khiến hắn phải dùng đến những dược hoàn này hay không?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0171.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0173.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

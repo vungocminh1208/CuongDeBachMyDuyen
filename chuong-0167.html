@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 167 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 167</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 167</small>
+    Chương 167: Vui đùa trong hồ
+  </h1>
+  <div class="chapter-body">
+    <p>Rơi vào đường cùng, Diệp Phi đành phải lui xuống. Trong lòng cậu vô cùng ngạc nhiên, không rõ nơi này rốt cuộc có gì cổ quái, đồng thời cũng thầm lo lắng, nếu con đường mình vừa đi qua cũng như vậy, chẳng phải cả đời này mình sẽ bị vây ở đây sao. Nghĩ đến khả năng đó, Diệp Phi không dám chần chờ, vội vàng quay trở lại hang động, đi đến chỗ mình rơi xuống, lấy đà bay vọt lên. Khiến cậu thở phào nhẹ nhõm là nơi này không hề có sự quái dị như trong sơn cốc, cậu liên tục mượn lực trên vách động, mãi cho đến tận con đường nghiêng phía trên cũng không gặp trở ngại gì. Có sự đảm bảo này, Diệp Phi không còn quá vội vã rời đi. Cậu nhảy xuống lần nữa, nơi này hiển nhiên ngoài mình ra chưa từng có ai đặt chân tới. Thiên địa linh khí ở đây đối với cậu mà nói có chút gân gà, nhưng phong cảnh này lại là tuyệt thế hiếm có. Nếu sau này rảnh rỗi đưa người thân đến đây chơi, cũng là một sự hưởng thụ không tồi. Vì thế, cậu quyết định phải dò xét kỹ lưỡng, xác định xem nơi này có thực sự an toàn hay không. Trở lại sơn cốc, Diệp Phi chậm rãi đi lại xung quanh. Lần này vì có ý định muốn chiếm hữu nơi đây, cậu quan sát vô cùng cẩn thận. Sơn cốc này không quá lớn, diện tích chỉ khoảng hơn hai mươi ki-lô-mét vuông. Động vật trong đó đều vô cùng nhỏ nhắn, lớn nhất cũng chỉ bằng con thỏ, hơn nữa con nào con nấy đều rất đáng yêu. Có con trông giống thỏ nhưng cái đuôi không ngắn như vậy, có con giống sóc nhưng cái đuôi lại không to bằng. Dù sao cũng là những chủng loại chưa từng thấy qua. Điều quý giá nhất là có lẽ vì chưa từng gặp con người, chúng không hề sợ hãi Diệp Phi. Có không ít con hiếu kỳ tiến lại gần, đánh giá gã khổng lồ đột nhiên xâm nhập này. Tính trẻ con của Diệp Phi nổi lên, cậu cúi người bắt lấy một con tiểu thú giống như sóc, đặt nó lên vai mình. Con vật nhỏ đó chẳng hề sợ hãi, đứng trên vai cậu kêu chít chít, tỏ vẻ vô cùng đắc ý. Những con khác thấy vậy thì rất hâm mộ, đua nhau nhảy đến bên cạnh Diệp Phi, mấy con nhanh nhẹn còn trực tiếp nhảy lên vai cậu. Có những sinh vật đáng yêu này làm bạn, Diệp Phi vô cùng vui vẻ, dẫn chúng chạy loạn khắp nơi. Chẳng mấy chốc đã tới trung tâm sơn cốc, nơi đây là một cái hồ nhỏ dài rộng chưa đầy trăm mét. Nước hồ vô cùng trong trẻo, Diệp Phi thậm chí có thể nhìn thấy cả những hòn đá dưới đáy. Sau hai lần bò trườn trong hang động, trên người khó tránh khỏi dính chút bùn đất, nay thấy hồ nước thanh tịnh như vậy, Diệp Phi không khỏi động lòng. Cậu nhẹ nhàng đuổi mấy con tiểu thú đang leo trèo trên người ra, cởi bỏ quần áo rồi nhảy ùm xuống hồ. Thời tiết ở đây tuy không nóng bức như bên ngoài, nhưng làn nước mát lạnh này khiến Diệp Phi cảm thấy sảng khoái toàn thân. Hơn nữa cậu nhận ra, từ khi xuống nước, chân khí trong cơ thể tự vận hành nhanh gấp đôi. Tốc độ này tuy vẫn không kịp công hiệu khi song tu, nhưng cũng chẳng kém bao nhiêu. Điều quan trọng nhất là, song tu thì chỉ mình nhận được lợi ích, còn nữ nhân của mình lại không được hưởng nhiều. Nếu để họ tu hành trong hồ nước này, lợi ích còn lớn hơn cả song tu với cậu. Tâm trạng đại hỷ, Diệp Phi chơi đùa dưới nước rất lâu cho đến khi trời tối hẳn mới chịu lên bờ. Lúc này, những con tiểu thú kia dường như cũng buồn ngủ, trong sơn cốc vô cùng yên tĩnh. Sáng sớm xuất phát, Liễu Quân Di đã dặn cậu tối phải về sớm kẻo lo lắng. Giờ cũng đã muộn, Diệp Phi không dám chậm trễ, vội vàng mặc quần áo, men theo hang động trở lại mặt đất, sau đó xác định phương hướng lao về phía cứ điểm tạm thời. Khi Diệp Phi trở về, mọi người trong đặc biệt chiến đội đã dùng xong bữa tối, đang tụ tập từng nhóm bên ngoài nói chuyện phiếm. Thấy cậu về, họ đều chào hỏi, chỉ là không thấy Liễu Quân Di đâu. Diệp Phi hỏi rõ vị trí phòng của Liễu Quân Di, bước nhanh tới rồi nhẹ nhàng gõ cửa: "Tiểu di, ta về rồi." Cửa nhanh chóng mở ra, một thân hình mềm mại nóng bỏng lao vào lòng cậu, ôm chặt lấy tay cậu mà run rẩy. Diệp Phi giật mình, vội đóng cửa lại hỏi: "Nàng sao vậy?" "Làm ta sợ chết khiếp, chàng đi mãi không về, ta còn tưởng chàng xảy ra chuyện gì rồi." Giọng Liễu Quân Di run run, còn mang theo tiếng nức nở: "Từ nay về sau chàng đi đâu cũng phải ở cùng chúng ta có được không? Ta không cho phép chàng rời đi nữa!" Thấy người vốn kiên cường như nàng mà lại lo lắng đến thế, Diệp Phi vừa cảm động vừa áy náy, ôn nhu nói: "Ta không sao, chỉ là phát hiện một nơi rất thú vị, chơi vui quá nên về trễ thôi." Liễu Quân Di đã chờ Diệp Phi suốt từ lúc thu đội, nàng vốn đang đắm chìm trong tình yêu nên không khỏi lo được lo mất, trong lòng thầm hối hận. Dù biết với thực lực của cậu khó mà xảy ra chuyện, nhưng ai biết trong khu rừng quái dị này còn có thứ gì biến thái hơn địch nhân hay không? Đến khi Diệp Phi trở về, nàng mới thở phào, nhưng nghe cậu nói chỉ vì ham chơi mà về muộn, nàng không khỏi tức giận, đẩy cậu ra, lạnh mặt nói: "Vậy chàng cứ ở ngoài đó mà chơi tiếp đi, còn về làm gì?" Diệp Phi tiến tới ôm lấy nàng lần nữa, thì thầm bên tai: "Thực xin lỗi, đều là ta không tốt, làm bà xã yêu quý lo lắng rồi. Nhưng nơi ta tìm được thực sự rất tuyệt, không chỉ cảnh sắc mê người mà còn có lợi cực lớn cho người tu luyện. Tin ta đi, nàng đến đó nhất định sẽ thích. Ngày mai ta đưa nàng đi, được không?" Liễu Quân Di vừa rồi chỉ là giận vì cậu khiến mình lo lắng quá lâu, cơn giận đến nhanh đi cũng nhanh, khi nghe câu "bà xã yêu quý" thì lập tức hết giận, ngược lại còn tò mò về nơi đó: "Được, ngày mai ta sẽ theo chàng xem sao, nếu không tốt như chàng nói, hừ, xem ta xử lý chàng thế nào!" Câu này nghe như đe dọa nhưng lại giống đang làm nũng hơn.</p>
+    <p>Vì cứ điểm tạm thời này nhỏ hơn nhiều so với trong quân khu, Diệp Phi buổi tối không tiện ở lại phòng Liễu Quân Di. Sau khi âu yếm một lúc, cậu rời đi để sang ngủ chung với Trương Cường và mọi người. Sáng hôm sau, Liễu Quân Di gọi mấy vị đại đội trưởng lại, nói rằng Diệp Phi phát hiện một nơi khả nghi nhưng chưa xác định được có dấu vết địch nhân hay không, nên muốn cùng cậu đi xem lại. Các đại đội trưởng biết thực lực của hai người nên không suy nghĩ nhiều, chỉ dặn dò họ cẩn thận. Vào đến rừng rậm, đến nơi kín đáo, Diệp Phi và Liễu Quân Di nhìn nhau cười. Cậu đưa tay ôm lấy vòng eo mảnh khảnh của nàng, thân hình đột nhiên tăng tốc, bay vút về phía chỗ cũ ngày hôm qua. Đây là lần đầu Liễu Quân Di trải nghiệm tốc độ của Diệp Phi, nhìn cảnh vật hai bên rút lui vun vút, dù thực lực nàng xuất chúng vẫn thấy hoa mắt. Trong lòng nàng có chút hoảng sợ nhưng nhiều hơn là tự hào, thực lực của Diệp Phi càng mạnh, nàng càng vui mừng. Dưới sự dẫn dắt của Diệp Phi, hai người nhanh chóng tới nơi. Diệp Phi không dừng chân, lao thẳng về phía gốc cổ thụ che trời kia. Trong mắt Liễu Quân Di, họ đang lao thẳng vào mấy gốc cây đứng sát nhau, nàng vô thức kinh hô một tiếng, nhưng ngay sau đó phát hiện mình không hề đụng phải thứ gì mà xuyên qua những gốc cây đó, cảnh sắc trước mắt liền thay đổi hoàn toàn. Tiếng kinh hô của Liễu Quân Di khiến Diệp Phi dừng lại hỏi: "Sao vậy?" Liễu Quân Di ngạc nhiên đánh giá cảnh vật xung quanh hoàn toàn khác biệt, hỏi ngược lại: "Sao cảnh sắc xung quanh lại thay đổi rồi? Hơn nữa mấy gốc cây vừa rồi sao không đụng phải chúng ta?" Diệp Phi ngạc nhiên đáp: "Không đổi mà, vẫn thế thôi, cũng chẳng có gốc cây nào cả." Liễu Quân Di càng sửng sốt: "Vậy chúng ta lùi lại một chút thử xem." Diệp Phi gật đầu, kéo nàng lùi lại vài bước, cảnh sắc trong mắt Liễu Quân Di lập tức thay đổi, trước mắt đúng là mấy gốc cổ thụ ban nãy, nàng chỉ vào cây nói: "Đây chẳng phải là mấy gốc cây kia sao." Diệp Phi trong lòng rung động, hỏi: "Nàng thấy ở đây có mấy cái cây?" "Đúng vậy." Liễu Quân Di gật đầu, hỏi lại: "Chẳng lẽ chàng không thấy?" "Ha ha..." Diệp Phi đột nhiên cười lớn. Hôm qua cậu đã nghi ngờ, giờ được Liễu Quân Di xác nhận thì cơ bản có thể khẳng định, đây là một tự nhiên mê trận chỉ tồn tại trong truyền thuyết. Không ngờ lần khai phá não vực đó ngoài những công năng biểu hiện ra, lại còn có khả năng phá giải hư ảo. Sơn cốc kia cũng hẳn là do trận pháp tạo thành, chỉ là thực lực hiện tại của cậu chưa đủ để nhìn thấu bản chất. Cậu thầm thán phục sức mạnh của thiên địa thật khó lường, ai mà ngờ được những cây cổ thụ mọc loạn trong rừng lại tạo thành một mê trận tự nhiên, trách không được nơi này không hề có dấu vết của dã thú. Liễu Quân Di bị tiếng cười của Diệp Phi làm cho sợ hãi, nắm chặt tay cậu hỏi: "Sao thế?" Diệp Phi cười giải thích suy đoán của mình, cuối cùng nói: "Thế thì tốt quá, vốn ta còn đang nghĩ cách che giấu nơi này kẻo sau này bị người khác phá hỏng. Giờ thì hay rồi, ngoài chúng ta ra, chắc chắn không còn ai phát hiện ra nữa." Liễu Quân Di cũng rất vui, nhưng điều khiến nàng vui hơn là Diệp Phi lại có thêm một bản lĩnh mới, lập tức nóng lòng nói: "Nơi đó ở đây sao? Mau đưa ta đi xem đi." Diệp Phi gật đầu, kéo Liễu Quân Di bước vào mê trận, rồi dưới ánh mắt ngạc nhiên của nàng, hai người tiến vào hang động, đi đến sơn cốc tiên cảnh kia. Quả nhiên, thấy cảnh đẹp, Liễu Quân Di không khỏi thốt lên kinh ngạc, đặc biệt là khi những con tiểu thú đáng yêu chạy quanh người nàng, khiến nàng nở nụ cười ngây thơ như một cô bé, chơi đùa cùng đám thú nhỏ không chút sợ hãi con người này. Nhìn dáng người như tinh linh của Liễu Quân Di, Diệp Phi thầm mong chờ, nếu một ngày mang tất cả các nữ nhân bên cạnh đến đây, lúc đó một đám mỹ nhân tựa thiên tiên vui đùa tại đây, hẳn là cảnh đẹp nhường nào. Chờ Liễu Quân Di chơi một hồi, Diệp Phi đến bên cạnh nói: "Ở giữa còn có một cái hồ nhỏ, tu luyện trong đó nhanh hơn bên ngoài rất nhiều, nàng có muốn đi thử không?" Liễu Quân Di hôm qua đi lại cả ngày, thời tiết ở đây còn nóng hơn Vọng Hải, nàng cũng đã đổ mồ hôi đầm đìa. Tối qua tại cứ điểm điều kiện không cho phép, không thể tắm rửa khiến nàng cảm thấy cả người khó chịu. Giờ nghe nói đến hồ nước nhỏ, dù không có công năng tu luyện như Diệp Phi nói, nàng cũng không nhịn được muốn đi tắm rửa một cái, liền giục Diệp Phi dẫn đi. Hai người tới bên hồ, nhìn làn nước trong vắt, Liễu Quân Di rất tâm động, nhưng vì có Diệp Phi ở bên cạnh nên hơi xấu hổ: "Ta muốn xuống đó, chàng quay lưng đi!" Diệp Phi cười nói: "Có phải chưa từng thấy đâu, còn quay lưng làm gì?" Liễu Quân Di nhất quyết không chịu. Tuy hai người đã có vài lần tiếp xúc thân mật, nhưng đều là vào buổi tối hoặc trong phòng ánh sáng mờ mịt, dưới ban ngày ban mặt thế này thì chưa từng có, trong lòng nàng khó tránh khỏi ngượng ngùng. Thấy nàng thật sự ngượng, Diệp Phi liền xoay người đi nơi khác nói: "Nàng xuống đi, lát nữa ta mới quay lại." Sau khi cậu xoay người, Liễu Quân Di nhanh chóng trút bỏ y phục, giống như Diệp Phi hôm qua, nhảy ùm vào dòng nước mát lạnh. Tiếng động sau lưng cho Diệp Phi biết Liễu Quân Di đã xuống nước, cậu xoay người lại, nhìn chằm chằm vào Liễu Quân Di đang ở dưới hồ. Cái nhìn này khiến mắt cậu sáng rực, nước miếng cũng tự giác trào ra. Liễu Quân Di dù là dung mạo hay vóc dáng đều tuyệt mỹ. Diệp Phi tuy đã nhiều lần thưởng thức, nhưng đều ở nơi ánh sáng không rõ ràng. Giờ đây, thân thể của tiểu di lộ ra trọn vẹn trong hồ nước, dòng nước trong veo không cách nào che giấu nổi vóc dáng bốc lửa của nàng. Đặc biệt là cặp bầu ngực to lớn mà Diệp Phi hôn mãi không chán đang nhẹ nhàng đung đưa dưới làn nước, càng khiến cậu mắt nhìn trân trối. Nhận ra ánh mắt nóng bỏng của Diệp Phi, Liễu Quân Di vội lấy hai tay che ngực, mặt đỏ bừng mắng: "Sắc lang, không được nhìn!" "Được, ta không nhìn." Diệp Phi cười hì hì, nhanh chóng cởi sạch quần áo, ưỡn vòng eo, để vật nam tính đã cứng như sắt của mình hướng về phía tiểu di mà đung đưa vài cái, cười nói: "Vậy nàng nhìn ta đi." "Phi, đồ xấu xa!" Liễu Quân Di mắng khẽ, cúi đầu, nhưng khóe mắt vẫn lén lút nhìn không chớp mắt vào thứ đồ vật to lớn đã khiến nàng yêu đến chết đi sống lại kia, trong lòng cũng trở nên nóng rực. Diệp Phi không để Liễu Quân Di thưởng thức lâu, sau vài pha tạo dáng thì lao thẳng xuống hồ, bơi về phía nàng, muốn ôm lấy thân hình quyến rũ đó. Nhưng Liễu Quân Di tinh nghịch cười, bơi ngược ra sau, miệng cười hì hì nói: "Đến bắt ta đi!" Vì nàng dùng kiểu bơi ếch, vòng mông tròn đầy hoàn toàn lộ ra trước mắt Diệp Phi, theo động tác của nàng, nơi tư mật no đủ của nàng ẩn hiện, khiến cho dương vật của Diệp Phi muốn nổ tung. "Đồ yêu tinh nhỏ này, tốt nhất mau bơi đi, nếu để ta bắt được, không chết với ta!" Diệp Phi gầm nhẹ một tiếng, nhanh chóng đuổi theo. Liễu Quân Di khúc khích cười, không hề sợ hãi sự đe dọa của cậu, vừa bơi vừa tạo ra những tư thế chọc ghẹo, thậm chí có lúc còn chổng ngược người lên, để hai chân tách rộng, dòng nước dâm thủy đã bắt đầu ứa ra. Vì Liễu Quân Di cố tình nhường, Diệp Phi nhanh chóng ôm lấy nàng từ phía sau, hai tay nắm lấy bộ ngực to lớn xoa nắn, cười nói: "Xem nàng chạy đi đâu!" Liễu Quân Di cười phóng đãng, mông lớn vặn vẹo, để dương vật của Diệp Phi cọ sát vào. Vì biết nơi này không thể có người tới, Liễu Quân Di sau sự ngượng ngùng ban đầu đã hoàn toàn thả lỏng, thậm chí vẻ ngại ngùng lúc trước cũng chỉ là cách tán tỉnh cậu mà thôi. Dù vừa rồi hận không thể lập tức "địt" nàng một trận, nhưng khi ôm tiểu di vào lòng, Diệp Phi lại không vội nữa, tay xoa nắn bộ ngực đầy đặn, dương vật cứng rắn hưởng thụ cảm giác mềm mại từ vòng mông của nàng. Cuối cùng Liễu Quân Di cũng không chịu nổi nữa, nàng khẽ rướn người, tách đôi chân thon dài, kẹp lấy dương vật nóng bỏng của Diệp Phi, ma sát lên nơi tư mật, miệng thì thầm: "Cháu trai ngoan, địt ta đi, tiểu di muốn thử cảm giác bị chàng địt trong nước!" Yêu cầu đó Diệp Phi đương nhiên không từ chối, cậu nhẹ nhàng nhấc thân hình nàng lên, nhắm ngay cửa hoa đang tràn trề dâm thủy mà đẩy mạnh vào. "A..." Liễu Quân Di sảng khoái rên rỉ. Dương vật của Diệp Phi vốn nóng bỏng, nhưng vì đã ngâm trong nước hồ mát lạnh hồi lâu, khi tiến vào nơi tư mật nóng rực của nàng lại tạo ra một cảm giác khoái cảm lạnh buốt lạ thường, càng khiến dục hỏa của nàng bùng cháy: "Cháu trai ngoan, tiểu di khó chịu lắm, mau dùng sức địt ta đi!" "Tuân lệnh!" Diệp Phi cười lớn, hai tay ôm eo nàng, bắt đầu ra vào mạnh mẽ. Lúc này dù có lực nổi của nước, nhưng vì hai người đều có thân thủ cao siêu nên không hề ảnh hưởng đến sự phối hợp hoàn mỹ. Bị Diệp Phi đâm chọc như thế, Liễu Quân Di càng cảm thấy một loại khoái cảm đặc biệt, theo mỗi lần ra vào, bên trong nàng lúc nóng lúc lạnh, sảng khoái không nói nên lời. Hơn nữa mỗi lần rút ra, dâm thủy dính trên dương vật đều bị nước hồ rửa trôi, khiến mỗi lần đâm vào lại càng thêm mạnh mẽ, khiến Liễu Quân Di sướng đến quên cả trời đất. "Lão công tốt... Cháu trai tốt... Chàng giỏi quá... Địt tiểu di... Sướng quá... Dương vật của chàng... Thật lợi hại... Khiến dâm huyệt của tiểu di... Muốn tan chảy ra rồi... Ah... Mạnh nữa lên... Địt chết tiểu di đi..." Khoái cảm cực hạn khiến Liễu Quân Di rên la, vòng mông cũng dùng sức nhướn lên, để Diệp Phi đâm vào sâu hơn. Tiếng rên rỉ của tiểu di khiến Diệp Phi càng hưng phấn, vừa mạnh mẽ ra vào vừa khen: "Tiểu di à, nàng phối hợp tốt lắm, tiểu Mãn rất thích địt nàng, ta muốn cả đời này đều địt cái lồn phóng đãng của nàng!" Liễu Quân Di lúc này đã chạm tới ngưỡng cao trào, miệng vô thức rên rỉ: "Tiểu di... cũng thích nhất... được tiểu Mãn... địt cái dâm huyệt này... Tốt nhất là... vĩnh viễn... để dương vật của chàng... cắm trong lồn tiểu di... không bao giờ rút ra... như vậy... tiểu di có thể... mãi mãi tận hưởng... cảm giác được tiểu Mãn... địt... Cháu trai ngoan... tiểu di... sắp tới rồi... chàng cũng cùng đi đi... tiểu di... muốn tinh dịch của chàng... đổ hết vào... trong lồn tiểu di... làm đầy... dâm huyệt của tiểu di đi... Ah..." Sau một tiếng hét bén nhọn, thân hình Liễu Quân Di cứng đờ, dâm huyệt lập tức co chặt lấy dương vật Diệp Phi. Diệp Phi biết tiểu di sắp đạt đỉnh, không chần chờ, dồn hết sức lực đẩy mạnh, đưa quy đầu đại cự vật cắm sâu vào tử cung nàng, sau đó gầm nhẹ một tiếng, những dòng tinh dịch nóng bỏng bắt đầu điên cuồng phun vào hoa tâm đang khô khát. Liễu Quân Di bị bắn như vậy, rốt cục đạt tới cao trào đỉnh điểm, miệng hét lên một tiếng dài, lượng lớn dâm thủy cũng theo đó tuôn ra từ sâu trong dâm huyệt. Chờ Liễu Quân Di ngừng run rẩy, Diệp Phi ôm chặt lấy nàng, lấy dương vật vẫn đang cắm sâu trong nàng làm trục, xoay người cho hai người mặt đối mặt, hôn nhẹ lên khuôn mặt kiều diễm vì cao trào mà rạng rỡ của nàng, rồi dần dần di chuyển xuống cái miệng nhỏ nhắn mê người kia.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0166.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0168.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

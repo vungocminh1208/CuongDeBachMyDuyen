@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 227 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 227</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 227</small>
+    Chương 227: Nữ vương thần phục
+  </h1>
+  <div class="chapter-body">
+    <p>"Được, ta có thể nhường thêm một bước, chia ba bảy, các ngươi chiếm bảy, hơn nữa Phi Long bang chúng ta có thể làm tiên phong, như vậy được không?" Dưới vẻ ngoài cường thế của Diệp Tuyền là sự bất đắc dĩ và ủy khuất tràn đầy, nhưng nàng có lý do không thể không làm như vậy. Diệp Phi đột nhiên ngẩng đầu, chằm chằm vào đôi mắt dù lạnh lùng nhưng vẫn xinh đẹp như tinh tú của Diệp Tuyền, hỏi: "Nói ra mục đích thật sự của cô đi." "Mục đích thật sự gì chứ? Chẳng phải ta đã nói rồi sao, chính là muốn hợp tác với các ngươi chiếm lấy Lâm Hải." Ánh mắt Diệp Phi thoáng lóe lên. Trải qua hơn mười năm lăn lộn, ý chí của nàng đã được tôi luyện vô cùng kiên cường, thậm chí khi đối mặt với cái chết cũng không chớp mắt, nhưng lúc này đối diện với ánh mắt của Diệp Phi, nàng lại có chút chột dạ. "Phải không?" Diệp Phi cười nhạt: "Chỉ là bàn chuyện hợp tác, cần gì bang chủ như cô đích thân xuất mã?" "Bởi vì Lâm Hải là nơi có lợi ích cực lớn, nên ta không thể không thận trọng." Diệp Tuyền cố gắng giữ bình tĩnh, tiếp tục đưa ra lý do: "Hơn nữa, ta tự mình tới cũng là để thể hiện thành ý, không ngờ các ngươi lại căn bản không có ý hợp tác, xem ra ta đến công cốc rồi." "Xin hỏi, Lăng Vân Hội chúng ta và Phi Long bang các người, trước kia có giao tình gì không?" Diệp Phi đột nhiên hỏi một câu tưởng như không liên quan. Dù Diệp Tuyền thông minh đến đâu cũng không khỏi sững sờ trước câu hỏi của Diệp Phi, một lát sau mới đáp: "Không có, bất quá chúng ta cũng không có xung đột, chỉ là không qua lại mà thôi. Diệp bang chủ không phải vì không có giao tình mà không muốn hợp tác với chúng ta đấy chứ?" Diệp Phi không trả lời câu hỏi của Diệp Tuyền, chỉ thản nhiên nói: "Trước kia không có bất kỳ giao tình, chỉ vì một lần hợp tác chưa biết có thành hay không, mà bang chủ Phi Long đã tự mình chạy đến tổng bộ của đối phương, thành ý này, có phải là quá mức rồi không?" "Ý cậu là gì?" Diệp Tuyền không khỏi rối bời. "Thông thường, chỉ khi đến đường cùng, người ta mới mạo hiểm đi làm một việc không chắc chắn." Diệp Phi cười nhạt: "Đương nhiên, cũng không loại trừ những kẻ thiếu não chỉ vì lợi ích mà liều lĩnh. Nhưng ta tin, bang chủ Diệp tuyệt đối không phải người như vậy, nếu không cô đã không sống được đến hôm nay. Cho nên, ta nghĩ Phi Long bang các người chắc chắn đã đến bước đường sinh tử, cô mới buộc phải đánh cược, đúng không?" Giờ khắc này, trong lòng Diệp Tuyền tràn đầy khiếp sợ. Nàng biết, ngay từ đầu mình đã quá xem thường vị tiểu bang chủ trẻ tuổi đến mức quá đáng này. Hắn thậm chí còn lợi hại hơn những lời đồn đại bên ngoài. Chỉ dựa vào một sơ hở không đáng gọi là sơ hở đã đoán ra tình cảnh hiện tại của nàng. Tâm tư này thật sự quá đáng sợ, còn đáng sợ hơn những cáo già lăn lộn nhiều năm. Hắn, thực sự chỉ là một đứa trẻ mười sáu tuổi sao? Diệp Phi đoán không sai chút nào. Tình cảnh hiện tại của Diệp Tuyền thực sự rất tồi tệ, thậm chí dùng "sinh tử tồn vong" cũng chưa đủ để hình dung. Nàng đã hoàn toàn cùng đường. Mấy ngày trước, một thế lực mới đột ngột xuất hiện ở gần biển, trong thời gian cực ngắn đã quét sạch rất nhiều địa bàn của Phi Long bang. Những kẻ này không những có vũ khí nóng hỏa lực mạnh, mà thân thủ mỗi người đều mạnh đến mức dọa người. Họ dường như không phải là người trong giới giang hồ, mà là một đám quân đội đã qua huấn luyện đặc biệt. Phi Long bang đối mặt với những người này căn bản không có khả năng chống cự. Hơn nữa, đối phương hành động cực kỳ bí mật, còn Phi Long bang vì giữ thể diện nên không dám trương bảng, vì vậy chuyện này ngoài hai bên ra thì không ai hay biết. Vốn dĩ, những năm qua Diệp Tuyền đã thấy hơi mệt mỏi. Nàng định rằng nếu đối phương không dồn vào đường cùng thì sẽ rời khỏi giới này, cùng con gái tận hưởng cuộc sống. Nhưng điều kiện đối phương đưa ra thật không thể chấp nhận được. Tên thủ lĩnh kia bắt nàng phải làm người phụ nữ của hắn, nếu không sẽ giết sạch người của Phi Long bang. Mặc dù là đại tỷ trong giới, nhưng Diệp Tuyền luôn giữ mình trong sạch. Từ sau khi chồng qua đời, nàng chưa bao giờ tìm kiếm bất kỳ người đàn ông nào, thậm chí không có lấy một ý nghĩ đó, nên dĩ nhiên không thể chấp nhận yêu cầu vô lý này. Thế nhưng, những huynh đệ đã cùng nàng vào sinh ra tử bao năm qua khiến nàng không thể buông bỏ, vì vậy mới có kế hoạch này. Diệp Tuyền muốn sau khi hợp tác với Lăng Vân Hội, nàng sẽ dẫn toàn bộ người của Phi Long bang dọn đến Lâm Hải. Nếu có thể kết đồng minh với Lăng Vân Hội, nàng thậm chí có thể nhờ sự giúp đỡ của họ để giành lại gần biển. Bởi vì nàng rất rõ bối cảnh của Lăng Vân Hội: đại đội trưởng đặc chiến đội Vọng Hải chính là dì ruột của bang chủ Lăng Vân Hội. Nếu Lăng Vân Hội gặp chuyện, bà ấy chắc chắn sẽ không khoanh tay đứng nhìn. Đến lúc đó, đặc chiến đội xuất quân, mượn danh nghĩa chống khủng bố để bắt giữ những kẻ kia chắc chắn không thành vấn đề. Chỉ là, điều khiến Diệp Tuyền tuyệt đối không ngờ tới là vị bang chủ trẻ tuổi của Lăng Vân Hội lại khôn khéo đến mức này. Bước hợp tác đầu tiên còn chưa bắt đầu, hắn đã đoán được tình cảnh của nàng và nắm giữ hoàn toàn thế chủ động. Khẽ thở dài, khí thế của Diệp Tuyền vốn đang cố chống đỡ bỗng yếu hẳn đi: "Được rồi, chuyện đã đến nước này, ta cũng không giấu giếm nữa, sự tình là như vậy..." Ngay lập tức, Diệp Tuyền kể lại vấn đề của mình cho Diệp Phi nghe. Diệp Phi không khỏi thấy hứng thú. Hiện tại, đám người Đầu Trọc đã gần như kiểm soát hoàn toàn Lâm Hải, mà mục tiêu tiếp theo của họ chính là gần biển. Vốn tưởng rằng sẽ phải đối đầu với Phi Long bang, không ngờ lại có một nhóm người khác ra tay trước. Qua việc họ đánh cho Phi Long bang hùng mạnh không còn sức phản kháng, có thể thấy những kẻ kia chắc chắn không phải người bình thường. Bất quá, Diệp Phi chưa bao giờ sợ đối thủ mạnh, bởi trong tay có vô số cao thủ, dù đối mặt với bất cứ kẻ nào, kết quả chỉ có một: nghiền nát chúng! "Vậy cô có biết lai lịch của những kẻ đó không?" Diệp Phi hỏi. Đã xác định sẽ trở thành kẻ thù với chúng, hắn tự nhiên muốn tìm hiểu cho rõ. Nghe ý trong lời nói của Diệp Phi dường như muốn đối phó với những kẻ đó, tinh thần Diệp Tuyền không khỏi chấn động: "Theo như lời huynh đệ dưới quyền từng chạm mặt với chúng, những kẻ đó tuy ngoại hình không khác người Trung Quốc là mấy, nhưng trong số chúng có vài người nói thứ ngôn ngữ căn bản không phải tiếng Trung." "Ồ?" Diệp Phi sững sờ, chẳng lẽ là người nước ngoài? Liền hỏi: "Cô xác định đó không phải là phương ngữ nào đó chứ?" Diệp Tuyền hơi hổ thẹn: "Những huynh đệ của ta đều là người thô kệch, không am hiểu mấy cái này. Bất quá theo lời họ, ngôn ngữ của những kẻ kia rất giống với trong mấy bộ phim, cho nên ta đoán, rất có thể là người Nhật Bản." "Được, ta sẽ cho người tra thử." Diệp Phi nói, trong lòng đã cơ bản khẳng định phỏng đoán của Diệp Tuyền. Bởi vì trong số những chủng tộc giống người Trung Quốc, chỉ có cái tiểu quốc đáng ghét kia mới thích quay loại phim đó. Hắn tuy chưa từng xem, nhưng cũng đã từng nghe qua. "Nói như vậy, là cậu định giúp chúng ta rồi?" Diệp Tuyền kinh hỉ hỏi. Diệp Phi thản nhiên: "Cũng không thể nói là giúp các ngươi, bởi vì mục tiêu tiếp theo của chúng ta chính là gần biển, nên đối đầu với chúng là chuyện tất yếu, cô cũng không cần cảm ơn." "Mục tiêu tiếp theo?" Diệp Tuyền hơi khó hiểu. "Các ngươi đã chuẩn bị tiến quân Lâm Hải, hẳn là hiểu rõ tình hình nơi đó chứ?" Diệp Phi hỏi: "Không biết cô đã từng nghe qua Huynh Đệ Hội ở Lâm Hải chưa?" Huynh Đệ Hội? Diệp Tuyền không khỏi kinh ngạc. Bang hội này nàng quá rõ, kể từ khi ngang trời xuất thế hơn một tháng trước, nó đã quét ngang tất cả thế lực ngầm tại Lâm Hải sau khi Vũ gia biến mất. Chiến lực mạnh đến mức nghe rợn cả người. Nếu không phải phong cách hành sự quang minh chính đại của Huynh Đệ Hội hoàn toàn khác biệt với đám nham hiểm kia, hơn nữa người của Huynh Đệ Hội rõ ràng đều là người Trung Quốc, Diệp Tuyền thậm chí đã nghi ngờ đám người ở gần biển cũng chính là Huynh Đệ Hội. Mà lý do nàng muốn hợp tác với Lăng Vân Hội cũng là vì coi Huynh Đệ Hội là đối thủ lớn nhất. Bằng không, với sức chiến đấu của Phi Long bang, muốn chiếm một Lâm Hải không quá khó khăn. Lúc này Diệp Phi đột nhiên nhắc đến thế lực này khiến Diệp Tuyền nghĩ đến một khả năng đáng sợ. Dù là người luôn điềm tĩnh tàn nhẫn, nàng cũng không giữ nổi bình tĩnh: "Chẳng lẽ Huynh Đệ Hội có liên quan đến các ngươi?" "Không sai." Diệp Phi gật đầu: "Huynh Đệ Hội chính là một bộ phận thực lực được tách ra từ Lăng Vân Hội chúng ta." Trong nháy mắt, Diệp Tuyền hiểu ra mọi chuyện. Trách không được khi mình đề nghị tiến quân Lâm Hải, hắn không hề động tâm, hóa ra nơi đó đã là vật trong túi của người ta. Nực cười là mình còn lấy chuyện đó làm cái cớ để kéo người ta lên thuyền. Bất quá, sau nỗi khiếp sợ, Diệp Tuyền bỗng thấy chờ mong. Nàng thực sự rất muốn xem, chàng trai trước mắt có ngoại hình thậm chí còn đẹp hơn cả phụ nữ này rốt cuộc có thể đi đến đâu. Mới mười sáu tuổi mà đã lợi hại đến mức này, liệu sau này hắn có khai sáng ra một kỷ nguyên mới hay không? Nghĩ đến đây, tâm hồn vốn đã lặng lẽ của Diệp Tuyền lại dâng trào hào khí. Nàng rất muốn tham gia vào việc đó, chỉ là không biết Diệp Phi có chấp nhận hay không. "Đợi cục diện Lâm Hải ổn định, chúng ta sẽ tiến quân gần biển. Ta hy vọng đến lúc đó Phi Long bang sẽ không trở thành trở ngại của chúng ta, bởi vì kẻ chúng ta thực sự muốn đối phó chính là đám tạp chủng Nhật Bản!" Diệp Phi nói xong, trong mắt lần đầu tiên lóe lên sự hưng phấn. Hiện tại tranh chấp địa bàn đã không còn hấp dẫn hắn nữa, nhưng đối với việc đối phó với kẻ ngoại bang, đặc biệt là cái quốc gia tạp chủng kia, hắn vẫn rất hứng thú. "Yên tâm, Phi Long bang chắc chắn sẽ không trở thành chướng ngại của Lăng Vân Hội." Diệp Tuyền là một người phụ nữ làm việc dứt khoát. Một khi đã quyết định thì không chần chừ nữa, vì nàng hiểu rõ, thực lực trong tay mình sợ rằng căn bản không lọt nổi mắt xanh của Diệp Phi. Nếu không sớm tranh thủ, sau này muốn gia nhập chắc chắn là không thể. Vì vậy nàng nói: "Hơn nữa, ta rất hy vọng đến lúc đó Phi Long bang chúng ta cũng có thể tham gia." "Ồ?" Diệp Phi không ngờ người phụ nữ này lại quyết đoán đến thế, không khỏi càng thêm thưởng thức: "Bang chủ Diệp có phải có ý gì khác?" Diệp Tuyền gật đầu, rất thẳng thắn: "Không sai, ta muốn dẫn đầu toàn bộ Phi Long bang gia nhập Lăng Vân Hội, không biết chúng ta có tư cách này không?" "Đương nhiên là có." Diệp Phi cười nói: "Hiện tại chúng ta muốn đối phó kẻ địch bên ngoài, cho nên ai muốn gia nhập đều là huynh đệ!" Nói xong, Diệp Phi đứng dậy, đưa tay ra với Diệp Tuyền: "Bang chủ Diệp, hoan nghênh cô!" Diệp Tuyền cũng đứng dậy, nắm lấy tay Diệp Phi, lần đầu tiên lộ ra nụ cười chân thật: "Xưng hô bang chủ này, từ nay về sau không dám nhận nữa. Hiện tại ở đây, chỉ có một Diệp bang chủ." Diệp Phi mỉm cười, hơi không muốn buông bàn tay mềm mại của Diệp Tuyền. Cũng giống như vóc dáng, tay Diệp Tuyền rất thon dài, hơn nữa còn có cảm giác mát lạnh, nắm rất thoải mái. Nhưng Diệp Phi vừa rồi không cảm nhận được chút chân khí nào trong cơ thể nàng, hiển nhiên đây là do thể chất của nàng tạo thành, còn là thể chất gì thì Diệp Phi cũng không rõ. "Được rồi, nơi này không còn chuyện của ta, việc sau này xin phiền Đức thúc và Diệp... tỷ tỷ." Diệp Phi cười nói. Giờ khắc này, Diệp Tuyền kinh ngạc phát hiện khí thế của Diệp Phi biến đổi trong nháy mắt, từ một kiêu hùng tính toán không bỏ sót trở thành một thiếu niên tràn đầy ánh dương, đến cả nụ cười cũng đầy hồn nhiên như đứa trẻ. Nhìn theo bóng lưng Diệp Phi rời đi, tâm hồn đã tĩnh lặng nhiều năm của Diệp Tuyền không tự chủ được mà gợn sóng. Nàng là người phụ nữ cường thế, nên cũng thưởng thức những người cường thế, nhưng sâu thẳm trong lòng lại khao khát những nét hồn nhiên như thời nhỏ. Sự thể hiện của Diệp Phi đánh trúng vào mọi khao khát trong lòng nàng. Nàng thậm chí có chút hoài nghi, nếu mình trẻ hơn mười tuổi, sợ rằng rất khó kháng cự mị lực của hắn. Chỉ là nàng không biết, ngay lúc nàng đang nghĩ những điều này, thực ra nàng đã dần dần bị mị lực của hắn chinh phục. Đôi khi, tuổi tác không trở thành rào cản của tình cảm. Rời khỏi phòng họp, khóe miệng Diệp Phi nở một nụ cười nhạt. Hắn không ngờ tâm huyết dâng trào chạy đến đây lại thần xui quỷ khiến thu phục được Phi Long bang, hơn nữa còn nhận được tin tức kia. Xem ra sau này tiến quân gần biển không cần phải bất an nữa, bởi vì đối thủ cần đối phó căn bản là ngoại tộc, có thể toàn tâm toàn ý đại sát tứ phương. Còn về việc tại sao hắn dễ dàng tin tưởng Diệp Tuyền như vậy, không phải vì nhan sắc của nàng, mà là trong mắt nàng, Diệp Phi nhìn thấy sự chân thành. Hơn nữa, Diệp Phi chưa bao giờ sợ phản bội. Chào hỏi đám tiểu đệ ở cửa, Diệp Phi rời khỏi tổng bộ Lăng Vân Hội. Hiện tại trời đã tối hẳn, chắc mẹ đã về nhà rồi. Trong lòng Diệp Phi dâng lên một luồng nhiệt nóng, Tô Ngọc Nhàn là mẹ nuôi mà đã kích động như thế, hắn thật sự rất mong đợi biểu hiện của mẹ ruột. Nỗi nhớ nhà như mũi tên, Diệp Phi tăng tốc độ xe lên mức tối đa. Chiếc xe có động cơ siêu cường hóa thành một tia chớp đen trên đường, chỉ mất chưa đầy mười phút đã đến trước cửa biệt thự nhà họ Liễu. Nhìn ánh đèn đã sáng trong nhà, khóe miệng Diệp Phi nở nụ cười phấn khích.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0226.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0228.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

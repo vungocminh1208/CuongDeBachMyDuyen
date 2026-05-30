@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 331 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 331</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 331</small>
+    Chương 331: đêm khuya nghĩ cách cứu viện
+  </h1>
+  <div class="chapter-body">
+    <p>Liễu Diệc Như lắc đầu, chi tiết nói ra: "Không có, chỉ là có chút trướng, con ngoan, ngươi làm đi, không cần phải xen vào mụ mụ." Tuy mụ mụ nói như vậy, nhưng Diệp Phi vẫn không có xúc động, tiếp tục dùng hai tay vuốt ve bầu vú lớn cùng tiểu dâm huyệt để nàng khoái cảm, mà con trym lớn thì từng điểm từng điểm hướng nơi sâu thẳm của mụ mụ mà đào đi. Hậu đình của mụ mụ tuy xa không bằng tiểu dâm huyệt mỹ diệu của nàng, nhưng dung nạp con trai một cây dương vật thì không có vấn đề gì, cho nên không lâu sau, con trym lớn của Diệp Phi đã ngay ngắn chui vào mỹ huyệt chưa bao giờ bị nhúng chàm qua ở cây hoa cúc của mụ mụ. "Mẹ, cảm giác như thế nào? Có đau không?" Sau khi cắm vào, Diệp Phi cũng không nóng lòng đút vào, mà là hỏi thăm cảm thụ của mụ mụ trước tiên. "Đau thì không đau, chính là cảm giác có chút là lạ." Liễu Diệc Như nói, đồng thời bởi vì cái cảm giác là lạ kia, cơ bắp trong hậu đình nàng không tự giác co rút lại, tựa hồ muốn chen thứ đang xâm nhập vào cơ thể này ra ngoài, lại vô tình khiến Diệp Phi sảng khoái không thôi. Tuy cảm giác như vậy kém xa so với việc cắm vào tiểu dâm huyệt của mụ mụ, nhưng so với những nữ nhân khác cũng không kém là bao, lại thêm lúc này người bị mình chọc vào nơi này là thân sinh mụ mụ, càng làm cho sự kích thích trong lòng hắn vượt xa nhục thể. Thấy mụ mụ thật sự không có việc gì, hắn cũng không dừng lại nữa, dùng con trym lớn nhanh chóng địt làm đến bờ mông nhỏ hẹp của nàng, đồng thời trong miệng kêu lên: "Tao mụ mụ, tiểu dâm phụ chuyên dụng của con trai, con trai cuối cùng cũng địt khắp toàn thân ngươi rồi!" Liễu Diệc Như lúc này cảm giác cũng không khác con trai là bao, đều đang hưởng thụ sự kích thích trên tâm lý kia. Bất quá theo sự đút vào không ngừng của con trai, nàng dần dần cảm thấy đằng sau cũng bắt đầu thoải mái, nhịn không được rên rỉ: "Hảo nhi tử... dùng sức... mụ mụ đằng sau... cũng cảm thấy thoải mái... không nghĩ tới... địt nơi này cũng sẽ thoải mái... mụ mụ còn muốn... con ngoan... dùng sức địt lỗ đít của mụ mụ đi..." Như vậy một mực làm gần 20 phút, thân thể yêu kiều khêu gợi của Liễu Diệc Như đột nhiên vặn vẹo mạnh mẽ, vậy mà dưới sự duy trì của con trai đã đạt đến cao trào hậu đình kỳ dị. Hơn nữa cùng lúc đó, tiểu dâm huyệt vẫn luôn được con trai vuốt ve cũng đóng mở liên hồi, hộc ra đại lượng chất lỏng sền sệt, Diệp Phi cũng ở lúc này thả tinh quan, đem đại cổ tinh dịch nóng bỏng bắn vào sâu trong trực tràng của mụ mụ. Song trọng cao trào khiến thân thể yêu kiều của Liễu Diệc Như mềm nhũn, thiếu chút nữa nằm xuống, cũng may Diệp Phi kịp thời ôm lấy eo nhỏ của nàng mới không vì vậy mà té ngã. Mẫu tử hai người ôm nhau nghỉ ngơi một hồi, Liễu Diệc Như mới khôi phục được một ít. Diệp Phi nhẹ nhàng lui về phía sau, rút con trym lớn từ trong hậu đình của mụ mụ ra, xoay người nàng lại, để nàng ghé vào trong lòng ngực mình, sau đó hỏi: "Mẹ, thoải mái không?" "Ân." Liễu Diệc Như nhẹ nhẹ gật đầu: "Thoải mái, không nghĩ tới như vậy cũng có thể, ngươi cảm giác thế nào?" Nàng vừa hưởng thụ sự thoải mái của bản thân, cũng rất quan tâm cảm thụ của con trai. "Khá tốt, bất quá vẫn là không thoải mái bằng trước kia, tốt mụ mụ, con trai thích nhất vẫn là địt tiểu dâm huyệt của ngươi." Diệp Phi cười hắc hắc nói. "Được tiện nghi còn khoe mẽ!" Liễu Diệc Như kiều mỵ liếc con trai một cái, bất quá nàng cũng cùng tâm tư. Tuy khoái cảm song trọng vừa rồi không kém là bao so với lúc bị con trai địt đến phun nước, nhưng có lẽ vì tiểu dâm huyệt là nơi sinh ra Diệp Phi, trong lòng nàng vẫn thích cảm giác con trai cắm con cặc lớn vào trong lồn mình hơn. Rửa ráy một chút, Diệp Phi ôm lấy thân thể yêu kiều khêu gợi của mụ mụ, từ từ đi đến phòng ngủ, đặt nàng lên giường. Vừa mới muốn đè lên, Liễu Diệc Như lại vội vàng nói: "Con ngoan, tha cho mụ mụ đi, mụ mụ hết khí lực rồi!" Nàng cũng không phải nói dối, tuy tổng cộng mới hai lần cao trào, nhưng lần nào cũng mãnh liệt tới cực điểm, đặc biệt là lần sau, khoái cảm song trọng gần như hút sạch toàn bộ thể lực của nàng. Diệp Phi nằm xuống bên cạnh mụ mụ, xoay thân thể mềm mại của nàng đối diện với mình, một bên đưa tay vuốt ve mông lớn đầy đặn, một bên vẻ mặt đau khổ nói: "Tốt mụ mụ, cho con địt một lần nữa được không? Con trai nhớ quá, muốn làm lại một lần không khống chế xuất tinh." Liễu Diệc Như sủng nịch cười, không nói gì, chỉ nâng một đầu đùi ngọc khoác lên lưng con trai, bàn tay nhỏ bé duỗi xuống cầm con cặc lớn của hắn nhắm ngay tiểu dâm huyệt ướt át của mình, mông lớn nhẹ nhàng về phía trước, liền nuốt trọn dương vật của con trai vào, rồi mới lên tiếng: "Như vậy hài lòng chưa?" "Thoả mãn, thoả mãn!" Diệp Phi dùng sức gật đầu, cũng không đại khai đại hợp rút vào chọc ra, mà là chậm rãi hoạt động vòng eo, để dương vật ra vào chậm rãi trong tiểu dâm huyệt chặt khít lửa nóng của mụ mụ. Từ sau khi mẫu tử hai người chính thức cùng một chỗ, Diệp Phi mỗi lần ở trên người mụ mụ đều cuồng mãnh vô cùng, chưa từng có sự rút ra đâm vào chậm rãi như thế này. Bởi vậy không mất bao lâu, Liễu Diệc Như vốn đã dục hỏa nổi lên do sự duy trì của con trai cũng cảm nhận được niềm vui thú mới lạ này. Bất quá, đã quen sự hung ác của con trai, nàng vừa hưởng thụ vừa cảm thấy có chút không thỏa mãn, vì vậy dứt khoát đưa tay đè mông con trai, mỗi lần hắn cắm vào đều dùng sức ấn thêm, để con cặc hắn có thể cắm sâu hơn vào trong lồn mềm mại đang gãi ngứa của mình. Có lẽ vì kích thích như vậy không đủ mãnh liệt, mẫu tử hai người một bên nhẹ nhàng làm, vừa nói những lời tâm tình, thỉnh thoảng lại hôn nhau. Cứ như vậy làm hơn một giờ, Liễu Diệc Như mới cảm nhận được cao trào sắp tới, vì vậy sau khi con trai đâm vào một lần cuối, đùi ngọc đột nhiên quấn chặt lấy bờ eo của hắn, không cho hắn rời đi, mông lớn run rẩy như bị điện giật. Diệp Phi cũng biết mụ mụ muốn cao trào, vì vậy chẳng những không rút ra, ngược lại càng dùng sức đỉnh lên, làm cho đầu cặc lớn của mình chăm chú vững chãi cọ xát vào hoa tâm kiều nộn của mụ mụ, theo sự run rẩy của nàng mà không ngừng cọ xát, mang đến cho nàng khoái cảm vô tận. Rốt cục, theo một tiếng rên rỉ lãng mạn thật dài của Liễu Diệc Như, hoa tâm sâu trong tiểu dâm huyệt mỹ diệu của nàng đột nhiên mở ra, đại lượng âm tinh như hồng thủy tuôn trào, cùng lúc đó, thể chất đặc biệt của nàng lại thể hiện ra, dịch nhờn tượng trưng cho cực lạc trong lỗ đái bắn thẳng vào bụng con trai. Mà Diệp Phi khi cảm nhận được khoái cảm lạnh nóng luân chuyển trong lồn mụ mụ, cũng ở trước tiên đem đại lượng tinh dịch bắn vào tử cung đã từng dựng dục ra mình và Diệp Vân Khinh của mụ mụ. Một bên ba lượt, đều là cao trào kịch liệt nhất, cho dù là Liễu Diệc Như cũng có chút chịu không nổi, sau khi gắng gượng tinh thần hôn hít với con trai một lúc, rất nhanh liền tiến nhập vào mộng đẹp ngọt ngào. Nhìn vẻ ngủ dung ngọt ngào mang theo sự thỏa mãn vô hạn của mụ mụ, trong lòng Diệp Phi cũng thỏa mãn cực kỳ. Đêm nay hết thảy không chỉ đối với mụ mụ, mà đối với bản thân hắn cũng là một loại trải nghiệm hoàn toàn mới. Tuy chiêu "đi cửa sau" này từng thử qua với tiểu di, Tiêu Hàm Nguyệt và Thủy Dĩnh, sau đó phương thức ôn nhu này cũng từng thử với Nhị tỷ, nhưng vì tối nay là mụ mụ yêu nhất, cảm thụ lại hoàn toàn khác biệt. Cúi đầu hôn lên khuôn mặt tuyệt mỹ vẫn còn vương chút đỏ ửng của mụ mụ, Diệp Phi cũng chuẩn bị đi ngủ. Nhưng vào lúc này, điện thoại để một bên truyền đến tiếng thông báo tin nhắn, điều này khiến hắn cảm thấy rất kỳ lạ, bởi vì người bên cạnh vô luận ai tìm hắn đều gọi điện thoại trực tiếp, chưa bao giờ có ai gửi tin nhắn, mà trải qua mã hóa của hắn, những tin nhắn quảng cáo rác rưởi càng là không thể lọt vào. Sự nghi hoặc trong lòng khiến Diệp Phi nhẹ nhàng gỡ cánh tay ngọc mà mụ mụ đang chăm chú ôm cổ mình ra, trở mình, vẫy tay với chiếc điện thoại, nó lập tức bay vào tay hắn. Mở tin nhắn xem xét, hắn càng thấy kỳ lạ, vì nội dung thư ngắn ngủn chỉ có hai chữ —— cứu mạng! Số điện thoại gửi tới hắn nhận ra, đúng là Trác Phượng Nhi, người mà vài ngày trước khi gặp mặt đã lưu số của nhau. Chỉ là phương thức này có chút kỳ quái, chỉ bảo mình cứu mạng, nhưng lại không có địa chỉ, cũng không nói đã xảy ra chuyện gì. Diệp Phi phân tích một chút, Trác Phượng Nhi sở dĩ gửi tin nhắn như vậy chỉ có hai khả năng: một là nàng vì căm thù mụ mụ, "yêu ai yêu cả đường đi, ghét ai ghét cả tông ti họ hàng" muốn trêu đùa mình, bất quá khả năng này không lớn vì Trác Phượng Nhi nói thế nào cũng là một người phụ nữ mạnh mẽ, không thể làm việc nhỏ mọn như vậy; khả năng còn lại là tình cảnh của nàng bây giờ rất nguy hiểm, chỉ kịp đánh ra hai chữ này, gửi cho mình cũng chỉ là ôm hy vọng mong manh. Nghĩ thông suốt những điều này, Diệp Phi vội vàng gọi lại cho Trác Phượng Nhi, lại phát hiện đối phương đã dập máy. Đối với người phụ nữ này, Diệp Phi tuy không ưa vì nàng căm thù mụ mụ, nhưng tuyệt đối không ghét, ngược lại vì chuyện khổ luyến của phụ thân nàng mà có chút thương tiếc, cho nên nếu nàng thật sự xảy ra chuyện, Diệp Phi vẫn không thể không quản. Lấy từ trong không gian ra chiếc máy tính xách tay không bao giờ rời thân, tra xét vị trí của số điện thoại Trác Phượng Nhi, phát hiện nàng còn ở gần biển nên không khỏi thở phào một hơi, dù sao nếu nàng đã trở về kinh thành, cho dù tốc độ của Diệp Phi có nhanh đến đâu, đuổi tới nơi sợ cũng không kịp nữa rồi. Nhẹ nhàng nâng đùi ngọc thon dài mụ mụ đang quấn chặt trên lưng mình, Diệp Phi với động tác nhu hòa rút thân thể ra, dù vậy, thân thể đã được Diệp Phi khai phá cực kỳ mẫn cảm của Liễu Diệc Như vẫn có phản ứng, cái miệng nhỏ nhắn hơi bĩu lên, có chút bất mãn nói: "Tiểu bại hoại, mụ mụ thật sự không được rồi, ngươi đi tìm Khinh Khinh đi, để nhân gia nghỉ ngơi một lát." Diệp Phi trong lòng cười thầm, quả nhiên mụ mụ vẫn thích cảm giác lúc ở cùng tiểu muội nhất, bất quá, nếu tất cả mọi người cùng gia nhập, tin tưởng nàng sẽ càng thích hơn. Nghĩ đến tràng cảnh mỹ diệu sau này, trong lòng Diệp Phi lại không khỏi lửa nóng, bất quá bây giờ hiển nhiên không phải lúc nghĩ đến chuyện này, vì vậy sau khi tách ra triệt để với mụ mụ, hắn rất nhanh mặc quần áo vào, chuyện quá khẩn cấp, cũng chẳng bận tâm trên người mình toàn là chất lỏng của mụ mụ. Bởi vì là muốn đến cứu người, Diệp Phi dứt khoát không đi thang máy, trực tiếp mở cửa sổ phòng, thân hình lóe lên, giống như một con chim lớn bay ra ngoài. Nơi Trác Phượng Nhi lúc này ở gần trung tâm thành phố gần biển, cách khách sạn của Diệp Phi và mụ mụ khá xa, bất quá chút lộ trình ấy đối với Diệp Phi mà nói chẳng là gì, chỉ dùng chưa đến hai phút, thân ảnh của hắn đã xuất hiện ở ngoài cửa một phòng bao trong khách sạn lớn mà Trác Phượng Nhi đang ở. Đến nơi này, Diệp Phi không lập tức vào trong, mà tránh trong một nhà vệ sinh gần phòng bao, thả ý niệm muốn xem trước xem rốt cuộc chuyện gì xảy ra. Chỉ thấy lúc này Trác Phượng Nhi đang ngồi trên một chiếc ghế giữa phòng bao, thân thể yêu kiều thành thục khêu gợi có chút bất an giãy dụa, gương mặt xinh đẹp thậm chí không kém Liễu Diệc Như (trước khi song tu, sau này nhắc tới so sánh đều là như thế) hiện đầy sắc đỏ khác thường, trong mắt lại tràn đầy phẫn hận. Mà đối diện Trác Phượng Nhi, đứng đúng là người đàn ông vẫn luôn đi theo bên cạnh nàng không làm sao nói chuyện, bên cạnh còn có vài gã đại hán nhìn qua liền biết không phải là người lương thiện. "Trác tổng, cảm giác như thế nào? Có phải là có chút chịu không nổi rồi? Nếu là như vậy, nói cho ta biết đi, ta sẽ làm cho ngươi biết tư vị làm nữ nhân!" Lúc này, gã không chút biểu cảm kia trên mặt thái độ khác thường, lộ ra bộ dáng dâm tà cực kỳ, trong ánh mắt tràn đầy tham lam và điên cuồng. "Ngươi tên súc sinh này!" Trác Phượng Nhi vì thân thể không khỏe, giọng nói vốn đã khàn khàn càng thêm trầm thấp, nhưng lại càng thêm quyến rũ: "Uổng ta mang ngươi từ cái khe cùng sơn kia ra, ngươi dám phản bội ta, sớm biết vậy còn không bằng nuôi con chó!" "Đừng tưởng rằng ta không biết ngươi vì sao dẫn ta ra, cũng là vì ta mẹ nó gọi Lăng Vân!" Gã đàn ông đột nhiên quát lớn: "Chó? Ta ở bên cạnh ngươi có địa vị cao hơn chó không? Coi như là một con chó, cũng có thể thường xuyên liếm tay chủ nhân, nhào vào trong ngực chủ nhân làm nũng, nhưng ta thì sao? Trắng trợn đẩy lấy tên tiểu bạch kiểm mà ngươi nuôi dưỡng, lại mẹ nó đến tay ngươi cũng chưa từng đụng tới!" "Lăng huynh đệ, ngươi cùng nàng phế lời làm gì? Trực tiếp lên chẳng phải tốt sao? Các huynh đệ vẫn chờ nhận ca đây." Một gã đại hán bên cạnh đối với Trác Phượng Nhi xinh đẹp gợi cảm đến cực điểm đã sớm thèm thuồng, lúc này không khỏi đề nghị. "Không! Ta chính là muốn nàng cầu ta!" Gã gọi Lăng Vân kia trên mặt hiện đầy vẻ dữ tợn: "Nàng không phải nên vì cái tên ma quỷ Diệp Lăng Vân kia thủ thân như ngọc sao? Ta đây không cho nàng như nguyện, ta muốn nàng cầu ta hưởng thụ nàng! Hắc hắc, bây giờ dược hiệu đã triệt để phát tác, Trác tổng, ngươi có phải ngứa đến mức sắp chịu không nổi rồi không?" Thân thể Trác Phượng Nhi uốn éo càng dữ dội, trong đôi mắt đẹp cũng dần trở nên mê ly, bất quá đang lúc sắp mất đi lý trí, nàng đột nhiên cầm lấy một con dao ăn trên mặt bàn, dùng sức cắm vào cánh tay non mềm của mình, đau đớn kịch liệt khiến nàng khôi phục tỉnh táo, căm tức mắng Lăng Vân: "Ngươi tên súc sinh này, ta muốn băm ngươi vạn đoạn!" "Khẩu khí thật lớn!" Lăng Vân cười ha ha: "Hết thảy của ngươi bây giờ đều là của ta, ngươi bây giờ chẳng qua là một tiểu nữ nhân không xu dính túi, lấy gì mà uy hiếp ta? Anh em vài cái, các ngươi nói xem?" Bất quá, sắc mặt mấy gã đại hán bên người Lăng Vân lúc này lại có chút không đúng, một người thấp giọng hỏi: "Lăng huynh đệ, ngươi vừa nói Diệp Lăng Vân có phải là người ở Vọng Hải không?" Bọn họ vài cái đều là người trên đường gần biển, tại nơi này có chút thế lực, hôm nay chính là nhận tiền của Lăng Vân để đến trấn tràng diện, nhưng khi nghe cái tên Diệp Lăng Vân, mấy người kia đã bắt đầu có ý rút lui.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0330.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0332.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

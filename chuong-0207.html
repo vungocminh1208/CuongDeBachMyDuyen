@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 207 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 207</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 207</small>
+    Chương 207: Hạnh phúc hiểm đường
+  </h1>
+  <div class="chapter-body">
+    <p>"Tiểu bại hoại!" Liễu Diệc Như lườm Diệp Phi trắng bệch cả mặt, cố chống thân thể mềm yếu ngồi dậy, lấy từ trong túi xách bên đầu giường ra một xấp khăn ướt, rút một tờ nhẹ nhàng lau sạch bắp chân gợi cảm mượt mà của chính mình, cho đến khi những thứ thuộc về Diệp Phi khiến nàng tim đập thình thịch vương trên đó đều được lau sạch, lại cầm một tờ khác, lau sạch món đồ khốn nạn tạm thời đã dịu lại của Diệp Phi, mới lên tiếng: "Được chưa? Mau ngủ đi, ngày mai còn phải lên núi đấy." Diệp Phi mỉm cười lắc đầu, cũng cầm lấy một tấm khăn ướt giúp Liễu Diệc Như lau người. Vừa rồi lúc nàng lên đỉnh, tuy phần lớn đều chảy lên chân Diệp Phi, nhưng trên người nàng cũng không tránh khỏi dính chút ít, Diệp Phi tự nhiên sẽ không để nàng khó chịu mà chìm vào giấc ngủ. "Nha..." Nơi mẫn cảm nhất trên cơ thể bị ngón tay hắn lướt qua lớp khăn ướt, khiến Liễu Diệc Như không khỏi rên nhẹ một tiếng, suýt chút nữa nhịn không được yêu cầu hắn giúp mình thêm lần nữa, nhưng cuối cùng vẫn nhịn được. Chờ hắn làm sạch phía dưới cho mình xong, nàng không cho hắn đụng chạm nữa, kẹp chặt hai chân, nói: "Mặc quần vào, mau ngủ! Bằng không ta tức giận đấy!" "Được rồi." Diệp Phi có chút bất đắc dĩ gật đầu, mặc quần ngắn vào, nằm sát bên cạnh nàng, nói: "Ngủ ngon." "Ngủ ngon!" Liễu Diệc Như nói xong, đột nhiên rướn người tới, dùng miệng nhỏ hôn nhanh lên môi Diệp Phi một cái rồi lập tức rời đi, sau đó xoay người lại, đưa lưng về phía hắn. Diệp Phi đầu tiên là sững sờ, lập tức vô cùng hối hận. Từ hành động của Liễu Diệc Như có thể thấy, nàng đã bắt đầu nhập vai bạn gái của hắn rồi. Nếu vừa rồi mình thuận thế hôn nàng, chắc chắn nàng sẽ không phản đối, nhưng bây giờ thì muộn rồi. Diệp Phi hiểu rất rõ Liễu Diệc Như, nàng không phải kiểu người cởi mở, ngược lại vô cùng bảo thủ. Nếu lúc này mình đòi hôn tiếp, khẳng định nàng sẽ không đồng ý. Tuy rằng nếu hắn cưỡng cầu, vì thương hắn nên nàng có khả năng sẽ chiều theo, nhưng Diệp Phi lại không muốn miễn cưỡng nàng dù chỉ một chút. Diệp Phi nghĩ hoàn toàn không sai, sau khi xoay người, mặt Liễu Diệc Như đã đỏ bừng. Nàng không hiểu tại sao mình lại chủ động hôn hắn. Chẳng phải trước đó đã nghĩ kỹ, sẽ chôn sâu mối tình này dưới đáy lòng, chỉ dùng pho tượng nhỏ kia để ký thác thôi sao? Chẳng lẽ vì đang đóng vai bạn gái của hắn, làm cho tiềm thức của mình buông lỏng sao? Đúng rồi, mình hiện tại chính là bạn gái của hắn, có chuyện gì là không thể làm? Hôn một cái thì đã sao? Nghĩ đến "quan hệ" hiện tại giữa mình và hắn, Liễu Diệc Như thoáng cái buông lỏng tâm lý, hoặc có thể nói là tìm được một lý do để thuyết phục bản thân, trở nên yên tâm thoải mái, không còn xấu hổ đến mức không chịu nổi vì hành động kìm lòng không được vừa rồi. Cảm giác Diệp Phi đã nằm xuống sau lưng mình, Liễu Diệc Như chủ động kéo bàn tay to của hắn đặt vào trong áo ngủ của mình, để hắn lại ân cần vuốt ve bộ ngực to tròn mềm mại, lại dùng khe mông mềm mại của mình nhẹ nhàng đẩy đẩy tên vô lại chẳng biết lúc nào đã dựng đứng lên phía sau, nói: "Cứ như vậy ngủ đi, không được lộn xộn, đối với bạn gái phải tôn trọng, biết không?" Diệp Phi không ngờ Liễu Diệc Như lại làm ra hành động như vậy, trong lòng không khỏi cực kỳ kích động, muốn dùng sức nắm lấy sự mềm mại trong tay mà vuốt ve một trận, nhưng cuối cùng vẫn nhịn được. Như vậy đã rất tốt rồi, sự tình cứ từng bước một tiến tới mới càng ổn thỏa và có tình thú, vì vậy hắn đáp ứng, cùng nàng chìm vào giấc ngủ. Sáng ngày thứ hai, Diệp Phi tỉnh dậy trước Liễu Diệc Như. Cảm giác nàng trong ngực đã đổi tư thế, quay mặt về phía mình, mà bàn tay to của hắn vẫn đặt trên bộ ngực đẫy đà mềm mại ấy. Váy ngủ của nàng lại bị cuộn lên, đôi chân thon dài trơn bóng quấn chặt lấy hai chân hắn, còn cái thứ đang đứng thẳng tự nhiên vào buổi sáng của hắn thì đang nhẹ nhàng đỉnh vào chỗ tuyệt vời không chút che đậy của nàng. Có lẽ chính vì lý do này, trong lúc ngủ mơ Liễu Diệc Như dường như đã làm một giấc mộng đẹp, trên khuôn mặt tuyệt mỹ treo một tia ý cười ngọt ngào, hai gò má có một vệt đỏ ửng không tự nhiên. Hơn nữa, từ bàn tay đang bao trùm trên ngực nàng, Diệp Phi có thể cảm giác được, nơi nhỏ bé nhô lên trong lòng bàn tay hắn đã hơi cứng lại, mà chỗ quần ngắn của hắn chạm vào người nàng cũng có một vệt nước. Chứng kiến cảnh này, Diệp Phi không khỏi rất hối hận. Nếu tối hôm qua lúc ngủ không mặc quần ngắn, hiện tại chỉ cần nhẹ nhàng đỉnh một cái là có thể như nguyện rồi. Nhưng lúc này căn bản là không thể, bởi vì chỉ cần hắn hơi cử động, sợ rằng sẽ làm thức tỉnh người có nội lực thâm hậu như nàng. Hơn nữa, Diệp Phi cũng không muốn có được nàng dưới tình huống này, hắn muốn là sự cam tâm tình nguyện của nàng. Tuy không thể chính thức chiếm đoạt, nhưng cơ hội tốt như vậy Diệp Phi tuyệt đối sẽ không buông tha. Hắn cử động bàn tay, để ngón tay nhẹ nhàng nghịch ngợm nơi đỉnh đã biến cứng kia, cẩn thận quan sát phản ứng của Liễu Diệc Như. Quả nhiên đúng như hắn nghĩ, vì đột nhiên bị kích thích, bị trêu chọc đến cực kỳ thoải mái, Liễu Diệc Như trong vô thức mở miệng nhỏ phát ra một tiếng rên nhẹ, Diệp Phi liền nhân cơ hội này hôn ngay lên miệng nhỏ của nàng. Khi bàn tay Diệp Phi kích thích Liễu Diệc Như, ý thức của nàng đã bắt đầu tỉnh táo. Cho đến khi bị hắn hôn, nàng hoàn toàn hết buồn ngủ. Cảm giác miệng nhỏ của mình như bị cái gì xâm chiếm, Liễu Diệc Như vội vàng mở mắt, vừa vặn đối diện với đôi mắt bao hàm ý cười của Diệp Phi. Hắn hôn mình rồi! Liễu Diệc Như tự nhủ trong lòng, không biết là kinh ngạc hay cao hứng, tóm lại không hề giãy giụa, ngược lại còn không thạo phối hợp lại, chiếc lưỡi tinh nghịch đuổi đầu lưỡi đang xâm nhập trong miệng mình ra ngoài, sau đó truy vào trong miệng hắn mà hoạt động. Mãi cho đến khi cả hai, dù nội lực thâm hậu, cũng cảm thấy có chút khó thở, họ mới lưu luyến không rời thoát ra khỏi nụ hôn đầy khoái cảm, thở dốc nhìn đối phương, trong mắt đều lộ ra ánh nhìn thâm tình. "Cảm giác thế nào?" Một lát sau, Diệp Phi cười xấu xa hỏi. "Không tốt chút nào!" Liễu Diệc Như lườm hắn một cái: "Cái tên tiểu bại hoại nhà anh, sáng sớm đã dở trò, chẳng lẽ không thể để người ta ngủ thêm một lát sao?" Giọng điệu làm nũng hiếm thấy của Liễu Diệc Như khiến Diệp Phi càng thêm táo bạo, không nhịn được cầm lấy bàn tay nhỏ bé của nàng đặt xuống dưới, cười nói: "Nàng xem nó nhỏ ở đâu? Cho nên từ nay về sau không được gọi là tiểu bại hoại nữa nha." "Đại phôi đản!" Liễu Diệc Như đổi cách xưng hô, bàn tay nhỏ bé cố sức nhéo vào cái thứ tuy cứng như sắt nhưng cầm vào lại chẳng hề cấn tay của hắn, rồi cảm thấy trên quần ngắn có chút trơn ướt, không khỏi khanh khách cười nói: "Chẳng lẽ là buổi sáng nhịn không được, nên tự mình..." Diệp Phi cười xấu xa nói: "Ta làm gì có, hơn nữa, cái đó trên đó hình như không phải là của ta đâu nhé!" "À?" Liễu Diệc Như cúi đầu nhìn một chút, mới ý thức tới trạng thái của mình lúc này, tim không khỏi đập thình thịch, có chút vui mừng vì tối qua cố ý bắt hắn mặc quần vào, nhưng trong lòng lại ẩn ẩn hối hận. Nếu tối qua không bắt hắn mặc, thì vừa rồi bất kể là ai khẽ động, chẳng phải là... Nghĩ đến đây, Liễu Diệc Như không dám nhớ lại nữa, vội nói: "Thời gian không còn sớm, nhanh lên chút đi, lát nữa chúng ta còn lên núi." Tuy rất không cam lòng kết thúc khoảnh khắc mập mờ này, nhưng Diệp Phi hiểu rất rõ Liễu Diệc Như, biết nguyên tắc của nàng rất mạnh, quyết định xong là cơ bản sẽ không thay đổi, đặc biệt là chuyện hiện tại còn liên quan đến thân thể của mình, nàng lại càng không có chút qua loa. Vì vậy hắn rất dứt khoát đáp ứng, cùng nàng nhanh chóng mặc quần áo, rửa mặt xong rồi rời phòng. Hắn lại không biết, Liễu Diệc Như vừa rồi chỉ là đang che giấu sự bối rối, chứ không phải thật sự muốn lên núi ngay lập tức, bởi vì nàng cũng rất thích bầu không khí vừa rồi, tuy rằng lên núi có chuyện rất quan trọng, nhưng cũng không cần phải gấp gáp trong nhất thời. Ăn tạm thứ gì đó trong khách sạn, hai người đồng loạt xuất phát, trên người đều mang theo gánh nặng không nhỏ, trong đó có các loại vật phẩm cần dùng khi vào núi như lều trại và thực phẩm. Đưa mắt nhìn hai người rời đi, ông chủ khách sạn không khỏi lắc đầu thở dài. Vốn nghe nói họ muốn vào núi vào thời điểm này, ông đã khuyên can, nhưng thấy họ vô cùng kiên định nên không nói thêm gì nữa. Tuy nhiên trong mắt ông, cơ hội sống sót của hai người e rằng không lớn. Ông thầm thở dài cho một siêu cấp mỹ nữ như Liễu Diệc Như, nhưng chỉ là thở dài thôi, người đến đây thường là những kẻ phú quý, bên cạnh mỹ nữ tự nhiên không hiếm thấy, tuy những người đó không bằng được cực phẩm như Liễu Diệc Như, nhưng Liễu Diệc Như rõ ràng đã là "hoa đã có chủ", ông tự nhiên sẽ không có ảo tưởng không thực tế nào. Theo con đường ông chủ khách sạn chỉ dẫn, Diệp Phi và Liễu Diệc Như một đường tiến vào ngọn núi cao quanh năm bị tuyết phủ này. Ông chủ đó quả nhiên không hổ danh người địa phương, có sự chỉ điểm của ông, hai người không đi đường vòng, đến gần trưa đã đến nơi sâu nhất mà du khách bình thường có thể tới. Đương nhiên, những nơi như thế này không thể nào có thứ kỳ lạ như Băng Linh Thảo, mà Liễu Diệc Như tự nhiên cũng không đặt hy vọng vào giai đoạn này, điều nàng nghĩ tới là sau khi vào sâu hơn sẽ tự mình đưa Diệp Phi đến những nơi người bình thường không thể đặt chân tới để tìm kiếm. "Mệt không? Nghỉ ngơi một chút thế nào?" Liễu Diệc Như dừng lại tại một khoảng đất khá rộng, nhìn Diệp Phi hỏi với vẻ lo lắng. "Không mệt!" Diệp Phi cười nhảy vài cái, ra hiệu mình vẫn còn rất sung sức. Liễu Diệc Như không khỏi kinh ngạc mở to miệng nhỏ. Suốt cả buổi sáng, hai người tuy đi không quá nhanh, nhưng kể từ sau khi xuất phát không lâu trên mặt đất đã có tuyết đọng, bước đi rất khó khăn, chính nàng đến bây giờ đã cảm thấy hơi mệt, sao Diệp Phi lại không có việc gì? Chứng kiến vẻ kinh ngạc của Liễu Diệc Như, Diệp Phi biết mình thể hiện hơi quá, lúc này tự nhiên vẫn không thể để nàng biết mình căn bản không có chuyện gì, vì vậy vội vàng cười nói: "Có lẽ là do nàng giúp đỡ ta nên mới có tác dụng đấy, mấy ngày nay ta cảm giác càng ngày càng tốt. Nếu không, nàng giúp ta một chút hiện tại xem? Nói không chừng ta có thể cõng nàng leo một mạch lên đỉnh núi đằng kia đấy!" Nói xong, Diệp Phi chỉ chỉ một ngọn núi cực kỳ hiểm trở ở xa xa. Liễu Diệc Như không khỏi đỏ mặt. Trải qua những chuyện hai ngày nay, nàng đã phần nào quen với việc làm vài hành động thân mật với Diệp Phi khi hắn tỉnh táo, nhưng đó chỉ có thể là vào buổi tối khi ngủ, hiện tại ở nơi như thế này mà bắt nàng giúp Diệp Phi thì dù thế nào nàng cũng không làm, bởi vậy không khỏi hờn dỗi: "Đại phôi đản!" Nhưng nàng không hề nhận ra, mình đã bị Diệp Phi lôi kéo thoát khỏi chủ đề chính. Diệp Phi cười hắc hắc: "Tiếp theo chúng ta đi hướng nào?" Liễu Diệc Như giơ tay lên nhìn kim chỉ nam trên đồng hồ, lại quan sát xung quanh một chút, chỉ vào một hướng nói: "Đi hướng kia xem sao, địa hình chỗ đó hiểm trở hơn, nghĩ là bình thường không có ai đi, hy vọng có lẽ sẽ lớn hơn một chút." "Được!" Diệp Phi gật đầu. Hắn hiện tại chỉ muốn ở bên Liễu Diệc Như, còn đi nơi nào không quan trọng. Tuy nhiên hướng đó địa hình quả thật vô cùng hiểm trở, dù cho với thân thủ của Liễu Diệc Như, nếu không cẩn thận cũng có thể gặp nguy hiểm. Nhưng Diệp Phi lại không chút lo lắng, dù sao chính mình đang ở bên cạnh nàng, khi cần thiết thì cùng lắm là bộc lộ sự thật rằng mình không hề mất đi thực lực. Thấy Diệp Phi đã đồng ý, Liễu Diệc Như không nói thêm nữa, lấy thực phẩm từ trong ba lô ra, hai người cùng ăn một chút rồi tiếp tục xuất phát về hướng đó. Nhìn từ đằng xa, hướng này chỉ hơi hiểm trở mà thôi, nhưng khi đi vào rồi, hai người mới biết nơi này hung hiểm đến mức nào. Đường đi cực kỳ không bằng phẳng đã đành, nghiêm trọng nhất là tuyết đọng ở đây không còn xốp như bên ngoài, mà gần như đã thành mặt băng. Dù hai người cố ý đi giày chống trơn, lúc này đi trên đó vẫn phải hết sức cẩn thận, bằng không một bước sẩy chân là có thể trượt theo sườn dốc rơi xuống thung lũng. Dù vậy, hai người nắm tay nhau đi cùng không hề hối hận khi đến đây, ngược lại cực kỳ vui vẻ. Đặc biệt là Liễu Diệc Như, cùng người yêu đi thám hiểm mang lại cho nàng một cảm giác hạnh phúc đặc biệt, thậm chí nàng hy vọng con đường này cứ dài vô tận như vậy, để nàng có thể cứ mãi nắm tay hắn mà đi tiếp. Đáng tiếc, dù là hiểm đường hay hạnh phúc đường, cuối cùng cũng phải đến lúc kết thúc. Sau hơn một giờ bôn ba, hai người rốt cuộc đã vượt qua một đoạn đường nhỏ nằm trên sườn dốc, lúc này đang đứng trong một khe núi mà hai bên đều là vách băng dựng đứng. Khe núi này vô cùng hẹp, chỉ đủ cho hai người sóng vai đi qua. Dưới đất tuy cũng rất trơn trượt, nhưng lại hình thành nhiều bậc thang, giúp hai người đi dễ dàng hơn. Ngẩng đầu nhìn bầu trời như chỉ còn là một đường chỉ, Diệp Phi không khỏi cảm thán: "Không ngờ trong ngọn núi này lại có cảnh trí như vậy, chỉ tiếc con đường phía trước quá nguy hiểm, bằng không lại có thể trở thành một điểm du lịch tuyệt vời." Liễu Diệc Như cười cười, đang định nói gì đó thì đột nhiên biến sắc, đôi mắt nhìn chằm chằm vào giữa khe núi, trên mặt lộ vẻ mừng như điên. Bởi vì từ chỗ đó, nàng cảm thấy một luồng thiên địa linh khí cực kỳ nồng đậm, dường như có bảo vật gì đó trân quý đang mọc ở nơi kia.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0206.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0208.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

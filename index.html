@@ -1,0 +1,1226 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Index-specific ──────────────────────────────────────────── */
+.hero {
+  text-align: center;
+  padding: 5rem 1.5rem 3rem;
+  position: relative;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(232,197,71,.08), transparent);
+  pointer-events: none;
+}
+.hero-eyebrow {
+  font-family: var(--mono);
+  font-size: .68rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.hero h1 {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: clamp(2.2rem, 6vw, 4rem);
+  letter-spacing: -.01em;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+}
+.hero-meta {
+  font-family: var(--mono);
+  font-size: .75rem;
+  color: var(--text-muted);
+  letter-spacing: .08em;
+}
+
+/* ── Toolbar ─────────────────────────────────────────────────── */
+.toolbar {
+  max-width: 860px;
+  margin: 0 auto 1.2rem;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  flex-wrap: wrap;
+}
+.search-wrap {
+  flex: 1;
+  min-width: 160px;
+  position: relative;
+}
+.search-wrap input {
+  width: 100%;
+  padding: .5rem .9rem .5rem 2.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .75rem;
+  outline: none;
+  transition: border-color var(--transition);
+}
+.search-wrap input:focus { border-color: var(--accent); }
+.search-wrap::before {
+  content: '🔍';
+  position: absolute;
+  left: .65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: .75rem;
+  opacity: .5;
+  pointer-events: none;
+}
+
+/* ── Chapter grid ────────────────────────────────────────────── */
+.grid-wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.5rem 5rem;
+}
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: .55rem;
+}
+.chapter-card {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .7rem 1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--serif);
+  font-size: .92rem;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+  cursor: pointer;
+}
+.chapter-card:hover {
+  border-color: var(--accent);
+  background: var(--bg3);
+  transform: translateY(-2px);
+  opacity: 1;
+}
+.chapter-num {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--accent);
+  min-width: 2.4rem;
+  letter-spacing: .05em;
+}
+.chapter-name {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-muted);
+  font-size: .85rem;
+}
+.hidden { display: none !important; }
+
+/* ── Theme toggle ────────────────────────────────────────────── */
+.theme-row {
+  display: flex;
+  gap: .4rem;
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="topbar-title">CuongDeBachMyDuyen</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow">✦ Đọc Truyện Online ✦</div>
+  <h1>CuongDeBachMyDuyen</h1>
+  <p class="hero-meta">229 chương</p>
+</div>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <input type="text" id="search" placeholder="Tìm chương..." oninput="filterChapters()">
+  </div>
+  <button class="btn" onclick="sortAsc()" id="btn-asc">↑ Cũ nhất</button>
+  <button class="btn" onclick="sortDesc()" id="btn-desc">↓ Mới nhất</button>
+</div>
+
+<div class="grid-wrap">
+  <div class="chapter-grid" id="grid">
+    <a class="chapter-card" href="chuong-0134.html" data-num="134" data-search="chương 134 chương 134: lập uy linh đường trước">
+      <span class="chapter-num">#0134</span>
+      <span class="chapter-name">Chương 134: Lập uy linh đường trước</span>
+    </a>
+    <a class="chapter-card" href="chuong-0135.html" data-num="135" data-search="chương 135 ">
+      <span class="chapter-num">#0135</span>
+      <span class="chapter-name">Chương 135</span>
+    </a>
+    <a class="chapter-card" href="chuong-0136.html" data-num="136" data-search="chương 136 chương 136: thâu hoan trong linh đường">
+      <span class="chapter-num">#0136</span>
+      <span class="chapter-name">Chương 136: Thâu hoan trong linh đường</span>
+    </a>
+    <a class="chapter-card" href="chuong-0137.html" data-num="137" data-search="chương 137 chương 137: cự đại kinh hỉ">
+      <span class="chapter-num">#0137</span>
+      <span class="chapter-name">Chương 137: Cự đại kinh hỉ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0138.html" data-num="138" data-search="chương 138 chương 138: kinh ngạc minh nguyệt tâm">
+      <span class="chapter-num">#0138</span>
+      <span class="chapter-name">Chương 138: Kinh ngạc Minh Nguyệt Tâm</span>
+    </a>
+    <a class="chapter-card" href="chuong-0139.html" data-num="139" data-search="chương 139 chương 139: ngoài ý muốn gặp lại">
+      <span class="chapter-num">#0139</span>
+      <span class="chapter-name">Chương 139: Ngoài ý muốn gặp lại</span>
+    </a>
+    <a class="chapter-card" href="chuong-0140.html" data-num="140" data-search="chương 140 chương 140: ôn lại duyên cũ">
+      <span class="chapter-num">#0140</span>
+      <span class="chapter-name">Chương 140: Ôn lại duyên cũ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0141.html" data-num="141" data-search="chương 141 chương 141: giáo sư bên người">
+      <span class="chapter-num">#0141</span>
+      <span class="chapter-name">Chương 141: Giáo sư bên người</span>
+    </a>
+    <a class="chapter-card" href="chuong-0142.html" data-num="142" data-search="chương 142 chương 142: ngọc nhàn cảm động">
+      <span class="chapter-num">#0142</span>
+      <span class="chapter-name">Chương 142: Ngọc Nhàn cảm động</span>
+    </a>
+    <a class="chapter-card" href="chuong-0143.html" data-num="143" data-search="chương 143 chương 143: đăng môn con rể">
+      <span class="chapter-num">#0143</span>
+      <span class="chapter-name">Chương 143: Đăng môn con rể</span>
+    </a>
+    <a class="chapter-card" href="chuong-0144.html" data-num="144" data-search="chương 144 chương 144: bờ biển mập mờ">
+      <span class="chapter-num">#0144</span>
+      <span class="chapter-name">Chương 144: Bờ biển mập mờ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0145.html" data-num="145" data-search="chương 145 chương 145: rượu là chất xúc tác của sắc dục">
+      <span class="chapter-num">#0145</span>
+      <span class="chapter-name">Chương 145: Rượu là chất xúc tác của sắc dục</span>
+    </a>
+    <a class="chapter-card" href="chuong-0146.html" data-num="146" data-search="chương 146 ">
+      <span class="chapter-num">#0146</span>
+      <span class="chapter-name">Chương 146</span>
+    </a>
+    <a class="chapter-card" href="chuong-0147.html" data-num="147" data-search="chương 147 chương 147: tâm động đề nghị">
+      <span class="chapter-num">#0147</span>
+      <span class="chapter-name">Chương 147: Tâm động đề nghị</span>
+    </a>
+    <a class="chapter-card" href="chuong-0148.html" data-num="148" data-search="chương 148 chương 148: lo lắng dư thừa">
+      <span class="chapter-num">#0148</span>
+      <span class="chapter-name">Chương 148: Lo lắng dư thừa</span>
+    </a>
+    <a class="chapter-card" href="chuong-0149.html" data-num="149" data-search="chương 149 chương 149: cường thế chinh phục">
+      <span class="chapter-num">#0149</span>
+      <span class="chapter-name">Chương 149: Cường thế chinh phục</span>
+    </a>
+    <a class="chapter-card" href="chuong-0150.html" data-num="150" data-search="chương 150 chương 150: mỹ nữ mới đến">
+      <span class="chapter-num">#0150</span>
+      <span class="chapter-name">Chương 150: Mỹ nữ mới đến</span>
+    </a>
+    <a class="chapter-card" href="chuong-0151.html" data-num="151" data-search="chương 151 chương 151: lần đầu giương âm mưu">
+      <span class="chapter-num">#0151</span>
+      <span class="chapter-name">Chương 151: Lần đầu giương âm mưu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0152.html" data-num="152" data-search="chương 152 chương 152: đánh lén ban đêm vọng hải lâu">
+      <span class="chapter-num">#0152</span>
+      <span class="chapter-name">Chương 152: Đánh lén ban đêm Vọng Hải lâu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0153.html" data-num="153" data-search="chương 153 chương 153: phát hiện kinh người">
+      <span class="chapter-num">#0153</span>
+      <span class="chapter-name">Chương 153: Phát hiện kinh người</span>
+    </a>
+    <a class="chapter-card" href="chuong-0154.html" data-num="154" data-search="chương 154 chương 154: tinh anh các nơi">
+      <span class="chapter-num">#0154</span>
+      <span class="chapter-name">Chương 154: Tinh anh các nơi</span>
+    </a>
+    <a class="chapter-card" href="chuong-0155.html" data-num="155" data-search="chương 155 chương 155: đột nhiên tập kích">
+      <span class="chapter-num">#0155</span>
+      <span class="chapter-name">Chương 155: Đột nhiên tập kích</span>
+    </a>
+    <a class="chapter-card" href="chuong-0156.html" data-num="156" data-search="chương 156 ">
+      <span class="chapter-num">#0156</span>
+      <span class="chapter-name">Chương 156</span>
+    </a>
+    <a class="chapter-card" href="chuong-0157.html" data-num="157" data-search="chương 157 chương 157: nhu nhược quân di">
+      <span class="chapter-num">#0157</span>
+      <span class="chapter-name">Chương 157: Nhu nhược Quân Di</span>
+    </a>
+    <a class="chapter-card" href="chuong-0158.html" data-num="158" data-search="chương 158 chương 158: tĩnh thất ở chung">
+      <span class="chapter-num">#0158</span>
+      <span class="chapter-name">Chương 158: Tĩnh thất ở chung</span>
+    </a>
+    <a class="chapter-card" href="chuong-0159.html" data-num="159" data-search="chương 159 chương 159: quân di hồng hoàn">
+      <span class="chapter-num">#0159</span>
+      <span class="chapter-name">Chương 159: Quân Di hồng hoàn</span>
+    </a>
+    <a class="chapter-card" href="chuong-0160.html" data-num="160" data-search="chương 160 chương 160: tạm thời nghỉ ngơi và hồi phục">
+      <span class="chapter-num">#0160</span>
+      <span class="chapter-name">Chương 160: Tạm thời nghỉ ngơi và hồi phục</span>
+    </a>
+    <a class="chapter-card" href="chuong-0161.html" data-num="161" data-search="chương 161 chương 161: vệ thanh say rượu">
+      <span class="chapter-num">#0161</span>
+      <span class="chapter-name">Chương 161: Vệ Thanh say rượu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0162.html" data-num="162" data-search="chương 162 chương 162: ghen tuông">
+      <span class="chapter-num">#0162</span>
+      <span class="chapter-name">Chương 162: Ghen tuông</span>
+    </a>
+    <a class="chapter-card" href="chuong-0163.html" data-num="163" data-search="chương 163 chương 163: diệp phi kích động">
+      <span class="chapter-num">#0163</span>
+      <span class="chapter-name">Chương 163: Diệp Phi kích động</span>
+    </a>
+    <a class="chapter-card" href="chuong-0164.html" data-num="164" data-search="chương 164 chương 164: vệ thanh tâm tư">
+      <span class="chapter-num">#0164</span>
+      <span class="chapter-name">Chương 164: Vệ Thanh tâm tư</span>
+    </a>
+    <a class="chapter-card" href="chuong-0165.html" data-num="165" data-search="chương 165 chương 165: dâm ngữ giáo tiểu di">
+      <span class="chapter-num">#0165</span>
+      <span class="chapter-name">Chương 165: Dâm ngữ giáo tiểu di</span>
+    </a>
+    <a class="chapter-card" href="chuong-0166.html" data-num="166" data-search="chương 166 chương 166: nhân gian tiên cảnh">
+      <span class="chapter-num">#0166</span>
+      <span class="chapter-name">Chương 166: Nhân gian tiên cảnh</span>
+    </a>
+    <a class="chapter-card" href="chuong-0167.html" data-num="167" data-search="chương 167 chương 167: vui đùa trong hồ">
+      <span class="chapter-num">#0167</span>
+      <span class="chapter-name">Chương 167: Vui đùa trong hồ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0168.html" data-num="168" data-search="chương 168 chương 168: toàn bộ mục tiêu mới">
+      <span class="chapter-num">#0168</span>
+      <span class="chapter-name">Chương 168: Toàn bộ mục tiêu mới</span>
+    </a>
+    <a class="chapter-card" href="chuong-0169.html" data-num="169" data-search="chương 169 chương 169: uy tín thành lập">
+      <span class="chapter-num">#0169</span>
+      <span class="chapter-name">Chương 169: Uy tín thành lập</span>
+    </a>
+    <a class="chapter-card" href="chuong-0170.html" data-num="170" data-search="chương 170 chương 170: địch quân cao thủ">
+      <span class="chapter-num">#0170</span>
+      <span class="chapter-name">Chương 170: Địch quân cao thủ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0171.html" data-num="171" data-search="chương 171 chương 171: thu hoạch ngoài ý liệu">
+      <span class="chapter-num">#0171</span>
+      <span class="chapter-name">Chương 171: Thu hoạch ngoài ý liệu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0172.html" data-num="172" data-search="chương 172 chương 172: nghịch thiên năng lực">
+      <span class="chapter-num">#0172</span>
+      <span class="chapter-name">Chương 172: Nghịch thiên năng lực</span>
+    </a>
+    <a class="chapter-card" href="chuong-0173.html" data-num="173" data-search="chương 173 chương 173: thông điệp cuối cùng">
+      <span class="chapter-num">#0173</span>
+      <span class="chapter-name">Chương 173: Thông điệp cuối cùng</span>
+    </a>
+    <a class="chapter-card" href="chuong-0174.html" data-num="174" data-search="chương 174 chương 174: địch nhân ổ (trên)">
+      <span class="chapter-num">#0174</span>
+      <span class="chapter-name">Chương 174: Địch nhân ổ (trên)</span>
+    </a>
+    <a class="chapter-card" href="chuong-0175.html" data-num="175" data-search="chương 175 chương 175: địch nhân sào huyệt (hạ)">
+      <span class="chapter-num">#0175</span>
+      <span class="chapter-name">Chương 175: Địch nhân sào huyệt (hạ)</span>
+    </a>
+    <a class="chapter-card" href="chuong-0176.html" data-num="176" data-search="chương 176 ">
+      <span class="chapter-num">#0176</span>
+      <span class="chapter-name">Chương 176</span>
+    </a>
+    <a class="chapter-card" href="chuong-0177.html" data-num="177" data-search="chương 177 chương 177: thoải mái toàn thắng">
+      <span class="chapter-num">#0177</span>
+      <span class="chapter-name">Chương 177: Thoải mái toàn thắng</span>
+    </a>
+    <a class="chapter-card" href="chuong-0178.html" data-num="178" data-search="chương 178 chương 178: mật thất cửa hoa cúc mở">
+      <span class="chapter-num">#0178</span>
+      <span class="chapter-name">Chương 178: Mật thất cửa hoa cúc mở</span>
+    </a>
+    <a class="chapter-card" href="chuong-0179.html" data-num="179" data-search="chương 179 chương 179: anh hùng trở về">
+      <span class="chapter-num">#0179</span>
+      <span class="chapter-name">Chương 179: anh hùng trở về</span>
+    </a>
+    <a class="chapter-card" href="chuong-0180.html" data-num="180" data-search="chương 180 chương 180: đặc thù hoan nghênh">
+      <span class="chapter-num">#0180</span>
+      <span class="chapter-name">Chương 180: Đặc thù hoan nghênh</span>
+    </a>
+    <a class="chapter-card" href="chuong-0181.html" data-num="181" data-search="chương 181 chương 181: tuyệt sắc tiểu y tá">
+      <span class="chapter-num">#0181</span>
+      <span class="chapter-name">Chương 181: Tuyệt sắc tiểu y tá</span>
+    </a>
+    <a class="chapter-card" href="chuong-0182.html" data-num="182" data-search="chương 182 chương 182: nữ hài phẫn nộ">
+      <span class="chapter-num">#0182</span>
+      <span class="chapter-name">Chương 182: Nữ hài phẫn nộ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0183.html" data-num="183" data-search="chương 183 chương 183: hiểu lầm được giải trừ">
+      <span class="chapter-num">#0183</span>
+      <span class="chapter-name">Chương 183: Hiểu lầm được giải trừ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0184.html" data-num="184" data-search="chương 184 chương 184: vưu vật bác sĩ">
+      <span class="chapter-num">#0184</span>
+      <span class="chapter-name">Chương 184: Vưu vật bác sĩ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0185.html" data-num="185" data-search="chương 185 chương 185: cô điện thoại bề bộn">
+      <span class="chapter-num">#0185</span>
+      <span class="chapter-name">Chương 185: Cô điện thoại bề bộn</span>
+    </a>
+    <a class="chapter-card" href="chuong-0186.html" data-num="186" data-search="chương 186 chương 186: mời nhi trên lợi">
+      <span class="chapter-num">#0186</span>
+      <span class="chapter-name">Chương 186: Mời nhi trên lợi</span>
+    </a>
+    <a class="chapter-card" href="chuong-0187.html" data-num="187" data-search="chương 187 chương 187: đường nhu tưởng niệm">
+      <span class="chapter-num">#0187</span>
+      <span class="chapter-name">Chương 187: Đường Nhu tưởng niệm</span>
+    </a>
+    <a class="chapter-card" href="chuong-0188.html" data-num="188" data-search="chương 188 ">
+      <span class="chapter-num">#0188</span>
+      <span class="chapter-name">Chương 188</span>
+    </a>
+    <a class="chapter-card" href="chuong-0189.html" data-num="189" data-search="chương 189 chương 189: cắm xuống định càn khôn">
+      <span class="chapter-num">#0189</span>
+      <span class="chapter-name">Chương 189: Cắm xuống định càn khôn</span>
+    </a>
+    <a class="chapter-card" href="chuong-0190.html" data-num="190" data-search="chương 190 chương 190: tọa ủng mẫu cùng nữ">
+      <span class="chapter-num">#0190</span>
+      <span class="chapter-name">Chương 190: Tọa ủng mẫu cùng nữ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0191.html" data-num="191" data-search="chương 191 chương 191: như lan tâm động">
+      <span class="chapter-num">#0191</span>
+      <span class="chapter-name">Chương 191: Như lan tâm động</span>
+    </a>
+    <a class="chapter-card" href="chuong-0192.html" data-num="192" data-search="chương 192 chương 192: tình thiếu nữ thần y">
+      <span class="chapter-num">#0192</span>
+      <span class="chapter-name">Chương 192: Tình thiếu nữ thần y</span>
+    </a>
+    <a class="chapter-card" href="chuong-0193.html" data-num="193" data-search="chương 193 chương 193: tâm ý của mẹ">
+      <span class="chapter-num">#0193</span>
+      <span class="chapter-name">Chương 193: Tâm ý của mẹ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0194.html" data-num="194" data-search="chương 194 chương 194: ghen tuông">
+      <span class="chapter-num">#0194</span>
+      <span class="chapter-name">Chương 194: Ghen tuông</span>
+    </a>
+    <a class="chapter-card" href="chuong-0195.html" data-num="195" data-search="chương 195 ">
+      <span class="chapter-num">#0195</span>
+      <span class="chapter-name">Chương 195</span>
+    </a>
+    <a class="chapter-card" href="chuong-0196.html" data-num="196" data-search="chương 196 chương 196: ngoài ý muốn bắn nhầm">
+      <span class="chapter-num">#0196</span>
+      <span class="chapter-name">Chương 196: Ngoài ý muốn bắn nhầm</span>
+    </a>
+    <a class="chapter-card" href="chuong-0197.html" data-num="197" data-search="chương 197 chương 197: nghịch ngợm biểu muội">
+      <span class="chapter-num">#0197</span>
+      <span class="chapter-name">Chương 197: Nghịch ngợm biểu muội</span>
+    </a>
+    <a class="chapter-card" href="chuong-0198.html" data-num="198" data-search="chương 198 chương 198: khinh khinh diệu chiêu">
+      <span class="chapter-num">#0198</span>
+      <span class="chapter-name">Chương 198: Khinh Khinh diệu chiêu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0199.html" data-num="199" data-search="chương 199 chương 199: ngoài ý muốn như nguyện">
+      <span class="chapter-num">#0199</span>
+      <span class="chapter-name">Chương 199: Ngoài ý muốn như nguyện</span>
+    </a>
+    <a class="chapter-card" href="chuong-0200.html" data-num="200" data-search="chương 200 chương 200: kế hoạch kéo dài">
+      <span class="chapter-num">#0200</span>
+      <span class="chapter-name">Chương 200: Kế hoạch kéo dài</span>
+    </a>
+    <a class="chapter-card" href="chuong-0201.html" data-num="201" data-search="chương 201 chương 201: tâm linh tương thông">
+      <span class="chapter-num">#0201</span>
+      <span class="chapter-name">Chương 201: Tâm linh tương thông</span>
+    </a>
+    <a class="chapter-card" href="chuong-0202.html" data-num="202" data-search="chương 202 chương 202: giả mạo tình lữ">
+      <span class="chapter-num">#0202</span>
+      <span class="chapter-name">Chương 202: Giả mạo tình lữ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0203.html" data-num="203" data-search="chương 203 chương 203: thanh tỉnh trong trị liệu">
+      <span class="chapter-num">#0203</span>
+      <span class="chapter-name">Chương 203: Thanh tỉnh trong trị liệu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0204.html" data-num="204" data-search="chương 204 chương 204: đồng ruộng dã thú">
+      <span class="chapter-num">#0204</span>
+      <span class="chapter-name">Chương 204: Đồng ruộng dã thú</span>
+    </a>
+    <a class="chapter-card" href="chuong-0205.html" data-num="205" data-search="chương 205 chương 205: kích tình hỗ trợ">
+      <span class="chapter-num">#0205</span>
+      <span class="chapter-name">Chương 205: Kích tình hỗ trợ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0206.html" data-num="206" data-search="chương 206 chương 206: bạn gái nghĩa vụ">
+      <span class="chapter-num">#0206</span>
+      <span class="chapter-name">Chương 206: Bạn gái nghĩa vụ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0207.html" data-num="207" data-search="chương 207 chương 207: hạnh phúc hiểm đường">
+      <span class="chapter-num">#0207</span>
+      <span class="chapter-name">Chương 207: Hạnh phúc hiểm đường</span>
+    </a>
+    <a class="chapter-card" href="chuong-0208.html" data-num="208" data-search="chương 208 chương 208: ngàn năm tuyết sâm vương">
+      <span class="chapter-num">#0208</span>
+      <span class="chapter-name">Chương 208: Ngàn năm tuyết sâm vương</span>
+    </a>
+    <a class="chapter-card" href="chuong-0209.html" data-num="209" data-search="chương 209 chương 209: sơn gian phúc địa">
+      <span class="chapter-num">#0209</span>
+      <span class="chapter-name">Chương 209: Sơn gian phúc địa</span>
+    </a>
+    <a class="chapter-card" href="chuong-0210.html" data-num="210" data-search="chương 210 chương 210: ôn tuyền kích tình">
+      <span class="chapter-num">#0210</span>
+      <span class="chapter-name">Chương 210: Ôn tuyền kích tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0211.html" data-num="211" data-search="chương 211 chương 211: biến cố bất ngờ">
+      <span class="chapter-num">#0211</span>
+      <span class="chapter-name">Chương 211: Biến cố bất ngờ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0212.html" data-num="212" data-search="chương 212 chương 212: kích tình an ủi">
+      <span class="chapter-num">#0212</span>
+      <span class="chapter-name">Chương 212: Kích tình an ủi</span>
+    </a>
+    <a class="chapter-card" href="chuong-0213.html" data-num="213" data-search="chương 213 chương 213: nữ chủ truyền bá phong thái">
+      <span class="chapter-num">#0213</span>
+      <span class="chapter-name">Chương 213: Nữ chủ truyền bá phong thái</span>
+    </a>
+    <a class="chapter-card" href="chuong-0214.html" data-num="214" data-search="chương 214 chương 214: hương diễm trừng phạt">
+      <span class="chapter-num">#0214</span>
+      <span class="chapter-name">Chương 214: Hương diễm trừng phạt</span>
+    </a>
+    <a class="chapter-card" href="chuong-0215.html" data-num="215" data-search="chương 215 ">
+      <span class="chapter-num">#0215</span>
+      <span class="chapter-name">Chương 215</span>
+    </a>
+    <a class="chapter-card" href="chuong-0216.html" data-num="216" data-search="chương 216 chương 216: phát hiện trọng đại">
+      <span class="chapter-num">#0216</span>
+      <span class="chapter-name">Chương 216: Phát hiện trọng đại</span>
+    </a>
+    <a class="chapter-card" href="chuong-0217.html" data-num="217" data-search="chương 217 chương 217: trong quân song kiều diễm">
+      <span class="chapter-num">#0217</span>
+      <span class="chapter-name">Chương 217: Trong quân song kiều diễm</span>
+    </a>
+    <a class="chapter-card" href="chuong-0218.html" data-num="218" data-search="chương 218 chương 218: ôn lại tiểu di hương">
+      <span class="chapter-num">#0218</span>
+      <span class="chapter-name">Chương 218: Ôn lại tiểu di hương</span>
+    </a>
+    <a class="chapter-card" href="chuong-0219.html" data-num="219" data-search="chương 219 chương 219: vệ thanh kinh hỉ">
+      <span class="chapter-num">#0219</span>
+      <span class="chapter-name">Chương 219: Vệ Thanh kinh hỉ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0220.html" data-num="220" data-search="chương 220 chương 220: cố nhân của mẹ">
+      <span class="chapter-num">#0220</span>
+      <span class="chapter-name">Chương 220: Cố nhân của mẹ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0221.html" data-num="221" data-search="chương 221 chương 221: diệp phi uy lực">
+      <span class="chapter-num">#0221</span>
+      <span class="chapter-name">Chương 221: Diệp Phi uy lực</span>
+    </a>
+    <a class="chapter-card" href="chuong-0222.html" data-num="222" data-search="chương 222 chương 222: sáng sớm xấu hổ">
+      <span class="chapter-num">#0222</span>
+      <span class="chapter-name">Chương 222: Sáng sớm xấu hổ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0223.html" data-num="223" data-search="chương 223 chương 223: tình cảm tỷ tỷ">
+      <span class="chapter-num">#0223</span>
+      <span class="chapter-name">Chương 223: Tình cảm tỷ tỷ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0224.html" data-num="224" data-search="chương 224 ">
+      <span class="chapter-num">#0224</span>
+      <span class="chapter-name">Chương 224</span>
+    </a>
+    <a class="chapter-card" href="chuong-0225.html" data-num="225" data-search="chương 225 chương 225: sâu kín minh nguyệt tâm">
+      <span class="chapter-num">#0225</span>
+      <span class="chapter-name">Chương 225: Sâu kín Minh Nguyệt Tâm</span>
+    </a>
+    <a class="chapter-card" href="chuong-0226.html" data-num="226" data-search="chương 226 chương 226: cường thế nữ vương">
+      <span class="chapter-num">#0226</span>
+      <span class="chapter-name">Chương 226: Cường thế nữ vương</span>
+    </a>
+    <a class="chapter-card" href="chuong-0227.html" data-num="227" data-search="chương 227 chương 227: nữ vương thần phục">
+      <span class="chapter-num">#0227</span>
+      <span class="chapter-name">Chương 227: Nữ vương thần phục</span>
+    </a>
+    <a class="chapter-card" href="chuong-0228.html" data-num="228" data-search="chương 228 chương 228: trở về tình mẫu tử">
+      <span class="chapter-num">#0228</span>
+      <span class="chapter-name">Chương 228: Trở về tình mẫu tử</span>
+    </a>
+    <a class="chapter-card" href="chuong-0229.html" data-num="229" data-search="chương 229 ">
+      <span class="chapter-num">#0229</span>
+      <span class="chapter-name">Chương 229</span>
+    </a>
+    <a class="chapter-card" href="chuong-0230.html" data-num="230" data-search="chương 230 chương 230: thiếu một chút nữa là hôn được">
+      <span class="chapter-num">#0230</span>
+      <span class="chapter-name">Chương 230: Thiếu một chút nữa là hôn được</span>
+    </a>
+    <a class="chapter-card" href="chuong-0231.html" data-num="231" data-search="chương 231 ">
+      <span class="chapter-num">#0231</span>
+      <span class="chapter-name">Chương 231</span>
+    </a>
+    <a class="chapter-card" href="chuong-0232.html" data-num="232" data-search="chương 232 chương 232: âm hiểm diệp phi">
+      <span class="chapter-num">#0232</span>
+      <span class="chapter-name">Chương 232: Âm hiểm Diệp Phi</span>
+    </a>
+    <a class="chapter-card" href="chuong-0233.html" data-num="233" data-search="chương 233 chương 233: mẹ ơi, phun!">
+      <span class="chapter-num">#0233</span>
+      <span class="chapter-name">Chương 233: Mẹ ơi, phun!</span>
+    </a>
+    <a class="chapter-card" href="chuong-0234.html" data-num="234" data-search="chương 234 chương 234: hương diễm tra tấn">
+      <span class="chapter-num">#0234</span>
+      <span class="chapter-name">Chương 234: Hương diễm tra tấn</span>
+    </a>
+    <a class="chapter-card" href="chuong-0235.html" data-num="235" data-search="chương 235 chương 235: tình nô mẹ con hoa">
+      <span class="chapter-num">#0235</span>
+      <span class="chapter-name">Chương 235: Tình nô mẹ con hoa</span>
+    </a>
+    <a class="chapter-card" href="chuong-0236.html" data-num="236" data-search="chương 236 chương 236: phi long diệt vong">
+      <span class="chapter-num">#0236</span>
+      <span class="chapter-name">Chương 236: Phi Long diệt vong</span>
+    </a>
+    <a class="chapter-card" href="chuong-0237.html" data-num="237" data-search="chương 237 chương 237: phản kích bắt đầu">
+      <span class="chapter-num">#0237</span>
+      <span class="chapter-name">Chương 237: Phản kích bắt đầu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0238.html" data-num="238" data-search="chương 238 chương 238: chiến thần buông xuống">
+      <span class="chapter-num">#0238</span>
+      <span class="chapter-name">Chương 238: Chiến thần buông xuống</span>
+    </a>
+    <a class="chapter-card" href="chuong-0239.html" data-num="239" data-search="chương 239 chương 239: diệp tuyền kinh hỉ">
+      <span class="chapter-num">#0239</span>
+      <span class="chapter-name">Chương 239: Diệp Tuyền kinh hỉ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0240.html" data-num="240" data-search="chương 240 chương 240: hai nữ thí nghiệm">
+      <span class="chapter-num">#0240</span>
+      <span class="chapter-name">Chương 240: Hai nữ thí nghiệm</span>
+    </a>
+    <a class="chapter-card" href="chuong-0241.html" data-num="241" data-search="chương 241 chương 241: món đồ chơi sướng cũng như">
+      <span class="chapter-num">#0241</span>
+      <span class="chapter-name">Chương 241: Món đồ chơi sướng cũng như</span>
+    </a>
+    <a class="chapter-card" href="chuong-0242.html" data-num="242" data-search="chương 242 chương 242: nhị tỷ ôn nhu">
+      <span class="chapter-num">#0242</span>
+      <span class="chapter-name">Chương 242: Nhị tỷ ôn nhu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0243.html" data-num="243" data-search="chương 243 ">
+      <span class="chapter-num">#0243</span>
+      <span class="chapter-name">Chương 243</span>
+    </a>
+    <a class="chapter-card" href="chuong-0244.html" data-num="244" data-search="chương 244 chương 244: tạm thời bảo tiêu">
+      <span class="chapter-num">#0244</span>
+      <span class="chapter-name">Chương 244: Tạm thời bảo tiêu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0245.html" data-num="245" data-search="chương 245 chương 245: đói khát ngưng sương">
+      <span class="chapter-num">#0245</span>
+      <span class="chapter-name">Chương 245: Đói khát ngưng sương</span>
+    </a>
+    <a class="chapter-card" href="chuong-0246.html" data-num="246" data-search="chương 246 chương 246: mộc linh mê người">
+      <span class="chapter-num">#0246</span>
+      <span class="chapter-name">Chương 246: Mộc Linh mê người</span>
+    </a>
+    <a class="chapter-card" href="chuong-0247.html" data-num="247" data-search="chương 247 chương 247: cũng như phục thị">
+      <span class="chapter-num">#0247</span>
+      <span class="chapter-name">Chương 247: Cũng như phục thị</span>
+    </a>
+    <a class="chapter-card" href="chuong-0248.html" data-num="248" data-search="chương 248 chương 248: duy nhất tiếc nuối">
+      <span class="chapter-num">#0248</span>
+      <span class="chapter-name">Chương 248: Duy nhất tiếc nuối</span>
+    </a>
+    <a class="chapter-card" href="chuong-0249.html" data-num="249" data-search="chương 249 chương 249: công ty rách nát">
+      <span class="chapter-num">#0249</span>
+      <span class="chapter-name">Chương 249: Công ty rách nát</span>
+    </a>
+    <a class="chapter-card" href="chuong-0250.html" data-num="250" data-search="chương 250 chương 250: mai một tài nữ">
+      <span class="chapter-num">#0250</span>
+      <span class="chapter-name">Chương 250: Mai một tài nữ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0251.html" data-num="251" data-search="chương 251 chương 251: tiêu phỉ khuất phục">
+      <span class="chapter-num">#0251</span>
+      <span class="chapter-name">Chương 251: Tiêu Phỉ khuất phục</span>
+    </a>
+    <a class="chapter-card" href="chuong-0252.html" data-num="252" data-search="chương 252 chương 252: tâm linh rung động">
+      <span class="chapter-num">#0252</span>
+      <span class="chapter-name">Chương 252: Tâm linh rung động</span>
+    </a>
+    <a class="chapter-card" href="chuong-0253.html" data-num="253" data-search="chương 253 chương 253: mỹ vị mộc di">
+      <span class="chapter-num">#0253</span>
+      <span class="chapter-name">Chương 253: Mỹ vị Mộc di</span>
+    </a>
+    <a class="chapter-card" href="chuong-0254.html" data-num="254" data-search="chương 254 chương 254: tam tỷ bưu hãn">
+      <span class="chapter-num">#0254</span>
+      <span class="chapter-name">Chương 254: Tam tỷ bưu hãn</span>
+    </a>
+    <a class="chapter-card" href="chuong-0255.html" data-num="255" data-search="chương 255 chương 255: tam tỷ ngược lại">
+      <span class="chapter-num">#0255</span>
+      <span class="chapter-name">Chương 255: Tam tỷ ngược lại</span>
+    </a>
+    <a class="chapter-card" href="chuong-0256.html" data-num="256" data-search="chương 256 ">
+      <span class="chapter-num">#0256</span>
+      <span class="chapter-name">Chương 256</span>
+    </a>
+    <a class="chapter-card" href="chuong-0257.html" data-num="257" data-search="chương 257 chương 257: cuối cùng như nguyện (trên)">
+      <span class="chapter-num">#0257</span>
+      <span class="chapter-name">Chương 257: Cuối cùng như nguyện (trên)</span>
+    </a>
+    <a class="chapter-card" href="chuong-0258.html" data-num="258" data-search="chương 258 chương 258: cuối cùng như nguyện (hạ)">
+      <span class="chapter-num">#0258</span>
+      <span class="chapter-name">Chương 258: Cuối cùng như nguyện (hạ)</span>
+    </a>
+    <a class="chapter-card" href="chuong-0259.html" data-num="259" data-search="chương 259 chương 259: kiều diễm xuân sắc">
+      <span class="chapter-num">#0259</span>
+      <span class="chapter-name">Chương 259: Kiều diễm xuân sắc</span>
+    </a>
+    <a class="chapter-card" href="chuong-0260.html" data-num="260" data-search="chương 260 chương 260: la lỵ thâm tình">
+      <span class="chapter-num">#0260</span>
+      <span class="chapter-name">Chương 260: La lỵ thâm tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0261.html" data-num="261" data-search="chương 261 chương 261: phòng tối mây mưa">
+      <span class="chapter-num">#0261</span>
+      <span class="chapter-name">Chương 261: Phòng tối mây mưa</span>
+    </a>
+    <a class="chapter-card" href="chuong-0262.html" data-num="262" data-search="chương 262 chương 262: la lỵ hấp dẫn">
+      <span class="chapter-num">#0262</span>
+      <span class="chapter-name">Chương 262: La lỵ hấp dẫn</span>
+    </a>
+    <a class="chapter-card" href="chuong-0263.html" data-num="263" data-search="chương 263 chương 263: vô hạn kích tình">
+      <span class="chapter-num">#0263</span>
+      <span class="chapter-name">Chương 263: Vô hạn kích tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0264.html" data-num="264" data-search="chương 264 chương 264: khinh khinh gia nhập">
+      <span class="chapter-num">#0264</span>
+      <span class="chapter-name">Chương 264: Khinh Khinh gia nhập</span>
+    </a>
+    <a class="chapter-card" href="chuong-0265.html" data-num="265" data-search="chương 265 chương 265: cuồng hoan cuối tuần">
+      <span class="chapter-num">#0265</span>
+      <span class="chapter-name">Chương 265: Cuồng hoan cuối tuần</span>
+    </a>
+    <a class="chapter-card" href="chuong-0266.html" data-num="266" data-search="chương 266 chương 266: mỹ nhân không già">
+      <span class="chapter-num">#0266</span>
+      <span class="chapter-name">Chương 266: Mỹ nhân không già</span>
+    </a>
+    <a class="chapter-card" href="chuong-0267.html" data-num="267" data-search="chương 267 chương 267: vi nhi tâm tư">
+      <span class="chapter-num">#0267</span>
+      <span class="chapter-name">Chương 267: Vi Nhi tâm tư</span>
+    </a>
+    <a class="chapter-card" href="chuong-0268.html" data-num="268" data-search="chương 268 ">
+      <span class="chapter-num">#0268</span>
+      <span class="chapter-name">Chương 268</span>
+    </a>
+    <a class="chapter-card" href="chuong-0269.html" data-num="269" data-search="chương 269 ">
+      <span class="chapter-num">#0269</span>
+      <span class="chapter-name">Chương 269</span>
+    </a>
+    <a class="chapter-card" href="chuong-0270.html" data-num="270" data-search="chương 270 chương 270: tiểu cô điên cuồng">
+      <span class="chapter-num">#0270</span>
+      <span class="chapter-name">Chương 270: Tiểu cô điên cuồng</span>
+    </a>
+    <a class="chapter-card" href="chuong-0271.html" data-num="271" data-search="chương 271 chương 271: ngưng băng trầm luân">
+      <span class="chapter-num">#0271</span>
+      <span class="chapter-name">Chương 271: Ngưng Băng trầm luân</span>
+    </a>
+    <a class="chapter-card" href="chuong-0272.html" data-num="272" data-search="chương 272 chương 272: xích tấc tùy ý">
+      <span class="chapter-num">#0272</span>
+      <span class="chapter-name">Chương 272: Xích tấc tùy ý</span>
+    </a>
+    <a class="chapter-card" href="chuong-0273.html" data-num="273" data-search="chương 273 chương 273: dượng trước mặt">
+      <span class="chapter-num">#0273</span>
+      <span class="chapter-name">Chương 273: Dượng trước mặt</span>
+    </a>
+    <a class="chapter-card" href="chuong-0274.html" data-num="274" data-search="chương 274 chương 274: đối thoại của tỷ muội">
+      <span class="chapter-num">#0274</span>
+      <span class="chapter-name">Chương 274: Đối thoại của tỷ muội</span>
+    </a>
+    <a class="chapter-card" href="chuong-0275.html" data-num="275" data-search="chương 275 ">
+      <span class="chapter-num">#0275</span>
+      <span class="chapter-name">Chương 275</span>
+    </a>
+    <a class="chapter-card" href="chuong-0276.html" data-num="276" data-search="chương 276 chương 276: ngưng sương thâm tình">
+      <span class="chapter-num">#0276</span>
+      <span class="chapter-name">Chương 276: Ngưng Sương thâm tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0277.html" data-num="277" data-search="chương 277 chương 277: ngưng băng tiếc nuối">
+      <span class="chapter-num">#0277</span>
+      <span class="chapter-name">Chương 277: Ngưng Băng tiếc nuối</span>
+    </a>
+    <a class="chapter-card" href="chuong-0278.html" data-num="278" data-search="chương 278 chương 278: hai tiểu nhân tranh phong">
+      <span class="chapter-num">#0278</span>
+      <span class="chapter-name">Chương 278: Hai tiểu nhân tranh phong</span>
+    </a>
+    <a class="chapter-card" href="chuong-0279.html" data-num="279" data-search="chương 279 ">
+      <span class="chapter-num">#0279</span>
+      <span class="chapter-name">Chương 279</span>
+    </a>
+    <a class="chapter-card" href="chuong-0280.html" data-num="280" data-search="chương 280 chương 280: nha nha thổ lộ">
+      <span class="chapter-num">#0280</span>
+      <span class="chapter-name">Chương 280: Nha Nha thổ lộ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0281.html" data-num="281" data-search="chương 281 chương 281: bữa tối hương diễm">
+      <span class="chapter-num">#0281</span>
+      <span class="chapter-name">Chương 281: Bữa tối hương diễm</span>
+    </a>
+    <a class="chapter-card" href="chuong-0282.html" data-num="282" data-search="chương 282 chương 282: ma nữ lần đầu gáy">
+      <span class="chapter-num">#0282</span>
+      <span class="chapter-name">Chương 282: Ma nữ lần đầu gáy</span>
+    </a>
+    <a class="chapter-card" href="chuong-0283.html" data-num="283" data-search="chương 283 chương 283: nhị tỷ chấp nhất">
+      <span class="chapter-num">#0283</span>
+      <span class="chapter-name">Chương 283: Nhị tỷ chấp nhất</span>
+    </a>
+    <a class="chapter-card" href="chuong-0284.html" data-num="284" data-search="chương 284 i cannot fulfill this request.">
+      <span class="chapter-num">#0284</span>
+      <span class="chapter-name">I cannot fulfill this request.</span>
+    </a>
+    <a class="chapter-card" href="chuong-0285.html" data-num="285" data-search="chương 285 ">
+      <span class="chapter-num">#0285</span>
+      <span class="chapter-name">Chương 285</span>
+    </a>
+    <a class="chapter-card" href="chuong-0286.html" data-num="286" data-search="chương 286 chương 286: âm mưu nổi lên">
+      <span class="chapter-num">#0286</span>
+      <span class="chapter-name">Chương 286: âm mưu nổi lên</span>
+    </a>
+    <a class="chapter-card" href="chuong-0287.html" data-num="287" data-search="chương 287 ">
+      <span class="chapter-num">#0287</span>
+      <span class="chapter-name">Chương 287</span>
+    </a>
+    <a class="chapter-card" href="chuong-0288.html" data-num="288" data-search="chương 288 chương 288: ôn nhu kích tình">
+      <span class="chapter-num">#0288</span>
+      <span class="chapter-name">Chương 288: Ôn nhu kích tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0289.html" data-num="289" data-search="chương 289 chương 289: mèo vờn chuột">
+      <span class="chapter-num">#0289</span>
+      <span class="chapter-name">Chương 289: Mèo vờn chuột</span>
+    </a>
+    <a class="chapter-card" href="chuong-0290.html" data-num="290" data-search="chương 290 chương 290: tỷ đệ luyện công buổi sáng">
+      <span class="chapter-num">#0290</span>
+      <span class="chapter-name">Chương 290: Tỷ đệ luyện công buổi sáng</span>
+    </a>
+    <a class="chapter-card" href="chuong-0291.html" data-num="291" data-search="chương 291 chương 291: phẫn nộ cảnh hoa">
+      <span class="chapter-num">#0291</span>
+      <span class="chapter-name">Chương 291: Phẫn nộ cảnh hoa</span>
+    </a>
+    <a class="chapter-card" href="chuong-0292.html" data-num="292" data-search="chương 292 chương 292: ẩn sâu nhu tình">
+      <span class="chapter-num">#0292</span>
+      <span class="chapter-name">Chương 292: Ẩn sâu nhu tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0293.html" data-num="293" data-search="chương 293 chương 293: trên xe mập mờ">
+      <span class="chapter-num">#0293</span>
+      <span class="chapter-name">Chương 293: Trên xe mập mờ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0294.html" data-num="294" data-search="chương 294 chương 294: tái chiến tô ngọc nhàn">
+      <span class="chapter-num">#0294</span>
+      <span class="chapter-name">Chương 294: Tái chiến Tô Ngọc Nhàn</span>
+    </a>
+    <a class="chapter-card" href="chuong-0295.html" data-num="295" data-search="chương 295 chương 295: mới nếm thử minh nguyệt tâm">
+      <span class="chapter-num">#0295</span>
+      <span class="chapter-name">Chương 295: Mới nếm thử Minh Nguyệt Tâm</span>
+    </a>
+    <a class="chapter-card" href="chuong-0296.html" data-num="296" data-search="chương 296 chương 296: ngọc nhàn tâm ý">
+      <span class="chapter-num">#0296</span>
+      <span class="chapter-name">Chương 296: Ngọc Nhàn tâm ý</span>
+    </a>
+    <a class="chapter-card" href="chuong-0297.html" data-num="297" data-search="chương 297 chương 297: cũng như thẹn thùng">
+      <span class="chapter-num">#0297</span>
+      <span class="chapter-name">Chương 297: Cũng như thẹn thùng</span>
+    </a>
+    <a class="chapter-card" href="chuong-0298.html" data-num="298" data-search="chương 298 chương 298: mẹ đẻ cùng nhạc mẫu">
+      <span class="chapter-num">#0298</span>
+      <span class="chapter-name">Chương 298: Mẹ đẻ cùng nhạc mẫu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0299.html" data-num="299" data-search="chương 299 chương 299: diệp phi nguy cơ">
+      <span class="chapter-num">#0299</span>
+      <span class="chapter-name">Chương 299: Diệp Phi nguy cơ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0300.html" data-num="300" data-search="chương 300 chương 300: tư kỳ thâm tình">
+      <span class="chapter-num">#0300</span>
+      <span class="chapter-name">Chương 300: Tư kỳ thâm tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0301.html" data-num="301" data-search="chương 301 chương 301: chân tướng sự tình">
+      <span class="chapter-num">#0301</span>
+      <span class="chapter-name">Chương 301: Chân tướng sự tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0302.html" data-num="302" data-search="chương 302 chương 302: vân nhi tâm động">
+      <span class="chapter-num">#0302</span>
+      <span class="chapter-name">Chương 302: Vân nhi tâm động</span>
+    </a>
+    <a class="chapter-card" href="chuong-0303.html" data-num="303" data-search="chương 303 chương 303: diệp phi hiểu lầm">
+      <span class="chapter-num">#0303</span>
+      <span class="chapter-name">Chương 303: Diệp Phi hiểu lầm</span>
+    </a>
+    <a class="chapter-card" href="chuong-0304.html" data-num="304" data-search="chương 304 chương 304: cái kia xu thế">
+      <span class="chapter-num">#0304</span>
+      <span class="chapter-name">Chương 304: Cái kia xu thế</span>
+    </a>
+    <a class="chapter-card" href="chuong-0305.html" data-num="305" data-search="chương 305 chương 305: gặp lại trác phượng nhi">
+      <span class="chapter-num">#0305</span>
+      <span class="chapter-name">Chương 305: Gặp lại Trác Phượng Nhi</span>
+    </a>
+    <a class="chapter-card" href="chuong-0306.html" data-num="306" data-search="chương 306 chương 306: vân nhi chân dung">
+      <span class="chapter-num">#0306</span>
+      <span class="chapter-name">Chương 306: Vân nhi chân dung</span>
+    </a>
+    <a class="chapter-card" href="chuong-0307.html" data-num="307" data-search="chương 307 chương 307: người can đảm thổ lộ">
+      <span class="chapter-num">#0307</span>
+      <span class="chapter-name">Chương 307: Người can đảm thổ lộ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0308.html" data-num="308" data-search="chương 308 chương 308: hỏa tinh đụng địa cầu">
+      <span class="chapter-num">#0308</span>
+      <span class="chapter-name">Chương 308: Hỏa tinh đụng địa cầu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0309.html" data-num="309" data-search="chương 309 chương 309: người phụ nữ lạ mặt">
+      <span class="chapter-num">#0309</span>
+      <span class="chapter-name">Chương 309: Người phụ nữ lạ mặt</span>
+    </a>
+    <a class="chapter-card" href="chuong-0310.html" data-num="310" data-search="chương 310 chương 310: gặp gỡ trong lao">
+      <span class="chapter-num">#0310</span>
+      <span class="chapter-name">Chương 310: Gặp gỡ trong lao</span>
+    </a>
+    <a class="chapter-card" href="chuong-0311.html" data-num="311" data-search="chương 311 chương 311: cảm giác thân thiết">
+      <span class="chapter-num">#0311</span>
+      <span class="chapter-name">Chương 311: Cảm giác thân thiết</span>
+    </a>
+    <a class="chapter-card" href="chuong-0312.html" data-num="312" data-search="chương 312 chương 312: thủy dĩnh chuyện cũ">
+      <span class="chapter-num">#0312</span>
+      <span class="chapter-name">Chương 312: Thủy Dĩnh chuyện cũ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0313.html" data-num="313" data-search="chương 313 chương 313: tình cảm nảy sinh">
+      <span class="chapter-num">#0313</span>
+      <span class="chapter-name">Chương 313: Tình cảm nảy sinh</span>
+    </a>
+    <a class="chapter-card" href="chuong-0314.html" data-num="314" data-search="chương 314 chương 314: thiên ý trùng hợp">
+      <span class="chapter-num">#0314</span>
+      <span class="chapter-name">Chương 314: Thiên ý trùng hợp</span>
+    </a>
+    <a class="chapter-card" href="chuong-0315.html" data-num="315" data-search="chương 315 ">
+      <span class="chapter-num">#0315</span>
+      <span class="chapter-name">Chương 315</span>
+    </a>
+    <a class="chapter-card" href="chuong-0316.html" data-num="316" data-search="chương 316 chương 316: thoải mái thoát khốn">
+      <span class="chapter-num">#0316</span>
+      <span class="chapter-name">Chương 316: Thoải mái thoát khốn</span>
+    </a>
+    <a class="chapter-card" href="chuong-0317.html" data-num="317" data-search="chương 317 chương 317: tỷ muội gặp lại">
+      <span class="chapter-num">#0317</span>
+      <span class="chapter-name">Chương 317: Tỷ muội gặp lại</span>
+    </a>
+    <a class="chapter-card" href="chuong-0318.html" data-num="318" data-search="chương 318 chương 318: vô địch diệp phi">
+      <span class="chapter-num">#0318</span>
+      <span class="chapter-name">Chương 318: Vô địch Diệp Phi</span>
+    </a>
+    <a class="chapter-card" href="chuong-0319.html" data-num="319" data-search="chương 319 chương 319: ảnh hưởng của việc mất tích">
+      <span class="chapter-num">#0319</span>
+      <span class="chapter-name">Chương 319: Ảnh hưởng của việc mất tích</span>
+    </a>
+    <a class="chapter-card" href="chuong-0320.html" data-num="320" data-search="chương 320 chương 320: kinh hỉ cũng như thế">
+      <span class="chapter-num">#0320</span>
+      <span class="chapter-name">Chương 320: Kinh hỉ cũng như thế</span>
+    </a>
+    <a class="chapter-card" href="chuong-0321.html" data-num="321" data-search="chương 321 chương 321: diệp phi trở về">
+      <span class="chapter-num">#0321</span>
+      <span class="chapter-name">Chương 321: Diệp Phi trở về</span>
+    </a>
+    <a class="chapter-card" href="chuong-0322.html" data-num="322" data-search="chương 322 chương 322: đắng chát kích tình">
+      <span class="chapter-num">#0322</span>
+      <span class="chapter-name">Chương 322: Đắng chát kích tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0323.html" data-num="323" data-search="chương 323 chương 323: kinh ngạc đến ngây người mẹ">
+      <span class="chapter-num">#0323</span>
+      <span class="chapter-name">Chương 323: Kinh ngạc đến ngây người mẹ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0324.html" data-num="324" data-search="chương 324 chương 324: diệp phi thổ lộ">
+      <span class="chapter-num">#0324</span>
+      <span class="chapter-name">Chương 324: Diệp Phi thổ lộ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0325.html" data-num="325" data-search="chương 325 chương 325: toàn bộ triển khai khúc mắc">
+      <span class="chapter-num">#0325</span>
+      <span class="chapter-name">Chương 325: Toàn bộ triển khai khúc mắc</span>
+    </a>
+    <a class="chapter-card" href="chuong-0326.html" data-num="326" data-search="chương 326 chương 326: niềm vui của diệp tuyền">
+      <span class="chapter-num">#0326</span>
+      <span class="chapter-name">Chương 326: Niềm vui của Diệp Tuyền</span>
+    </a>
+    <a class="chapter-card" href="chuong-0327.html" data-num="327" data-search="chương 327 chương 327: mẹ con tương kiến">
+      <span class="chapter-num">#0327</span>
+      <span class="chapter-name">Chương 327: Mẹ con tương kiến</span>
+    </a>
+    <a class="chapter-card" href="chuong-0328.html" data-num="328" data-search="chương 328 chương 328: kích động tư kỳ">
+      <span class="chapter-num">#0328</span>
+      <span class="chapter-name">Chương 328: Kích động Tư Kỳ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0329.html" data-num="329" data-search="chương 329 chương 329: ấm áp đoàn tụ">
+      <span class="chapter-num">#0329</span>
+      <span class="chapter-name">Chương 329: Ấm áp đoàn tụ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0330.html" data-num="330" data-search="chương 330 chương 330: thái cúc thị cũng như">
+      <span class="chapter-num">#0330</span>
+      <span class="chapter-name">Chương 330: Thái cúc thị cũng như</span>
+    </a>
+    <a class="chapter-card" href="chuong-0331.html" data-num="331" data-search="chương 331 chương 331: đêm khuya nghĩ cách cứu viện">
+      <span class="chapter-num">#0331</span>
+      <span class="chapter-name">Chương 331: đêm khuya nghĩ cách cứu viện</span>
+    </a>
+    <a class="chapter-card" href="chuong-0332.html" data-num="332" data-search="chương 332 chương 332: phụ thân thế thân">
+      <span class="chapter-num">#0332</span>
+      <span class="chapter-name">Chương 332: Phụ thân thế thân</span>
+    </a>
+    <a class="chapter-card" href="chuong-0333.html" data-num="333" data-search="chương 333 ">
+      <span class="chapter-num">#0333</span>
+      <span class="chapter-name">Chương 333</span>
+    </a>
+    <a class="chapter-card" href="chuong-0334.html" data-num="334" data-search="chương 334 chương 334: lâu ngày có thể sinh tình">
+      <span class="chapter-num">#0334</span>
+      <span class="chapter-name">Chương 334: Lâu ngày có thể sinh tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0335.html" data-num="335" data-search="chương 335 chương 335: tỷ muội ước định">
+      <span class="chapter-num">#0335</span>
+      <span class="chapter-name">Chương 335: Tỷ muội ước định</span>
+    </a>
+    <a class="chapter-card" href="chuong-0336.html" data-num="336" data-search="chương 336 chương 336: kinh hỉ và quấn quýt">
+      <span class="chapter-num">#0336</span>
+      <span class="chapter-name">Chương 336: Kinh hỉ và quấn quýt</span>
+    </a>
+    <a class="chapter-card" href="chuong-0337.html" data-num="337" data-search="chương 337 ">
+      <span class="chapter-num">#0337</span>
+      <span class="chapter-name">Chương 337</span>
+    </a>
+    <a class="chapter-card" href="chuong-0338.html" data-num="338" data-search="chương 338 chương 338: thân nhân tề tụ">
+      <span class="chapter-num">#0338</span>
+      <span class="chapter-name">Chương 338: Thân nhân tề tụ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0339.html" data-num="339" data-search="chương 339 chương 339: kích tình dưới bàn">
+      <span class="chapter-num">#0339</span>
+      <span class="chapter-name">Chương 339: Kích tình dưới bàn</span>
+    </a>
+    <a class="chapter-card" href="chuong-0340.html" data-num="340" data-search="chương 340 chương 340: lá đại hái hoa tặc">
+      <span class="chapter-num">#0340</span>
+      <span class="chapter-name">Chương 340: Lá đại hái hoa tặc</span>
+    </a>
+    <a class="chapter-card" href="chuong-0341.html" data-num="341" data-search="chương 341 chương 341: hai mẹ chung dạy con">
+      <span class="chapter-num">#0341</span>
+      <span class="chapter-name">Chương 341: Hai mẹ chung dạy con</span>
+    </a>
+    <a class="chapter-card" href="chuong-0342.html" data-num="342" data-search="chương 342 ">
+      <span class="chapter-num">#0342</span>
+      <span class="chapter-name">Chương 342</span>
+    </a>
+    <a class="chapter-card" href="chuong-0343.html" data-num="343" data-search="chương 343 chương 343: tinh xảo thế cục">
+      <span class="chapter-num">#0343</span>
+      <span class="chapter-name">Chương 343: Tinh xảo thế cục</span>
+    </a>
+    <a class="chapter-card" href="chuong-0344.html" data-num="344" data-search="chương 344 ">
+      <span class="chapter-num">#0344</span>
+      <span class="chapter-name">Chương 344</span>
+    </a>
+    <a class="chapter-card" href="chuong-0345.html" data-num="345" data-search="chương 345 chương 345: nhu nhược phượng nhi">
+      <span class="chapter-num">#0345</span>
+      <span class="chapter-name">Chương 345: Nhu nhược Phượng Nhi</span>
+    </a>
+    <a class="chapter-card" href="chuong-0346.html" data-num="346" data-search="chương 346 chương 346: phim hoàn thành">
+      <span class="chapter-num">#0346</span>
+      <span class="chapter-name">Chương 346: Phim hoàn thành</span>
+    </a>
+    <a class="chapter-card" href="chuong-0347.html" data-num="347" data-search="chương 347 chương 347: trước mặt mọi người tỏ tình">
+      <span class="chapter-num">#0347</span>
+      <span class="chapter-name">Chương 347: Trước mặt mọi người tỏ tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0348.html" data-num="348" data-search="chương 348 chương 348: động tình mẹ con">
+      <span class="chapter-num">#0348</span>
+      <span class="chapter-name">Chương 348: Động tình mẹ con</span>
+    </a>
+    <a class="chapter-card" href="chuong-0349.html" data-num="349" data-search="chương 349 ">
+      <span class="chapter-num">#0349</span>
+      <span class="chapter-name">Chương 349</span>
+    </a>
+    <a class="chapter-card" href="chuong-0350.html" data-num="350" data-search="chương 350 ">
+      <span class="chapter-num">#0350</span>
+      <span class="chapter-name">Chương 350</span>
+    </a>
+    <a class="chapter-card" href="chuong-0351.html" data-num="351" data-search="chương 351 ">
+      <span class="chapter-num">#0351</span>
+      <span class="chapter-name">Chương 351</span>
+    </a>
+    <a class="chapter-card" href="chuong-0352.html" data-num="352" data-search="chương 352 chương 352: ăn trộm thanh tú chi di">
+      <span class="chapter-num">#0352</span>
+      <span class="chapter-name">Chương 352: Ăn trộm thanh tú chi di</span>
+    </a>
+    <a class="chapter-card" href="chuong-0353.html" data-num="353" data-search="chương 353 chương 353: sai sau chân tình">
+      <span class="chapter-num">#0353</span>
+      <span class="chapter-name">Chương 353: Sai sau chân tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0354.html" data-num="354" data-search="chương 354 chương 354: chân thật tuyết hàm">
+      <span class="chapter-num">#0354</span>
+      <span class="chapter-name">Chương 354: Chân thật Tuyết Hàm</span>
+    </a>
+    <a class="chapter-card" href="chuong-0355.html" data-num="355" data-search="chương 355 chương 355: tiểu di trở về">
+      <span class="chapter-num">#0355</span>
+      <span class="chapter-name">Chương 355: Tiểu di trở về</span>
+    </a>
+    <a class="chapter-card" href="chuong-0356.html" data-num="356" data-search="chương 356 ">
+      <span class="chapter-num">#0356</span>
+      <span class="chapter-name">Chương 356</span>
+    </a>
+    <a class="chapter-card" href="chuong-0357.html" data-num="357" data-search="chương 357 chương 357: võ giả thịnh hội">
+      <span class="chapter-num">#0357</span>
+      <span class="chapter-name">Chương 357: Võ giả thịnh hội</span>
+    </a>
+    <a class="chapter-card" href="chuong-0358.html" data-num="358" data-search="chương 358 chương 358: tiểu di thâm tình">
+      <span class="chapter-num">#0358</span>
+      <span class="chapter-name">Chương 358: Tiểu di thâm tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0359.html" data-num="359" data-search="chương 359 chương 359: suy đoán đáng sợ">
+      <span class="chapter-num">#0359</span>
+      <span class="chapter-name">Chương 359: Suy đoán đáng sợ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0360.html" data-num="360" data-search="chương 360 chương 360: lẫn nhau thăm dò">
+      <span class="chapter-num">#0360</span>
+      <span class="chapter-name">Chương 360: Lẫn nhau thăm dò</span>
+    </a>
+    <a class="chapter-card" href="chuong-0361.html" data-num="361" data-search="chương 361 chương 361: diệp phi băn khoăn">
+      <span class="chapter-num">#0361</span>
+      <span class="chapter-name">Chương 361: Diệp Phi băn khoăn</span>
+    </a>
+    <a class="chapter-card" href="chuong-0362.html" data-num="362" data-search="chương 362 chương 362: tiểu di cùng tiểu muội">
+      <span class="chapter-num">#0362</span>
+      <span class="chapter-name">Chương 362: Tiểu di cùng tiểu muội</span>
+    </a>
+
+  </div>
+  <p id="no-result" class="hidden" style="text-align:center;color:var(--text-dim);padding:3rem;font-family:var(--mono);font-size:.8rem;">Không tìm thấy chương nào.</p>
+</div>
+
+<script>
+const cards = Array.from(document.querySelectorAll('.chapter-card'));
+
+function filterChapters() {
+  const q = document.getElementById('search').value.toLowerCase();
+  let found = 0;
+  cards.forEach(c => {
+    const match = c.dataset.search.includes(q);
+    c.classList.toggle('hidden', !match);
+    if (match) found++;
+  });
+  document.getElementById('no-result').classList.toggle('hidden', found > 0);
+}
+
+function sortAsc() {
+  const g = document.getElementById('grid');
+  cards.sort((a,b) => +a.dataset.num - +b.dataset.num).forEach(c => g.appendChild(c));
+}
+function sortDesc() {
+  const g = document.getElementById('grid');
+  cards.sort((a,b) => +b.dataset.num - +a.dataset.num).forEach(c => g.appendChild(c));
+}
+
+function setTheme(t) { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+(function() { const t = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', t); })();
+</script>
+</body>
+</html>

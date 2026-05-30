@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 201 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 201</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 201</small>
+    Chương 201: Tâm linh tương thông
+  </h1>
+  <div class="chapter-body">
+    <p>"Ta còn có thể khôi phục sao?" Diệp Phi lộ vẻ kinh ngạc, tựa hồ không thể tin được lời mẹ nói. "Đương nhiên, dì Đông Phương của con nói, có một loại vật gọi là Băng Linh Thảo, có thể giúp con ngăn chặn những cương dương khí kia, hơn nữa thực lực còn có thể nâng cao một bước." Liễu Diệc Như khẽ cười nói, đồng thời nháy mắt với Đông Phương Nhược Lan. Để Diệp Phi không còn quá thất vọng, bà không nói cho Diệp Phi biết Băng Linh Thảo chỉ là khả năng tồn tại, hy vọng tìm được nó cực kỳ xa vời. "Đúng vậy, thứ này đang ở Trường Bạch sơn, ngày mai mẹ con sẽ đưa con đi hái." Đông Phương Nhược Lan thấy Liễu Diệc Như lo lắng cho Diệp Phi như vậy, trong lòng không đành lòng tiếp tục lừa gạt bà, nhưng cũng biết đây chỉ là kế hoãn binh vì hạnh phúc cả đời sau này của Liễu Diệc Như, cho nên đành phải phối hợp với Diệp Phi diễn tiếp vở kịch này, tin rằng sau này dù Liễu Diệc Như có biết chân tướng cũng sẽ không tự trách mình. Diệp Phi "Tin" lời họ, an ủi Liễu Diệc Như: "Mẹ, mẹ cũng đừng quá lo lắng, coi như không thể khôi phục cũng không sao mà, trước kia chẳng phải vẫn sống như vậy sao?" Trên mặt Liễu Diệc Như lộ ra một nụ cười nhạt, đây là lần đầu tiên bà cười kể từ khi Diệp Phi hôn mê đến nay, sự hiểu chuyện của con trai khiến bà cảm thấy rất an ủi. Nhìn đồng hồ đã hơn hai giờ chiều, Liễu Diệc Như nói: "Tiểu Mãn, nằm nhiều ngày như vậy, mỗi ngày chỉ truyền dịch dinh dưỡng, con chắc đói lắm rồi phải không? Mẹ đi nấu cơm cho con, Nhược Lan, con cũng ở lại ăn cùng đi." "Được ạ." Đông Phương Nhược Lan gật đầu đồng ý, nàng quả thực chưa ăn cơm trưa, hơn nữa ở đây cũng không cần khách khí. "Vậy các con chờ chút." Liễu Diệc Như nói xong liền đi vào bếp. Diệp Phi hiện tại đã tỉnh lại, tuy cơ thể còn chút bất ổn nhưng đã đủ khiến bà cảm thấy vô cùng vui mừng, vì thế bà cũng có cảm giác thèm ăn. Sau khi Liễu Diệc Như rời đi, Đông Phương Nhược Lan không còn vẻ nghiêm túc lúc trước, ngồi xuống bên cạnh Diệp Phi, khẽ cười nói: "Tiểu bại hoại, không phải không có tiến triển sao? Bằng không sao con nhanh 'tỉnh' lại như vậy?" "Có thể nói là có, nhưng cũng có thể nói là không." Diệp Phi không khỏi cười khổ. Vừa rồi tuy rất sướng nhưng đó không phải điều hắn muốn, hắn hy vọng có được Liễu Diệc Như sau khi bà toàn tâm toàn ý trao trọn cho hắn, chứ không phải sự cố ngoài ý muốn vừa rồi. Vì vậy, hắn hơi buồn bực kể lại chuyện vừa rồi cho Đông Phương Nhược Lan nghe, vì kế hoạch này vốn do hai người bày ra nên Diệp Phi không cần phải giấu diếm nàng. "Như vậy cũng không tệ." Đông Phương Nhược Lan cười nói: "Con có thể coi như đã tiến một bước dài rồi. Mặc dù là ngoài ý muốn, nhưng dù sao cũng đã có lần đầu tiên, sau này nếu còn muốn, trong lòng nàng hẳn sẽ không còn bài xích nhiều như vậy. Nếu không có lần này, dù trong lòng nàng có nguyện ý, hai người cũng rất khó bước ra bước đó." "Cũng đúng." Diệp Phi gật đầu, không còn bận tâm chuyện ngoài ý muốn kia nữa, nhưng lại muốn tìm hiểu chỗ quái dị của Liễu Diệc Như, liền kể cho Đông Phương Nhược Lan nghe, cuối cùng hỏi: "Nàng như vậy, có phải cũng giống 'ruột dê' của nàng, là một loại 'danh khí' không?" Bị Diệp Phi nhắc đến chỗ thầm kín, dù đã có quan hệ thực sự với hắn nhưng Đông Phương Nhược Lan vẫn không nhịn được đỏ mặt, tuy nhiên vẫn nói: "Chắc là vậy, nhưng ta chưa từng thấy ghi chép loại này trong sách thuốc, từ xưa đến nay danh khí kiểu này hẳn là rất hiếm gặp. Phúc khí của con thật không nhỏ, nhưng cũng chỉ có con mới chịu nổi, nếu là người bình thường, sợ rằng tiêu hóa không nổi đâu." "Đó là tất nhiên!" Diệp Phi cười đắc ý. Nếu không nhờ thân thể gần như kim cương bất hoại của mình, sợ rằng vừa rồi đã bị sự cực nhiệt cực lạnh của mẹ làm cho liệt dương rồi, đặc biệt là sự sụp đổ không thể khống chế cuối cùng kia khiến hắn càng dư vị không thôi. Liễu Diệc Như rất đảm đang, chỉ mất chưa đầy nửa tiếng đã làm xong một bàn cơm trưa sắc hương vị đủ cả. Ba người ăn uống rất ngon miệng. Vì hiện tại sự chú ý đều đặt trên người Diệp Phi, Liễu Diệc Như nhất thời quên mất chuyện vừa rồi, đối mặt với hắn không còn cảm giác nóng mặt tim đập nữa, chỉ không biết bà là thật sự quên hay đã bắt đầu chậm rãi quen dần. Cơm nước xong, Diệp Phi trở về phòng thay quần áo, nói với Liễu Diệc Như: "Mẹ, con ra ngoài một chuyến ạ." "À? Con muốn đi đâu?" Liễu Diệc Như không khỏi ngẩn ra. Với tình trạng hiện tại của Diệp Phi, hắn nên ở nhà nghỉ ngơi mới đúng. Diệp Phi cười nói: "Ngày mai chúng ta phải đi xa, con muốn đến Lăng Vân Hội xem thế nào, tiện thể bàn giao một số chuyện." "Vậy mẹ đi cùng con nhé." Liễu Diệc Như vội nói. Trước kia Diệp Phi có thể trấn áp những kẻ hắc đạo kia là nhờ thực lực gần như vô địch, nhưng hiện tại hắn sợ rằng đến một thùng nước cũng không nhấc nổi, Liễu Diệc Như thực sự sợ hắn xảy ra chuyện gì. Diệp Phi tự tin cười bảo: "Không sao đâu, con tự đi là được. Mẹ là người làm ăn chân chính, tốt nhất không nên tiếp xúc với những thứ này. Hơn nữa, Lăng Vân Hội hiện tại do Trương gia gia chưởng quản, đối với ông ấy chúng ta nên yên tâm mới phải." "Vậy... được rồi, con đi sớm về sớm nhé." Liễu Diệc Như gật đầu nhẹ, trong lòng có chút thất lạc vì con trai hiện tại không còn cần sự giúp đỡ của mình nữa. Nhưng nhiều hơn cả là vui mừng, hắn bây giờ đã có thể một mình đảm đương một phía. Liễu Diệc Như cảm nhận được, hắn thật sự đã lớn lên rồi, không chỉ là tâm lý mà còn cả thân thể, điều mà chính bà vừa tự mình trải nghiệm. Tiễn Diệp Phi rời khỏi biệt thự, khóe miệng Liễu Diệc Như lộ ra một nụ cười an nhiên. Trong lòng bà đột nhiên có cảm giác vô cùng an tâm và an toàn. Loại cảm giác này, trong cuộc đời mình, bà chỉ từng cảm nhận được từ cha khi còn nhỏ, ngay cả người chồng không có bao nhiêu tình cảm cũng chưa từng mang lại cho bà. Hôm nay, bà lại cảm nhận được từ con trai. Người ta vẫn nói, đời người phụ nữ, khi còn nhỏ ỷ lại vào cha, sau khi kết hôn ỷ lại vào chồng, về già ỷ lại vào con. Chẳng lẽ mình đã già rồi sao? Hay nói cách khác, bà đã tìm thấy loại cảm giác ỷ lại mà chồng không thể cho mình trên người con trai? Từ trong biệt thự đi ra, Diệp Phi đi một đoạn rồi bắt taxi. Tuy hiện tại hắn đã học lái xe, nhưng vì chưa đủ tuổi nên chưa có bằng, trong trường hợp không cần thiết hắn sẽ không tự lái xe. Dù sao thân phận bây giờ của hắn rất nhạy cảm, vừa là đương gia bang hội lớn nhất Vọng Hải, lại là cháu ruột thị trưởng. Nếu quá phô trương sẽ gây ảnh hưởng không tốt đến Liễu Phượng Nghi, hơn nữa đối với việc triệt để khống chế Vọng Hải cũng không có lợi ích gì. Dù sao hắn không thể dùng công cụ biến mỗi người thành khôi lỗi của mình, cho nên dân tâm vẫn là thứ rất quan trọng. Tại tầng hầm ngầm của Lăng Vân Hội, Diệp Phi gặp Trương Nhất Đức và nhóm đầu trọc đang miệt mài chế tạo cao thủ. Hiện tại những người ở Vọng Hải đã được cải tạo xong xuôi. Tiếp theo, nhóm đầu trọc sẽ trở về Lâm Hải để tiếp tục thao tác như cũ. Đợi đến khi hoàn toàn khống chế được Lâm Hải, bước tiếp theo là kết hợp với Vọng Hải và Lâm Hải, tịnh xưng là ba thành phố ven biển Đông Nam. Một khi khống chế được cả vùng ven biển, Lăng Vân Hội sẽ nắm chặt "Thiết Tam Giác" vùng Đông Nam này, đến lúc đó dù những đại lão phía trên muốn động đến Lăng Vân Hội cũng phải cân nhắc kỹ lưỡng. "Lão đại, anh đến rồi à?" Sau khi Diệp Phi vào trong, gã Tím Mao mắt sắc thấy hắn đầu tiên, rất kinh hỉ reo lên. Họ ngày đêm không ngừng chế tạo cao thủ tuy có cảm giác thành tựu, nhưng thời gian dài cũng khó tránh khỏi đôi chút buồn tẻ. Hiện tại đột nhiên thấy Diệp Phi - lão đại kiêm thần tượng của họ tới, sao có thể không cao hứng cho được? Diệp Phi đến đây không phải vì không tin họ, dù sao họ đều là tâm phúc tuyệt đối của hắn. Hôm nay tới, một là để xem tiến triển công việc, hai là vì chuyện Huyền Âm Môn của Lý Tư. Sau khi trở về, Diệp Phi vẫn muốn tìm Huyền Âm Môn để thực hiện lời hứa chăm sóc họ, nhưng mấy ngày nay việc không dứt, ngày mai lại phải cùng Liễu Diệc Như đi Đông Bắc, nên trong thời gian ngắn Diệp Phi không có thời gian tìm Huyền Âm Môn. Mà đại bản doanh của nhóm đầu trọc hiện đang ở Lâm Hải, nên Diệp Phi muốn họ giúp mình trông chừng một chút, chuyện khác chờ mình trở về rồi tính. Sau khi tùy tiện trò chuyện với Trương Nhất Đức, Diệp Phi nhắc đến chuyện Huyền Âm Môn. Đầu trọc hỏi: "Lão đại, anh muốn chúng ta bảo vệ họ thế nào? Là trong âm thầm hay trực tiếp tiếp xúc?" Diệp Phi suy nghĩ một chút: "Tạm thời không cần để họ biết, chỉ cần âm thầm bảo vệ là được. Một khi có người khả nghi muốn tiếp cận họ, các người lập tức khống chế lại, tốt nhất là biến hắn thành người của chúng ta. Đúng rồi, đây là địa chỉ Huyền Âm Môn, các người xem qua rồi phá hủy nó đi." Nói xong, Diệp Phi đưa cho đầu trọc một mảnh giấy ghi địa chỉ. "Yên tâm đi lão đại, chỉ cần có chúng em ở đây, tuyệt đối sẽ không để hậu nhân của bạn anh xảy ra bất cứ vấn đề gì. Dù kẻ địch có mạnh đến đâu, bọn em cũng sẽ chết trước họ." Đầu trọc trịnh trọng nhận lấy mảnh giấy, đảm bảo với Diệp Phi. Diệp Phi lắc đầu: "Nếu kẻ địch quá mạnh, các người đừng ra mặt. Vì các người cũng là bạn của ta, hơn nữa còn thân thiết hơn Lý Tư nhiều, ta không muốn vì chuyện của hắn mà hy sinh các người." Tuy biết Diệp Phi là một lão đại tốt, nhưng khi nghe lời này, nhóm đầu trọc vẫn vô cùng cảm động, đồng thanh đáp: "Biết rồi ạ, bọn em sẽ cẩn thận." "Nhưng các người cũng không cần quá lo lắng." Diệp Phi cười tiếp tục nói: "Vì Lý Tư vốn là một trong ba đại cao thủ dưới trướng người nọ, thực lực còn kém các người một chút. Cho nên dù kẻ đó phái hai đại cao thủ còn lại đến cũng không gây ra đe dọa gì cho các người đâu." Hắn vẫn chưa biết đại hán bị hắn tiêu diệt trong căn cứ bí mật kia thực chất cũng là một trong ba đại cao thủ, nên hiện tại bên cạnh kẻ đó chỉ còn lại một cao thủ, tự nhiên sẽ không dễ dàng phái đi. Giao việc xong, Diệp Phi không dừng lại lâu, nhanh chóng rời khỏi Lăng Vân Hội. Nhưng hắn không vội về nhà, vì nghĩ đến chuyện hiện tại đã cuối tháng mười, dù thời tiết Vọng Hải còn nóng nhưng Trường Bạch sơn chắc chắn đã rất lạnh rồi, nên hắn cần chuẩn bị cho mẹ một ít quần áo chống lạnh. Bắt xe đến một trung tâm thương mại gần biệt thự Liễu gia, Diệp Phi theo nhân viên phục vụ đi lên tầng bốn khu trang phục mùa đông. Vì chưa vào mùa nên nơi này khá vắng vẻ, ngoài vài người bán hàng trông có vẻ ủ rũ ra thì chẳng có ai. Diệp Phi không để ý đến mấy cô nhân viên vừa thấy hắn đã mắt sáng lên, cứ tùy ý đi dạo quanh khu vực. Đột nhiên, một chiếc áo khoác lông chồn trắng muốt đập vào mắt Diệp Phi. Chỉ một cái nhìn, Diệp Phi đã chấm nó ngay, bởi vì màu sắc và kiểu dáng quá hợp với Liễu Diệc Như. Nếu mặc vào, chắc chắn bà sẽ càng thêm xinh đẹp. Có chút không thể chờ đợi được, hắn lấy chiếc áo trên kệ xuống. Trước mắt Diệp Phi hiện lên hình ảnh: Nàng như nữ thần, mặc chiếc áo khoác trắng muốt, lặng lẽ đứng giữa đất trời trắng xóa cùng màu. Đó là một hình ảnh đẹp đến nhường nào! "Tiểu thư, phiền cô gói cái này lại giúp tôi." Đúng lúc này, một giọng nói mỹ diệu vô cùng quen thuộc cắt ngang mơ mộng của Diệp Phi, khiến hắn không nhịn được quay đầu lại. Chỉ thấy nữ thần của hắn —— mẹ Liễu Diệc Như đang đứng cách đó không xa, tay cầm một chiếc áo lông nam màu đen, đang nhờ nhân viên gói lại. Một người phụ nữ luôn đặt mình ở vị trí đầu tiên trong mọi việc như vậy, mình có lý do gì mà không yêu thương bà cả đời cơ chứ? Diệp Phi cảm thấy trong lòng tràn đầy hạnh phúc, không nhịn được gọi lên: "Mẹ!" Liễu Diệc Như đưa áo lông cho nhân viên, lòng nghĩ đến cảnh hắn mặc bộ y phục mình chọn, chợt nghe thấy tiếng Diệp Phi. Bà vội vàng quay đầu lại xem, thấy hắn đã đi tới cạnh mình, tay cầm chiếc áo lông chồn trắng muốt. Chiếc áo này bà vừa rồi cũng đã nhìn thấy, vừa nhìn đã thích ngay, chỉ là trong lòng bà chuyện quan trọng nhất vẫn là mua quần áo cho Diệp Phi, còn phần của mình định lát nữa tính sau. Không ngờ Diệp Phi đã chọn giúp bà từ trước. Mặc dù là mẹ con, nhưng Liễu Diệc Như không có cảm giác tâm linh tương thông như Diệp Vân Khinh với Diệp Phi. Trước đây bà cũng có chút hâm mộ, nhưng biết đó là sự đặc biệt của cặp song sinh long phượng, người khác không thể có được. Thế nhưng vào khoảnh khắc này, bà đột nhiên cảm thấy mình và hắn cũng có loại tâm linh tương thông bình thường không cảm nhận được ấy. Bằng không tại sao cả hai đều đến siêu thị này, hơn nữa sau khi vào, người đầu tiên nghĩ đến là mua quần áo chống lạnh cho đối phương, còn lại trùng hợp chọn đúng cùng một món đồ? Điều này khiến trong lòng bà âm thầm nảy sinh một loại hạnh phúc không nên có. Loại hạnh phúc này không giống với tình cảm quan tâm lẫn nhau giữa mẹ con, mà lại còn mỹ diệu hơn thế nhiều.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0200.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0202.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 199 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 199</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 199</small>
+    Chương 199: Ngoài ý muốn như nguyện
+  </h1>
+  <div class="chapter-body">
+    <p>"Cái này tuyệt đối không thể cho mụ mụ dùng!" Mặc dù biết đây nhất định là biện pháp tốt nhất hiện tại, nhưng Diệp Phi lại nghĩ cũng không nghĩ, lắc đầu bác bỏ đề nghị của Diệp Vân Khinh.</p>
+    <p>"Vì cái gì nha?" Diệp Vân Khinh có chút khó hiểu hỏi: "Chẳng lẽ ngươi hiện tại đổi ý rồi? Hay là ngươi không muốn dùng phương pháp như vậy?"</p>
+    <p>Diệp Phi lắc đầu nói: "Không phải, chủ ý của ta trước giờ chưa từng thay đổi, hơn nữa chỉ cần có thể để mụ mụ trở thành một người phụ nữ thực sự hạnh phúc, dùng chút thủ đoạn cũng không sao, nhưng thứ này tuyệt đối không được. Nếu chỉ có tác dụng thôi tình thì thôi, đằng này hiệu quả mê huyễn của nó lại gây hại cho não bộ."</p>
+    <p>"Nguyên lai ngươi đang lo lắng cái này!" Diệp Vân Khinh có chút bất mãn bĩu môi: "Ngươi cho rằng ta sẽ để mụ mụ dùng thứ có hại sao? Ngươi yêu nàng, ta cũng yêu nàng như vậy, làm sao có thể hại nàng? Đây là thứ ta chuyên môn lấy được từ chỗ bọn người đầu trọc thông qua con đường rất đặc thù, tuyệt đối không có bất kỳ tác dụng phụ nào. Hơn nữa, dù bọn họ có đoán sai, thứ này thật sự có chút tác dụng phụ đi nữa, thì đó cũng chỉ là đối với người bình thường mà thôi. Ngươi cảm thấy với nội lực của mụ mụ, lại sợ chút tác dụng phụ nho nhỏ này sao? Còn nữa, thứ này vô sắc vô vị, hơn nữa tác dụng rất chậm, thông thường sau khi uống phải ba đến năm tiếng mới bắt đầu có cảm giác, mười tiếng sau mới đạt tới đỉnh điểm, cho nên ngươi không cần lo lắng nàng sẽ phát hiện ra điều gì."</p>
+    <p>Diệp Phi sững sờ, lập tức nở nụ cười khổ. Mình lại một lần nữa quan tâm quá mức sinh loạn rồi. Tuy trước đó đã tự nhắc nhở bản thân rằng những người phụ nữ mình yêu chẳng ai là kẻ yếu, nhưng khi đối mặt với họ, mình căn bản không thể giữ được tâm bình tĩnh, đặc biệt là với người mẹ – nữ thần trong lòng mình, mình càng sợ nàng phải chịu dù chỉ một chút tổn thương, bởi vậy thường xuyên bỏ qua thực lực không tầm thường của nàng.</p>
+    <p>Diệp Vân Khinh thấy Diệp Phi lâm vào trầm tư, biết rằng hắn đã thoát ra khỏi suy nghĩ cực đoan, trên mặt không khỏi lộ ra nụ cười, ghé sát vào hôn lên mặt hắn một cái, rồi đưa bình nhỏ trong tay cho hắn, nói: "Vậy ta đi trước đây, chúc ngươi sớm ngày thành công, để mụ mụ cũng có thể cảm nhận được hiếu tâm lớn nhất của ngươi dành cho nàng."</p>
+    <p>Nói xong, Diệp Vân Khinh ngồi dậy định mặc quần áo rời đi, không ngờ Diệp Phi lại ôm lấy nàng, khiến nàng nằm xuống lần nữa, ôn nhu nói: "Không cần vội đi, nằm cùng ta một lát đã."</p>
+    <p>"Nhưng mà, nếu mụ mụ phát hiện thì sao?" Diệp Vân Khinh trong lòng cũng rất không muốn rời đi, dù sao đã xa cách Diệp Phi cả tuần lễ, làm sao nàng không nhớ nhung? Chỉ là hiện tại Diệp Phi đang thực hiện kế hoạch liên quan đến hạnh phúc của mụ mụ và cả bản thân sau này, nàng không muốn vì sự ích kỷ của mình mà phá hỏng chuyện đó.</p>
+    <p>Hoàn toàn hiểu rõ tâm tư của Diệp Vân Khinh, Diệp Phi không khỏi siết chặt vòng tay, cười nói: "Không sao đâu, mụ mụ đã ngủ rồi, nàng đi trước khi mụ mụ thức dậy là được."</p>
+    <p>"Ừ." Dù không hiểu rõ vì sao ca ca lại biết tình hình phía mụ mụ, nhưng Diệp Vân Khinh cực kỳ tin tưởng hắn, vì vậy cũng không vội rời đi nữa, vặn vẹo cơ thể mềm mại, tìm một tư thế thoải mái nhất để lặng lẽ nép vào lòng hắn.</p>
+    <p>So với sự cuồng nhiệt vừa rồi, việc được lặng lẽ tựa vào người Diệp Phi lúc này đối với Diệp Vân Khinh là một kiểu hưởng thụ chí cao vô thượng khác. Bản thân nàng cũng không nói rõ được mình thích cảm giác nào hơn, bởi vì dù là lúc bị hắn làm cho dục tiên dục tử, hay là lúc yên tĩnh nằm trên người hắn như bây giờ, đều khiến nàng cảm thấy mình thuộc về hắn. Chỉ có như vậy, nàng mới có thể hoàn toàn an tâm, nếu không có hắn bên cạnh, nàng sẽ thấy trong lòng mình như thiếu mất một mảng lớn.</p>
+    <p>"Kế hoạch của ta, ngươi đã nói cho Linh Linh chưa? Nếu chưa thì nói cho nàng biết đi, kẻo nàng lo lắng." Sau một hồi lâu, Diệp Phi đột nhiên nói.</p>
+    <p>Lúc này, Diệp Vân Khinh đã mệt nhoài và sắp ngủ thiếp đi, mơ mơ màng màng đáp: "Yên tâm đi, chỗ Linh Linh và Tiêu a di ta đều đã nói hết rồi, các nàng đều rất ủng hộ ngươi."</p>
+    <p>"Vậy là tốt rồi." Diệp Phi nhẹ nhàng vỗ về tấm lưng ngọc bóng loáng của Diệp Vân Khinh: "Ngủ một chút đi."</p>
+    <p>Khoảng hơn năm giờ sáng, Diệp Vân Khinh đã ngủ một giấc ngon lành và tỉnh dậy. Dù thời gian ngủ không dài, nhưng vì ở bên cạnh Diệp Phi nên nàng cảm thấy vô cùng an tâm, tinh thần cực kỳ phấn chấn. Thấy trời đã sáng, nàng hôn lên khóe miệng Diệp Phi một cái, sau đó nhanh chóng mặc quần áo tử tế, lại chui ra ngoài bằng khung cửa sổ tối hôm qua. Thân thủ của nàng hiện đã cao hơn Liễu Diệc Như rất nhiều, cho nên dù lúc này Liễu Diệc Như đã tỉnh, cũng không thể phát hiện ra nàng.</p>
+    <p>Bóng dáng Diệp Vân Khinh vừa biến mất, Diệp Phi liền mở mắt. Vừa rồi khi Diệp Vân Khinh tỉnh dậy, hắn cũng tỉnh, chỉ là không mở mắt và không lên tiếng mà thôi. Bởi hắn biết Diệp Vân Khinh thực sự không nỡ rời xa mình, nếu hắn tỉnh táo, nàng lúc rời đi chắc chắn sẽ rất buồn, nên hắn đành giả vờ ngủ. Dù sao chẳng bao lâu nữa có thể quang minh chính đại ở bên nàng trong căn nhà này rồi, cũng không kém gì một lúc này.</p>
+    <p>Sau khi Diệp Vân Khinh rời đi, Diệp Phi bắt đầu thực hiện kế hoạch của mình. Nhìn cái bình nhỏ đặt ở đầu giường, khóe miệng hắn nở nụ cười, bởi hắn biết Liễu Diệc Như có thói quen nhiều năm, đó là mỗi lần trước khi nghỉ ngơi đều chuẩn bị một ly nước sôi, hôm sau tỉnh dậy uống cạn để nhanh chóng tỉnh táo. Nếu Diệp Vân Khinh đưa loại thuốc có tác dụng nhanh thì thói quen này có lẽ không dùng được, nhưng vì thuốc này phải mấy tiếng sau mới có hiệu quả, nên Diệp Phi không cần phải cố kỵ gì cả.</p>
+    <p>Tiến vào trạng thái ý cảnh đặc biệt, Diệp Phi phát hiện Liễu Diệc Như vẫn chưa tỉnh. So với tối hôm qua, lúc này nàng đắp một tấm chăn mỏng, tấm chăn che đi những bộ phận quan trọng, chỉ để lộ đôi chân dài mượt mà, trắng như ngọc cùng nửa bầu ngực đầy đặn. Cảnh tượng đó vẫn không hề giảm bớt sự hấp dẫn của cơ thể mỹ miều trưởng thành này đối với Diệp Phi, ngược lại, hiệu ứng thị giác như ẩn như hiện này suýt chút nữa khiến Diệp Phi thoát khỏi ý cảnh vì quá kích động.</p>
+    <p>Vội vàng rút khỏi ý cảnh, Diệp Phi không dám nhìn nữa, vì hắn sợ nếu nhìn tiếp sẽ không nhịn được mà làm chuyện gì đó khi nàng chưa nguyện ý.</p>
+    <p>Lặng lẽ rời khỏi phòng, Diệp Phi lười mặc quần áo, cứ thế để nguyên trạng bước đến trước cửa phòng Liễu Diệc Như, nhẹ nhàng hé cửa, đổ một viên thuốc từ trong bình ra, búng tay một cái, viên thuốc rơi chuẩn xác vào trong ly nước đặt ở đầu giường Liễu Diệc Như.</p>
+    <p>Sau khi hoàn thành tất cả, Diệp Phi nhanh chóng trở về phòng mình, dọn dẹp chút hỗn độn do tối hôm qua cùng Diệp Vân Khinh tạo ra, rồi nằm xuống với tư thế giống hệt lúc Liễu Diệc Như ra ngoài hôm qua.</p>
+    <p>Khi tỉnh dậy, Liễu Diệc Như cảm thấy đầu óc hơi choáng váng. Tối hôm qua nàng lại nằm mơ, trong mơ vẫn xuất hiện Diệp Phi. Nàng đã mơ thấy giấc mơ này không chỉ một lần, mà mấy ngày qua, ngày nào cũng mơ, thậm chí càng ngày càng hoang đường. Lúc đầu chỉ là mơ thấy hai người dùng tay giúp đỡ nhau, sau đó phát triển dần đến hôn khắp toàn thân, còn tối hôm qua, nàng lại mơ thấy vật đại đồ vật mà mấy ngày nay mình luôn tiếp xúc đã tiến vào thân thể mình, mang lại cho nàng khoái cảm vô thượng.</p>
+    <p>Giấc mơ này khiến Liễu Diệc Như rất rối bời, nhưng nàng lại phát hiện mình không hề bài xích, ngược lại còn có chút thích thú. Đặc biệt là giấc mộng đêm qua, bây giờ nhớ lại vẫn khiến nàng cảm thấy toàn thân bủn rủn, có xúc động muốn nhắm mắt lại tiếp tục mơ tiếp.</p>
+    <p>Cầm lấy cái ly trên tủ đầu giường, Liễu Diệc Như uống cạn chỗ nước đã nguội, lúc này đầu óc mới trở nên tỉnh táo đôi chút. Vì tỉnh táo, nàng không khỏi đỏ mặt vì những suy nghĩ vừa rồi, đành tự an ủi trong lòng rằng đó chỉ là giấc mơ mà thôi, đúng, chỉ là giấc mơ!</p>
+    <p>Thuyết phục bản thân xong, Liễu Diệc Như đứng dậy mặc quần áo, lặng lẽ mở cửa phòng Diệp Phi, vén chăn trên người hắn nhìn thoáng qua. Thấy "cái đó" của hắn tuy đang dựng đứng lên nhưng rõ ràng chưa đến mức độ đó, nàng mới yên tâm ra ngoài.</p>
+    <p>Nguyên liệu nấu ăn trong nhà không còn nhiều, Liễu Diệc Như phải đi mua thêm. Dù hiện tại vì chuyện của Diệp Phi mà nàng không có chút khẩu vị nào, nhưng bữa nào nàng cũng ép mình phải ăn một chút, bởi nàng biết nếu mình gục ngã thì sẽ không còn ai giúp con trai nữa. Hơn nữa nàng biết Diệp Phi rất thương mình, nếu hắn tỉnh lại mà thấy nàng gầy gò, trong lòng nhất định sẽ rất khó chịu. Cho nên dù không muốn ăn, nàng cũng muốn duy trì trạng thái của mình tốt như trước.</p>
+    <p>Trên đường lái xe đến siêu thị, không biết sao, trong đầu Liễu Diệc Như lại hiện lên cảnh tượng trong mơ, đặc biệt là cảnh hắn xâm chiếm cơ thể nàng luôn hiện lên rõ mồn một trong tâm trí. Điều này khiến nàng rất ngượng ngùng, nhưng lại không thể nhịn được mà suy nghĩ.</p>
+    <p>Chẳng lẽ mình thực sự đã nảy sinh khát vọng với hắn sao? Liễu Diệc Như tự hỏi, dù không muốn thừa nhận, nhưng nàng cảm thấy mình như đã thực sự trầm luân, bằng không vừa rồi nàng đã không cố ý nhìn vào "thứ xấu xa" đó thêm một cái ngay khi biết hắn sẽ không đến mức độ kia vào buổi sáng.</p>
+    <p>Trong lòng tâm phiền ý loạn, Liễu Diệc Như tiện tay mua ít đồ ở siêu thị rồi quay về nhà. Cất nguyên liệu vào tủ lạnh xong, nàng ngồi xuống trong phòng khách, chính sự tĩnh lặng này lại khiến nàng không nhịn được mà nhớ lại những cảnh tượng ngượng ngùng trong mơ.</p>
+    <p>Bình thường Liễu Diệc Như là một người rất tĩnh lặng, dù ngồi đó cả ngày không làm gì cũng không cảm thấy bực bội, nhưng hôm nay nàng phát hiện mình căn bản không làm được như trước, thậm chí ngay cả việc tu luyện tâm pháp gia truyền cũng không thể tĩnh tâm.</p>
+    <p>Ai, đều tại giấc mơ đáng chết đó! Liễu Diệc Như đổ lỗi cho giấc mộng đêm qua, nhưng dù miệng thì mắng, trong lòng nàng lại không nhịn được mà dư vị lại cảnh tượng đó, như một cuốn phim cứ lặp đi lặp lại trước mắt.</p>
+    <p>Cứ nhịn đến tận giữa trưa, Liễu Diệc Như đứng dậy định vào bếp nấu gì đó ăn, nhưng vừa cử động lại cảm thấy phía dưới ướt át khó chịu. Cảm giác này nàng không hề lạ lẫm, vì mấy ngày qua mỗi khi tỉnh dậy đều như vậy, chỉ là không ngờ hôm nay ngay cả khi chưa ngủ cũng như thế.</p>
+    <p>Thở dài bất đắc dĩ, Liễu Diệc Như vào phòng tắm, nàng muốn tắm nước lạnh cho tỉnh táo lại.</p>
+    <p>Cởi hết quần áo, đứng trước gương trong phòng tắm, Liễu Diệc Như cẩn thận đánh giá bản thân. Khuôn mặt vẫn kiều diễm như tuổi đôi mươi, dáng người không hề biến dạng theo thời gian, dù đã sinh một cặp long phượng thai, bụng vẫn phẳng lì như thời thiếu nữ, vòng eo vẫn thon gọn, hơn nữa vì từng cho con bú, đôi gò bồng đảo còn to tròn hơn cả thời trẻ, không hề có dấu hiệu chảy xệ.</p>
+    <p>Từ lúc sinh ra đến giờ, đây là lần đầu tiên Liễu Diệc Như cảm thấy tự hào về khuôn mặt và dáng người hoàn mỹ của mình. Hai tay không khỏi đặt lên đôi gò bồng đảo, ừ, thật sự rất lớn, cảm giác rất tuyệt, tin rằng dù là hắn, một tay cũng chắc chắn không nắm trọn được nhỉ? Liễu Diệc Như ngượng ngùng nghĩ, chắc là vậy rồi, dù sao trong mơ, một tay hắn cũng không nắm hết được.</p>
+    <p>Mở vòi hoa sen, Liễu Diệc Như để dòng nước lạnh xối lên người. Không ngờ dòng nước nghịch ngợm lại xối trúng hai đầu nhũ hoa, khiến cơ thể nàng run lên một hồi.</p>
+    <p>Liễu Diệc Như cảm giác cơ thể mình như nhóm lên một mồi lửa, dòng nước lạnh chẳng những không dập tắt được mà ngược lại khiến nó ngày càng mãnh liệt. Lúc này, nàng không khỏi nhớ tới Diệp Phi đang trong phòng, nhớ tới "cái thứ xấu xa" kia. Trong lòng dường như có một ma lực dẫn dắt nàng muốn đến gần vật đó.</p>
+    <p>Đã đến giữa trưa, cũng nên giúp hắn một lần vậy. Tự tìm lý do cho mình, Liễu Diệc Như tùy tiện quấn một chiếc khăn tắm rồi xoay người rời phòng tắm, đi đến phòng Diệp Phi.</p>
+    <p>Vén chăn của Diệp Phi lên, quả nhiên, vật đó của hắn đã căng đến cực hạn. Liễu Diệc Như trong lòng động đậy, vội vàng đưa tay nắm lấy. Nhưng điều khiến nàng khó hiểu là tâm tính mình hôm nay khi cầm nó không giống trước. Trước kia đều là nghĩ đến giúp hắn "trị liệu", nhưng hôm nay lại là kìm lòng không được.</p>
+    <p>Cắn cắn môi, Liễu Diệc Như định cử động như cũ nhưng lại dừng lại, bởi nàng đột nhiên ngửi thấy một mùi mồ hôi nhàn nhạt.</p>
+    <p>Đúng rồi, hắn đã nằm mấy ngày nay, dù không cử động thì trên người cũng sẽ có chút mồ hôi, vậy mình giúp hắn lau rửa một chút đi.</p>
+    <p>Nghĩ vậy, Liễu Diệc Như ôm lấy Diệp Phi, vào phòng tắm của hắn. Với người có nội lực thâm hậu như nàng, hơn một trăm cân thể trọng của Diệp Phi căn bản chẳng là gì.</p>
+    <p>Vào phòng tắm, Liễu Diệc Như đặt Diệp Phi xuống sàn, mình cũng ngồi xổm xuống, lại thấy chiếc khăn tắm trên người vô cùng vướng víu.</p>
+    <p>Dù sao cũng không có ai nhìn thấy! Tự tìm lý do cho mình xong, Liễu Diệc Như cởi phăng khăn tắm, sau đó cầm vòi hoa sen, chỉnh nước ấm rồi nhẹ nhàng rửa cho Diệp Phi.</p>
+    <p>Đợi cơ thể Diệp Phi đã ướt, Liễu Diệc Như cầm sữa tắm đổ một ít ra tay, chà xát thành bọt, định thoa lên người con trai, không ngờ hai tay lại kìm lòng không được mà trực tiếp cầm lấy con chim lớn đang căng cứng kia, mượn độ trơn của sữa tắm mà khuấy động một cách thông thuận hơn cả trước kia.</p>
+    <p>Đã vậy, thì rửa chỗ này trước đi! Trong lòng tự tìm lý do, Liễu Diệc Như yên tâm thoải mái đùa bỡn dương vật của con trai. Chỉ là khác với trước kia, lúc đó nàng chỉ muốn giúp hắn nhanh chóng bắn ra, còn bây giờ lại không hề nghĩ vậy, ngược lại hy vọng hắn chậm chút nữa để mình chơi thêm một lúc.</p>
+    <p>Vì lo Diệp Phi bắn quá sớm, tốc độ khuấy động của Liễu Diệc Như không khỏi chậm lại, nhưng kỹ thuật lại nhiều hơn rất nhiều. Khi thì hai tay nắm lấy nhẹ nhàng vuốt ve, khi thì một tay khuấy động, tay kia lại đặt trên quy đầu của hắn, để quy đầu thô ráp ma sát nhẹ nhàng vào lòng bàn tay kiều nộn của mình.</p>
+    <p>"Nha..." Cảm giác tê tê dại dại sinh ra từ sự ma sát giữa quy đầu nóng rực và lòng bàn tay khiến Liễu Diệc Như không nhịn được mà rên rỉ. Đột nhiên trong lòng nảy ra một ý nghĩ đáng sợ: Chỉ mới chạm vào lòng bàn tay đã thoải mái như vậy rồi, nếu để hắn cắm vào thì chắc chắn còn thoải mái hơn cả trong mơ!</p>
+    <p>Dù biết ý nghĩ này rất hoang đường, nhưng Liễu Diệc Như không thể khống chế nổi bản thân. Dục hỏa mãnh liệt khiến đôi chân nàng bủn rủn, không thể ngồi xổm vững được nữa, vì vậy nàng đổi tư thế, ngồi bên cạnh con trai, tay phải vẫn nắm lấy dương vật hắn vuốt ve, tay trái lại lần mò vào giữa đôi đùi mình, tìm thấy tiểu huyệt ướt át như mật đào, dùng ngón cái và ngón giữa nhẹ nhàng đẩy hai mảnh mép lớn ra, rồi dùng ngón trỏ gảy nhẹ lên âm hạch đang cương cứng.</p>
+    <p>Hai tay cùng động tác, đôi mắt đẹp của Liễu Diệc Như chăm chú nhìn vào con chim lớn nóng bỏng của con trai, hơi thở ngày càng dồn dập, trong lòng thậm chí đã bắt đầu ảo tưởng về cảm giác hắn cắm vào trong lồn mình.</p>
+    <p>Dưới sự thiêu đốt của dục hỏa, hiệu quả mê huyễn của loại thuốc thôi tình này cuối cùng cũng bộc lộ. Chầm chậm, Liễu Diệc Như cảm thấy lúc này mình lại đang ở trong mơ. Cảm giác đó khiến nàng trở nên bạo gan, nàng cầm vòi hoa sen rửa sạch sữa tắm trên dương vật con trai, sau đó cúi đầu, nhẹ nhàng mở đôi môi nhỏ, ngậm lấy quy đầu của hắn.</p>
+    <p>Diệp Phi sướng đến mức suýt chút nữa kêu lớn tiếng. Hắn vạn lần không ngờ, tối hôm qua vẫn cùng Diệp Vân Khinh tranh luận xem ai khiến mình thoải mái hơn, lúc đó tiểu muội còn không chịu phục mà đem miệng nhỏ so với bàn tay nhỏ của mụ mụ, nhưng bây giờ mụ mụ đang giúp mình bú, buộc hắn phải tỉnh táo lại trong cơn kích động vô tận. Diệp Phi dồn tâm trí cảm nhận khoái cảm do miệng nhỏ của mụ mụ mang lại.</p>
+    <p>Dù chưa từng được bất kỳ người đàn ông nào phục vụ như vậy, nhưng Liễu Diệc Như dường như có thiên phú trong chuyện này. Sau khi cố sức ngậm lấy quy đầu con trai, nàng chỉ sững sờ một chút rồi đã nắm bắt được vài kỹ xảo, chậm rãi vặn vẹo đầu, để quy đầu con trai ra vào trong khuôn miệng nhỏ của mình, đồng thời miệng nhỏ dùng sức mút lấy, còn thỉnh thoảng dùng chiếc lưỡi nhỏ linh hoạt khuấy động quy đầu đang ngậm trong miệng.</p>
+    <p>Sâu thêm chút nữa, sâu thêm chút nữa! Diệp Phi hô lớn trong lòng. Dương vật của hắn chỉ mới tiến vào miệng mụ mụ, dù kỹ thuật của nàng không quá điêu luyện, nhưng lại khiến hắn cảm thấy thoải mái hơn nhiều so với khi cắm vào danh khí "lồn ruột dê" của Đông Phương Nhược Lan.</p>
+    <p>Trong những giấc mơ trước kia, Liễu Diệc Như cũng từng mút dương vật của Diệp Phi, nhưng cảm giác lúc đó xa xa không chân thật như bây giờ. Điều này khiến dục hỏa của Liễu Diệc Như càng thêm mãnh liệt. Bàn tay vuốt ve trên lồn mình không còn thỏa mãn với việc xoa âm hạch nữa, nàng lần xuống dưới, đặt vào miệng lồn nhỏ hẹp của mình xoa nắn vài cái rồi đột nhiên đâm vào.</p>
+    <p>"Á." Ngậm dương vật con trai, Liễu Diệc Như không khỏi thốt lên một tiếng kinh hô mơ hồ vì cảm giác nóng rực truyền đến từ ngón tay. Cảm giác hơi đau đó khiến nàng khôi phục lại một tia lý trí.</p>
+    <p>Nhổ dương vật con trai ra, Liễu Diệc Như sững sờ, tại sao mình lại thấy đau? Chẳng lẽ đây không phải là mơ sao? Nếu không phải thì mình vừa làm cái gì vậy? Mình tuyệt đối không thể làm chuyện như vậy! Đúng, đây nhất định vẫn là mơ! Liễu Diệc Như tự trấn an trong lòng.</p>
+    <p>Tuy cố gắng khiến bản thân tin đây là mơ, nhưng Liễu Diệc Như không dám tiếp tục nữa, vì nàng biết nếu mình cứ tiếp tục như thế, một ngày nào đó sẽ hại chết con trai. Dù mình có nguyện ý ở bên hắn theo ý nghĩ trong lòng, cũng tuyệt đối không thể thật sự để hắn cắm vào, không phải không muốn, mà là không thể.</p>
+    <p>Đưa ra quyết định, Liễu Diệc Như đứng dậy định rời khỏi đây. Còn về Diệp Phi, dù sao đó cũng là mơ, hắn sẽ không xảy ra chuyện gì thực sự đâu, nên cũng không cần quản hắn.</p>
+    <p>Liễu Diệc Như bước đi định rời khỏi, không ngờ mặt sàn phòng tắm vì dính sữa tắm mà trở nên rất trơn. Nếu bình thường, với thân thủ của nàng thì không đáng ngại, nhưng lúc này vì dục hỏa đang bùng phát, đôi chân nàng đã không còn nghe theo sự điều khiển. Vì vậy, sau khi trượt chân, Liễu Diệc Như kinh hô một tiếng, ngã ngồi xuống.</p>
+    <p>Chuyện kỳ diệu nhất thế gian không gì hơn sự trùng hợp. Hôm nay, có lẽ ông trời muốn để cặp mẫu tử yêu nhau này kết hợp triệt để, nên đã tạo ra một sự trùng hợp hoàn hảo. Hướng ngã của Liễu Diệc Như đúng là trên người Diệp Phi, hơn nữa khéo léo thay, vật đang "nộ chỉ thương thiên" kia của hắn vừa vặn nhắm ngay tiểu huyệt ướt át vô cùng của mụ mụ. Vậy là dưới tác dụng trọng lực cơ thể của Liễu Diệc Như, dương vật của Diệp Phi – vốn đã cương cứng từ trong miệng lồn của nàng – sau mười sáu năm xa cách, đã một lần nữa tiến vào sâu nhất trong thân thể nàng.</p>
+    <p>"Á ——" Liễu Diệc Như không khỏi kêu thảm một tiếng, bởi dương vật của Diệp Phi quá cự đại, mà tiểu huyệt của nàng sau khi sinh cặp long phượng thai thì vẫn chưa từng được sử dụng lại, lúc này đột nhiên bị cắm vào, dù đã đủ trơn nhưng vẫn không phải thứ nàng có thể thừa nhận.</p>
+    <p>"Nha..." Cùng lúc mụ mụ đau đớn kêu lên, Diệp Phi cũng vô thức gầm nhẹ một tiếng, bởi hắn phát hiện bên trong lồn mụ mụ thực sự quá nóng. Nếu không phải cơ thể mình quá cường hãn, chỉ sợ chỉ lần này thôi, dương vật cũng sẽ bị bỏng. Tuy nhiên, điều có thể là cơn ác mộng với người đàn ông khác lại khiến Diệp Phi sướng không chịu nổi. Lồn mụ mụ dù không chặt khít như "lồn ruột dê" của Đông Phương Nhược Lan, nhưng nhiệt độ siêu cao này lại mang đến cho Diệp Phi khoái cảm vô tận. Đồng thời hắn cũng thầm sướng trong lòng, xem ra trước kia mình đã nhầm, mụ mụ căn bản không phải không có kinh nghiệm tính giao, mà rất có thể chỉ có một lần duy nhất, bởi ba ba không phải mình, chắc chắn không chịu nổi nhiệt độ cao như vậy.</p>
+    <p>Cơn đau mãnh liệt khiến ý thức của Liễu Diệc Như thanh tỉnh hơn nhiều, trong lòng nàng hoảng loạn. Đây, hình như thật sự không phải mơ, xong rồi, mình đã hại con trai thảm rồi. Nghĩ đến đây, nàng không kìm được muốn bật khóc nức nở, không phải vì bị dương vật con trai cắm vào, mà là sợ từ nay về sau hắn sẽ biến thành phế nhân.</p>
+    <p>Sợ con trai sẽ bị tổn thương tiếp, Liễu Diệc Như muốn đứng dậy khỏi người hắn, không ngờ vừa cử động, một luồng khoái cảm xen lẫn trong đau đớn khiến nàng không nhịn được kêu lên một tiếng kiều mị, đồng thời cũng phát hiện dương vật cắm sâu trong lồn mình của con trai vẫn cứng như cũ.</p>
+    <p>Về cơ thể đặc biệt của mình, Liễu Diệc Như là người biết rõ, và trên đời này người biết bí mật này cũng chỉ có nàng: trong lồn nàng có nhiệt độ siêu cao, lúc bình thường đã gần trăm độ C, nếu động tình thì còn cao hơn nữa. Nàng hiện tại chắc chắn là cực kỳ động tình, nhiệt độ lúc này khẳng định đã đạt mức tối đa, mà nhiệt độ đó là thứ không ai chịu nổi. Hiện tại dương vật của con trai vẫn cứng như vậy, điều đó chứng tỏ mình thật sự đang mơ rồi.</p>
+    <p>Sau khi khẳng định đây là mơ, Liễu Diệc Như không còn nghĩ đến việc rời đi nhanh chóng nữa, vì vừa rồi khi động đậy, trong lồn dù rất đau nhưng khoái cảm xen lẫn trong đó là điều cả đời này nàng chưa từng trải qua. Loại khoái cảm này thật sự quá mê người, khiến nàng không nhịn được mà muốn tiếp tục.</p>
+    <p>Dù sao tối hôm qua cũng đã làm giấc mơ như vậy rồi, hôm nay thêm một lần nữa cũng chẳng sao. Tự an ủi mình, Liễu Diệc Như kìm lòng không được mà nhẹ nhàng động đậy, để dương vật to đến dọa người của con trai ra vào biên độ nhỏ trong tiểu huyệt đã phong bế suốt mười sáu năm qua của mình.</p>
+    <p>Lúc đầu, Liễu Diệc Như còn thấy hơi đau, nhưng sau khi động khoảng hai phút, nỗi đau đó đã không đáng kể. Chiếm lấy nàng là một loại khoái cảm khiến linh hồn muốn bay lên trời. Dương vật của con trai thật quá lớn, nàng cảm thấy từng tấc thịt mềm mại trong lồn mình đều đang bị nó ma sát chặt chẽ. Loại khoái cảm vô tận do ma sát mang lại khiến nàng căn bản không cách nào dừng động tác, ngược lại còn trở nên mạnh mẽ hơn.</p>
+    <p>Diệp Phi lén mở mắt, nhìn mụ mụ đang cưỡi trên người mình, cảm giác sướng trong lòng căn bản không cách nào dùng ngôn ngữ biểu đạt. Mình cuối cùng đã có được nàng, dù tình huống hiện tại có chút lệch so với dự tính, nhưng xem như đã thực hiện được tâm nguyện bấy lâu.</p>
+    <p>Nhìn tấm lưng non trắng như bạch ngọc cùng đôi mông đầy đặn không ngừng va chạm vào bụng mình, dù vì mụ mụ quay lưng lại nên không nhìn thấy cảnh đẹp ở trước ngực nàng, nhưng bấy nhiêu thôi đã đủ khiến Diệp Phi kích động rồi. Đặc biệt là mỗi khi nàng nâng đôi mông hoàn mỹ lên, mình lại có thể nhìn thấy cảnh tượng dương vật ra vào trong tiểu huyệt của nàng, cảm giác đó thật không gì sánh bằng.</p>
+    <p>Động một hồi, Liễu Diệc Như có vẻ bất mãn, miệng thào thào: "Hảo nhi tử... hôm nay ngươi... sao lại không động... mụ mụ thật thoải mái nha, ngươi mau cử động đi, cắm vào, cắm vào mụ mụ, để mụ mụ càng thoải mái hơn!"</p>
+    <p>Lời yêu cầu của mụ mụ khiến Diệp Phi động lòng, rất muốn đứng lên đảo khách thành chủ, cuồng địt nàng một phen, dùng dương vật do nàng sinh ra mang đến cho nàng sự thỏa mãn lớn nhất. Tuy nhiên cuối cùng hắn vẫn nén lại ý nghĩ này, vì Diệp Phi rất rõ mụ mụ sở dĩ làm vậy là vì nàng vẫn tưởng mình đang nằm mơ, hơn nữa giấc mơ kiểu này trước kia nàng chắc hẳn cũng đã từng mơ. Nếu lúc này mình thật sự chủ động địt nàng, dù hiện tại không làm nàng giật mình khi đang tưởng đang mơ, nhưng đợi nàng tỉnh táo lại, nhất định sẽ xảy ra những biến cố mình không muốn thấy. Vì vậy, Diệp Phi đành không nói một lời nằm đó tiếp tục hưởng thụ tiểu huyệt của mụ mụ.</p>
+    <p>Liễu Diệc Như thúc giục con trai mấy tiếng, thấy hắn không phản ứng thì cũng không nói nữa, vì lúc này nàng đã đến gần biên giới cao trào. Đôi tay ngọc nhẹ đặt trên hai chân con trai, mông lớn phi tốc đỉnh động, để dương vật con trai điên cuồng ra vào trong lồn mình, mang đến cho nàng khoái cảm ngày càng mãnh liệt.</p>
+    <p>Đột nhiên, động tác của Liễu Diệc Như dừng lại đột ngột, cổ họng siết chặt về phía sau, cơ thể xinh đẹp căng cứng, cái miệng nhỏ mở ra phát ra một tiếng yêu kiều kéo dài, sau đó cơ thể run lên kịch liệt, trong huyệt dâm cũng trở nên nóng rực hơn, không ngừng co thắt lại, hiển nhiên đã đến ngưỡng cao trào.</p>
+    <p>Nhìn phản ứng cơ thể của mụ mụ, Diệp Phi biết nàng đang ở biên giới cao trào, nhưng vì cơ thể cứng đờ nên không thể cử động thêm được nữa. Nếu lúc này mình nhẹ nhàng địt nàng hai cái, rất dễ dàng có thể đưa nàng lên đỉnh phong, nhưng khổ nỗi mình vẫn không thể động, bằng không sẽ bị nàng phát hiện.</p>
+    <p>Qua một hồi lâu, Liễu Diệc Như mới chầm chậm yếu ớt xuống. Cảm giác ở ngưỡng cao trào mà không thể phát tiết ra ngoài khiến nàng suýt chút nữa bật khóc, cuối cùng mình vẫn không thể như nguyện.</p>
+    <p>Nhưng Liễu Diệc Như hiển nhiên vẫn chưa từ bỏ, hay đúng hơn là dục hỏa mãnh liệt trong cơ thể khiến nàng không thể dừng lại. Sau khi nghỉ một lát, nàng xoay người trên người con trai, biến thành đối mặt với hắn. Lúc xoay người cũng không để dương vật rời khỏi tiểu huyệt, chỉ một động tác xoay tròn ma sát đã khiến nàng phóng đãng trở lại, thậm chí không hề phát hiện ra hai mắt con trai vừa kịp nhắm lại do sự bất ngờ khi nàng xoay người. Hai tay nàng chống lên ngực hắn, mông lớn dùng sức ngồi xuống.</p>
+    <p>Nhắm chặt mắt, Diệp Phi âm thầm thấy tiếc nuối. Rõ ràng có thể cảm nhận đôi bầu vú to khiến mình thèm thuồng đang lắc lư trước mắt, nhưng mình lại không thể nhìn chúng lấy một cái. Còn về việc tiến vào loại ý cảnh kỳ lạ kia, Diệp Phi chưa từng nghĩ đến, vì loại ý cảnh đó khiến mình khôi phục tỉnh táo, trong thời khắc kích động thế này, hắn nào cam lòng để mình tỉnh táo? Hơn nữa dù có vào, chỉ sợ cũng phải thoát ra ngay lập tức vì sự kích động khi nàng phản lại địt mình.</p>
+    <p>Có lẽ vì vừa được hưởng thụ dương vật con trai vừa có thể nhìn thấy khuôn mặt anh tuấn ấy, lần này Liễu Diệc Như lên đỉnh nhanh hơn, chỉ cắm chưa đến ba trăm lần, thân thể liền lại tiến...</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0198.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0200.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

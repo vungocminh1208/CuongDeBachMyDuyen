@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 301 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 301</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 301</small>
+    Chương 301: Chân tướng sự tình
+  </h1>
+  <div class="chapter-body">
+    <p>"Không có, không phải vì ai cả!" Diệp Tư Kỳ bị câu hỏi đột ngột này làm cho tâm thần rối loạn, vô thức phủ nhận: "Ta chỉ là đối với hắn không có cảm giác mà thôi." "Được rồi, ta biết rõ dù sao cũng không thể quay về như trước kia được nữa." Liễu Diệc Như thở dài, giọng điệu đột ngột chuyển hướng: "Vậy chúng ta nói chút chuyện chính đi, ngươi có biết không, Tiểu Mãn hiện tại đang bị một vấn đề làm cho đau đầu?" Diệp Tư Kỳ nghe tiếng thở dài thất vọng của Liễu Diệc Như, trong lòng cảm thấy vô cùng khổ sở, nhưng nỗi lòng của mình lại tuyệt đối không thể nói cho bà biết. Đang lúc nàng còn đang bối rối vì chuyện này, lại nghe được tin tức kia, vội hỏi: "Là chuyện gì ạ?" Vừa rồi Diệp Phi chủ động kéo Lưu Vân Phi đi, Diệp Tư Kỳ biết rõ, hắn hoàn toàn là vì mình. Điều này khiến nàng vừa cảm động không thôi, trong lòng lại trào dâng cảm giác ngọt ngào. Thế nhưng càng như vậy, nàng lại càng không muốn rời xa đệ đệ, cho nên nàng muốn mặc kệ sự ích kỷ của bản thân một chút. Giờ đây nghe được tin tức này, làm sao nàng không bận tâm cho được? "Từ khi tiếp quản Lăng Vân Hội, Tiểu Mãn luôn muốn mở rộng tầm ảnh hưởng của bang hội, biến nó thành một đại bang hội có sức ảnh hưởng lớn trên quốc tế. Mà muốn đặt chân ra quốc tế, thì không thể không giao thiệp với gã khổng lồ Mỹ Kiên. Thế nhưng nó vẫn chưa tìm được biện pháp nào tốt. Mà bây giờ, lại có một cơ hội tuyệt vời. Phụ thân của Lưu Vân Phi, qua bao năm dốc sức làm ăn, hiện tại ở nước Mỹ Kiên có sức ảnh hưởng cực kỳ lớn. Nếu như chúng ta có thể liên hôn với Lưu gia, Lăng Vân Hội mượn nhờ lực ảnh hưởng của Lưu lão tiên sinh, chắc chắn có thể một bước đánh thẳng vào Mỹ Kiên." Liễu Diệc Như nửa thật nửa giả nói. Lần này để Lưu Vân Phi tới, bà quả thật là có ý định này, bất quá mục tiêu bên này căn bản không phải là Diệp Tư Kỳ. Hơn nữa, bà hoàn toàn không biết rằng, trong lúc bà đang tìm cách trải đường cho con trai, thì Diệp Phi qua hơn một tháng cố gắng (hay nói đúng hơn là thuộc hạ của hắn cố gắng, vì Diệp Phi căn bản chỉ ra lệnh, chuyện cụ thể đều do người khác làm), đã nắm giữ một thế lực kinh người tại Mỹ Kiên. Chỉ là hắn không muốn những người phụ nữ mình yêu phải dây dưa với con đường có chút tăm tối này, nên ngay cả mẹ mình cũng không nói cho hay. "Thì ra là vậy." Diệp Tư Kỳ khẽ cắn môi, cố nén nỗi đau trong lòng, đưa ra một quyết định vô cùng gian nan: "Không ngờ Lưu Vân Phi lại có gia thế như vậy, nếu như cùng với hắn, thực sự cũng sẽ không chịu khổ gì. Vậy thì, ta cứ thử kết giao với hắn một chút vậy." "Nhưng chẳng phải ngươi nói đối với hắn không có cảm giác sao?" Liễu Diệc Như lộ ra vẻ mặt vô cùng kỳ quái hỏi. Diệp Tư Kỳ gượng cười một chút nói: "Đó chẳng phải là ta lo lắng gia cảnh hắn không tốt, gả cho hắn sẽ phải chịu khổ sao." Giờ khắc này, Liễu Diệc Như thật sự bị cảm động. Diệp Tư Kỳ vì Diệp Phi mà không muốn thực hiện cái ước định kia, rồi lại vì Diệp Phi mà muốn thực hiện ước định đó, thậm chí không tiếc hạ thấp bản thân mình. Có thể thấy tình cảm nàng dành cho Diệp Phi sâu đậm đến mức nào, tuyệt không thua kém gì bà. Cô gái như vậy, đừng nói là con trai bà, mà ngay chính bà cũng từ trong thâm tâm yêu quý nàng. Liền đó, bà không khỏi nắm chặt lấy bàn tay nhỏ bé của Diệp Tư Kỳ, miệng lẩm bẩm: "Đứa con ngốc, tấm lòng của ngươi đối với Tiểu Mãn, đừng nói là mẹ, ngay cả ông trời sợ rằng cũng phải cảm động!" Diệp Tư Kỳ không khỏi giật mình trước lời của Liễu Diệc Như, vội vàng ra vẻ khó hiểu hỏi: "Ngươi đang nói cái gì vậy?" Liễu Diệc Như đưa tay nhẹ nhàng ôm Diệp Tư Kỳ vào lòng, ôn nhu nói: "Hảo hài tử, ngươi cũng không cần giấu giếm nữa, mẹ biết rõ, ngươi yêu Tiểu Mãn đúng không?" Bị Liễu Diệc Như vạch trần tâm sự, Diệp Tư Kỳ không khỏi đỏ bừng cả khuôn mặt, dứt khoát vùi mặt vào đôi gò bồng đảo trước ngực Liễu Diệc Như, miệng vẫn phủ nhận: "Nào có! Hắn là đệ đệ của con, làm sao con có thể!" "Không sai, hắn là đệ đệ của ngươi, và đây cũng chính là nguồn cơn thống khổ của ngươi phải không? Hảo hài tử, ngươi phải nhớ kỹ, chúng ta không phải người thường, cho nên cũng không cần lấy chuẩn mực của người thường để tự ước thúc mình. Nếu muốn yêu, thì hãy cứ yêu đi, không ai ngăn cản được ngươi đâu!" Nhẹ nhàng vuốt ve tấm lưng ngọc của Diệp Tư Kỳ, Liễu Diệc Như ôn nhu nói, vừa là cổ vũ Diệp Tư Kỳ, cũng là đang tự an ủi chính mình. Lời của Liễu Diệc Như khiến Diệp Tư Kỳ cực kỳ kỳ quái, không hiểu tại sao bà lại nói vậy, lại còn có vẻ cảm động lây. Bất quá sự cổ vũ của Liễu Diệc Như cũng giúp nàng được an ủi rất nhiều, vì vậy không còn giấu diếm nữa. Nàng ngẩng đầu lên từ trong ngực bà, khẽ gật đầu, rồi lại hỏi: "Thế nhưng, cái ước định kia thì phải làm sao bây giờ?" "Yên tâm đi, tự nhiên sẽ có người gánh vác trách nhiệm này." Liễu Diệc Như cười nói. Diệp Tư Kỳ hơi nhíu đôi mày thanh tú: "Là để Dao Dao đi sao? Chuyện này e là rất không khả thi." Đối với muội muội của mình, Diệp Tư Kỳ có thể nói là vô cùng thấu hiểu, nếu nói để Diệp Tư Dao đi gả cho một người mà nàng còn chẳng quen biết, thì căn bản là chuyện không thể nào. "Trong lòng ngươi, ta lại là người nhẫn tâm như vậy sao?" Liễu Diệc Như lộ ra vẻ mặt khổ sở, lập tức lại cười nói: "Không phải Dao Dao, cũng không phải Tiểu Anh, lại càng không phải Khinh Khinh." "Vậy đó là ai?" Diệp Tư Kỳ không khỏi cực kỳ hiếu kỳ về nhân tuyển này. "Thật ra, đứa trẻ nhà họ Lưu này ngươi đã gặp qua rồi đấy." Liễu Diệc Như lại đáp phi sở vấn: "Ngươi hãy nhớ lại thật kỹ đi, ngay tại tang lễ của ba ngươi." Tang lễ của ba? Diệp Tư Kỳ không khỏi rơi vào trầm tư. Chuyện này đã quá xa xưa, hơn nữa khi đó nàng vẫn chỉ là một cô bé. Bất quá trí nhớ của Diệp Tư Kỳ vẫn rất tốt, suy nghĩ một hồi lâu sau, cuối cùng cũng nhớ lại cảnh tượng lúc đó: vị Lưu thúc thúc rất quen thuộc với Trương gia gia, cùng với người phụ nữ tóc vàng xinh đẹp như thiên sứ trong thần thoại phương Tây bên cạnh ông ta, và cả cô bé lai vô cùng đáng yêu, rõ ràng nhỏ hơn mình hai tháng nhưng lại không muốn gọi mình là tỷ tỷ... "Ý ngươi là, Lưu Vân Phi này chính là Lưu Vân Nhi năm đó? Nhưng sao nàng lại đột nhiên biến thành nam nhân?" Nhớ tới chuyện cũ, Diệp Tư Kỳ không khỏi kinh ngạc trừng lớn hai mắt. "Lưu gia có một loại thuật dịch dung rất kỳ lạ, không dùng nội lực khống chế, nhưng ngay cả tướng mạo cũng có thể thay đổi." Liễu Diệc Như lại đáp phi sở vấn, nhưng đã nói rõ hết thảy. Diệp Tư Kỳ lúc này mới hiểu ra, mình căn bản chỉ là sợ bóng sợ gió một hồi, không khỏi hờn dỗi nói: "Vân Nhi này, đến thì cứ đến, việc gì phải dịch dung thành nam nhân chứ?" "Nếu không phải như vậy, ngươi có đem những lời trong lòng nói cho ta biết không?" Liễu Diệc Như cười đầy gian trá: "Bất quá, như vậy thì người liên hôn với nàng phải là Tiểu Mãn rồi, ngươi sẽ không ăn dấm chua chứ?" Tuy đã thừa nhận tâm sự trước mặt Liễu Diệc Như, nhưng lúc này bị bà nói ra, Diệp Tư Kỳ vẫn ngượng ngùng không thôi. Nàng cũng chẳng buồn trách Liễu Diệc Như gài bẫy mình, hờn dỗi nói một câu: "Không nói với người nữa!" rồi chạy ra ngoài, để lại một mình Liễu Diệc Như trong phòng làm việc với nụ cười thỏa mãn.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0300.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0302.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 280 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 280</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 280</small>
+    Chương 280: Nha Nha thổ lộ
+  </h1>
+  <div class="chapter-body">
+    <p>Tiểu ma nữ tức giận không thôi, nhưng bây giờ lại không có cách nào phản kích, đành phải tức giận hừ một tiếng. Diệp Phi có chút kỳ lạ hỏi: "Các ngươi sao còn ở chỗ đó, Tuyết Nhi tỷ không tìm cho các ngươi nơi ở khác sao?"</p>
+    <p>"Không có ạ, Tuyết Nhi tỷ tỷ rất bận rộn, không có thời gian tìm một nơi có thể ở lại nhiều người như vậy, hơn nữa chúng ta cũng đều ở nơi này quen rồi. Với lại, có Tuyết Nhi tỷ tỷ cùng sự giúp đỡ của anh, điều kiện nơi này của chúng ta cũng khá hơn trước kia." Nha nha tùy ý nói. Có lẽ vì có Lý Tuyết nhi làm gương, nên trẻ em trong cô nhi viện hiện tại phẩm chất đều rất tốt. Tuy hiện tại đã có thể nói là tiền tiêu không hết, nhưng bọn họ cũng không hề theo đuổi hưởng thụ vật chất.</p>
+    <p>Diệp Phi gật đầu, không nói gì thêm. Diệp Ngưng Băng lại có chút kỳ lạ hỏi: "Tiểu Mãn, con cũng quen biết Nha Nha tỷ tỷ sao?" Nàng mặc dù biết Nha Nha là bạn rất thân của con gái mình, nhưng đối với gia thế của Nha Nha thì hoàn toàn không biết gì, càng không ngờ tới Diệp Phi lại quen biết cả chị gái của cô bé.</p>
+    <p>Hiện tại mối quan hệ với Tiểu Mãn đã tiến thêm một bước, Diệp Phi cũng không muốn giấu giếm nàng, bèn cười nói: "Chẳng những quen, mà chúng tôi còn hùn vốn mở công ty nữa kìa."</p>
+    <p>"Công ty? Công ty gì cơ?" Diệp Ngưng Băng tò mò hỏi, nàng thực sự không biết ngoài hai sản nghiệp của Diệp và Liễu ra, Diệp Phi còn có công ty nào khác.</p>
+    <p>"Gọi là Gió Thu tập đoàn, cái tên này còn do Xinh Đẹp ca ca cùng Tuyết Nhi tỷ đặt đó." Nha Nha tranh giành trả lời.</p>
+    <p>"Gió Thu tập đoàn? Chị gái của con chính là Lý Tuyết nhi?" Diệp Ngưng Băng không khỏi kinh ngạc thốt lên, cảm thấy đầu óc mình có chút không xử lý kịp. Gió Thu tập đoàn nàng có thể nói là rất quen thuộc, từ khi mới thành lập đến nay, phát triển thế mạnh đến mức dọa người, hiện tại đã ẩn ẩn có xu thế vượt qua cả hai nhà Diệp, Liễu. Trước kia nàng luôn xem Gió Thu tập đoàn là đối thủ tiềm ẩn, không ngờ tập đoàn này lại do Diệp Phi lập ra.</p>
+    <p>"Đúng là Gió Thu tập đoàn đó." Diệp Phi cười nói: "Bất quá chuyện này chỉ vài người chúng ta biết là được, tuyệt đối không được truyền ra ngoài. Đây là con bài tẩy ta chuẩn bị cho hai nhà Diệp, Liễu, tuyệt đối không thể để người ngoài biết."</p>
+    <p>"Ân." Diệp Ngưng Băng gật đầu mạnh, trong lòng cảm thấy vô cùng ngọt ngào. Vì Diệp Phi đem bí mật lớn lao này nói cho nàng, chứng tỏ hắn thực sự rất quan tâm nàng. Sau đó nàng lại dặn dò con gái: "Tình Tình, con cũng không được nói với người khác, biết chưa?"</p>
+    <p>Trong lúc nói chuyện, xe đã tới khu vực cô nhi viện Bắc khu. Diệp Phi phát hiện, con đường ở đây không còn như lần trước hắn đến, đến cái xe taxi cũng không vào được nữa. Xem ra Lý Tuyết nhi ngoài việc giúp đỡ cô nhi viện, cũng đã làm không ít việc tốt cho người dân xung quanh.</p>
+    <p>Khi còn cách cô nhi viện một đoạn ngắn, Diệp Phi liền dừng xe. Nha Nha có chút kỳ lạ hỏi: "Diệp a di, ca ca, Tình Tình, mọi người không vào ngồi chơi một lát sao?"</p>
+    <p>Diệp Phi lắc đầu cười nói: "Không được, trời cũng đã muộn, để lúc khác anh sẽ chuyên môn ghé qua." Hắn không phải ghét bỏ nơi này, mà vì thời gian thực sự đã muộn, nếu mấy người bọn họ qua đó, chỉ sợ sẽ khiến lão viện trưởng hiếu khách lại phải bận rộn, vì vậy từ chối lời mời của Nha Nha.</p>
+    <p>"Vậy... ca ca, em có thể nói riêng với anh vài câu không?" Nha Nha đỏ mặt hỏi, đôi mắt to linh động tràn đầy chờ mong.</p>
+    <p>"Được." Diệp Phi đáp ứng, xuống xe, cùng cô bé đi ra một đoạn đường rồi hỏi: "Có chuyện gì muốn nói với ca ca nào?"</p>
+    <p>Khuôn mặt nhỏ nhắn của Nha Nha càng đỏ hơn, hơi chần chờ một lát mới lên tiếng: "Ca ca, vừa rồi em không nói mò đâu, em thực sự thích anh!"</p>
+    <p>Diệp Phi không ngờ cô bé này gọi mình ra lại là để thổ lộ, không khỏi bật cười, nhẹ nhàng xoa đầu cô bé: "Ca ca cũng thích em mà."</p>
+    <p>"Em đang nói là kiểu con gái thích con trai, chứ không phải kiểu em gái thích anh trai." Nha Nha nghiêm túc nói: "Nghe Tình Tình nói, chị ấy đã là người phụ nữ của anh rồi, Nha Nha cũng muốn làm người phụ nữ của anh!"</p>
+    <p>Diệp Phi cười khổ: "Lời này từ đâu ra vậy? Con bé khi nào thành người phụ nữ của anh rồi?"</p>
+    <p>"Không có ạ?" Nha Nha kỳ lạ hỏi: "Chính Tình Tình nói, chị ấy giúp anh hút chỗ đó, còn ăn vật kia của anh, mà anh cũng làm vậy cho chị ấy, có phải là thật không ạ?"</p>
+    <p>Diệp Phi lại một lần nữa cười khổ. Tiểu ma nữ này, ngay cả chuyện đó cũng nói với bạn thân. Vì không muốn Nha Nha cảm thấy tiểu ma nữ đang nói dối, hắn gật đầu thừa nhận: "Là thật."</p>
+    <p>Khuôn mặt Nha Nha đỏ bừng, cắn cắn môi nói: "Vậy Nha Nha cũng làm được mà, ca ca, có cơ hội cho Nha Nha giúp anh được không?"</p>
+    <p>Diệp Phi nhìn cái miệng nhỏ hồng nhuận của Nha Nha, trong lòng không khỏi tà niệm trỗi dậy, gật đầu nói: "Được, đến lúc đó ca ca sẽ tìm em."</p>
+    <p>"Ân!" Nha Nha thấy Diệp Phi đáp ứng, không khỏi vô cùng vui mừng, gật đầu mạnh, đôi mắt dịu dàng nhìn hắn: "Vậy Nha Nha chờ anh!"</p>
+    <p>Nhìn vẻ kiều mỵ của Nha Nha, Diệp Phi trong lòng xao động, rất có ý muốn nàng thực hiện ngay tại chỗ. Hắn thầm nghĩ sao bây giờ cô bé nào cũng mê người thế này? Bất quá hắn biết giờ không phải lúc, đành cố nén xúc động: "Ca ca sẽ sớm tới tìm em, mau vào đi."</p>
+    <p>Nha Nha gật đầu, xoay người đi về phía cô nhi viện, nhưng chưa được vài bước lại quay đầu nói: "Ca ca, có cơ hội hãy tới thăm Tuyết Nhi tỷ tỷ nhé, chị ấy cũng rất nhớ anh." Nói xong cô bé chạy biến. Trong lòng thầm nghĩ, Tuyết Nhi tỷ tỷ à, em không nói bí mật của chị đâu, chỉ nói là chị nhớ anh thôi, bạn bè với nhau thì tin tưởng nhau mà!</p>
+    <p>Diệp Phi hơi sững sờ, muốn hỏi cho rõ ràng nhưng Nha Nha đã chạy xa, đành tạm gác lại ý định, dự định mấy hôm nữa sẽ tới thăm Lý Tuyết nhi để xem phản ứng của nàng có như mình suy đoán hay không.</p>
+    <p>"Ca ca, con bé đó nói gì với anh vậy?" Trở lại trên xe, tiểu ma nữ giả vờ tùy ý hỏi. Nàng rất muốn biết Nha Nha đã nói gì với Diệp Phi, hơn nữa vì chuyện vừa thua Nha Nha một ván vẫn còn canh cánh trong lòng nên mới giả bộ thờ ơ như vậy.</p>
+    <p>Diệp Phi cười nói: "Không có gì, chỉ nói vài chuyện về chị gái con bé, cũng chính là đối tác làm ăn của anh."</p>
+    <p>"Gạt người!" Tiểu ma nữ nhăn mũi, nàng mới không tin Nha Nha chỉ nói chừng đó. Bất quá nàng cũng không truy hỏi nữa mà nói: "Chúng ta mau về nhà đi, em đói chết rồi!"</p>
+    <p>Diệp Phi khởi động xe, cười nhìn cặp mẹ con kiều diễm này, hỏi: "Chúng ta ăn ngoài rồi về, hay là về nhà tự làm?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0279.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0281.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

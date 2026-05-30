@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 225 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 225</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 225</small>
+    Chương 225: Sâu kín Minh Nguyệt Tâm
+  </h1>
+  <div class="chapter-body">
+    <p>Chứng kiến cảnh này, Minh Nguyệt Tâm không nói gì thêm, chỉ dậm chân thật mạnh, rồi quay người lao ra cửa.</p>
+    <p>Qua hồi lâu, Tô Ngọc Nhàn vì khoái cảm tột độ mà đại não trống rỗng mới khôi phục lại chút thần trí. Nghĩ đến cảnh tượng vừa rồi, bà không khỏi vô cùng sợ hãi, nhìn Diệp Phi lo lắng hỏi: "Làm sao bây giờ? Con mau đuổi theo Tâm nhi đi, đừng để con bé làm chuyện dại dột!"</p>
+    <p>Từ lúc Minh Nguyệt Tâm rời đi, ý niệm của Diệp Phi vẫn luôn dõi theo nàng. Thấy nàng không hề rời đi mà chạy lên sân thượng, ban đầu hắn cũng hoảng sợ, nhưng khi thấy nàng chỉ bất lực ngồi xuống thì mới yên lòng. Nghe Tô Ngọc Nhàn nói, hắn mỉm cười an ủi: "Yên tâm đi, có con ở đây, Tâm tỷ sẽ nghĩ thông suốt thôi."</p>
+    <p>Nói xong, Diệp Phi đặt chân đẹp của Tô Ngọc Nhàn xuống, nhẹ nhàng rút khỏi thứ tai quái gây ra sự ngăn cách giữa hai mẹ con kia. Hắn ôm lấy Tô Ngọc Nhàn, đưa vào phòng ngủ, đặt bà nằm xuống rồi hôn lên đôi môi nhỏ, nói: "Mẹ nghỉ ngơi một chút, con đi tìm Tâm tỷ đây. Mẹ đừng suy nghĩ nhiều, nhất định chị ấy sẽ thấu hiểu cho mẹ."</p>
+    <p>Lúc này Tô Ngọc Nhàn đã hoàn toàn rối bời, chỉ biết đặt hy vọng vào Diệp Phi. Bà vốn muốn cùng hắn đi tìm con gái, nhưng đôi chân nhũn ra khiến bà không còn chút sức lực nào để đứng dậy.</p>
+    <p>Trao cho Tô Ngọc Nhàn một nụ cười an ủi, Diệp Phi rời khỏi phòng, ra phòng khách mặc quần áo rồi thong thả bước lên sân thượng. Trong chốc lát, hắn đã nghĩ sẵn lý do.</p>
+    <p>Lúc này Minh Nguyệt Tâm đang ngồi trên sân thượng, đối diện với ánh hoàng hôn, hai tay ôm lấy đầu gối. Từ phía sau nhìn lại, thân ảnh nàng trông thật cô tịch, khiến Diệp Phi không khỏi đau lòng, chỉ muốn được che chở nàng.</p>
+    <p>"Tâm tỷ."</p>
+    <p>Bước đến sau lưng Minh Nguyệt Tâm, Diệp Phi nhẹ nhàng gọi.</p>
+    <p>Nghe tiếng Diệp Phi, vai Minh Nguyệt Tâm khẽ run lên, lạnh lùng nói: "Đừng gọi ta như vậy, ngươi không đủ tư cách!"</p>
+    <p>"Được rồi, dù ta không có tư cách đó, nhưng ta vẫn muốn nói một câu, mẹ ngươi rất lo lắng cho ngươi."</p>
+    <p>Nói xong, Diệp Phi ngồi xuống bên cạnh Minh Nguyệt Tâm.</p>
+    <p>Minh Nguyệt Tâm hơi chán ghét dịch sang bên cạnh, vẫn giữ vẻ mặt lạnh lùng: "Ta không cần bà ấy lo lắng, ta không có người mẹ như vậy."</p>
+    <p>"Những lời này nếu để bà ấy nghe được, chắc chắn sẽ đau lòng lắm."</p>
+    <p>Diệp Phi khẽ thở dài: "Ngươi có biết ta đã ở bên bà ấy như thế nào không?"</p>
+    <p>"Ta không có hứng thú biết mấy chuyện xấu xa của các người!" Minh Nguyệt Tâm hừ lạnh.</p>
+    <p>"Dù ngươi có hứng thú hay không, ta vẫn muốn nói, ngươi có thể chọn nghe hoặc không."</p>
+    <p>Diệp Phi kể lại chuyện quen biết Tô Ngọc Nhàn cho Minh Nguyệt Tâm nghe, cuối cùng nói: "Bây giờ ngươi còn cảm thấy bà ấy không đủ tư cách làm mẹ ngươi sao?"</p>
+    <p>"Ngươi có điểm nào đáng để Diệp Vũ phí tâm tư lớn như vậy chứ?"</p>
+    <p>Minh Nguyệt Tâm quay đầu nhìn Diệp Phi, đôi mắt to sáng ngời đã đẫm lệ. Rõ ràng tuy bề ngoài nàng đang chất vấn, nhưng trong lòng đã cơ bản tin tưởng.</p>
+    <p>"Tiểu Mãn chỉ là nhũ danh của ta." Diệp Phi nhẹ giọng nói: "Còn tên thật của ta là Diệp Phi, ngươi nói xem Diệp Vũ có cần thiết phải phí lớn như vậy để đối phó ta không?"</p>
+    <p>Tuy thân phận thật của Diệp Phi đủ khiến Minh Nguyệt Tâm kinh ngạc, nhưng lúc này nàng đã chẳng còn tâm trí quan tâm đến những thứ đó. Vì đã hoàn toàn tin vào lời Diệp Phi, nghĩ đến việc mẹ đã hy sinh nhiều như vậy cho mình mà mình lại vừa nói những lời đó, nàng không khỏi vô cùng hổ thẹn. Nữ cảnh sát tuyệt sắc vốn luôn kiên cường này cuối cùng không nhịn được mà bật khóc, nước mắt tuôn rơi không thể kìm nén, rồi nằm gục xuống chân mình nức nở.</p>
+    <p>Diệp Phi lại nhẹ nhàng thở dài, vỗ vai Minh Nguyệt Tâm, ôn nhu nói: "Tâm tỷ, đừng quá đau lòng, chuyện đã qua rồi."</p>
+    <p>Minh Nguyệt Tâm khẽ run người, dùng sức hất tay Diệp Phi ra khỏi vai mình, quay đầu lạnh lùng nhìn hắn: "Ngươi đừng chạm vào ta!"</p>
+    <p>"Ngươi vẫn còn giận ta, đúng không?" Diệp Phi nhìn vào mắt Minh Nguyệt Tâm, khẽ hỏi.</p>
+    <p>"Đương nhiên, ngươi đã biết rõ mẹ ta bị ép buộc, tại sao còn dây dưa với bà ấy?" Minh Nguyệt Tâm oán hận nói: "Từ nay về sau ta không muốn nhìn thấy ngươi nữa, mời ngươi cũng đừng dây dưa với bà ấy nữa!"</p>
+    <p>"Ta không hề muốn dây dưa với bà ấy. Sau lần đó, bà ấy thừa lúc ta ngủ đã lén rời đi, thậm chí không để lại phương thức liên lạc nào. Dù ta rất nhớ bà ấy, nhưng ta hiểu bà ấy muốn làm một người vợ, một người mẹ tốt, nên dù rất dễ tìm thấy, ta vẫn không đi tìm bà ấy."</p>
+    <p>Diệp Phi nói đến đây, trên mặt hiện lên nụ cười khổ: "Chỉ là, số phận luôn thích trêu đùa con người. Vốn tưởng rằng sẽ không bao giờ gặp lại, nhưng lần đó đi theo ngươi về nhà, lại phát hiện bà ấy chính là mẹ ngươi."</p>
+    <p>Minh Nguyệt Tâm sững sờ, trong giây lát hiểu ngay lý do vì sao lần đầu tiên đưa Diệp Phi về nhà, hắn và mẹ lại có biểu cảm kỳ quái đến vậy. Không ngờ chính mình lại là người giúp họ gặp lại nhau, lời Diệp Phi nói không hề sai, vận mệnh thật sự rất khó nắm bắt.</p>
+    <p>"Ngay lần đó, hạt giống tình cảm giữa chúng ta đã được gieo xuống." Diệp Phi tiếp tục: "Cho đến lần thứ hai gặp mặt, tình cảm này đã không thể tránh né mà bùng nổ. Chúng ta không trốn tránh nữa, nên mọi chuyện diễn ra rất tự nhiên."</p>
+    <p>"Ý ngươi là, giữa ngươi và mẹ ta có tình yêu?"</p>
+    <p>Minh Nguyệt Tâm cảm thấy thật hoang đường. Người đàn ông trước mắt này còn trẻ hơn nàng bảy tuổi, lại kém mẹ gần ba mươi tuổi, giữa họ có thể nảy sinh tình yêu sao?</p>
+    <p>"Không sai." Diệp Phi gật đầu: "Ngươi chưa từng nghe câu tình yêu không phân biệt tuổi tác sao?"</p>
+    <p>"Nhưng bà ấy còn có ba ta mà."</p>
+    <p>Có lẽ vì nói chuyện với Diệp Phi nhiều như vậy nên tâm trạng tốt hơn nhiều, Minh Nguyệt Tâm nhất thời quên cả đau lòng, không nhịn được cãi lại.</p>
+    <p>"Họ là hôn nhân do cha mẹ sắp đặt, nên căn bản không có tình yêu. Dù có, cũng chỉ là tình thân sinh ra sau nhiều năm cùng chung sống." Diệp Phi chậm rãi nói: "Đây là chính miệng mẹ ngươi nói."</p>
+    <p>Minh Nguyệt Tâm vội la lên: "Nhưng họ là vợ chồng, làm chuyện như vậy luôn không tốt mà?"</p>
+    <p>"Một cuộc hôn nhân không tính là hôn nhân mà có thể duy trì đến bây giờ đã là cực kỳ không dễ dàng." Diệp Phi đáp: "Hơn nữa mẹ ngươi không phải chủ động ngoại tình, mà là sau lần đầu tiên bất đắc dĩ mới không nhịn được. Người phụ nữ tốt như vậy, ở thời đại này không còn nhiều đâu."</p>
+    <p>"Có ý gì?" Minh Nguyệt Tâm khó hiểu hỏi. Cha mẹ mình sao lại thành không tính là hôn nhân, vậy mình từ đâu mà ra?</p>
+    <p>Diệp Phi thở dài: "Ba ngươi đã mất khả năng từ nhiều năm trước, nên những năm này mẹ ngươi vẫn luôn phải chịu đựng."</p>
+    <p>"Nhưng bà ấy cũng đã hơn bốn mươi tuổi rồi, loại chuyện này đâu có quan trọng đến thế?"</p>
+    <p>Minh Nguyệt Tâm vô tình lại bắt đầu thảo luận chuyện này với Diệp Phi. Không thể không nói, đôi khi lòng hiếu kỳ của phụ nữ thật sự rất lớn, bất kể lúc nào cũng vậy.</p>
+    <p>"Ba mươi như lang, bốn mươi như hổ, năm mươi ngồi vững hút đất. Câu này ngươi chưa từng nghe qua sao?" Diệp Phi trêu tức nhìn Minh Nguyệt Tâm hỏi.</p>
+    <p>Minh Nguyệt Tâm không khỏi đỏ mặt. Câu này dĩ nhiên nàng từng nghe, chỉ là trước kia cảm thấy rất hạ lưu nên không nghĩ sâu xa. Lúc này không nhịn được tỉ mỉ nhớ lại, lại cảm thấy rất có đạo lý, hơn nữa qua một vài tư liệu, nàng cũng từng thấy nhắc đến.</p>
+    <p>Minh Nguyệt Tâm dù chưa trải qua chuyện đó, nhưng với tư cách là một người phụ nữ đã trưởng thành, thỉnh thoảng tự giải quyết vẫn từng có. Cảm giác đó thật sự không tệ. Điều khiến nàng xấu hổ và giận dữ hơn chính là, khoảng thời gian này số lần nàng làm vậy rõ ràng tăng lên, mà người xuất hiện trong đầu lúc cao trào lại chính là chàng trai khiến nàng hận đến không thể tha thứ này.</p>
+    <p>Nghĩ đến mình mới hơn hai mươi tuổi mà còn khó nhịn, huống hồ là người đã từng thử qua tư vị đó. Lời Diệp Phi nói không sai, mẹ có thể kiên trì nhiều năm như vậy đúng là một người phụ nữ truyền thống tốt đẹp.</p>
+    <p>Đến giờ phút này, Minh Nguyệt Tâm đã có thể tha thứ cho Diệp Phi và mẹ. Chỉ là có một chuyện vẫn khiến nàng không thể thoải mái, đó là việc vừa rồi mình rõ ràng đã xông vào, vậy mà bọn họ vẫn tiếp tục, đặc biệt là mẹ, lại có thể thét lên trước mặt nàng, phía dưới còn phun ra nhiều như vậy.</p>
+    <p>Diệp Phi như thấy được tâm tư của Minh Nguyệt Tâm, hỏi: "Có phải ngươi vẫn còn thắc mắc tại sao ngươi đến nơi rồi mà chúng ta vẫn không dừng lại?"</p>
+    <p>"Đúng vậy." Minh Nguyệt Tâm đang nghĩ đến chuyện này, Diệp Phi hỏi vậy, nàng vô thức gật đầu.</p>
+    <p>"Chuyện này trách ta, là ta không kiểm soát được mình, còn bà ấy... Thôi, nói ngươi cũng không hiểu đâu." Diệp Phi lắc đầu.</p>
+    <p>"Tại sao ta không thể hiểu?" Minh Nguyệt Tâm trừng mắt nhìn Diệp Phi, cảm thấy hắn xem thường chỉ số thông minh của mình.</p>
+    <p>Diệp Phi lắc đầu: "Chuyện này khó nói lắm, đợi sau này ngươi có bạn trai, tự mình trải nghiệm rồi sẽ hiểu."</p>
+    <p>Mặt Minh Nguyệt Tâm lại ửng hồng, nhớ lại những lúc mình tự tay làm, hình như đến giai đoạn khẩn yếu nhất, quả thực rất khó dừng lại.</p>
+    <p>"Vậy sau này ngươi định làm thế nào? Chẳng lẽ cứ lén lút đến đây mãi sao?" Minh Nguyệt Tâm đột nhiên hỏi.</p>
+    <p>"Hửm?" Diệp Phi sững sờ, lập tức mừng rỡ nói: "Nói vậy, là ngươi đồng ý chuyện của ta và bà ấy rồi?"</p>
+    <p>"Không đồng ý thì làm gì được?" Minh Nguyệt Tâm bĩu môi nói: "Nhìn là biết mẹ đã không thể rời bỏ ngươi, bằng không với tính cách của bà ấy, chắc chắn sẽ không cho phép một mình ngươi đến tìm ta. Chỉ có làm cho bà ấy hoàn toàn tiếp nhận người, bà ấy mới ỷ lại như vậy. Ta cũng không thể đuổi ngươi đi làm bà ấy đau lòng được, thôi thì đành coi như không thấy gì vậy."</p>
+    <p>"Nói cũng đúng, cứ lén lút mãi cũng không phải cách." Diệp Phi cười hắc hắc: "Hay là thế này, ngươi làm bạn gái của ta, vậy bà ấy chính là nhạc mẫu của ta, như thế chúng ta ở bên nhau là chuyện rất bình thường mà."</p>
+    <p>Sắc mặt Minh Nguyệt Tâm biến đổi, khuôn mặt vừa mới tan băng bỗng chốc trở nên lạnh lẽo, giận dữ nói: "Sao ngươi vô sỉ thế!"</p>
+    <p>"Vô sỉ?" Diệp Phi nghi hoặc cắn răng, sau đó há miệng lộ ra hàm răng trắng đều, chỉ vào hỏi Minh Nguyệt Tâm: "Nhiều răng thế này ngươi không thấy sao? Sao lại bảo ta không răng được?"</p>
+    <p>"Cút!" Minh Nguyệt Tâm quát.</p>
+    <p>Diệp Phi cười nói: "Cút? Ta không biết làm, hay là ngươi làm mẫu cho ta xem đi, lăn ra cái ấn gì đó, ta học theo cho."</p>
+    <p>Nhìn vẻ mặt vô lại của Diệp Phi, không hiểu sao, Minh Nguyệt Tâm vốn đang rất giận lại bỗng chốc bị hắn làm cho bật cười.</p>
+    <p>Chứng kiến nụ cười của Minh Nguyệt Tâm, Diệp Phi mới thở phào nhẹ nhõm: "Ngươi cuối cùng cũng cười rồi. Giờ theo ta xuống dưới gặp mẹ ngươi được chưa? Nhưng nhớ kỹ, phải giữ nụ cười đó, bằng không mẹ ngươi sẽ buồn lắm."</p>
+    <p>Minh Nguyệt Tâm thế mới biết, Diệp Phi cố ý chọc tức mình là muốn mình không còn khuôn mặt đưa đám, để mẹ được an tâm. Trong lòng nàng không khỏi cảm động trước hành động của hắn. Việc hắn có thể quan tâm mẹ mình như vậy khiến Minh Nguyệt Tâm không còn thấy khó tiếp nhận hắn nữa.</p>
+    <p>Hai người cùng vào phòng ngủ của Tô Ngọc Nhàn. Tô Ngọc Nhàn đang nằm trên giường bỗng ngồi bật dậy, sợ hãi nhìn Minh Nguyệt Tâm, nhẹ gọi: "Tâm nhi."</p>
+    <p>Biểu cảm của mẹ khiến lòng Minh Nguyệt Tâm đau nhói. Nàng vội bước đến, ngồi bên cạnh Tô Ngọc Nhàn, nắm lấy tay bà: "Mẹ, con xin lỗi, mẹ vì con mà chịu bao nhiêu ủy khuất, vậy mà con lại không hiểu."</p>
+    <p>Nói xong, nước mắt lại trào ra. Suy cho cùng, nàng có thể tha thứ nhanh như vậy, quan trọng nhất vẫn là câu nói vừa rồi của Diệp Phi. Nghĩ đến mẹ chịu ủy khuất vì mình, Minh Nguyệt Tâm thấy những thứ khác chẳng còn quan trọng, chỉ cần bà vui vẻ là được. Còn về phần Diệp Phi, một là nếu hắn đi, mẹ nhất định sẽ rất khó sống, hai là đối với người này, Minh Nguyệt Tâm cũng không hiểu sao, thật sự không cách nào hận nổi.</p>
+    <p>"Tâm nhi, con không còn giận mẹ nữa sao?" Tô Ngọc Nhàn kinh hỉ nhìn Minh Nguyệt Tâm, dường như không tin đó là sự thật.</p>
+    <p>"Vâng." Minh Nguyệt Tâm gật đầu thật mạnh như để khẳng định quyết tâm của mình.</p>
+    <p>Nhận được câu trả lời khẳng định từ con gái, Tô Ngọc Nhàn triệt để yên tâm. Cơ thể vốn đang mềm nhũn không còn sức lực cuối cùng cũng không trụ nổi nữa, đổ ập xuống giường.</p>
+    <p>Chứng kiến cảnh này, Diệp Phi vội nói: "Tâm tỷ, chúng ta ra ngoài nói chuyện đi, để bà ấy nghỉ ngơi một chút."</p>
+    <p>"Mẹ sao vậy? Có phải chỗ nào bị thương không?" Minh Nguyệt Tâm hốt hoảng hỏi, tưởng rằng mẹ vì vội vã đuổi theo mình mà bị thương.</p>
+    <p>Tô Ngọc Nhàn ngượng chín mặt, vô thức liếc nhìn Diệp Phi đang tái nhợt, lắc đầu nói: "Không có gì, chỉ là hơi mệt thôi, nghỉ một lát là được."</p>
+    <p>"Không thể nào, bình thường mẹ đâu có nghỉ ngơi vào giờ này." Minh Nguyệt Tâm kiên quyết nói. Điều làm nàng cảm thấy mình có lý nhất là vừa rồi mẹ còn có thể cùng Diệp Phi điên cuồng như vậy, sao có thể mệt đến mức không nhúc nhích được? Vì thế nàng vẫn cho rằng chắc chắn mẹ bị thương ở chỗ đó mà sợ mình tự trách nên mới giấu diếm.</p>
+    <p>Tô Ngọc Nhàn hiểu rõ tính cách không hiểu ra lẽ không bỏ qua của con gái, bất đắc dĩ cắn môi, cuối cùng hạ quyết tâm, ghé vào tai nàng nói nhỏ một câu.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0224.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0226.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

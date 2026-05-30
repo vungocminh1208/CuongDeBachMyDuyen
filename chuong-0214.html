@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 214 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 214</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 214</small>
+    Chương 214: Hương diễm trừng phạt
+  </h1>
+  <div class="chapter-body">
+    <p>Thế nhưng Diệp Phi lúc này không có tâm trí nghiên cứu chuyện đó, việc hắn muốn làm bây giờ, chính là thu thập cho ra trò Trương Lâm tâm, người phụ nữ đã phản bội Liễu Phượng Nghi kia.</p>
+    <p>Không phát ra bất kỳ tiếng động nào, Diệp Phi đi tới chỗ ở của Trương Lâm tâm. Nơi này cũng không khó tìm, vì nằm ngay sát vách chỗ ở cũ của Liễu Phượng Nghi, nên Diệp Phi rất dễ dàng lọt qua cửa sổ. Điều khiến hắn hơi ngạc nhiên là Trương Lâm tâm lúc này vẫn chưa ngủ, mà đang gọi điện thoại. Đã nửa đêm rồi mà còn gọi điện, khiến Diệp Phi bản năng nghĩ tới kẻ đứng sau lưng ả. Vì vậy, hắn lặng lẽ dùng nội lực chấn mở cửa sổ, không một tiếng động chui vào, ngồi xuống ghế sofa sau lưng Trương Lâm tâm. Hắn nhìn từ trên xuống dưới người phụ nữ mà mình lần đầu tiên nhìn thấy này. Lúc này, Trương Lâm tâm chỉ mặc một bộ đồ ngủ. Diệp Phi không thể không thừa nhận, ả đúng là một người phụ nữ cực kỳ khêu gợi. Chỉ riêng việc nhìn dáng lưng yểu điệu và đầy đặn kia thôi cũng đã khiến tà hỏa trong lòng Diệp Phi rục rịch, đặc biệt là cặp mông đầy đặn khêu gợi kia, vậy mà lại chống căng bộ đồ ngủ rộng thùng thình ra một độ cong đầy đặn.</p>
+    <p>Trương Lâm tâm chỉ là một người bình thường, tự nhiên không thể nào phát hiện ra Diệp Phi, vẫn đang tiếp tục nói chuyện điện thoại: "Cho nên, tôi không chủ trương tiếp tục đối phó với những sản nghiệp khác của Liễu gia."</p>
+    <p>"Hừ, tôi thấy cô là không nỡ ra tay với Liễu Phượng Nghi phải không? Nhưng cô đừng quên, tính mạng cô và con gái cô đều nằm trong tay tôi. Nếu không muốn sau này phải cùng nó phục vụ cho hàng ngàn gã đàn ông, thì hãy cứ thành thật làm theo."</p>
+    <p>Vì Diệp Phi ngồi ngay sau Trương Lâm tâm, nên hắn nghe rõ cả những âm thanh từ đầu dây bên kia. Chỉ tiếc là người gọi điện dường như dùng thiết bị biến âm, khiến người nghe không tài nào nhận ra là nam hay nữ. Tuy nhiên Diệp Phi cũng không thất vọng, vì dù có nghe ra giọng người kia thì hắn cũng chưa chắc đã biết là ai, dù sao lát nữa để Trương Lâm tâm tự mình khai ra là được.</p>
+    <p>Qua cuộc đối thoại giữa hai người, có thể nghe ra Trương Lâm tâm cũng có nỗi khổ tâm, rất có thể là vì con gái nên mới bán đứng Liễu Phượng Nghi. Nhưng Diệp Phi chẳng buồn bận tâm tới điều đó. Trong mắt hắn, dù cô có nỗi khổ gì, chỉ cần dám làm tổn thương người yêu của hắn, thì hắn tuyệt đối không tha thứ. Hơn nữa, qua đối thoại của họ, Diệp Phi còn nghĩ ra một cách hay.</p>
+    <p>"Tôi đã nghe các người hại cô ta ra nông nỗi này rồi, còn gì mà không nhẫn tâm nữa chứ?"</p>
+    <p>Trương Lâm tâm phản bác: "Tôi chỉ là biết tự lượng sức mình. Người Liễu gia không ai là hạng tầm thường cả. Nếu ép các người, thế lực của các người căn bản không với tới được Vọng Hải đâu. Đừng quên, sau lưng Liễu gia còn có Diệp gia. Tình hình Diệp gia hiện tại chắc các người cũng rõ rồi chứ?"</p>
+    <p>Đầu dây bên kia dường như bị lời của Trương Lâm tâm làm cho dao động, trầm mặc một hồi rồi nói: "Được rồi, cô không cần vội hành động, tôi xin chỉ thị của lão nhân gia đã rồi tính sau. Nhưng cô nhớ kỹ cho rõ, nếu dám phản bội, kết cục sẽ như thế nào."</p>
+    <p>Nói xong, người nọ cúp máy.</p>
+    <p>Đặt điện thoại xuống mặt bàn, Trương Lâm tâm thở hắt ra một hơi dài, xoay người lại định đi nghỉ ngơi thì đột nhiên sững sờ khi thấy Diệp Phi ngồi trên sofa. Ả hỏi: "Anh là ai? Sao lại tới đây?"</p>
+    <p>Diệp Phi không chút kiêng dè đánh giá dáng người xinh đẹp của Trương Lâm tâm, thầm tán thưởng trong lòng. Dáng người này đúng là tuyệt mỹ, không hề thua kém Liễu Phượng Nghi. Trên khuôn mặt hình trứng ngỗng tiêu chuẩn có một nét yếu đuối mơ hồ, còn đôi mắt to long lanh kia lại lộ ra vẻ u sầu khiến người ta thương xót. Đây là một người phụ nữ cực kỳ yếu đuối, một kiểu mỹ nhân mà người tốt sẽ không nhịn được muốn bảo vệ, còn kẻ xấu thì không nhịn được muốn bắt nạt. Diệp Phi không biết mình có tính là người tốt không, nhưng lúc này trong lòng tràn đầy sự thô bạo, hắn chỉ muốn bắt nạt ả một trận.</p>
+    <p>"Tôi là ai sao?"</p>
+    <p>Trên mặt Diệp Phi lộ ra nụ cười tà ác: "Cô không thấy tôi quen mắt lắm sao? Cô đáng lẽ phải gặp tôi rồi mới đúng, dù lần đó cô chỉ thấy được một cái bóng lưng."</p>
+    <p>"Anh là... của Phượng Nghi..."</p>
+    <p>Trương Lâm tâm thốt lên. Dáng người Diệp Phi quả thực có chút quen thuộc. Lần đó, ả vốn định tìm Liễu Phượng Nghi bàn việc, không ngờ lại bắt gặp cảnh Liễu Phượng Nghi hẹn hò với người đàn ông của mình. Nhận được lệnh đối phó Liễu Phượng Nghi từ trước, ả đã dùng điện thoại đặc chế chụp lại bức ảnh đó. Nhưng ả cũng biết thực lực Liễu Phượng Nghi kinh người, sợ bị phát hiện nên không dám nán lại, chụp xong là lặng lẽ rời đi. Giờ được Diệp Phi nhắc nhở, ả lập tức nhớ ra người đàn ông hôm đó.</p>
+    <p>"Nhận ra tôi rồi à?"</p>
+    <p>Diệp Phi cười quái dị: "Xem ra nhãn lực của cô cũng không tệ. Chỉ là tôi không hiểu, rốt cuộc ai cho cô lá gan dám hại Phượng Nghi của tôi?"</p>
+    <p>"Tôi không hề hại cô ta. Những gì tôi nói đều là sự thật, cô ta đúng là có một tình nhân như anh. Đã làm thì sao sợ người khác nói?"</p>
+    <p>Trương Lâm tâm lớn tiếng nói, dường như muốn phản bác Diệp Phi, nhưng thực chất là đang thuyết phục bản thân. Ả muốn mình ghi nhớ rằng Liễu Phượng Nghi từng làm những chuyện này, mình không phải cố ý vu khống, như vậy trong lòng ả mới thấy thoải mái hơn đôi chút.</p>
+    <p>Diệp Phi không ngờ người phụ nữ này đến lúc này còn già mồm, sự thô bạo trong lòng nhất thời bùng phát. Hắn đứng phắt dậy, hung hăng kéo Trương Lâm tâm lại, rồi ngồi xuống, dùng sức đè ả vào trước người mình.</p>
+    <p>"Anh muốn làm gì?"</p>
+    <p>Trương Lâm tâm bị ánh mắt thô bạo của Diệp Phi nhìn đến sợ hãi, không nhịn được uy hiếp: "Đây là Vọng Hải lâu, chỉ cần tôi hô lên một tiếng, anh đừng hòng chạy thoát!"</p>
+    <p>"Đừng quên trước kia tôi cũng là khách quen ở đây. Cô tưởng tôi không biết cách âm của nơi này sao?"</p>
+    <p>Diệp Phi cười tà: "Hơn nữa, con gái cô hình như tên là Tiêu Phỉ đúng không? Nó đang học lớp 11 trường trung học phổ thông số 1 Vọng Hải, phải không?"</p>
+    <p>"Anh muốn làm gì?"</p>
+    <p>Nhắc đến Tiêu Phỉ, trên mặt Trương Lâm tâm cuối cùng cũng lộ ra vẻ cầu khẩn: "Xin anh, đừng làm hại con gái tôi, mọi chuyện đều do tôi làm, không liên quan gì đến nó cả."</p>
+    <p>"Vậy thì phải xem cô có làm tôi hài lòng hay không."</p>
+    <p>Diệp Phi cười, kéo khóa quần mình ra, rồi ấn đầu ả xuống.</p>
+    <p>Nhìn thấy vật đang đằng đằng sát khí, to đến dọa người của Diệp Phi lộ ra trong quần, trong lòng Trương Lâm tâm lộ ra vẻ khuất nhục. Ả chợt thấy hối hận vô cùng, hối hận vì mình đã tới Vọng Hải. Nhưng ả cũng biết, nếu không nghe lời bọn họ đến Vọng Hải, hai kẻ kia chắc chắn sẽ không tha cho mình. Thủ đoạn của bọn họ dù ả chưa từng tận mắt chứng kiến, nhưng chỉ cần tưởng tượng thôi cũng biết chắc chắn tàn nhẫn hơn gã đàn ông trước mắt này nhiều.</p>
+    <p>Thấy Trương Lâm tâm chậm chạp không động đậy, Diệp Phi có chút mất kiên nhẫn, thúc mạnh eo, để vật kia của mình cọ xát nhẹ nhàng trên khuôn mặt kiều diễm của ả, nói: "Cô không muốn làm sao? Tốt lắm, ngày mai tôi sẽ cho con gái cô làm thay!"</p>
+    <p>"Không được! Tôi làm!"</p>
+    <p>Trương Lâm tâm vội vàng nói, rồi dùng bàn tay nhỏ bé cầm lấy vật đang lắc lư không ngừng trước mắt, mở cái miệng nhỏ nhắn ra nhẹ nhàng ngậm lấy.</p>
+    <p>Dương vật của Diệp Phi thực sự quá lớn, những người phụ nữ của hắn bình thường chẳng ai có thể ngậm hết được. Ngay cả người mẹ đã ngậm nhiều nhất những ngày gần đây, dùng đủ mọi cách cũng chỉ có thể ngậm được một nửa. Do đó, Diệp Phi chưa từng thử cảm giác thâm hầu trong truyền thuyết này. Hôm nay, miệng Trương Lâm tâm cũng rất nhỏ, lại vì kỹ thuật quá kém nên chỉ ngậm được phần quy đầu. Thế nhưng Diệp Phi không hề thương xót, ngay khi vật kia vừa vào trong miệng ả, hắn liền nắm chặt mái tóc dài của ả, dùng sức ấn về phía trước, quy đầu khổng lồ lập tức đâm thẳng vào cổ họng ả.</p>
+    <p>Cảm giác khó chịu đột ngột khiến Trương Lâm tâm không nhịn được giãy dụa, nhưng Diệp Phi không hề có ý định buông tha cho ả. Bàn tay to lớn kéo mái tóc dài của ả ấn mạnh xuống háng mình, phần eo không ngừng thúc động, khiến vật lớn của hắn ra vào bên trong cái miệng nhỏ bé đó.</p>
+    <p>Mãi đến khi Trương Lâm tâm giãy dụa dần yếu đi, Diệp Phi mới rút dương vật ra khỏi cái miệng nhỏ bé đang chịu đủ tàn phá của ả, rồi buông tóc ả ra.</p>
+    <p>Theo sự rút ra của dương vật, cảm giác khó chịu khiến Trương Lâm tâm không nhịn được nôn khan một trận, đôi mắt to xinh đẹp cũng đẫm lệ. Khi nhìn về phía Diệp Phi, ánh mắt ả giống như đang nhìn một con quỷ vậy. Bởi vì lúc khó chịu nhất, ả từng nghĩ sẽ cắn thật mạnh, khiến hắn vì đau đớn mà buông tha mình. Không ngờ vật của hắn quá thô cứng, ả căn bản không cắn nổi, ngược lại còn khiến hắn càng thêm khoái cảm.</p>
+    <p>Đợi Trương Lâm tâm nghỉ ngơi một lát, Diệp Phi lại kéo đầu ả tới. Trương Lâm tâm vội vàng lùi lại, cầu khẩn: "Không được, không được, xin anh, tôi khó chịu lắm."</p>
+    <p>Có lẽ là vừa rồi vật của Diệp Phi đã đụng thương cổ họng, giọng Trương Lâm tâm có chút khàn đặc.</p>
+    <p>Nghĩ đến việc lát nữa còn cần hỏi ả vài chuyện, Diệp Phi cũng không cưỡng cầu nữa, cười tà: "Được rồi, vậy xem cô có cách nào khác khiến tôi sướng hay không."</p>
+    <p>Nói xong, hắn giật phăng bộ đồ ngủ trên người ả xuống, tiện tay lột luôn cả áo lót và quần lót, khiến ả trần như nhộng.</p>
+    <p>Nhìn dáng người gần như hoàn mỹ cùng làn da trắng mịn như ngọc không một chút tỳ vết của Trương Lâm tâm, Diệp Phi thầm tán thưởng trong lòng. Nếu không phải ả bán đứng người dì tốt của mình, ả tuyệt đối xứng đáng là một người phụ nữ được hắn yêu thương. Thế nhưng nghĩ đến những việc ả làm, Diệp Phi chỉ muốn tra tấn ả thật tốt. Hắn kéo ả lại, hai tay nắm lấy đôi bầu ngực mà một tay hắn không thể nắm hết, bóp mạnh vào hai đầu vú nhỏ nhắn màu hồng nhạt, cười nói: "Đúng là một đôi bầu ngực tuyệt đẹp, dùng nó làm tôi sướng đi!"</p>
+    <p>Chỉ cần Diệp Phi không bắt mình ngậm vật đó nữa, Trương Lâm tâm giờ đây việc gì cũng chịu làm. Chỉ là từ trước đến nay chưa từng làm qua, nên ả nhất thời không biết bắt đầu từ đâu.</p>
+    <p>Nhìn vẻ chân tay lóng ngóng của Trương Lâm tâm, Diệp Phi mắng: "Mẹ kiếp, ngay cả nhũ giao cũng không biết làm à? Lại đây, tôi dạy cho cô!"</p>
+    <p>Nói xong, hắn kéo Trương Lâm tâm lại, bắt ả quỳ gối trước người mình, đặt vật lớn của mình vào giữa khe ngực sâu hút của ả, rồi cầm lấy hai tay ả, ép ả dùng đôi bầu ngực kẹp chặt vật đó của hắn, nói: "Làm như vậy này!"</p>
+    <p>Động tác này đừng nói là làm, ngay cả nghĩ Trương Lâm tâm cũng chưa từng nghĩ tới. Giờ lại phải phục vụ một chàng trai trẻ bằng tuổi con gái mình, điều này khiến ả cảm thấy vô cùng nhục nhã. Mà điều khiến ả không thể tha thứ cho bản thân hơn cả là, khi vật lớn của hắn cọ xát vào bầu ngực, ả lại sinh ra một tia khoái cảm không nên có, ngay cả phía dưới cũng bắt đầu ướt át.</p>
+    <p>Mục đích của Diệp Phi lúc này chính là muốn nhục nhã người phụ nữ dám hại dì của mình. Hơn nữa, tinh dịch của hắn dường như vô tận, từ lúc bắt đầu đã không hề kiềm chế. Sau khi Trương Lâm tâm dùng ngực phục vụ xong, cảm thấy đã đủ, hắn lập tức đứng dậy, rút vật lớn ra khỏi giữa bầu ngực ả, một tay cầm lấy, tay kia túm tóc Trương Lâm tâm, dùng vật đó khuấy đảo vài cái trên khuôn mặt ả, rồi tinh dịch dồi dào cuồng bạo bắn ra, từng đợt, từng đợt bắn lên khuôn mặt đẹp như tiên nữ nhưng trong mắt hắn là vô cùng đáng ghét kia.</p>
+    <p>Trương Lâm tâm nhắm chặt mắt, khóe mắt chảy ra hàng lệ khuất nhục. Nhưng Diệp Phi không mảy may thương xót. Sau khi bắn hết, hắn quẹt chỗ tinh dịch dính trên đầu dương vật lên đôi môi khêu gợi của ả, ra lệnh: "Không được lau! Nếu có chảy ra ngoài miệng thì cứ ăn đi, rõ chưa?"</p>
+    <p>Trương Lâm tâm mím chặt môi, vị mặn của tinh dịch trong nháy mắt tràn ngập khoang miệng. Cảm giác đó khiến ả suýt nữa nôn mửa, nhưng đối mặt với con quỷ Diệp Phi, ả căn bản không dám nhổ ra, đành lặng lẽ nuốt từng chút tinh dịch vào trong, nước mắt trong mắt không khỏi càng tuôn rơi dữ dội hơn.</p>
+    <p>Nhìn vẻ giận mà không dám nói, khuất nhục trước mắt đại mỹ nhân này, trong lòng Diệp Phi tràn đầy khoái cảm trả thù. Hắn lại ra lệnh: "Quỳ xuống cho tôi! Chó con cô từng thấy chưa, cứ nằm sấp như chúng nó cho tôi!"</p>
+    <p>Trương Lâm tâm cảm thấy mình sắp sụp đổ, dùng giọng khàn đặc cầu xin: "Xin anh, tha cho tôi được không?"</p>
+    <p>"Được thôi."</p>
+    <p>Trên mặt Diệp Phi lộ nụ cười tà ác: "Vậy tôi đi tìm con gái cô cũng được, nó còn non nớt, chắc chắn chơi sướng hơn cô nhiều."</p>
+    <p>"Không được!"</p>
+    <p>Trương Lâm tâm sợ tới mức thét lên một tiếng, vội vàng nằm xuống theo ý Diệp Phi, đem cái mông đầy đặn cao ngạo vểnh lên cao.</p>
+    <p>Diệp Phi cười ha ha: "Thế mới đúng chứ. Nào, ngoan ngoãn xoay người lại cho tôi nhìn xem."</p>
+    <p>Trong lòng Trương Lâm tâm tràn đầy sợ hãi và nhục nhã, nhưng hận ý dành cho Diệp Phi lúc đầu cũng đã biến mất. Bởi vì lúc này, Diệp Phi trong lòng ả đã thăng cấp thành một con quỷ thực thụ. Ả không dám trái ý hắn nữa, chỉ còn nỗi sợ vô tận. Giờ nghe lệnh Diệp Phi, ả chậm rãi quay lại cơ thể yêu kiều đầy đặn, hướng cái nơi ả cảm thấy ngượng ngùng nhất về phía Diệp Phi.</p>
+    <p>Mặc dù là quan hệ kẻ địch, nhưng Diệp Phi không thể không thừa nhận, người phụ nữ trước mắt này tuyệt đối là một vưu vật hoàn mỹ, không hề thua kém dì của hắn. Thế nhưng nghĩ đến những tổn thương ả gây ra cho dì, chút lòng thương tiếc vừa nhen nhóm lại bị hận thù vùi lấp. Hắn cười tà: "Trông cô bây giờ đúng là giống một con chó cái xinh đẹp, hơn nữa còn là con chó cái biết nghe lời. Tôi thực sự không nỡ giết cô nữa rồi, hay là từ nay về sau làm tính nô chuyên trách cho tôi đi? Nào, gọi chủ nhân nghe xem."</p>
+    <p>Trương Lâm tâm bị lời của Diệp Phi làm cho vừa thẹn vừa sợ, nhưng điều ả sợ hơn là hắn sẽ ra tay với con gái mình, nên lí nhí gọi: "Chủ nhân."</p>
+    <p>Diệp Phi cười ha ha, một tay nâng cái eo nhỏ nhắn của Trương Lâm tâm lên, để mông ả nâng lên ngang tầm với dương vật của hắn, rồi dùng vật lớn cọ xát vào tiểu dâm huyệt của ả. Cảm nhận được sự ướt át trên đó, hắn không khỏi cười nói: "Xem ra cô không những là một con chó cái biết nghe lời, mà còn là một con chó cái dâm đãng nữa, vậy mà đã ướt rồi, để cô làm tính nô đúng là uổng phí cho cô rồi."</p>
+    <p>Nói xong, hắn dùng lực thúc eo, không chút thương tiếc đâm thẳng vật to lớn vô cùng của mình vào tiểu dâm huyệt chỉ mới hơi ướt át của Trương Lâm tâm.</p>
+    <p>"Á ——"</p>
+    <p>Trương Lâm tâm tuy đã sinh con, nhưng cái 'lồn' ấy đã nhiều năm không dùng tới, lúc này bị dương vật to lớn như vậy đột ngột đâm vào, làm sao chịu nổi? Không nhịn được thét lên một tiếng đau đớn. Nhưng trong nỗi đau tột cùng, ả cũng bi ai phát hiện, mình vậy mà cũng sinh ra một loại khoái cảm to lớn.</p>
+    <p>Tiếng thét của Trương Lâm tâm khiến sự bạo ngược trong lòng Diệp Phi càng dữ dội hơn. Hắn không hề quan tâm đến sự giãy dụa của ả, hai tay ôm chặt cái eo nhỏ, vật lớn như đóng cọc không ngừng điên cuồng đâm mạnh vào hoa tâm kiều nộn của ả.</p>
+    <p>Trương Lâm tâm năm nay 37 tuổi, đang ở độ tuổi nhu cầu của phụ nữ mạnh mẽ nhất, lại đã hơn mười năm không có đời sống tình dục, nên sớm đã có chút đói khát. Vì vậy, sau nỗi đau ban đầu, vật lớn của Diệp Phi mang lại cho ả chỉ còn là khoái cảm vô tận. Được 'địt' cho càng lúc càng sướng, lúc này ả căn bản quên mất cả con gái mình, chỉ biết ra sức lắc mông, truy cầu những cú đâm mạnh mẽ hơn, trong miệng cũng từ từ phát ra tiếng, chỉ là không còn là tiếng thét đau đớn như lúc nãy, mà là tiếng rên rỉ lãng mạn khi sung sướng đến tột độ.</p>
+    <p>Nghe tiếng rên rỉ của Trương Lâm tâm, lại cảm nhận được bên trong cũng trở nên trơn ướt, Diệp Phi biết chắc ả đã bị mình làm cho sung sướng. Nhưng mục đích của hắn là muốn trừng phạt, đâu thể để ả thoải mái dễ dàng như thế? Vì vậy, trong khi tiếp tục điên cuồng đâm mạnh vào tiểu dâm huyệt thành thục của ả, hắn giơ tay phải lên, giáng một cái tát mạnh vào cái mông đầy đặn của ả.</p>
+    <p>"Á ——"</p>
+    <p>Nỗi đau đột ngột khiến Trương Lâm tâm phát ra một tiếng rên rỉ không rõ là sung sướng hay đau khổ. Đồng thời, Diệp Phi cũng cảm thấy theo cái tát của mình, tiểu dâm huyệt của ả vậy mà co rút lại một chút, kẹp chặt lấy vật lớn của hắn sướng không chịu nổi.</p>
+    <p>Việc 'nhất cử lưỡng tiện' này Diệp Phi tự nhiên rất thích. Vì vậy, vừa tiếp tục đâm mạnh vào tiểu dâm huyệt, hắn vừa dùng sức vuốt ve mông ả. Chỉ một lúc, cặp mông vốn đã cực đại của ả đã sưng lên một vòng, màu sắc cũng từ trắng nõn chuyển sang phấn hồng. Diệp Phi cũng không chỉ tập trung vào cái mông, mà đánh đập lên khắp nơi trên cơ thể ả.</p>
+    <p>Chỉ là Diệp Phi không biết, và bản thân Trương Lâm tâm cũng không biết, bên dưới vẻ đoan trang của ả lại cất giấu một xu hướng chịu ngược. Những đòn đánh của Diệp Phi tuy khiến cơ thể ả rất đau, nhưng chính sự đau đớn đó lại làm ả cảm nhận khoái cảm bên trong rõ rệt hơn. Dưới sự hành hạ của Diệp Phi, ả không khỏi có chút điên cuồng. Sau khi Diệp Phi lại một lần nữa bóp mạnh lấy đôi nhũ hoa nhỏ bé, ả rốt cục đạt tới biên giới cao trào, cơ thể yêu kiều đầy đặn bắt đầu run rẩy nhẹ nhàng.</p>
+    <p>Theo sự co rút không quy luật trong dâm huyệt của Trương Lâm tâm, Diệp Phi biết người phụ nữ này sắp lên đỉnh rồi. Nhưng Diệp Phi đột ngột dừng lại, rồi rút phắt vật lớn ra ngoài.</p>
+    <p>Trương Lâm tâm đang ở biên giới cao trào không khỏi khẩn trương, cái mông cố sức đẩy ngược ra sau, hy vọng có thể nuốt lại vật của Diệp Phi vào trong, nhưng không thể được như ý.</p>
+    <p>Diệp Phi đưa tay ra đặt dưới háng Trương Lâm tâm, dùng ngón tay tách cái tiểu dâm huyệt vốn bị mình 'địt' đến đỏ rực như máu ra, cười nói: "Sao thế? Con chó cái nhỏ phát tình rồi à?"</p>
+    <p>Diệp Phi vốn muốn dùng lời lẽ nhục nhã Trương Lâm tâm, khiến ả hổ thẹn cầu hoan, cứ bồi hồi mãi ở biên giới cao trào, chịu chút tra tấn. Nhưng không ngờ, khoảnh khắc hắn đâm vào, trong lòng Trương Lâm tâm đã nảy sinh ý nghĩ 'bất cần đời'. Trước mặt hắn, ả đã vứt bỏ hết tôn nghiêm, lúc này vì truy cầu cao trào, không hề cố kỵ mà gọi lớn: "Đúng vậy, chủ nhân, con chó cái nhỏ của ngài phát tình rồi, xin chủ nhân, hãy mau dùng vật lớn của ngài trừng phạt con tính nô tao lãng này đi!"</p>
+    <p>Diệp Phi đột nhiên phát hiện, mình dùng phương pháp này trừng phạt ả thực sự có chút không sáng suốt, bởi vì trong khi làm ả 'phát điên', bản thân hắn cũng phải chịu sự hấp dẫn. Ví dụ như lúc này, hắn đã bị những lời dâm đãng của Trương Lâm tâm làm cho suýt nữa không kìm lòng nổi. Hắn thúc mạnh eo, vật lớn vừa rời khỏi tiểu dâm huyệt lại lần nữa đâm vào, điên cuồng thúc đẩy.</p>
+    <p>Trương Lâm tâm sướng đến mức sắp điên mất rồi. Để lấy lòng Diệp Phi, ả lại lớn tiếng rên rỉ: "Chủ nhân tốt... vật của ngài... to thật... làm lâm tâm... sướng quá... lâm tâm muốn... cả đời làm... tiểu tính nô... chó cái nhỏ của chủ nhân... cả đời để... vật của chủ nhân... trừng phạt... chủ nhân tốt... tiểu tính nô dâm huyệt... sắp tới rồi... sắp bị chủ nhân... địt chết rồi... á..."</p>
+    <p>Theo một tiếng rên rỉ dài, Trương Lâm tâm rốt cuộc run rẩy tiết ra.</p>
+    <p>Diệp Phi không rút ra theo Trương Lâm tâm, cũng không để ả hưởng thụ dư vị cao trào, vì mục đích của hắn là trừng phạt ả. Vì vậy, hắn mãnh liệt rút vật lớn ra khỏi cái dâm huyệt vẫn đang co rút của ả, đặt vào lỗ hậu nhỏ bé, mượn dịch nhờn trơn trượt của ả, đâm mạnh vào.</p>
+    <p>Trương Lâm tâm vừa cảm thấy mình còn đang ở trên thiên đường, bỗng chốc bị nỗi đau to lớn này kéo thẳng xuống địa ngục. Ả kêu thảm thiết một tiếng, cầu xin: "Chủ nhân, vật của chủ nhân, xin anh đừng địt chỗ đó, đau quá!"</p>
+    <p>Diệp Phi căn bản không đếm xỉa đến lời cầu khẩn, tiếp tục điên cuồng địt vào cái lỗ hậu còn chặt hơn cả dâm huyệt của ả, cho đến khi ả suýt nữa hôn mê vì đau, hắn mới rút ra, đâm lại vào tiểu dâm huyệt ướt át, dùng khoái cảm vô tận kéo ả từ trạng thái suýt hôn mê trở lại. Nhưng vừa thấy ả sắp cao trào, hắn lại đâm vào lỗ hậu ả.</p>
+    <p>Cứ như vậy, Trương Lâm tâm cứ bồi hồi mãi giữa địa ngục và thiên đường, có chút không phân biệt được mình đang đau hay sướng, cho đến tận sau này, lỗ hậu cũng bị địt ra khoái cảm, ả mới hoàn toàn giải thoát.</p>
+    <p>Diệp Phi điên cuồng 'địt' liên tục hơn hai tiếng đồng hồ trong hai cái lỗ của Trương Lâm tâm, cho đến khi ả không còn một chút sức lực, bắt đầu không ngừng cầu xin tha thứ, hắn mới đâm mạnh vật vào tử cung thành thục dâm đãng của ả, đem tinh dịch nồng đặc của mình rót tràn trề vào cái tiểu dâm huyệt chịu đủ tàn phá của ả.</p>
+    <p>Đợi đến khi bắn giọt tinh dịch cuối cùng vào sâu trong dâm huyệt của Trương Lâm tâm, Diệp Phi mới rút vật lớn ra, ngồi xuống ghế sofa, vẫy tay với Trương Lâm tâm: "Lại đây, dọn dẹp cho chủ nhân đi."</p>
+    <p>Trương Lâm tâm cố chống lại tia sức lực cuối cùng, chậm rãi quỳ trước người Diệp Phi, mở miệng nhỏ nhắn ra, liếm hết chỗ tinh dịch và dịch nhờn thuộc về mình lẫn của hắn trong miệng, rồi nuốt xuống. Nhưng lúc này, trong lòng ả không còn thấy ghê tởm nữa, ngược lại còn thấy tinh dịch của Diệp Phi rất mỹ vị.</p>
+    <p>Đợi Trương Lâm tâm giúp mình dọn dẹp sạch sẽ, Diệp Phi vỗ vỗ chỗ bên cạnh, nói: "Lại đây, ngồi đi."</p>
+    <p>"Vâng, chủ nhân."</p>
+    <p>Trương Lâm tâm dường như đã thích nghi với cách xưng hô này. Khi gọi Diệp Phi là chủ nhân, trong mắt ả không còn vẻ khuất nhục ban đầu nữa, mà chỉ còn sự sợ hãi vô tận, và cả một chút... quyến luyến.</p>
+    <p>"Á..."</p>
+    <p>Cái mông vừa chạm vào sofa, những vết thương do Diệp Phi gây ra khiến Trương Lâm tâm đau điếng, ả thốt lên một tiếng, không dám ngồi thẳng, thân thể nghiêng đi, ngã vào người Diệp Phi, lại vô tình đụng phải những vết thương khác, không nhịn được lại kêu lên đau đớn.</p>
+    <p>Nhìn người phụ nữ trong lòng này, người đã chịu đựng mọi sự bạo ngược của mình, khiến cơ thể vốn hoàn mỹ giờ đầy rẫy vết thương, trong lòng Diệp Phi dâng lên một tia thương tiếc. Sự thô bạo trong lòng hắn đã hoàn toàn tan biến, đương nhiên hắn có thể dùng tâm tính bình thường để nhìn người phụ nữ này.</p>
+    <p>Ả vốn vô tội, điểm này Diệp Phi ngay từ đầu đã biết. Nhưng vừa rồi hắn chỉ muốn trả thù nên mới làm ra những hành vi đó. Lúc này hắn lại không thể vô tình được nữa, hơn nữa ả lại là người mang đến cho hắn một trải nghiệm khác biệt.</p>
+    <p>Lật tay lấy một viên Khôi phục hoàn trong không gian, Diệp Phi đưa tới miệng ả, nói: "Uống cái này đi."</p>
+    <p>"Vâng, cảm ơn chủ nhân."</p>
+    <p>Dù không biết Diệp Phi đưa mình uống gì, Trương Lâm tâm cũng không một chút chần chờ, mở miệng nuốt viên thuốc vào. Trong lòng ả không khỏi kinh ngạc, người chủ nhân nhìn còn trẻ này thực sự quá thần kỳ, trên người không mặc gì mà lại có thể tiện tay lấy ra một viên thuốc, thật không biết hắn làm cách nào.</p>
+    <p>Nhưng sự ngạc nhiên của Trương Lâm tâm mới chỉ bắt đầu. Theo dược lực của Khôi phục hoàn tan ra, ả chỉ cảm thấy một dòng nước ấm trào ra trong cơ thể, trong nháy mắt chảy khắp toàn thân. Dòng nước ấm đó khiến ả vô cùng thoải mái, hơn nữa những vết thương trên người ả vậy mà đang phục hồi với tốc độ mắt thường có thể thấy được. Chỉ trong vòng chưa đầy năm phút, cơ thể ả đã phục hồi lại vẻ hoàn mỹ như lúc chưa bị hắn tàn phá.</p>
+    <p>Sự biến hóa kỳ dị này khiến Trương Lâm tâm mừng rỡ khôn xiết, lại mở miệng cảm ơn: "Cảm ơn chủ nhân."</p>
+    <p>"Ừm."</p>
+    <p>Diệp Phi gật đầu, nhẹ nhàng ôm lấy cơ thể yêu kiều bóng loáng của ả, nói: "Giờ chúng ta có thể trò chuyện rồi chứ?"</p>
+    <p>Thấy Diệp Phi không còn thô bạo như vừa rồi, Trương Lâm tâm càng thêm vui vẻ, gật đầu nói: "Chủ nhân có vấn đề gì cứ hỏi, lâm tâm xin nói hết."</p>
+    <p>"Tốt lắm, ta muốn biết, kẻ đứng sau lưng cô là ai."</p>
+    <p>Diệp Phi hài lòng cười cười.</p>
+    <p>"Là Tiêu Biển, cũng chính là chồng tôi."</p>
+    <p>Trương Lâm tâm không chút do dự đáp.</p>
+    <p>"Vậy người vừa rồi gọi điện thoại cũng là hắn?"</p>
+    <p>Diệp Phi có chút kỳ lạ hỏi. Thấy Trương Lâm tâm gật đầu, hắn không khỏi vô cùng kinh ngạc: "Vậy tại sao hắn dùng Tiêu Phỉ để uy hiếp cô? Chẳng lẽ đó không phải con gái hắn?"</p>
+    <p>"Đương nhiên là phải."</p>
+    <p>Trương Lâm tâm oán hận nói: "Chỉ là kẻ đó căn bản không có nhân tính, vì địa vị của mình, hắn có thể hy sinh bất cứ ai."</p>
+    <p>"Người ta nói, yêu sâu hận lắm."</p>
+    <p>Diệp Phi nhàn nhạt nói: "Xem ra cô cũng rất có tình cảm với hắn nhỉ."</p>
+    <p>"Không phải, từ nay về sau lâm tâm chỉ là người của chủ nhân!"</p>
+    <p>Trương Lâm tâm vội vàng nói: "Lâm tâm vừa rồi sở dĩ có thể như vậy, chỉ là vì chán ghét nhân phẩm của hắn mà thôi, căn bản không phải vì con người hắn."</p>
+    <p>"Vậy là tốt rồi."</p>
+    <p>Diệp Phi hài lòng gật đầu. Dù thế nào đi nữa, Trương Lâm tâm bây giờ cũng đã đóng dấu của hắn, hắn đương nhiên không hy vọng trong lòng ả còn có người khác, càng không hy vọng bất cứ gã đàn ông nào khác đụng vào ả. Vì vậy hắn nói: "Ta sẽ sớm xử lý hắn, cô không ý kiến gì chứ?"</p>
+    <p>"Đương nhiên, tôi đã sớm hận không thể cho hắn chết rồi."</p>
+    <p>Trương Lâm tâm hiển nhiên không chỉ không còn tình cảm với Tiêu Biển mà còn tràn đầy hận thù. Nhưng ả lập tức nói thêm: "Tuy nhiên, chủ nhân, anh tốt nhất là đừng quá xúc động."</p>
+    <p>"Chẳng lẽ ta còn không đối phó được một Tiêu Biển?"</p>
+    <p>Diệp Phi có chút cạn lời nói. Tiêu Biển hắn cũng biết, là một quan viên ở kinh thành. Nếu bàn về đẳng cấp thì cũng ngang ngang Liễu Phượng Nghi, nhưng kinh thành là thủ phủ của Trung Quốc, cấp bậc quan viên ở đó thì đúng là không tính là gì.</p>
+    <p>"Tiêu Biển đương nhiên dễ đối phó."</p>
+    <p>Trương Lâm tâm nói: "Nhưng sau lưng hắn còn có một cha nuôi. Người nọ là nhân vật cao tầng tuyệt đối của Long quốc, đã nằm trong danh sách rồi. Vì sự an toàn của chủ nhân, tốt nhất đừng cứng đối cứng với hắn."</p>
+    <p>Diệp Phi nghe vậy không khỏi sững sờ. Không phải hắn sợ cái người cao tầng nào đó, với bản lĩnh hiện tại, những kẻ cao tầng đó trong mắt hắn đúng là chẳng là gì. Thử nghĩ xem, ai lại đi kiêng dè một kẻ mà tính mạng bất cứ lúc nào cũng có thể bị mình lấy đi đâu chứ? Điều khiến Diệp Phi hơi kinh ngạc là Trương Lâm tâm vậy mà lại thực sự một lòng một dạ với mình, thậm chí cả chuyện này cũng nói cho hắn biết, nếu không, để hắn cứng đối cứng với những người kia, kết quả lưỡng bại câu thương chẳng phải là kết quả tốt nhất cho ả sao?</p>
+    <p>"Cảm ơn cô!"</p>
+    <p>Diệp Phi ôm chặt cơ thể mềm mại của Trương Lâm tâm, trong lòng lần đầu tiên nảy sinh một chút nhu tình đối với ả. Trước kia dù cũng thương tiếc, nhưng đó chỉ là bản năng quan tâm đến những điều đẹp đẽ mà thôi. Trong lòng hắn, hắn coi ả nhiều hơn là một công cụ có thể tùy ý bạo ngược, nhưng hiện tại, loại tâm tư đó đã có chút chuyển biến.</p>
+    <p>Cảm nhận được sự nhu tình của Diệp Phi, trong lòng Trương Lâm tâm không khỏi dâng lên một chút ngọt ngào, cảm thấy người chủ nhân này không còn đáng sợ như vậy nữa. Ả sở dĩ nhắc nhở Diệp Phi, thực ra cũng không phải thực sự quan tâm đến hắn, mà là sợ nếu hắn bị hai người kia xử lý, mình sẽ lại rơi vào tay bọn họ. Mà Diệp Phi dù rất đáng sợ, đặc biệt là lúc vừa rồi, cứ như một con quỷ vậy, nhưng ả lại vẫn cảm thấy nếu như Diệp Phi...</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0213.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0215.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 303 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 303</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 303</small>
+    Chương 303: Diệp Phi hiểu lầm
+  </h1>
+  <div class="chapter-body">
+    <p>"Tạm thời vẫn là không nên đi ạ, con còn chưa chuẩn bị tốt lễ vật để tặng cho các vị thúc thúc bá bá, hay là chúng ta cứ đi dạo một vòng ở Vọng Hải trước đã, chờ con chuẩn bị xong xuôi mọi thứ rồi tính tiếp ạ." Lưu Vân nhi quyết định chủ ý, lên tiếng từ chối.</p>
+    <p>"Không sao đâu, chúng ta đều là vãn bối, bọn họ sẽ không so đo chuyện đó đâu." Diệp Phi đã tốn bao công sức mới dàn dựng được kế hoạch "giá họa Giang Đông", tự nhiên không thể vì một câu nói của Lưu Vân nhi mà thay đổi.</p>
+    <p>Thấy Diệp Phi dường như quyết tâm muốn đưa mình đến tổng bộ Lăng Vân Hội, Lưu Vân nhi trong lòng không cam tâm đành phải "thú thật": "Chẳng qua là, mấy nơi như bang phái con chưa từng tới, trong lòng có chút sợ hãi, hay là đợi con chuẩn bị tâm lý xong xuôi rồi hẵng nói ạ." Nói xong, nàng làm ra vẻ mặt sợ sệt.</p>
+    <p>Không thể không nói, Lưu Vân nhi ngoài thuật dịch dung cao minh, thì khả năng diễn xuất cũng thuộc hàng thượng đẳng, ngay cả Diệp Phi cũng không nhìn ra nàng đang giả vờ. Trong lòng hắn không khỏi thầm mắng một câu "Ẻo lả!", nhưng thấy đối phương đã nói đến nước này, hơn nữa nàng lại là con cháu của nguyên lão trong bang, thân là bang chủ, hắn tự nhiên không thể ép buộc thêm, đành gật đầu nói: "Vậy cũng được, nhưng không được chuẩn bị quá lâu. Nếu để các tiền bối trong bang biết em đã đến mà ta không đưa em đi gặp họ, chỉ sợ lại trách ta không biết lễ nghĩa."</p>
+    <p>Thấy Diệp Phi cuối cùng cũng đáp ứng, Lưu Vân nhi mừng thầm, vui vẻ nhảy lên một cái nói: "Đương nhiên rồi, mai con sẽ đi gặp họ. Bây giờ chúng ta đi đâu chơi đây?"</p>
+    <p>Diệp Phi thầm kêu khổ trong lòng, tên này càng lúc càng quá đáng, bây giờ đến cả động tác của cô gái nhỏ cũng làm ra được. Hắn lúc này hoàn toàn không biết, đây vốn là bản tính của Lưu Vân nhi, tuy đã hai mươi bốn tuổi nhưng có những lúc nàng còn hoạt bát hơn cả những cô bé mười mấy tuổi.</p>
+    <p>Thật ra, với khả năng diễn xuất của Lưu Vân nhi, nếu muốn giả làm người thâm trầm thì quá dễ dàng. Chẳng qua không hiểu sao, ở trước mặt Diệp Phi, nàng chỉ cảm thấy thoải mái đến lạ, nên quên mất việc ngụy trang. Nào ngờ chính sự tự nhiên đó lại khiến Diệp Phi vô cùng khó chịu, và điều này về sau đã trở thành một giai thoại hài hước trong hậu cung của Diệp Phi.</p>
+    <p>Dù đã đồng ý đưa Lưu Vân nhi đi chơi, nhưng Diệp Phi vẫn không muốn để "ẻo lả" này sống thoải mái, bèn nói: "Thật ra Vọng Hải cũng chẳng có chỗ nào hay ho, hay là chúng ta đến thành phố gần biển ở gần đây đi, chỗ đó có nhiều thứ hay lắm." Trong lòng hắn thầm cười nhạo, ngươi là kẻ ẻo lả, chẳng phải sợ mấy thứ đó sao? Vậy ta sẽ mang ngươi đi mở mang tầm mắt với vài thứ kích thích! Hiện tại trong "Đông Nam" Tam Hải, Lâm Hải đã bị đám người đầu trọc nắm giữ hoàn toàn, Vọng Hải – đại bản doanh của Lăng Vân Hội – thì khỏi phải bàn, nên hai nơi này chắc chắn sẽ không gặp chuyện gì kích thích. Còn gần biển, dù có Diệp Tuyền chủ trì đại cục nhưng thời gian còn ngắn, trước mắt vẫn chưa hoàn toàn bình ổn. Hơn nữa, vì Diệp Tuyền đang chuẩn bị thống nhất địa bàn nên các cuộc chiến tranh lớn nhỏ luôn diễn ra liên miên. Việc đưa kẻ này đi chứng kiến cảnh máu me đầu đường xó chợ cũng là một ý hay.</p>
+    <p>Lưu Vân nhi đương nhiên không biết Diệp Phi đang âm thầm tính toán điều gì xấu xa, thấy hắn đồng ý đưa mình đi chơi thì rất vui mừng, nào còn bận tâm đến việc đi đâu, chơi gì nữa.</p>
+    <p>Thế là hai người vừa rời khỏi tòa nhà Liễu thị lại quay trở lại. Trong bãi đỗ xe dưới tầng hầm, họ tùy tiện chọn một chiếc xe bình thường của công ty rồi khởi hành hướng về gần biển. Còn chiếc xe riêng của Diệp Phi thì hắn không thèm đoái hoài tới vì nó quá nổi bật.</p>
+    <p>"Đông Nam Tam Hải" là ba thành phố nằm ở vị trí tam giác đều nên khoảng cách giữa chúng không chênh lệch nhiều. Giống như Lâm Hải, gần biển cũng chỉ cách Vọng Hải hơn một trăm km, lái xe chừng hơn một tiếng là tới. Thế nhưng, hơn một tiếng đồng hồ này đối với Diệp Phi lại là một cực hình. Trên đường đi, Lưu Vân nhi ngồi ở ghế phụ cứ dùng ánh mắt rất đỗi quen thuộc để quan sát hắn. Nếu ánh mắt này xuất hiện trong mắt người phụ nữ hắn yêu thì là niềm vui, nhưng khi nó xuất hiện ở một "gã nam nhân", hắn chỉ thấy chán ghét. Nếu không phải vì nể mặt Lưu Thiên Lâm đang ở tận mỹ kiên quốc xa xôi, thì khả năng hắn đạp Lưu Vân nhi xuống xe là rất cao.</p>
+    <p>Thật ra Lưu Vân nhi cũng biết việc mình cứ nhìn chằm chằm vào Diệp Phi sẽ làm hắn không thoải mái, nhưng nàng không kiềm chế nổi. Lớn lên ở quốc gia phương Tây, nàng đã học được sự nhiệt tình của người bản địa, hoàn toàn không biết thế nào là hàm súc. Nay lần đầu tiên có cảm giác với một người đàn ông, nàng không hề che giấu sự ngưỡng mộ dành cho hắn. Hơn nữa, nhìn Diệp Phi lúc này, cảm giác hắn là một thằng nhóc con lúc trước đã không còn nữa. Lưu Vân nhi thậm chí cảm thấy hắn không còn là cậu em trai kém mình tám tuổi, mà là một người anh trai trưởng thành, ổn trọng, đủ để mình nương tựa. Chỉ là nàng không đời nào ngờ tới, người đàn ông mà nàng cảm thấy có thể dựa dẫm ấy, lúc này trong lòng lại đang tìm cách đối phó nàng.</p>
+    <p>Bị Lưu Vân nhi nhìn đến mức mất tự nhiên, sau khi ra khỏi Vọng Hải, Diệp Phi liền nhấn ga tăng tốc, thậm chí lái chiếc xe bình thường này với vận tốc của xe thể thao. Cuối cùng, hơn nửa tiếng sau, hắn đã lái xe vào phạm vi gần biển. Chỉ là, vì quá phiền lòng, hắn đã bỏ qua một chi tiết quan trọng: "gã ẻo lả" bên cạnh vậy mà không hề tỏ vẻ sợ hãi chút nào.</p>
+    <p>Sau khi đỗ xe vào bãi công cộng, Diệp Phi dẫn Lưu Vân nhi đi dạo trên đường phố gần biển. Đương nhiên, ở những nơi công cộng như thế này, cơ hội xảy ra chiến đấu là rất ít. Hắn không quá quen thuộc với gần biển nên lúc này có chút lo lắng, nhưng khi thấy vài kẻ sát khí đằng đằng vội vã đi vào một con ngõ nhỏ, sự lo lắng đó lập tức biến mất.</p>
+    <p>"Phía sau con ngõ này có một quán ăn, trưa nay chúng ta chưa ăn gì, hay là vào thử đặc sản quà vặt ở đây xem sao." Đợi đám người kia khuất bóng, Diệp Phi chỉ vào con ngõ nhỏ nói. Hắn không hề nói bừa, sau con ngõ đó đúng là có một quán ăn – điều này hắn vừa dùng ý niệm nghe được từ đám người kia, và bọn họ đúng là định đến quán đó để chém người.</p>
+    <p>"Được, vậy chúng ta nhanh đi thôi!" Lưu Vân nhi vui vẻ đồng ý, thậm chí không chờ nổi mà nắm lấy bàn tay to của Diệp Phi, hướng về phía ngõ nhỏ đi tới. Dù quà vặt Trung Quốc hiện nay đã được bán khắp thế giới, kể cả nơi nhiều người Trung Quốc ở mỹ kiên quốc cũng không ngoại lệ, nhưng làm sao có thể bằng vị chính gốc tại đây? Hơn nữa, gia giáo của Lưu Thiên Lâm cực kỳ nghiêm khắc, Lưu Vân nhi vốn không có mấy cơ hội được thưởng thức những món ăn đường phố này. Nay rốt cục có cơ hội, lại còn được ở bên cạnh một người đàn ông khiến mình vô cùng rung động, nàng làm sao có thể không vui?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0302.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0304.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

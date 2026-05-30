@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 290 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 290</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 290</small>
+    Chương 290: Tỷ đệ luyện công buổi sáng
+  </h1>
+  <div class="chapter-body">
+    <p>Vương Tiểu Minh suy nghĩ không hề sai chút nào, đây đúng là căn bệnh chung của những kẻ coi trọng lợi ích trong gia tộc. Thậm chí có gia tộc còn vì lợi ích mà hy sinh phụ nữ trong nhà. Thế nhưng, người hắn đối mặt lúc này là Diệp Phi. Đừng nói Diệp Phi căn bản không hề nghĩ tới việc thu nhận một kẻ chỉ biết khoe mẽ, dựa vào xào nấu mới nổi tiếng như hắn vào công ty mình; dù cho có lợi ích to lớn bày ra trước mắt, Diệp Phi cũng tuyệt đối không vì thế mà buông tha cho kẻ từng cố tình làm hại tỷ tỷ yêu quý của hắn.</p>
+    <p>"À, tiến vào công ty của ta?" Biểu cảm trên mặt Diệp Phi nửa cười nửa không: "Sau đó công ty của ta có thể đổi tên thành công ty giải trí cặn bã phải không?"</p>
+    <p>"Ngươi có ý gì?" Lời của Diệp Phi khiến sắc mặt Vương Tiểu Minh thay đổi. Dựa vào đường ngang ngõ tắt mà leo lên, tuy hắn không còn bao nhiêu tôn nghiêm, nhưng bị Diệp Phi nói thẳng vào mặt là kẻ cặn bã vẫn khiến hắn không nhịn được mà động khí. Đương nhiên, Vương Tiểu Minh sở dĩ dám tức giận là vì hắn vẫn cho rằng Diệp Phi không dám làm gì mình. Chưa nói đến việc một thủ lĩnh lưu manh có dám giết người hay không, chỉ riêng cha nuôi của hắn cũng đủ khiến Diệp Phi phải kiêng dè. Cho nên dù bị bắt tới đây, Vương Tiểu Minh vẫn không quá sợ hãi.</p>
+    <p>"À, thực xin lỗi, ta không nên dùng từ cặn bã để hình dung ngươi." Diệp Phi cười khẽ: "Như vậy thật là quá sỉ nhục từ này rồi."</p>
+    <p>"Ngươi..." Vương Tiểu Minh tức giận đến mức tại chỗ muốn liều mạng với Diệp Phi, nhưng lập tức nhớ tới công phu kinh thế hãi tục kia, thân thể vừa đứng lên lại ngồi thụp xuống đất.</p>
+    <p>Lúc này, Kim Đại Thuận vốn đã sợ ngây người khi biết Gió Thu chính là Diệp Phi, nay mới hồi phục tinh thần. Hắn đột nhiên bò từ dưới đất dậy, ôm lấy bắp chân Diệp Phi, cầu khẩn: "Lá bang chủ, cầu ngài tha cho ta một con đường sống. Những việc ta làm trước đó đều là do tên khốn Vương Tiểu Minh xúi giục, hơn nữa ta cũng gián tiếp giúp ngài một tay mà..." Nói đến đây, Kim Đại Thuận bỗng khựng lại, vì hắn chợt nhớ ra Diệp Tư Dao chính là thân tỷ tỷ của Diệp Phi, vậy bọn họ...</p>
+    <p>Trên mặt Diệp Phi lộ ra nụ cười: "Không sai, ta quả thực nên cảm tạ ngươi. Nếu không phải chén rượu của ngươi, tỷ tỷ của ta có lẽ còn do dự rất lâu. Cho nên để cảm tạ sự giúp đỡ của ngươi, ta quyết định phải giúp giúp ngươi!"</p>
+    <p>"Giúp thế nào?" Kim Đại Thuận ngơ ngác hỏi.</p>
+    <p>"Ngươi thực ra cũng không phải kẻ xấu xa gì, chỉ là không có nhiều đầu óc, lại rất thích dùng nửa thân dưới để suy nghĩ vấn đề. Hiện tại ta giúp ngươi phế bỏ cái thứ thay thế đầu óc kia, từ nay về sau ngươi có thể dùng đầu óc để suy nghĩ vấn đề rồi." Diệp Phi cười nhạt, đột nhiên nhấc chân đá Kim Đại Thuận ngã ngửa ra sau, sau đó nâng chân phải, giẫm mạnh vào hạ bộ của hắn.</p>
+    <p>"Ngao..." Kim Đại Thuận phát ra một tiếng kêu thảm thiết kinh thiên động địa, thân thể co quắp, hai mắt lồi ra. Thậm chí Vương Tiểu Minh bên cạnh còn nghe thấy tiếng thứ gì đó nghiền nát, cơ mặt không nhịn được mà run rẩy theo tiếng kêu của Kim Đại Thuận.</p>
+    <p>Diệp Phi vẫn giữ biểu cảm nhàn nhạt, cười nói: "Thế là tốt rồi, từ nay về sau nhớ dùng đầu óc nhiều vào, nói không chừng còn cứu chữa được." Nói xong, hắn vỗ nhẹ tay.</p>
+    <p>Rất nhanh, hai cao thủ tạo cao thủ canh giữ bên ngoài đẩy cửa bước vào, cung kính hỏi: "Bang chủ, ngài có gì phân phó?"</p>
+    <p>Diệp Phi chỉ vào Kim Đại Thuận đang nằm co quắp như con tôm trên đất, vẫn không ngừng kêu thảm: "Đưa hắn đến chỗ Đầu Trọc, ta cần một con chó giữ nhà, hắn rất phù hợp. Còn mấy tên này, xử lý cùng luôn." Nói xong, hắn chỉ mấy tên bảo tiêu đang đứng cạnh đầy sợ hãi.</p>
+    <p>Hai cao thủ gật đầu đáp ứng, thân hình như tia chớp lướt qua mấy tên bảo tiêu, trong nháy mắt điểm huyệt khiến chúng hôn mê, sau đó kéo cả bọn cùng Kim Đại Thuận ra ngoài. Diệp Phi lúc này mới chuyển ánh mắt sang Vương Tiểu Minh.</p>
+    <p>Chứng kiến cảnh thảm hại của Kim Đại Thuận, Vương Tiểu Minh mới biết sợ, đồng thời hiểu rằng Diệp Phi quả nhiên giống như truyền thuyết, không hề là lời đồn đại phóng đại ở Vọng Hải. Hơn nữa, hắn vừa đem chuyện của mình và tỷ tỷ hắn nói ra ngay trước mặt, điều đó khẳng định Diệp Phi sẽ không tha cho hắn.</p>
+    <p>Thấy Diệp Phi nhìn mình, Vương Tiểu Minh cảm thấy hai chân nóng ran, sợ đến mức không kiểm soát được. Tuy nhiên hắn vẫn ôm lấy tia hy vọng cuối cùng, lớn tiếng nói: "Diệp Phi, ngươi không thể giết ta! Nếu ta chết, việc tuyên truyền võ quán của tỷ tỷ ngươi coi như bỏ đi!"</p>
+    <p>Diệp Phi ngồi xổm xuống trước mặt Vương Tiểu Minh, hứng thú nhìn hắn, khẽ cười: "Đúng vậy, ta lại quên mất, ngươi là đại minh tinh mà."</p>
+    <p>"Đúng, đúng!" Vương Tiểu Minh liên tục gật đầu: "Nếu những video chúng ta quay được phát trên đài truyền hình, nhất định sẽ khiến võ quán của tỷ tỷ ngươi nổi danh."</p>
+    <p>"Điều này cũng không sai." Diệp Phi cười nói: "Nhưng ta lại có ý tưởng hay hơn. Ngươi nói xem, một đại minh tinh trong đời quay video cuối cùng, hơn nữa lại là quay trước ngày chết một ngày, nếu tin tức này tung ra, liệu có tạo hiệu ứng oanh động hơn không?"</p>
+    <p>"Ngươi..." Vương Tiểu Minh không ngờ Diệp Phi lại nham hiểm như vậy, đành tung ra quân bài tẩy cuối cùng: "Vậy ngươi cũng không thể giết ta! Cha nuôi của ta là Trương Trong, nếu ta chết ở đây, ông ấy tuyệt đối sẽ không tha cho ngươi! Đừng nhìn ông ấy chỉ là đạo diễn, thực ra ông ấy có mối quan hệ với rất nhiều cao tầng ở Trung Quốc!"</p>
+    <p>"Trương Trong? Cao tầng Trung Quốc? Những kẻ này Diệp Phi ta đúng là không để vào mắt. Chúng không đến thì thôi, nếu thực sự đến, ta sẽ cho chúng biết, nâng đỡ một kẻ cặn bã như ngươi, coi ngươi làm lá chắn, là phải trả giá đắt!" Diệp Phi vẫn giữ gương mặt trông rất vô hại: "Nhưng có một câu ngươi nói đúng, ta sẽ không giết ngươi, vì loại cặn bã như ngươi mà chết một cách thoải mái thì thật đáng tiếc."</p>
+    <p>"Vậy ngươi muốn thế nào?" Qua giọng điệu của Diệp Phi, Vương Tiểu Minh nghe ra cách hắn đối phó với mình chỉ sợ còn khó chịu hơn cả cái chết.</p>
+    <p>"Ta đoán là lần này ngươi không đoán được đâu." Diệp Phi vẻ mặt thất vọng, lắc đầu nói: "Kim Đại Thuận kia chỉ dùng nửa thân dưới suy nghĩ nên ta hủy chỗ đó của hắn. Còn ngươi thì âm hiểm hơn hắn nhiều, xấu xa cũng chất thành đống, ngươi nói xem ta nên hủy chỗ nào của ngươi đây?"</p>
+    <p>"Không được!" Vương Tiểu Minh ôm đầu gào thét. Hắn biết, Diệp Phi nói vậy chắc chắn là muốn hủy đi đầu óc của mình. Dù việc hủy não mà không chết nghe rất hoang đường, nhưng Diệp Phi đã nói như vậy thì nhất định có cách. Một khi trở thành kẻ ngốc, còn khó chịu hơn cả cái chết, sao hắn có thể không sợ?</p>
+    <p>Nỗi sợ hãi tột cùng khiến Vương Tiểu Minh vừa gào thét vừa lùi lại, nhưng điều này chẳng thay đổi được vận mệnh của hắn. Hoặc có thể nói, từ khoảnh khắc hắn có ý đồ xấu với Diệp Tư Dao, vận mệnh của hắn đã được định đoạt.</p>
+    <p>"Đây là địa bàn của ta, ngươi nói không thì chẳng có tác dụng gì đâu. Chúc mừng ngươi từ nay về sau có thể dùng chung nghệ danh với một minh tinh đã qua đời ở Hương Thành. Chỉ là người ta giả ngốc, còn ngươi thì ngốc thật." Diệp Phi mỉm cười, đưa tay lên đỉnh đầu Vương Tiểu Minh ấn nhẹ.</p>
+    <p>Theo cái ấn của Diệp Phi, tiếng gào thét của Vương Tiểu Minh đột ngột dừng lại, thay vào đó là những tiếng cười ngây ngô "hắc hắc", đôi mắt cũng trở nên dại ra. Cái ấn vừa rồi đã dùng nội lực phá hủy toàn bộ thần kinh não bộ của hắn, khiến hắn trở thành một kẻ ngốc hoàn toàn. Dù Diệp Phi có liên thủ với Đông Phương Nhược Lan cũng không thể khiến hắn khôi phục.</p>
+    <p>Phân phó thủ hạ ném kẻ từ nay không thể bày mưu ám kế này ra gần câu lạc bộ đêm, Diệp Phi quay trở lại khách sạn.</p>
+    <p>Để những cao thủ canh gác rút lui, Diệp Phi lặng lẽ đẩy cửa đi vào. Lúc này mới hơn hai giờ sáng, Diệp Tư Dao vốn vô cùng mệt mỏi nên không có dấu hiệu tỉnh giấc. Tuy nhiên khi nhìn thấy dáng vẻ ngủ chọc người của nàng, Diệp Phi vẫn cảm thấy tâm hỏa nổi lên.</p>
+    <p>Lúc này tỷ tỷ đang nằm quay lưng ra ngoài, ôm gối ngủ say. Có lẽ vì thấy nóng, chăn đã bị nàng đá sang một bên. Toàn thân trần trụi, một đôi chân ngọc thon dài duỗi thẳng, chân kia thì gác lên gối ôm. Nhìn từ góc độ này, Diệp Phi vừa vặn thấy được khe mông trắng mịn, cùng với tiểu huyệt mềm mại vừa được hắn khai phá.</p>
+    <p>Vì không có vật gì lấp đầy, tiểu huyệt của tỷ tỷ lúc này khép chặt lại, chỉ có mép âm hộ hơi sưng đỏ đang phô bày nó vừa trải qua sự điên cuồng như thế nào.</p>
+    <p>Diệp Phi không kìm lòng được, nhanh chóng cởi bỏ y phục, nhảy lên giường nằm xuống phía sau tỷ tỷ. Bàn tay to vuốt ve mông lớn nhẵn nhụi của nàng một hồi, sau đó luồn vào khe mông, dùng ngón tay nhẹ nhàng huy động trong tiểu huyệt kiều diễm, rất nhanh đã khiến nó dâm thủy rỉ ra.</p>
+    <p>"A... A... Đệ đệ tốt, đừng làm nữa!" Diệp Tư Dao miệng lầm bầm, mông lớn vô thức lắc lư theo ngón tay của đệ đệ, như muốn thoát khỏi bàn tay giở trò xấu, lại như đang nghênh hợp.</p>
+    <p>Nghe thấy tiếng tỷ tỷ, Diệp Phi tưởng nàng đã tỉnh, nhưng nhìn khuôn mặt đang ngủ say, hắn mới biết đó chỉ là tiếng mê sảng vô thức. Nhưng chính vì thế, hắn càng cảm động, vì biết tỷ tỷ yêu mình đến nhường nào, ngay cả trong mơ cũng là hình bóng của hắn. Cộng thêm việc tỷ tỷ đang bị hắn kích thích đến dục hỏa đốt người, khuôn mặt tuyệt mỹ hiện rõ vẻ xuân sắc nồng đậm, khiến hắn không khỏi huyết mạch phun trào. Hắn hướng lên phía trước, dùng dương vật cứng rắn cọ xát vài cái vào khe huyệt, rồi mãnh liệt đâm vào.</p>
+    <p>Diệp Phi đoán không sai, Diệp Tư Dao quả thực đang nằm mơ, hơn nữa là mộng xuân. Tối qua sau khi bị đệ đệ "thân mật", nàng đã triệt để yêu cảm giác được đệ đệ yêu quý nhồi đầy. Vì vậy trong mộng không khỏi ôn lại, nhưng lần xuất tinh trong mộng ấy khiến nàng rất bất mãn, vì dù trong mộng đệ đệ đâm vào mạnh mẽ hơn nhiều, nàng vẫn cảm thấy trong tiểu huyệt thiếu hụt, không có cảm giác phong phú như thực tế.</p>
+    <p>Mà đúng lúc này, Diệp Phi thực sự đâm dương vật của mình vào. Khoái cảm chân thật đến vô cùng ấy khiến Diệp Tư Dao chợt tỉnh giấc từ trong mộng. Nàng mơ màng nghênh hợp với những cú đâm của đệ đệ vài cái, mới hoàn toàn tỉnh táo lại.</p>
+    <p>Cảm giác bị đệ đệ "đâm" tỉnh khiến Diệp Tư Dao vừa hưng phấn tột độ vừa ngượng ngùng không thôi. Nhìn trời bên ngoài, nàng hơi khẩu thị tâm phi nói: "Đệ đệ hư, đừng nghịch, để cho người ta ngủ tiếp chút nữa đi, vẫn chưa tới giờ luyện công mà!"</p>
+    <p>"Ai nói chưa tới? Hiện tại chẳng phải là giờ luyện công của chúng ta sao?" Diệp Phi cười hắc hắc, đưa tay nắm lấy một bầu vú của tỷ tỷ, xoa nắn đầy kỹ xảo, đồng thời đỉnh động vòng eo, để dương vật ra vào chậm rãi mà hữu lực trong tiểu huyệt của nàng.</p>
+    <p>Mộng xuân vừa rồi đã khiến Diệp Tư Dao dục hỏa đốt người, lúc này tự nhiên sẽ không từ chối, chỉ là xấu hổ không dám biểu hiện ra, đành nhắm mắt lại hưởng thụ khoái cảm cao thấp giáp công của đệ đệ.</p>
+    <p>Nhưng Diệp Phi lại không muốn tha cho nàng, vừa nhẹ nhàng đâm rút, vừa hỏi bên tai: "Tỷ, tiểu huyệt của tỷ thật lợi hại, kẹp chặt dương vật của đệ đệ sướng quá. Tỷ tỷ tốt, nói cho đệ đệ, dương vật của đệ đệ đâm tỷ có sướng không?"</p>
+    <p>"Tiểu bại hoại, không cho phép nói như vậy!" Từ ngữ thô tục và kích thích đó khiến Diệp Tư Dao vừa thẹn vừa vội, nhưng nàng không thể không thừa nhận, khi đệ đệ nói như thế, cảm giác kích thích trong lòng mình lại tăng lên không ít.</p>
+    <p>"Không cho nói cái gì?" Diệp Phi cười hắc hắc, bàn tay đang vuốt ve bầu vú tỷ tỷ từ từ trượt xuống phía dưới, đi đến nơi hai người giao hợp, xoa nắn quanh tiểu huyệt, còn thỉnh thoảng khuấy động âm hạch nhỏ bé.</p>
+    <p>Điều này khiến Diệp Tư Dao càng thoải mái hơn, nhưng những từ ngữ kia nàng quả thật không thốt nên lời, đành cắn chặt môi nhỏ, chỉ khi đệ đệ đâm quá sảng khoái mới khẽ hừ lên vài tiếng trong mũi.</p>
+    <p>Thiếu tiếng rên rỉ trợ hứng, Diệp Phi cảm thấy thiếu mất nhiều niềm vui, hơn nữa hắn muốn tỷ tỷ nếm thử cảm giác khác với tối qua. Vì vậy, hắn ôm tỷ tỷ xoay người, để nàng quỳ sấp trên giường, còn mình thì quỳ phía sau, hai tay ôm eo nhỏ của nàng, dương vật điên cuồng ra vào trong tiểu huyệt. Vì động tác quá nhanh quá mạnh, bụng hắn va chạm vào cặp mông mẩy của tỷ tỷ tạo nên những tiếng "bạch bạch" vang dội.</p>
+    <p>Diệp Tư Dao vốn tưởng tối qua đã là thoải mái nhất rồi, nay bị đệ đệ đâm mạnh như vậy, mới biết thế nào là khoái cảm điên cuồng. Cảm giác như linh hồn muốn tan chảy khiến nàng vô thức muốn kêu lớn, nhưng việc bị chính đệ đệ mình "yêu" trong tư thế dâm đãng này khiến nàng xấu hổ tột độ, đành vùi mặt vào gối để ức chế sự kích động, nhưng cơ thể vẫn không kìm được mà uốn éo theo nhịp điệu của đệ đệ.</p>
+    <p>Cứ như vậy đâm tỷ tỷ mấy trăm cái, Diệp Phi cảm nhận được tiểu huyệt của nàng bắt đầu co rút có quy luật, biết nàng sắp đạt cao trào. Đúng lúc đó, hắn đột ngột rút dương vật ra, rồi dùng dương vật dính đầy dâm thủy đang lấp lánh dưới ánh đèn vỗ nhè nhẹ lên cặp mông đầy đặn của tỷ tỷ, khiến dâm thủy lem đầy lên mông nàng.</p>
+    <p>Cao trào bị ép dừng lại đột ngột khiến Diệp Tư Dao cảm giác như rơi từ trên mây xuống. Sự chênh lệch quá lớn suýt nữa khiến nàng nghẹt thở. Cặp mông vô thức lùi về phía sau, muốn đuổi theo dương vật của đệ đệ, đưa nó trở lại tiểu huyệt đang khát khao của mình. Tuy nhiên, nguyện vọng không thành, cuối cùng nàng đành bất đắc dĩ buông xuôi.</p>
+    <p>Đợi khoái cảm của tỷ tỷ dịu xuống đôi chút, Diệp Phi mới lại cắm vào tiểu huyệt, bắt đầu những cú đâm mãnh liệt.</p>
+    <p>Diệp Tư Dao vẫn không dám nhấc đầu khỏi gối, lần nữa nhận được sự an ủi từ dương vật của đệ đệ, cảm giác còn sảng khoái hơn lúc nãy. Vì vậy, nàng không còn bị động nữa, mà theo nhịp đâm của đệ đệ, dùng sức đẩy mông về phía sau, để mỗi cú đâm đều có thể chạm sâu vào tiểu huyệt, mang đến cho mình khoái cảm lớn hơn.</p>
+    <p>Nhưng khi Diệp Tư Dao lại một lần nữa gần đạt cao trào, Diệp Phi lại nhanh chóng rút dương vật ra. Lúc này, Diệp Tư Dao rốt cục không nhịn nổi nữa, nhấc khuôn mặt đỏ bừng vì ngượng ngùng và hưng phấn lên, quay đầu nhìn Diệp Phi, u oán nói: "Xấu đệ đệ, ngươi bắt nạt tỷ!"</p>
+    <p>"Ta bắt nạt tỷ lúc nào?" Diệp Phi giả bộ ngây thơ, nhưng khi nói chuyện lại cầm dương vật cọ xát nhẹ nhàng vào mép huyệt ướt át của tỷ tỷ.</p>
+    <p>"Ngươi chính là bắt nạt tỷ, sao lúc quan trọng nhất lại dừng lại? Đệ đệ tốt, tỷ tỷ van đệ, mau tiến vào đi được không?" Diệp Tư Dao lúc này đã bị dục hỏa tra tấn đến điên người, để kéo dài khoái cảm vừa rồi, không khỏi cầu xin đệ đệ.</p>
+    <p>Diệp Phi vẫn bất vi sở động, cười nói: "Tiến vào cái gì, tiến vào đâu cơ? Tỷ, không được nói đùa với đệ được không?"</p>
+    <p>Đến lúc này, Diệp Tư Dao thông minh sao có thể không hiểu đệ đệ đang ép mình nói ra những từ dâm đãng kia? Trong lòng dù ngượng ngùng vô cùng, nhưng cảm giác rơi khỏi cao trào hai lần liên tiếp thật sự rất khó chịu. Để theo đuổi khoái cảm chí cao, nàng còn lo ngại gì nữa, theo ý của Diệp Phi mà nói: "Tỷ tỷ muốn dương vật của đệ, mau cắm vào lồn tỷ tỷ đi, được chưa?" Nói xong, khuôn mặt nàng đã đỏ như lửa đốt.</p>
+    <p>Diệp Phi trong lòng mừng rỡ, không còn trêu chọc tỷ tỷ nữa, một cái đẩy eo mãnh liệt đã đưa dương vật vào trong. Vừa đâm rút, vừa nói: "Tỷ, mau nói cho đệ biết, tỷ có thích đệ đệ dùng dương vật lớn đâm tiểu huyệt của tỷ không?"</p>
+    <p>Có lẽ vì câu đầu tiên đã nói ra được, Diệp Tư Dao theo tâm tư "vò đã mẻ lại sứt", không còn từ chối nữa, theo lời Diệp Phi nói: "Thích, rất thích, tỷ tỷ thích nhất là để dương vật của đệ đệ đâm tiểu huyệt của tỷ tỷ nhất! Đệ đệ tốt, dùng sức đâm tiểu huyệt của tỷ tỷ đi!"</p>
+    <p>Chữ "lồn" của Diệp Tư Dao vừa dứt, Diệp Phi tăng tốc độ, điên cuồng đâm rút. Diệp Tư Dao bị sự kích thích cực độ của khoái cảm này làm cho không thể kìm nén được nữa, theo nhịp đâm của đệ đệ, kêu lên đứt quãng: "Đệ đệ tốt... Đệ đệ ngoan... dương vật của đệ... Thật lợi hại... Đâm tỷ tỷ... Sướng chết mất... Dùng sức chút nữa... Tỷ tỷ thích... Để đệ đệ... Đâm tiểu huyệt của tỷ tỷ... Dương vật của đệ đệ tốt quá... Tỷ tỷ yêu đệ... Tỷ tỷ... Muốn đệ... Đâm cả đời..."</p>
+    <p>Thấy tỷ tỷ cuối cùng đã hoàn toàn buông bỏ, Diệp Phi trong lòng cũng mừng rỡ, một bên tiếp tục điên cuồng đâm rút, một bên đưa tay lên ngực nàng, xoa nắn bầu vú đầy đặn. Trong tư thế này, toàn thân hắn đè lên lưng ngọc của tỷ tỷ, sự cọ xát của da thịt càng khiến tỷ tỷ đạt được khoái cảm tối đa.</p>
+    <p>Diệp Tư Dao vốn đã hai lần chạm đến biên giới cao trào, lúc này bị đệ đệ đâm mạnh như vậy, tự nhiên không thể kiên trì, rất nhanh, tiểu huyệt lại co rút. Lần này Diệp Phi không còn trêu chọc nàng nữa, cảm giác tỷ tỷ sắp cao trào, hắn càng tăng cường độ, một lần đưa tỷ tỷ lên đỉnh cao điên phong.</p>
+    <p>Cao trào mãnh liệt lấy đi quá nhiều sức lực của Diệp Tư Dao, hai đầu gối không còn sức chống đỡ thân thể, sau khi cao trào qua đi, nàng ngã sấp xuống giường. Diệp Phi vẫn đè lên lưng ngọc mềm mại của nàng, dương vật vẫn cắm sâu trong cơ thể nàng.</p>
+    <p>Dù cảm giác này rất thoải mái, nhưng Diệp Phi sợ mình đè nặng tỷ tỷ, nên tạm thời rút dương vật ra, xoay người nhìn nàng, ôm lấy thân thể kiều diễm vào lòng, sau đó nâng một bên chân ngọc của nàng lên, tìm đúng vị trí, đưa dương vật vào lại tiểu huyệt, lúc này mới dịu dàng hỏi: "Tỷ, sướng không?"</p>
+    <p>"Ừm, sướng, sướng hơn tối qua nữa!" Diệp Tư Dao thâm tình nhìn Diệp Phi, gật đầu nói. Nàng không nói dối, vì hai lần dừng lại làm cho cao trào cuối cùng trở nên mãnh liệt thực sự. Trong khoảnh khắc cuồng tiết, nàng thậm chí còn có cảm giác mê muội, cho nên nàng không hề trách đệ đệ ép mình nói những lời dâm đãng đó, vì nàng biết đệ đệ làm thế là để nàng phóng mở hơn, từ đó đạt được khoái cảm mạnh mẽ hơn.</p>
+    <p>Nhìn khuôn mặt tỷ tỷ vẫn còn vương đỏ ửng vì ngượng ngùng, Diệp Phi dịu dàng nói: "Tỷ, hiện tại tỷ là người phụ nữ của đệ rồi. Chúng ta trên giường, không có gì là dâm đãng hay phóng đãng cả, chỉ có hoàn toàn buông bỏ mới khiến cả hai sướng hơn. Cho nên, trong lòng tỷ nghĩ thế nào thì cứ làm thế đó, không cần băn khoăn gì cả. Chỉ có khi chúng ta tận hứng, mới càng ân ái, đúng không?"</p>
+    <p>"Ừm." Diệp Tư Dao nhẹ nhàng gật đầu. Vừa rồi sở dĩ nàng nhẫn nhịn cho đến khi bị Diệp Phi ép mới kêu lên, là vì sợ đệ đệ thấy mình dâm đãng mà chán ghét. Nay nghe đệ đệ nói vậy, nàng mới biết mình lo lắng thái quá. Nghĩ lại cũng đúng, tính cách của mình thế nào đệ đệ sớm đã rõ, sao lại vì biểu hiện trên giường mà nhìn mình khác đi chứ?</p>
+    <p>"Vậy chúng ta lại tiếp tục nhé, lần này tỷ ở trên, được không?" Thấy tỷ tỷ đã hiểu ý mình, Diệp Phi cười hỏi.</p>
+    <p>"Hả? Tỷ ở trên?" Diệp Tư Dao ngẩn người, trong lòng lại bắt đầu ngượng ngùng, nhưng nhớ tới lời đệ đệ vừa nói, nàng không chần chừ nữa, vì đệ đệ đã đề nghị, nàng cũng muốn thử cảm giác ở trên.</p>
+    <p>"Đến đây nào." Diệp Phi cười, rút dương vật ra khỏi tiểu huyệt của tỷ tỷ, nằm ngửa xuống, rồi đưa cho tỷ tỷ ánh mắt cổ vũ.</p>
+    <p>Diệp Tư Dao khẽ cắn môi, chậm rãi ngồi dậy, tách đôi chân ngọc, ngồi trên eo của đệ đệ, đưa tay cầm dương vật cứng rắn của đệ đệ, nhắm ngay tiểu huyệt của mình, từ từ hạ xuống.</p>
+    <p>Cúi đầu nhìn dương vật của đệ đệ từng chút một đẩy mở da thịt mềm mại trong tiểu huyệt, từ từ tiến vào, Diệp Tư Dao đột nhiên có một cảm giác rất kỳ diệu. Cảm giác này rốt cuộc là gì nàng cũng không nói rõ được, nhưng lại khiến nàng cực kỳ tâm động. Đến khi nuốt trọn dương vật của đệ đệ vào trong, nàng mới hiểu đó là gì. Đây là một loại tình cảm cực kỳ kỳ lạ, vừa là tỷ đệ lại là người yêu, mối quan hệ như vậy khiến nàng cảm thấy hạnh phúc gấp trăm lần so với tình yêu thuần túy.</p>
+    <p>Diệp Phi tự nhiên không biết tỷ tỷ trong giây lát ngắn ngủi đó có nhiều cảm khái đến vậy. Khi tỷ tỷ đã ngồi xuống hoàn toàn, hắn đưa tay nắm lấy bầu vú lớn của nàng, vừa xoa nắn vừa nói: "Tỷ, tỷ cứ bất động như vậy là không sướng đâu nhé."</p>
+    <p>Khoái cảm trên bầu vú và giọng nói của đệ đệ khiến Diệp Tư Dao tỉnh lại từ cảm giác kỳ diệu kia, lập tức cảm nhận được sự khát khao trong tiểu huyệt, vì vậy không suy nghĩ nhiều nữa, tận tình hưởng thụ mối tình tỷ đệ khó có được này.</p>
+    <p>Vì bản thân chủ động, Diệp Tư Dao có thể cảm nhận rõ ràng mình muốn gì, nên lúc này cảm giác sướng hơn nhiều so với khi bị đệ đệ đâm. Bởi vậy, nàng dần trở nên điên cuồng dưới sự kích thích của khoái cảm vô tận. Nhờ tập võ từ nhỏ, thể chất của nàng tốt hơn người thường rất nhiều, nên động tác không hề tốn sức chút nào.</p>
+    <p>Theo khoái cảm tăng lên, động tác của Diệp Tư Dao càng lúc càng nhanh, hai tay đặt trên lồng ngực rắn chắc của đệ đệ, cặp mông điên cuồng nhấp nhô. Toàn tâm toàn ý của nàng tập trung vào nơi tiểu huyệt đang bị dương vật của đệ đệ cuồng đâm. Cảm giác sướng đến tận cùng này khiến nàng không thể dừng lại.</p>
+    <p>Diệp Phi sau khi cảm nhận được sự điên cuồng của tỷ tỷ, cũng dùng sức nâng cao eo, để dương vật xâm nhập sâu hơn vào tiểu huyệt của tỷ tỷ, mang đến cho nàng khoái cảm vô tận. Theo thời gian, hai tỷ đệ phối hợp ngày càng ăn ý. Khoái cảm điên cuồng và sự kích thích của cấm kỵ khiến họ quên hết thảy, chỉ biết bản năng thỏa mãn lẫn nhau. Diệp Tư Dao cũng không còn một tia cố kỵ, dưới sự đâm rút của đệ đệ, nàng rên rỉ điên cuồng để trút bỏ khoái cảm gần như muốn chết đi của mình.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0289.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0291.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

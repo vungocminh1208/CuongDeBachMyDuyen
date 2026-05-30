@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 310 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 310</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 310</small>
+    Chương 310: Gặp gỡ trong lao
+  </h1>
+  <div class="chapter-body">
+    <p>Những lời của người nữ nhân kia tuy nghe có vẻ sai trái, nhưng lại vừa vặn như một lời nhắc nhở đối với Diệp Phi lúc này, khiến hắn trong nháy mắt thông suốt mọi chuyện. Đúng vậy, đạo lý đơn giản là thế, mình có năng lực khiến các nàng hạnh phúc, hơn nữa các nàng cũng chẳng hề bận tâm, như vậy là đủ rồi, cần gì phải nghĩ ngợi nhiều làm gì? Chỉ khi tất cả ở bên nhau mới thật sự khoái hoạt. Về phần Diệp Tuyền và Lưu Vân Nhi, cũng chỉ vì các nàng chưa hiểu rõ mình mà thôi, nếu để các nàng trở thành nữ nhân thực sự của mình, đến lúc đó chỉ sợ cũng sẽ như mẹ các nàng, chủ động yêu cầu mình đa tình, lại chẳng còn ghen tuông gì nữa.</p>
+    <p>Nghĩ thông suốt những điều này, trong lòng Diệp Phi đối với người nữ nhân kia không khỏi vô cùng cảm kích, muốn nói lời cảm ơn với nàng, nhưng hắn phát hiện mình thậm chí không còn chút sức lực nào để ngẩng đầu. Thân thể lảo đảo vài cái, hắn thoáng cái gục xuống mặt bàn, rồi mất hết ý thức.</p>
+    <p>Thấy Diệp Phi cuối cùng cũng hôn mê, người nữ nhân kia mới thở phào nhẹ nhõm. Câu nói vừa rồi là nàng cố ý nói, chính là muốn để Diệp Phi triệt để bình tâm lại, nhờ đó mà thứ rượu nàng pha mới phát huy được công hiệu. Kỳ thực, nàng ghét nhất là kiểu nam nhân đa tình như Diệp Phi, nên mới nhận nhiệm vụ này. Không ngờ tên này lại cường đại đến mức đó, cả một lọ rượu mê thần nàng đặc chế vẫn không thể hạ gục hắn ngay lập tức, tiền thù lao nhiệm vụ còn chẳng đủ bù vào tiền nguyên liệu rượu, cuối cùng còn phải nói những lời trái lương tâm ấy, nếu không vì danh dự, nàng đã muốn bỏ cuộc rồi.</p>
+    <p>Cố nén vẻ chán ghét trong lòng, người nữ nhân đỡ Diệp Phi đang say bất tỉnh dậy, để cánh tay hắn khoác lên vai mình, nửa dìu nửa ôm hắn bước ra khỏi quán rượu trước ánh mắt ngưỡng mộ của mọi người (nữ nhân ngưỡng mộ nàng, nam nhân ngưỡng mộ Diệp Phi). Nàng đưa hắn vào một con hẻm nhỏ vắng vẻ rồi giao cho hai người đã đợi sẵn ở đó.</p>
+    <p>Nhìn theo chiếc xe chở Diệp Phi rời đi, người nữ nhân lầm bầm: "Lần này lỗ nặng, chẳng những thiệt vốn mà còn để tên đáng ghét này chiếm tiện nghi!" Nhưng nghĩ lại biểu cảm đau khổ và thương tiếc đan xen trên gương mặt Diệp Phi khi nhắc đến việc xin lỗi các nữ nhân của hắn, nàng lại thấy tên này không đến nỗi quá đáng ghét. Để hắn chạm vào cơ thể băng thanh ngọc khiết ẩn sau vẻ gợi cảm tuyệt đỉnh của mình, xem ra cũng không phải là chuyện khó chấp nhận đến thế.</p>
+    <p>Khi Diệp Phi tỉnh lại, hắn phát hiện mình đang ở một nơi rất giống nhà tù, điều này hắn đoán được qua những song sắt thô to như cánh tay trong không gian xung quanh. Lập tức, hắn cũng nhớ lại chuyện trước khi hôn mê. Hiện tại xem ra, nữ nhân kia hẳn là người của một thế lực đối địch tìm đến để đối phó mình. Vừa hay lúc đó tâm trạng hắn đang vô cùng rối bời nên mới trúng chiêu.</p>
+    <p>Tuy nhiên, Diệp Phi không hề oán hận người nữ nhân kia, thậm chí còn có chút cảm kích. Nhờ một câu nói của nàng mà tâm kết của hắn đã được gỡ bỏ. Dù đang bị giam cầm ở một nơi không biết tên, nhưng tâm trạng hắn lại thoải mái hơn nhiều so với lúc đứng ở đường phố Cận Hải khi trước.</p>
+    <p>"Ngươi cuối cùng cũng tỉnh!" Ngay khi Diệp Phi đang vui mừng vì đã thông suốt được mọi việc, một giọng nói cực kỳ êm tai từ trong bóng tối truyền đến, cho hắn biết nơi giống như nhà tù này không chỉ có một mình hắn.</p>
+    <p>Đó không phải do linh giác của Diệp Phi suy giảm, mà là vì hắn vừa mới tỉnh dậy sau cơn mê, đầu óc còn chút mơ hồ, lại thêm mải mê suy nghĩ nên không chú ý quan sát xung quanh. Lúc này nghe tiếng nói, hắn vội vận đủ thị lực nhìn về phía đó, lập tức sững sờ.</p>
+    <p>Trong góc tối tăm kia, có một thứ giống như cửa ra vào, nơi đó đang đứng một nữ nhân. Một nữ nhân rất đẹp, đẹp đến tận cùng, mà lại còn cho hắn một cảm giác vô cùng quen thuộc. Chính cái cảm giác quen thuộc ấy khiến Diệp Phi hơi ngẩn người, bởi dù cố gắng lục lọi trong trí nhớ, hắn vẫn không thể nhớ ra đã gặp nàng ở đâu.</p>
+    <p>Nữ nhân kia dường như cũng có cảm giác tương tự, nhìn Diệp Phi với ánh mắt đầy ngạc nhiên và bối rối, hiển nhiên cũng không hiểu vì sao mình lại thấy quen thuộc với thiếu niên này.</p>
+    <p>Một lúc lâu sau, Diệp Phi mới hỏi: "Ngươi là ai? Đây là nơi nào?"</p>
+    <p>"Ta tên là Thủy Dĩnh, nơi này là một gian nhà tù." Nữ nhân kia không giấu giếm, trả lời thẳng câu hỏi của Diệp Phi, rồi lập tức hỏi lại: "Tại sao ngươi lại bị nhốt vào đây?"</p>
+    <p>Diệp Phi cũng không ngạc nhiên vì hắn đã đoán được đây là nhà tù, chỉ là không rõ tại sao kẻ bắt giữ mình lại giam hắn cùng một người nữ nhân xinh đẹp như vậy, liền hỏi: "Còn ngươi, vì sao lại bị giam ở đây?"</p>
+    <p>"Ta bị giam ở đây đã suốt mười tám năm rồi." Thủy Dĩnh thở dài nói: "Chỉ là ta không rõ tại sao bọn họ lại nhốt thêm một người vào, rốt cuộc ngươi là ai?"</p>
+    <p>"Ta gọi là Diệp Phi." Diệp Phi đáp thuận miệng, trong lòng bắt đầu cảnh giác. Vừa rồi chưa kịp nghĩ, giờ hắn chợt nhận ra những kẻ bắt giữ mình không hề đơn giản. Hắn mới vừa nảy sinh mâu thuẫn với Lưu Vân Nhi, nữ nhân kia đã tìm đến, điều đó chứng tỏ bọn họ nắm rõ hành tung của hắn như lòng bàn tay. Thế lực này có thể hoành hành tại Cận Hải chắc chắn là địch nhân của hắn. Tất nhiên, còn một khả năng khác là đám người này muốn bắt bừa một người, và hắn xui xẻo rơi vào tầm ngắm, dù khả năng này không cao nhưng cũng không thể loại trừ.</p>
+    <p>"Cái gì? Ngươi họ Diệp? Vậy ngươi là người ở đâu?" Nghe cái tên Diệp Phi, Thủy Dĩnh dường như rất kích động, gương mặt vốn không mấy biến chuyển khi nhắc đến việc bị giam giữ suốt mười tám năm giờ lại hiện lên vẻ xúc động.</p>
+    <p>"Ta bị bắt tại Cận Hải." Diệp Phi không nói mình là người Vọng Hải, bởi hắn chưa quá tin tưởng người tên Thủy Dĩnh này, ai biết nàng có phải do đối phương cài vào để giả vờ bị giam giữ hay không. Dù nhìn nàng không giống, nhưng trên đời này luôn có những kẻ diễn kịch rất giỏi.</p>
+    <p>Dù Diệp Phi chỉ nói mình bị bắt tại Cận Hải, nhưng Thủy Dĩnh hiển nhiên coi hắn là người Cận Hải. Gương mặt nàng thoáng hiện lên vẻ thất vọng xen lẫn vui mừng, khiến Diệp Phi vô cùng kỳ quái.</p>
+    <p>"Vậy ngươi có biết tại sao bọn họ muốn bắt ngươi đến đây, còn giam chung ngươi vào phòng giam này không?" Sau khi biết Diệp Phi không phải người Vọng Hải, biểu cảm của Thủy Dĩnh quay lại vẻ lạnh nhạt, nàng hỏi như vậy trong lòng vẫn thấy rất khó hiểu về việc tại sao bọn họ lại nhốt thiếu niên này cùng với nàng.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0309.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0311.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

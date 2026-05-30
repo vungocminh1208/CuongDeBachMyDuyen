@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 293 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 293</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 293</small>
+    Chương 293: Trên xe mập mờ
+  </h1>
+  <div class="chapter-body">
+    <p>Vì Diệp Phi ngày hôm qua không lái xe tới, cho nên hai tỷ đệ dứt khoát cùng ngồi xe cảnh sát của Minh Nguyệt Tâm. Chỉ là Diệp Tư Dao trực tiếp ngồi cạnh Minh Nguyệt Tâm, ném Diệp Phi ra ghế sau, khiến cho hắn vốn định thực hiện vài ý đồ xấu mà cảm thấy thất vọng.</p>
+    <p>Dù là ở Vọng Hải, xe cảnh sát cũng có rất nhiều đặc quyền, điểm này ở Trung Quốc tựa hồ đã thành lệ cũ. Thậm chí ngay cả một Minh Nguyệt Tâm vốn có tinh thần trọng nghĩa quá mức, sau khi làm cảnh sát hồi lâu cũng đã quen với điều này. Cho nên, dù bây giờ đang là giờ cao điểm, nhưng trong lúc Minh Nguyệt Tâm và Diệp Tư Dao trò chuyện ngày càng thân thiết, xe rất nhanh đã đỗ dưới tòa đại lâu nơi có võ quán.</p>
+    <p>Lúc này, tin tức Vương Tiểu Minh bị choáng váng vẫn chưa truyền ra ngoài, nên dưới lầu không có bao nhiêu phóng viên giải trí chờ đợi. Điều này làm cho ba người Diệp Phi cảm thấy buồn cười, bất quá họ cũng chẳng buồn trả lời những phóng viên thiếu đạo đức nghề nghiệp này, mà trực tiếp xuyên qua đám đông lên lầu. Những ký giả kia tuy biết Vương Tiểu Minh đến giúp võ quán tuyên truyền, nhưng lại không nhận ra Diệp Tư Dao, vì thế họ đã bỏ lỡ cơ hội có được tư liệu trực tiếp.</p>
+    <p>Khi ba người lên đến tầng cao nhất của võ quán, các học viên gần như đã đến đủ. Họ đều chưa biết chuyện tối hôm qua xảy ra nên vẫn đang trò chuyện vui vẻ, còn những người hôm qua không đến thì không ngừng tỏ vẻ hâm mộ.</p>
+    <p>Chứng kiến quán chủ cùng bạn trai và một nữ cảnh sát cùng đi vào, các học viên không khỏi thấy kỳ lạ. Là công dân bình thường, dù họ có chút công phu trong người nhưng vẫn có chút kính sợ cảnh sát. Dù nữ cảnh sát này có tướng mạo và dáng người đủ để sánh ngang với quán chủ của họ, những học viên này cũng không dám nhìn nhiều.</p>
+    <p>Chỉ có phó quán chủ A Phương bước tới chào hỏi Diệp Tư Dao, nhưng ánh mắt nhìn nàng và Diệp Phi lại tràn đầy mập mờ. Bởi vì tối qua khi tiệc tàn được một nửa, lúc muốn tìm Diệp Tư Dao trò chuyện, cô phát hiện nàng và Diệp Phi đã biến mất. Là người trẻ tuổi thời đại mới, cô tự nhiên liên tưởng đến vài chuyện khác.</p>
+    <p>Diệp Tư Dao bị A Phương nhìn đến mức không được tự nhiên, vội vàng giới thiệu: "Vị này là phó cục trưởng phân cục cảnh sát khu Nam, Minh Nguyệt Tâm. Cô ấy tới đây để tìm hiểu một vài chuyện tối qua, chị tập hợp mọi người lại một chút đi."</p>
+    <p>Tuy thấy lạ vì sao có cảnh sát tới đây hỏi chuyện, nhưng A Phương không hỏi nhiều, nhanh chóng gọi các học viên lại.</p>
+    <p>"Tối qua có ai thấy Vương Tiểu Minh đi đâu không?" Đợi mọi người tập hợp đông đủ, Diệp Tư Dao thay mặt Minh Nguyệt Tâm hỏi.</p>
+    <p>Câu hỏi này khiến các học viên nhìn nhau. Tối qua họ đều chơi rất sung, hơn nữa sau khi biết giọng hát của Vương Tiểu Minh thì cũng có chút thất vọng, nên chẳng ai để ý đến anh ta. Sau nửa ngày nhìn nhau, một học viên giơ tay nói: "Tôi thấy hắn đi cùng Kim Đại Thuận vào một căn phòng nhỏ, sau đó thì không thấy họ đâu nữa."</p>
+    <p>"À? Bạn nói rõ chi tiết xem, họ ra ngoài lúc nào?" Nhận được manh mối có lợi cho Diệp Phi, Minh Nguyệt Tâm không khỏi tinh thần chấn động. Thực ra trực giác nói với cô rằng Diệp Phi mới là người có hiềm nghi lớn nhất, nhưng không hiểu sao lần này cô lại muốn giúp hắn rũ bỏ nghi ngờ. Ý nghĩ tiềm thức này khiến chính cô cũng thấy lạ, cuối cùng đành tự nhủ là vì không muốn mẹ đau lòng nên mới vô thức muốn giúp hắn.</p>
+    <p>Học viên kia gãi đầu: "Tôi cũng chỉ nhìn thoáng qua từ xa, còn họ rời đi khi nào thì tôi không rõ. Cho đến lúc mọi người tản ra cũng không thấy họ đâu, còn nữa..." Nói đoạn, học viên này nhìn sang Diệp Tư Dao và Diệp Phi. Tối qua bất kể là Diệp Phi, Diệp Tư Dao hay Kim Đại Thuận, Vương Tiểu Minh, những hành động mờ ám đều rất bí mật, nên đám học viên này căn bản không biết đã có nhiều chuyện xảy ra. Lúc tan tiệc, khi thấy Diệp Phi và Diệp Tư Dao biến mất, họ cũng có suy nghĩ giống hệt A Phương.</p>
+    <p>Nhìn dáng vẻ ngượng ngùng của Diệp Tư Dao trước ánh mắt mập mờ của đám học viên, Minh Nguyệt Tâm không khỏi buồn cười. Cô lại nhớ tới mình, cũng đều là được Diệp Phi giúp đuổi người theo đuổi. Lần trước hắn giả làm em trai cô, lần này lại giả làm bạn trai của Diệp Tư Dao. Chỉ có điều, "bạn trai giả" của Diệp Tư Dao là em trai thật, còn "em trai giả" của cô lại không phải bạn trai thật, bằng không thì đúng là loạn cả lên rồi.</p>
+    <p>Nếu thật sự có thể loạn lên thì tốt biết mấy, Minh Nguyệt Tâm đỏ mặt nghĩ như vậy, nhưng lập tức gạt ý nghĩ đó đi. Mình sao có thể nghĩ như thế? Chẳng phải là có lỗi với mẹ sao? Có một vấn đề mà chính cô chưa nhận ra: khi nảy ra ý nghĩ này, cô chỉ cảm thấy có lỗi với mẹ chứ không hề cảm thấy bản thân ý nghĩ đó có gì không ổn.</p>
+    <p>"Có phải mọi người cùng rời câu lạc bộ đêm không? Thật sự không ai nhìn thấy Kim Đại Thuận và Vương Tiểu Minh nữa sao?" Minh Nguyệt Tâm gạt sự rối bời trong lòng, dồn hết tâm trí vào vụ án. Tuy nhiên cô vẫn cảm thấy tiếc, nếu có người chứng kiến họ rời đi cùng nhau, vậy thì có thể loại trừ hoàn toàn hiềm nghi cho Diệp Phi.</p>
+    <p>Các học viên đều lắc đầu: "Không có, nhưng Kim Đại Thuận tên đó cũng được, người tuy không có ở đó nhưng đã dặn dò ông chủ gọi xe cho chúng tôi."</p>
+    <p>Diệp Phi thầm cười, đây đâu phải Kim Đại Thuận tốt bụng, mà là Trương Nhất Đức, nhưng hắn không nói ra.</p>
+    <p>Đến đây, chuyện bên phía học viên đã rõ ràng, Minh Nguyệt Tâm từ biệt Diệp Tư Dao rồi nói với Diệp Phi: "Anh đi cùng tôi về cục làm biên bản, dù sao Vương Tiểu Minh cũng là người các anh mời đến."</p>
+    <p>Diệp Phi ngẩn người, chẳng lẽ cô ấy đã đoán ra gì rồi? Nhưng nhìn gương mặt ửng đỏ của cô, hắn nhận ra không phải vậy. Cô tìm hắn chắc chắn có chuyện khác, nên hắn gật đầu nói với Diệp Tư Dao: "Dao Dao, anh đi cùng Minh cảnh quan một chút, yên tâm, sẽ không ảnh hưởng đến võ quán đâu."</p>
+    <p>Diệp Tư Dao dù không nỡ nhưng cũng không ngăn cản. Cô đã nhận ra Minh Nguyệt Tâm có chút ý tứ với Diệp Phi, nhưng nàng cũng không định cản trở. Từ đầu nàng chưa từng nghĩ đến việc độc chiếm Diệp Phi, nhất là sau hai trận kích tình tối qua và sáng nay, nàng lại càng không muốn để hắn chỉ quẩn quanh bên mình. Nghĩ đến việc bản thân đã gần như kiệt sức mà hắn vẫn hừng hực khí thế, nếu để hắn chỉ chăm chăm mỗi mình nàng, kết cục chỉ có hai: một là hắn mỗi ngày cố nhịn, hai là nàng mỗi ngày không xuống giường nổi. Dù rất muốn dính lấy hắn, nhưng ai cũng có sự nghiệp riêng, không thể cứ nhốt mình trong phòng. Còn về việc để Diệp Phi chịu đựng, Diệp Tư Dao yêu hắn nên đương nhiên không đành lòng, vì vậy đối với việc này, nàng có thể nói là khá phóng túng.</p>
+    <p>Tiễn hai người rời đi, tâm trí Diệp Tư Dao lại quay về với những giây phút cuồng nhiệt vừa qua, nhất thời ngẩn ngơ cho đến khi tiếng học viên làm nàng giật mình tỉnh lại: "Quán chủ, Vương Tiểu Minh xảy ra chuyện gì sao? Sao lại có cảnh sát đến hỏi? Bạn trai chị bị cô ấy mang đi, có gặp rắc rối gì không ạ?"</p>
+    <p>Hàng loạt câu hỏi khiến Diệp Tư Dao hơi lúng túng, đành trả lời từng việc: "Sáng nay đột nhiên có người phát hiện Vương Tiểu Minh bị ngốc, nên cảnh sát mới truy tra. Mọi người không cần lo, chuyện này chẳng liên quan gì đến chúng ta cả, cảnh sát sẽ không tìm rắc rối đâu. Còn bạn trai chị... anh ấy cũng không sao, chỉ đi làm biên bản thôi." Dù đã thân mật như vậy, nhưng đứng trước mặt các học viên gọi hắn là bạn trai, Diệp Tư Dao vẫn không khỏi đỏ mặt.</p>
+    <p>Diệp Tư Dao vốn lạnh lùng nay đột nhiên lộ vẻ ngượng ngùng khiến đám học viên vốn đã quen với vẻ băng giá của nàng cảm thấy kinh diễm. Trong nhất thời, bất kể nam nữ đều ngẩn người, một lúc lâu sau mới hoàn hồn và tản ra.</p>
+    <p>Thấy mọi người đã chú ý nơi khác, A Phương tiến lại gần, cười hỏi nhỏ: "Dao Dao, khai thật đi, tối qua hai người có phải là... hắc hắc..."</p>
+    <p>Diệp Tư Dao bị hỏi đến mức đỏ bừng mặt, nhưng A Phương là người bạn thân nhất ngoài gia đình, nàng cũng muốn chia sẻ nên không phủ nhận, chỉ đỏ mặt gật đầu, khẽ đáp: "Ừ."</p>
+    <p>Thấy Diệp Tư Dao thừa nhận, A Phương càng hứng thú, kéo nàng sang một bên hỏi nhỏ: "Vậy nói chị nghe, cảm giác đó thế nào?"</p>
+    <p>Diệp Tư Dao càng đỏ mặt, dù không ngại chia sẻ nhưng chuyện này làm sao dám nói ra miệng, đành hờn dỗi: "Chị tự thử chẳng phải sẽ biết sao?"</p>
+    <p>"Chị thử với ai chứ? Hay là với người đó của em?" A Phương nói đùa.</p>
+    <p>Không ngờ Diệp Tư Dao lại cười đáp: "Cũng được đấy, nếu anh ấy nguyện ý, em không phản đối!"</p>
+    <p>A Phương không ngờ Diệp Tư Dao lại trả lời như vậy, tự giễu cười: "Thôi đi, có mỹ nữ lớn như em ở bên cạnh, người ta làm sao nhìn trúng chị?"</p>
+    <p>Thực ra A Phương không xấu, nếu chỉ nhìn gương mặt thì còn kém Diệp Tư Dao một bậc, nhưng vì thân hình cô quá cường tráng, lại thích để tóc ngắn và mặc đồ trung tính nên mọi người đều xem nhẹ vẻ ngoài, chỉ thấy cô như một "nữ hán tử".</p>
+    <p>Diệp Tư Dao không nhìn A Phương như người khác, nếu Diệp Phi có ý, nàng thậm chí có thể làm bà mối, nhưng tư tâm dù sao vẫn có chút ích kỷ nên nàng không chủ động làm gì, nghe xong chỉ nhàn nhạt cười.</p>
+    <p>Lại nói đến Diệp Phi và Minh Nguyệt Tâm, sau khi xuống lầu, Diệp Phi không lái xe của mình mà ngồi vào ghế phụ trên xe cảnh sát của Minh Nguyệt Tâm.</p>
+    <p>Từ khi Minh Nguyệt Tâm khởi động xe, Diệp Phi cứ nhìn cô chằm chằm với nụ cười nghiền ngẫm ở khóe miệng. Lúc đầu Minh Nguyệt Tâm không để ý, nhưng bị nhìn mãi cũng thấy không tự nhiên.</p>
+    <p>Cuối cùng, không nhịn được nữa, Minh Nguyệt Tâm giảm tốc độ, quay sang hỏi: "Anh cứ nhìn tôi làm gì?"</p>
+    <p>"Tôi đang suy nghĩ một vấn đề." Diệp Phi cười hì hì: "Tại sao cô vừa nghe tin tôi vào phòng với một cô gái đã tức giận như vậy, thậm chí còn đích thân chạy đi bắt quả tang?"</p>
+    <p>Vừa rồi Diệp Phi và Diệp Tư Dao không nhắc tới chuyện này, Minh Nguyệt Tâm vốn tưởng họ đã quên nên đang thầm mừng, không ngờ Diệp Phi lại khơi lại, khiến cô nhớ tới tâm trạng khác thường lúc đó, mặt không kìm được đỏ lên nhưng vẫn cứng miệng: "Lúc đó tôi đâu biết cô gái kia là chị gái anh, nghe tin anh làm chuyện có lỗi với mẹ tôi, tôi sao không giận cho được?"</p>
+    <p>"Phải không?" Diệp Phi đầy hứng thú nhìn gương mặt vì đỏ ửng mà càng thêm kiều diễm của cô, cười nói: "Sao tôi cảm giác như cô đang ghen ấy nhỉ?"</p>
+    <p>Từ sau khi nảy ra ý nghĩ kia ở võ quán, Minh Nguyệt Tâm đã hiểu rõ tâm tư của mình, khiến lòng cô cực kỳ rối bời. Không ngờ lúc này Diệp Phi lại vạch trần, khiến cô vừa thẹn vừa giận, quát: "Ghen cái đầu anh! Không được nói bậy!"</p>
+    <p>"Ghen cái đầu tôi? Tôi không có đầu to." Diệp Phi cười ha hả: "Mà này, nếu đảo ngược hai chữ phía sau, tôi lại có một cái đấy, cô có muốn nếm thử không?"</p>
+    <p>"Đảo ngược hai chữ phía sau? Đại..." Minh Nguyệt Tâm chợt phản ứng lại, giận dữ quát: "Anh đi chết đi!"</p>
+    <p>"Vậy cô muốn tôi chết thế nào?" Diệp Phi vẫn cười cợt.</p>
+    <p>Thực ra bị Diệp Phi trêu chọc như vậy, Minh Nguyệt Tâm không những không giận mà trong lòng còn có cảm giác ngọt ngào. Tuy nhiên để che giấu sự ngại ngùng, cô vẫn giả vờ oán trách: "Anh còn dám nói hưu nói vượn, tôi cắn chết anh!"</p>
+    <p>"Oa, đừng nóng nảy thế! Tôi chỉ cho cô nếm thử thôi mà, cô đã muốn cắn chết tôi rồi!" Diệp Phi kinh hô.</p>
+    <p>Chữ "cắn" hiểu theo nghĩa đó Minh Nguyệt Tâm cũng từng nghe qua, lúc này sao có thể không hiểu Diệp Phi đang nói gì. Điều đó khiến cô vừa thẹn thùng, vừa bất giác hiện lên trong đầu cảnh tượng đã thấy hôm nọ: cái thứ to đến dọa người của hắn ra vào ở chỗ của mẹ. Bị Diệp Phi khơi gợi như vậy, trong lòng cô đột nhiên nảy sinh ý định muốn thực sự nếm thử cái thứ kia.</p>
+    <p>Ý nghĩ này xuất hiện đột ngột đến mức chính Minh Nguyệt Tâm cũng không hiểu nổi, giống như những ảo tưởng cô vẫn có mỗi tối, không thể kháng cự nổi. Điều này khiến cô hoảng loạn như người say rượu không kiểm soát được tay lái, hai tay trượt đi, xe đâm sầm vào gờ đá bên đường, thân hình mềm mại của cô đổ nhào vào lòng Diệp Phi, bàn tay nhỏ bé tình cờ đặt đúng vào cái thứ đang không thành thật kia.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0292.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0294.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

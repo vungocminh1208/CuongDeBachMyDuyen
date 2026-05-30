@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 157 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 157</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 157</small>
+    Chương 157: Nhu nhược Quân Di
+  </h1>
+  <div class="chapter-body">
+    <p>Khói lửa bốc lên cách nơi Diệp Phi chừng hơn mười dặm, mà xung quanh toàn là rừng rậm rậm rạp khó đi, người bình thường muốn đuổi tới chỗ đó, chỉ sợ phải mất cả ngày trời, cho dù là đặc chiến đội viên muốn đi qua, e rằng cũng cần vài tiếng đồng hồ. Nhưng đối với Diệp Phi mà nói, đây căn bản không phải vấn đề. Sau khi chạy như điên trên mặt đất một đoạn, Diệp Phi cảm thấy bất mãn với tốc độ của mình, liền dứt khoát phi thân lên, đạp lên tán cây mà bay vút đi như thể lăng không bước đi vậy.</p>
+    <p>Tốc độ của Diệp Phi cực nhanh, lại thêm lúc này đang lo lắng cho tiểu di, hắn càng dốc hết tốc độ nhanh nhất. Chưa đầy ba phút, hắn đã chạy tới nơi khói lửa phát ra.</p>
+    <p>Che giấu thân hình trên một tán cây đại thụ, Diệp Phi nhìn xuống dưới, không khỏi mục thử muốn nứt. Chỉ thấy tiểu di cùng gần trăm người bị vây hãm trong một thung lũng nhỏ. Đặc chiến đội đã chết và bị thương hơn hai mươi người, trái lại những kẻ khủng bố đang ẩn nấp phía sau cây cối kia thậm chí chưa một kẻ nào trúng đạn. Cuộc đấu súng kịch liệt đang diễn ra mà song phương vẫn chưa bắn trúng bất kỳ ai của đối phương, xem ra tiểu di và mọi người cũng bị tập kích bất ngờ giống như tiểu tổ của hắn.</p>
+    <p>Diệp Phi nhanh chóng nhìn thấy bóng dáng Liễu Quân Di sau một thân cây. Nàng lúc này vẻ mặt phẫn nộ, trong tay cầm một khẩu súng tiểu liên, thỉnh thoảng lại bắn tỉa về phía có tiếng súng vang lên, nhưng ánh mắt lại có chút bất đắc dĩ. Bởi lẽ vào lúc này, cho dù thân thủ của nàng có tốt đến đâu, cũng không thể lao ra cận chiến với địch, mà quân địch lại ẩn nấp rất kỹ, đánh mãi mà không trúng được kẻ nào.</p>
+    <p>Nhìn tiểu di có chút biệt khuất, trong lòng Diệp Phi giận dữ, hét dài một tiếng, rút hai thanh đại kiếm ra rồi xoay người xông thẳng vào trận địa địch. Lạ thay, trước đó Diệp Phi dùng hai thanh đại kiếm này chém giết không dưới một trăm năm mươi tên địch, hơn nữa còn chém đứt không ít cây cối cự thạch, vậy mà hai thanh kiếm vẫn sắc bén như cũ, thậm chí không có lấy một vết mòn.</p>
+    <p>Biến cố đột ngột khiến cả hai bên giao chiến đều ngẩn cả người. Mãi cho đến khi bị Diệp Phi chém giết vài chục tên, những kẻ khủng bố mới bừng tỉnh, vội vàng quay nòng súng về phía Diệp Phi để xạ kích, nhưng lại gặp phải kết quả giống hệt đồng bọn của chúng. Đạn dược phần lớn bị Diệp Phi né tránh, số ít bắn trúng người cũng bị hắn gạt đi không chút bận tâm, trong lòng đám khủng bố không khỏi sợ đến vỡ mật.</p>
+    <p>Trái lại, phía đặc chiến đội nhìn thấy viện quân lợi hại như vậy thì tinh thần chấn động, đặc biệt là Liễu Quân Di. Qua thân ảnh quen thuộc kia, nàng đã nhận ra người đàn ông như thiên thần giáng thế này chính là đứa cháu trai mới mười sáu tuổi của mình. Kinh ngạc ngoài, nàng không khỏi cảm thấy vô cùng tự hào, quát lớn: "Cho ta xông lên, giết sạch lũ hỗn đản các ngươi!"</p>
+    <p>Người của đặc chiến đội vốn đã kìm nén từ lâu, Liễu Quân Di vừa ra lệnh, họ còn chần chừ gì nữa? Họ cũng nhìn ra được, dưới tay người có tốc độ nhanh đến mức gần như không thấy bóng dáng kia, đám khủng bố này chỉ có nước chịu chết. Thế là tất cả đều rất sáng suốt chọn cách phân tán bao vây, muốn tiêu diệt sạch lũ khủng bố đã khiến hơn hai mươi anh em của họ phải hy sinh.</p>
+    <p>Chưa đầy năm phút ngắn ngủi, khu rừng vốn ồn ào náo động đã yên tĩnh trở lại. Diệp Phi cảm nhận được sau khi giết hơn trăm tên khủng bố vừa rồi, thực lực của mình rõ ràng đã được đề cao một mảng lớn. Bây giờ lại giết thêm nhiều người như vậy, thực lực lại tăng lên không ít, điều này làm hắn nhớ đến hệ thống thăng cấp trong trò chơi. Chẳng lẽ mình giết người xong là thăng cấp sao?</p>
+    <p>Ý nghĩ này làm hắn có chút hưng phấn. Nếu đã có thể thăng cấp như trong game, vậy sau khi giết địch liệu có rơi ra vật phẩm gì không? Đáng tiếc là sau khi nhìn quanh một vòng, hắn lại thất vọng. Không biết là do đẳng cấp đám khủng bố này quá thấp, hay do hắn không có năng lực nhặt đồ như trong trò chơi, dù sao thì sau khi những kẻ này chết đi, ngoài bộ trang bị trên người thì chẳng có gì cả.</p>
+    <p>Mãi đến khi Diệp Phi dừng tay, các đặc chiến đội viên mới nhìn rõ hắn là ai. Ngoại trừ người của Vọng Hải đặc chiến đội ra, những người khác tuy từng nghe danh thương pháp của Diệp Phi vô cùng tốt, nhưng vẫn luôn cho rằng hắn chỉ đi theo Liễu Quân Di để lấy thành tích. Tuyệt đối không ngờ rằng, hắn lại lợi hại đến mức khủng bố hơn cả tổng số các đặc chiến đội viên cộng lại.</p>
+    <p>Gạt bỏ ý nghĩ không thực tế kia, Diệp Phi quay đầu nhìn về phía Liễu Quân Di, lại phát hiện nàng không hề kinh ngạc nhìn mình như những đội viên khác, mà đang nhìn những đội viên đang nằm trên mặt đất kia với ánh mắt đầy vẻ tự trách và hối hận không thể nguôi ngoai.</p>
+    <p>Đúng vậy, Liễu Quân Di lúc này đang rất hối hận. Từ lúc còn ở Vọng Hải, Diệp Phi đã nhìn ra đây là một âm mưu lớn và còn nhắc nhở nàng không dưới một lần, nhưng nàng lại không mấy coi trọng. Cho đến khi bị đột ngột tập kích, lúc này nàng mới tin lời Diệp Phi. Nhìn hơn hai mươi đồng đội không rõ sống chết, nàng rất hối hận vì đã không để mọi người đi cùng nhau, như vậy dù có bị mai phục cũng không đến mức không có một chút khả năng phản kích nào.</p>
+    <p>Diệp Phi bước tới, nhẹ nhàng vỗ vai Liễu Quân Di, ôn nhu nói: "Tiểu di, đừng nghĩ nhiều nữa, hay là trước hết trở về rồi bàn kế sách sau. Cũng nhân tiện đưa hơn hai mươi người anh em này về, dù họ bị thương hay hy sinh, cũng không thể bỏ mặc họ ở lại đây."</p>
+    <p>Liễu Quân Di gật đầu, cố gắng trấn tĩnh lại, bắt đầu ra lệnh cho các đội viên thu dọn chiến trường, đặt những anh em đã ngã xuống lên cáng, đồng thời kiểm tra xem địch nhân có để lại kẻ sống sót nào không.</p>
+    <p>Giống như những kẻ đã gặp ở tiểu tổ của Diệp Phi, những tên này dù có kẻ chưa chết hẳn thì khi được các đội viên tìm thấy cũng đều tự sát. May mắn là sau khi kiểm tra kỹ lưỡng, chỉ có năm người hy sinh, những người khác chỉ bị thương nặng, điều này khiến lòng Liễu Quân Di nhẹ nhõm hơn một chút.</p>
+    <p>Sau khi bắn pháo hoa tập hợp lên trời, Liễu Quân Di ngồi xuống đất, ngẩng đầu nhìn trời, không biết đang suy nghĩ gì. Diệp Phi cũng ngồi bên cạnh nàng, biết rõ nàng đang đau lòng vì năm đội viên đã hy sinh kia, nhưng nhất thời không biết khuyên nhủ thế nào, đành lặng lẽ ngồi cùng nàng.</p>
+    <p>"Báo cáo đại đội trưởng!" Lúc này, một đội viên của Đông Nam đặc chiến đội đột nhiên chạy tới cạnh Liễu Quân Di, lớn tiếng báo cáo: "Tôi nhận ra một tên trong đám khủng bố."</p>
+    <p>Liễu Quân Di chấn động tinh thần, vội hỏi: "Có biết hắn thuộc tổ chức nào không?"</p>
+    <p>"Cái này tôi cũng không rõ lắm." Đội viên kia gãi gãi đầu nói: "Một năm trước tôi từng giao thủ với hắn, lúc đó hắn thuộc một tổ chức đánh thuê ở Đông Nam Á. Khi đó suýt chút nữa tôi đã đồng quy vu tận với hắn nên mới có ấn tượng sâu sắc, chỉ là không biết hiện tại hắn thuộc tổ chức nào."</p>
+    <p>Liễu Quân Di không khỏi nhíu mày, tin tức này coi như vô dụng. Đã là lính đánh thuê, một năm qua hắn gia nhập tổ chức nào cũng không có gì lạ. Vì vậy, nàng phất tay với đội viên kia: "Cậu đi nghỉ trước đi, đợi về đến căn cứ rồi nói sau."</p>
+    <p>Đợi đội viên kia đi khỏi, Liễu Quân Di đột nhiên thở dài, có chút yếu đuối tựa đầu lên vai Diệp Phi, sâu kín nói: "Thật không biết mình nhận chức tổng chỉ huy này là đúng hay sai."</p>
+    <p>"Tại sao lại nói vậy?" Diệp Phi hỏi, nghĩ thầm vừa hay nhân cơ hội này khuyên nhủ nàng một chút.</p>
+    <p>Liễu Quân Di thở dài nói: "Ta hoài nghi mình căn bản không có năng lực này. Lúc ở nhà, cháu đã nhắc nhở ta, nhưng ta lại không coi thành chuyện gì to tát. Hơn nữa, việc bố trí hành động lần này cũng rất có vấn đề, nếu để tất cả mọi người đi cùng nhau, chỉ sợ sẽ không xảy ra chuyện như thế này."</p>
+    <p>Diệp Phi lại lắc đầu nói: "Việc này tuyệt đối không trách người được. Chuyện này cháu không chỉ nói với một mình tiểu di, mà người khác cũng đều chọn cách không tin. Hơn nữa, ngay cả bản thân cháu cũng chỉ là đoán mò mà thôi, căn bản không có căn cứ gì, ngay cả chính cháu cũng không quá tự tin." Hắn có thể nghĩ được những điều đó tất nhiên là có căn cứ, nhưng để tiểu di cảm thấy nhẹ lòng hơn, hắn chỉ đành cố ý hạ thấp năng lực phân tích của mình.</p>
+    <p>Nghe hắn nói vậy, lòng Liễu Quân Di quả nhiên dễ chịu hơn một chút, nói: "Nhưng ta thật sự nghĩ mãi không ra, rốt cuộc là ai muốn hại những đội viên đặc chiến này, và sau khi hại chúng ta xong, hắn sẽ được lợi gì?"</p>
+    <p>Diệp Phi thở dài: "Vậy thì khó mà nói được. Có thể là một vài kẻ tâm địa khó lường muốn trừ khử những tinh anh cao cấp nhất các người, cũng có thể là những kẻ có dã tâm muốn nhân cơ hội này diệt gọn các đội trưởng, rồi cài cắm người của mình vào hoặc khống chế các đặc chiến đội địa phương."</p>
+    <p>Liễu Quân Di không khỏi kinh ngạc, trong lòng nàng giờ đang rối bời, nhất thời chưa nghĩ đến nhiều như vậy. Nay được Diệp Phi nhắc nhở, càng nghĩ càng thấy lời hắn rất có lý, không khỏi có chút nhu nhược nói: "Đáng tiếc những tên khủng bố này đều là những kẻ như tử sĩ, nếu không thì từ trong miệng chúng, có lẽ có thể biết được một ít tin tức."</p>
+    <p>Diệp Phi hỏi: "Chẳng phải đã nhận ra một tên sao? Chúng ta có thể bắt đầu từ tên đó."</p>
+    <p>Liễu Quân Di lắc đầu nói: "Việc này rất khó, đó là một tên lính đánh thuê, sau đó gia nhập tổ chức khủng bố nào thì không ai biết được."</p>
+    <p>Trong lòng Diệp Phi khẽ động, mạnh dạn nói: "Cháu hoài nghi những kẻ đó căn bản không phải là tổ chức khủng bố nào cả, mà là tên đứng sau màn kia tìm lính đánh thuê ở khắp nơi, giả mạo tổ chức khủng bố để lừa chúng ta rút lui."</p>
+    <p>Liễu Quân Di lại không quá đồng ý với quan điểm của hắn, khẽ lắc đầu nói: "Khả năng này rất thấp. Nếu thật sự là lính đánh thuê khắp nơi, lẽ ra không thể làm ra những hành vi như tử sĩ thế này."</p>
+    <p>Diệp Phi gật đầu nói: "Cũng đúng. Nhưng chúng ta cũng không cần đoán bậy, đợi sau này tìm được sào huyệt của bọn chúng, tin rằng sẽ có được những thứ hữu dụng."</p>
+    <p>Liễu Quân Di cũng gật đầu: "Đúng vậy. Chúng ta tập hợp xong sẽ quay về nghỉ ngơi hồi phục, sau đó tất cả mọi người cùng hành động, không thể phân tán binh lực để người ta tiêu diệt từng bộ phận như vậy nữa." Nói xong, nàng không khỏi lại nghĩ đến sai lầm lần này của mình, cảm xúc vốn đã khôi phục đôi chút lại trùng xuống.</p>
+    <p>Diệp Phi vội nói: "Đây không phải lỗi của tiểu di, việc chia thành mười tiểu tổ vốn dĩ không sai chút nào. Chỉ là địch nhân có lẽ biết rõ hành tung của chúng ta mà thôi. Cho dù chúng ta đều ở cùng một chỗ, chỉ sợ cũng khó tránh khỏi bị mai phục, hơn nữa kẻ mai phục có khi còn đông hơn."</p>
+    <p>"Tại sao lại nói vậy?" Liễu Quân Di hơi khó hiểu hỏi: "Nếu chúng ta đều ở cùng một chỗ, có hơn một ngàn người, cho dù trúng mai phục cũng không cần phải sợ vài kẻ địch ít hơn mình chứ?"</p>
+    <p>Diệp Phi lắc đầu nói: "Chính là vì số lượng địch nhân xa xa không chỉ có vậy. Lần phục kích các người, cháu đã đếm qua, có hơn ba trăm người. Mà tiểu tổ của cháu lúc nãy cũng bị hơn hai trăm người phục kích. Chỉ riêng số đó đã hơn năm trăm người rồi, cháu nghĩ đây cũng chỉ là tiểu đội quân của bọn chúng mà thôi."</p>
+    <p>"Các người cũng bị phục kích sao?" Liễu Quân Di không khỏi giật mình kinh ngạc. Nàng còn tưởng rằng Diệp Phi luôn đi theo âm thầm bảo vệ mình, không ngờ hắn lại tới từ một chiến trường khác, vội vàng hỏi: "Thương vong có lớn không?"</p>
+    <p>Diệp Phi lắc đầu nói: "Không lớn, chỉ có Lý thúc bị thương vì cháu, còn những người khác không sao cả."</p>
+    <p>Lúc này Liễu Quân Di mới thở phào nhẹ nhõm, lại hỏi: "Vậy làm sao cháu biết phương vị của chúng ta mà chạy tới nhanh như vậy?"</p>
+    <p>Diệp Phi cười nói: "Tiểu di không thấy bó pháo hoa vừa rồi sao?"</p>
+    <p>Lúc này Liễu Quân Di mới hiểu ra lý do Trương Cường vô duyên vô cớ bắn một tín hiệu khác với pháo hoa tập hợp. Nàng biết đây nhất định là do Diệp Phi bảo hắn làm, nhất thời trong lòng cảm thấy ấm áp. Một sợi dây đàn trong lòng vốn chỉ rung động khi ở bên cạnh Ngọc Vô Hà nay lại bỗng rung lên, hơn nữa cảm giác này còn khiến người ta cảm thấy an tâm và ngọt ngào hơn nhiều so với khi ở bên Ngọc Vô Hà.</p>
+    <p>"Tiểu Phi, cảm ơn cháu!" Liễu Quân Di không khỏi rúc người vào lòng Diệp Phi, hai tay ôm chặt lấy eo hắn, vùi đầu vào ngực hắn, chân thành nói một câu.</p>
+    <p>Mặc dù lúc nhỏ thường xuyên được Liễu Quân Di ôm, nhưng đây là lần đầu tiên trong đời Diệp Phi ôm ngược lại nàng như vậy. Trong lòng hắn không khỏi xao động, cũng đưa hai tay ôm lấy vòng eo mảnh khảnh của nàng, ghé vào tai nàng nhẹ giọng cười nói: "Cháu sẽ bảo vệ tiểu di cả đời này, nếu nói cảm ơn thì nói mãi cũng không hết đâu?"</p>
+    <p>"Ừm." Liễu Quân Di cũng không biết có nghe rõ lời hắn hay không, khẽ ừ một tiếng, càng ép sát thân thể vào hắn chặt hơn. Trong lòng nàng lần đầu tiên sinh ra một cảm giác: hóa ra được một người đàn ông che chở như thế này lại rất tuyệt vời, tuy trước mắt người này vẫn chỉ là một cậu thiếu niên.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0156.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0158.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

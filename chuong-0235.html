@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 235 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 235</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 235</small>
+    Chương 235: Tình nô mẹ con hoa
+  </h1>
+  <div class="chapter-body">
+    <p>Gặp ca ca thông suốt, Diệp Vân Khinh cũng yên lòng, hừ một tiếng nói: "Biết là tốt rồi, cũng may Lan tỷ tỷ không ở nơi này, bằng không nàng nhất định sẽ rất thương tâm. Nàng toàn tâm toàn ý với ngươi như vậy, mà ngươi lại hoài nghi nàng." "Thực xin lỗi, là ta không tốt." Diệp Phi rất chân thành nói lời xin lỗi, lại kỳ quái hỏi: "Sao ngươi đột nhiên gọi Như Lan là tỷ tỷ? Mụ mụ cũng muốn gọi nàng là tỷ tỷ có được không?" "Cái này có gì đâu chứ." Diệp Vân Khinh đắc ý nói: "Chẳng những là nàng, mấy ngày nữa ta còn muốn gọi mụ mụ là tỷ tỷ đây, còn có dì cả, tiểu di, bác các nàng, đều là tỷ tỷ tốt của ta. Bất quá, cái này còn phải người nào đó cố gắng chút ít mới được." Diệp Phi trong lòng rung động, đột nhiên hỏi: "Vậy ba vị tỷ tỷ kia của chúng ta thì sao?" "Đương nhiên là để ở nhà làm một loại tỷ tỷ khác." Diệp Vân Khinh không chút suy nghĩ đáp: "Ba vị tỷ tỷ chẳng những xinh đẹp, đối với chúng ta còn tốt như vậy, quan trọng nhất là các nàng trong lòng đều có ngươi, ngươi có đành lòng để các nàng rời nhà đi không, ta còn không nỡ đâu." "Không thể nào." Diệp Phi có chút không tin lời muội muội, đại tỷ đối mình có tình cảm đặc biệt thì hắn cơ bản đã xác định, nhưng Nhị tỷ cùng Tam tỷ hình như từ trước tới nay chưa bao giờ có ý tứ này? "Cái gì mà không thể? Ngươi hiểu rõ con gái hay là ta hiểu? Ngươi tưởng rằng các nàng một mực không tìm bạn trai là vì cái gì? Còn không phải đều là vì ngươi cái tên đại hư đốn này. Bất quá, rất có thể ngay cả các nàng cũng không rõ ràng lắm phần tình cảm này, giống như ta trước kia vậy, nếu không phải ngươi cái tên đại hư đốn này giở trò xấu, rất có thể đến bây giờ ta cũng không rõ ràng tình cảm thật sự của mình đối với ngươi." Diệp Vân Khinh có chút cảm thán, trong lòng rất mừng vì lúc trước ca ca đột nhiên khai khiếu mà ra tay với mình, nếu không mình căn bản không thể hạnh phúc như bây giờ. Gặp ca ca có vẻ như đang suy nghĩ điều gì, Diệp Vân Khinh lại hiến kế: "Đại tỷ tính cách hơi nhu nhược, nên ngươi có thể cường ngạnh một chút, nàng có ngươi trong lòng, tuyệt đối sẽ không trách ngươi; Nhị tỷ cũng dễ làm, tâm nàng cũng không lạnh lùng như vẻ bề ngoài, chỉ cần ngươi cho nàng thêm chút ấm áp, tự nhiên là nước chảy thành sông; về phần Tam tỷ nha, thật sự có chút khó làm, ta xem ngươi dứt khoát tìm nàng cùng uống rượu, đem nàng chuốc say sau đó... Hắc hắc." "Khinh Khinh, cám ơn ngươi!" Diệp Phi đột nhiên quay đầu nhìn về phía tiểu muội, hai mắt tràn ngập nhu tình nhìn nàng. Tuy những đề nghị của nàng về ba vị tỷ tỷ có chút không thực tế, nhưng Diệp Phi biết rõ những điều này là do nàng đã suy nghĩ rất kỹ sau một thời gian dài, nếu không cũng sẽ không phân tích rõ ràng như vậy. Nàng lúc nào cũng nghĩ cho mình, làm sao Diệp Phi không cảm động cho được? "Cái gì?" Diệp Vân Khinh có chút không hiểu, nàng đối với thứ tình yêu không chút giữ lại này dành cho ca ca đã thấm vào tận xương tủy, nên gặp chuyện luôn lo lắng cho hắn, bản thân nàng không hề cảm thấy đây là công lao gì, nên khi ca ca đột nhiên cảm ơn làm nàng có chút không hiểu tại sao. "Không có gì, ta là nói ngươi tối hôm qua cùng sáng nay phối hợp thật tốt, mụ mụ hiện tại đã buông lỏng rất nhiều rồi." Diệp Phi hiểu ngay, tiểu muội làm việc gì cho mình nàng đều cảm thấy là điều đương nhiên, nếu mình cảm ơn, ngược lại sẽ làm tổn thương lòng nàng, nên vội vàng chuyển chủ đề sang người mụ mụ. Diệp Vân Khinh cười đắc ý: "Đó là đương nhiên. Đúng rồi, tối hôm qua lúc ta gõ cửa, mụ mụ có kích động lắm không?" "Quá kích động!" Nghĩ đến cảnh mụ mụ tối hôm qua, Diệp Phi đến tận bây giờ còn có chút dư vị, vì vậy nhỏ giọng nói vào tai tiểu muội một câu. "Oa! Vậy nhất định sướng lắm!" Diệp Vân Khinh ánh mắt lộ ra vẻ hưng phấn, mị nhãn như tơ nhìn ca ca: "Ca, ta cũng muốn như vậy, ngươi cũng cho ta một lần được không?" "Được, bất quá cái này còn tùy vào thể chất cá nhân, không phải ai cũng làm được." Diệp Phi nói xong, âm thầm quyết định quay về tra mạng xem có bí quyết gì không. Diệp Vân Khinh vô cùng tự tin: "Nhất định làm được, ta là do mụ mụ sinh ra, khẳng định cũng di truyền được thể chất này." Huynh muội hai người vừa đi vừa nói chuyện phiếm, rất nhanh liền đến trường. Đỗ xe ở bãi đỗ xe ngoài trường, hai người xuống xe hướng về phía trường học, đột nhiên điện thoại Diệp Phi rung lên vài cái. Lấy điện thoại ra xem tin nhắn, Diệp Phi nói với Diệp Vân Khinh: "Khinh Khinh, ngươi đi trước đi, ta có chút việc." "Vâng." Diệp Vân Khinh nhu thuận gật đầu, một mình đi vào trường. Nàng tuy rất thích làm nũng với ca ca, nhưng khi ca ca có việc thì luôn khéo hiểu lòng người. Diệp Phi đi về một hướng khác, dừng lại trước một chiếc xe thương vụ đỗ không xa cổng trường, nhẹ nhàng gõ cửa kính. Cửa xe nhanh chóng được mở ra, lộ ra gương mặt tuyệt mỹ hơi tái nhợt của Trương Lâm Tâm. Diệp Phi không nói gì, trực tiếp lên xe. Trương Lâm Tâm đóng cửa, để Diệp Phi ngồi xuống, còn mình thì quỳ gối trước chân hắn, ngẩng đầu nhìn lên, ôn nhu gọi: "Chủ nhân." Lúc này tuy sắc mặt Trương Lâm Tâm hơi không tốt, nhưng vẫn khó che giấu vẻ quốc sắc thiên hương, vẻ tái nhợt này ngược lại làm nàng thêm phần phong tình rung động lòng người. Thêm vào đó, tư thế phục tùng tuyệt đối này khiến tâm hỏa mà Diệp Phi kìm nén suốt đêm qua lại rục rịch. "Chủ nhân, muốn Lâm Tâm phục vụ ngài một chút không?" Nhìn thấy dục vọng trong mắt Diệp Phi, Trương Lâm Tâm kiều mỵ hỏi, bàn tay nhỏ bé chậm rãi chạm tới quần hắn. "Để nói chuyện trước đã." Diệp Phi biết nếu không có việc gì, Trương Lâm Tâm chắc chắn sẽ không đến vào lúc này. Kỳ thật Trương Lâm Tâm đề nghị như vậy hoàn toàn là vì muốn Diệp Phi thoải mái, chứ bản thân nàng không có tâm trạng đó, nên sau khi Diệp Phi từ chối cũng không cảm thấy thất vọng, ngẩng khuôn mặt nhìn hắn nói: "Chủ nhân, thực xin lỗi, con gái ta muốn đối phó với ngài, ta khuyên nó cả ngày cũng không có tác dụng gì." "Ngươi chỉ vì chuyện này mà đến tìm ta?" Diệp Phi kỳ quái hỏi: "Loại chuyện này gọi điện thoại là được mà. Ngươi yên tâm, nể mặt ngươi, ta sẽ không làm gì con gái ngươi đâu." "Cảm ơn chủ nhân." Trương Lâm Tâm cảm kích đến mức lệ nóng doanh tròng. Mình chỉ là một tên nô lệ, hắn vậy mà có thể đối xử với mình như vậy, làm sao Trương Lâm Tâm không cảm kích cho được? "Bất quá, chuyện này không đơn giản như vậy." Trương Lâm Tâm lại nói: "Chủ nhân, thứ cho Lâm Tâm mạo muội, xin hỏi ngài hôm qua lúc đi học có phải đã cùng Diệp tiểu thư như vậy không?" "Sao ngươi biết?" Diệp Phi kinh ngạc hỏi, nhưng cũng không để ý lắm. Qua vài chuyện trước đây, hắn đã biết Trương Lâm Tâm trung thành với mình đến mức nào, nên để nàng biết cũng không sao. "Con gái ta nhìn thấy, mà còn dùng điện thoại quay lại, chuẩn bị dùng cái này đối phó với ngài." Trương Lâm Tâm nói tiếp: "Đoạn video đó đã bị Lâm Tâm xóa rồi, nhưng ta sợ nó vẫn sẽ nghĩ cách dùng nó để uy hiếp ngài." "Ân?" Diệp Phi không ngờ sơ sẩy một chút lại bị Tiêu Phỉ quay được, càng không ngờ lòng trung thành của Trương Lâm Tâm lại đạt đến mức này, ngay cả con gái cũng không màng. Điều này khiến hắn không khỏi bị cảm động, vì vậy ôn nhu hỏi: "Vậy ngươi muốn ta đối xử với con gái ngươi thế nào?" Thanh âm ôn nhu của Diệp Phi khiến Trương Lâm Tâm thụ sủng nhược kinh, ngẩng đầu nhìn hắn nói: "Thỉnh chủ nhân ban ơn, thu nó làm nô lệ đi." "Tại sao?" Diệp Phi không khỏi sững sờ: "Nó là con gái ngươi, ngươi thật sự nhẫn tâm?" Trương Lâm Tâm nghiêm túc nói: "Chính vì nó là con gái của Lâm Tâm, Lâm Tâm mới nghĩ như vậy. Bởi vì Lâm Tâm biết, chỉ có ở bên cạnh chủ nhân mới có thể có được khoái lạc lớn nhất, dù chỉ là một tên nô lệ, cũng sẽ hạnh phúc hơn những người phụ nữ khác, nên Lâm Tâm khẩn cầu chủ nhân đáp ứng." "Vậy được rồi." Diệp Phi gật đầu, hắn đương nhiên không từ chối một tính nô xinh đẹp, hơn nữa với Trương Lâm Tâm lại là một cặp mẹ con hoa, tin rằng chơi cùng nhau chắc chắn sẽ càng kích thích hơn, vì vậy đáp ứng: "Đợi tin ta, đến lúc đó bắt được nó, ta sẽ thông báo cho ngươi." "Vâng, vậy Lâm Tâm đợi tin tốt của chủ nhân." Trương Lâm Tâm vui vẻ nói. Diệp Phi thấy rõ nàng thật sự đang vui mừng, trong lòng thầm than, lại là một người phụ nữ không chút giữ lại với mình, chỉ có điều tiểu muội như vậy là vì tình yêu đến cực hạn, còn vị mỹ phụ trước mắt này lại là vì nỗi sợ hãi cùng sự mê luyến cực độ trộn lẫn. Xuống xe Trương Lâm Tâm, Diệp Phi đi về phía trường học, chưa tới cổng đã đụng phải Diệp Vân Khinh đang đi ra. "Khinh Khinh, sao ngươi lại đi ra?" Diệp Phi đón lấy, kỳ quái hỏi. Diệp Vân Khinh cười nhẹ nói: "Tiêu Phỉ nhờ người nhắn lời, hẹn hai chúng ta đến công trường bỏ hoang bên cạnh gặp mặt, không biết nó lại đang giở trò quỷ gì." Diệp Phi cũng mỉm cười, không ngờ Tiêu Phỉ lại hành động nhanh như vậy, bất quá như vậy cũng tốt, đỡ phải mình phải bận tâm. Tiêu Phỉ hẹn ở công trường bỏ hoang ngay bên cạnh trường học. Hai người đi bộ chỉ mất ba phút là đến nơi. Qua cánh cửa nhỏ tàn phá, hai người thấy Tiêu Phỉ đứng một mình ở đó, nàng mặc một bộ bạch y, mái tóc dài xõa sau đầu, trong gió nhẹ bay nhẹ nhàng, trông thật duy mỹ. Thấy hai người đến, trên mặt Tiêu Phỉ lộ ra một vòng giễu cợt: "Diệp Phi, Diệp Vân Khinh, cặp long phượng thai nổi danh nhất Vọng Hải, thật đúng là một đôi Kim Đồng Ngọc Nữ." "Ngươi lại đang nói nhảm cái gì?" Diệp Vân Khinh nhíu mày, không hiểu Tiêu Phỉ nói những lời này có tác dụng gì. Tiêu Phỉ cười lạnh, nhìn gương mặt Diệp Vân Khinh, dùng một giọng điệu quái lạ nói: "Diệp Vân Khinh, ta thật không ngờ, đằng sau vẻ ngoài thanh thuần kia, ngươi lại là người như vậy. Tiếc cho ta trước kia còn coi ngươi là đối thủ lớn nhất, ngươi căn bản không xứng!" "Ngươi có ý gì?" Diệp Vân Khinh cũng cười lạnh: "Có phải cảm thấy mình tiến bộ nên muốn khiêu chiến ta không?" "Khiêu chiến? Không, ta mới không khiêu chiến ngươi." Tiêu Phỉ lạnh lùng nói: "Diệp Vân Khinh, ngày hôm qua trong phòng học, có phải bị ca ca ngươi chọc cho rất sướng không?" "Ngươi đang nói bậy bạ gì đó?" Sắc mặt Diệp Vân Khinh tái nhợt, cố nén nỗi sợ hãi trong lòng, lớn tiếng chất vấn. "Không thừa nhận sao?" Tiêu Phỉ cười lạnh: "Không sao, dù sao ta đã quay lại màn đó rồi, ta muốn để tất cả mọi người ở Vọng Hải biết, hậu nhân mà họ sùng kính của hai nhà Lá Liễu lại có lối sống tình cảm phong phú như vậy." Diệp Phi giữ chặt tiểu muội, ngăn sự kích động của nàng lại, bước lên một bước, mỉm cười nói: "Cái này không nhọc ngươi quan tâm. Mục đích của ngươi là gì thì cứ nói thẳng ra đi, đừng nói với chúng ta là gọi đến đây chỉ để nói mỗi việc này." "Không có mục đích gì cả, ta chỉ là muốn cho các ngươi biết, các ngươi dùng thủ đoạn hèn hạ hại ba ta, ta muốn các ngươi thân bại danh liệt!" Tiêu Phỉ kích động nói, cô gái đáng thương này còn không biết rằng, thứ mà nàng tốn bao công sức quay được đã bị chính mụ mụ mình tự tay xóa bỏ rồi. Diệp Phi lúc này dở khóc dở cười. Hắn vốn nghĩ Tiêu Phỉ muốn uy hiếp mình làm gì đó, không ngờ nàng chỉ đơn thuần muốn nói cho mình biết là nàng muốn trả thù, không khỏi cười nói: "Nếu ngươi chỉ muốn chúng ta thân bại danh liệt, tại sao hôm qua không hét lớn lên? Ở thời điểm đó, chúng ta căn bản không có thời gian tách ra, nhất định sẽ để tất cả bạn học đều nhìn thấy, như vậy chẳng phải có sức thuyết phục hơn đoạn video của ngươi sao?" Nghe Diệp Phi nói, Tiêu Phỉ sững sờ. Nàng tuy kiêu căng tùy hứng, nhưng thực chất không phải người thâm độc, nên hôm qua thấy cảnh đó chỉ nghĩ đến việc quay lại, căn bản không nghĩ đến chiêu bài độc ác hơn. Bây giờ nghe Diệp Phi nói, nàng không khỏi hối hận, nhưng nàng lại phát hiện, ngay cả khi làm lại lần nữa, nàng cũng không làm được chuyện đó. "Vậy nên có thể thấy, ngươi không phải là kẻ độc ác, nên từ nay về sau đừng nghĩ đến việc làm mấy chuyện độc ác như vậy nữa." Diệp Phi cười nói một câu, đột nhiên búng tay bắn ra một luồng chỉ phong, điểm ngã Tiêu Phỉ xuống đất. Quay đầu nhìn tiểu muội sắc mặt còn tái nhợt, Diệp Phi thương tiếc hỏi: "Khinh Khinh, ngươi không sao chứ? Lời nàng vừa nói ngươi đừng để trong lòng." "Không sao, ta rất khỏe." Diệp Vân Khinh cười khẽ: "Ta không để trong lòng đâu, tình cảm của chúng ta há lại là thứ nàng có thể hiểu được?" Nàng căn bản không để ý Tiêu Phỉ nói gì, chỉ lo sợ nàng ta thực sự phơi bày chuyện này ra thôi. Giờ đây Tiêu Phỉ đã bị ca ca khống chế, nàng đương nhiên không còn lo lắng gì nữa. Thấy tiểu muội không bị ảnh hưởng, Diệp Phi yên lòng, cười nói: "Vậy là tốt rồi, ngươi về trường trước đi, ta xử lý nàng một chút." "Vâng." Diệp Vân Khinh đáp, nhìn Tiêu Phỉ ngã dưới đất, bỗng nói thêm: "Đừng quá độc ác, nàng cũng chỉ là một cô gái đáng thương thôi." "Biết rồi." Diệp Phi đã quen với sự thiện lương của tiểu muội, khẽ gật đầu, nhắc cơ thể Tiêu Phỉ lên, nhẹ nhàng lóe lên rồi biến mất tại chỗ. Với tốc độ khó tin, Diệp Phi đến trụ sở Lăng Vân Hội, gọi điện bảo Trương Lâm Tâm đến tìm mình, rồi xách Tiêu Phỉ đi vào tầng hầm. Lúc này những dụng cụ đó đã chuyển đến Lâm Hải, căn hầm này trống không, lại thuận tiện cho Diệp Phi làm việc. Không lâu sau, Trương Lâm Tâm dưới sự dẫn dắt của một cao thủ do Diệp Phi tạo ra đã đến tầng hầm. Thấy con gái trên mặt đất, biết nó đã ra tay với Diệp Phi, nàng thở dài nhẹ nhõm, nhưng tâm tình lại dễ chịu hơn nhiều. Phất tay ra hiệu cao thủ đi ra ngoài, còn dặn không được cho ai quấy rầy, Diệp Phi đi đến trước mặt Trương Lâm Tâm, hỏi: "Ngươi thật sự quyết định rồi?" "Vâng." Trương Lâm Tâm kiên định gật đầu: "Đây là lựa chọn tốt nhất cho nó, tin rằng nó sẽ sớm hiểu ra thôi." "Vậy được rồi, nó bị ta điểm huyệt ngủ, một lát nữa sẽ tỉnh, đợi nó tỉnh rồi chúng ta sẽ làm thế này..." Diệp Phi nói kế hoạch trong đầu ra cho Trương Lâm Tâm nghe. "Vâng." Trương Lâm Tâm gật đầu, mặt bỗng dâng lên một vệt đỏ hồng, nũng nịu nói: "Chủ nhân, thừa dịp nó chưa tỉnh, để Lâm Tâm phục vụ ngài một chút đi." Nói xong, nàng quỳ xuống trước mặt Diệp Phi, bàn tay nhỏ hướng tới thắt lưng hắn. Lần này Diệp Phi không ngăn cản, mặc cho Trương Lâm Tâm cởi thắt lưng, giải phóng dương vật. Tối qua hắn đã nhịn một đêm, hôm nay tự nhiên muốn phát tiết cho tốt. Vị tính nô xinh đẹp thành thục này cùng tiểu tính nô sắp bị mình khai phá xử nữ kia vừa vặn có thể để hắn chơi đùa. Lại nhìn thấy dương vật Diệp Phi, trong mắt Trương Lâm Tâm lóe lên vẻ si mê. Cái vật đó tuy lúc đầu mang đến nỗi đau lớn, nhưng khoái cảm vô tận về sau lại khiến Trương Lâm Tâm mê mẩn. Dưới sự an ủi của bàn tay mềm mại, dương vật của Diệp Phi nhanh chóng cứng ngắc, khôi phục lại vẻ bá đạo, khiến vị cực phẩm thục phụ quỳ trước mặt càng thêm khao khát, vội mở cái miệng nhỏ ngậm lấy. Chỉ ngậm quy đầu, Trương Lâm Tâm đã cảm thấy miệng nhỏ bị lấp đầy, nhưng nàng không dừng lại, hít sâu một hơi, hai tay ôm lấy mông Diệp Phi, dùng sức nhấn đầu tới trước, để dương vật Diệp Phi cắm sâu vào cổ họng, sau đó đong đưa đầu, để dương vật ra vào trong miệng nhỏ. Diệp Phi cúi nhìn Trương Lâm Tâm đang nỗ lực lấy lòng mình, trong mắt lóe lên vẻ nhu tình. Dù người phụ nữ này từng làm sai điều gì, nhưng hiện tại nàng đối với mình tuyệt đối một lòng một dạ, chỉ điểm này thôi đã khiến Diệp Phi không thể đối xử tàn nhẫn với nàng. Để dương vật ra vào trong miệng nàng gần một phút, thực sự chịu không nổi nữa, Trương Lâm Tâm mới lui ra một chút, khuôn mặt đã đỏ bừng, trong đôi mắt to xinh đẹp chứa đầy lệ nước, nhưng vẫn si tình nhìn Diệp Phi. "Ngươi không cần phải như vậy." Diệp Phi thở dài, kéo quỳ trên mặt đất Trương Lâm Tâm đứng dậy. Thấy vẻ thương tiếc trong mắt Diệp Phi, Trương Lâm Tâm vui mừng khôn xiết, cảm thấy mọi thứ mình làm đều đáng giá, liền nói: "Chỉ cần chủ nhân thoải mái, Lâm Tâm làm gì cũng được." Thú thật, Diệp Phi cũng có chút lưu luyến cảm giác vừa rồi. Ngoài lần tra tấn Trương Lâm Tâm kia, con cặc của hắn còn là lần đầu được phụ nữ ngậm sâu như vậy. Dù không thoải mái bằng cắm vào lồn, nhưng khoái cảm tâm lý là vô cùng lớn. Chỉ là hắn không đành lòng để các nàng phải khó chịu như vậy, và giờ đã nhận Trương Lâm Tâm từ trong tâm khảm, hắn cũng không nỡ hành hạ nàng. Nghỉ ngơi một lúc, Trương Lâm Tâm lại quỳ xuống, ngậm lấy dương vật Diệp Phi, lại làm một lần thâm hầu. Có lẽ vì nhu tình của Diệp Phi cho nàng thêm động lực, lần này nàng kiên trì được lâu hơn lần trước mười giây. Nhả dương vật ra, Trương Lâm Tâm không đứng lên, mà vừa thở dốc vừa liếm láp trên con cặc của Diệp Phi. Diệp Phi không nỡ tra tấn nàng thêm, liền nói: "Lâm Tâm, chủ nhân muốn địt tiểu dâm huyệt của ngươi." Trong mắt Trương Lâm Tâm lóe lên vẻ vui sướng, vội đứng dậy giúp Diệp Phi cởi sạch quần áo, rồi mới cởi đồ của mình. Tuy tầng hầm này trống rỗng, nhưng Trương Lâm Tâm không hề để ý, trải quần áo của mình ra đất, nằm lên đó, dang rộng đôi chân đẹp, để lộ tiểu dâm huyệt ướt át trước mắt Diệp Phi, nũng nịu nói: "Chủ nhân, lồn của Lâm Tâm ngứa quá rồi, cầu chủ nhân ban cho Lâm Tâm con cặc lớn của ngài!" Diệp Phi thấy dâm huyệt của Trương Lâm Tâm đã đủ ướt át, không chút chần chờ, tiến lên một bước, lấy khoảng cách tốt nhất, lao tới trước, mượn trọng lượng cơ thể, đâm thẳng con cặc cứng rắn vào dâm huyệt thành thục của mỹ phụ cực phẩm. "Á..." Trương Lâm Tâm phát ra một tiếng hét không biết là đau hay sướng, dùng tứ chi quấn chặt lấy Diệp Phi. Dù đây mới là lần thứ hai bị Diệp Phi địt, tuy trong lồn đã trơn ướt nhưng cú va chạm cực mạnh vẫn khiến nàng đau đớn không thôi, nhưng trong nỗi đau đó lại có khoái cảm vô cùng, làm nàng muốn ngừng mà không được, lại muốn Diệp Phi tiếp tục lần nữa, vì chỉ vừa mới bắt đầu nàng đã gần như đạt đến cao trào. Cảm giác dương vật bị bao bọc trong mật thịt kiều nộn khiến Diệp Phi cũng sảng khoái không thôi. Thấy Trương Lâm Tâm không sao, hắn không còn thương tiếc, thoát khỏi tứ chi nàng, tách đôi chân dài quyến rũ của nàng ra hình chữ "Nhất", treo người lên không trung, con cặc như cây cọc cuồng đâm vào dâm huyệt chặt khít của nàng. Lần trước Diệp Phi tuy là tra tấn Trương Lâm Tâm, nhưng vẫn vô thức dùng đến song tu công phu, nên lúc này dù Trương Lâm Tâm bị ép vào tư thế độ khó cao, nhưng không thấy khó chịu, mà bởi vì tư thế, dương vật Diệp Phi đâm sâu hơn, mỗi lần đều đâm vào tận tử cung của nàng. Tính dục của Trương Lâm Tâm bị kìm nén hơn mười năm đã được Diệp Phi khai phá, những ngày này nàng luôn nghĩ đến việc ôn chuyện cũ, lúc này cuối cùng cũng được toại nguyện, trong phút chốc thể xác và tinh thần đều sung sướng, vừa dùng sức lắc hông phối hợp với những cú đâm ngày càng mạnh của Diệp Phi, vừa rên rỉ: "Chủ nhân... ngài lợi hại quá... con cặc của ngài... thật lớn... cứng quá... làm dâm huyệt của Lâm Tâm... muốn bay lên rồi... Chủ nhân tốt... ngài địt chết Lâm Tâm đi... Lâm Tâm nguyện ý... bị con cặc lớn của chủ nhân... tươi sống địt chết... Con cặc lớn của chủ nhân... đừng thương tiếc Lâm Tâm... dùng con cặc lớn của ngài... tiếp tục địt... dâm huyệt của Lâm Tâm... Lâm Tâm thích... bị con cặc lớn của chủ nhân địt... Á... tới đi... Lâm Tâm muốn... tiết cho... con cặc lớn của chủ nhân..." Thân thể yêu kiều đầy đặn của Trương Lâm Tâm co rút dữ dội, đôi chân ngọc bị Diệp Phi tách rộng ra cũng thẳng tắp, trong tiểu dâm huyệt một hồi co rút, âm tinh mát lạnh tiết ra, đổ lên quy đầu nóng rực của Diệp Phi. Diệp Phi hít sâu một hơi, không đình chỉ, mà tiếp tục dùng tư thế đó điên cuồng địt làm dâm huyệt đang co rút vì cao trào của Trương Lâm Tâm. Vì hấp thụ tinh hoa trong âm tinh của Trương Lâm Tâm, con cặc Diệp Phi còn trương to hơn trước, khiến Trương Lâm Tâm cao trào chưa dứt lại một lần nữa dâm đãng lên, giãy giụa thân thể cực lực phối hợp. "Á... Không... Không được... Á... Ngừng dùng... lực... Á... Chủ nhân tốt... con cặc của ngài... thô quá... cắm vào tử cung... Á... sướng chết ta rồi... Dùng sức đi... trong lồn Lâm Tâm... ngứa quá... Á lại vào rồi... Á... nóng quá... Á... ta ta... Á... sướng chết rồi... Á... lồn ngứa quá... Dùng sức đi... địt chết dâm huyệt đi... dâm huyệt của ta... là của ngài... Á... chủ nhân... con cặc của ngài... dài thêm rồi... Á... cắm vào tử cung... sâu quá... chặt quá... Lâm Tâm sướng chết rồi... Mau địt đi... Lâm Tâm cho ngài... địt một ngàn lần... Á... Á..." Trương Lâm Tâm vừa rên rỉ theo những cú đâm mạnh bạo của Diệp Phi, vừa đặt hai tay lên đôi bầu vú to của mình, nắm lấy núm vú đang sung huyết, dùng sức véo, tìm kiếm khoái cảm mạnh hơn trong nỗi đau nhẹ. Thấy cảnh này, Diệp Phi chợt nhớ nàng có chút khuynh hướng thụ ngược, liền một bên tiếp tục địt dâm huyệt, một bên đưa tay tới nơi giao hợp, tìm âm hạch đã sung huyết cương cứng của nàng, dùng sức véo một cái. "Á..." Thân thể yêu kiều gợi cảm của Trương Lâm Tâm run rẩy dữ dội, trong dâm huyệt một hồi co rút mạnh, hiển nhiên bị chiêu này của Diệp Phi làm cho sảng khoái vô cùng. Thấy chiêu này hiệu nghiệm, Diệp Phi dứt khoát ghé vào người nàng, ngậm lấy một khỏa núm vú nhỏ, trước là mút nhẹ, rồi đột nhiên dùng sức cắn xuống. "Á..." Trương Lâm Tâm lại hét lên một tiếng kiều mỵ vô cùng, mông lớn điên cuồng xoay tròn, trong nỗi đau kịch liệt đó phát ra khoái cảm siêu cường, cuối cùng không nhịn được nữa, dâm huyệt kẹp chặt dương vật Diệp Phi một hồi mút mạnh, đợt âm tinh thứ hai cuồng tiết ra. Nghĩ đến còn có màn kịch muốn nàng phối hợp, lại thêm Tiêu Phỉ sắp tỉnh, Diệp Phi không nhịn nữa, theo đợt co rút trong dâm huyệt của Trương Lâm Tâm lúc cao trào, con cặc mạnh mẽ đâm thêm vài cái rồi bắt đầu phun trào mãnh liệt. Tiểu dâm huyệt khao khát vô cùng của Trương Lâm Tâm lại đón nhận tinh dịch của Diệp Phi, khiến nàng lại rên rỉ: "Chủ nhân tốt, tinh dịch của ngài nhiều quá, nóng quá, làm dâm huyệt của Lâm Tâm bỏng rát sướng chết rồi, chủ nhân, cầu ngài bắn cho Lâm Tâm nhiều thêm chút nữa đi!" Cao trào qua đi, hai người ôm nhau ân ái một lúc, Diệp Phi mới rút con cặc vẫn còn cứng vô cùng ra, để nàng dùng miệng giúp mình vệ sinh sạch sẽ, rồi bắt đầu chờ Tiêu Phỉ tỉnh lại. Chứ không phải Diệp Phi không giải huyệt được cho nàng, mà là làm vậy nàng tỉnh lại cực kỳ đột nhiên, hiệu quả diễn kịch sắp tới sẽ kém hơn nhiều. "Ân..." Tiêu Phỉ rên nhẹ một tiếng, tỉnh dậy từ cơn mê, trong lòng không khỏi kỳ quái. Nhớ rõ mình là đi tìm huynh muội Diệp Phi, định làm nhục bọn họ một phen, sao lại ngủ thiếp đi? Chẳng lẽ tất cả đều là mơ? Nghĩ tới đây, Tiêu Phỉ vội vàng nhìn quanh, chợt thấy Diệp Phi đang đứng trần trụi cách đó không xa, mà phía trước hắn, có một người phụ nữ cũng trần trụi đang quỳ, đầu tựa vào bụng dưới hắn. Thấy cảnh này, Tiêu Phỉ vội vàng ngượng ngùng quay đầu đi. Nàng dù sao cũng là một cô gái băng thanh ngọc khiết, làm sao đối mặt được cảnh khó coi như vậy? Bất quá trong lòng nàng lại đang suy nghĩ điên cuồng, chẳng lẽ bọn họ bị mình vạch trần nên nổi hứng ác thú vị, muốn biểu diễn trước mặt mình để chứng minh không sợ uy hiếp? Hừ, các ngươi đã dám làm, ta liền dám xem! Một ngày nào đó, ta sẽ công bố hành vi đáng ghê tởm của anh em các ngươi ra ngoài! Lòng hiếu thắng nổi lên, Tiêu Phỉ lại chuyển ánh mắt về. Không đúng! Người phụ nữ này tuyệt đối không phải Diệp Vân Khinh! Nhìn kỹ lại, Tiêu Phỉ phát hiện ngay, vì người phụ nữ quỳ trên đất kia tuy da thịt trắng nõn kiều nộn như thiếu nữ, nhưng lại đầy đặn hơn Diệp Vân Khinh, hơn nữa còn cho nàng cảm giác quen thuộc. Lòng hiếu kỳ thúc đẩy Tiêu Phỉ lén lút di chuyển, nhìn về phía người phụ nữ mà đôi chân Diệp Phi đang chắn. Chỉ thấy vật đó của Diệp Phi mà hôm qua quay được đã cắm sâu vào trong miệng người phụ nữ kia, khiến gương mặt người phụ nữ vì đau đớn mà vặn vẹo. Nhưng Tiêu Phỉ vẫn nhận ra ngay, người phụ nữ này, lại chính là mẹ mình. Giây phút này, lửa giận trong lòng Tiêu Phỉ lên tới đỉnh điểm, lao về phía Diệp Phi, chưởng thành đao, hung hăng bổ về phía cổ hắn. Qua nhiều năm luyện tập, thân thủ của nàng vô cùng tốt, người thường trúng cú này chắc chắn cổ sẽ bị chém gãy. Nàng tin rằng dù Diệp Phi có võ công, trúng chiêu này cũng chắc chắn không sống nổi. Nhưng Diệp Phi không hề quay người lại, chỉ duỗi tay phải ra sau, bắt lấy cánh tay chém tới của Tiêu Phỉ, khống chế nàng, thản nhiên nói: "Tỉnh rồi cũng không thành thật, chạy loạn cái gì?" Tiêu Phỉ vùng vẫy, miệng hét lên: "Đồ khốn, thả ta ra!" Diệp Phi nhẹ nhàng kéo, đem Tiêu Phỉ lại gần, bắt nàng đứng cạnh mẹ mình, cười lạnh nói: "Ngươi biết không biết tốt xấu sẽ dẫn đến hậu quả gì không?" Nói xong, phần eo mạnh mẽ đẩy tới trước, con cặc đang cắm trong miệng mỹ phụ lại đâm vào sâu thêm nhiều. "A..." Người mỹ phụ quỳ ở đó phát ra một tiếng rên đau đớn từ trong cổ họng, đôi mắt đẹp nhắm chặt, dòng lệ chảy ra. Tiêu Phỉ thấy mẹ đau đớn như vậy, vừa đau lòng vừa phẫn nộ, gào lớn: "Đồ khốn nạn, mau buông mẹ ra!" "Nàng hầu hạ ta rất sướng, ta sao nỡ buông?" Diệp Phi tà tà cười: "Trừ phi ngươi thay nàng tiếp nhận." Tiêu Phỉ lúc này đã hiểu, chênh lệch giữa mình và Diệp Phi là quá lớn. Để mẹ không phải chịu khổ thêm nữa, nàng rất dứt khoát gật đầu nói: "Được, ta thay nàng!" "Hy vọng ngươi không lừa ta, bằng không ngươi..."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0234.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0236.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

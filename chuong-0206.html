@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 206 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 206</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 206</small>
+    Chương 206: Bạn gái nghĩa vụ
+  </h1>
+  <div class="chapter-body">
+    <p>Trời còn chưa sáng, Liễu Diệc Như đã tỉnh giấc khỏi mộng đẹp, có lẽ tối qua Diệp Phi "trợ giúp" quá tận tình nên nàng lúc này cảm thấy sảng khoái tinh thần. Nỗi buồn phiền vì chạm đến tâm sự ngày hôm qua đã tan biến sạch sẽ, hơn nữa dù muốn đứng dậy, nàng cũng không còn cảm giác thất lạc như ngày hôm trước nữa. Điều này có lẽ nhờ những hành động tối qua của Diệp Phi đã cho nàng thấy hy vọng về tương lai, trong tiềm thức, nàng đã tin vào những lời Diệp Phi nói ở bờ sông nhỏ. Tuy nhiên, lúc này Liễu Diệc Như lại bị một vấn đề khác làm khó. Không phải vì Diệp Phi lại từ phía sau ôm lấy nàng như sáng hôm qua, mà là bàn tay hắn vẫn đang đặt trong áo của nàng. Với mức độ thân mật này, sau chuyện tối qua nàng đã không còn cảm thấy ngượng ngùng, ngược lại còn rất hưởng thụ bàn tay to của hắn vô tình đem lại cho mình sự an ủi. Thế nhưng, con người có nỗi khổ riêng, trưa và tối qua họ không ghé vào hàng quán nào nên chưa đi vệ sinh. Giờ tỉnh dậy, Liễu Diệc Như phát hiện mình rất buồn tiểu, hơn nữa, quần nhỏ cũng cần thay vì tối qua lúc Diệp Phi "trợ giúp", hắn không hề cởi nó ra nên giờ vẫn còn chút dính dấp. Thay quần áo chỉ là chuyện nhỏ, sau chuyện tối qua, nàng không ngại để Diệp Phi nhìn thấy, nhưng đi vệ sinh thì không thể giải quyết ngay trong lều được? Nơi này nhìn như bốn bề vắng lặng, nhưng ai biết có đột nhiên xuất hiện hai người như tối qua không? Nàng không ngại để Diệp Phi xem, nhưng ngoài hắn ra, tuyệt đối không thể để người khác nhìn thấy! Nghĩ tới đây, nàng không khỏi đỏ mặt, sao mình cứ như vật tư hữu của hắn vậy? Nhưng trong lòng nàng lại không hề bài xích cảm giác này. Có chút lưu luyến, nàng nhẹ nhàng kéo bàn tay Diệp Phi khỏi ngực mình, khe mông mềm mại cũng rời khỏi thứ tựa hồ mãi không chịu mềm xuống kia, Liễu Diệc Như chậm rãi ngồi dậy. "Sao vậy?" Động tác của Liễu Diệc Như đã đánh thức Diệp Phi, thấy nàng vẻ mặt bàng hoàng, hắn không khỏi hỏi. "Ta..." Tuy tối qua đã để hắn nhìn thấy, thậm chí sau đó còn dùng tay thâm nhập, nhưng nói đến chuyện này, Liễu Diệc Như vẫn rất xấu hổ, vô thức nhìn xuống phía dưới. Diệp Phi lập tức hiểu ra nàng đang bối rối chuyện gì, cười nói: "Vậy thì ra ngoài giải quyết một chút đi, dù sao nơi này trống trải, lại chẳng có ai." "Không được!" Liễu Diệc Như lập tức lắc đầu: "Nếu như lại có người đột nhiên xuất hiện như tối qua thì sao?" Nàng vừa nói vậy, Diệp Phi cũng nhớ tới hai người kia. Nghĩ lại, mình thật sự nên cảm ơn họ, nếu không phải nhờ họ, Liễu Diệc Như cũng không thể dễ dàng để hắn giúp như vậy. Nhưng cũng vì thế, hắn không muốn để Liễu Diệc Như ra ngoài. Tuy với thực lực của mình, việc nhảy lên cây canh chừng cho nàng là chuyện dễ dàng, nhưng lại khổ nỗi không thể để lộ thực lực trước mặt nàng, đành suy nghĩ rồi nói: "Ta thấy thế này, ngươi giải quyết ngay tại đây đi." "Ở đây?" Liễu Diệc Như do dự: "Nhưng, nếu làm bẩn chăn thì sao? Thứ này chúng ta còn phải dùng khi vào phía sau núi mà." "Chuyện này có gì khó?" Diệp Phi cười nói: "Dù sao cũng sắp lên đường, chúng ta thu dọn chăn đệm trước, chờ ngươi giải quyết xong rồi hãy thu lều là được." Nói xong, Diệp Phi mặc quần áo vào, nhanh chóng dọn dẹp đệm chăn, rồi cười nhìn Liễu Diệc Như. "Vậy ngươi còn không mau ra ngoài đi!" Trước mặt Diệp Phi, Liễu Diệc Như làm sao đi vệ sinh được, đỏ mặt đuổi hắn ra ngoài. Diệp Phi thầm nghĩ đáng tiếc nhưng không cưỡng cầu, ôm đệm chăn chui ra khỏi lều. Hắn không dừng lại bên cạnh lều mà sau khi bỏ đồ vào xe xong, bản thân cũng ra bờ sông giải quyết, hắn thì không sợ người khác nhìn thấy.</p>
+    <p>Khi Liễu Diệc Như với khuôn mặt ửng đỏ bước ra khỏi lều, Diệp Phi đã dùng nồi điện mang theo nấu xong một nồi cháo, cùng vài túi dưa muối. Chờ Liễu Diệc Như dùng nước khoáng đánh răng, rửa mặt tại bờ sông, cả hai cùng dùng bữa sáng đơn giản. Sau khi ăn xong, hai người nghỉ ngơi một lúc mới thu dọn đồ đạc để tiếp tục lên đường. Dù sao nơi này cách Trường Bạch sơn cũng không xa, trước khi trời tối chắc chắn có thể tới nơi, nên không cần quá vội vàng. Càng đi về phía bắc, thời tiết càng lạnh dần, khiến đến buổi trưa khi tới một thị trấn nhỏ dưới chân Trường Bạch sơn là "Trường Bạch trấn" (địa danh giả tưởng, không cần đối chiếu!), hai chiếc áo mùa đông mua trước khi xuất phát đã phát huy công dụng. Diệp Phi thực sự không thể hiểu nổi, tại sao mới tháng mười mà nơi này lại lạnh hơn Vọng Hải nhiều như vậy. Nếu giờ còn ở nhà, mọi người chắc vẫn chỉ mặc một chiếc áo sơ mi, nhiều nhất thêm một chiếc áo khoác. "Hôm nay lên núi luôn, hay là nghỉ lại đây một đêm?" Liễu Diệc Như hỏi Diệp Phi, hiện tại làm việc gì nàng cũng vô thức muốn hỏi ý kiến hắn trước, như thể không còn là người phải chăm sóc hắn, mà là một cô vợ nhỏ luôn cần hắn che chở. Diệp Phi ngẩng đầu nhìn ngọn núi nguy nga ngoài xe, không thể không nói, cảnh tượng trắng xóa đó thực sự có sức hấp dẫn lớn với một thiếu niên sống ở phương nam từ nhỏ như hắn, nhưng cuối cùng vẫn nói: "Hiện tại cũng gần tối rồi, hay là cứ ở lại đây đi, mai hãy lên núi." "Ừ." Liễu Diệc Như gật đầu dịu dàng, chậm rãi lái xe vào thị trấn, dừng trước một khách sạn không lớn. Không phải họ không muốn tìm chỗ tốt hơn, mà cả thị trấn này chỉ có ba khách sạn, nơi này đã là tốt nhất rồi. Nhưng sau khi đỗ xe và bước vào trong, cả hai đều ngạc nhiên. Khách sạn nhỏ này vẻ ngoài không mấy bắt mắt nhưng bên trong lại bài trí khá xa hoa, giá cả cũng không hề thấp. Nghĩ lại cũng đúng, nơi này tiếp giáp Trường Bạch sơn – nơi trù phú nhân sâm, dù những năm gần đây nhà nước đã có những quy định khắt khe, nhưng làm sao cản được những người coi đây là kế sinh nhai? Mà những sâm khách này đều là chủ nhân tài đại khí thô, khách sạn để chiều lòng họ tất nhiên không thể quá tồi tàn. Tại quầy lễ tân, hai người vẫn dùng hai cái tên giả hôm trước, nhưng lần này chỉ thuê một phòng và khai là quan hệ nam nữ. Liễu Diệc Như hiện tại không còn áp lực gì khi đóng giả bạn gái Diệp Phi, dù sao ở đây cũng không ai quen biết họ. Sau khi nhận phòng, hai người đi dạo quanh nơi mà họ đều cảm thấy hiếu kỳ. Vì đã gần mùa đông nên không có sâm khách nào chọn thời điểm này lên núi, thị trấn vắng vẻ, chỉ còn một vài người dân bản địa. Nhưng cả hai chẳng quan tâm, ngược lại còn thấy ít người càng tốt, vì với sự nổi tiếng của họ tại Vọng Hải, nhỡ đâu có sâm khách nào nhận ra thì phiền phức, giờ thì không còn lo lắng đó nữa. Đi trên con phố gần như không bóng người, Liễu Diệc Như chủ động dựa sát thân thể mềm mại vào lòng Diệp Phi, kéo một tay hắn khoác lên vai mình. Khoảnh khắc này, nàng chợt có tâm lý "hôm nay có rượu hôm nay say", dù sao cũng chẳng ai quen biết mình, lại còn đang giả làm bạn gái hắn. Quan trọng nhất là tối qua cả hai đã "hỗ trợ lẫn nhau", vậy thì cứ buông thả bản thân, trong cơ hội hiếm có này, thực sự cảm nhận cảm giác được hắn yêu thương. Thậm chí, nàng đã chuẩn bị sẵn sàng để thực hiện nghĩa vụ bạn gái, tất nhiên, sau chuyện ngoài ý muốn hôm đó thì tuyệt đối không thể làm! Đến khi trời tối, cả hai mới trở về khách sạn. Sau khi ăn qua loa vài món, Diệp Phi cười nói: "Vợ ơi, chúng ta lên lầu thôi." Tuy trong lòng đã chuẩn bị tinh thần làm bạn gái thực sự của hắn những ngày này, nhưng cách xưng hô của Diệp Phi vẫn khiến mặt Liễu Diệc Như hơi đỏ lên, hờn dỗi nói: "Thằng nhóc thối, đừng có gọi bậy!" "Ta đâu có gọi bậy." Diệp Phi vô tội nói: "Bây giờ mọi người chẳng đều gọi bạn gái mình là vợ sao? Chúng ta cũng không thể ngoại lệ chứ?" "Vậy cũng không được gọi!" Thú thật, cách xưng hô hơi tục này khiến Liễu Diệc Như rất rung động, nhưng nàng không dám buông thả thêm nữa. Vì từ chỗ giả làm bạn gái giờ đã thành thật, thậm chí còn muốn thực hiện nghĩa vụ bạn gái, nếu hắn cứ gọi như thế, sợ rằng nàng sẽ không nhịn được mà thực hiện cả nghĩa vụ làm vợ, đó lại là chuyện hoàn toàn khác. Bởi bạn gái dù thân mật cũng chỉ là bên ngoài, còn vợ là phải thực hiện nghĩa vụ thân thể bên trong. Nàng rất sợ làm thế, mặc dù chuyện ngoài ý muốn hôm đó đã làm rồi, hơn nữa trong lòng nàng cũng khao khát đến chết. Về đến phòng, Liễu Diệc Như nhìn quanh, cảm thấy khá hài lòng, liền nói với Diệp Phi: "Ngươi xem tivi một lát đi, ta đi tắm." "Tắm chung đi!" Diệp Phi cười hắc hắc. Khuôn mặt tuyệt mỹ của Liễu Diệc Như không khỏi đỏ bừng, vì lần ngoài ý muốn trước xảy ra ngay khi tắm, nên phòng tắm đối với nàng có ý nghĩa vô cùng đặc biệt. Nếu thực sự tắm chung, nàng sợ mình sẽ không nhịn được mà thực hiện nghĩa vụ làm vợ, nên lườm một cái: "Thằng nhóc thối, đừng có quá đáng!" Nói xong cầm đồ ngủ vội vàng chui vào phòng tắm. Nhìn cửa phòng tắm bị Liễu Diệc Như chốt từ bên trong, Diệp Phi nở nụ cười xấu xa, nàng lúc thẹn thùng thật đẹp! Diệp Phi cũng hiểu rõ tâm tư của nàng, trong lòng không khỏi dư vị cảm giác hôm đó. Loại khoái cảm cực hạn giữa băng và lửa, hắn tin rằng không lâu nữa sẽ lại được nếm thử. Vì đang ở bên ngoài, Liễu Diệc Như không dám tắm lâu, chỉ mười phút sau đã bước ra. Nàng đã thay bộ đồ ngủ màu trắng, mái tóc dài xõa xuống đầu vai, như một nàng tiên từ trong tranh bước ra, chậm rãi đi về phía Diệp Phi. Dưới lớp đồ ngủ, dường như nàng không mặc gì cả, từ độ cong đầy đặn ở ngực, Diệp Phi thậm chí có thể nhìn thấy hai điểm nhỏ nhú lên. Cộng thêm khuôn mặt khuynh quốc khuynh thành vừa tắm xong với vệt đỏ nhạt, khiến nàng trông gợi cảm vô cùng. Hình ảnh tuyệt mỹ kết hợp giữa thánh khiết và gợi cảm này khiến Diệp Phi ngây người, hai mắt lộ vẻ si mê nóng bỏng, không chớp mắt nhìn vị nữ thần trước mặt. Thấy ánh mắt tham lam như muốn nuốt chửng mình của Diệp Phi, Liễu Diệc Như vừa thẹn vừa mừng, kiều mỵ lườm hắn: "Nhìn gì chứ, còn không mau đi tắm đi, không thì không cho ngươi lên giường ngủ đâu!" Nói xong nàng bò lên chiếc giường sưởi đặc trưng, lấy chăn che phủ thân thể hoàn mỹ của mình lại. "À, ừ, tắm, tắm!" Đến lúc này, Diệp Phi mới hoàn hồn khỏi vẻ đẹp kinh ngạc của Liễu Diệc Như, ngây ngốc đáp rồi đi vào phòng tắm. Nhìn dáng vẻ ngây ngốc của Diệp Phi, Liễu Diệc Như không khỏi nở nụ cười kiều diễm. Nhưng sắc mặt nàng lại đỏ bừng ngay sau đó, nàng không biết tại sao mình lại chọn bộ đồ ngủ hơi trong suốt này, lại còn cố ý không mặc nội y. Chẳng lẽ sau khi đưa ra quyết định, nàng đã không thể chờ đợi để thực hiện nghĩa vụ bạn gái rồi sao? Điều khiến nàng vui mừng là tâm tư này không uổng phí, điểm này có thể thấy rõ qua ánh mắt si mê của hắn. Chỉ chưa đầy ba phút, Diệp Phi đã quấn khăn tắm chạy ra. Sau khi vào phòng, hắn xoa xoa cánh tay, càu nhàu: "Cái nơi quỷ quái này, sao mà lạnh thế không biết?" "Lạnh thì lên giường sưởi mau đi!" Liễu Diệc Như đang đắp chăn trên giường thấy Diệp Phi lạnh đến run rẩy, không khỏi đau lòng, nhưng đâu biết đây chỉ là hắn giả vờ. "Hắc hắc, tốt!" Diệp Phi vứt khăn tắm, nhảy lên giường, cũng không đắp chăn mà cứ thế cởi trần ngồi đó, để lộ tên nhóc đang rất có tinh thần trước mắt Liễu Diệc Như. "Đồ hư hỏng, sao ngay cả quần lót cũng không mặc?" Dáng vẻ này của Diệp Phi khiến mặt Liễu Diệc Như đỏ ửng, không nhịn được thò chân từ trong chăn ra đá hắn. "Mặc rồi lại phải cởi, phiền phức lắm." Diệp Phi cười hắc hắc, nắm lấy bàn chân nhỏ của nàng, không nỡ buông. Đây là lần đầu hắn chú ý kỹ bàn chân ngọc của Liễu Diệc Như, trong lòng thầm cảm thán: Đúng là nữ thần của mình, không có chỗ nào không đẹp, ngay cả bàn chân nhỏ cũng hoàn mỹ như vậy! Tâm động, hắn dùng bàn tay to khẽ vuốt ve bàn chân nhỏ bé kia. Cảm thấy bàn chân bị hắn trêu chọc đến ngứa ngáy, Liễu Diệc Như vô thức rụt lại nhưng không đẩy ra, hờn dỗi: "Đồ hư hỏng, ngươi làm gì thế?" "Như nhi, mỗi một chỗ trên người nàng đều đẹp quá!" Vuốt ve bàn chân ngọc khéo léo của Liễu Diệc Như, Diệp Phi không nhịn được khen ngợi. "Ngươi gọi ta là gì?" Liễu Diệc Như sững sờ. Diệp Phi cười nói: "Như nhi chứ sao? Giờ ta là bạn trai nàng, đương nhiên phải gọi như thế rồi!" Hắn cố ý gọi vậy để rút ngắn khoảng cách với Liễu Diệc Như, khiến nàng trong tiềm thức quên đi mối quan hệ cũ, từ đó buông bỏ tâm lý. Còn về sau, chờ quan hệ đã định, Diệp Phi quyết định sẽ đổi lại xưng hô cũ, vì như vậy mới kích thích. Phải nói, tên này có chút sở thích kỳ quái. Quả nhiên, sau khi nghe Diệp Phi giải thích, Liễu Diệc Như không nói gì thêm, trong lòng cảm thấy nhẹ nhõm lạ thường, ánh mắt nhìn hắn càng thêm dịu dàng. Khoảnh khắc này, nàng không còn là mẹ hắn, mà là bạn gái của hắn, Như nhi của hắn! Thấy lời mình đã có tác dụng, Diệp Phi đắc ý, cúi đầu tiếp tục vuốt ve bàn chân ngọc như bạch ngọc của Liễu Diệc Như. Đầu tiên là mơn trớn nhẹ nhàng, sau đó nâng nó lên đặt cạnh miệng, thè lưỡi liếm qua năm ngón chân tựa như những hạt trân châu. "Á..." Cảm giác đặc biệt xuất hiện đột ngột khiến thân thể yêu kiều của Liễu Diệc Như khẽ run lên, vô thức khẽ kêu một tiếng, những ngón chân nhỏ cũng cuộn lại, nhưng nàng không ngăn cản Diệp Phi mà nhắm mắt lại hưởng thụ. Thấy Liễu Diệc Như không phản đối, Diệp Phi càng làm càn, ngậm năm ngón chân nàng vào miệng, mút mát từng ngón một. Khoái cảm tê dại khiến thân thể Liễu Diệc Như không kìm được vặn vẹo. Nàng không hề hay biết rằng, theo động tác đó, chăn đắp trên người đã trượt xuống, vạt áo ngủ rộng thùng thình cũng cuốn lên tận hông, để lộ cặp mông trắng nõn cùng tiểu huyệt không mảnh vải che thân của nàng hoàn toàn phơi bày trước mắt Diệp Phi. Cảnh tượng trước mắt khiến Diệp Phi kích động vạn phần. Hắn phát hiện, mỗi một chỗ trên người mụ mụ đều gợi cảm đến thế: cặp đùi mượt mà, bắp chân thẳng tắp, thậm chí cả bắp chân tròn trịa cũng hoàn mỹ, trên da chẳng hề thấy lấy một tia mạch máu, như thể được tạo thành từ khối bạch ngọc tinh khiết, chưa kể đến cặp mông đầy đặn cùng tiểu huyệt no đủ kia. Lúc này, Diệp Phi chỉ muốn dùng "cậu nhỏ" chạm vào mỗi tấc da thịt kiều nộn của nàng, rồi cắm mạnh vào cái tiểu huyệt lửa nóng đang khiến mình khát khao kia. Nhưng hắn biết giờ chưa phải lúc, nên dứt khoát kéo nốt bàn chân còn lại của nàng qua, sau khi mút mát năm ngón chân xong, hắn lại thè lưỡi liếm nhẹ vào lòng bàn chân nàng. Lập tức phát hiện, dù là chỗ này, làn da của mụ mụ cũng vẫn kiều nộn trơn láng, chẳng hề có lấy một vết chai mà hầu như ai cũng có. Vì cả hai chân đều được cầm trong tay, Diệp Phi dễ dàng nhìn thấy từ giữa hai chân mụ mụ, tiểu huyệt no đủ đang bắt đầu hơi đóng mở, lại có từng tia dâm thủy trong suốt rỉ ra. Biết mụ mụ cũng đang cần mình an ủi, nhưng vì đang bận chơi đùa với đôi chân ngọc, không cách nào dùng tay vuốt ve, Diệp Phi nảy ra một kế. Trong lúc nàng không chú ý, hắn bất ngờ đưa chân phải vào giữa hai chân nàng, dùng ngón chân chống vào khe huyệt đã ướt đẫm, ấn nhẹ một cái. "Nha..." Sự kích thích đột ngột khiến Liễu Diệc Như sung sướng rên lên, cứ ngỡ hắn dùng tay như tối qua, nhưng khi cúi đầu nhìn thấy cảnh này thì ngạc nhiên nhìn Diệp Phi. "Hôm nay chúng ta dùng chân hỗ trợ nhau thế nào?" Diệp Phi tiếp tục vuốt ve chân ngọc của nàng, cười đề nghị. "Hửm? Chơi thế nào cơ?" Liễu Diệc Như hiếu kỳ hỏi. Kể từ khi ngầm hạ quyết tâm, chỉ cần Diệp Phi không cắm "cậu nhỏ" vào tiểu huyệt, nàng có thể chấp nhận bất kỳ sự thân mật nào, nên tất nhiên không ngại thử nghiệm nhiều kiểu. "Thế này này." Diệp Phi linh hoạt cử động ngón chân, khẽ đẩy hai mép âm thần bão mãn của nàng ra, đặt những ngón chân thô ráp vào miệng huyệt chật hẹp nhẹ nhàng ma sát, đồng thời đặt đôi chân ngọc của nàng lên bụng mình, dùng chúng kẹp lấy "cậu nhỏ" đang nóng rực của mình, chậm rãi khuấy động. "Đồ hư hỏng, sao ngươi lắm trò thế!" Liễu Diệc Như cười kiều mị, hai chân dùng sức kẹp chặt "cậu nhỏ" của con trai, dùng gan bàn chân kiều nộn nhẹ nhàng vuốt ve nó. Diệp Phi vừa hưởng thụ khoái cảm từ đôi chân ngọc của mụ mụ, vừa đặt chân phải lên tiểu huyệt ướt át của nàng, dùng gót chân thô ráp ma sát mạnh lên tiểu huyệt kiều nộn no đủ đó. Chân Diệp Phi không được trơn láng như của mụ mụ, vì trước kia đi lại vất vả nên gót chân khá thô ráp. Lúc này ma sát lên tiểu huyệt của nàng lại mang đến khoái cảm mãnh liệt hơn. Chỉ một lát sau, trong tiểu huyệt của nàng đã rỉ ra rất nhiều dâm thủy. "Nha... Á..." Liễu Diệc Như vì đã trút bỏ khúc mắc nên càng tận tâm tận lực hưởng thụ khoái cảm, bị hắn trêu chọc đến không kìm được rên rỉ, bàn chân gợi cảm càng thêm ra sức đùa nghịch "cậu nhỏ" cứng rắn của con trai để đền đáp. Cảm thấy tiểu huyệt đã đủ ướt át, Diệp Phi thay đổi động tác. Hắn dùng cả bàn chân giẫm lên tiểu huyệt nàng ấn mạnh vài cái, rồi dùng ngón chân cái huy động trong khe huyệt. "Thoải mái quá, mạnh thêm chút nữa!" Cảm nhận khoái cảm lớn hơn, Liễu Diệc Như không nhịn được thúc giục. Thấy đã đủ, Diệp Phi co chân lại, dùng ngón chân cái đẩy hai mép âm thần đầy đặn ra, rồi mạnh mẽ nhét vào miệng huyệt. "A ——" Liễu Diệc Như sướng đến hét lên. Dù ngón chân cái của Diệp Phi to hơn ngón tay nhiều, nhưng so với "cậu nhỏ" của con trai thì vẫn nhỏ hơn, nên nàng không thấy khó chịu chút nào, ngược lại còn ưỡn mông, nhẹ nhàng đẩy về phía Diệp Phi, tựa hồ hy vọng ngón chân con trai có thể chọc sâu hơn. Tiếc là ngón chân chỉ có độ dài nhất định, nên hắn chỉ có thể để nó ra vào nhẹ nhàng trong tiểu huyệt của nàng. Làm một hồi, Diệp Phi bất ngờ cười xấu xa, rút chân ra khỏi tiểu huyệt của mụ mụ, rồi nhấc đôi chân ngọc đang kẹp lấy "cậu nhỏ" của mình đặt lên miệng, nhẹ nhàng hôn hít. Tay phải lúc này cũng đã rời khỏi chỗ đó, đút ngón giữa vào miệng huyệt, đâm rút với tốc độ phi mã. Ngón tay tuy không to bằng ngón chân nhưng lại đâm được sâu hơn. Liễu Diệc Như vốn đang sướng vì con trai trêu chọc, nay càng kích động hơn, nàng ưỡn mông, miệng thúc giục: "Mạnh nữa đi, làm sâu chút nữa, chồng tốt ơi, ngươi giết chết Như nhi rồi, á..." Dưới sự kích thích mãnh liệt đó, Liễu Diệc Như chỉ mất chưa đầy hai phút đã thét chói tai và cuồng tiết, dịch nhờn tràn đầy cả bàn tay Diệp Phi. Diệp Phi cười hắc hắc, thu tay lại, bôi toàn bộ dâm thủy lên đôi chân ngọc gợi cảm của mụ mụ, rồi lại dùng đôi chân đó kẹp lấy "cậu nhỏ" của mình, mượn dâm thủy trơn trượt mà khuấy động thật nhanh, đồng thời lại dùng chân phải đùa bỡn tiểu huyệt của nàng. Sau một lần lên đỉnh, tiểu huyệt của Liễu Diệc Như càng trở nên nhạy cảm. Dưới sự trêu chọc của ngón chân con trai, nàng nhanh chóng lại đạt đến cao trào, dâm thủy tuôn ra ướt đẫm cả chân phải của Diệp Phi. Lúc này, Diệp Phi cũng bị đôi chân nhỏ của mụ mụ kích thích đến cực điểm, nhưng cảm giác này dường như vẫn chưa đủ. Hắn liếm láp dâm thủy còn sót lại trên đôi chân nàng, dùng tay tự đùa nghịch "cậu nhỏ" của mình với tốc độ cao. Đột nhiên, "cậu nhỏ" của Diệp Phi bắt đầu tăng vọt. Hắn mạnh mẽ buông đôi chân ngọc của mụ mụ, lật người nàng lại, để nàng quỳ bò trên giường, còn bản thân quỳ xuống bên cạnh, đặt "cậu nhỏ" đang chực chờ phun trào lên cặp bắp chân tròn trịa gợi cảm của nàng, bắt đầu đợt bắn phá mạnh mẽ. Từng đợt tinh dịch nóng bỏng bắn thẳng lên đôi chân gợi cảm của mụ mụ, cho đến khi phủ kín đầy tinh dịch, hắn mới thở hổn hển ngồi phịch xuống bên cạnh nàng.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0205.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0207.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

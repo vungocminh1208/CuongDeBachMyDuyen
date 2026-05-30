@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 253 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 253</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 253</small>
+    Chương 253: Mỹ vị Mộc di
+  </h1>
+  <div class="chapter-body">
+    <p>Nhìn đến đây, mũi Diệp Phi hơi cay cay, lặng lẽ rời khỏi nơi này. Hắn biết rõ, nếu như mình mạo muội đi vào nói muốn giúp đỡ, các nàng nhất định sẽ cho rằng hắn dụng tâm kín đáo. Nhưng không giúp thì trong lòng hắn lại khó chịu. Lúc này, Diệp Phi thực lòng muốn giúp các nàng chứ không hề có ý niệm nào khác. Dù bốn chị em này có là người quái dị đi chăng nữa, tâm tư này của hắn cũng sẽ không thay đổi.</p>
+    <p>Rời khỏi con hẻm nhỏ, Diệp Phi gọi điện cho Trương Nhất Đức, nhờ hắn điều tra chi tiết về bốn chị em này, sau đó đi thẳng về phía công ty.</p>
+    <p>Lăng Vân Hội hiện đã kiểm soát hoàn toàn Vọng Hải, huynh đệ trong hội trải rộng khắp mọi ngóc ngách, nên muốn tra cứu thông tin một người rất đơn giản. Huống chi bốn chị em này đều vô cùng nổi bật, nên thông tin nhanh chóng được gửi đến tay Diệp Phi khi hắn còn chưa kịp về đến công ty.</p>
+    <p>Cốc Tuyết Hàm, năm nay mười bảy tuổi, mười năm trước theo cha đến Vọng Hải, có ba cô em gái là Cốc Tuyết Dung, Cốc Tuyết Hân và Cốc Tuyết Mai, ở tại một khu dân cư nghèo ngoại ô phía bắc Vọng Hải. Bốn năm trước, cha các nàng qua đời vì tai nạn giao thông, cùng lúc đó, ba chị em sinh ba khi ấy mới chín tuổi cũng bị tàn tật hai chân trong vụ tai nạn đó. Bốn năm nay, Cốc Tuyết Hàm một mình cáng đáng việc nuôi dưỡng gia đình. Từ sau khi cha mất, cô bắt đầu làm nghề trộm cắp. Từng có một vị lão bản để mắt tới nhan sắc của cô nhưng sau đó lại bặt vô âm tín, cũng có vài tên lưu manh có ý đồ xấu với cô nhưng rồi đều mất tích một cách kỳ lạ, hoài nghi là có người âm thầm bảo vệ.</p>
+    <p>Xem qua bản tình báo ngắn gọn này, lông mày Diệp Phi hơi nhíu lại. Từ những vụ mất tích kia, có thể khẳng định là có người âm thầm bảo vệ bốn chị em này. Chỉ là hắn không hiểu nổi, những người có năng lực như vậy tại sao lại để các nàng sống khổ sở đến thế? Còn vụ tai nạn của ba chị em sinh ba cũng hết sức kỳ quái, vậy mà không cướp đi mạng sống nhưng lại khiến các nàng tàn phế đôi chân, đây phải là sự trùng hợp đến mức nào chứ?</p>
+    <p>Sự việc bất thường tất có nguyên do. Xem ra xung quanh bốn chị em này ẩn chứa nhiều điều quỷ dị, đến mức Diệp Phi cũng không rõ những kẻ âm thầm bảo vệ kia mang hảo ý hay ác ý. Nhưng đã quyết tâm giúp đỡ thì hắn sẽ không vì bất cứ lý do gì mà bỏ cuộc. Mặc kệ những kẻ đó là ai, chỉ cần không chọc vào hắn, Diệp Phi cũng lười để tâm.</p>
+    <p>Khi về đến công ty vẫn chưa tới giờ tan làm. Diệp Phi thông báo cho mọi người rằng mình đã đặt đồ ăn ngoài, không cần ra ngoài ăn nữa, rồi bước vào văn phòng của Tư Đồ Ảnh.</p>
+    <p>Trong văn phòng lúc này không chỉ có Tư Đồ Ảnh mà còn có Hứa Vi Nhi, hơn nữa Mộc Linh cũng đã tới.</p>
+    <p>Lúc Diệp Phi đến, Hứa Vi Nhi đang đọc lời thoại của bộ phim kia. Có lẽ vì tính cách tương đồng nên cô bé học thuộc lời thoại rất thuận lợi, hơn nữa diễn thử vài lần cũng rất nhập vai, khiến Tư Đồ Ảnh vô cùng vui mừng, Mộc Linh cũng cảm thấy hạnh phúc vì giấc mơ của con gái sắp thành hiện thực.</p>
+    <p>Sau bữa trưa, mọi người trong công ty lại bận rộn, Hứa Vi Nhi cũng đi cùng Tư Đồ Ảnh để chuẩn bị cho việc quay phim. Nhìn những người đang tất bật, Diệp Phi chợt nảy ra một cách hay để giúp chị em nhà họ Cốc, bèn gọi Mộc Linh – người đang chuẩn bị cùng con gái tới văn phòng của Tư Đồ Ảnh: "Mộc di, con có chút việc cần dì giúp, chiều nay đi với con một chuyến nhé."</p>
+    <p>"Chuyện gì thế?" Mộc Linh hơi ngạc nhiên, không hiểu Diệp Phi có việc gì cần mình giúp đỡ.</p>
+    <p>Diệp Phi không giấu giếm, kể cho bà nghe về chuyện của bốn chị em nhà họ Cốc, cuối cùng nói: "Con muốn mời các nàng đến công ty để thử việc, nhưng nếu con tự đi thì sợ các nàng sẽ e dè, nên con muốn mời dì đi cùng."</p>
+    <p>"Đương nhiên là được!" Mộc Linh không chút do dự đồng ý, đồng thời thầm cảm phục sự lương thiện của Diệp Phi, cảm thấy cậu khác hẳn với những phú nhị đại kiêu ngạo kia, đồng thời cũng bớt phản đối lời đề nghị của Diệp Ngưng Sương hơn.</p>
+    <p>"Vậy chúng ta xuất phát ngay thôi." Thấy Mộc Linh đồng ý, Diệp Phi không muốn lãng phí thời gian, ai biết chiều nay Cốc Tuyết Hàm có ra ngoài hay không.</p>
+    <p>Mộc Linh gật đầu, đi cùng Diệp Phi ra khỏi công ty điện ảnh và truyền hình, bước vào thang máy.</p>
+    <p>"Mộc di, vài ngày nữa là sinh nhật con, lúc đó sẽ có một buổi tiệc nhỏ, dì và Vi Nhi tỷ cùng tới tham dự nhé." Thấy bầu không khí giữa hai người hơi trầm mặc, Diệp Phi chủ động lên tiếng.</p>
+    <p>"Được..." Mộc Linh vui vẻ đồng ý, nhưng vừa nói được hai chữ, đèn trong thang máy đột nhiên nhấp nháy rồi tắt ngấm. Chiếc thang máy đang chạy ổn định bỗng rung lắc mạnh rồi dừng khựng lại, bắt đầu đung đưa dữ dội.</p>
+    <p>"Á..." Sự cố đáng sợ này khiến Mộc Linh không khỏi kêu lên, vô thức ôm chặt lấy Diệp Phi ở bên cạnh.</p>
+    <p>Cảm nhận được cơ thể mềm mại của Mộc Linh ập vào lồng ngực mình, Diệp Phi thầm sướng trong lòng, không ngờ đi thang máy cũng có phúc lợi tốt như vậy. Hắn vội vàng vòng tay ôm chặt giai nhân gợi cảm, thì thầm bên tai nàng: "Dì, đừng lo, có con ở đây!"</p>
+    <p>Được Diệp Phi an ủi, nhớ tới sự kỳ diệu của hắn, Mộc Linh nhanh chóng bình tĩnh lại. Chỉ là vì Diệp Phi vừa nói chuyện, hơi thở nóng hổi thổi vào vành tai mẫn cảm khiến bà rùng mình, cộng thêm thang máy vẫn đang rung lắc dữ dội làm hai cơ thể đang ôm chặt lấy nhau không ngừng cọ xát.</p>
+    <p>Từ lần bị Diệp Phi vô tình khơi gợi ngọn lửa bị đè nén bấy lâu trong buổi vũ hội, hai ngày nay Mộc Linh cảm thấy vô cùng khó chịu. Tư thế hiện tại rất dễ khiến dục vọng mà bà hằng đè nén trỗi dậy, hơi thở của bà trở nên dồn dập, cơ thể yêu kiều vô thức ép sát vào người Diệp Phi, dường như muốn tìm kiếm chút khoái lạc từ cơ thể cường tráng kia.</p>
+    <p>Cảm nhận được động tác của vị mỹ phụ cực phẩm trong lòng, là người từng trải, làm sao Diệp Phi không biết bà đã động tình? Hắn càng ôm chặt hơn, khiến đôi gò bồng đảo căng tròn của bà ép chặt vào lồng ngực rắn chắc của mình, nương theo sự rung lắc của thang máy mà kích thích dục vọng của bà. Hắn lại ghé sát miệng vào tai bà, nhỏ giọng nói: "Dì, hãy tin tưởng giao cho con." Nói rồi, hắn khẽ liếm vành tai mẫn cảm của bà.</p>
+    <p>"Ưm..." Cảm giác tê dại khiến Mộc Linh rên khẽ, giật mình rồi vội nói: "Tiểu Mãn, không được!"</p>
+    <p>Có lẽ bóng tối mang lại cho Mộc Linh sự dũng cảm, bà tuy miệng từ chối nhưng cơ thể lại không rời đi, trái lại còn ép chặt hơn vào lòng hắn, khuôn mặt hơi ngẩng lên, đôi mắt đẹp tràn đầy khát vọng nhìn về phía Diệp Phi dù chẳng thể thấy rõ.</p>
+    <p>Bóng tối không thể ngăn cản ánh mắt của Diệp Phi. Qua ánh nhìn đầy khát vọng đó, hắn biết bà chỉ là "khẩu thị tâm phi", nên không chần chừ nữa, cúi đầu hôn lên đôi môi ngọt ngào của vị mỹ phụ cực phẩm.</p>
+    <p>"A!" Đột nhiên bị hôn, Mộc Linh phát ra tiếng rên rỉ, hàm răng cắn chặt không cho Diệp Phi xâm nhập, nhưng hai tay lại vô thức ôm lấy cổ hắn.</p>
+    <p>Diệp Phi ôm chặt cơ thể gợi cảm ấy, ngậm lấy đôi môi mềm mại, dùng đầu lưỡi khẽ liếm láp, muốn tiến vào cái miệng nhỏ nhắn mỹ diệu kia.</p>
+    <p>Có lẽ vì khẩn trương, Mộc Linh dù đã động tình nhưng vẫn mím chặt môi. Tuy nhiên, hơi thở bà càng lúc càng dồn dập, cơ thể vặn vẹo, không chỉ theo nhịp rung của thang máy mà còn chủ động cọ xát vào lồng ngực hắn.</p>
+    <p>Dù như vậy đã rất sướng, nhưng Diệp Phi vẫn chưa đủ. Bàn tay đang ôm eo Mộc Linh chậm rãi di chuyển xuống phía dưới, đặt lên vòng ba đầy đặn, qua lớp quần áo mà hơi bóp mạnh.</p>
+    <p>"Á..." Cơn đau nhẹ trên mông khiến Mộc Linh vô thức kêu lên, cái miệng nhỏ khẽ mở trong giây lát, Diệp Phi lập tức tận dụng cơ hội đẩy đầu lưỡi vào, cuốn lấy chiếc lưỡi hương non của bà.</p>
+    <p>Mộc Linh cảm thấy đầu óc như nổ tung, chút lý trí cố gắng duy trì phút chốc tan biến. Bà theo bản năng dùng sức hút lấy đầu lưỡi của Diệp Phi, truy tìm khoái cảm tột cùng.</p>
+    <p>Diệp Phi cũng không khỏi kích động, ra sức mút lấy chiếc lưỡi ngọt ngào của Mộc Linh, hai tay bắt đầu vuốt ve khắp cơ thể đẫy đà của bà, dẫn dắt dục vọng của bà dâng trào.</p>
+    <p>Bàn tay lướt trên tấm lưng ngọc của mỹ phụ, Diệp Phi chậm rãi vén tà váy rộng thùng thình, hướng tới nơi mê người kia, phát hiện nơi đó đã ướt đẫm. Không chút do dự, hắn nhẹ nhàng dùng ngón tay đẩy lớp vải mỏng ra, linh hoạt dò xét vào trong.</p>
+    <p>Đúng lúc đó, đèn trong thang máy bỗng dưng sáng rực lên, và thang máy bắt đầu chậm rãi hạ xuống. Ánh sáng đột ngột khiến Mộc Linh bừng tỉnh, bà vội đẩy mạnh Diệp Phi ra, khuôn mặt đỏ bừng nói: "Tiểu Mãn, chúng ta không thể như vậy!"</p>
+    <p>Diệp Phi thầm hận trong lòng, lại một lần nữa bị cái thang máy chết tiệt làm hỏng đại sự. Nhưng lúc này không phải lúc để tức giận, việc cấp bách là phải an ủi Mộc Linh thật tốt, nếu không sau này sẽ khó mà xử lý.</p>
+    <p>Quyết định xong, Diệp Phi không nói lời nào, tiến lên một bước, lại ôm lấy thân hình gợi cảm của nàng, nhìn vào đôi mắt đẹp đầy bối rối, thâm tình nói: "Mộc di, con thích dì! Từ cái nhìn đầu tiên gặp dì, con đã bị dì mê hoặc sâu sắc!"</p>
+    <p>Nhớ lại khoái lạc vừa rồi, Mộc Linh suýt chút nữa tan chảy trong ánh mắt thâm tình của Diệp Phi, nhưng lý trí trong lòng lại khiến bà giãy giụa: "Tiểu Mãn, không được, chúng ta thật sự không thể như vậy!"</p>
+    <p>"Tại sao?" Diệp Phi nhìn sâu vào Mộc Linh, ánh mắt đau đớn khiến bà xót xa.</p>
+    <p>Thấy mình không chống lại được sức lực của Diệp Phi, Mộc Linh dừng giãy giụa, để mặc hắn ôm chặt, trên mặt lộ ra vẻ dịu dàng, khẽ nói: "Bởi vì chúng ta không thể nào. Dì còn lớn tuổi hơn mẹ con, hơn nữa con đối với dì cũng chỉ là mê luyến thân thể mà thôi, không phải yêu chân chính."</p>
+    <p>"Con hiểu rõ tâm tư của mình." Diệp Phi kiên định nhìn vào mắt Mộc Linh: "Nếu dì không tin, con có thể dùng thời gian để chứng minh!"</p>
+    <p>"Điều đó không thể đâu, ngày mai dì sẽ về Cam thành phố, từ nay về sau sẽ không đến đây nữa, nên con đừng có những ý nghĩ không thực tế thì tốt hơn." Mộc Linh thực ra rất lưu luyến cảm giác vừa rồi nên thâm tâm rất hy vọng những lời Diệp Phi nói là thật, nhưng lý trí lại bảo bà đó là điều không thể, nên bà muốn tránh xa Diệp Phi để tránh loạn lòng.</p>
+    <p>"Không được, dì không được đi. Nếu dì ở lại đây, con sẽ để dì hiểu rõ con, sẽ không ép dì, nhưng nếu dì dám đi, con sẽ đuổi tới tận Cam thành phố để mang dì về!" Diệp Phi bá đạo nói: "Dù có phải mở một con đường máu, con cũng sẽ làm được!"</p>
+    <p>Nhìn ánh mắt tràn đầy khí phách của Diệp Phi, Mộc Linh không khỏi say đắm. Bà hiểu rõ, Diệp Phi tuyệt đối sẽ nói được làm được, nên đành từ bỏ ý định tránh mặt, nói: "Vậy con buông dì ra trước được không? Thang máy sắp xuống đến tầng trệt rồi."</p>
+    <p>Diệp Phi không hề có ý định buông, vô cùng cố chấp nói: "Vậy dì phải hứa với con trước, tuyệt đối không rời khỏi Vọng Hải!"</p>
+    <p>"Được, dì hứa với con." Mộc Linh gật đầu, thầm than trong lòng. Có lẽ chỉ có thể chậm rãi để hắn hiểu rằng tình cảm của hắn đối với mình không phải là tình yêu thực sự. Nhưng không biết tại sao, trong thâm tâm bà lại rất không muốn hắn nghĩ thông suốt. Sự mâu thuẫn này khiến bà cảm thấy mình thật kỳ lạ.</p>
+    <p>Diệp Phi lúc này mới thỏa mãn buông Mộc Linh ra. Cảm nhận được sự trơn ướt trên tay, để tránh kích thích bà thêm, hắn đành lặng lẽ dùng khăn giấy lau đi. Màn này lọt vào mắt Mộc Linh khiến khuôn mặt bà đỏ ửng, trong lòng lại không nhịn được dư vị cảm giác vừa rồi, tận sâu trong lòng, bà thậm chí giống như Diệp Phi, hơi hận cái thang máy chết tiệt này.</p>
+    <p>Theo sự rung động nhẹ, thang máy cuối cùng cũng dừng lại an toàn. Hai người không thèm bận tâm đến những nhân viên quản lý đang xin lỗi, nhanh chóng rời khỏi đó.</p>
+    <p>Tuy cảm thấy rất ngượng ngùng khi ở cùng Diệp Phi, nhưng Mộc Linh không hề rời đi mà đi theo hắn về phía địa điểm kia. Bởi vì sau khi nghe câu chuyện về bốn chị em, trong lòng bà cũng tràn đầy đồng cảm, đồng thời hiểu rằng nếu Diệp Phi đi một mình, chắc chắn sẽ khiến các nàng hiểu lầm ý tốt.</p>
+    <p>Thế nhưng, liệu đó có thực sự là hiểu lầm không? Mộc Linh lén nhìn chàng trai bên cạnh, mặt lại hơi đỏ lên. Cậu ta dường như không hề thành thật như bà nghĩ, nhưng có lẽ, chính vì vậy mà cậu lại càng khiến người ta yêu thích hơn.</p>
+    <p>Dựa vào trí nhớ siêu phàm, hai người nhanh chóng tìm thấy ngôi nhà rách nát kia. Mộc Linh tiến lên gõ cửa, cửa nhanh chóng được mở ra bởi chính cô nàng tuyệt sắc nữ tặc Cốc Tuyết Hàm.</p>
+    <p>Nhìn một nam một nữ đứng ngoài, Cốc Tuyết Hàm không khỏi kinh ngạc, hình như mình không hề quen biết họ?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0252.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0254.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

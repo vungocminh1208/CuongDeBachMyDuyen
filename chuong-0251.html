@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 251 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 251</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 251</small>
+    Chương 251: Tiêu Phỉ khuất phục
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi không khỏi rùng mình một cái. Chẳng lẽ Tư Đồ Ảnh cũng giống mấy gã đạo diễn vô lương tâm kia, dùng chiêu này để lừa gạt mấy cô gái ngây thơ muốn làm minh tinh? Nhưng nhìn thế nào nàng cũng không giống hạng người đó, vì vậy Diệp Phi không khỏi đưa mắt nhìn sang Tư Đồ Ảnh.</p>
+    <p>"Kịch bản của tôi kể về câu chuyện của một tiên nữ, bất kể là ngoại hình hay tính cách đều vô cùng phù hợp với nhân vật này."</p>
+    <p>Nhắc đến lĩnh vực sở trường, Tư Đồ Ảnh không còn vẻ văn tĩnh thường ngày, chậm rãi nói: "Đặc biệt là sau khi trò chuyện với cô ấy, tôi còn nghi ngờ kịch bản này mình viết riêng cho cô ấy. Nếu để cô ấy diễn, thậm chí chẳng cần phải diễn xuất, chỉ cần bản sắc là có thể khắc họa hoàn mỹ mọi đặc điểm của nhân vật."</p>
+    <p>Diệp Phi mới hiểu ra mình đã hiểu lầm. Tư Đồ Ảnh căn bản không phải loại người đó, ánh mắt nàng nhìn Hứa Vi Nhi như vậy chỉ đơn thuần là vì tìm được nhân vật thích hợp nhất cho kịch bản của mình mà thôi. Nghe xong đánh giá của Hứa Vi Nhi, Diệp Phi cũng bắt đầu tò mò về kịch bản của Tư Đồ Ảnh, liền nói: "Chúng ta đi họp trước đi, lát nữa đưa kịch bản cho tôi xem."</p>
+    <p>Tư Đồ Ảnh gật đầu đồng ý, còn Hứa Vi Nhi thì hưng phấn nói: "Ảnh tỷ tỷ còn có kịch bản khác nữa, lát nữa em cũng muốn xem hết!"</p>
+    <p>Khi ba người đến phòng họp, toàn bộ nhân viên đều đã ngồi vào chỗ của mình. Thấy Tư Đồ Ảnh, những nhân viên này đều xôn xao. Làm việc với nàng mấy năm nay, đây là lần đầu tiên họ thấy Tư Đồ Ảnh không đeo kính. Một số nam nhân viên trẻ không khỏi cảm thấy tiếc nuối, thầm trách bản thân trước kia không nắm bắt cơ hội, mà bây giờ dù muốn bắt lấy cũng không còn cơ hội nữa. Bởi vì họ tin rằng, có Diệp thị chống lưng, Tư Đồ Ảnh sẽ lập tức một bước lên mây, đến lúc đó số người theo đuổi nàng e là công ty cũng không chứa nổi.</p>
+    <p>Còn Tư Đồ Ảnh lại bị các đồng nghiệp nhìn đến mức ngượng ngùng. Vừa rồi khi đang chỉnh sửa kịch bản, nàng thấy mắt hơi mỏi nên tháo kính ra xoa bóp, không ngờ bị Hứa Vi Nhi nhìn thấy. Hứa Vi Nhi kiên quyết khuyên nàng từ nay về sau không được đeo kính nữa, nếu cận thị thì có thể đeo kính áp tròng. Lúc đó nàng cũng không nghĩ ngợi nhiều, rất tự nhiên đồng ý với Hứa Vi Nhi vốn rất hợp tính, nhưng giờ lại thấy hơi hối hận.</p>
+    <p>Đi đến vị trí trung tâm trên bục chủ tịch, Diệp Phi quét mắt một vòng quanh phòng họp rồi mở lời: "Chào mọi người, tôi là Diệp Phi, tin rằng mọi người đều đã từng nghe qua cái tên này."</p>
+    <p>Nói đến đây, Diệp Phi ngừng lại một chút rồi tiếp tục: "Nhưng giờ phút này, tôi không phải là bang chủ Lăng Vân Hội mà các người từng nghe danh, mà là một người cũng muốn đưa công ty điện ảnh và truyền hình này phát triển mạnh mẽ giống như các người!"</p>
+    <p>Tiếp theo, Diệp Phi xin lỗi về việc bỏ bê công ty trước kia, đồng thời chia sẻ đôi chút về kế hoạch sắp tới, sau đó mới cho nhân viên giải tán. Thực ra mục đích họp hôm nay của hắn không phải để bàn chuyện công việc, mà là để lộ mặt trước nhân viên, củng cố lòng tin để họ an tâm làm việc. Nếu để Trình Huy tự mình nói thì e là không đạt được hiệu quả tốt như vậy.</p>
+    <p>Sau khi những nhân viên vui vẻ rời đi, Diệp Phi bảo Trình Huy ở lại: "Thời gian này anh để ý các công ty săn đầu người, xem có tìm được ai có năng lực đảm nhiệm chức tổng giám đốc không, tốt nhất là người có kinh nghiệm quản lý."</p>
+    <p>"Được."</p>
+    <p>Trình Huy đáp ứng rất sảng khoái, đối với việc Diệp Phi cách chức tổng giám đốc của mình cũng không có bất kỳ phàn nàn nào. Một là vì Diệp Phi đã tha cho hắn một lần khiến hắn rất cảm kích, hai là hắn cũng hiểu rõ mình không phải là người có năng lực đó. Hắn chỉ giỏi đoàn kết nhân viên, còn muốn đưa công ty đi lên thì bản thân hắn không có đủ khả năng.</p>
+    <p>Sau khi Trình Huy rời đi, Diệp Phi và Hứa Vi Nhi theo Tư Đồ Ảnh về văn phòng của nàng. Hắn rất muốn xem kịch bản khiến Hứa Vi Nhi khen không dứt miệng kia rốt cuộc có gì thần kỳ, dù sao Hứa Vi Nhi cũng là người xem phim lớn lên, xét về mặt này có thể coi là nửa chuyên gia rồi.</p>
+    <p>Cầm kịch bản Hứa Vi Nhi đã xem qua, Diệp Phi cẩn thận đọc. Hắn phát hiện cốt truyện khá đơn giản, là câu chuyện về một tiểu tiên nữ vô tình rơi xuống trần gian. Nó thậm chí không có các chủ đề tình yêu vốn luôn xuất hiện trong hầu hết các bộ phim. Thế nhưng, Diệp Phi có thể khẳng định, nếu bộ phim này thật sự được sản xuất, chắc chắn sẽ tạo nên một cơn sốt. Ngay cả bản thân hắn cũng không khỏi chìm đắm vào câu chuyện. Tuy đơn giản nhưng tình tiết lại ẩn chứa vẻ thần kỳ, đặc biệt là những đoạn mô tả Tiên cảnh càng khiến người ta mơ ước. Tuy những nơi đó không thể tồn tại trong thực tế, nhưng với công nghệ hiện tại, việc tái hiện lại những gì kịch bản mô tả hoàn toàn không thành vấn đề.</p>
+    <p>Còn về nhân vật tiểu tiên nữ chính, Diệp Phi phát hiện nàng giống hệt Hứa Vi Nhi, từ sự ngây thơ, thiếu kinh nghiệm sống, cho đến việc nói năng không kiêng dè đều cực kỳ tương đồng. Sự đáng yêu này khiến Diệp Phi cũng có chút động tâm. Nhưng điều khiến hắn thấy kỳ lạ là, rõ ràng tính cách của tiểu tiên nữ này giống hứa Vi Nhi, vậy mà tại sao đối mặt với Hứa Vi Nhi, hắn lại không có cảm giác rung động này?</p>
+    <p>Cảm thấy hứng thú, Diệp Phi xem luôn các kịch bản khác của Tư Đồ Ảnh và phát hiện không kịch bản nào kém hơn cái đầu tiên. Thật không ngờ một Tư Đồ Ảnh trông có vẻ tinh khiết như vậy lại có nhiều sáng ý đến thế.</p>
+    <p>"Thế nào?"</p>
+    <p>Thấy Diệp Phi cuối cùng cũng buông kịch bản xuống, Tư Đồ Ảnh có chút khẩn trương hỏi. Mặc dù rất tự tin vào bản thân, nhưng dù sao Diệp Phi mới là ông chủ, nếu không thể khiến hắn tán thành thì kịch bản của nàng dù tốt đến đâu cũng không thể lên màn ảnh.</p>
+    <p>"Cực kỳ không tệ!"</p>
+    <p>Diệp Phi đã hoàn toàn tán thành Tư Đồ Ảnh, không ngần ngại dành lời khen ngợi: "Nếu quay thành công, chắc chắn có thể đưa phim ảnh Trung Quốc lên một tầm cao mới! Nhưng có vẻ Tư Đồ tiểu thư rất hứng thú với thần thoại nhỉ, kịch bản của cô toàn bộ đều là chủ đề này."</p>
+    <p>Nghe Diệp Phi nói từ "nhưng", tim Tư Đồ Ảnh thắt lại, nhưng câu nói tiếp theo của hắn đã khiến nàng an tâm. Vì nhắc đến công việc, Tư Đồ Ảnh trở lại trạng thái chậm rãi nói chuyện như vừa rồi: "Không phải tôi có thiên vị gì với chủ đề thần thoại, chỉ là trong làng điện ảnh thế giới, chủ đề huyền huyễn luôn là chủ đề ăn khách nhất. Những năm gần đây, thị trường này luôn bị các nước phương Tây nắm giữ. Nhưng nếu nói về thần thoại và truyền thuyết, Trung Quốc chúng ta mới là nơi có hệ thống đồ sộ nhất. Nếu có thể đưa hết những thứ này lên phim, tin rằng chắc chắn có thể chiếm lĩnh không ít thị phần."</p>
+    <p>"Cũng đúng."</p>
+    <p>Diệp Phi gật đầu đồng ý với quan điểm của Tư Đồ Ảnh, rồi nói thêm: "Chỉ là tôi thấy người phương Tây có vẻ hứng thú với những thứ hình thù kỳ quái hơn. Nếu phim của chúng ta không thể thâm nhập thị trường của họ thì sao?"</p>
+    <p>"Thực ra thị trường lớn nhất thế giới chính là Trung Quốc. Phim của chúng ta sau khi ra mắt chắc chắn sẽ được đón nhận trong nước, dù không thể thâm nhập phương Tây cũng không có vấn đề gì quá lớn."</p>
+    <p>Tư Đồ Ảnh rất tự tin nói: "Hơn nữa tôi không tin là không thể thâm nhập thị trường phương Tây. Nếu chất lượng phim của chúng ta tốt thì ở đâu cũng như nhau thôi. Với lại, những thứ kỳ quái chúng ta đâu phải không có. Không nói đâu xa, cứ lấy bộ cô vừa xem đó, nhân vật chính Hình Thiên chẳng lẽ không kỳ quái sao?"</p>
+    <p>Diệp Phi ngẫm lại cũng thấy đúng. Nói về quái, còn ai có thể so với vị thần sau khi bị chặt đầu vẫn có thể dùng hai vú làm mắt, rốn làm miệng mà chiến đấu lên tận thiên đình? Nghĩ đến những năm gần đây phim ảnh Trung Quốc chịu sự ảnh hưởng của phương Tây, quả thực đã hỗn loạn không chịu nổi, không phải mù quáng chạy theo phong trào thì cũng là những thứ chẳng ra làm sao. Bây giờ cũng đến lúc tự mình khởi xướng cuộc phản công về phía Tây rồi.</p>
+    <p>"Tốt, tôi tin cô. Đợi vài ngày nữa công ty khôi phục hoạt động, chúng ta bắt tay vào làm bộ thứ nhất ngay, tôi sẽ toàn lực ủng hộ cô!"</p>
+    <p>Diệp Phi lập tức quyết định, sau đó hỏi Hứa Vi Nhi: "Tôi muốn về trước, em đi cùng tôi hay ở lại đây nghiên cứu cùng Tư Đồ tiểu thư?"</p>
+    <p>"Đương nhiên là ở lại cùng Ảnh tỷ tỷ rồi, lát nữa để mẹ em đến đón là được."</p>
+    <p>Hứa Vi Nhi có vẻ không mặn mà lắm với việc đi cùng Diệp Phi, phẩy phẩy bàn tay nhỏ như đuổi ruồi: "Anh cứ về trước đi!"</p>
+    <p>Sờ sờ mũi, Diệp Phi mang theo vẻ cười khổ rời khỏi văn phòng Tư Đồ Ảnh, tìm Trình Huy bàn giao lại đôi chút rồi mới rời khỏi công ty điện ảnh và truyền hình. Những gì có thể làm hắn đều đã làm xong, giờ chỉ đợi công ty khôi phục bình thường, tìm một tổng giám đốc chuyên nghiệp, sau đó là việc hắn rót vốn mạnh tay. Về khoản này hắn chẳng có chút áp lực nào, vì tiền là thứ hắn không thiếu nhất lúc này. Còn về nghệ sĩ dưới trướng, tuy hiện tại chưa có ai, nhưng tin rằng theo đà phát triển của công ty, rất nhanh sẽ có nhiều nhân tài tìm đến.</p>
+    <p>Nhìn đồng hồ đã hơn bốn giờ chiều, lái xe dọc đường, Diệp Phi nhất thời không biết nên đi đâu. Về nhà thì mẹ chắc chắn không có ở đó, một mình thì quá chán, còn về trường học thì lại quá muộn, e là vừa đến đã phải ra về.</p>
+    <p>Suy tính một hồi, Diệp Phi quyết định quay lại tổng bộ Lăng Vân Hội. Tính thời gian, Tiêu Phỉ đã bị hắn nhốt ba bốn ngày rồi, cũng là lúc nên đến xem cô nàng có còn quật cường như trước hay không.</p>
+    <p>Lúc này, câu lạc bộ đêm đã bắt đầu hoạt động, rất nhiều nam nữ trẻ tuổi ra vào. Nhìn thấy xe của Diệp Phi, họ không khỏi lộ vẻ kinh ngạc, vì người lái loại xe phong cách trang trọng này vào câu lạc bộ đêm là rất hiếm thấy. Nhưng Diệp Phi không bận tâm đến họ, đỗ xe ngay trước cửa lớn, ném chìa khóa cho một tên đàn em vừa thấy hắn đã chạy đến chào hỏi, sau đó trực tiếp lên lầu hai, đến căn phòng giam giữ Tiêu Phỉ.</p>
+    <p>Lúc này Tiêu Phỉ đang thẫn thờ ngồi trên giường lớn, hai mắt nhìn thẳng xuống sàn nhà. Diệp Phi bước vào nàng cũng không có phản ứng gì, nhưng ngoại trừ sắc mặt hơi tái nhợt thì khí sắc cũng khá tốt, hiển nhiên là đám nhân viên phục vụ đã nghe theo chỉ thị của Diệp Phi mà chăm sóc nàng rất chu đáo.</p>
+    <p>Diệp Phi mỉm cười đi đến ngồi xuống bên cạnh nàng, hỏi: "Sao, nghĩ thông suốt chưa?"</p>
+    <p>Thực ra nội tâm Tiêu Phỉ lúc này không hề bình tĩnh như vẻ ngoài. Mấy ngày nay cô nhốt mình trong phòng, ngoài việc mất tự do, mọi yêu cầu đều được nhân viên nhanh chóng đáp ứng. Vì vậy, sau khi tâm tình tĩnh lại, cô đã lên mạng tìm hiểu không ít tư liệu. Qua các bản tin đưa sau đó, cô biết cha mình căn bản là tự làm tự chịu, khiến cô là con gái cũng cảm thấy việc bắt giữ ông ta là quyết định đúng đắn.</p>
+    <p>Sau khi biết những điều này, nỗi hận thù khắc cốt ghi tâm đối với Diệp Phi đã vô tình biến mất không ít. Chỉ là việc hắn làm nhục mình và mẹ ngày đó vẫn khiến cô không thể buông bỏ. Vì vậy mấy ngày nay cô luôn lén lút chế tạo một món vũ khí. Tất nhiên, nói là vũ khí thì hơi quá, cô chỉ lấy miếng sắt từ mặt bàn tháo ra rồi mài thành một con dao găm giản dị. Nhưng độ sắc bén của nó đã đủ để đâm chết Diệp Phi.</p>
+    <p>Đưa ra quyết định này, Tiêu Phỉ đã phải hạ quyết tâm rất lớn, vì cô luôn không kiềm chế được mà nhớ đến sự khoái lạc tột cùng mà hắn mang lại ngày hôm đó, thậm chí mấy đêm nằm mơ cảnh tượng ấy còn tái hiện trong đầu. Tỉnh dậy, cô phát hiện mình cần phải thay đồ lót. Nhưng điều khiến cô khó tha thứ cho bản thân nhất là, cảnh tượng trong mơ không chỉ có màn hắn làm nhục mình, mà còn có cả những lúc họ thực sự triền miên. Cô lại còn khát khao hắn dịu dàng yêu thương mình, điều này khiến cô vô cùng đau khổ. Không hiểu tại sao mình lại có ý nghĩ như vậy, chẳng lẽ cô thật sự bị vẻ ngoài anh tuấn và năng lực quá mạnh mẽ của hắn làm mê hoặc?</p>
+    <p>Sau khi dằn vặt rất lâu, Tiêu Phỉ mới quyết định sẽ ám sát hắn rồi tự vẫn theo, như vậy mẹ cô cũng có thể được giải thoát. Về lý do tại sao mình muốn đi theo hắn, Tiêu Phỉ tự thuyết phục bản thân rằng mình đã bị hắn làm nhục, không còn mặt mũi sống trên cõi đời này nữa, nhưng nội tâm cô lại không hẳn nghĩ như vậy.</p>
+    <p>Sau khi Diệp Phi bước vào, quyết định đã định sẵn của Tiêu Phỉ không khỏi dao động một chút. Nhưng vì mẹ, cô vẫn cắn môi, thừa lúc Diệp Phi vừa ngồi xuống, lao mạnh vào lòng hắn, dùng con dao tự chế giấu dưới thân đâm mạnh vào bụng hắn. Trong khoảnh khắc đó, lòng cô không hề có cảm giác giải thoát, ngược lại là một nỗi đau đớn sâu sắc.</p>
+    <p>"Sao, muốn giết tôi à?"</p>
+    <p>Diệp Phi cười hắc hắc, thân thể lùi về sau, khiến Tiêu Phỉ không thể nhìn thấy bụng hắn.</p>
+    <p>Tiêu Phỉ kinh ngạc phát hiện, cú đánh toàn lực của mình cùng với con dao găm sắc bén kia lại không gây ra bất cứ tổn thương nào cho Diệp Phi. Con dao vừa đâm rách áo hắn đã cong lại, ngay cả lớp da hắn cũng không đâm thủng.</p>
+    <p>Nhìn cảnh này, trong lòng Tiêu Phỉ lại chợt nảy sinh một tia khoái cảm khiến cô vô cùng căm ghét chính mình. Nhưng không đợi cô kịp nghĩ thêm, cô đã cảm thấy mình bị hắn thô bạo đè ngã xuống giường.</p>
+    <p>"Dám dùng con dao cùn như thế đâm chủ nhân của cô à? Xem ra cô vẫn chưa thấm thía bài học lần trước, vậy để chủ nhân của cô dùng con dao cùn hơn đâm trả lại cô nhé!"</p>
+    <p>Diệp Phi vừa nói vừa dùng hai tay xé nát quần áo trên người Tiêu Phỉ.</p>
+    <p>Không biết xuất phát từ tâm lý nào, Tiêu Phỉ vốn đang cố gắng giãy dụa sau khi bị Diệp Phi xé nát quần áo lại đột nhiên yên tĩnh trở lại. Ánh mắt nhìn Diệp Phi tuy vẫn còn thù hận nhưng lại ẩn chứa một tia chờ đợi. Đồng thời, hai chân cô cũng hơi tách ra, để lộ tiểu huyệt dâm đãng đầy lông mao hoàn toàn trước mắt Diệp Phi.</p>
+    <p>Diệp Phi nhạy cảm đến mức nào, chỉ nhìn sự thay đổi nhỏ nhặt đó là có thể thấy Tiêu Phỉ chắc chắn đã nghiện hắn rồi, thân thể đã hoàn toàn khuất phục. Nhưng để lòng cô cũng thần phục mình, Diệp Phi không vội vàng đâm nàng ngay, mà đột nhiên xé toang ga giường, vặn thành vài sợi dây thừng, trước khi Tiêu Phỉ kịp phản ứng đã trói tứ chi cô lại thành hình chữ "Đại" trên giường.</p>
+    <p>Tiêu Phỉ không hiểu tại sao mình đã chuẩn bị tư thế cho hắn làm tình rồi mà Diệp Phi còn phải trói mình lại, không khỏi sợ hãi liệu hắn có dùng phương pháp biến thái hơn để tra tấn mình hay không, vì trong lòng cô, Diệp Phi đến cả em gái song sinh của mình cũng làm, chắc chắn là một tên biến thái.</p>
+    <p>Nhưng hành động tiếp theo của Diệp Phi lại cho Tiêu Phỉ thấy cô đã nghĩ sai rồi. Diệp Phi không hề tra tấn cô, trái lại còn nhẹ nhàng vuốt ve làn da trơn nhẵn của cô. Bàn tay to lớn du ngoạn khắp thân thể cô một vòng rồi nhẹ nhàng nâng bầu ngực cô lên, vừa ôn nhu vuốt ve vừa khen ngợi: "Dáng người cực phẩm thật đấy, nhất là cặp vú này, còn nhỏ đã có quy mô như vậy, lớn lên chắc chắn là hàng khủng. Ông trời thật không tệ với ta, lại cho ta một tiểu tính nô cực phẩm thế này."</p>
+    <p>Tuy việc bị coi là tính nô khiến Tiêu Phỉ khó chịu, nhưng cô vẫn không nhịn được thấy hân hoan trước lời khen của hắn. Kết quả là, dưới sự vuốt ve của hắn, Tiêu Phỉ cũng bắt đầu động tình, nhất là khi đầu Diệp Phi tựa vào ngực cô, ngậm lấy một đầu nhũ hoa nhỏ màu hồng nhạt mà mút, Tiêu Phỉ cảm thấy toàn thân đều ngứa ngáy không chịu nổi, thân thể ngọc ngà trắng nõn không tự chủ được mà nhẹ nhàng giãy dụa.</p>
+    <p>Sau khi thoa đầy nước bọt lên đôi nhũ hoa nhỏ của Tiêu Phỉ, Diệp Phi lại di chuyển xuống dưới, dần dần tới chỗ tiểu huyệt dâm đãng đầy lông của cô. Đầu tiên là dùng ngón tay nhẹ nhàng huy động vài cái trong khe lồn, sau đó vùi đầu vào háng cô, thè lưỡi liếm nhẹ lên môi lồn mềm mại.</p>
+    <p>"Á... Nha..."</p>
+    <p>Kể từ lần trước bị Diệp Phi làm cho sướng đến tột cùng, thân thể Tiêu Phỉ căn bản không có sức kháng cự lại hắn. Lúc này dù chỉ là hành động nhẹ nhàng, cô đã không nhịn được mà rên rỉ dâm loạn, còn nhô mông lên để được vuốt ve nhiều hơn.</p>
+    <p>Nhưng Diệp Phi không làm theo ý cô, chỉ dùng đầu lưỡi điểm nhẹ lên môi lồn nhỏ, mỗi lần mông cô nhô lên, hắn lại lách mình tránh đi.</p>
+    <p>Tiêu Phỉ bị Diệp Phi trêu chọc đến mức dâm thủy chảy đầm đìa, rất muốn lớn tiếng cầu xin hắn dùng lực đùa bỡn môi lồn nhỏ của mình, nhưng sự rụt rè trong lòng khiến cô không sao mở miệng được.</p>
+    <p>Một lát sau, Diệp Phi như đã chơi chán tiểu huyệt của Tiêu Phỉ, ngẩng đầu lên khỏi háng cô, ngược lại cởi sạch quần áo của mình, lấy cự vật to lớn dựng đứng áp sát vào tiểu huyệt sớm đã ướt át vô cùng của cô.</p>
+    <p>Tiêu Phỉ không khỏi mừng rỡ, cứ tưởng Diệp Phi sắp đâm mình rồi, không ngờ Diệp Phi căn bản không có ý đó. Dương vật dựng lên trước khe lồn rồi không hề tiến vào trong, mà dùng quy đầu thô ráp ma sát qua lại trên môi lồn trơn ướt của cô.</p>
+    <p>Tiêu Phỉ bị trêu đùa đến mức dục hỏa càng bốc lên cao, trong lòng rất muốn dùng sức ôm lấy Diệp Phi, bắt hắn đâm cự vật vào môi lồn đang ngứa ngáy dữ dội của mình, nhưng tứ chi bị trói chặt khiến cô không thể làm được gì, chỉ đành bất lực dùng sức giãy dụa bờ mông để dương vật của Diệp Phi ma sát mạnh hơn.</p>
+    <p>Đột nhiên, khuôn mặt Tiêu Phỉ lộ ra một tia vui mừng vì cô cảm thấy Diệp Phi cuối cùng cũng đã cắm cự vật vào trong lồn mình. Cô hưng phấn đến mức muốn hoan hô lớn, nhưng còn chưa kịp vui mừng thì lại cảm thấy dương vật mới chỉ tiến vào được nửa quy đầu lại rời khỏi môi lồn nhỏ của cô, rồi lại cắm vào một chút, rồi lại rút ra, cứ như thế phản phục.</p>
+    <p>Tiêu Phỉ mới hiểu ra, Diệp Phi căn bản là dùng phương pháp này để tra tấn cô, hơn nữa cô cũng cảm thấy cách tra tấn này đối với mình là hiệu quả nhất, ngay cả việc đánh đập cô cũng không bằng hiện tại khó chịu đến mức này.</p>
+    <p>"Đồ khốn, anh cắm nhanh lên đi!"</p>
+    <p>Không chịu nổi nữa, Tiêu Phỉ cuối cùng cũng thốt ra tiếng lòng sâu thẳm nhất. Cô lúc này đã sắp bị hắn làm cho phát điên rồi, chỉ cần Diệp Phi chịu làm mình, dù là gì cô cũng duy trì.</p>
+    <p>Diệp Phi vẫn dùng cự vật của mình làm những cú đâm với biên độ nhỏ nhất trong môi lồn của Tiêu Phỉ, miệng nhàn nhạt nói: "Tôi không gọi là đồ khốn."</p>
+    <p>Ý nghĩ duy nhất của Tiêu Phỉ lúc này là muốn Diệp Phi làm mình ngay lập tức, vì vậy cầu xin: "Diệp Phi, tôi cầu xin anh, nhanh cắm vào được không? Trước là tôi sai rồi, cầu xin anh nhanh đâm tôi đi!"</p>
+    <p>"Tôi cả đời này chỉ làm hai loại phụ nữ, một là người yêu của tôi, hai là tính nô của tôi. Cô thấy mình thuộc loại nào?"</p>
+    <p>Diệp Phi cười tà hỏi.</p>
+    <p>Tiêu Phỉ cuối cùng cũng hiểu ra, hắn muốn dùng cách này ép cô làm tính nô. Trong lòng tuy có chút không cam tâm, nhưng lúc này thần trí cô phần lớn đã bị dục vọng bao trùm, vì vậy trong lòng đột nhiên nảy sinh một ý nghĩ kỳ quái: Hình như làm tính nô cho hắn cũng chẳng có gì không tốt, tối thiểu có thể thường xuyên tận hưởng cự vật khiến người ta sướng vô hạn kia!</p>
+    <p>Ý nghĩ này vừa nảy sinh, Tiêu Phỉ không còn cố kỵ, cầu xin: "Chủ nhân, cầu người ban thưởng cự vật cho Phỉ nô, cắm nó vào trong lồn Phỉ nô đi! Chủ nhân tốt, Phỉ nô cầu ngài làm tôi!"</p>
+    <p>Thấy mục đích đã đạt được, Diệp Phi không chần chờ nữa, phần eo dùng sức một cái, cự vật to dài trong nháy mắt chui vào tiểu huyệt đang đẫm dâm thủy của Tiêu Phỉ, đâm rút liên hồi.</p>
+    <p>Lần nữa cảm nhận được khoái cảm tột cùng, Tiêu Phỉ không khỏi thầm khen quyết định vừa rồi của mình thật đúng đắn, cảm giác làm tính nô của Diệp Phi thật sự quá tuyệt vời! Để Diệp Phi càng dùng sức làm mình, Tiêu Phỉ vừa giãy dụa bờ mông phối hợp với những cú đâm của hắn, vừa lớn tiếng rên rỉ: "Đó... Chủ nhân... Ân... Phỉ nô là tính nô của cự vật chủ nhân tốt... Đó... Chủ nhân người... Làm lồn giỏi quá... Á... Cự vật của người... Thật dài... Thật thô... Làm Phỉ nô... Sướng chết rồi... Á... Cự vật... Đội lên hoa tâm Phỉ nô rồi... Đâm đến tử cung rồi... Á... Chủ nhân tốt... người làm Phỉ nô... sướng quá... Á... Đó... Dùng sức... Đúng... Là của Phỉ nô đấy... Cự vật của chủ nhân... Á... Phỉ nô... Tiểu lồn phóng đãng... Sướng chết rồi... Á..."</p>
+    <p>Diệp Phi không ngờ chỉ lần thứ hai làm Tiêu Phỉ mà cô nàng đã có thể gọi dâm đãng như vậy, thầm than nàng đúng là thiên tính dâm đãng. Nhưng là tính nô của mình, nàng càng dâm đãng càng tốt, mình mới làm càng đã. Vì vậy, hắn tăng lực làm, nhưng tốc độ lại chậm lại, mỗi lần đâm mạnh vào tiểu huyệt của Tiêu Phỉ, đều dùng quy đầu to lớn nghiền nát trên hoa tâm kiều nộn của cô, rồi mới rút ra, vòng đi vòng lại.</p>
+    <p>Như thế, Tiêu Phỉ càng sướng đến mức mất phương hướng, thân thể ngọc ngà điên cuồng lắc lư, miệng tiếp tục rên rỉ: "Á... ưm... ơ... ơ... Chủ... nhân... Phỉ nô... của... cự vật chủ nhân... Á... đó... đó... Cự vật... ba... tốt... thật lớn... thật nóng... á... ưm... tiểu lãng... lồn... Phỉ nô... bị... cự vật chủ nhân... trướng chết... rồi... bị bỏng... bỏng chết rồi... á... á ưm... ưm... ân hừ... Phỉ nô... sướng... chết rồi... tốt... chủ nhân... tình... ca ca... á... nha... Phỉ nô... lại... sắp không... chịu nổi... rồi... nhanh... ân hừ... Phỉ nô... lại... muốn... chết... rồi... á... á... Phỉ nô... bị... cự vật... lớn... của... chủ nhân... đâm chết... rồi... á ưm... lớn... dương vật... chủ... chủ nhân... nha... cùng... Phỉ nô... một... một chỗ... xuất ra... á... đó... đó... cự vật... chủ nhân... người... người như vậy... cùng một chỗ... xuất ra... mất rồi... á... ai nha... đó... đó..."</p>
+    <p>Tận hưởng sự co bóp mút mát của tiểu huyệt Tiêu Phỉ khi lên đỉnh, Diệp Phi không tiết ra cùng nàng. Hắn muốn cô hoàn toàn thần phục dưới cự vật của mình. Dù tiết ra rồi có thể tiếp tục chiến đấu, nhưng vẫn không bằng cứ làm mãi không ngừng, nên Diệp Phi đợi Tiêu Phỉ khôi phục một chút rồi lại bắt đầu đâm mạnh, đồng thời hai tay vung lên, làm đứt hết dây trói ở tứ chi cô.</p>
+    <p>Chiếm được tự do, Tiêu Phỉ vội vàng ôm chặt lấy Diệp Phi đang đè trên người mình, vì chỉ khi toàn bộ sức nặng của hắn đè lên thân thể mình, cô mới cảm nhận được khoái cảm bị chinh phục mãnh liệt hơn. Điểm này Tiêu Phỉ rất giống mẹ mình là Trương Lâm Tâm. Trương Lâm Tâm cũng vậy, tuy Diệp Phi có ý làm cô thành nữ nhân của hắn, nhưng Trương Lâm Tâm lại thích làm tính nô của hắn hơn, khi bị làm thì gọi hắn là chủ nhân, điều đó mang lại cho cô một loại khoái cảm đặc biệt.</p>
+    <p>Tiêu Phỉ cũng vậy, vừa rồi còn không tình nguyện làm tính nô cho Diệp Phi, nhưng lúc này lại phi thường động tình gọi hắn là chủ nhân một cách vô cùng tự nhiên, dưới sự đâm rút đầy lực của hắn, tiếp tục rên rỉ phóng đãng: "Ôi... Chủ nhân tốt nha... Của Phỉ nô... cự vật... tốt... chủ nhân... đó... thân chủ nhân... á... á ưm... cự vật... lại... lại đội... đến... tâm... dâm huyệt... nhỏ... của Phỉ nô... rồi... á... á... chủ nhân tốt lại... muốn... đem... Phỉ nô... đâm... đâm chết... rồi... á... ôi... người ta... lại... lại... đó... đau xót rồi... ưm... ưm... cự vật... chủ nhân... tiểu lãng... lồn... của Phỉ nô... lại... lại ngứa... rồi... á... á... nhanh... nhanh lớn... lực... đâm đi... đem... Phỉ nô... hiếp chết... đi... á ưm... nha... nha... nhanh... nhanh đội... đội vào lồn nhỏ tâm của Phỉ nô nha... đó... đó... muội muội... lồn nhỏ... của Phỉ nô... chịu... không nổi... a... nhanh... nhanh sao... á ưm... ưm... ưm..."</p>
+    <p>Bị sự thuận theo của Tiêu Phỉ khơi dậy vạn trượng dục hỏa, Diệp Phi điên cuồng đâm rút, khiến Tiêu Phỉ như sắp bay lên trời, về sau thậm chí ngay cả tiếng rên rỉ cũng không phát ra được, âm tinh cuồng tiết không ngừng, giữa các đợt cao trào căn bản không có khoảng cách.</p>
+    <p>Diệp Phi không ngừng đâm rút tiểu huyệt Tiêu Phỉ, đến khi cô nằm trên giường không còn chút sức lực nào, lúc này hắn mới đem dương vật đâm mạnh vào hoa tâm kiều nộn của cô, bắt đầu phóng tinh mạnh mẽ.</p>
+    <p>Bị tinh dịch nóng hổi của Diệp Phi dội vào, thân thể Tiêu Phỉ vốn đã không thể cử động đột nhiên như hồi quang phản chiếu mà co rút mạnh mẽ, lần nữa tiết ra một đợt âm tinh. Nhưng nhờ có tinh dịch của Diệp Phi làm dịu, lần này cô không còn mềm nhũn ra nữa.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0250.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0252.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 147 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 147</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 147</small>
+    Chương 147: Tâm động đề nghị
+  </h1>
+  <div class="chapter-body">
+    <p>Bộ não của Diệp Phi hiện tại chẳng khác nào một quyển bách khoa toàn thư, nấu nướng chuyện nhỏ như vậy tự nhiên không làm khó được hắn. Hắn lập tức đứng trước bếp lò thao tác, còn Tiêu Hàm Nguyệt lại trở thành trợ thủ. Vừa giúp Diệp Phi lấy các loại dụng cụ nhà bếp cùng nguyên liệu, Tiêu Hàm Nguyệt vừa nhìn gương mặt anh tuấn đang chăm chú nấu nướng của hắn, trong lòng tràn đầy mê say. Nàng thầm nghĩ hắn chính là món quà tốt nhất mà thượng thiên ban cho mình, cả đời này có thể gặp được hắn là một điều vô cùng hạnh phúc. Thế nên, người chồng đã khuất từng chiếm cứ nội tâm nàng cho đến tận ngày hôm qua, giờ đây đã chẳng còn lại chút dấu vết nào. Trong lòng nàng lúc này, tất cả đều là chàng trai đang mang đến cho mình sự thỏa mãn vô hạn này. Dưới đôi bàn tay khéo léo của Diệp Phi, chẳng mấy chốc vài đạo món ngon sắc hương vị đều đủ đã được bày ra đĩa. Đặc biệt là về phần hương thơm, hắn đã tốn rất nhiều công sức. Tuy Tiêu Hàm Nguyệt chưa bao giờ là người tham ăn, nhưng khi ngửi thấy mùi hương này, nàng cũng không nhịn được muốn nếm thử. Điều làm nàng vui vẻ hơn cả là việc Diệp Phi làm như vậy hoàn toàn vì nàng. Lúc này nàng không thể đi tắm rửa, trong lòng vẫn luôn lo lắng lát nữa sau khi ra ngoài sẽ bị con gái phát hiện ra mùi hương hoan lạc giữa mình và Diệp Phi. Nhưng với hương thơm của những món ăn này, nàng không còn phải lo lắng gì nữa. Sự chu đáo của Diệp Phi khiến nàng cảm động và càng yêu hắn sâu đậm hơn. Cửa phòng bếp vừa mở ra, sự chú ý của ba người phụ nữ lập tức bị thu hút. Sau khi ngửi thấy mùi hương quyến rũ đó, những người vốn chưa từng vào bếp như các nàng liền chen lấn chạy vào, tranh nhau bưng vài món ngon ra phòng khách. Vừa ngồi xuống, ba người đã không thể chờ đợi được mà thưởng thức. Lâm Linh nếm mỗi món một chút, cau mày hỏi: "Mẹ, con nhớ trước kia mẹ nấu không ngon thế này mà? Hay là do hôm nay con đói quá?" "Đương nhiên không phải, mấy món này không phải mẹ làm." Tiêu Hàm Nguyệt cười lắc đầu, ánh mắt nhìn về phía Diệp Phi, tuy nàng cố gắng kìm nén nhưng khi nhìn hắn, ánh mắt vẫn không giấu nổi vẻ nhu tình. Nhìn gương mặt xinh đẹp còn vương chút ửng hồng của Tiêu Hàm Nguyệt, Diệp Vân Khinh trong lòng mừng cho nàng. Nàng nhanh chóng ngồi xuống bên cạnh Diệp Phi, nói: "Giỏi thật, không ngờ ca ca nấu ăn ngon đến vậy, trước kia không thấy anh động thủ bao giờ." Nói xong, bàn tay nhỏ bé đã véo vào phần thịt mềm bên hông hắn. Diệp Phi đau điếng, tưởng rằng Diệp Vân Khinh đang ghen, vội vàng nắm lấy tay nàng, bóp nhẹ rồi nói: "Không phải là không có thời gian thể hiện sao, chỉ cần Khinh Khinh thích ăn, anh sẽ nấu cho em mỗi ngày!" Về phần nấu món gì, chỉ có hắn và Diệp Vân Khinh mới hiểu rõ. Diệp Vân Khinh cười cười, thấy ba người kia đang mải ăn, liền ghé sát miệng nhỏ vào tai Diệp Phi, nhỏ giọng nói: "Vậy lần sau nấu, có thể gọi cả Tiêu di cùng không?" Giọng điệu kiều mỵ đó dường như chứa đựng chút động tình. Diệp Phi sững sờ, cũng nhỏ giọng hỏi: "Em nói gì?" Diệp Vân Khinh lườm hắn một cái: "Không thích thì thôi!" "Thích! Thích chứ!" Diệp Phi vội vàng gật đầu lia lịa. Đối với việc ba người cùng một chỗ, hắn đã chờ đợi từ lâu. Thứ nhất, hắn hiện tại quá mức cường hãn, chỉ một người thì không thể thỏa mãn hắn. Thứ hai, ba người cùng một chỗ chắc chắn sẽ kích thích hơn rất nhiều. Hắn từng đọc về chuyện này trong tiểu thuyết và cũng muốn thử một lần, chỉ là trong lòng hơi ngạc nhiên trước đề nghị của Diệp Vân Khinh. Vừa rồi khi Diệp Phi và Tiêu Hàm Nguyệt mặn nồng trong bếp, dù phòng bếp cách âm khá tốt nên Lâm Linh và Diệp Tĩnh không nghe thấy gì, nhưng Diệp Vân Khinh với nội lực thâm hậu lại nghe rất rõ. Từ khi yêu sâu đậm Diệp Phi, nàng luôn muốn làm hắn thoải mái hơn, vì vậy cũng từng lén xem qua vài bộ phim, tiểu thuyết và biết đàn ông rất thích kiểu này. Hơn nữa, khi nghe thấy những âm thanh vừa rồi, chính bản thân nàng cũng kích động không thôi, muốn hòa mình vào giữa bọn họ. Đó chỉ mới là nghe âm thanh thôi, nếu thật sự ba người cùng một chỗ thì không biết sẽ kích thích thế nào, nên nàng mới nói ra suy nghĩ của mình. Biết được ý định của Diệp Vân Khinh, Diệp Phi mừng đến mức muốn nhảy cẫng lên, vì hắn biết ngày đó sẽ không xa. Cho dù Tiêu Hàm Nguyệt tạm thời chưa đồng ý, thì vẫn còn Diệp Ngưng Sương, dù sao nàng cũng biết mối quan hệ của hắn và Diệp Vân Khinh, mà Diệp Vân Khinh đã có thể chấp nhận Tiêu Hàm Nguyệt thì chắc chắn sẽ không bài xích dì của mình. Nhắc đến chuyện này, cả Diệp Phi và Diệp Vân Khinh đều có chút tâm thần kích động. Đến khi hoàn hồn lại, họ mới phát hiện đồ ăn trên bàn sắp bị ba người kia ăn sạch, hiện tại cả ba đang thỏa mãn xoa bụng nhỏ, rõ ràng là đã no căng. Diệp Vân Khinh không trêu chọc Diệp Phi nữa mà nhanh chóng ăn hết phần còn lại, vừa ăn vừa thỉnh thoảng liếc nhìn Tiêu Hàm Nguyệt với ánh mắt có chút tinh quái, khiến Tiêu Hàm Nguyệt không hiểu ra sao. Dùng bữa trưa xong, mấy người trò chuyện thêm một lát. Đến khi trời gần tối, Diệp Phi, Diệp Vân Khinh và Diệp Tĩnh chuẩn bị ra về. Tiêu Hàm Nguyệt và Lâm Linh tất nhiên đều rất không nỡ. Lâm Linh còn đỡ, ngày mai đến trường là có thể gặp lại Diệp Phi, nhưng Tiêu Hàm Nguyệt thì hầu như không có thời gian riêng bên cạnh hắn, điều này khiến nàng không khỏi mất mát. Nhân lúc không có ai chú ý, Diệp Phi cầm lấy bàn tay nhỏ bé của Tiêu Hàm Nguyệt, trịnh trọng nói bên tai nàng: "Em yên tâm, anh sẽ thường xuyên đến đây, hơn nữa chẳng bao lâu nữa, chúng ta có thể ở bên nhau mãi mãi." "Em biết rồi." Tiêu Hàm Nguyệt mỉm cười ngọt ngào, giục hắn: "Mau đi đi, Khinh Khinh và mọi người đang đợi anh ở trên xe đấy." Diệp Phi theo lực đẩy của nàng ra khỏi cửa biệt thự. Hắn thừa biết nàng vẫn chưa hoàn toàn tin lời mình, nhưng giờ chỉ có thể như vậy, đến lúc đó cho nàng một bất ngờ cũng là chuyện hay.</p>
+    <p>Xe nhanh chóng về đến tiểu viện nhà họ Diệp. Diệp Phi dẫn hai cô gái vào nhà, thấy Hứa Thư Vân đang ngồi một mình trong phòng khách, không biết đang suy nghĩ gì, thần sắc có chút cô đơn, đến mức ba người bước vào cũng không hề hay biết. Diệp Phi không khỏi xót xa. Diệp Lăng vừa mới qua đời, bà đang là lúc cô đơn và bất lực nhất, vậy mà hắn lại đưa Diệp Tĩnh đi mất hai ngày, sợ rằng trong hai ngày này lòng bà rất khó chịu. Hắn bước đến ngồi xuống cạnh Hứa Thư Vân, vòng tay ôm lấy bờ vai bà, ôn nhu nói: "Thẩm, đừng nghĩ ngợi quá nhiều, thẩm vẫn còn có con, còn có Tĩnh Tĩnh và Khinh Khinh, chúng con sẽ luôn ở bên cạnh thẩm!" "Ừ." Hứa Thư Vân lên tiếng, cũng vòng tay ôm eo Diệp Phi, tựa thân mình vào lòng hắn. Vẻ cô đơn trên mặt đã biến mất khá nhiều, không phải bà có ý gì với Diệp Phi, mà chỉ là đang cần tìm một bờ vai vững chãi để dựa vào.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0146.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0148.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

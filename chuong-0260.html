@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 260 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 260</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 260</small>
+    Chương 260: La lỵ thâm tình
+  </h1>
+  <div class="chapter-body">
+    <p>"Tốt!" Ba cô bé từ lâu đã mong chờ đôi chân của mình có thể sớm ngày bình phục, đặc biệt là sau khi nhìn thấy Đông Phương Nhược Lan tối qua, tâm tình này càng thêm bức thiết. Các nàng rất muốn sớm đứng dậy, để có thể giúp đỡ tỷ tỷ nhiều hơn, đồng thời cũng có thể tự do chạy nhảy khắp nơi.</p>
+    <p>"Vậy chúng ta đi ngay thôi." Diệp Phi mỉm cười, đang định tiến lên giúp các nàng đưa xe lăn ra đường lớn thì bỗng nhướng mày, quay sang nhìn về phía cổng chính.</p>
+    <p>Tại cổng, hai người đàn ông và phụ nữ trung niên đang tiến vào. Hai người này vẻ ngoài hết sức bình thường, quần áo mộc mạc, nếu ném vào đám đông bên ngoài thì rất khó bị nhận ra. Tuy nhiên, Diệp Phi lại phát hiện sự bất phàm của họ, bởi trong cơ thể đôi nam nữ này chứa đựng chân khí ba động không kém gì Liễu Quân Di lúc trước, tức là chỉ thiếu một bước là đạt tới cảnh giới Tiên Thiên. Hắn không hiểu hai cao thủ Hậu Thiên đỉnh phong này đến tiểu viện làm gì, nên vô thức chắn trước mặt ba cô bé.</p>
+    <p>"Vương thúc, Vương thẩm, hai người đến rồi sao? Nói cho hai người một tin tốt, Diệp Tử ca ca muốn dẫn chúng ta đi xem chân, chúng ta sắp có thể đứng dậy rồi!" Diệp Phi còn chưa kịp lên tiếng hỏi thăm, Cốc Tuyết Dung phía sau đã vui vẻ kêu lên, hiển nhiên rất thân thiết với đôi trung niên này.</p>
+    <p>Diệp Phi thầm nhủ, xem ra đây chính là những người âm thầm bảo vệ các nàng. Hắn đang muốn tìm hiểu rõ sự tình thì họ lại chủ động tìm đến cửa, nhưng hắn càng tò mò hơn về lai lịch của bốn chị em nhà họ Cốc. Rốt cuộc là quan hệ gì mà lại khiến hai cao thủ Hậu Thiên đỉnh phong phải đến đây bảo vệ? Phải biết rằng, nhìn khắp toàn bộ Võ Minh, tổng số cao thủ ở cấp độ này cũng chưa đến hai mươi người.</p>
+    <p>"Không giới thiệu cho ta một chút sao?" Xoay người, Diệp Phi mỉm cười hỏi ba tiểu la lỵ.</p>
+    <p>"Diệp Tử ca ca, họ là Vương thúc và Vương thẩm ở phòng phía Đông của chúng ta." Cốc Tuyết Hân giới thiệu: "Họ đối xử với chúng ta rất tốt, đôi khi chúng ta không có tiền, họ cũng không ép đóng tiền nhà, hơn nữa thường xuyên ghé thăm; Vương thúc, Vương thẩm, vị này chính là Diệp Tử ca ca mà chúng con đã kể với hai người."</p>
+    <p>Đôi trung niên kia không ngăn cản Cốc Tuyết Hân giới thiệu, cho đến khi nàng nói xong mới khẽ cười với các nàng, sau đó chuyển hướng sang Diệp Phi, cười hiền hậu: "Vị này chính là Diệp tổng mà Tiểu Hàm đã nhắc tới phải không? Có thể nể mặt trò chuyện riêng một chút được không?"</p>
+    <p>"Được." Diệp Phi cũng đang muốn làm rõ mọi chuyện nên không chút do dự đồng ý. Hắn mỉm cười với ba tiểu la lỵ, rồi dưới ánh mắt đầy vẻ tò mò của các nàng, cùng đôi trung niên đi ra khỏi tiểu viện.</p>
+    <p>Đi thẳng đến chỗ sâu nhất trong con hẻm nhỏ, hai người trung niên dừng lại, xoay người nhìn Diệp Phi đi theo. Người đàn ông bỗng lên tiếng: "Diệp Phi, bang chủ mới nhậm chức của Lăng Vân Hội, chúng ta đã nghe danh cậu."</p>
+    <p>"Vậy thì sao?" Diệp Phi mỉm cười, thản nhiên hỏi.</p>
+    <p>"Không tốt lắm. Chúng ta chỉ hy vọng cậu mang đến cho Tiểu Hàm công việc hiện tại là thật lòng, chứ không phải có ý đồ xấu gì, nếu không hậu quả sẽ rất nghiêm trọng." Vẫn là người đàn ông đó lên tiếng.</p>
+    <p>Diệp Phi thầm cười khẩy, hai cao thủ Hậu Thiên nhỏ bé mà lại dám cuồng ngôn trước mặt hắn. Tuy nhiên, đối phương hiển nhiên là vì tốt cho Cốc Tuyết Hàm nên Diệp Phi cũng không so đo, mỉm cười nói: "Chuyện này các người có thể yên tâm, tuy tôi rất quý mến Tuyết Hàm, nhưng không hề có ý đồ bất chính nào. Hơn nữa, danh tiếng Diệp gia thế nào chắc các người cũng rõ, nên sự lo lắng này hoàn toàn thừa thãi."</p>
+    <p>Dừng một chút, Diệp Phi nói tiếp: "Còn nữa, công ty của tôi khác với những công ty giải trí khác, tuyệt đối sẽ không bắt diễn viên dưới quyền phải làm những quy tắc ngầm, trừ khi bản thân họ tự sa đọa. Nhưng Tuyết Hàm là người thế nào, các người chắc hẳn biết rõ, nàng sẽ không xảy ra chuyện như vậy đâu. Ngược lại, tôi mới là người thắc mắc, đã có các người ở đây, tại sao chị em các nàng còn phải sống khổ sở như vậy?"</p>
+    <p>Nghe Diệp Phi hỏi, trong mắt đôi trung niên bỗng thoáng qua vẻ bi ai và bất lực, nhưng rồi nhanh chóng giấu đi, chỉ lạnh nhạt đáp: "Đó không phải việc cậu cần quan tâm. Hôm nay chúng ta tìm cậu còn có một việc, chính là hy vọng cậu đừng can thiệp vào chuyện của ba đứa nhỏ kia nữa. Nếu chân của các nàng được chữa khỏi, đối với các nàng và với cậu mà nói, chưa chắc đã là chuyện tốt."</p>
+    <p>Diệp Phi không khỏi ngẩn người. Hắn nhìn ra được, đôi trung niên này thực sự quan tâm đến chị em nhà họ Cốc, nhưng tại sao lại không cho các nàng chữa chân? Vì vậy, hắn đầy kỳ lạ hỏi: "Tại sao lại như vậy?"</p>
+    <p>"Chuyện này chúng tôi không cần giải thích với cậu!" Lúc này, người phụ nữ nãy giờ im lặng lên tiếng, giọng điệu sắc bén hơn nhiều: "Còn một điều nữa, tuyệt đối không được nảy sinh tình cảm không nên có với Tiểu Hàm. Nhìn ra được, nàng vì được cậu giúp đỡ mà đã bắt đầu có hảo cảm, nhưng tôi không hy vọng hảo cảm này tiếp tục duy trì. Cậu biết phải làm gì rồi đấy!"</p>
+    <p>"Chuyện này thì tôi không dám đảm bảo." Diệp Phi nhún vai: "Tôi đã nói rồi, đối với nàng, tôi cũng có chút hảo cảm, chỉ là không muốn ép buộc nàng làm bất cứ việc gì không nguyện ý. Nhưng nếu nàng cũng có cảm tình với tôi, thì cũng đành chịu thôi, ai có thể kiểm soát được tình cảm của người khác cơ chứ?"</p>
+    <p>"Người trẻ tuổi, đừng quá ngông cuồng! Tôi biết sau lưng cậu có Liễu gia là võ lâm thế gia, mà sau lưng Liễu gia còn có Võ Minh. Nhưng tôi muốn nói cho cậu biết, những thứ đó chẳng là gì cả. Trước mặt thế lực sau lưng chúng tôi, đừng nói là Liễu gia, ngay cả Võ Minh cũng chẳng tính là gì!" Giọng người phụ nữ trở nên lạnh lẽo: "Mặc dù Tiểu Hàm rất đẹp, nhưng bên cạnh cậu cũng không thiếu phụ nữ xinh đẹp, cậu chắc không muốn vì một mình Tiểu Hàm mà đánh mất họ chứ?"</p>
+    <p>Ánh mắt Diệp Phi bỗng lạnh băng, nhìn thẳng vào người phụ nữ đó nói: "Ngươi đang uy hiếp ta?"</p>
+    <p>Người phụ nữ bị ánh mắt của Diệp Phi làm cho kinh ngạc, vô thức lùi lại một bước, nhưng ngay lập tức định thần lại. Nàng vận nội lực, khí thế Hậu Thiên đỉnh phong lập tức tỏa ra, lạnh nhạt nói: "Người trẻ tuổi, hy vọng cậu nhận rõ thực tại. Nói cho cậu biết, thực lực của chúng tôi tuy trong môn phái không tính là cao thủ, nhưng cũng không phải là loại cậu có thể đắc tội!"</p>
+    <p>Có lẽ vì muốn khiến Diệp Phi kiêng dè hơn, người đàn ông trung niên lúc này cũng bộc lộ uy áp Hậu Thiên đỉnh phong, đồng thời nói: "Tiểu tử, tuy chúng tôi cảm tạ cậu đã giúp đỡ Tiểu Hàm, nhưng có những người cậu không thể trêu vào, nên hãy biết chừng mực!"</p>
+    <p>Đối mặt với uy áp của hai cao thủ Hậu Thiên đỉnh phong, Diệp Phi chẳng thèm bận tâm, hừ lạnh một tiếng: "Trên đời này ngoại trừ mẹ ta, chưa có ai có thể ra lệnh cho Diệp Phi ta làm gì. Chuyện của chị em nhà họ Cốc, ta lo định rồi. Nếu các người không phục, cứ việc tìm ta, Diệp Phi ta tiếp hết. Nhưng nếu ai dám động đến tâm tư xấu xa, đến lúc đó dù các người thuộc môn phái nào, ta cũng không ngại khiến nó biến mất khỏi thế giới này!" Nói xong, Diệp Phi không thèm đoái hoài đến hai kẻ không biết trời cao đất dày này nữa, bước nhanh rời đi.</p>
+    <p>Mãi đến khi Diệp Phi đi khuất, đôi trung niên như người kiệt sức, ngồi phịch xuống đất. Lau những giọt mồ hôi lạnh trên trán, họ nhìn nhau, trong mắt đối phương đều lộ rõ vẻ kinh hãi sâu sắc.</p>
+    <p>"Ngươi nói xem, có phải chúng ta quản hơi nhiều rồi không?" Người đàn ông hỏi, giọng hơi khô khốc.</p>
+    <p>"Đó là thực lực gì vậy?" Người phụ nữ vẫn còn sợ hãi: "Thậm chí có thể dùng chân khí giam cầm chúng ta, thực lực như thế, chỉ sợ còn lợi hại hơn cả Môn chủ? Xem ra chúng ta đã quá coi thường hắn, hơn nữa tình báo trong môn phái cũng không được chính xác cho lắm."</p>
+    <p>Người đàn ông gật đầu, bỗng lộ ra nụ cười: "Vậy cũng là chuyện tốt, ít nhất có hắn, bốn vị tiểu thư có thể sống tốt hơn một chút. Tin rằng Môn chủ biết chuyện cũng sẽ không trách chúng ta, vì đối phương thực sự quá đáng sợ."</p>
+    <p>"Ta lại càng hy vọng nàng có thể đến gây sự với Diệp Phi, đến lúc đó cũng có thể chịu chút bài học." Người phụ nữ cười lạnh: "Hơn nữa với mối quan hệ của Tiểu Hàm, nói không chừng Đại tiểu thư cũng không cần phải chịu khổ nữa."</p>
+    <p>Người đàn ông gật đầu nhưng không nói gì thêm, chỉ nhìn về hướng Diệp Phi rời đi, trong mắt lóe lên tia hy vọng.</p>
+    <p>Trở lại tiểu viện, Diệp Phi cười với ba cô bé: "Chúng ta xuất phát thôi."</p>
+    <p>"Diệp Tử ca ca, Vương thúc và Vương thẩm tìm anh có chuyện gì vậy?" Cốc Tuyết Mai hỏi. Các nàng đều rất lạ, Diệp Phi rõ ràng không quen biết đôi trung niên đó, sao lại có chuyện để nói cơ chứ.</p>
+    <p>"Họ nói với anh rằng ba cô bé các em đều rất thích anh, muốn anh chọn một người làm vợ." Diệp Phi cười nói.</p>
+    <p>"Phi!" Ba tiểu la lỵ đều khẽ hờn, ba gương mặt giống hệt nhau đỏ bừng, tim đập cũng tăng tốc. Ở tuổi mười ba, các nàng đã bước vào độ tuổi biết rung động, chỉ là chưa từng có cơ hội ra ngoài tiếp xúc với ai. Đúng lúc này, Diệp Phi xuất hiện trong cuộc sống của các nàng, tựa như tia nắng rạng rỡ trong màn đêm, mang đến ánh sáng hy vọng. Hơn nữa, hắn lại quan tâm săn sóc các nàng như vậy, nên sau vài ngày chung sống, ba trái tim thiếu nữ đã vô tình đặt lên người hắn. Giờ bị hắn nói trúng tâm tư, làm sao có thể không thẹn thùng?</p>
+    <p>Diệp Phi không ngờ chỉ là một câu đùa lại gây ra phản ứng lớn như vậy. Nhìn biểu cảm của ba cô bé, hắn dường như hiểu ra điều gì đó, không khỏi nhẹ nhàng xoa mũi. Chẳng lẽ mình thực sự có sức hút lớn đến thế sao?</p>
+    <p>Để tránh cho ba cô bé tiếp tục ngượng ngùng, Diệp Phi vội chuyển chủ đề: "Được rồi, đã chuẩn bị xong thì xuất phát thôi, có lẽ không cần đến tối đâu, các em có thể đứng dậy được rồi."</p>
+    <p>Quả nhiên, vừa nhắc đến chuyện quan tâm nhất, ba cô bé liền bị dời sự chú ý, không thể chờ đợi được nữa mà muốn theo Diệp Phi đến bệnh viện quân khu.</p>
+    <p>Nhưng đến lúc đi lại có chút khó khăn. Con hẻm nhỏ cực kỳ chật hẹp, xe của Diệp Phi không vào được, chỉ có thể đỗ ở bên ngoài, mà xe lăn của các nàng cũng không thể đẩy ra được, muốn đi thì phải bế.</p>
+    <p>Tuy một chiếc xe lăn kèm theo sức nặng của một cô bé đối với Diệp Phi không đáng là bao, nhưng nếu bế như vậy ra ngoài thì cũng quá kinh thế hãi tục, nên cuối cùng quyết định Diệp Phi sẽ bế từng người ra ngoài.</p>
+    <p>Sau khi Diệp Phi đưa ra quyết định này, gương mặt vừa mới khôi phục của ba cô bé lại đỏ bừng lần nữa, nhưng trong đôi mắt to xinh đẹp đều tràn đầy mong đợi.</p>
+    <p>Diệp Phi không có thời gian để ý đến tâm trạng của các nàng, trực tiếp bế cô em út Cốc Tuyết Mai lên, bước ra khỏi tiểu viện, hướng về phía chỗ đỗ xe.</p>
+    <p>"Diệp Tử ca ca." Còn chưa đi được nửa đường, Cốc Tuyết Mai vốn nằm im trong lòng Diệp Phi bỗng ôn nhu gọi một tiếng.</p>
+    <p>Diệp Phi cúi đầu, thấy gương mặt xinh đẹp của cô bé tràn ngập sắc đỏ lạ thường, đôi mắt to đáng yêu như nhân vật hoạt hình cũng trở nên ướt át, nhìn hắn đầy nhu tình hiếm thấy ở độ tuổi này. Đôi môi nhỏ nhắn như chu sa khẽ mở, dường như đang dụ dỗ hắn cúi xuống hôn lấy.</p>
+    <p>Diệp Phi thầm kêu khổ, không ngờ cô bé nhỏ này lúc động tình lại có mặt mê người đến thế. Ngọn lửa bị mẹ khơi dậy từ buổi sáng dường như lại có dấu hiệu bùng phát, ngay cả phía dưới cũng muốn "ngẩng đầu".</p>
+    <p>Để không bị bẽ mặt, Diệp Phi đành tăng tốc độ, rất nhanh đã tới trước xe, đặt Cốc Tuyết Mai vào ghế sau, rồi quay lại bế hai người kia.</p>
+    <p>"Diệp Tử ca ca!" Lúc này, Cốc Tuyết Mai bỗng gọi hắn một tiếng nữa. Thấy hắn quay đầu lại nhìn mình, khuôn mặt nhỏ đỏ bừng hỏi: "Anh thực sự sẽ chọn một người trong chúng em sao?"</p>
+    <p>Diệp Phi cảm thấy đau đầu. Không ngờ câu đùa của mình lại bị các nàng tưởng thật. Nhưng lúc này nếu nói là đùa thì sợ làm tổn thương trái tim yếu ớt của các nàng, nên hắn cười nói: "Đúng vậy, thế Tiểu Mai hy vọng ca ca chọn ai?"</p>
+    <p>Trong ba cô bé, Cốc Tuyết Mai là người có tính cách đơn thuần và nhu nhược nhất. Nhưng chính vì quá đơn thuần, trong vấn đề này nàng lại bạo dạn hơn các cô gái bình thường. Nghe Diệp Phi hỏi, nàng ngập ngừng nói: "Em tất nhiên hy vọng Diệp Tử ca ca có thể chọn em, nhưng nói vậy thì tỷ tỷ sẽ không vui. Mà Diệp Tử ca ca nếu chọn tỷ tỷ, thì Tiểu Mai cũng sẽ không vui. Chi bằng, anh hãy lấy cả ba chúng em làm vợ đi." Nói xong, nàng đầy mong chờ nhìn Diệp Phi.</p>
+    <p>Câu nói ngây thơ của cô bé khiến Diệp Phi dấy lên những suy nghĩ xa xôi. Ba tiểu la lỵ giống hệt nhau, cùng nằm chung một chỗ, ngọt ngào gọi "Diệp Tử ca ca" chờ mình hái, cảnh tượng đó chỉ nghĩ thôi đã khiến người ta tâm động không thôi!</p>
+    <p>Tà niệm trong lòng khiến chỗ khó nói của Diệp Phi đang rục rịch bỗng bật dậy, làm hắn hoảng hốt vội khom lưng xuống, đưa tay xoa nhẹ lên đầu Cốc Tuyết Mai, cười nói: "Được, chờ các em lớn lên, đều làm vợ của Diệp Tử ca ca nhé."</p>
+    <p>"Thật tốt quá, Diệp Tử ca ca, vậy chúng ta coi như đã đính ước rồi nhé?" Cốc Tuyết Mai vui vẻ nói: "Em thấy trên TV các nhân vật chính sau khi đính ước đều hôn nhau đấy, Diệp Tử ca ca, anh có thể hôn em một cái không?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0259.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0261.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

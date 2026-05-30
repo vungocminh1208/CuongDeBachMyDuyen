@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 261 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 261</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 261</small>
+    Chương 261: Phòng tối mây mưa
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi bất đắc dĩ nở nụ cười, cúi đầu đặt một nụ hôn nhẹ nhàng lên vầng trán trơn bóng của tiểu nha đầu, cười nói: "Xong rồi à?" Không ngờ Cốc Tuyết Mai lại đột ngột ôm lấy cổ hắn, ấn đôi môi mềm mại lên bờ môi hắn. Tiếc rằng tiểu nha đầu này căn bản không biết hôn, chỉ là miệng đối miệng với Diệp Phi, chẳng biết phải làm gì tiếp theo, chỉ biết dùng sức dán chặt vào hắn. Dù chỉ như vậy, Diệp Phi vẫn thấy hơi khó lòng chống đỡ. Nếu không có ý chí mạnh mẽ kiềm chế, sợ rằng hắn đã làm ra chuyện gì đó rồi. Sợ mình sẽ phạm sai lầm, Diệp Phi vội vàng đẩy Cốc Tuyết Mai ra. Tiểu nha đầu vốn chưa hiểu rõ chuyện nam nữ, chỉ cần hôn Diệp Phi một cái như vậy đã thấy vô cùng mãn nguyện. Cô bé cười ngọt ngào với hắn: "Diệp tử ca ca, mau đi đón Nhị tỷ, Tam tỷ của muội đi, nhưng lát nữa muội vẫn muốn nữa." Trong lòng Diệp Phi khẽ động, vội gật đầu rồi quay người bước đi. Hắn bàng hoàng nhận ra, kể từ sáng nay, bản thân dường như đã thay đổi so với trước kia. Hắn trở nên dễ bị kích thích hơn. Vốn tưởng là do câu nói của mẹ vào buổi sáng, nhưng xem ra không phải vậy. Trước đây, đối với kiểu tiểu nha đầu trẻ trung như Cốc Tuyết Mai, hắn vốn không có cảm giác gì quá lớn, thế mà hôm nay lại khác hẳn. Về lý do tại sao, ngay cả chính hắn cũng không tài nào hiểu nổi. Thực ra, có một điểm Diệp Phi không hề hay biết: kể từ sau khi hoàn toàn có được Liễu Diệc Như tối qua, các đặc tính trong công pháp của hắn đã bị nguyên âm từ mẹ kích hoạt hoàn toàn. Vì đặc tính không ai biết này, hắn sẽ nảy sinh phản ứng với những phụ nữ có nguyên âm thuần hậu, đặc biệt là xử nữ. Sự chưa từng tiết lộ nguyên âm ấy càng tạo ra lực hấp dẫn lớn đối với hắn. Điều này sẽ khiến hắn sau này gây ra vô số nợ phong lưu. Dù hiện tại hắn đã đủ tham lam, chỉ nghĩ đến việc bảo vệ tốt những người phụ nữ bên cạnh, đối với những người không liên quan thì không mấy bận tâm, nhưng kể từ hôm nay, mọi chuyện sẽ thay đổi. Tất cả phụ nữ đạt chuẩn đều sẽ trở thành mục tiêu của hắn. Dù vốn không có tình cảm, hắn vẫn có thể nảy sinh "tính thú", rồi dần dần "lâu ngày sinh tình", khiến hậu cung ngày càng đông đúc, mà trọng trách trên vai hắn cũng vì thế mà càng nặng nề. Vẫn chưa biết mình đang có xu hướng chuyển biến thành sắc ma, Diệp Phi bước nhanh vào tiểu viện. Để tránh cảnh vừa rồi lặp lại, hắn chẳng thèm bận tâm đến việc có kinh thế hãi tục hay không, ôm cả Cốc Tuyết Dung và Cốc Tuyết Hân cùng xe lăn của họ, sau đó vác luôn Cốc Tuyết Mai lên vai rồi bước nhanh ra xe. Vì biết đôi trung niên nam nữ kia vẫn ở đó, hắn dứt khoát không đóng cả cửa chính. May là lúc này đang giờ làm việc, hàng xóm xung quanh phần lớn không có ở nhà, hoặc nếu có cũng không ai ra ngoài vào đúng lúc này, nhờ thế mà quái lực vượt xa người thường của Diệp Phi không gây ra chút xôn xao nào. Dù người ngoài không thấy, nhưng ba tiểu la lỵ thì nhìn thấy hết thảy. Trong khoảnh khắc, mắt các cô bé rực sáng, thốt lên: "Diệp tử ca ca, anh lợi hại quá!" Diệp Phi đổ mồ hôi hột, bởi khi nghe ba tiểu nha đầu khen mình lợi hại, hắn lại liên tưởng đến phương diện kia, khiến hắn thấy buồn rầu: Sao mình lại càng ngày càng háo sắc thế này? Sau khi thu xếp ba tiểu nha đầu ổn thỏa ở ghế sau, Diệp Phi khởi động xe. Hắn gọi điện cho Đông Phương Nhược Lan trên đường đi, nên khi họ đến bệnh viện quân khu, Đông Phương Nhược Lan và Mầm Hân đã chờ sẵn ở đó. "Phương Đông a di, Mầm Hân tỷ tỷ." Diệp Phi chưa kịp dừng xe, ba tiểu nha đầu đã hạ kính cửa sổ, ngọt ngào chào hỏi Đông Phương Nhược Lan và Mầm Hân. Có lẽ vì trước đây ít có cơ hội ra ngoài, ba cô bé rất thích kết bạn. Ngày hôm qua dù chưa ở cùng Đông Phương Nhược Lan quá lâu, họ đã rất thân thiết. Đông Phương Nhược Lan và Mầm Hân cũng rất quý ba tiểu la lỵ đáng yêu này, nên dù mới gặp lần thứ hai, giữa họ đã có vẻ vô cùng gần gũi. Giúp Đông Phương Nhược Lan đưa ba tiểu nha đầu vào phòng làm việc, Diệp Phi không dừng lại bên trong. Tranh thủ lúc Đông Phương Nhược Lan trị liệu cho bọn nhỏ, hắn muốn đi thăm các chiến hữu của đặc chiến đội. Thực ra chân của ba tiểu nha đầu chỉ bị phong tỏa kinh mạch, chỉ cần hắn hoặc Đông Phương Nhược Lan dùng nội lực thúc đẩy một chút là có thể giải khai. Nhưng hắn không làm thế. Thứ nhất là sợ trị liệu quá nhanh sẽ gây ra những suy đoán không cần thiết, thứ hai là hắn không muốn chị em nhà họ Cốc bị cuốn vào phân tranh võ lâm. Tuy thân thế của các cô bé rất có thể liên quan đến một môn phái võ lâm cường đại nào đó, nhưng Diệp Phi mong các cô bé có thể sống một cuộc đời bình thường và vui vẻ. Dù cuối cùng không tránh khỏi việc dính líu, hắn vẫn hy vọng ngày đó càng muộn càng tốt. Ra khỏi cổng bệnh viện, Diệp Phi quen đường đến thẳng đại viện của đặc chiến đội. Thế nhưng, hắn phát hiện đại viện rộng lớn như vậy mà chẳng thấy bóng người, sân huấn luyện cũng vắng lặng lạ thường. Điều này khiến hắn thấy rất kỳ quái. Đang định đi ra ngoài tìm bảo vệ hỏi thử, đột nhiên những tiếng huyên náo ồn ào truyền vào tai Diệp Phi. Lắng nghe kỹ, hắn nhận ra âm thanh phát ra từ võ đài trong nhà, bấy giờ mới biết đám người này đã chạy cả đến đó. Võ đài là thứ đặc biệt của đặc chiến đội. Để nâng cao năng lực chiến đấu cho từng binh sĩ, đặc chiến đội không cấm đội viên lén khiêu chiến, nhưng vì để tránh thương vong nên mới cố ý xây dựng một nơi như vậy. Trước đây Diệp Phi từng đến đây, cũng từng xem các đội viên luận bàn. Lúc đó, hắn cảm thấy những người này mạnh đến mức không ai bì kịp, ngoài đám mỹ nữ trong nhà ra, sợ rằng không ai là đối thủ của họ. Thế nhưng giờ hắn mới biết, thực lực của các đội viên lúc đó chỉ mới là bắt đầu. Dạo bước vào võ đài, Diệp Phi phát hiện những người đang đối chiến trên đài toàn là người quen. Một người là trung đội trưởng Lý Vân - người từng đỡ đạn cho hắn, người kia là dượng của hắn - Lý Bân, cũng là một trung đội trưởng. Chỉ là thực lực của hai vị trung đội trưởng này chênh lệch quá xa. Lý Bân toàn lực tiến công mà không thể ép Lý Vân lùi nửa bước, sau khi kiên trì hơn hai phút đồng hồ liền bị Lý Vân nhẹ nhàng ném xuống đài. Sau khi đánh lui Lý Bân, Lý Vân đứng trên đài đầy hào khí quát lớn: "Còn ai muốn lên không?" Mọi người dưới đài hiển nhiên đều biết thực lực hiện tại của Lý Vân. Dù ai cũng phấn khích nhưng không một ai dám lên, thậm chí có người còn hô lớn: "Lý đội, anh vẫn nên xin thương xót mà xuống đi, nhường cơ hội cho người khác được không?" Nhìn Lý Vân hào tình vạn trượng trên đài, Diệp Phi biết hắn không bị tác dụng phụ nào đáng kể, tâm tình cũng rất tốt nên lớn tiếng nói: "Tôi tới!" Nói đoạn, hắn rẽ đám người, mạnh mẽ nhảy lên đài. Nhìn rõ người tới là Diệp Phi, Lý Vân lập tức nhảy xuống bàn, cười ha ha nói: "Thôi bỏ đi, ta mới không đấu với cái tên tiểu biến thái nhà cậu, thua thì xấu hổ lắm!" Những người ở đây dù không tham gia đợt hành động đó, nhưng sau đó cũng đều nghe nói về chiến tích của Diệp Phi, nên thấy Lý Vân chưa đánh đã hàng cũng chẳng thấy có gì lạ, đều cười ha hả. Trong đám đông, Trương Cường hô lên: "Tiểu Mãn, cậu nhóc này đã lâu không tới rồi đấy, có phải gần đây phát tài quá nên xem thường anh em chúng ta lính tráng nghèo rồi không?" Diệp Phi nhảy xuống đài, cười nói: "Tôi nào dám? Tôi còn sợ các anh cướp mất Lăng Vân Hội của tôi ấy chứ." Dù đặc chiến đội và Lăng Vân Hội vốn chẳng liên quan gì đến nhau, không thể có điểm chung, nhưng vì lý do của Diệp Phi, các đội viên này không ai coi Lăng Vân Hội là tổ chức xấu. Thấy Diệp Phi đùa giỡn với Trương Cường, họ cũng cười nói rôm rả. Lúc này, Lý Bân vừa bị Lý Vân đánh bại lặng lẽ đi tới, kéo Diệp Phi hỏi nhỏ: "Tiểu Mãn, tên Lý Vân kia bảo hắn đột nhiên mạnh lên là nhờ cậu, chuyện này là thế nào vậy?" Vì chuyện của Diệp Ngưng Sương, Diệp Phi vẫn thấy có chút tội lỗi với Lý Bân. Dù Vân Tĩnh và ông đều là dượng của Diệp Phi, nhưng tính cách lại hoàn toàn trái ngược. Lý Bân tính tình cương trực, từ nhỏ đã rất được Diệp Phi tôn kính. Vì vậy, sau khi có được Diệp Ngưng Sương, Diệp Phi muốn bù đắp cho Lý Bân nhưng chưa có cơ hội. Lúc này thấy ông hỏi, hắn tự nhiên không muốn giấu giếm, gật đầu nói: "Là nhờ cháu. Lần trước Lý Vân thúc thúc bị thương, cháu dùng một phương pháp đặc biệt chữa trị cho ông ấy, sau đó ông ấy mới có được thực lực như vậy." "Người không bị thương có dùng phương pháp này được không?" Lý Bân vội hỏi, ông vô cùng ngưỡng mộ thực lực của Lý Vân. "Dùng thì dùng được, nhưng ông ấy không nói cho dượng biết phương pháp này có một tác dụng phụ chí mạng à?" Diệp Phi hỏi ngược lại. "Tác dụng phụ? Tác dụng phụ gì?" Lý Vân hiển nhiên không nói cho Lý Bân biết, nên lúc này Lý Bân rất nghi hoặc: "Ta thấy Lý Vân đâu có gì bất thường." Diệp Phi ghé sát tai Lý Bân, nói nhỏ cho ông nghe về tác dụng phụ đó. Nghe xong lời thì thầm của Diệp Phi, Lý Bân lộ ra vẻ mặt vô cùng kỳ quái. Nhìn Diệp Phi một hồi lâu, ông mới lên tiếng: "Vậy mà cũng gọi là tác dụng phụ ư? Tiểu Mãn, cậu quên dượng có tai họa ngầm gì rồi à?" Diệp Phi giật mình vỗ trán, lúc này mới nhớ ra Lý Bân vì vết thương mười mấy năm trước nên chỗ đó đã không còn gì nữa. Đây còn triệt để hơn cả cái tác dụng phụ kia, nên tác dụng phụ hay không đối với ông chẳng thành vấn đề. "Thế này thì không vấn đề gì chứ?" Thấy vẻ bừng tỉnh đại ngộ của Diệp Phi, Lý Bân vỗ vai hắn nói. Diệp Phi gật đầu: "Không vấn đề gì cả. Khi nào có thời gian chúng ta cứ tiến hành, đến lúc đó dượng nhất định sẽ có được thực lực như Lý Vân thúc thúc!" Lý Bân thỏa mãn cười cười, lại hạ thấp giọng hơn nữa: "Còn nữa, sau này nhớ chăm sóc tốt cho bác của cậu, những năm này bà ấy khổ nhiều rồi." "Ân?" Diệp Phi giật mình, sao nghe lời này của Lý Bân cứ như ông đã biết chuyện gì đó vậy? Lý Bân lại vỗ vai Diệp Phi, khẽ cười nói: "Nhớ là đừng quá lộ liễu, dù sao truyền ra ngoài cũng ảnh hưởng lớn đến thanh danh của các cậu. Hơn nữa tốt nhất đừng để Tiểu Uyển biết, con bé đó tính tình hơi cứng nhắc, sợ là không chuyển nổi cái ngã rẽ này đâu." Diệp Phi hiểu ngay, Lý Bân thật sự đã biết chuyện này mà vẫn đồng ý, điều này khiến Diệp Phi vô cùng cảm động, thấp giọng nói: "Cảm ơn dượng!" "Không cần cảm ơn ta, thực ra đây cũng là chuyện tốt. Có cậu chăm sóc bác, trong lòng ta cũng bớt đi một nỗi lo, sau này có thể chuyên tâm cống hiến cho sự nghiệp của mình rồi." Lý Bân hiểu chuyện cười nói, nhưng sắc mặt lập tức trở nên nghiêm túc: "Nhưng cậu phải hứa với ta, không được để bà ấy chịu chút ủy khuất nào, bằng không ta nhất định sẽ không tha cho cậu!" "Dượng yên tâm, cháu chắc chắn sẽ làm tốt nhất!" Diệp Phi cũng nghiêm túc gật đầu, trong lòng cảm thấy kỳ quái, sao Lý Bân lúc này lại giống lão trượng nhân thế không biết? "Hai người các cậu đang thầm thì cái gì đấy?" Giọng Lý Vân bất ngờ truyền tới, cắt ngang cuộc đối thoại. Diệp Phi và Lý Bân nhìn nhau cười, nhanh chóng bỏ qua chủ đề này rồi cùng đám đội viên đùa giỡn với nhau. Ở lại đại viện đặc chiến đội đến gần trưa, Diệp Phi mới quay lại bệnh viện. Đi đến phòng làm việc của Đông Phương Nhược Lan, hắn thấy ba tiểu nha đầu đang ngồi song song, hơn nữa đều thay một chiếc quần ngắn, để lộ ba đôi chân trân châu trắng ngần khiến Diệp Phi khô cả cổ họng. May mà trên chân các cô bé vẫn còn cắm vài cây ngân châm trị liệu, điều này mới bớt đi phần nào sự hấp dẫn, bằng không Diệp Phi vốn đang dễ bị kích động lúc này e rằng đã mất mặt trước mọi người rồi. Ngồi xuống đối diện các cô bé, Diệp Phi cười hỏi: "Cảm giác thế nào rồi?" "Khá hơn rồi." Cốc Tuyết Hân trả lời: "Hiện tại chân đã có chút cảm giác tê tê, không giống như trước đây chẳng có cảm giác gì." Hai cô bé còn lại cũng gật đầu, hiển nhiên đã có tri giác. Kết quả này Diệp Phi đã sớm biết, lúc này chỉ tiện miệng hỏi, đợi bọn nhỏ trả lời xong, hắn lại hỏi: "Phương Đông a di và Mầm Hân tỷ tỷ đâu?" "Mầm Hân tỷ tỷ vì châm cứu cho tụi em nên hơi mệt, đang về nghỉ rồi. Phương Đông a di đang phối dược." Người nói lần này là Cốc Tuyết Dung, nói xong cô bé chỉ vào căn phòng nhỏ trong văn phòng, đó chính là nơi Đông Phương Nhược Lan thường phối dược. Nghĩ đến việc đã lâu không thân mật với Đông Phương Nhược Lan, lòng Diệp Phi nóng như lửa đốt. Hắn đứng dậy bước về phía căn phòng nhỏ, đồng thời nói với ba tiểu nha đầu: "Để tôi đi xem có giúp được gì không." Đẩy cửa phòng phối dược, Diệp Phi đi vào, thuận tay chốt cửa lại rồi nhìn về phía Đông Phương Nhược Lan. Nàng đang ngồi trước bàn làm việc, chăm chú nhìn chất lỏng trong ống nghiệm, đó hiển nhiên là dược dịch đang phối cho ba tiểu nha đầu. Hôm nay Đông Phương Nhược Lan ăn mặc giống hệt lần đầu tiên Diệp Phi động tâm với nàng. Một chiếc áo blouse trắng tinh khôi không thể che nổi dáng người nóng bỏng tới cực điểm, thêm biểu cảm chăm chú ấy lại càng tạo ra sự hấp dẫn to lớn đối với Diệp Phi. Lặng lẽ đi tới sau lưng Đông Phương Nhược Lan, Diệp Phi ôm chầm lấy nàng, khẽ hỏi bên tai: "Như Lan của anh, mấy ngày nay có nhớ anh không?" Dù không quay đầu lại, Đông Phương Nhược Lan vẫn ngay lập tức nhận ra hắn. Nàng mềm nhũn dựa vào lòng hắn, giọng có chút u oán: "Cậu nói xem? Đồ vô lương tâm, người ta giúp cậu làm bao nhiêu chuyện mà chẳng thấy cậu đến tìm!" "Chẳng phải giờ anh tới rồi sao?" Diệp Phi cười hắc hắc, đôi tay bắt đầu không thành thật. Cảm nhận được động tác của Diệp Phi, Đông Phương Nhược Lan vội ngăn lại, hạ thấp giọng: "Bây giờ không được, Tiểu Dung các em ấy còn ở bên ngoài, coi chừng bị nghe thấy." Đông Phương Nhược Lan không nhắc đến ba tiểu la lỵ thì thôi, vừa nói vậy, tà hỏa vốn đang bị kìm nén của Diệp Phi lập tức bùng phát. Hắn không những không buông Đông Phương Nhược Lan ra mà còn ôm chặt hơn, đôi tay thậm chí đã chui vào trong chiếc áo blouse, cách một lớp vải mỏng nắm lấy hai bầu ngực của nàng. "A..." Đã lâu không được Diệp Phi yêu thương, Đông Phương Nhược Lan sao chịu nổi sự khiêu khích như vậy? Nhưng nỗi thẹn thùng trong lòng khiến nàng vẫn chưa chịu thả lỏng, lí nhí: "Không..." Chưa để nàng nói hết chữ tiếp theo, Diệp Phi đã dùng miệng chặn lại. Tranh thủ lúc nàng định lên tiếng, hắn đẩy lưỡi vào trong cái miệng nhỏ nhắn. Đông Phương Nhược Lan vốn định cố nén để từ chối, lúc này lại chẳng quan tâm được gì nữa, vô tình đáp lại nhiệt tình. Diệp Phi vừa hôn miệng Đông Phương Nhược Lan, vừa cách lớp áo blouse nghề nghiệp trắng tinh ấy dùng sức nhào nặn bầu ngực đầy đặn, xúc cảm tuyệt vời khiến Đông Phương Nhược Lan dục hỏa bùng lên. Bàn tay nhỏ bé của nàng không kìm được đưa xuống dưới, lần vào trong quần Diệp Phi, cầm lấy thứ đã khiến nàng mê đắm, nhẹ nhàng vuốt ve, nhanh chóng khuấy động sự hưng phấn. Trong sự vuốt ve ấy, dục hỏa cả hai trong nháy mắt đạt tới đỉnh điểm. Diệp Phi kéo tung áo blouse của Đông Phương Nhược Lan, sau đó tốc váy của nàng lên, kéo chiếc quần lót nhỏ xuống thành một sợi dây, dùng ngón tay gạt sang một bên, nhẹ nhàng gảy qua gảy lại trên đóa hoa đã sớm ướt đẫm. Đông Phương Nhược Lan lập tức cảm thấy nơi đó ngứa ngáy khó chịu, không nhịn được thì thầm vào tai Diệp Phi: "Lão công tốt, a di chịu không nổi nữa rồi, mau cắm vào đi, cho a di thỏa mãn đi!" Diệp Phi gật đầu, dùng vật cứng cáp của mình áp vào bụng dưới mềm mại, phẳng lì của Đông Phương Nhược Lan. Nàng nhấc một chân vòng qua eo Diệp Phi, để đóa hoa tươi đẹp của mình đối diện với thứ đang cương cứng ấy. Diệp Phi ôm cặp mông đầy đặn của nàng, thân mình tiến tới, Đông Phương Nhược Lan cũng nâng cao người lên, chỉ nghe "bạch" một tiếng, theo tiếng kêu kiều mị của Đông Phương Nhược Lan, vật ấy đã đâm sâu vào trong dâm huyệt xinh đẹp, thành thục và mê người của nàng. Đông Phương Nhược Lan ôm chặt vai Diệp Phi, dùng sức đẩy thân hình xuống dưới. Diệp Phi một tay ôm eo thon, một tay ôm mông đầy đặn, dũng mãnh ra vào trong dâm huyệt của Đông Phương Nhược Lan. Vách huyệt khít khao chứa đựng lấy, lưỡi hai người cũng quấn quýt không rời. Diệp Phi dùng sức nâng Đông Phương Nhược Lan lên, nàng vòng đôi chân kiện mỹ quấn chặt lấy eo hắn, dâm huyệt bao bọc lấy vật của hắn, mái tóc dài tung bay theo nhịp độ va chạm. Đông Phương Nhược Lan đỏ mặt thở dốc, đứt quãng nói: "A... lão công tốt... hôn anh... em yêu anh... con trym lớn... đẩy mạnh vào đi... a... sung sướng quá... anh dũng mãnh quá... a... chồng ơi... ôi... quy đầu của anh... trương đến to quá... thật tuyệt... đâm vào tận cùng... khiến em... sướng chết mất... a... a di... không được nữa rồi... a... a... a..." Hai người ôm chặt lấy nhau, phối hợp ăn ý không chút kẽ hở. "Lão công tốt... em không xong rồi... em muốn... muốn tiết..." Đông Phương Nhược Lan âm tinh trào ra từng đợt, tiết đến toàn thân run rẩy, chỉ còn lại những tiếng thở dốc và rên rỉ dồn dập. Diệp Phi cảm nhận được từng đợt âm tinh nóng bỏng phun trào lên quy đầu vô cùng thư sướng, đôi tay túm lấy bầu ngực nàng, bên dưới càng tăng tốc ra vào mạnh mẽ. "A... chồng tốt... em thực sự không chịu nổi nữa..." Sau vài lần lên đỉnh liên tiếp, Đông Phương Nhược Lan lúc này đã tê liệt trên bàn, đầu óc quay cuồng, chỉ biết để mặc Diệp Phi tấn công mạnh mẽ. Sau hơn chục lần rút ra đâm vào kịch liệt, Diệp Phi gầm nhẹ một tiếng, vật của hắn run lên vài cái, cắm sâu vào tử cung Đông Phương Nhược Lan, bắn ra tinh dịch nóng hổi. "A... anh... em lại tiết..." Đông Phương Nhược Lan sướng đến mức âm tinh lại trào ra, kết hợp với tinh dịch của Diệp Phi khiến nàng lại một lần nữa đại tiết đặc tiết, cả hai cùng lúc đạt đến cực hạn, hồn phi thiên quốc.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0260.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0262.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

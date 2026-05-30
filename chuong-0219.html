@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 219 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 219</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 219</small>
+    Chương 219: Vệ Thanh kinh hỉ
+  </h1>
+  <div class="chapter-body">
+    <p>Sắc trời vừa hửng sáng, thậm chí các đội viên trong đặc biệt chiến đội của quân khu còn chưa thức dậy luyện tập, Liễu Quân Di sau khi đã hoàn toàn hồi phục thể lực thì đã rời giường. Sở dĩ sớm như vậy, thứ nhất là nàng không đành lòng để Diệp Phi chờ bên ngoài lâu, hơn nữa nàng không muốn rời xa Diệp Phi dù chỉ một khoảnh khắc. Trước đây vì đại cục nên không còn cách nào, hiện tại cơ hội đã đến, nàng tự nhiên không muốn bỏ lỡ bất cứ khoảng thời gian nào có thể ở bên người nam nhân mình yêu. Thứ hai, cũng là vì sợ đụng mặt Vệ Thanh.</p>
+    <p>Tuy hiện tại đã trở thành tỷ muội thân thiết với Vệ Thanh, hơn nữa sau khi biết được tâm tư của nàng cũng không phản đối việc nàng ở bên Diệp Phi, nhưng Liễu Quân Di vẫn không muốn khi hẹn hò với Diệp Phi lại có người đi kèm. Đây không phải xuất phát từ lòng ghen tuông, mà là ở nơi xa lạ này, nàng muốn trút bỏ gánh nặng trong lòng, tận hưởng khoảng thời gian như một đôi tình nhân thực sự bên cạnh Diệp Phi. Nếu có Vệ Thanh đi cùng thì nguyện vọng này sẽ tan thành mây khói, ít nhất là trước khi Vệ Thanh thực sự trở thành người phụ nữ của Diệp Phi, nàng không muốn để cô biết được mối quan hệ đặc thù kiểu "cháu ngoại" này.</p>
+    <p>"Quân Di tỷ, sao hôm nay sớm vậy ạ?"</p>
+    <p>Vừa mới đi xuống lầu, một giọng nói trong trẻo, ngọt ngào đã cắt ngang mộng tưởng về khoảng thời gian riêng tư của Liễu Quân Di và Diệp Phi.</p>
+    <p>"Tiểu Vệ, em cũng dậy sớm thế à?"</p>
+    <p>Đừng nói là trải qua mười ngày ở chung đã trở nên rất thân thuộc, dù chưa quen biết, Liễu Quân Di cũng biết giọng nói này chính là của Vệ Thanh, bởi vì tòa tiểu lâu này hiện tại chỉ có hai người họ ở.</p>
+    <p>Kể từ khi biết tâm tư của Vệ Thanh, Liễu Quân Di đã xem cô như một "hậu bị" của Diệp Phi. Một là vì nàng đã hiểu rõ tâm tư của Diệp Phi, biết anh cũng có hảo cảm với Vệ Thanh, mà Liễu Quân Di vốn đã yêu Diệp Phi đến tận xương tủy thì tự nhiên cũng sẽ chấp nhận những người phụ nữ mà anh yêu thích. Hai là, nàng muốn Diệp Phi có thể thông qua Vệ Thanh mà tiến thêm một bước kiểm soát lực lượng hùng mạnh của đặc biệt chiến đội kinh thành. Đặc biệt là sau khi trải qua cảm giác "lực bất tòng tâm" lúc một mình ứng phó Diệp Phi tối hôm qua, Liễu Quân Di càng có ý nghĩ muốn cùng những người phụ nữ khác hầu hạ anh, ví dụ như Diệp Vân Khinh. Cho nên lúc này bị Vệ Thanh cắt ngang mộng tưởng, dù có chút thất vọng nhưng nàng cũng không quá bận lòng.</p>
+    <p>Vốn muốn tác hợp Diệp Phi và Vệ Thanh, Liễu Quân Di dự định sau khi ở riêng với Diệp Phi một ngày mới báo tin anh đã đến, nhưng hiện tại đã bị đụng mặt, cũng không muốn lừa dối cô nữa, liền nói: "Đúng lúc quá, chị đang định ra ngoài gặp một người, em đi cùng chị nhé."</p>
+    <p>Tối qua sau khi Liễu Quân Di nhận điện thoại của "bạn trai" rồi rời đi, Vệ Thanh vẫn luôn không ngủ ngon, bởi trong lòng nàng cứ vấn vương mãi chàng trai chỉ mới ở chung được vài ngày kia. Nàng cũng không biết vì sao, chỉ là khoảng thời gian ở chung ngắn ngủi ấy, lại thêm ấn tượng ban đầu về anh không mấy tốt đẹp, vậy mà sau khi chia tay nàng lại luôn không nhịn được mà nhớ đến anh. Về việc đây có phải là có hảo cảm hay không, Vệ Thanh chưa từng yêu đương nên không rõ lắm, chỉ biết mỗi khi nghĩ tới anh, tim nàng lại đập nhanh hơn, hơn nữa lại càng nhanh hơn khi nhớ lại từng chút chuyện khi ở bên anh. Trong lòng nàng có cảm giác ngọt ngào, khao khát được ở bên anh.</p>
+    <p>Mang theo nỗi nhớ vừa ngọt ngào lại vừa xót xa, Vệ Thanh mơ màng trong lúc nửa tỉnh nửa mê cho đến khi trời hửng sáng, không nằm nổi nữa nên dứt khoát rời giường, muốn vận động chút trước khi các đội viên luyện tập để bản thân tỉnh táo lại. Ai ngờ lại đụng ngay Liễu Quân Di dậy sớm, hơn nữa Liễu Quân Di còn rủ mình cùng đi gặp người, mà người quen chung của hai người ngoài Diệp Phi ra thì chỉ có những người trong đặc biệt chiến đội này. Chắc hẳn nàng chỉ khách sáo với mình, nên cô lắc đầu nói: "Thôi ạ, lát nữa em còn phải đi huấn luyện với mọi người, hơn nữa người chị muốn gặp chắc em cũng không biết đâu, nên là thôi không làm phiền chị ạ."</p>
+    <p>"Thật sao? Vậy em đừng có hối hận đấy nhé."</p>
+    <p>Trên gương mặt xinh đẹp của Liễu Quân Di lộ ra nụ cười trêu chọc, nàng chớp chớp đôi mắt đẹp, nói: "Đúng rồi, quên chưa nói với em, người chị muốn gặp em cũng quen đấy. Thế nào, có muốn đi không?"</p>
+    <p>Mình cũng quen? Tim Vệ Thanh không khỏi đập nhanh hơn, người quen chung của hai người hiện tại chắc chắn đều đang ở trong quân khu, chẳng lẽ là...?</p>
+    <p>Nghĩ tới đây, Vệ Thanh có chút kích động. Tuy nụ cười của Liễu Quân Di khiến nàng hơi xấu hổ, nhưng sự rung động trong lòng khiến cô lấy hết dũng khí gật đầu nói: "Nếu em cũng quen, vậy em đi cùng chị ạ."</p>
+    <p>"Được, vậy chúng ta đi luôn đi, cũng không cần xin nghỉ đâu, lát nữa về chị nói với cha em một tiếng là được."</p>
+    <p>Liễu Quân Di thấy Vệ Thanh hơi ngượng ngùng thì cũng không trêu chọc nàng nữa.</p>
+    <p>"Dạ."</p>
+    <p>Vệ Thanh gật đầu, theo Liễu Quân Di cùng đi về phía cổng lớn của đặc biệt chiến đội. Hiện tại cha của nàng, tức đại đội trưởng của đặc biệt chiến đội kinh thành, sau khi nghe kể về chuyến đi tây nam, đối với Liễu Quân Di đã vô cùng khâm phục. Lại thêm quân hàm của Liễu Quân Di cao hơn ông, nên đối với ý kiến của Liễu Quân Di, ông chưa bao giờ phản đối, huống chi là việc nhỏ như xin nghỉ giúp Vệ Thanh.</p>
+    <p>Thân phận của Liễu Quân Di người của đặc biệt chiến đội kinh thành đương nhiên đều biết rõ, nên chỉ cần chào hỏi bảo vệ cửa một tiếng, hai nữ đã rất thoải mái đi ra khỏi đại viện, liếc mắt đã thấy Diệp Phi đang ngồi bên cạnh bồn hoa cách cổng không xa.</p>
+    <p>Tuy trong lòng đã đoán trước, nhưng khi bất chợt nhìn thấy Diệp Phi, Vệ Thanh vẫn vô cùng kích động. Sau khi trở về, nàng không biết đã bao lần tưởng tượng cảnh gặp lại Diệp Phi, hơn nữa ngày nào cũng mong ngóng điện thoại của anh, bất quá anh vẫn chưa từng gọi. Nàng không thể ngờ lại đột nhiên nhìn thấy anh như vậy.</p>
+    <p>Ánh mắt bình tĩnh nhìn chằm chằm vào bóng hình khiến mình đêm ngày mong nhớ, Vệ Thanh không hiểu rõ tâm tính mình lúc này ra sao, vừa kích động, vừa hưng phấn, đồng thời cũng có chút buồn man mác, sợ rằng trước kia chỉ là ảo giác, và trong lòng anh vốn không có mình.</p>
+    <p>Tuy trong lòng suy nghĩ đủ đường, nhưng khi đối mặt với Diệp Phi đang mỉm cười đi tới chào hỏi, Vệ Thanh chỉ ngây ngốc hỏi một câu: "Sao anh đột nhiên lại đến đây?"</p>
+    <p>"Đến kinh thành làm chút chuyện, tiện thể nhớ Thanh tỷ với tiểu di của anh nên tới thăm mọi người một chút."</p>
+    <p>Diệp Phi nhìn nữ thần xạ thủ trước mắt, người vốn luôn có khí chất anh tuấn tiêu sái nay lại lộ ra thần thái của một tiểu nữ nhi, khẽ cười nói.</p>
+    <p>"Thì ra là vậy."</p>
+    <p>Vệ Thanh bị Diệp Phi nhìn đến mức tim đập nhanh hơn, không khỏi đỏ mặt, cúi nhẹ đầu, nhất thời không biết nói gì cho phải.</p>
+    <p>Liễu Quân Di không khỏi thầm sốt ruột thay cho Vệ Thanh, liền cười trêu chọc: "Cách xưng hô của ba người chúng ta thật thú vị nha. Chị là tiểu di của Tiểu Mãn, Thanh muội gọi chị là tỷ tỷ, nhưng Tiểu Mãn lại gọi Thanh muội là tỷ tỷ, cái vai vế này tính thế nào đây?"</p>
+    <p>"Vậy hay là anh đổi cách gọi nhé?"</p>
+    <p>Diệp Phi cười nhìn về phía Vệ Thanh: "Từ nay về sau gọi em là Thanh di?"</p>
+    <p>"Không được!"</p>
+    <p>Trong lúc cấp bách, Vệ Thanh thốt lên lời phản đối. Thế nhưng sau khi nói ra, mặt nàng bỗng chốc đỏ bừng, trong lòng cũng có chút lo lắng. Những ngày qua nàng và Liễu Quân Di vẫn xưng hô tỷ muội, bắt nàng đổi gọi Liễu Quân Di là dì thì nàng không tài nào gọi nổi, nhưng nếu để Diệp Phi sửa gọi nàng là Thanh di thì lại không phải điều nàng muốn, vì như thế, mối quan hệ giữa nàng và Diệp Phi sẽ càng khó gần gũi hơn.</p>
+    <p>"Vậy làm sao bây giờ?"</p>
+    <p>Diệp Phi tiếp tục trêu chọc Vệ Thanh: "Nếu không, em gọi cô ấy là tiểu di giống anh đi?"</p>
+    <p>"Em..."</p>
+    <p>Thực lòng mà nói, Vệ Thanh tuy xấu hổ nhưng trong lòng lại chẳng hề ngại khi gọi người nhà của Diệp Phi giống anh, nhưng làm sao có thể thốt ra lời này? Hơn nữa việc mình vừa vội vàng phản đối cũng đã phần nào lộ ra tâm tư rồi, không biết họ có nhìn ra không. Nghĩ đến đây, Vệ Thanh càng đỏ mặt cúi gằm mặt xuống.</p>
+    <p>Liễu Quân Di lén nháy mắt với Diệp Phi, làm khẩu hình "hời cho anh rồi đấy", sau đó cười nói: "Được rồi, chị thấy hiện tại chúng ta cứ mỗi người một kiểu đi, còn về vấn đề xưng hô, để sau hãy bàn."</p>
+    <p>Cuối cùng không phải đưa ra quyết định khó khăn nữa, Vệ Thanh không khỏi thở phào nhẹ nhõm. Diệp Phi cũng không tiếp tục trêu chọc nàng nữa, cười nói: "Được rồi, trời cũng sáng rồi, hay là chúng ta tìm chỗ nào đó ăn chút gì đi."</p>
+    <p>Vốn dĩ với tư cách đặc biệt đội viên của đặc biệt chiến đội, Diệp Phi hoàn toàn có thể cùng hai nữ vào đại viện đặc biệt chiến đội ăn sáng. Bất quá lo lắng kinh thành rất có thể là đại bản doanh của "người kia", hơn nữa kẻ đó cũng rất có thể đang chú ý đến hành tung của Liễu Quân Di, cho nên để tránh làm người khác nhìn ra điều gì từ thái độ của các đặc biệt chiến đội viên đối với Diệp Phi, ba người không quay lại đại viện mà đi bộ rời khỏi đó, ăn sáng tùy tiện ở một tiệm ăn cạnh cư xá gần đó.</p>
+    <p>"Hôm nay chúng ta đi đâu chơi?"</p>
+    <p>Sau khi ăn sáng xong, Diệp Phi hỏi ý kiến hai người.</p>
+    <p>Liễu Quân Di suy nghĩ một chút rồi nói: "Từ khi đến kinh thành, ngoại trừ họp hành với đám người kia, thì cứ ở lì trong đặc biệt chiến đội, những danh lam thắng cảnh ở kinh thành vẫn chưa đi xem qua. Hay là hôm nay đi xem thử đi, Thanh muội, em thấy thế nào?"</p>
+    <p>Vệ Thanh tự nhiên không có ý kiến gì, đối với nàng, chỉ cần được ở bên cạnh Diệp Phi, đi đâu cũng là nơi tốt nhất, liền cười nói: "Được ạ, để em làm hướng dẫn viên cho hai người, những nơi đó em cơ bản đều đã đi qua cả rồi."</p>
+    <p>Diệp Phi lại không có hảo cảm gì với mấy danh lam thắng cảnh đó. Không phải vì những nơi đó không tốt, danh lam thắng cảnh ở kinh thành dù là cảnh sắc hay ý nghĩa lịch sử đều khá ổn, nhưng những địa điểm này luôn vì đông đúc người mà trở nên hỗn loạn, đi xong căn bản không còn tâm trí nào để thưởng ngoạn cảnh sắc nữa. Hơn nữa không chỉ nơi này, về cơ bản các điểm du lịch tại Trung Quốc đều như thế, đặc biệt là vào những dịp lễ tết, nơi nào cũng như họp chợ. Anh thực sự không hiểu, tại sao có nhiều người sau khi vất vả mới có được chút thời gian nghỉ ngơi lại cứ thích đổ xô đến những nơi như vậy để chịu khổ.</p>
+    <p>Bất quá Liễu Quân Di đã quyết định, hơn nữa hiện tại cũng không phải dịp lễ tết, đúng là một thời điểm không tệ, nên anh cười nói: "Không thành vấn đề, hôm nay anh đành chiều theo hai vị đại mỹ nữ vậy!"</p>
+    <p>"Sao lại làm bộ không tình nguyện thế? Anh có cơ hội như vậy là người khác mơ còn không được đấy nhé!"</p>
+    <p>Liễu Quân Di có chút bất mãn lườm Diệp Phi một cái, sau đó rất tự nhiên khoác lấy cánh tay anh, không hề kiêng dè việc Vệ Thanh vẫn còn ở bên cạnh.</p>
+    <p>Vệ Thanh cũng không nghĩ nhiều, dù sao tiểu di khoác tay cháu trai cũng không phải chuyện gì quá lạ, bất quá nàng lại không đủ táo bạo như Liễu Quân Di, mà chỉ đi phía bên kia của Liễu Quân Di.</p>
+    <p>Đúng lúc ba người chuẩn bị xuất phát, điện thoại của Diệp Phi lại reo. Nhìn lướt qua màn hình, khóe miệng Diệp Phi lộ nụ cười, bắt máy nói: "Tiểu Quang?"</p>
+    <p>"Là em, lão đại, em đã đến kinh thành rồi, làm sao để tìm anh ạ?"</p>
+    <p>Đầu dây bên kia vang lên giọng nói đầy phấn khởi của Tiểu Quang. Tiểu Quang này là một trong những nguyên lão đi theo anh sớm nhất cùng với Trọc, chính là kẻ đầu tiên phát hiện ra tác dụng phụ của dụng cụ. Vốn dĩ Diệp Phi còn hơi lo lắng, Tiểu Quang vốn háo sắc sẽ vì mất đi năng lực đàn ông mà canh cánh trong lòng, không ngờ cậu ta chẳng hề để tâm, ngược lại lấy đó làm động lực huấn luyện. Mỗi khi rảnh rỗi đều không ngừng tập luyện, thực lực nhất cử vượt qua người mạnh nhất trước kia là Trọc – kẻ vốn tiến bộ chậm chạp vì phải xử lý quá nhiều việc. Hiện tại cậu ta đã là người mạnh nhất trong nhóm của họ. Cậu ta cũng như Trọc, trong lòng đều dành cho Diệp Phi sự sùng bái từ tận đáy lòng, đối với việc có thể giúp đỡ Diệp Phi làm việc, tự nhiên là cực kỳ phấn khích. Chắc hẳn đám người không biết nội tình khi nghe chuyện tối qua cũng đã phải tranh giành dữ dội, nếu không thì không thể nào là người có thực lực mạnh nhất như Tiểu Quang đến được.</p>
+    <p>"Ngươi không cần tìm ta đâu, lát nữa ta sẽ gửi một số tài liệu vào hòm thư điện tử cho ngươi, ngươi chỉ cần tạm thời để mắt đến người đó là được. Việc cụ thể nên làm thế nào ta sẽ nói với ngươi sau, nếu có biến cố gì thì báo cho ta biết ngay là được."</p>
+    <p>Diệp Phi nói xong, chợt nghĩ, với thân phận cha nuôi của Tiêu Bân, bên cạnh chắc chắn phải có cao thủ, mà hắn và Tiêu Bân lại có quan hệ như vậy, sợ rằng cũng phải sắp xếp cao thủ bên cạnh mình, nên nhắc nhở thêm: "Tiểu Quang, bên cạnh người này sợ là có cao thủ, lúc theo dõi hắn phải chú ý một chút, tận lực đừng để lộ thân phận."</p>
+    <p>"Yên tâm đi lão đại, em biết phải làm gì mà!"</p>
+    <p>Tiểu Quang tự tin đáp rồi cúp máy. Diệp Phi cũng không nói gì thêm, bởi vì chính anh hôm đó cũng không phát hiện chỗ Tiêu Bân có cao thủ nào, hơn nữa dù có thì cũng không thể gây ra mối đe dọa gì cho Tiểu Quang. Cao thủ trên đời không phải là không có, nhưng có thể bị những chính khách này sử dụng thì sợ là không nhiều lắm. Điểm này có thể thấy qua việc bên cạnh "người kia" cũng chỉ có ba người, trong đó có Lý Tư, là có thể nhìn ra. Dù sao võ công đạt đến cảnh giới nhất định rồi, đối với mấy thứ thế tục sẽ không coi trọng nữa. Không có cao thủ chân chính nào vì những thứ này mà chịu làm tay sai cho kẻ khác, lúc trước Lý Tư chẳng phải cũng vì thiếu nợ ân tình của "người kia" nên mới bất đắc dĩ bán mạng cho đối phương đó sao.</p>
+    <p>Vừa rồi trong lúc chờ Liễu Quân Di, Diệp Phi đã biên tập xong một số tư liệu về Tiêu Bân và gửi qua email cho Tiểu Quang, không bận tâm đến cậu ta nữa, cùng hai nữ bắt taxi, dưới sự chỉ dẫn của Vệ Thanh mà hướng về phía những danh lam thắng cảnh kia xuất phát.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0218.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0220.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

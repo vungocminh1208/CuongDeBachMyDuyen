@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 283 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 283</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 283</small>
+    Chương 283: Nhị tỷ chấp nhất
+  </h1>
+  <div class="chapter-body">
+    <p>Đã quyết định, Diệp Phi không chần chừ nữa, trực tiếp lái xe hướng thẳng đến võ quán của Nhị tỷ Diệp Tư Dao. Rất nhanh, Diệp Phi đã đến dưới tòa cao ốc nơi đặt võ quán. Điều khiến hắn cảm thấy kỳ lạ là hôm nay nơi này cực kỳ náo nhiệt, ngay cửa lớn dưới lầu tụ tập rất nhiều người. Nhìn những chiếc máy ảnh và thiết bị trong tay họ, Diệp Phi biết ngay đây là cánh phóng viên. Xem ra hôm nay nơi này sắp có nhân vật quan trọng xuất hiện, mà phán đoán của Diệp Phi thì nhân vật này khả năng cao là một ngôi sao nào đó, vì đa số ở đây đều là phóng viên giải trí. Đỗ xe trong bãi, Diệp Phi gặp một nhân viên an ninh đang đi tới nên thuận miệng hỏi: "Hôm nay ở đây có chuyện gì vậy? Sao nhiều phóng viên thế?" Nhân viên an ninh thấy Diệp Phi lái một chiếc xe sang trọng nên không dám chậm trễ, giải thích: "Nghe nói hôm nay Vương Tiểu Minh sẽ tới đây, đám phóng viên giải trí này phát cuồng cả rồi." "Vương Tiểu Minh? Sao hắn lại đến đây?" Diệp Phi sững sờ. Người này hắn từng nghe danh, là một nam minh tinh rất nổi tiếng trong vài năm gần đây. Tuy diễn xuất không mấy ấn tượng, chỉ giỏi chiêu trò bóng bẩy, nhưng nhờ có đại đạo diễn đứng sau chống lưng nên mấy năm nay vẫn luôn đứng trên đỉnh cao giới giải trí. Dựa vào việc xào nấu truyền thông, hắn trở thành một nhân vật gần như ai cũng biết mặt. Mục đích Diệp Phi muốn bước chân vào giới giải trí chính là để đả kích những kẻ như hắn, tạo cơ hội cho những người có tài năng thực sự nhưng không chịu bán đứng bản thân có chỗ đứng. Nhân viên an ninh kia đương nhiên không biết suy nghĩ trong lòng Diệp Phi, đáp lời: "Nghe bảo người của võ quán mời hắn tới, chắc là để làm chút công tác tuyên truyền." Nói đến đây, anh ta cũng thấy lạ. Anh làm bảo an ở đây đã lâu, chứng kiến từ ngày võ quán khai trương. Vì quán chủ là một đại mỹ nữ nên họ đều âm thầm để ý tới nơi này. Từ khi khai trương đến nay, võ quán vẫn luôn rất kín tiếng, tuy dạy võ công chân chính nhưng học viên không đông lắm, không ngờ hôm nay lại muốn mời minh tinh về tuyên truyền. Nhân viên an ninh thấy lạ, còn Diệp Phi trong lòng thì càng thấy khó hiểu hơn. Nhị tỷ bình thường cẩn trọng, sao lại mời minh tinh? Hơn nữa nàng không phải đã đồng ý sẽ đi giúp mình sao, tại sao còn tốn công làm tuyên truyền cho võ quán làm gì? Muốn mau chóng hỏi rõ mọi chuyện, Diệp Phi khách sáo cảm ơn nhân viên an ninh rồi rảo bước đi thẳng vào đại môn. Tuy bàn về tướng mạo, hắn vượt xa tên minh tinh kia, địa vị thân phận cũng không phải một kẻ nhỏ bé như vậy có thể so sánh, nhưng ngoài những người quen biết ra, căn bản không mấy ai biết được bộ mặt thật của Diệp Phi. Đám phóng viên chỉ chực chờ đào bới tin đồn này lại càng không thể nào biết tới hắn, vì vậy Diệp Phi dễ dàng lách qua đám đông, đi thang máy lên võ quán ở tầng cao nhất. Lúc này trong võ quán cũng đang vô cùng náo nhiệt. Diệp Tư Dao vận bộ đồ luyện công, đang đứng giữa đại sảnh chỉ huy các học viên bố trí hiện trường. Kẻ đang đứng bên cạnh nàng phụ giúp chỉ huy lại chính là Kim Đại Thuận – kẻ từng bị Diệp Phi dạy dỗ lần trước. Không ngờ hắn vẫn còn mặt mũi mò đến đây, lại còn tỏ vẻ quan trọng đang sai bảo mọi người. "Tỷ..." Bước nhanh đến bên cạnh Diệp Tư Dao, chữ "tỷ" vừa thốt ra, Diệp Phi đã kịp nhận ra thân phận của mình tại đây lúc này nên nhanh chóng nắm lấy bàn tay nhỏ bé của nàng, đổi giọng gọi: "Thân ái, mọi người đang làm gì thế?" Cách xưng hô của Diệp Phi khiến khuôn mặt Diệp Tư Dao trong nháy mắt đỏ bừng, nhưng trong lòng nàng lại dâng lên một tia hạnh phúc. Nàng mỉm cười với hắn: "Chúng ta chuẩn bị tuyên truyền cho võ quán một chút. Vừa vặn Kim Đại Thuận quen biết Vương Tiểu Minh nên đã mời hắn tới. Lát nữa người đến rồi, chúng ta phải chuẩn bị cho xong." Diệp Phi nắm tay tỷ tỷ kéo sang một bên, thấp giọng hỏi: "Sao tự nhiên chị lại muốn tuyên truyền võ quán? Chẳng lẽ không định đi giúp em sao?" "Chính vì muốn đi giúp em nên chị mới muốn tuyên truyền võ quán cho thật tốt chứ." Diệp Tư Dao cười nói khẽ. Thấy đệ đệ có vẻ chưa hiểu ý, nàng định đưa tay xoa đầu hắn như thói quen, nhưng chợt nhận ra hắn đã cao lớn hơn mình, đành thuận thế vỗ nhẹ lên ngực hắn rồi nói tiếp: "Đây dù sao cũng là sự nghiệp đầu tiên của chị. Tuy bây giờ sẽ buông bỏ nó nhưng chị không muốn kết thúc một cách qua loa, nên muốn làm cho nó thật rạng rỡ trước khi đi." Diệp Phi dở khóc dở cười nói: "Ai bảo đi giúp em là không thể kinh doanh võ quán nữa? Công việc ở hội cũng không có bao nhiêu, chị vẫn có thể duy trì võ quán mà. Hơn nữa, nếu muốn tuyên truyền thì đâu cần tìm mấy cái tên minh tinh rẻ tiền kia?" Vì chướng mắt những kẻ dựa vào chiêu trò để nổi tiếng, những lời cuối của Diệp Phi vô tình nói hơi lớn tiếng. Từ lúc Diệp Phi bước vào, Kim Đại Thuận vẫn luôn để mắt tới hắn. Thấy hắn vừa tới đã nắm lấy bàn tay mà mình cố gắng bao lâu nay vẫn chưa chạm tới được, trong lòng hắn không khỏi tức tối. Sau đó lại thấy cảnh Diệp Tư Dao vỗ nhẹ lên ngực Diệp Phi, hắn coi đó là hành động tình tứ, lòng đố kỵ bùng lên không thể kiểm soát. Lúc này lại nghe Diệp Phi chê Vương Tiểu Minh – người mà hắn đã tốn không ít công sức mới mời về – là minh tinh rẻ tiền, hắn không nhịn được nữa, đứng bên cạnh cười lạnh: "Minh tinh rẻ tiền? Ngươi có biết Vương Tiểu Minh là ai không? Có bản lĩnh thì ngươi mời được một người như vậy xem nào?" Trong mắt hắn, Diệp Phi chỉ là kẻ dựa vào khuôn mặt điển trai để bám lấy Diệp Tư Dao, dù có chút võ nghệ nhưng thời đại này đâu phải cứ biết đánh đấm là có tất cả, nên lời lẽ hắn nói ra chẳng hề khách khí. Bị Kim Đại Thuận châm chọc, Diệp Phi chỉ mỉm cười, không buồn tranh cãi. Với thân phận của hắn, đương nhiên khinh thường việc chấp nhặt với loại tiểu nhân này. Hơn nữa, bất kể tâm tư của Kim Đại Thuận là gì, việc hắn ta làm lần này ít nhất cũng giúp ích cho Diệp Tư Dao, nên Diệp Phi càng không muốn so đo. Nhưng Diệp Phi không so đo, không có nghĩa là Diệp Tư Dao dễ bỏ qua. Do thể chất của Diệp Phi trước kia, việc bảo vệ hắn đã trở thành thói quen của Diệp Tư Dao. Dù hiện tại Diệp Phi không còn cần đến sự bảo vệ của nàng nữa, nhưng thói quen ấy đã ăn sâu vào tiềm thức. Hơn nữa, cách xưng hô vừa rồi của Diệp Phi khiến nàng – người vốn đã có những tình cảm khác lạ với đệ đệ – cảm thấy ngọt ngào vô cùng, nên nàng càng không thể nhìn hắn phải chịu chút ủy khuất nào. Sầm mặt lại, Diệp Tư Dao xoay người nhìn Kim Đại Thuận: "Chúng ta đang nói chuyện, ngươi xen vào làm gì? Đừng tưởng làm được chút việc cho võ quán thì muốn làm gì thì làm. Nếu ngươi không muốn hỗ trợ thì bất cứ lúc nào cũng có thể bảo Vương Tiểu Minh quay về, ta vốn dĩ cũng chẳng muốn dùng hắn!" Vì trong lòng đang cực kỳ tức giận, Diệp Tư Dao vốn luôn lạnh lùng mà điềm tĩnh thường ngày đã thốt ra những lời vô cùng đanh thép.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0282.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0284.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

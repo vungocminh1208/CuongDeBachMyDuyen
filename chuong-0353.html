@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 353 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 353</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 353</small>
+    Chương 353: Sai sau chân tình
+  </h1>
+  <div class="chapter-body">
+    <p>Trời vừa hửng sáng, Chi tỷ đã tỉnh lại từ trong cơn ngủ say. Cảm giác đau đầu sau khi say rượu dù là đại minh tinh cũng không thể tránh khỏi. Khi vừa tỉnh dậy, Chi tỷ vô thức giơ tay định xoa nhẹ vào huyệt thái dương đang hơi nhức nhối, nhưng tay mới đưa lên được một nửa thì đột nhiên sững người. Nàng phát hiện bên cạnh mình còn có một người, một gã đàn ông trẻ tuổi nhưng vô cùng cường tráng, và hai người lúc này đang ôm nhau nằm đối mặt, một chân nàng còn vắt ngang qua hông hắn. Cảm giác vô cùng đầy đặn trong cơ thể cho nàng biết rõ, lúc này hai người chẳng những đang thân mật, mà còn đang gắn kết cùng một chỗ. Chỗ hai người đang khăng khít kia cũng nhắc nhở nàng rằng: Thứ cường tráng nhất trên thân thể gã đàn ông này không phải là cơ ngực của hắn.</p>
+    <p>Chi tỷ dù sao cũng là người đã gặp nhiều đại tràng diện, tuy trong nháy mắt đã hiểu rõ chuyện gì xảy ra nhưng cũng không kêu to như cô gái nhỏ, mà cứ lặng lẽ nằm đó chìm vào hồi tưởng.</p>
+    <p>Tối qua, dù uống rất say nhưng nàng không phải mất hoàn toàn ý thức, nhất là về sau, khi lượng giọt sương trong cơ thể xói mòn đi nhiều, nàng lại càng tỉnh táo hơn. Vì vậy, rất nhanh nàng đã nhớ lại hết thảy mọi chuyện tối qua. Sự khoái lạc tột cùng đó khiến nàng không khỏi có chút dư vị, mà nhiều hơn là kinh ngạc. Năm nay nàng đã qua tuổi năm mươi, nếu đặt ở thời cổ đại thì đã là bà lão rồi. Chỉ là nhờ kỹ thuật bảo dưỡng hiện đại nên nàng mới có được vẻ ngoài trẻ trung và kiều diễm như vậy, nhưng đó chỉ là bề ngoài. Thực tế từ lâu, sau khi người trượng phu lớn hơn nàng mười mấy tuổi mất đi năng lực, nàng đã rất lâu không còn cuộc sống vợ chồng. Vốn dĩ nàng cho rằng mình ở độ tuổi này không thể nào còn những ý nghĩ đó nữa, nhưng không ngờ gã đàn ông bên cạnh này đã cho nàng biết sự thật: Nàng không chỉ vẫn còn nhu cầu phương diện này, mà còn có thể vui vẻ nhanh đến vậy.</p>
+    <p>Dù kinh nghiệm sống cực kỳ phong phú, nhưng khi nhớ lại màn tối qua, nàng vẫn không nhịn được mà có chút say đắm. Tuy nhiên cuối cùng lý trí vẫn chiến thắng xúc động, nàng khẽ cắn môi, thân thể yêu kiều chậm rãi lui về phía sau, muốn tách mình ra khỏi hắn.</p>
+    <p>"Ân... Ah..." Ký ức dù sâu sắc thế nào cũng không bằng cảm giác chân thực lúc này. Hơn nữa, vì tối qua nàng quá say, nên trong quá trình nàng lui lại đã khiến nơi hai người đang gắn kết xảy ra ma sát mãnh liệt. Khoái cảm mạnh mẽ gấp bội so với trong trí nhớ khiến nàng vô thức kêu lên.</p>
+    <p>"Chi di, người tỉnh rồi?" Bị âm thanh và động tác của giai nhân trong lòng đánh thức, Diệp Phi mở mắt, khẽ mỉm cười hỏi.</p>
+    <p>Chi tỷ dừng lại động tác, không nói lời nào mà chỉ nhìn Diệp Phi, dường như đang chờ lời giải thích của hắn. Tuy nhiên, trong lòng nàng cũng không trách Diệp Phi, vì nàng biết hẳn là do tác động của rượu.</p>
+    <p>Diệp Phi cũng không đổ lỗi cho rượu mà nhận sai rất trực tiếp: "Chi di, xin lỗi, là ta đã không kiềm chế được."</p>
+    <p>"Không có gì, ta không trách ngươi." Chi tỷ bình tĩnh nói: "Ta và ngươi cũng không phải lần đầu, chuyện như thế này ở thời đại này rất bình thường, nên ngươi không cần gánh nặng gì cả."</p>
+    <p>Diệp Phi lắc đầu: "Lời người nói có lẽ là đúng, nhưng đó không phải tôn chỉ của Diệp Phi ta."</p>
+    <p>"Ý ngươi là sao?" Chi tỷ đột nhiên cười khẽ: "Chẳng lẽ ngươi còn muốn chịu trách nhiệm với ta sao?"</p>
+    <p>Diệp Phi không cười, mà chân thành gật đầu: "Không sai, ta chính là sẽ chịu trách nhiệm với người!"</p>
+    <p>Nhìn vẻ mặt nghiêm túc của gã đàn ông anh tuấn phi phàm này, lòng Chi tỷ không khỏi rung động, nhưng vẫn lắc đầu: "Thôi đi, nếu ngươi muốn chịu trách nhiệm thì hãy chịu trách nhiệm với Vi Nhi và tiểu Hàm đi, các nàng đều một lòng với ngươi, ngươi đừng phụ lòng các nàng."</p>
+    <p>"Các nàng ta tự nhiên sẽ không phụ, nhưng với người, ta cũng sẽ không bỏ mặc." Diệp Phi kiên định nói.</p>
+    <p>"Ta không giống các nàng, ta đã có gia đình riêng. Hơn nữa vì quan hệ của bác ngươi, Chi di vẫn luôn coi ngươi như con cái mà đối đãi." Chi tỷ cười khẽ, nhưng trong lòng lại có chút chột dạ. Trước ngày hôm qua, có lẽ nàng vẫn coi Diệp Phi là đứa trẻ, nhưng bây giờ thì khác. Dù chưa thể nói là đã yêu hắn, nhưng sự thỏa mãn tột cùng về thể xác khiến nàng bất tri bất giác nảy sinh một tia quyến luyến.</p>
+    <p>"Không có gì khác biệt cả, trong lòng ta, các ngươi đều là những người phụ nữ ta muốn yêu thương, vì giờ đây trên người ngươi đã đóng dấu ấn của Diệp Phi ta rồi!" Nói xong, Diệp Phi dùng sức đẩy thân thể về phía trước, khiến hai người vừa tách ra một chút lại khẩn mật kết hợp trở lại.</p>
+    <p>"Ah..." Va chạm khoái lạc tới cực điểm khiến Chi tỷ không kiềm chế được mà rên khẽ, vội ngăn lại: "Không được, ngươi đừng cử động được không?"</p>
+    <p>"Không được!" Diệp Phi nhẹ nhàng nghiêng người, đặt Chi tỷ dưới thân, đỉnh động vòng eo thực hiện những động tác chậm mà sâu, đồng thời nhìn vào mắt nàng nói: "Xem ra dấu ấn tối qua vẫn chưa đủ sâu, ta muốn đóng thêm vài cái nữa!"</p>
+    <p>Nói xong, hắn đẩy nhanh tốc độ, cự vật lớn từng cú nặng nề đụng chạm vào hoa tâm kiều nộn của Triệu Nhã Chi.</p>
+    <p>Vì đang hoàn toàn tỉnh táo, khoái cảm Triệu Nhã Chi nhận được mạnh hơn tối qua không biết bao nhiêu lần. Khoái cảm siêu cường chưa từng có khiến nàng nhanh chóng quên hết thảy, bản năng đón ý nói hùa theo hắn.</p>
+    <p>Để vị mỹ nhân được vạn người mong đợi này hoàn toàn thần phục dưới háng mình, Diệp Phi giữ nhịp độ ngày càng nhanh và mạnh, sau đó nâng đôi chân ngọc của nàng lên vai, hai tay ôm lấy eo nhỏ, cự vật như đóng cọc cuồng đảo trong dâm huyệt thành thục của nàng, thẳng khiến Triệu Nhã Chi hồn bay lên tận mây xanh, tiếng rên rỉ không dứt.</p>
+    <p>Sau liên tiếp ba lượt cao trào, Diệp Phi mới bắn tinh dịch nóng hổi vào nơi sâu nhất của Triệu Nhã Chi rồi dừng mọi động tác.</p>
+    <p>"Thế nào, giờ còn coi ta là con cái đối đãi nữa không?" Để Chi tỷ nghỉ ngơi một chút, Diệp Phi cười hỏi.</p>
+    <p>Nghe tiếng Diệp Phi, linh hồn như đang phiêu đãng của Chi tỷ cuối cùng cũng trở lại. Nàng không nói gì, chỉ ôn nhu nhìn gã đàn ông vẫn đang đè trên người mình, ánh mắt tràn đầy thỏa mãn và si mê. Lúc này, nàng đã hoàn toàn bị hắn chinh phục, ít nhất là về mặt thể xác. Mà một người phụ nữ khi đã bị chinh phục về thể xác, lại không chán ghét người đàn ông đó, thì tâm hồn cũng sắp rơi vào tay giặc rồi.</p>
+    <p>Nhìn ánh mắt của Chi di, Diệp Phi vô cùng thỏa mãn, định xoay người xuống khỏi người nàng nhưng bị nàng giữ lại.</p>
+    <p>"Một lát nữa hãy xuống, ta muốn nhận thức thêm một chút về cảm giác của ngươi." Dù bị thân hình hùng tráng của Diệp Phi đè tới mức thở không ra hơi, nhưng Chi di lại thập phần hưởng thụ cảm giác này. Từ lúc chào đời đến nay, đây là lần đầu tiên nàng biết được, hóa ra bị người khác chinh phục cũng có thể sung sướng đến thế.</p>
+    <p>Cứ như vậy một hồi lâu, cho đến khi ngoài cửa truyền đến tiếng la hét ầm ĩ của ba cô gái nhỏ nhà họ Cốc, Chi di mới nhẹ nhàng đẩy Diệp Phi, ra hiệu hắn xuống dưới.</p>
+    <p>Diệp Phi gật đầu, nhưng không lập tức xuống ngay mà nhìn sâu vào mắt Chi di, hỏi: "Chi di, từ nay về sau hãy toàn tâm toàn ý làm người phụ nữ của ta, được không?"</p>
+    <p>"Ai muốn làm người phụ nữ của ngươi chứ?" Chi di lần đầu tiên đỏ mặt trước mặt Diệp Phi: "Ta chỉ là một nhân viên dưới tay ngươi mà thôi. Bất quá, từ nay về sau ta sẽ an tâm làm việc, luôn ở lại Vọng Hải."</p>
+    <p>"Vậy cứ quyết định như thế!" Diệp Phi cười ha ha, lại dùng sức đỉnh vài cái khiến Chi di không chịu nổi mà hờn dỗi, lúc này hắn mới rút thân thể ra, mặc quần áo vào thật nhanh, dặn dò Chi di nghỉ ngơi thêm rồi chuẩn bị lẻn đi. Không ngờ đúng lúc này, điện thoại lại vang lên.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0352.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0354.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

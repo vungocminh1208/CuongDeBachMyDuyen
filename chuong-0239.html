@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 239 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 239</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 239</small>
+    Chương 239: Diệp Tuyền kinh hỉ
+  </h1>
+  <div class="chapter-body">
+    <p>Mười phút sau, Diệp Phi chém kẻ địch cuối cùng thành hai khúc rồi quay lại chỗ cũ. Hắn đột nhiên ngửa mặt lên trời thét dài, âm thanh truyền đi rất xa. Nếu những người Vọng Hải từng nghe thấy âm thanh kinh thiên động địa kia còn nhớ rõ, chắc chắn sẽ nhận ra đây chính là tiếng thét đó. Diệp Phi làm vậy cũng không có ý nghĩa gì đặc biệt, chẳng qua mỗi khi biến thành bộ dạng giao nhân này, trong lòng hắn luôn dâng lên một loại hào hùng quân lâm thiên hạ. Nếu không phát tiết ra ngoài bằng cách này, hắn sẽ cảm thấy rất khó chịu.</p>
+    <p>Lúc này, những cao thủ chứng kiến toàn bộ quá trình đều xông tới, nhìn Diệp Phi như nhìn thiên thần hạ phàm với ánh mắt vô cùng sùng kính. Không biết là ai khởi xướng, đám đông cùng hét lớn: "Chiến thần! Chiến thần!"</p>
+    <p>Không sai, vào khoảnh khắc này, từ ngữ duy nhất trong lòng bọn họ có thể hình dung hình tượng của Diệp Phi chính là "Chiến thần". Kể từ khi sở hữu siêu sức mạnh, họ càng thêm sùng bái những người có thực lực siêu việt.</p>
+    <p>Diệp Tuyền cùng mọi người cũng từ trên xe thương vụ bước xuống. Trong lòng họ đều cảm thấy hổ thẹn vì vừa rồi không giúp được gì, nhưng nghĩ đến trận chiến vượt xa năng lực của mình, họ thực sự không cách nào tham dự.</p>
+    <p>Một hồi lâu sau, tiếng thét của Diệp Phi mới dừng lại. Hắn nhìn quanh ba mươi cao thủ, trầm giọng nói: "Nhớ kỹ trận chiến này, kinh nghiệm quý báu này sẽ trở thành chìa khóa chiến thắng cho các ngươi trên những chiến trường tàn khốc hơn sau này!"</p>
+    <p>Nói xong, Diệp Phi tiện tay ném thanh trường đao đã hơi cùn trong tay, thân hình to lớn vụt bay lên như diều gặp gió, trong nháy mắt biến mất khỏi tầm mắt mọi người. Thanh đao này tuy được Trương Nhất Đức cho người chế tạo bằng hợp kim tốt nhất, nhưng so với hai thanh đại kiếm của Diệp Phi thì còn kém xa, nên hắn chẳng hề để tâm. Trong không gian của hắn còn vài chục thanh tương tự như thế.</p>
+    <p>Đưa mắt nhìn bóng dáng to lớn kia rời đi, lòng Diệp Tuyền tràn ngập kinh ngạc tột độ. Người này chẳng lẽ thực sự là chiến thần hạ phàm? Nếu không, sao có thể sở hữu thực lực vượt xa phạm vi nhân loại như vậy? Nhưng lúc này, nàng nghĩ nhiều hơn cả vẫn là Diệp Phi. Hắn rốt cuộc là hạng người gì? Không chỉ anh minh cơ trí, sát phạt quyết đoán, mà thủ hạ còn khống chế được một đám cao thủ như vậy. Đặc biệt là kẻ giống chiến thần kia, với thực lực đó, lẽ nào còn cần phải nghe lệnh người khác sao?</p>
+    <p>Thu thập lại tâm tình, Diệp Tuyền bắt đầu chỉ huy mọi người quét dọn chiến trường, chủ yếu là ném những xác chết xuống biển. Còn về mảnh kiến trúc này, vì người Nhật kia đã chết, nó trở thành vật vô chủ. Cho dù tên đó còn người nhà hay đồng bọn, e là cũng không dám bén mảng tới gần biển nữa. Như vậy, sau khi Lăng Vân Hội tới, có thể tiếp quản nơi này.</p>
+    <p>Lúc này Diệp Phi đã trở về Vọng Hải. Vì trời sắp sáng nên hắn không về nhà, cứ thế đi dạo trên đường. Hầu hết các cửa hàng đều đã đóng cửa, đường phố có vẻ hơi quạnh quẽ, nhưng Diệp Phi cũng không có ý định mua gì, chỉ tùy ý đi dạo.</p>
+    <p>Đột nhiên, một bảng hiệu sáng đèn đập vào mắt Diệp Phi. Ngưng mắt nhìn lại, đây lại là một cửa hàng dụng cụ người lớn. Lòng Diệp Phi khẽ động, cất bước đi vào.</p>
+    <p>Chủ tiệm là một người đàn bà ngoài ba mươi, ăn mặc cực kỳ diễm lệ. Thấy Diệp Phi, mắt bà ta sáng rực lên, trên mặt nở nụ cười yêu mị, đón chào: "Tiểu soái ca, muốn mua gì nào?"</p>
+    <p>"Ta xem trước đã."</p>
+    <p>Diệp Phi thuận miệng trả lời, đi dạo quanh tiệm.</p>
+    <p>Quy mô cửa hàng này không nhỏ. Mãi một lúc lâu, Diệp Phi mới thấy trong góc khuất có một tủ đầy ắp các loại dụng cụ mô phỏng phụ nữ, đủ mọi thể loại. Có vài cái thậm chí còn lớn hơn cả kích thước thật, khiến Diệp Phi vô cùng ngạc nhiên. Loại lớn thế này, chẳng lẽ thực sự có phụ nữ dùng được?</p>
+    <p>Thấy Diệp Phi dừng lại ở khu vực này, ánh mắt bà chủ không khỏi lóe lên vẻ ngạc nhiên, nhưng vẫn nói: "Tiểu soái ca, muốn thử trải nghiệm đặc biệt sao?"</p>
+    <p>Diệp Phi sững sờ, lập tức hiểu ra ý của bà chủ, không khỏi có chút xấu hổ: "Không phải, ta chỉ muốn mua một cái cho bạn gái. Đúng rồi, chỗ các ngươi có nhận làm theo yêu cầu không?"</p>
+    <p>"Mua cho bạn gái?"</p>
+    <p>Ánh mắt bà chủ nhìn Diệp Phi có chút thay đổi. Chẳng lẽ chàng trai đẹp tới mức không thể tự kiềm chế này lại là một kẻ bất lực?</p>
+    <p>Nhìn thấu suy nghĩ của bà chủ qua ánh mắt kia, mặc dù không hề liên quan nhưng là đàn ông, Diệp Phi đương nhiên không thể để người khác xem thường, bèn giải thích: "Là thế này, ta đi làm ở nơi khác, không thể ở bên cạnh nàng thường xuyên, nên muốn làm một cái theo kích thước của mình. Không biết chỗ các ngươi có nguyên liệu không?"</p>
+    <p>Bà chủ lúc này mới thở phào, cười nói: "Đương nhiên là có rồi, hơn nữa toàn là nguyên liệu tốt nhất, đảm bảo làm ra không khác gì thật, thậm chí còn có hệ thống phun dịch và điều tiết nhiệt độ giống y như người thật. Chắc chắn có thể khiến bạn gái ngươi nhắm mắt lại cũng không cảm nhận được là thật hay giả."</p>
+    <p>Thấy nơi này quả nhiên có thứ mình cần, Diệp Phi hết sức vui mừng: "Vậy lấy cho ta vài phần nguyên liệu cùng một bản hướng dẫn, ta mang về tự làm."</p>
+    <p>"Thứ này không dễ làm đâu, không qua luyện tập lâu dài rất dễ làm hỏng. Hay là ngươi làm ngay tại đây đi, ta là kỹ sư giỏi nhất đây."</p>
+    <p>Bà chủ cười quyến rũ: "Hơn nữa sau khi làm xong còn có thể cho ngươi thí nghiệm tại chỗ, không hài lòng có thể làm lại."</p>
+    <p>"Không cần, ta tự làm là được rồi."</p>
+    <p>Diệp Phi không khỏi đổ mồ hôi. Bà chủ trước mắt tuy không xấu, nhưng so với các nàng ấy thì còn cách quá xa. Quan trọng nhất là với kiểu phụ nữ phóng khoáng, không biết đã qua tay bao nhiêu đàn ông thế này, Diệp Phi căn bản không có chút hứng thú nào.</p>
+    <p>"Thế này đi, ngươi làm ở đây thì ta không thu tiền, còn tặng thêm một chiếc thẻ khách quý. Từ nay về sau mua bất cứ thứ gì cũng được giảm giá. Nếu ta có mặt, thậm chí có thể miễn phí toàn bộ, thế nào?"</p>
+    <p>Bà chủ vẫn chưa từ bỏ ý định. Cực phẩm đẹp trai thế này so với mỹ nữ còn khó tìm hơn, bà ta tình nguyện ngã vào lòng.</p>
+    <p>Diệp Phi lắc đầu: "Thôi bỏ đi, ta vẫn thấy tự làm thoải mái hơn."</p>
+    <p>"Vậy được rồi."</p>
+    <p>Thấy Diệp Phi thực sự không nguyện ý, bà chủ cũng hết cách. Bà ta đâu thể cưỡng ép người ta được? Tuy đã có ý nghĩ đó, nhưng nhìn cơ thể hùng tráng của Diệp Phi, bà ta cảm thấy mình không đối phó nổi nên đành buông tha. Sau khi lấy vài phần nguyên liệu cùng hướng dẫn đưa cho Diệp Phi và thu tiền, bà ta lưu luyến tiễn hắn rời đi.</p>
+    <p>Sau khi rời khỏi tiệm, Diệp Phi đi thẳng tới tổng bộ Lăng Vân Hội, bảo quản lý dọn cho mình một căn phòng rồi ra lệnh không được quấy rầy, sau đó bắt đầu nghiên cứu món đồ vừa mua được.</p>
+    <p>Quả nhiên như bà chủ nói, công nghệ của thứ này khá phức tạp. Nhưng điều đó không làm khó được Diệp Phi. Sau khi làm hỏng một phần nguyên liệu, hắn đã cực kỳ thuần thục. Chẳng mấy chốc đã làm xong một cái, phát hiện bà chủ tuy trông không đáng tin nhưng không hề khoác lác. Sản phẩm làm ra dù màu sắc, vẻ ngoài hay xúc cảm đều không khác gì thật, thậm chí ngay cả mạch máu dưới da cũng giống y như đúc. Sau khi lắp thêm hệ thống phun dịch vô hại với cơ thể người, Diệp Phi cuối cùng cũng hài lòng thu lại, trên mặt lộ ra nụ cười xấu xa: Mẹ à, để con trai dùng cái này cho mẹ thích ứng trước đã!</p>
+    <p>Ở phía xa gần biển, Diệp Tuyền cùng ba mươi cao thủ và thủ hạ rốt cuộc cũng vứt được tất cả xác chết xuống biển trước lúc hừng đông. Mùi máu tươi nồng nặc nhanh chóng thu hút đám cá mập lớn, chỉ trong nháy mắt, những thi thể đó đã biến mất hoàn toàn.</p>
+    <p>Xong xuôi mọi việc, Diệp Tuyền không dừng lại ở gần biển nữa mà ra lệnh cho mọi người nhanh chóng quay về Vọng Hải, vì giờ đây nàng đột nhiên rất muốn gặp Diệp Phi.</p>
+    <p>Trở lại tổng bộ Lăng Vân Hội, Diệp Tuyền dưới sự dẫn đường của nhân viên đã tìm thấy Diệp Phi đang ở cùng con gái mình. Tuy nhiên, cảnh tượng trước mắt khiến nàng dở khóc dở cười: Diệp Phi đang cầm một cây kẹo mút lắc lư trước mặt con gái, còn cô bé thì nhìn hắn vẻ khinh bỉ: "Đã nói bao nhiêu lần rồi, con không thích kẹo mút. Nếu chú muốn làm 'ông chú quái đản', làm ơn đổi chiêu khác đi được không?"</p>
+    <p>Cảnh tượng này tuy khiến Diệp Tuyền buồn cười, nhưng nàng phải thừa nhận, lúc này Diệp Phi càng khiến nàng rung động. Bởi một anh hùng tuy dễ khiến người ta sùng bái nhưng cũng tạo ra cảm giác xa cách, còn Diệp Phi nghịch ngợm lúc này lại dễ gần hơn nhiều.</p>
+    <p>Lúc này Diệp Phi cũng nhìn thấy Diệp Tuyền, tiện tay bỏ cây kẹo đã bóc vỏ vào miệng, đứng lên nói giọng hơi không rõ: "Tuyền tỷ, khổ cực rồi. Mệt mỏi cả đêm, chị nên đi nghỉ ngơi trước đi."</p>
+    <p>Diệp Tuyền lắc đầu: "Không cần, trên xe chị đã ngủ một lúc rồi, giờ chưa thấy buồn ngủ. Chị muốn báo cáo chuyện gần biển với em."</p>
+    <p>"Vậy được rồi, chúng ta đi phòng họp, vừa hay em cũng có chút việc muốn thông báo."</p>
+    <p>Diệp Phi gật đầu, quay sang nói với cô bé Phương Ngọc Thiến: "Tiểu nha đầu, phải ngoan nhé, lát nữa ca ca về sẽ dẫn cháu đi xem cá vàng."</p>
+    <p>"Đi chết đi!"</p>
+    <p>Cô bé không nhịn được nữa, nhấc chân nhỏ trắng nõn, cầm chiếc dép ném về phía Diệp Phi. Nhìn hắn cười ha hả rời phòng cùng mẹ mình, khuôn mặt nhỏ nhắn của cô bé đột nhiên đỏ lên, lầm bầm: "Xem cá vàng? Thật tưởng mình là tiểu loli à? Nếu hẹn đi xem phim thì còn tạm được!"</p>
+    <p>Diệp Phi và Diệp Tuyền cùng đến phòng họp. Một lát sau, Trương Nhất Đức dẫn theo vài cao tầng Lăng Vân Hội cùng một số nòng cốt cũ của Phi Long bang cũng lần lượt đến.</p>
+    <p>Thấy người đã đủ, Diệp Tuyền hắng giọng, thuật lại sơ qua tình hình tối qua. Một số nòng cốt Phi Long bang chưa đi hôm qua nghe xong vô cùng khiếp sợ, nhưng Trương Nhất Đức và những người khác lại như đã đoán trước, không có phản ứng gì.</p>
+    <p>Giới thiệu xong tình hình, Diệp Tuyền từ đáy lòng nói: "Tôi rất vui mừng vì được trở thành một thành viên bình thường của Lăng Vân Hội. Tin rằng dưới sự dẫn dắt của bang chủ, chúng ta chắc chắn sẽ sáng tạo ra huy hoàng lớn hơn nữa!"</p>
+    <p>Nàng nói vậy không phải để nịnh nọt Diệp Phi, mà là sự kính nể xuất phát từ nội tâm.</p>
+    <p>"Thành viên bình thường của Lăng Vân Hội?"</p>
+    <p>Diệp Phi ngạc nhiên nhìn Diệp Tuyền: "Tôi chưa từng nói như vậy mà. Tuyền tỷ, chị có phải nghĩ sai rồi không? Thủ hạ có người thích ngắt lời hoặc nghi vấn quyết định của tôi như chị sẽ làm tôi mất mặt lắm đấy."</p>
+    <p>Lời vừa dứt, mọi người trong nháy mắt ngẩn người. Hắn có ý gì? Chẳng lẽ không định tiếp nhận Phi Long bang sao? Thế những lời trước kia thì sao?</p>
+    <p>"Diệp bang chủ, anh có ý gì? Vắt chanh bỏ vỏ sao?"</p>
+    <p>Một người cũ của Phi Long bang kích động đứng dậy hỏi, những người khác cũng nhao nhao lên. Dù Lăng Vân Hội hùng mạnh khiến họ khiếp sợ, nhưng lòng trung thành với Diệp Tuyền khiến họ không quan tâm điều đó.</p>
+    <p>Diệp Tuyền không khỏi tức giận, nhưng nhiều hơn là thương tâm. Nàng không ngờ Diệp Phi lại là hạng người như vậy. Giờ khắc này, nàng cảm thấy không đáng cho bản thân mình. Người phụ nữ kiên cường này thậm chí có cảm giác muốn khóc.</p>
+    <p>"Các vị, xin hãy nghe tôi nói hết đã được không?"</p>
+    <p>Diệp Phi khoát tay ra hiệu mọi người im lặng, sau đó cười nói: "Tôi đề nghị, mời Diệp Tuyền làm phó bang chủ của Lăng Vân Hội chúng ta, các người có ý kiến gì không?"</p>
+    <p>"Phó bang chủ?"</p>
+    <p>Diệp Tuyền ngẩn người, vô thức lặp lại.</p>
+    <p>"Đúng vậy, phó bang chủ. Nếu chị chấp nhận, từ nay về sau chúng ta là ngang hàng."</p>
+    <p>Diệp Phi cười nói: "Chị có thể tùy ý ngắt lời tôi, càng có thể nghi vấn quyết định của tôi, mà tôi cũng sẽ không mất mặt."</p>
+    <p>Diệp Tuyền vừa mừng vừa sợ, thậm chí có cảm giác muốn cắn Diệp Phi một cái. Tên này quá biết cách trêu chọc người khác, có chuyện gì không thể nói thẳng sao? Làm nàng suýt chút nữa mất mặt. Thực ra nàng không quan tâm làm phó bang chủ hay không, nàng chỉ quan tâm Diệp Phi không phải hạng người như nàng vừa nghĩ. Sau khi phát hiện mình trách oan hắn, trong lòng nàng chỉ còn lại sự ngọt ngào, vui sướng.</p>
+    <p>"Tuyền tỷ, rốt cuộc thế nào, chị phải cho một câu trả lời chứ."</p>
+    <p>Thấy Diệp Tuyền nghe xong lời mình thì mặt lúc đỏ lúc trắng, không biết đang nghĩ gì mà chẳng hề tỏ thái độ, Diệp Phi mở miệng thúc giục.</p>
+    <p>Dưới sự nhắc nhở của Diệp Phi, Diệp Tuyền tỉnh lại, chần chừ nói: "Như vậy không tốt lắm đâu, nếu chị làm phó bang chủ thì Đức thúc phải làm sao?"</p>
+    <p>"Đức thúc đương nhiên cũng là phó bang chủ. Hơn nữa Lăng Vân Hội ở Lâm Hải bên kia cũng có một phó bang chủ, lát nữa sẽ giới thiệu cho chị biết."</p>
+    <p>Diệp Phi cười nói: "Từ nay về sau Tuyền tỷ sẽ chủ quản công việc ở gần biển, vừa hay chị cũng quen thuộc bên đó."</p>
+    <p>Lòng Diệp Tuyền có chút thất vọng, nếu chủ quản gần biển thì chẳng phải lại phải xa hắn sao? Phải bao lâu mới gặp nhau một lần? Nhưng nghĩ đến khoảng cách giữa hai thành phố không xa, nàng vẫn gật đầu: "Vậy cũng được."</p>
+    <p>Trương Nhất Đức cười nói: "Ba vị phó bang chủ, mỗi người phụ trách một thành phố, bang chủ, anh lại định làm vung tay chưởng quỹ sao?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0238.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0240.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

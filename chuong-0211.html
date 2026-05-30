@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 211 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 211</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 211</small>
+    Chương 211: Biến cố bất ngờ
+  </h1>
+  <div class="chapter-body">
+    <p>Mấy ngày kế tiếp, Diệp Phi cùng Liễu Diệc Như càng thêm thân mật. Mỗi tối, cả hai đều tay miệng cùng dùng để phục vụ đối phương vài lần. Chỉ là điều khiến Diệp Phi có chút buồn bực chính là, dù bản thân có cố gắng thế nào, thậm chí dừng lại đúng lúc nàng đang đến gần cao trào, nàng vẫn không hề xúc động đến mức để hắn tiến thêm một bước. Tuy việc có được sự phục vụ từ cái miệng nhỏ nhắn của nàng trong thời gian ngắn như vậy đã thuận lợi hơn mong đợi, nhưng giờ đây hắn lại có chút không thỏa mãn. Thế nhưng, vì không đành lòng ép buộc nàng, Diệp Phi chỉ đành chịu đựng, cuộc sống như vậy khiến trong lòng hắn dần nén lại một ngọn lửa.</p>
+    <p>Ban ngày, Liễu Diệc Như đều để Diệp Phi ở lại trong động phủ, còn mình tự đi tìm Băng Linh Thảo. Tuy thực lực của nàng sau khi tu luyện Cực Băng tâm quyết đã tăng tiến rất nhiều, nhưng Diệp Phi vẫn không yên tâm. Mỗi ngày hắn đều âm thầm đi theo phía sau để đề phòng nguy hiểm. May mắn là sự lo lắng của hắn không xảy ra, Diệp Phi cũng tạm thời không cần bộc lộ thực lực trước mặt nàng. Hơn nữa, việc được ở riêng với nàng khiến Diệp Phi rất thỏa mãn, nhưng mỗi ngày chỉ có thể thông qua bàn tay nhỏ bé và cái miệng nhỏ nhắn để giải tỏa, thực sự khiến thân thể Diệp Phi muốn phát điên. Hắn thậm chí đã nghĩ đến việc tạo ra một lần ngoài ý muốn, nhưng nếu không phải vạn bất đắc dĩ, hắn vẫn không muốn dùng cách đó.</p>
+    <p>Diệp Phi không biết rằng, trong khi hắn khó nhịn thì Liễu Diệc Như cũng chẳng khá hơn. Giống như Diệp Phi, nàng dần không còn thỏa mãn với việc chỉ dừng lại ở màn dạo đầu. Thế nhưng, mối quan hệ của hai người vẫn luôn khiến nàng không hạ được quyết tâm. Đó cũng không phải nỗi băn khoăn lớn nhất, bởi đi đến bước này, cả hai đã chẳng khác nào vợ chồng. Nguyên nhân thực sự là trong lòng nàng rất sợ hãi, sợ rằng Diệp Phi chỉ nhất thời mê luyến thân thể mình chứ không phải thật lòng có tình cảm nam nữ. Nếu là như vậy, một khi đã vượt qua bước cuối cùng, không có tình cảm làm nền tảng thì họ duy trì được bao lâu? Chờ khi hắn không còn hứng thú với thân thể của nàng, nàng biết đi đâu về đâu? Nếu để Diệp Phi biết được những điều này, chỉ sợ hắn sẽ hối hận vì đã quen biết nàng. Đáng tiếc, cái gọi là làm việc tốt thường gian nan, có lẽ ông trời cũng ghen ghét vận may quá lớn của tiểu tử Diệp Phi này, muốn cho hắn chịu thêm vài ngày tra tấn.</p>
+    <p>Đúng lúc Diệp Phi và Liễu Diệc Như vì không hiểu tâm tư đối phương mà chìm đắm trong hạnh phúc cùng phiền não quấn quýt, thì ngoài ngàn dặm tại Vọng Hải đã xảy ra một đại sự, khiến cả hắc bạch hai đạo đều chấn động.</p>
+    <p>Ngày hôm qua, một tờ báo nhỏ gần như không có ảnh hưởng gì đột nhiên tung ra một tin tức tuyệt đối gây chấn động. Ngay cái tiêu đề cũng đã khiến người ta kinh ngạc: "Bí mật tình nhân của thị trưởng Vọng Hải". Trong bài báo, phóng viên kia khẳng định chắc nịch về những gì mình tận mắt chứng kiến. Hắn nói mình vô tình thấy thị trưởng Vọng Hải Liễu Phượng Nghi hẹn hò bí mật với một người đàn ông trẻ tuổi, vì vậy đã bám theo và cuối cùng chụp được những bức ảnh thân mật chính diện sau vài ngày theo dõi.</p>
+    <p>Nếu chỉ là văn bản, những người sống tại Vọng Hải biết rõ nhân phẩm của Liễu Phượng Nghi chắc chắn sẽ không tin. Thế nhưng, bài báo này đính kèm hình ảnh minh họa khiến người ta không thể không tin. Một tấm hình là Liễu Phượng Nghi mặc đồ ngủ, thân mật tựa vào lòng một người đàn ông, còn hôn lên má người đó. Tuy gương mặt nàng chỉ lộ ra một nửa, nhưng vẻ đẹp tuyệt thế đủ làm khuynh đảo mọi nam giới Vọng Hải khiến người khác khó mà quên được, rất dễ dàng nhận ra là nàng. Tấm hình thứ hai càng lợi hại hơn: Liễu Phượng Nghi đang từ một khách sạn đi ra, bên cạnh là người đàn ông trẻ tuổi có vóc dáng y hệt trong tấm ảnh trước, tay người đàn ông còn vòng qua eo nàng. Hơn nữa, người đàn ông này cũng không xa lạ gì, chính là một minh tinh vừa nổi tiếng nhờ vẻ ngoài điển trai.</p>
+    <p>Chỉ chưa đầy nửa ngày, bài báo này đã được các trang mạng lớn đăng lại. Trong chốc lát, sự chú ý của người dân toàn Trung Quốc đều đổ dồn về Vọng Hải, về phía nữ thị trưởng Liễu Phượng Nghi vốn nổi tiếng cả về năng lực lẫn nhan sắc.</p>
+    <p>Điều khó hiểu nhất là phản ứng của giới cao tầng Trung Quốc lần này lại nhanh một cách thần kỳ. Ngay chiều hôm đó, một tổ công tác do tầng cao nhất phái xuống đã đến Vọng Hải. Trong tình trạng chưa hề điều tra kỹ lưỡng, họ đã lấy lý do tác phong không đứng đắn để đình chỉ công tác Liễu Phượng Nghi. Vị trí thị trưởng Vọng Hải tạm thời được giao cho trợ thủ của nàng, một phó thị trưởng tên Trương Lâm Tâm, người có nhan sắc cũng không thua kém nàng bao nhiêu.</p>
+    <p>Tin tức truyền ra, người nhà họ Liễu đều hoảng loạn. Vì hiện tại Liễu Quân Di đang ở kinh thành, còn Liễu Diệc Như và Diệp Phi lại đi xa, họ như mất đi chỗ dựa. Sau khi bàn bạc, Diệp Tư Kỳ đã gọi điện thông báo cho Liễu Diệc Như đang ở tận Trường Bạch sơn.</p>
+    <p>Lúc nhận được điện thoại, Liễu Diệc Như vừa rời khỏi sơn động hạnh phúc kia. Tin tức này khiến nàng nhất thời không thể tiếp nhận, sững sờ hồi lâu mới dặn dò Diệp Tư Kỳ cùng mọi người ổn định tình hình, đợi mình trở về rồi tính sau.</p>
+    <p>Cúp điện thoại, người đầu tiên Liễu Diệc Như nghĩ đến là Diệp Phi. Nàng đã quen ỷ lại vào hắn. Tuy nhiên, nghĩ đến Diệp Phi, nàng lại có chút chần chờ vì thật sự không nỡ kết thúc khoảng thời gian được ở riêng với hắn. Nếu trở về, cuộc sống sẽ trở lại quỹ đạo cũ, nàng cũng sẽ không còn là "bạn gái" của hắn nữa.</p>
+    <p>Ý nghĩ này vừa lóe lên trong đầu, Liễu Diệc Như đã lập tức xua đuổi, trong lòng không khỏi tự trách. Không ngờ mình cũng có ngày vì có người yêu mà quên đi chị gái, vì muốn ở riêng với hắn mà nảy sinh ý nghĩ bỏ mặc sự việc của chị.</p>
+    <p>Điện thoại của Diệp Phi không phải loại đặc chế như của Liễu Diệc Như nên hắn không nhận được tin tức. Sau khi Liễu Diệc Như rời đi, hắn cũng thu dọn đồ đạc, chuẩn bị tiếp tục âm thầm đi theo bảo vệ nàng. Không ngờ chưa kịp xuất phát thì Liễu Diệc Như đã quay lại, hắn không khỏi ngạc nhiên hỏi: "Có chuyện gì vậy?"</p>
+    <p>Vừa nói hắn vừa đón lấy, nhẹ nhàng ôm lấy cơ thể mềm mại của nàng.</p>
+    <p>"Dọn đồ đi, chúng ta quay lại Vọng Hải."</p>
+    <p>Liễu Diệc Như đang lo lắng cho chị gái nên không còn tâm trí thân mật với Diệp Phi, nhưng cái ôm của hắn thực sự khiến nàng thả lỏng nhiều. Dường như chỉ cần có hắn, mọi chuyện không còn là vấn đề nữa.</p>
+    <p>"Đã xảy ra chuyện gì?"</p>
+    <p>Diệp Phi vội vàng hỏi. Hắn biết Liễu Diệc Như lo lắng cho mình đến mức nào, nếu không phải xảy ra chuyện tày đình, nàng tuyệt đối sẽ không bỏ dở việc giúp hắn hồi phục để quay về Vọng Hải.</p>
+    <p>Liễu Diệc Như thở dài sầu muộn, vô lực tựa vào người Diệp Phi, nói: "Chị gái xảy ra chuyện rồi."</p>
+    <p>Sau đó, nàng kể lại những gì nghe được từ Diệp Tư Kỳ.</p>
+    <p>"Vậy chúng ta lập tức trở về!"</p>
+    <p>Diệp Phi trong lòng cũng gấp gáp. Hắn không phải sợ trong nhà xảy ra chuyện, dù sao Vọng Hải hiện tại cơ bản đã nằm trong tầm kiểm soát của hắn. Kẻ khác dù có giở trò cũng chỉ có thể thông qua dư luận, không thể gây ảnh hưởng gì đến sự an nguy của họ. Nhưng hắn lo Liễu Phượng Nghi sẽ không chịu nổi cú sốc này. Hơn nữa, kẻ nào dám động đến người của Diệp Phi, hắn nhất định sẽ bắt đối phương phải trả giá đắt!</p>
+    <p>Thú thật, vị trí của Liễu Phượng Nghi trong lòng Diệp Phi tuy không bằng Liễu Diệc Như nhưng cũng vô cùng quan trọng. Họ, cùng những người phụ nữ khác từng có quan hệ với Diệp Phi, đều là những người hắn yêu thương sâu sắc. Bất kỳ ai bị tổn thương cũng đều khiến hắn đau khổ, chỉ là Liễu Diệc Như là người hắn yêu nhất mà thôi.</p>
+    <p>Vội vàng thu dọn, hai người chuẩn bị rời đi. Tuy nhiên trước khi đi, cả hai không khỏi luyến tiếc nhìn lại nơi này. Địa điểm này đối với họ có ý nghĩa vô cùng to lớn, không chỉ là nơi trú ngụ trong những ngày qua, mà tại nơi đây, tâm linh họ trở nên gần gũi hơn, về mặt thể xác cũng đã tiến thêm một bước dài.</p>
+    <p>Nghĩ ngợi một chút, Diệp Phi đột nhiên chụm ngón tay thành kiếm, nhanh chóng vạch lên vách đá. Theo những mảnh đá rơi xuống, mười hai chữ rồng bay phượng múa "Diệp Phi cùng người yêu nhất Liễu Diệc Như đính ước tại nơi này" đã được khắc sâu vào vách đá cứng.</p>
+    <p>Dòng chữ của Diệp Phi khiến Liễu Diệc Như vừa ngượng ngùng vừa ngọt ngào, nhưng điều khiến nàng kinh ngạc hơn chính là thực lực của hắn. Nàng không khỏi mở to cái miệng nhỏ nhắn, kinh ngạc hỏi: "Anh... anh..."</p>
+    <p>"Em đang nói đến chỉ lực của anh sao?"</p>
+    <p>Diệp Phi cười hắc hắc: "Nói cho em một bí mật nhé, mấy ngày nay anh hồi phục rất nhanh, hiện tại đã có thể dùng ra một phần ba sức mạnh thời kỳ toàn thịnh rồi."</p>
+    <p>"Nhưng sao anh đột nhiên hồi phục nhanh thế? Chúng ta còn chưa tìm được Băng Linh Thảo mà?"</p>
+    <p>Liễu Diệc Như tuy rất mừng cho Diệp Phi nhưng thực sự không hiểu sao hắn lại hồi phục.</p>
+    <p>"Thật sự muốn biết?"</p>
+    <p>Nụ cười của Diệp Phi trông rất gian.</p>
+    <p>Trong lòng Liễu Diệc Như xao động, chẳng lẽ việc hắn hồi phục có liên quan đến mình? Nghĩ đến đây, gương mặt nàng đỏ bừng, hừ một tiếng: "Không muốn biết!"</p>
+    <p>"Không muốn cũng phải nghĩ."</p>
+    <p>Diệp Phi cười ha ha, ghé sát vào tai nàng nói nhỏ một câu, rồi cười nói: "Mỗi lần uống xong, anh đều cảm thấy rất thoải mái. Vì thế, từ nay về sau em phải mỗi ngày cho anh uống nhé."</p>
+    <p>"Không thèm để ý anh nữa!"</p>
+    <p>Khuôn mặt tuyệt mỹ của Liễu Diệc Như đỏ đến mức muốn nhỏ ra máu. Bàn tay nhỏ bé của nàng dùng sức nhéo một cái lên lưng Diệp Phi, rồi xoay người chạy về phía chỗ ban đầu họ rơi xuống, phóng người nhảy lên. Hiện tại Diệp Phi đã hồi phục nhiều, nàng không còn lo hắn không lên nổi nữa.</p>
+    <p>Vì lo lắng tình hình của Liễu Phượng Nghi, sau khi ra khỏi sơn động, hai người không còn cười đùa, rất nhanh đã về tới trấn nhỏ. Dưới ánh mắt kinh ngạc của chủ khách sạn, họ thanh toán tiền phòng rồi nhanh chóng xuất phát.</p>
+    <p>"Đúng rồi, anh đã hồi phục từ bao giờ, tại sao không nói cho em biết?"</p>
+    <p>Đi được một lúc, Liễu Diệc Như mới nhớ ra chuyện này. Trong lòng nàng rất kỳ lạ, với sự quan tâm của Diệp Phi dành cho nàng, lẽ ra không nên để cô đi ra ngoài mạo hiểm trong khi đã có phương pháp khác.</p>
+    <p>Diệp Phi thở dài: "Nếu không phải dì xảy ra chuyện, đến tận bây giờ anh cũng không muốn nói với em đâu. Bởi vì nếu quay về, cơ hội để chúng ta ở riêng sẽ rất ít."</p>
+    <p>Lời của Diệp Phi khiến Liễu Diệc Như vừa buồn bực nhưng cũng ẩn ẩn vui mừng. Hắn để ý thời gian ở bên mình như vậy, phải chăng chứng tỏ hắn thật sự yêu mình?</p>
+    <p>Vì lo cho chị gái, Liễu Diệc Như không nghỉ ngơi suốt dọc đường. Đến tối ngày thứ hai, cả hai đã về tới biệt thự nhà họ Liễu ở ngoại ô Vọng Hải. Điều khiến họ kinh ngạc là chẳng có ai ở đây. Gọi điện mới biết Diệp Vân Khinh và mọi người đang ở chỗ Liễu Phượng Nghi. Hiện tại Liễu Phượng Nghi đã chuyển ra khỏi biệt thự Vọng Hải, ở một mình tại căn biệt thự nhỏ cách đó không xa. Dù nàng nói với Diệp Vân Khinh là do quen ở một mình, nhưng Diệp Phi hiểu nàng đang chờ mình.</p>
+    <p>Biết được những điều này, Liễu Diệc Như nóng lòng muốn đến gặp chị gái, nhưng lại bị Diệp Phi giữ lại.</p>
+    <p>Nhìn gương mặt mệt mỏi cùng đôi mắt đỏ hoe của Liễu Diệc Như, Diệp Phi đau lòng nói: "Như nhi, em nghỉ ngơi một chút đi, mọi chuyện cứ để anh."</p>
+    <p>Nói xong, hắn hôn nhẹ lên bờ môi hơi khô khốc của nàng.</p>
+    <p>Cách xưng hô cùng hành động của Diệp Phi khiến Liễu Diệc Như kinh ngạc mở to mắt, không hiểu vì sao đã về đến nhà mà Diệp Phi vẫn đối xử thân mật với mình như vậy.</p>
+    <p>Nhìn ra sự nghi hoặc trong ánh mắt Liễu Diệc Như, Diệp Phi cười nói: "Em quên rồi sao? Em hiện tại là bạn gái của anh, em không thể không nhận đâu nhé!"</p>
+    <p>"Nhưng mà..."</p>
+    <p>Liễu Diệc Như nói, hiện tại đã về đến nhà, nếu còn như vậy bị người khác thấy thì sao? Nhưng lời chưa dứt đã bị Diệp Phi cắt ngang.</p>
+    <p>"Chỉ cần trong lòng em có anh, trong lòng anh có em, thì ở đâu cũng như nhau thôi."</p>
+    <p>Diệp Phi khẽ cười: "Cho nên, có anh ở đây, em không cần phải mệt mỏi như vậy nữa. Mọi chuyện cứ giao cho anh là tốt rồi. Em nhìn xem, em tiều tụy đi nhiều rồi, thật sự không nghỉ ngơi là anh đau lòng lắm đấy."</p>
+    <p>"Ừm."</p>
+    <p>Liễu Diệc Như lần này không phản đối nữa, ngoan ngoãn gật đầu, chủ động hôn lên môi hắn: "Vậy anh chú ý nhé, gặp chuyện gì cũng không được quá xúc động."</p>
+    <p>"Anh biết rồi."</p>
+    <p>Diệp Phi lại hôn sâu Liễu Diệc Như một cái, sau đó bế ngang nàng lên, đưa vào phòng ngủ, giúp nàng cởi giày rồi mới lên tiếng: "Anh đi đây, em ngoan ngoãn ngủ một giấc, biết đâu lúc tỉnh dậy, mọi chuyện đã được giải quyết xong rồi."</p>
+    <p>"Em biết rồi, anh đi đi."</p>
+    <p>Liễu Diệc Như mỉm cười tiễn Diệp Phi rời khỏi phòng, trên mặt dâng lên một luồng hạnh phúc đậm đà. Hắn dường như không chỉ mê luyến thân thể của mình đâu!</p>
+    <p>Rời khỏi biệt thự, nụ cười trên mặt Diệp Phi lập tức biến mất, thay vào đó là sự lạnh lùng. Lần này, hắn muốn cho tất cả mọi người biết, người bên cạnh Diệp Phi là kẻ không ai có thể đụng đến!</p>
+    <p>Diệp Phi không đến ngay chỗ Liễu Phượng Nghi, mà lái xe chạy thẳng đến tổng bộ Lăng Vân Hội. Trước khi gặp Liễu Phượng Nghi, hắn muốn làm rõ mọi chuyện, nếu không hắn cũng không biết phải an ủi nàng như thế nào.</p>
+    <p>Xe phóng như bay, nửa giờ sau, Diệp Phi đến tổng bộ Lăng Vân Hội, đi thẳng xuống tầng hầm. Sau vài ngày xử lý, mọi công việc tại Vọng Hải đã tạm ổn, hiện tại Đầu Trọc và mọi người đang chuẩn bị chuyển những thiết bị này sang Lâm Hải.</p>
+    <p>"Tiểu mãn, cậu đến rồi?"</p>
+    <p>Thấy Diệp Phi đột ngột xuất hiện, Trương Nhất Đức vẫn luôn túc trực ở đây đương nhiên hiểu rõ lý do hắn đến. Không đợi hắn hỏi, ông chủ động nói: "Về chuyện của dì cậu, chúng tôi đã điều tra xong cả rồi."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0210.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0212.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

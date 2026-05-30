@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 209 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 209</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 209</small>
+    Chương 209: Sơn gian phúc địa
+  </h1>
+  <div class="chapter-body">
+    <p>Đi thêm một đoạn nữa, Diệp Phi đột nhiên khẽ "Di" một tiếng đầy kinh ngạc, bởi vì hắn phát hiện hoàn cảnh nơi này có chút tương tự với đại trận tự nhiên trong khu rừng rậm ở tây nam. Tuy trận pháp ở đây không tinh diệu bằng trận pháp kia, nhưng không biết dùng phương pháp gì mà hắn lại nhất thời không hề phát giác ra.</p>
+    <p>"Làm sao vậy?" Thanh âm của Diệp Phi khiến Liễu Diệc Như tò mò hỏi.</p>
+    <p>"Chúng ta hẳn là đã lọt vào trong một cái trận pháp." Diệp Phi nói với giọng ngưng trọng. Trận pháp này trong mắt hắn tuy không tính là gì, nhưng lại nguy hiểm hơn cái ở trong rừng rậm tây nam rất nhiều. Bởi vì cái kia là hình thành tự nhiên, trong đó căn bản không có địch nhân, tối đa chỉ là vài con mãnh thú vô tình xông vào. Còn cái trước mắt này rõ ràng là do người bố trí, trong tình huống chưa biết là địch hay bạn, Diệp Phi không thể không coi trọng.</p>
+    <p>"Trận pháp?" Liễu Diệc Như giật mình hỏi: "Chính là loại trận pháp trong truyền thuyết có thể làm người ta mệt mỏi và bị thương sao?"</p>
+    <p>"Không sai." Diệp Phi gật đầu: "Đúng là loại trận pháp này, bất quá mục đích của trận pháp ở đây hẳn chỉ là để mê hoặc người vào, từ đó che giấu thứ gì đó, nên rất khó có khả năng gây nguy hiểm."</p>
+    <p>Tuy Diệp Phi nói vậy, nhưng thứ chỉ tồn tại trong truyền thuyết vẫn khiến Liễu Diệc Như có chút bất an. Cô vô thức nép vào lòng Diệp Phi, hỏi: "Vậy chúng ta phải làm sao bây giờ?"</p>
+    <p>Bây giờ cô đã dần thích ứng với việc gặp chuyện gì cũng tìm đến sự bảo vệ của hắn, chứ không phải đi bảo vệ hắn nữa. Điểm này khiến Diệp Phi vô cùng hài lòng, bởi vì điều đó chứng tỏ trong lòng cô ngày càng xem hắn là người đàn ông có thể dựa vào, chứ không còn là chàng trai nhu nhược cần cô che chở khắp nơi như trước kia.</p>
+    <p>"Võ lâm mạt học Diệp Phi, Liễu Diệc Như hái thuốc đến tận đây, ngộ nhập quý địa, vô ý mạo phạm, kính xin quý chủ nhân hiện thân gặp mặt!"</p>
+    <p>Thời đại hiện nay tuy đã khác xưa, nhưng trong giới võ lâm vẫn thịnh hành cổ phong, cho nên Diệp Phi cũng làm theo quy củ giang hồ, khách sáo nói một câu.</p>
+    <p>Đợi một hồi, bốn phía vẫn tĩnh lặng như cũ, không thấy ai trả lời. Tâm hai người Diệp Phi không khỏi chùng xuống, xem ra chủ nhân nơi này không phải không có ở đây thì chắc chắn là loại người không dễ tiếp cận. Đối mặt với những người như vậy, chỉ cần sơ sẩy một chút là sẽ gây ra xung đột.</p>
+    <p>Bất quá Diệp Phi cũng không sợ. Sau khi đã chú ý tới, đại trận này hoàn toàn không còn bất cứ uy hiếp gì. Về phần võ công, Diệp Phi không tin trên đời này còn có người lợi hại hơn mình. Những lời vừa rồi cũng chỉ vì hắn không muốn gây ra xung đột không cần thiết mà thôi. Hiện tại thấy chủ nhân nơi này một chút lễ phép cũng không có, trong lòng hắn không khỏi tức giận, kéo Liễu Diệc Như nói: "Đi, chúng ta qua đó."</p>
+    <p>"Ừm." Liễu Diệc Như đáp một tiếng, không hỏi nhiều. Hiện giờ cô đã hình thành thói quen ỷ lại vào Diệp Phi, ngày càng nhập tâm vào nhân vật "bạn gái" này rồi.</p>
+    <p>Nắm lấy bàn tay nhỏ nhắn mềm mại của Liễu Diệc Như, Diệp Phi trực tiếp đi về phía vách núi trông có vẻ cứng rắn kia. Liễu Diệc Như chỉ cảm thấy cơ thể mình như xuyên qua một tầng gì đó, cảnh sắc trước mắt đã thay đổi. Tuy nhìn qua không khác biệt mấy so với hẻm núi lúc nãy, nhưng cách đó không xa đã có một sơn động tối om, nghĩ đến hẳn là nơi ở của chủ nhân nơi này.</p>
+    <p>Đến trước sơn động, Diệp Phi lại cao giọng lặp lại lời nói lúc nãy, nhưng bên trong vẫn không có bất kỳ phản ứng nào, cứ như thể bên trong căn bản không có người.</p>
+    <p>Diệp Phi không khỏi hừ lạnh một tiếng, quay đầu lại nói với Liễu Diệc Như: "Nàng ở ngoài chờ ta, ta vào xem sao."</p>
+    <p>Nói xong, hắn buông bàn tay nhỏ bé của cô ra, bước về phía sơn động kia.</p>
+    <p>Liễu Diệc Như ban đầu vô thức gật đầu đồng ý, nhưng ngay lập tức nhớ ra hắn hiện tại căn bản đã mất hết thực lực, tự nhiên không thể để một mình hắn mạo hiểm, thế là vội vã đi theo.</p>
+    <p>Thấy Liễu Diệc Như đuổi theo, Diệp Phi cũng không ngăn cản. Hắn tin với thực lực của mình, bảo vệ cô chắc chắn là dư dả. Về phần có thể hay không bộc lộ thực lực trước mặt cô, lúc này hắn đã chẳng còn bận tâm nữa, bởi vì nếu không làm rõ tình hình nơi này, hắn thật sự không thể yên tâm. Ai biết chủ nhân nơi này có phải một gã âm hiểm hay không? Nếu hắn thừa dịp mình và Liễu Diệc Như nghỉ ngơi mà đánh lén, bản thân mình tuy không sợ, nhưng nếu để Liễu Diệc Như bị dù chỉ một chút tổn thương, thì còn không bằng giết mình đi cho xong.</p>
+    <p>Thông đạo của sơn động này rất ngắn, hai người chỉ vài bước đã đi vào. Mượn ánh sáng từ bên ngoài truyền vào, mọi thứ trong sơn động lập tức thu hết vào tầm mắt.</p>
+    <p>Sơn động này không lớn, diện tích khoảng hai mươi mét vuông, đồ đạc bên trong cũng rất ít, chỉ có một cái giường đá và hai cái ghế đá, ngoài ra không còn gì cả, thậm chí ngay cả nồi niêu xoong chảo mọi người thường dùng cũng không thấy.</p>
+    <p>Nhìn mọi thứ trước mắt, trong lòng Diệp Phi không khỏi có chút sợ hãi, bởi hắn biết, khi thực lực của một người càng mạnh, nhu cầu về vật chất sẽ càng ít đi. Bình thường có thể dùng nội lực để bổ sung tiêu hao hằng ngày cho cơ thể. Truyền thuyết nói rằng khi một người có thể hoàn toàn tích cốc, họ có thể cùng Thiên Địa Đồng Thọ, trở thành Lục Địa Thần Tiên thực thụ.</p>
+    <p>Bất quá đó cũng chỉ là truyền thuyết. Với thực lực của Diệp Phi bây giờ, tối đa cũng chỉ có thể không ăn không uống trụ được mười ngày, nếu quá hơn nữa sẽ ảnh hưởng đến cơ thể. Thế nên trước kia Diệp Phi căn bản không tin trên đời còn có cảnh giới như vậy. Nhưng hiện tại, hắn lại có chút tin tưởng, bởi nhìn vào cái giường đá kia có thể thấy chủ nhân nơi này hẳn đã từng ở đây. Mà trong này không có lấy một món đồ dùng để ăn uống, chẳng lẽ người đó đã đạt đến cảnh giới tích cốc? Nếu là thật, đây là thực lực cỡ nào? Thật may mình vừa rồi còn tràn đầy tự tin xông vào, nếu người nọ đúng là không dễ đối phó như mình nghĩ, chỉ sợ mình và Liễu Diệc Như sẽ gặp nguy hiểm. Bản thân mình không sao, nhưng nếu để Liễu Diệc Như bị tổn thương, mình có chết cũng không an tâm.</p>
+    <p>Bất quá lúc này Diệp Phi lại không còn lo lắng chuyện đó nữa, bởi nhìn vào những thứ kia có thể thấy nơi này đã lâu không có người ở. Xem ra chủ nhân nơi này đã rời đi hoặc là đã chết. Về phần trận pháp bên ngoài, nghĩ là ông ta chưa kịp triệt tiêu trước khi đi hoặc trước khi chết, vừa vặn bảo vệ mọi thứ ở đây, nếu không nơi này e rằng đã sớm bị những kẻ thích mạo hiểm phát hiện.</p>
+    <p>Diệp Phi hiểu biết tuy nhiều, nhưng đa phần là tri thức lý luận, nếu bàn về kinh nghiệm giang hồ thực tế thì vẫn còn xa mới bằng Liễu Diệc Như. Cho nên những gì hắn nhìn ra được, Liễu Diệc Như đương nhiên cũng nhìn ra. So với sự nhẹ nhõm của Diệp Phi, cô lại vô cùng cao hứng. Địa phương này rõ ràng là nơi thanh tu của một vị tiền bối cao nhân, mà nhiều võ lâm nhân sĩ thường có sở thích sưu tầm những món đồ kỳ lạ, vậy mình có thể tìm xem có biện pháp gì trị liệu cho Diệp Phi không? Dù sao loại vật như Băng Linh Thảo cũng quá hão huyền.</p>
+    <p>Mang theo ý nghĩ này, Liễu Diệc Như nhìn quanh sơn động. Sơn động này bài trí vô cùng đơn giản, chỉ nhìn vài lần là xong. Điều khiến cô thất vọng là vị tiền bối cao nhân này có lẽ là người một lòng chỉ biết tu luyện, căn bản không có sưu tầm gì, thậm chí một chút bút tích cũng không để lại.</p>
+    <p>"Như nhi, nàng đang tìm gì vậy?" Diệp Phi ngồi trên giường đá, có chút kỳ lạ nhìn Liễu Diệc Như đang lục lọi khắp nơi.</p>
+    <p>"Không có gì, ta muốn tìm xem nơi này có để lại bí tịch võ công gì của chủ nhân không." Vì sợ Diệp Phi buồn, Liễu Diệc Như không nói ra mục đích thật sự của mình.</p>
+    <p>"À? Thế tìm được chưa?" Diệp Phi hỏi rất tùy ý. Đối với bí tịch võ công, nói thật là hắn không chút hứng thú. Công pháp hắn đang tu tập hiện tại phù hợp với bản thân hơn bất cứ thứ gì. Về phần Liễu Diệc Như và những người khác, tâm pháp Liễu gia tuy không phải là thượng thừa, nhưng nội lực của họ có thể nhờ hắn giúp nâng cao. Hơn nữa, đợi sau này tìm được những phần khác của công pháp mình đang tu luyện, càng có thể giúp họ tu luyện đến mức phối hợp hoàn hảo với mình, cho nên các loại bí tịch võ công trong mắt hắn đều chỉ là mây bay.</p>
+    <p>Liễu Diệc Như đi tới, ngồi xuống bên cạnh Diệp Phi, khẽ thở dài: "Đừng nói tới bí tịch, ngay cả một câu ghi chép danh tính chủ nhân nơi này cũng không có."</p>
+    <p>"Mặc kệ đi, dù sao chúng ta cũng không ham thứ này." Diệp Phi cười nhìn quanh, nói: "Trời cũng đã muộn, ta thấy chúng ta chi bằng nghỉ ngơi tại đây đêm nay đi, đỡ phải mất công dựng lều."</p>
+    <p>"Được." Liễu Diệc Như không chút do dự đồng ý. Sơn động này tuy có chút lạnh nhưng vẫn tốt hơn ở ngoài nhiều, hơn nữa họ còn cố ý mang theo chăn đệm giữ ấm, ngoài ra còn có một chiếc quạt sưởi nhỏ chạy bằng năng lượng mặt trời và quay tay, tất cả đều là để ứng phó với cái lạnh ở nơi này.</p>
+    <p>Thật ra với nội lực của hai người, ở đây tuyệt đối sẽ không thấy lạnh. Sở dĩ chuẩn bị những thứ này, Liễu Diệc Như hoàn toàn là vì Diệp Phi – người đã "mất sạch thực lực".</p>
+    <p>Chuẩn bị xong xuôi, Diệp Phi cứ thế mặc quần áo nằm xuống giường đá, Liễu Diệc Như cũng cởi giày nằm bên cạnh hắn, kéo một cánh tay hắn gối lên đầu, ôm lấy thân thể hắn, quan tâm hỏi: "Có thấy lạnh không?"</p>
+    <p>Diệp Phi trở tay kéo chặt thân thể mềm mại của Liễu Diệc Như vào lòng, cười nói: "Chỉ cần có thể ôm nàng, thì ngay cả tâm cũng thấy ấm áp, sao mà lạnh được?"</p>
+    <p>"Miệng lưỡi trơn tru!" Liễu Diệc Như lườm hắn một cái, nhưng hai cánh tay ôm lấy hắn lại siết chặt hơn. Trong lòng cô cũng ngọt ngào, cứ thế lặng lẽ dựa vào lòng hắn, tận hưởng khoảnh khắc hạnh phúc khó có được này.</p>
+    <p>Qua một hồi lâu, Liễu Diệc Như chợt nhớ ra điều gì, hỏi: "Đúng rồi, sao vừa rồi chàng biết bên ngoài là một cái trận pháp vậy?"</p>
+    <p>"Trước kia khi thể chất ta không tốt, không phải rất thích nghiên cứu mấy thứ kỳ quái sao? Trận pháp là một trong số đó." Diệp Phi giải thích: "Hơn nữa trận pháp bên ngoài bố trí không quá tinh vi, nếu chịu để tâm thì ta đã nhìn ra từ sớm rồi."</p>
+    <p>"Ra là vậy." Liễu Diệc Như chỉ tò mò chút thôi chứ không hề nghi ngờ Diệp Phi. Hơn nữa bản lĩnh của Diệp Phi càng lớn thì cô càng vui, thế là hỏi tiếp: "Vậy ngoài trận pháp ra, chàng còn nghiên cứu qua thứ gì nữa không?"</p>
+    <p>"Vậy thì nhiều lắm, chuyện vật trong thiên hạ ta có thể nói đều có chút tìm hiểu qua. Bất quá, thứ học được tinh thông nhất chính là lĩnh vực máy tính."</p>
+    <p>"Lĩnh vực máy tính? Đó là gì vậy?" Liễu Diệc Như tò mò hỏi. Trong lòng cô có chút thất lạc, lại có một chút hạnh phúc nhỏ nhoi, bởi vì những thứ này Diệp Phi trước kia căn bản chưa từng nói với cô. Đó là vì giữa mình và chàng có khoảng cách sao? Nhưng khi những điều trước kia không nói với mẹ mà giờ lại kể cho cô – người đang là "bạn gái" của chàng nghe, điều đó nói lên điều gì đây?</p>
+    <p>"Chính là kỹ thuật máy tính không chính thống, nói trắng ra là hacker đấy. Ta là một hacker máy tính rất lợi hại nha." Diệp Phi cười nói, trong lòng không rõ những biến hóa trong tâm tư Liễu Diệc Như lúc này. Trước kia sở dĩ hắn không nói cho cô biết những điều này chỉ là cảm thấy chưa tới lúc, chứ không phải muốn giấu giếm điều gì, bởi vì dù trong hoàn cảnh nào, Liễu Diệc Như vẫn luôn là người phụ nữ quan trọng nhất trong lòng hắn, là nữ thần của hắn!</p>
+    <p>"Hacker?" Liễu Diệc Như kinh ngạc há hốc miệng. Cô nhớ tới một truyền thuyết đáng sợ trên internet trước kia, thử thăm dò hỏi: "Chàng không phải là 'Yếu Đuối' – hacker chi vương trong truyền thuyết đó chứ?"</p>
+    <p>Diệp Phi khẽ gật đầu. Thấy bộ dạng Liễu Diệc Như há hốc miệng nhỏ nhắn vô cùng đáng yêu, hắn không nhịn được ngậm lấy đôi môi son mỏng manh của cô mút nhẹ một cái, mới cười nói: "Chẳng phải chính là ta sao? Trước kia ta từng xứng đáng với cái tên Yếu Đuối đó đấy."</p>
+    <p>Liễu Diệc Như lần này triệt để chấn kinh. Cô vừa rồi sở dĩ hỏi như vậy chỉ là vô thức muốn dò hỏi một người lợi hại nhất mà thôi, vì trong lòng cô, Diệp Phi chính là người lợi hại nhất. Nhưng khi nhận được sự khẳng định của Diệp Phi, cô vẫn nhất thời không cách nào tiếp nhận. Cô thật sự không thể tưởng tượng nổi, nhân vật trong truyền thuyết có thể khống chế cả một thời đại kinh tế đi theo hướng thần thoại kia, lại chính là cậu con trai đã lớn lên dưới sự bảo vệ của mình suốt mười sáu năm.</p>
+    <p>Bất quá, sau sự kinh ngạc, Liễu Diệc Như lại dâng lên một niềm tự hào sâu sắc. Bây giờ mình chính là "bạn gái" của chàng. Tuy cô không muốn vì năng lực này của Diệp Phi mà đạt được điều gì, nhưng người phụ nữ nào lại không hy vọng "bạn trai" của mình là một anh hùng cơ chứ?</p>
+    <p>"Khai mau, chàng còn chuyện gì giấu ta nữa?" Liễu Diệc Như "thẩm vấn" Diệp Phi, nhưng giọng điệu hoàn toàn là đang làm nũng. Lúc này cô vô cùng nóng lòng muốn biết mọi chuyện về Diệp Phi, bởi vì như vậy sẽ làm cô cảm thấy có sự tham dự, hơn nữa, hiểu rõ mọi chuyện của chàng để từ đó giúp đỡ, cổ vũ chàng chẳng phải là điều mà một người "bạn gái" nên làm nhất sao?</p>
+    <p>"Được rồi, thật ra còn một việc, đó là ta là ông chủ phía sau màn của tập đoàn Phong Thu."</p>
+    <p>Hiện tại thời cơ còn chưa chín muồi, Diệp Phi đương nhiên không thể nói chuyện dì và tiểu muội cho Liễu Diệc Như, nên đành phải nói ra chuyện tập đoàn Phong Thu.</p>
+    <p>"Tập đoàn Phong Thu?" Liễu Diệc Như sững sờ một chút, lập tức bừng tỉnh đại ngộ: "Ta đã bảo sao Lý Tuyết Nhi đột nhiên lại muốn hợp tác với ta, còn để chúng ta chiếm hời lớn như vậy. Vốn dĩ ta còn tưởng rằng có âm mưu gì chứ."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0208.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0210.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

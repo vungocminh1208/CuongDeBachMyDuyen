@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 355 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 355</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 355</small>
+    Chương 355: Tiểu di trở về
+  </h1>
+  <div class="chapter-body">
+    <p>"Thật vậy chăng?" Cốc Tuyết Hàm không thể nào ngờ tới, Diệp Phi lại đột nhiên thổ lộ với mình. Mặc dù cảnh tượng này từng xuất hiện vô số lần trong mộng cảnh và ảo tưởng của nàng, nhưng khi nó thực sự xảy ra trước mắt, lại còn quá đỗi bất ngờ như vậy, nàng cảm thấy như mọi thứ không chân thực.</p>
+    <p>Diệp Phi không nói gì, trực tiếp nâng khuôn mặt nàng, nhẹ nhàng hôn lên bờ môi nhỏ nhắn, rồi ôn nhu nói: "Ta sao lại lừa ngươi? Nhớ kỹ, từ nay về sau đừng suy nghĩ linh tinh nữa, biết không?"</p>
+    <p>Dù chỉ là một cái hôn khẽ, nhưng cũng đủ khiến Cốc Tuyết Hàm hạnh phúc đến mức muốn ngất đi. Nàng chỉ hận mình không dậy sớm hơn để chuẩn bị, nếu không giờ phút này đã có thể ôm trọn hạnh phúc này. Tiếc là trên người nàng lúc này không mảnh vải che thân, chỉ cần buông tay ra là chăn sẽ tuột xuống. Tuy nàng ăn nói mạnh bạo, nhưng suy cho cùng vẫn là một cô gái bảo thủ; bằng không với điều kiện của nàng, chỉ cần gật đầu, chắc chắn sẽ có vô số đại gia vây quanh. Chính vì sự bảo thủ này, dù Diệp Phi đã thổ lộ, nàng vẫn xấu hổ không dám để lộ thân thể trước mặt hắn. Điều Diệp Phi trân trọng nhất ở nàng, cũng chính là cái tính cách giữ vững điểm mấu chốt này.</p>
+    <p>Nhìn ánh mắt mong chờ của Cốc Tuyết Hàm, Diệp Phi dang hai tay ôm lấy cả người nàng cùng chiếc chăn, hôn lên bờ môi kiều diễm ấy một lần nữa rồi cười nhẹ: "Ta còn có chút việc quan trọng phải làm, tạm thời không thể ở lại với ngươi, phải ngoan, biết không? Mấy ngày nữa ta sẽ lại đến tìm ngươi. Đương nhiên, nếu ta không thể tới, ngươi cũng có thể gọi điện cho ta, dãy số ngươi có rồi chứ?" Thấy Cốc Tuyết Hàm khẽ gật đầu, Diệp Phi nói tiếp: "Hơn nữa, ngươi cũng có thể dẫn Tiểu Dung các nàng đến nhà ta chơi, lát nữa ta sẽ nhắn địa chỉ cho ngươi." Dứt lời, hắn đỡ Cốc Tuyết Hàm nằm xuống, hôn nàng lần nữa rồi mới xoay người rời khỏi phòng.</p>
+    <p>Nhìn theo bóng lưng Diệp Phi, Cốc Tuyết Hàm vẫn còn cảm giác chóng mặt. Hạnh phúc này đến quá đột ngột, dù rất không muốn để người đàn ông mình yêu rời đi ngay khi vừa xác định quan hệ, nhưng nàng hiểu rõ, người đàn ông của nàng là bậc làm đại sự, không thể cứ mãi ở bên cạnh mình. Hơn nữa, việc hắn bảo nàng dẫn theo muội muội đến nhà hắn, chứng tỏ hắn đã thực sự chấp nhận nàng.</p>
+    <p>Đang miên man suy nghĩ, Cốc Tuyết Hàm thấy điện thoại ở đầu giường rung lên. Sau khi mở ra xem nội dung, gương mặt nàng không khỏi nở nụ cười hạnh phúc si mê.</p>
+    <p>Rời khỏi phòng Cốc Tuyết Hàm, Diệp Phi không dừng lại, vừa vào thang máy đã soạn địa chỉ thành tin nhắn gửi cho nàng, sau đó đi thẳng ra bãi đỗ xe.</p>
+    <p>Trên đường chạy xe, nhìn những cung đường ngày càng quen thuộc, Diệp Phi chọn những con đường nhỏ vắng người qua lại, cuối cùng nửa giờ sau cũng đến trước biệt thự nhà họ Liễu. Cùng lúc đó, một chiếc xe mang biển số quân đội từ hướng khác chạy đến, chỉ chậm hơn Diệp Phi một bước và dừng lại ngay cửa biệt thự.</p>
+    <p>Cửa xe mở ra, bước xuống chính là tiểu di Liễu Quân Di trong bộ quân trang, trông vừa mạnh mẽ sắc sảo lại không kém phần gợi cảm. Nàng nhẹ nhàng bước tới trước mặt Diệp Phi, khẽ cười: "Tới nhanh thật, xem ra ngươi rất mong chờ phần thưởng của ta nhỉ?" Tuy giọng điệu là đùa giỡn, nhưng đôi mắt đẹp của nàng lại chứa đựng đầy sự nhớ nhung và lưu luyến.</p>
+    <p>Diệp Phi lúc này cũng vô cùng xúc động, dang tay ôm tiểu di vào lòng, thâm tình nói: "Người có thể trở về bên cạnh ta, đã là phần thưởng lớn nhất rồi!"</p>
+    <p>"Mấy ngày không gặp, cái miệng lại càng ngày càng ngọt!" Liễu Quân Di cười khúc khích, nhưng cảm giác được bờ ngực thân thuộc bao ngày mong nhớ khiến nàng không thể kìm nén thêm nữa. Nàng kiễng chân, ghé sát môi hôn lên môi Diệp Phi.</p>
+    <p>Diệp Phi càng siết chặt cơ thể nóng bỏng mềm mại của tiểu di, thâm tình đáp lại nụ hôn. Một lúc lâu sau, hai người mới quyến luyến tách ra.</p>
+    <p>Cúi đầu nhìn tiểu di đang hơi thở dốc, gương mặt tuyệt mỹ vì vui mừng mà ửng hồng càng thêm kiều diễm, khiến lòng Diệp Phi nóng ran, hắn mỉm cười hỏi: "Tiểu di, phần thưởng của ta đâu?"</p>
+    <p>"Phần thưởng? Chẳng phải cho ngươi rồi sao!" Liễu Quân Di nghịch ngợm đáp.</p>
+    <p>"Hóa ra đây là cái gọi là phần thưởng à, vậy ta phải đòi thêm chút nữa." Diệp Phi nói xong lại cúi đầu hôn lên bờ môi nhỏ xinh của nàng, Liễu Quân Di cũng tận tình phối hợp.</p>
+    <p>"Đệ đệ? Ngươi đang làm gì vậy?" Giữa lúc Diệp Phi và Liễu Quân Di đang mải mê hôn nhau, một giọng nói hơi run rẩy cắt ngang.</p>
+    <p>Diệp Tư Kỳ hôm nay không đi làm, đang ở nhà cùng mẹ Thủy Dĩnh. Đã quá nửa buổi sáng, nàng định ra ngoài mua chút đồ ăn, không ngờ vừa ra cửa đã thấy một đôi nam nữ đang hôn nhau kịch liệt. Dù không nhìn rõ mặt, nhưng chỉ cần nhìn cái bóng lưng quen thuộc đó, nàng cũng biết người đàn ông này chính là đệ đệ mình yêu thương. Nhìn thấy hắn hôn môi với người phụ nữ khác, dù đã sớm chấp nhận việc hắn không thể chỉ có một người phụ nữ, nhưng trong lòng Diệp Tư Kỳ vẫn không khỏi nhói đau.</p>
+    <p>Giọng nói của Diệp Tư Kỳ khiến Diệp Phi và Liễu Quân Di lập tức tỉnh táo lại, vội vàng tách ra. Diệp Phi vẫn còn khá bình tĩnh, còn Liễu Quân Di tuy mạnh bạo là thế nhưng khi đối diện với Diệp Tư Kỳ lại vô cùng xấu hổ, nàng gượng cười nói: "Tư Kỳ, ngươi định ra ngoài sao?"</p>
+    <p>"Tiểu di?" Diệp Tư Kỳ kinh ngạc há miệng. Nàng không thể ngờ người phụ nữ đang hôn đệ đệ mình một cách ngọt ngào như người yêu lại chính là Liễu Quân Di – em gái ruột của mẹ mình. Chẳng lẽ nàng cũng giống như mình...?</p>
+    <p>"Ha ha, lâu quá không gặp các ngươi nên có chút không kìm lòng được." Liễu Quân Di vội vã giải thích, để tránh ngượng ngùng, nàng bước tới ôm cổ Diệp Tư Kỳ, hôn lên mặt nàng một cái rồi hỏi: "Có nhớ tiểu di không?"</p>
+    <p>"Có ạ, rất nhớ người. Chúng ta mau vào trong thôi." Dù lời giải thích của Liễu Quân Di khá gượng ép, dù sao một người dì cũng không nên hôn môi cháu trai, nhưng Diệp Tư Kỳ lúc này chẳng màng đến những điều đó nữa. Trong khoảnh khắc này, suy nghĩ duy nhất trong lòng nàng là: môi tiểu di vừa tách khỏi môi đệ đệ, lại đến hôn mình, chẳng phải là gián tiếp để đệ đệ hôn mình sao? Đây chính là cảnh tượng nàng vẫn luôn khao khát. Dù là thông qua tiểu di truyền lại, nhưng vẫn khiến tim nàng đập loạn nhịp.</p>
+    <p>Dù chưa được âu yếm Diệp Phi đủ, nhưng có Diệp Tư Kỳ ở đây, Liễu Quân Di tự nhiên không dám tiếp tục, thế là cả ba cùng mở cửa bước vào biệt thự. Sau khi gặp gỡ Thủy Dĩnh, bầu không khí lại tràn ngập tiếng cười vui vẻ.</p>
+    <p>Thực ra, tin tức Thủy Dĩnh trở về đã được Liễu Diệc Như gọi điện thông báo cho Liễu Quân Di từ trước, nhưng nghe nói và tận mắt nhìn thấy bây giờ vẫn là hai chuyện hoàn toàn khác biệt.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0354.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0356.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

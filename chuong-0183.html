@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 183 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 183</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 183</small>
+    Chương 183: Hiểu lầm được giải trừ
+  </h1>
+  <div class="chapter-body">
+    <p>"Chuẩn bị vật dụng?" Lý Vân sửng sốt một chút, hỏi: "Chính là mấy thứ thuốc khôi phục kia sao?" Diệp Phi lắc đầu đáp: "Không phải, đối với thuốc khôi phục ta vốn dĩ chẳng ôm mấy hy vọng. Loại phương pháp này chẳng những có thể giúp ông nhanh chóng hồi phục, đồng thời còn có thể tăng mạnh thực lực của ông lên rất nhiều. Vốn dĩ hôm nay định dùng cho ông, nhưng giờ xem ra không cần nữa thì tốt hơn."</p>
+    <p>Lý Tiếu Tiếu tuy đang giận Diệp Phi, nhưng lỗ tai vẫn luôn chú ý động tĩnh bên này. Vốn dĩ nghe nói hôm qua Diệp Phi không tới là vì bận chuẩn bị đồ trị liệu, cơn giận trong lòng nàng đã tan biến, thậm chí còn có chút áy náy. Thế nhưng giờ nghe hắn nói vậy, không khỏi lại bốc hỏa, thầm nghĩ: Người này sao mà nhỏ nhen thế không biết? Mình chỉ mắng vài câu, hắn liền bỏ mặc việc trị liệu cho ba ba, đây mà gọi là chiến hữu sao? Hơn nữa ba ba còn bị thương vì hắn.</p>
+    <p>Lý Tiếu Tiếu tức giận đến mức chỉ muốn mắng Diệp Phi một trận, nhưng nghĩ đến thân thể của ba, nàng đành nén giận, bước tới trước mặt Diệp Phi, cắn môi thấp giọng nói: "Xin lỗi, vừa rồi là ta hiểu lầm ngươi. Ngươi cứu ba ta được không? Chỉ cần ngươi chữa khỏi cho ông ấy, bảo ta làm gì cũng được!"</p>
+    <p>Diệp Phi không nhịn được cười khổ, chẳng lẽ trông mình thực sự giống kẻ xấu đến vậy sao? Vốn chỉ là hảo tâm nhắc nhở, lại bị hiểu lầm thành nhân cơ hội uy hiếp. Lý Vân vốn không nghĩ nhiều như vậy, nhưng nghe con gái nói xong cũng không khỏi nghi ngờ. Tuy nhiên, ông không nghi ngờ nhân phẩm của Diệp Phi, mà nghĩ rằng cậu đang giận dỗi con gái mình, dù sao cậu cũng chỉ mới là đứa trẻ mười sáu tuổi.</p>
+    <p>Nhưng khi nhìn thấy vẻ cười khổ trên mặt Diệp Phi, Lý Vân liền hiểu ra không phải như mình nghĩ, bèn hỏi: "Tiểu Phi, có phải có chỗ nào khó xử không?" Diệp Phi gật đầu, nghiêm mặt nói: "Đúng vậy, phương pháp của ta tuy có thể giúp ông hồi phục và có được thực lực mạnh mẽ, nhưng tác dụng phụ lại khá lớn. Hiện tại dì Đông Phương đang nghiên cứu chế tạo Thông Cân Tục Mạch Đan, loại đó hoàn toàn không có tác dụng phụ, nên ta đề nghị ông cứ đợi thêm chút nữa."</p>
+    <p>Lời Diệp Phi khiến Lý Tiếu Tiếu biết mình lại hiểu lầm hắn, trong lòng không khỏi hổ thẹn. Thế nhưng sự rụt rè của một cô gái khiến nàng không dễ mở lời xin lỗi, đành ngồi buồn bực sang một bên. Lý Vân lại tò mò hỏi: "Có thể nói cho ta biết tác dụng phụ là gì không?" Nằm một chỗ chẳng thể cử động thế này thực sự quá khó chịu. Hơn nữa, việc Diệp Phi từng định dùng phương pháp đó trước khi biết dì Đông Phương nghiên cứu thuốc, chứng tỏ tác dụng phụ chắc cũng không quá lớn. Nếu không quá khó chấp nhận, ông sẽ không muốn đợi thuốc đó chế tạo thành công nữa.</p>
+    <p>"Cái này..." Diệp Phi hơi chần chừ, cúi thấp người, ghé vào tai Lý Vân nói nhỏ tác dụng phụ của phương pháp đó, rồi cười khổ: "Nếu không phải thực sự không còn cách nào, ta cũng không muốn ông dùng cái này." Không ngờ Lý Vân lại cười phá lên: "Nếu tác dụng phụ chỉ là thế này thôi, vậy thì dùng ngay đi, không cần đợi Thông Cân Tục Mạch Đan của bác sĩ Đông Phương nữa."</p>
+    <p>"Hả?" Quyết định của Lý Vân khiến Diệp Phi sửng sốt. Nếu Lý Vân là một ông lão thì không nói, nhưng hiện tại ông mới bốn mươi, đang độ tráng niên, năng lực phương diện này sao có thể nói bỏ là bỏ được? Thấy Diệp Phi thắc mắc, Lý Vân cười giải thích: "Mẹ Tiểu Yên đã rời đi nhiều năm rồi, những năm qua phương diện này ta cũng luôn để trống. Hiện tại không có càng tốt, đỡ phải phiền phức. Hơn nữa, chẳng phải cậu nói dùng phương pháp đó sẽ tăng thực lực sao? Như vậy cũng tốt, có thể cống hiến thêm chút sức lực cho Đặc chiến đội."</p>
+    <p>Thấy Lý Vân đã quyết tâm, Diệp Phi cũng không nói thêm gì nữa. Hơn nữa, cậu nhận ra Lý Vân vốn khá lãnh đạm trong phương diện này, tâm trí ông hầu hết đặt vào Đặc chiến đội, phần còn lại là dành cho tình yêu thương con gái.</p>
+    <p>Cả hai đều là người dứt khoát, sau khi đã bàn bạc xong thì chẳng ai muốn trì hoãn. Diệp Phi rời phòng bệnh đi mượn xe của Đặc chiến đội. Tuy việc bế Lý Vân rời khỏi quân khu cũng chẳng phải vấn đề gì to tát, nhưng làm vậy sẽ dễ gây chú ý.</p>
+    <p>Sau khi Diệp Phi đi, Lý Tiếu Tiếu đến trước mặt Lý Vân hỏi: "Ba, vừa rồi hai người nói gì vậy? Con nghe không hiểu gì cả? Tác dụng phụ rốt cuộc là gì, tại sao còn nhắc đến mẹ?" Nàng đã muốn hỏi từ trước, nhưng vì Diệp Phi ở đó nên ngại ngùng không dám mở lời.</p>
+    <p>"Cái này..." Lý Vân nhất thời nghẹn lời, vấn đề này thực sự không tiện giải thích với con gái, đành qua loa đáp: "Sau này con sẽ hiểu." "Cái gì chứ, hồi bé ba cứ hay qua loa với con như vậy, giờ con lớn rồi mà vẫn thế!" Lý Tiếu Tiếu bĩu môi không hài lòng. Thấy Lý Vân không có ý định giải thích, nàng dứt khoát ngồi sang một bên giận dỗi. Lý Vân thầm cười khổ trong lòng, có phải mình đã bảo vệ con gái kỹ quá rồi không? Rõ ràng nó và Diệp Phi bằng tuổi, nhưng so với nhau lại thấy cách biệt xa quá.</p>
+    <p>Hiện tại uy tín của Diệp Phi trong Đặc chiến đội đã không hề thua kém Liễu Quân Di, nên việc mượn xe chẳng thành vấn đề. Thậm chí còn có mấy đội viên xung phong lái xe giúp, nhưng Diệp Phi lo ngại bí mật của mình càng ít người biết càng tốt nên đã từ chối. Còn chuyện cậu chưa từng lái xe, với Diệp Phi mà nói cũng chẳng phải là vấn đề gì lớn. Trước kia dù chưa từng thao tác, nhưng cậu biết rõ những thứ cần chú ý, chỉ thiếu mỗi sự thuần thục và phản ứng nhanh nhạy trong tình huống khẩn cấp. Với tốc độ phản ứng hiện tại của cậu, mấy cái này chỉ là chuyện nhỏ.</p>
+    <p>Trở lại phòng bệnh, Diệp Phi giúp Lý Vân thu dọn đồ đạc đơn giản, gật đầu với Lý Tiếu Tiếu rồi bế Lý Vân lên đi ra ngoài. Tuy sự qua loa của Lý Vân khiến Lý Tiếu Tiếu hơi giận, nhưng nàng vẫn rất lo lắng cho sức khỏe của ba. Vốn định đi theo, nhưng thấy hai người chẳng ai mời, điều này khiến Lý Tiếu Tiếu – người vốn không mấy hòa hợp với Diệp Phi – chần chừ. Đợi đến khi nàng hạ quyết tâm muốn đi cùng, thì phát hiện cả hai đã sớm không còn bóng dáng, đuổi theo ra ngoài chỉ kịp thấy đuôi xe rời khỏi cổng bệnh viện.</p>
+    <p>"Đồ bại hoại, đồ bại hoại!" Lý Tiếu Tiếu tức giận đá mạnh mấy cái vào cột đá, không biết là nàng đang tưởng tượng cột đá đó là Lý Vân hay là Diệp Phi nữa.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0182.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0184.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

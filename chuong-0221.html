@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 221 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 221</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 221</small>
+    Chương 221: Diệp Phi uy lực
+  </h1>
+  <div class="chapter-body">
+    <p>Hai ngày sau, ban ngày Diệp Phi cùng Liễu Quân Di, Vệ Thanh đi dạo khắp nơi, đêm khuya lại lẻn vào phòng Liễu Quân Di ân ái mặn nồng. Bị Diệp Phi làm cho không chịu nổi, Liễu Quân Di mấy lần gợi ý muốn hắn xuống lầu bắt lấy Vệ Thanh, nhưng Diệp Phi cảm thấy chưa phải lúc, dù sao quan hệ với Vệ Thanh vẫn chưa tới bước đó, nếu vội vàng chiếm hữu sẽ có chút không tôn trọng nàng. Trong lúc này, Diệp Phi bớt thời gian gặp tiểu ánh sáng một lần, nhắc lại những việc cần làm, đồng thời lẻn tới chỗ cha nuôi của Tiêu Biển một chuyến. Nhận thấy nơi đó tuy có không ít cao thủ hộ vệ nhưng không thể tạo thành uy hiếp gì cho tiểu ánh sáng, hắn mới hoàn toàn yên tâm. Thời gian cuối cùng đã tới thứ bảy. Đêm nay, Liễu Quân Di đang cao hứng cưỡi trên người Diệp Phi, còn hắn dùng hai tay nắm lấy đôi gò bồng đào trắng nõn, đầy đặn khiến hắn hoa mắt, đang vô cùng sung sướng thì một hồi chuông điện thoại cắt ngang đôi uyên ương đang đắm chìm trong khoái cảm. Diệp Phi với tay lấy điện thoại, nhìn dãy số rồi ra dấu im lặng với Liễu Quân Di. Nàng kiều mỵ cười, xoay người trên người hắn, chuyển từ đối diện sang đưa lưng về phía trước, hai tay đặt lên chân hắn, vòng mông gợi cảm tiếp tục nhẹ nhàng nhấp nhô, khiến nơi giao hòa của hai người phát ra tiếng nước đầy ám muội, mang đến từng đợt khoái cảm liên hồi. Diệp Phi chăm chú nhìn cặp mông trắng như trăng rằm của tiểu di, cùng với cảnh tượng mỹ diệu ẩn hiện theo nhịp lên xuống của nàng, rồi bắt máy hỏi: "Tiểu ánh sáng, xong việc rồi chứ?" "Xong rồi lão đại, em đã thu lại hết trò hề của bọn họ, khi nào anh tới lấy?" Giọng tiểu ánh sáng có chút run rẩy, còn mang theo vẻ uất ức bất lực. Diệp Phi nhíu mày hỏi: "Tiểu ánh sáng, sao vậy? Có phải bên cạnh bọn họ có cao thủ? Cậu bị thương à?" "Không có, bọn họ tuy có hai tên bảo tiêu nhưng đã bị người đánh ngã. Lão đại, thân thể em không sao, nhưng tâm hồn đang bị tổn thương nghiêm trọng!" Giọng tiểu ánh sáng đầy bi phẫn: "Lão đại, anh cùng tên đầu trọc kia hố em, em mãnh liệt yêu cầu bồi thường!" "Chuyện đó để sau hãy nói." Diệp Phi biết sự việc không như mình nghĩ, tâm trạng lập tức bình ổn, cười hắc hắc: "Cậu gửi địa chỉ cho tôi, lát nữa tôi qua, cứ đứng đó đợi tôi là được." "Vâng." Tiểu ánh sáng cũng chỉ là than vãn, không để bụng, rất sảng khoái đáp ứng rồi cúp máy. Khi Diệp Phi vứt điện thoại sang bên, Liễu Quân Di đang cưỡi trên người hắn lại xoay người lại, nhưng ngưng động tác, nằm sấp trên ngực hắn, u oán hỏi: "Anh phải về ngay sao?" Diệp Phi nâng gương mặt tuyệt mỹ của Liễu Quân Di, hôn nhẹ lên đôi môi nhỏ nhắn, nói: "Đúng vậy, mọi thứ đã chuẩn bị xong, anh phải về bắt tay đối phó bọn họ, báo thù cho dì cả!" "Hừ, anh chỉ biết thương tỷ tỷ, chẳng thương em chút nào." Liễu Quân Di "u oán" nói, nhưng biểu cảm trên mặt lại tràn đầy vẻ làm nũng. Diệp Phi dùng sức nhấp mạnh vài cái, cười hỏi: "Thế em muốn anh thương thế nào đây?" Thân thể Liễu Quân Di vốn bị Diệp Phi khai phá cực kỳ mẫn cảm, bị vài cú va chạm mạnh khiến nàng suýt nữa đầu hàng, vội vàng cầu xin: "Lão công tốt, nhẹ thôi nào, em còn muốn làm thêm chút nữa với anh."</p>
+    <p>"Được." Diệp Phi trở mình, để hai người nằm nghiêng, gác một đôi chân ngọc khêu gợi của nàng lên lưng mình, nhẹ nhàng nhấp động vòng eo, để mình ra vào chậm rãi trong cơ thể mỹ diệu của nàng, nói: "Chúng ta không cần vội vàng nhất thời này, đợi em trở lại Vọng Hải, chẳng phải có thể ở cùng nhau mỗi ngày sao? Đúng rồi, chuyện của em có manh mối gì chưa?" "Hừ, đám người này thật không phải thứ gì." Nhắc đến chuyện này, Liễu Quân Di bất mãn, kéo bàn tay lớn của Diệp Phi đặt lên mông đẹp mẫn cảm để hắn an ủi mình, rồi nói tiếp: "Bọn họ lại nói chúng ta hành động không dựa theo mệnh lệnh của họ. Nếu không phải nhờ Chu bá bá, sợ rằng lần này em chẳng những không có công mà còn mang tội." Người được Liễu Quân Di gọi là Chu bá bá, Diệp Phi cũng quen biết. Ông là bạn tốt của ngoại công Diệp Phi, hiện đang là quan lớn trong quân đội, nắm giữ thực quyền rất lớn. Việc Liễu Phượng Nghi và Liễu Quân Di có thể thuận lợi trong quân chính hai giới, ngoài năng lực bản thân, không thể thiếu sự ảnh hưởng của lão nhân gia này. Diệp Phi gặp vị Chu gia gia này lần cuối vào năm 5 tuổi, giờ không còn ấn tượng nhiều, chỉ nhớ ông là một tiểu lão nhân rất uy nghiêm nhưng lại cực kỳ hiền lành với mình và Diệp Vân Khinh. Năm đó, râu của ông không ít lần gặp nạn dưới tay Diệp Vân Khinh nghịch ngợm. "Đã có Chu gia gia ở giữa xoay sở, em đừng lo lắng, cứ đợi tin ông ấy là được." Diệp Phi cười nói. "Ừ, em cũng chẳng muốn nghĩ nhiều, sao cũng được, anh dùng sức chút đi." Liễu Quân Di không nghĩ ngợi nữa, toàn tâm toàn ý vùi đầu vào cuộc ân ái với cháu trai. Lần này, Diệp Phi không ở lại qua đêm cùng Liễu Quân Di, sau khi thỏa mãn cho nàng, hắn rời khỏi đặc biệt chiến đội đại viện rồi tìm đến địa chỉ tiểu ánh sáng gửi. Tại một nhà nghỉ bình dân, Diệp Phi thuận lợi tìm thấy tiểu ánh sáng đang mặt mày tái nhợt, bước chân phù phiếm. Thấy trạng thái của cậu, Diệp Phi hiểu hẳn là cậu cũng bị những thứ ghê tởm làm cho buồn nôn như tên đầu trọc. Trong lòng có chút áy náy, hắn vỗ vai cậu nói: "Huynh đệ, vất vả cho cậu rồi." "Không có gì, nên làm thôi." Tiểu ánh sáng cười ngây ngô, xoay người cầm lấy một chiếc máy quay phim nhỏ cao cấp đưa cho Diệp Phi: "Lão đại, đều ở trong này, rất rõ nét, còn có cả cận cảnh theo lời anh dặn, anh xem có hài lòng không." "Cậu làm việc, tôi yên tâm." Diệp Phi bật cười, vỗ vào sau gáy tiểu ánh sáng, cười mắng: "Thằng nhãi, mình bị buồn nôn còn muốn kéo lão đại xuống nước à?" "Hắc hắc." Thấy mưu kế bị vạch trần, tiểu ánh sáng lại gãi đầu cười trừ. Đám người bọn họ đi theo Diệp Phi sớm nhất, trong lòng ngoài sùng bái chỉ còn tôn kính, không hề có chút sợ hãi, nên mới dám đùa giỡn với Diệp Phi như vậy. Diệp Phi cũng rất vui khi họ như thế, vì dù là ai cũng cần vài người bạn, nhưng thân phận và năng lực của hắn đã định trước rất khó có được những người bạn chân thành, vì vậy Diệp Phi rất trân trọng nhóm bạn này. Hai người không dừng lại lâu ở nhà nghỉ, sau khi thu dọn liền rời đi. Lần này tiểu ánh sáng đến vì lo lắng có thể cần dùng xe nên đã tự lái xe đến, vì thế cả hai không cần chạy ra sân bay. Một đường phóng nhanh, đến hơn năm giờ sáng, hai người đã tới Lâm Hải. Đoạn đường này tuyệt đối là siêu tốc nghiêm trọng, nhưng với đám người đầu trọc đang dần trở thành ông trùm thế giới ngầm ở Lâm Hải thì chẳng là vấn đề gì, sau khi về chỉ cần vứt biển số xe giả đi là xong. Về lý do tại sao Diệp Phi đến Lâm Hải chứ không phải quay về, không phải vì có sắp đặt đặc biệt gì, mà trong lòng hắn vẫn luôn ghi nhớ lời mẹ: "Mấy ngày nay con hãy xử lý tốt chuyện của tỷ tỷ, nếu con làm tốt, mẹ sẽ cho con một bất ngờ!" Tuy không dám khẳng định "bất ngờ" mẹ nói có phải như mình nghĩ không, và cũng lo bà đổi ý sau khi trở lại môi trường cũ, nhưng Diệp Phi không muốn bỏ qua bất kỳ cơ hội nào. Hắn muốn đợi giải quyết mọi việc viên mãn mới trở về, tối thiểu phải khiến Tiêu Biển và kẻ kia thân bại danh liệt trước. Mở chiếc máy tính cấu hình mạnh đã bảo đám đầu trọc chuẩn bị sẵn, kết nối mạng, mười ngón tay Diệp Phi bắt đầu lướt nhanh trên bàn phím, để lại những vệt ảo ảnh. Cảnh tượng này khiến đám đầu trọc vốn là cao thủ cũng phải tắc lưỡi kinh ngạc, không phải vì kỹ thuật máy tính của Diệp Phi, mà là tốc độ kinh người của hắn. Họ tự hỏi, với tốc độ như vậy, dù vài người bọn họ liên thủ cũng khó lòng đỡ nổi ba chiêu. Đầu tiên là tạo một chương trình cực kỳ phức tạp để che giấu hoàn toàn địa chỉ IP của mình. Dù Diệp Phi rất tự tin rằng dù tất cả cao thủ phía chính phủ Trung Quốc hợp lại cũng không phải đối thủ của mình, nhưng nếu họ chỉ đơn thuần muốn truy vết IP thì sẽ dễ dàng hơn. Nếu để họ phát hiện rồi cắt đứt kết nối mạng, thì dù hắn có lợi hại đến đâu cũng vô dụng, vì không có mạng lưới thì không thể chịu tải được lưu lượng lớn mà hắn sắp thực hiện. Làm xong những việc này, Diệp Phi kết nối với những loại virus tự chế đã gài sẵn vào các trang web lớn, sau đó truyền đoạn video trong máy quay lên. Đúng tám giờ sáng, toàn bộ trang web trong lãnh thổ Trung Quốc, bất kể là trang tin tức chính thống hay các trang web nhỏ, nội dung trang chủ trong nháy mắt bị trống rỗng, thay vào đó là đoạn video nhạy cảm liên tục được phát lại, hơn nữa còn là cảnh giữa nam và nam. Trong chốc lát, toàn bộ Trung Quốc chấn động. Đoạn video quá rõ nét, mà những góc quay cận mặt khiến hầu như tất cả mọi người đều nhận ra đại nhân vật cao cao tại thượng kia. Mọi người không khỏi kinh nghi, dù khó tin nhưng đặc điểm nhân vật quá rõ ràng, hơn nữa rất nhanh sau đó, lại có người nhận ra Tiêu Biển, đồng thời công bố thân phận và mối quan hệ của họ trong không gian bên dưới video. Nếu chỉ có mỗi đại nhân vật kia, có lẽ người ta còn nghi ngờ là có kẻ tìm người giống hệt, nhưng khi có thêm Tiêu Biển thì mọi chuyện không hề đơn giản như vậy. Khi Tiêu Biển và "cha nuôi" nhận được tin tức thì đã hơn chín giờ sáng. Đêm qua họ "ân ái" đến tận khuya, điện thoại đều tắt máy, bảo tiêu mang theo vẫn đang hôn mê, nên mãi đến khi thức dậy mở máy họ mới nhận được tin từ thuộc hạ. Nhìn đoạn video thuộc hạ gửi tới, cả hai rơi vào hoảng loạn cực độ. Dù đại nhân vật kia đã trải qua nhiều sóng gió, nhưng vẫn không thể kiềm chế cảm xúc, ông ta bấm số điện thoại, điên cuồng gào thét: "Thông báo tất cả các trang web, xóa sạch cái thứ chết tiệt kia cho ta, nếu không ta muốn bọn chúng biết tay!" Cho dù ông ta không nói, các cao tầng khác của Trung Quốc cũng không thể ngồi yên, vì chuyện này không chỉ là của riêng ông ta và Tiêu Biển, mà còn liên quan đến thể diện quốc gia. Vì vậy, từ hơn một giờ trước, những cao tầng kia đã phản ứng với tốc độ chưa từng có, triệu tập tất cả "chuyên gia" để cố gắng xóa bỏ đoạn video. Điều khiến họ bất lực chính là, những "chuyên gia" được quốc gia nuôi dưỡng, bình thường vốn rất vênh váo, đối mặt với thủ đoạn này hoàn toàn bó tay, cuối cùng đành đề nghị các cao tầng cưỡng chế yêu cầu các trang web tắt máy chủ. Chỉ là, họ tỉnh ngộ quá muộn. Sau gần hai giờ lan truyền, đoạn video đã được tải xuống hàng chục triệu lần. Hơn nữa, họ chỉ có thể ra lệnh cho các trang web lớn, còn những trang web nhỏ mọc lên như nấm thì không thể nhanh như vậy, mãi đến hơn hai giờ chiều mới tạm thời kiểm soát được. Chính vì vậy, toàn bộ mạng lưới Trung Quốc rơi vào trạng thái tê liệt, thiệt hại gây ra là không thể đong đếm. Kẻ khởi xướng là Diệp Phi thì đã không còn quan tâm đến chuyện này nữa, ngược lại hắn đang biên soạn một chương trình khác. Đối với ảnh hưởng gây ra cho Trung Quốc, hắn không hề để tâm. Trong mắt hắn, không gì quan trọng bằng người thân và người yêu của mình, đừng nói là chút thiệt hại này, dù có hủy diệt một quốc gia cũng không tiếc. Tuy nhiên, đối với tổ quốc mình, Diệp Phi vẫn có chút kính yêu. Hiện tại xem ra, Tiêu Biển và "cha nuôi" hắn bị bắt đã là chuyện ván đã đóng thuyền, nên việc hắn đang làm bây giờ là một thứ có thể xóa bỏ ảnh hưởng của chuyện này. Lần này, các cao tầng Trung Quốc thể hiện hiệu suất chưa từng có, chỉ mất chưa đầy nửa ngày đã điều tra ra tận gốc vụ việc của Tiêu Biển và cha nuôi. Hoặc nói đúng hơn, những điều được gọi là điều tra ra thì họ vốn đã biết, chỉ là mọi người ngầm hiểu lẫn nhau. Nhưng lần này, vì nhân vật kia đã bị đưa ra đầu sóng ngọn gió, đương nhiên không còn ai nuông chiều nữa. Vì vậy, lúc sáu giờ chiều, "cha nuôi" của Tiêu Biển đã bị đình chỉ công tác, xin nghỉ hưu sớm. Còn Tiêu Biển không có vận may như vậy, bị tống vào lao tù, dù có thể không chết nhưng cả đời này muốn gặp lại ánh mặt trời là điều rất khó xảy ra. Có lẽ vì không muốn mở rộng phạm vi, hai mẹ con Trương Lâm Tâm và Tiêu Phỉ không bị liên lụy. Điểm này khiến Diệp Phi đang theo dõi tin tức cảm thấy không hài lòng, vì vậy hắn gửi đi một email. Tám giờ tối, tất cả các trang web đình chỉ vận hành đồng loạt khôi phục. Đoạn video kia ngay lập tức bị tất cả phụ trách trang web xóa bỏ, sau đó một video dạy học được công bố trên tất cả các trang web.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0220.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0222.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

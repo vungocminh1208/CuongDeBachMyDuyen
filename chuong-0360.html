@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 360 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 360</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 360</small>
+    Chương 360: Lẫn nhau thăm dò
+  </h1>
+  <div class="chapter-body">
+    <p>Từ Cẩn lời nói mới rồi vẫn chưa dứt, đợi mọi người bình tĩnh một chút, lại nói tiếp: "Vọng Hải đặc chủng tác chiến bộ đội, ký tập thể nhất đẳng công một lần!"</p>
+    <p>Lần này, toàn bộ lễ đường đều sôi trào, trên mặt từng đội viên đều tràn đầy thần sắc kích động. Đây chính là quân công thật sự, tuy đãi ngộ và những đợt huấn luyện lập công lúc hòa bình trước kia nghe tên giống nhau, nhưng trong lòng bọn họ lại hoàn toàn không giống. Ngay cả những đội viên không tham gia hành động cũng cực kỳ tự hào, lần trước hành động tuy họ không tham gia, nhưng chiến hữu của họ đã tham gia, đối với bọn họ mà nói, cũng chẳng khác nào mình trực tiếp góp mặt, bởi vì toàn bộ đặc chiến đội đều là một thể.</p>
+    <p>Hai tay Từ Cẩn hư hư ấn xuống, ra hiệu mọi người im lặng, Chu Thế Xương mỉm cười tiến lên một bước, nói: "Chư vị chiến sĩ, nói thật, ta thực lòng cảm thấy kiêu ngạo vì các ngươi. Vọng Hải quân khu coi như là nhà của ta, là một người bước ra từ nơi này, chứng kiến thành tích hôm nay của các ngươi, ta cũng cảm thấy rất tự hào!"</p>
+    <p>Chu Thế Xương vừa dứt lời, trong lễ đường lập tức vang lên tiếng vỗ tay nhiệt liệt. Diệp Phi khẽ nhíu mày, lão gia tử này rất biết thu mua nhân tâm, mấy câu đã kéo mình và các đội viên lại gần nhau.</p>
+    <p>Kế tiếp, Chu Thế Xương lại tùy ý trò chuyện với mọi người một hồi, mắt thấy đã gần giữa trưa, liền tuyên bố giải tán.</p>
+    <p>Đợi các đội viên đều rời khỏi lễ đường, Diệp Phi cùng Liễu Quân Di đi đến bên cạnh Chu Thế Xương, lại nghe Từ Cẩn hỏi: "Chu lão, mắt thấy đã đến giữa trưa, chúng ta có nên ăn bữa cơm rồi tiếp tục không?"</p>
+    <p>"Cơm là chắc chắn phải ăn, bất quá không thể ăn ở đây." Chu Thế Xương cười chỉ vào Diệp Phi cùng Liễu Quân Di nói: "Họ chính là chuyên môn tới đón ta đi ăn cơm, lão Từ à, đây là gia yến, nên sẽ không mời ngươi được."</p>
+    <p>Từ Cẩn hiểu rất rõ mối quan hệ giữa Chu Thế Xương và Liễu gia, nên cũng không cảm thấy ngoài ý muốn, cáo từ một tiếng rồi rời đi trước. Diệp Phi ba người cũng nhanh chóng lên đường về nhà.</p>
+    <p>Có lẽ sợ Diệp Phi lái xe phân tâm, suốt dọc đường Chu Thế Xương chỉ nói chuyện bộ đội với Liễu Quân Di, không mấy để ý tới Diệp Phi. Nhưng Diệp Phi biết rõ, bất kể suy đoán của mình có chính xác hay không, Chu Thế Xương đều nhất định sẽ có một cuộc đối thoại với mình.</p>
+    <p>Khi bọn họ về đến nhà, người cần tới đều đã tới đông đủ. Lần này quy mô không lớn như lần Thủy Dĩnh trở về, vì Chu Thế Xương chỉ có quan hệ với Liễu gia, nên khách khứa cũng chỉ có Liễu Phượng Nghi cùng Diệp Tư Kỳ, Diệp Vân Khinh các nàng.</p>
+    <p>Mọi người gặp mặt, tự nhiên là một hồi hàn huyên, sau đó bắt đầu dùng cơm trưa. Sau khi ăn xong, Diệp Tư Kỳ dẫn theo mấy người muội muội dọn dẹp bàn ăn, rồi pha trà cho mọi người đang ngồi.</p>
+    <p>Chu Thế Xương nâng chung trà lên nhấp một ngụm nhỏ, sau đó nhìn Diệp Phi nói: "Tiểu Mãn à, khoảng thời gian này làm rất tốt!"</p>
+    <p>Đến rồi! Diệp Phi thầm nghĩ trong lòng, ngoài mặt tỏ vẻ khiêm tốn: "Đâu có, Chu gia gia quá khen."</p>
+    <p>"Bất quá, cái sọt ngươi chọc ra cũng khá lớn đấy." Chu Thế Xương ha ha cười nói: "Lại đem lão quỷ kia kéo xuống ngựa, đây chính là chuyện rất nhiều người muốn làm mà không được."</p>
+    <p>"Ai bảo hắn chọc ta!" Diệp Phi lộ ra vẻ cuồng ngạo, trong mắt lấp lánh ánh hào quang đắc ý: "Dám mưu toan thò tay vào Đông Nam, ta há có thể cho phép hắn?"</p>
+    <p>Chu Thế Xương nghiêm sắc mặt, hỏi: "Thế ngươi có biết, ngươi làm như vậy đã chấn động toàn bộ cao tầng rồi không? Còn chuyện đánh chết thương nhân Nhật Bản sau đó, càng khiến nhiều người bất mãn."</p>
+    <p>"Chu gia gia, ngài đây là muốn hưng sư vấn tội với con sao?" Sắc mặt Diệp Phi trầm xuống: "Con tự hỏi từ trước tới nay chưa bao giờ làm sai, cũng không sợ bất kỳ ai hỏi tội. Có thủ đoạn gì cứ việc lấy ra, xem thử có động được đến con không!"</p>
+    <p>Liễu Diệc Như không khỏi kinh ngạc, hôm nay con trai mình bị làm sao vậy? Hoàn toàn không giống hắn chút nào, bất kể là vẻ cuồng ngạo trước đó hay sự chống đối lúc này, đều không phải là tác phong thường ngày của Diệp Phi. Hắn làm vậy chắc chắn có dụng ý, tuy Chu Thế Xương rất thân với bà, nhưng thân thế nào cũng không thể so với con trai bà được, nên bà phối hợp quát lớn: "Tiểu Mãn, sao lại nói chuyện với Chu gia gia như vậy?"</p>
+    <p>Chu Thế Xương lại khoát tay áo, khẽ cười: "Không sao, người tuổi trẻ mà, có chút bốc đồng mới là tốt. Nếu khúm núm quá, lão đầu tử ta lại không ưa. Bất quá Tiểu Mãn, ngươi hiểu lầm Chu gia gia rồi, chúng ta là người một nhà, ta sao có thể hỏi tội ngươi? Ta nói vậy là muốn nhắc nhở ngươi, làm việc gì cũng nên cẩn thận một chút thì tốt hơn."</p>
+    <p>"Thực xin lỗi, Chu gia gia, cũng cảm ơn lời nhắc nhở của ngài, con biết rồi." Sắc mặt Diệp Phi có chút xấu hổ, bất quá trong ánh mắt lại tràn đầy vẻ không cho là đúng.</p>
+    <p>Chu Thế Xương không nói gì thêm, ngược lại cùng Liễu Phượng Nghi trò chuyện về tình hình quan trường Vọng Hải.</p>
+    <p>"Chu gia gia, ngài có biết một người tên là Bao Nhân Từ không?" Một lát sau, Diệp Phi đột nhiên hỏi, đồng thời âm thầm dùng ý niệm quan sát biểu cảm của Chu Thế Xương. Hắn hỏi trực diện như vậy là bất đắc dĩ, vì trước đó hắn đã điều tra qua Bao Nhân Từ nhưng lại phát hiện kẻ này dường như căn bản không có chỗ dựa, là từ tầng dưới chót từng bước bò lên. Nhưng như vậy thì "Tướng quân" trong miệng kẻ đó lại đáng nghi rồi, cho nên Diệp Phi mới đột ngột hỏi để xem phản ứng của Chu Thế Xương.</p>
+    <p>"Bao Nhân Từ?" Chu Thế Xương nhíu mày suy tư một chút, sau đó nói: "Ta nhớ ra rồi, hắn hình như là người lão Lý âm thầm bồi dưỡng, sao ngươi đột nhiên hỏi đến hắn?"</p>
+    <p>Diệp Phi không khỏi sững sờ, hắn biết, "lão Lý" trong lời Chu Thế Xương chính là vị lão tướng quân Lý Vân Long có địa vị ngang hàng với ông trong quân giới. Chẳng lẽ thực sự mình đã đoán sai? Tướng quân trong miệng Bao Nhân Từ là Lý tướng quân sao? Trong lòng nghĩ vậy, Diệp Phi thuận miệng trả lời: "Tên kia bây giờ là phó thị trưởng Gần Biển."</p>
+    <p>"Gần Biển? Đó cũng là địa bàn của ngươi à?" Chu Thế Xương lại nhíu mày, nhắc nhở: "Vậy ngươi nên cẩn thận, Bao Nhân Từ biểu hiện ra ngoài tuy ngang ngược càn rỡ nhưng lại vô cùng âm hiểm, thêm nữa sau lưng có lão Lý chống lưng, nên nếu không phải việc bất đắc dĩ, tốt nhất ngươi đừng có xung đột với hắn."</p>
+    <p>"Nhưng con đã xung đột với hắn rồi." Diệp Phi cười khổ một cái, lập tức hừ lạnh một tiếng: "Trước mặt thực lực tuyệt đối, có âm hiểm thế nào cũng vô dụng. Con sẽ sớm đuổi hắn ra khỏi Đông Nam!"</p>
+    <p>"Vậy cũng tốt, dù sao có một kẻ như thế ở bên cạnh cũng chẳng phải chuyện hay ho gì." Chu Thế Xương gật đầu nói: "Nếu bên ngươi khó thao tác, thì đợi ta trở về nói chuyện với lão Lý. Bằng giao tình của ta và ông ấy, điều một người đi là chuyện rất nhẹ nhàng."</p>
+    <p>"Cảm ơn Chu gia gia, bất quá chuyện này không cần ngài bận tâm. Thu thập một phó thị trưởng nho nhỏ, đối với con không phải là việc khó." Diệp Phi chẳng hề để ý nói.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0359.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0361.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

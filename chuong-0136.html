@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 136 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 136</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 136</small>
+    Chương 136: Thâu hoan trong linh đường
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Ngưng Sương hơi lo lắng nói: "Chính là, theo ta được biết, thực lực của Thanh Long bang tuy không bằng chúng ta, nhưng cũng không kém bao nhiêu. Nếu ngươi mạo muội khai chiến với bọn họ, các bang phái khác sẽ nhân cơ hội 'dậu đổ bìm leo', thì phải làm sao đây?"</p>
+    <p>Diệp Phi nhàn nhạt cười nói: "Nàng yên tâm, một cái Thanh Long bang ta còn chưa để vào mắt. Đừng nói bọn họ, dù cho toàn bộ thế lực ở Vọng Hải đều đến đối nghịch với ta, ta cũng thừa sức đánh cho bọn chúng tơi bời." Nói đến đây, trên người hắn đột nhiên dâng lên một khí thế bễ nghễ thiên hạ, cất cao giọng: "Ta muốn cho tất cả mọi người biết, thế giới ngầm ở Vọng Hải này là của Diệp gia chúng ta. Bất luận kẻ nào muốn nhúng chàm, ta đều sẽ khiến bọn chúng có đến mà không có về! Một Vọng Hải nho nhỏ, căn bản không phải là sân khấu để Diệp Phi ta thi triển tài năng, ta chỉ coi nó là đại bản doanh của mình mà thôi!" Trước mặt mỹ nữ có mối quan hệ song trọng với mình, Diệp Phi không hề che giấu dã tâm.</p>
+    <p>Nhìn dáng vẻ khí phách mười phần của Diệp Phi, Diệp Ngưng Sương không khỏi say đắm, chỉ cảm thấy toàn thân không còn chút sức lực, mềm nhũn tựa vào người hắn.</p>
+    <p>Diệp Phi hoảng sợ, tưởng lời mình nói khiến nàng kinh sợ, vội vàng dìu nàng nói: "Thực xin lỗi, ta không nên nói những điều này."</p>
+    <p>Diệp Ngưng Sương đôi mắt mê ly nhìn Diệp Phi, lẩm bẩm: "Ta không nghe thấy ngươi nói gì, chỉ cảm thấy bộ dạng này của ngươi thật khiến người ta mê muội."</p>
+    <p>Nhìn đôi mắt đẹp kiều mỵ như muốn chảy ra nước của Diệp Ngưng Sương, Diệp Phi đã dày dạn kinh nghiệm sao có thể không nhìn ra nàng đã động tình. Trong lòng hắn cũng dâng lên lửa nóng, ôm lấy nàng bước vào căn phòng nghỉ phía sau linh đường.</p>
+    <p>Một tay ôm Diệp Ngưng Sương, một tay chốt cửa lại, Diệp Phi nhanh chóng cởi bỏ quần áo của nàng. Diệp Ngưng Sương cũng không cam chịu yếu thế, hai ba cái đã lột sạch quần áo của Diệp Phi, bàn tay nhỏ bé nắm lấy vật đã cứng ngắc của hắn, nhanh chóng vuốt ve, miệng thúc giục: "Cháu ngoan, bác muốn con cặc lớn của ngươi, nhanh cắm vào dâm huyệt của bác đi! Bác ngứa lồn quá!"</p>
+    <p>Lúc này Diệp Phi cũng đã cởi hết, đưa tay xuống hạ bộ nàng sờ lên. Quả nhiên, dâm huyệt của nàng đã ướt đẫm. Hắn không chần chờ nữa, đặt nàng lên chiếc giường lớn trong phòng nghỉ, hai tay tách đôi chân thon dài đẫy đà của nàng ra, đứng dưới giường, nương theo bàn tay ngọc của nàng dẫn dắt mà đưa dương vật vào cửa huyệt.</p>
+    <p>Diệp Ngưng Sương nắm lấy con cặc lớn của Diệp Phi, dùng quy đầu thô ráp ma sát thật mạnh vào khe lồn ướt át của mình, sau đó đỉnh ngay miệng huyệt, tiếng phóng đãng nói: "Cháu ngoan, nhanh cắm đi, dùng con cặc lớn của ngươi đâm mạnh vào dâm huyệt của bác!"</p>
+    <p>Diệp Phi hai tay nắm lấy đôi bầu vú đầy đặn, ngón tay khêu nhẹ núm vú đã sung huyết cương cứng, phần eo dùng sức đẩy tới, con cặc to dài "phập" một tiếng, cắm ngập tận gốc vào trong tiểu dâm huyệt đầy nước của bác mình, sau đó bắt đầu ra vào điên cuồng.</p>
+    <p>Từ sau khi bị Diệp Phi địt, Diệp Ngưng Sương ngày nào cũng khao khát con cặc lớn của hắn, chỉ hận không thể để nó cắm mãi trong dâm huyệt mình. Lúc này rốt cục được thỏa mãn, nàng lập tức phóng đãng rên rỉ: "Cháu ngoan... cháu ngoan... con cặc lớn... cháu ruột của bác... ngươi giỏi quá... địt lồn... á... con cặc lớn của ngươi... địt... dâm huyệt của bác... sướng quá... dùng sức địt đi... địt chết bác đi... thân bác à... cái lồn này... là dành cho ngươi đấy... trời sinh ra... chính là để... con cặc lớn của cháu ruột... địt đấy... cháu ngoan... dùng sức... địt... nát cái dâm huyệt của bác đi!"</p>
+    <p>Diệp Phi nhìn người bác vốn là nữ cường nhân trong mắt người ngoài, lúc này đang bị mình địt đến mức rên rỉ không thôi, trong lòng đắc ý vô cùng. Hắn càng dùng lực, mỗi nhịp ra vào đều kéo theo lượng lớn dâm thủy từ trong dâm huyệt chảy ra, làm ướt đẫm cả một mảng giường.</p>
+    <p>Vì vận động quá kịch liệt, Diệp Ngưng Sương rất nhanh đã đạt đến cao trào lần đầu, dâm huyệt co thắt chặt lấy con cặc của Diệp Phi, một lượng lớn dâm thủy phun ra. Nhưng nàng vẫn không nghỉ ngơi, mà gọi: "Cháu ngoan... đừng dừng... tiếp tục... địt dâm huyệt của bác... bác muốn... con cặc lớn của ngươi... cứ như vậy... địt cái tiểu dâm huyệt này của bác..."</p>
+    <p>Diệp Phi biết nàng vẫn còn dư lực nên không dừng lại, tiếp tục ra sức đâm rút. Sau hơn hai mươi phút cuồng nhiệt, Diệp Ngưng Sương đã đạt đến cao trào lần thứ tư, rên rỉ: "Cháu ruột... con cặc của ngươi... thật sự... quá tuyệt... bác... yêu chết nó rồi... địt dâm huyệt của bác... thật thoải mái... bác sắp... lại tới rồi... nhanh dùng lực... tiếp tục địt... dâm huyệt của bác đi..."</p>
+    <p>Lúc này Diệp Phi cũng đã đến điểm tới hạn, kêu lên: "Bác ngoan, nhanh kẹp chặt dâm huyệt vào, cháu cũng muốn bắn rồi."</p>
+    <p>"Bắn đi... đừng rút... ra ngoài... bắn vào... trong dâm huyệt của bác đi... dùng tinh dịch của cháu... rót đầy dâm huyệt của bác đi!" Diệp Ngưng Sương rên rỉ, lại một đợt âm tinh phun ra. Cùng lúc đó, Diệp Phi gầm nhẹ một tiếng, bắn ra lượng lớn tinh dịch nóng hổi vào sâu trong dâm huyệt của bác mình.</p>
+    <p>Sau cơn cao trào, hai cô cháu ôm chặt lấy nhau, âu yếm vuốt ve cơ thể đối phương, trong lòng đều vô cùng thỏa mãn.</p>
+    <p>Một hồi lâu sau, Diệp Ngưng Sương mới khôi phục chút sức lực, nhìn nụ cười tinh quái của Diệp Phi, không dám trêu chọc hắn nữa, bèn đổi chủ đề: "Ngươi vừa nói, Vọng Hải không phải là sân khấu của ngươi, có phải là đã có dự định gì rồi không?"</p>
+    <p>Diệp Phi cũng không nỡ hành hạ nàng thêm nữa, ngồi dậy tựa vào đầu giường, ôm lấy Diệp Ngưng Sương, mỉm cười: "Đúng vậy, ta chuẩn bị lấy Vọng Hải và Lâm Hải làm căn cơ, chậm rãi mở rộng thế lực ra bên ngoài." Nói đến đây, thấy sắc mặt Diệp Ngưng Sương thoáng cô đơn, hắn vội hỏi: "Sao vậy? Có phải thấy dã tâm của ta quá lớn không?"</p>
+    <p>"Không phải, đàn ông có chút dã tâm mới tốt chứ, ngươi nghĩ như vậy, ta thật sự rất vui." Diệp Ngưng Sương cười nhẹ: "Chỉ là, sau này thời gian ngươi ở bên chúng ta chẳng phải sẽ ít đi sao?"</p>
+    <p>Diệp Phi thấy nàng lo lắng điều này thì yên tâm, cười nói: "Yên tâm đi, điều nàng lo lắng sẽ không xảy ra đâu. Chẳng lẽ ta lại đi giành chính quyền một mình sao? Đương nhiên là phải trấn thủ đại bản doanh, để bọn họ đi chém giết rồi."</p>
+    <p>"Như vậy thì tốt." Diệp Ngưng Sương thở phào. Nàng bây giờ càng lúc càng mê luyến Diệp Phi, một khắc cũng không muốn rời xa hắn. Nếu sau này Diệp Phi có thực lực khiến ai cũng không dám phản đối, thì nàng ở bên hắn cũng có thể thoải mái hơn, không cần lo lắng sẽ có những kẻ tự xưng là 'vệ đạo sĩ' ra mặt phản đối nữa.</p>
+    <p>Hai người cứ thế lặng lẽ ôm nhau một hồi, Diệp Ngưng Sương bỗng nhiên hỏi: "Tại sao đột nhiên ngươi lại nảy sinh ý nghĩ như vậy? Ta nhớ trước kia ngươi chẳng để tâm đến cái gì, theo lý mà nói không nên đột nhiên có dã tâm lớn như thế chứ."</p>
+    <p>"Còn không phải vì các nàng sao." Diệp Phi cười cười, với Diệp Ngưng Sương, hắn không giấu giếm điều gì, khí phách lại hiện rõ trên khuôn mặt: "Các nàng đều quá xuất sắc, mà một người phụ nữ xuất sắc tất nhiên sẽ bị nhiều người nhòm ngó, huống chi là cả một đám mỹ nhân cực phẩm. Cho nên ta muốn tạo ra một bầu trời tuyệt đối an toàn cho các nàng, để các nàng không bao giờ bị bất kỳ ai quấy rầy nữa."</p>
+    <p>Nhìn tư thế oai hùng như thiên thần của Diệp Phi, lại nghe được những lời bảo vệ đầy chân thành đó, Diệp Ngưng Sương không khỏi say đắm, thiếu chút nữa không nhịn được. Nhưng nghĩ đến việc mình thực sự đã vô lực chịu đựng, chỉ làm hắn thêm khổ sở, nàng bèn kìm lại, đổi chủ đề: "Ta ủng hộ ngươi. Ta thấy thế này đi, sau này công việc kinh doanh của Diệp gia cứ giao cho ngươi, ta cùng Tuyết Nhi, Băng Nhi vừa hay có thể nghỉ ngơi một chút."</p>
+    <p>Diệp Phi ngẩn người, vẻ mặt đau khổ: "Nàng tha cho ta đi, việc kinh doanh ta sao có thể xử lý tốt? Vẫn là các nàng lo liệu thì hơn."</p>
+    <p>"Không được." Thái độ Diệp Ngưng Sương rất kiên quyết: "Chúng ta có thể giúp quản lý, nhưng vị trí chủ tịch nhất định phải là ngươi!"</p>
+    <p>Diệp Phi lại sững sờ, nhìn ánh mắt tràn ngập nhu tình của Diệp Ngưng Sương, đột nhiên hiểu rõ ý nàng. Lòng yêu thương nàng trong hắn càng thêm sâu đậm, gật đầu: "Được rồi, nhưng ta sẽ không quản sự đâu đấy."</p>
+    <p>Thấy Diệp Phi đồng ý, Diệp Ngưng Sương lộ nụ cười: "Yên tâm đi, không cần ngươi quan tâm việc gì cả, sau này Sương nhi làm thư ký cho ngươi, ngươi cứ yên tâm làm 'vung tay chưởng quỹ' là được rồi."</p>
+    <p>"Vậy thì quyết định như thế." Diệp Phi cũng cười: "Có vị thư ký tài giỏi như vậy, ta còn sợ gì nữa chứ..."</p>
+    <p>"Đi chết đi!" Diệp Ngưng Sương lườm hắn một cái, cắt ngang lời hắn: "Vậy chúng ta vừa hay có thể nhân cơ hội này gây dựng lại Diệp thị tập đoàn, tiện thể thanh lý luôn những chỗ không ổn."</p>
+    <p>Về chuyện kinh doanh, Diệp Phi vốn không có chút kinh nghiệm nào, gật đầu: "Những việc này nàng xem rồi làm là được, không cần nói với ta."</p>
+    <p>"Sao có thể không nói cho ngươi?" Diệp Ngưng Sương cười nói: "Đến lúc đó còn cần ngươi là chủ tịch ra mặt nữa."</p>
+    <p>"Cái này cũng cần ta đi sao?" Diệp Phi lại khổ sở mặt mày. Diệp thị tập đoàn gây dựng lại, chắc chắn sẽ có rất nhiều nhân vật trong thương giới và chính giới dự họp. Với tư cách là chủ tịch danh dự của Diệp thị, làm sao tránh khỏi việc tiếp xúc với những kẻ dối trá đó, đây là điều hắn sợ nhất.</p>
+    <p>"Cái này nhất định phải đi!" Diệp Ngưng Sương nghiêm mặt: "Đây là đại sự của Diệp gia, ngươi là chủ tịch sao có thể không dự?"</p>
+    <p>"Hả?" Mặt Diệp Phi càng khổ sở: "Sương nhi ngoan, đừng ép ta nữa mà, nàng biết ta không thích những trường hợp đó."</p>
+    <p>Nhìn dáng vẻ ủy khuất của Diệp Phi, không còn chút khí phách nào như lúc nãy, Diệp Ngưng Sương "xì" một tiếng bật cười, sủng nịch xoa mặt hắn: "Được rồi được rồi, đến lúc đó ngươi chỉ cần làm bộ làm tịch là được, những việc khác chúng ta ứng phó, vậy được chưa?"</p>
+    <p>"Ừ!" Diệp Phi vui mừng gật đầu, ôm chặt Diệp Ngưng Sương: "Đúng là Sương nhi tốt của ta, ta phải thưởng cho nàng mới được!" Nói xong, hắn cúi đầu hôn lên đôi môi nhỏ của nàng.</p>
+    <p>"Đi chết đi, lại giở trò xấu, người ta mới không cần phần thưởng kiểu đó!" Sau khi Diệp Phi buông ra, Diệp Ngưng Sương bất mãn nói, nhưng bàn tay nhỏ bé lại rời khỏi hạ bộ, cầm lấy con cặc đã cứng lên của hắn mà vuốt ve.</p>
+    <p>Diệp Phi biết Diệp Ngưng Sương lại muốn nữa rồi, vì vậy tách hai chân nàng ra, đẩy dương vật vào trong tiểu dâm huyệt. Lần này Diệp Ngưng Sương không cho hắn địt ngay, chỉ để hắn cắm như vậy, rồi hỏi: "Cháu ngoan, nói bác nghe, con cặc của ngươi ngoài dâm huyệt của bác ra, còn từng vào dâm huyệt của ai khác không?"</p>
+    <p>Diệp Phi lúc này cũng không muốn giấu giếm: "Bác là người phụ nữ đầu tiên của ta, Khinh Khinh là người thứ hai."</p>
+    <p>"Khinh Khinh?" Diệp Ngưng Sương nghe hắn nói người thứ hai lại chính là song bào thai muội muội Diệp Vân Khinh, đầu tiên là kinh ngạc, nhưng lập tức cười hì hì: "Ta biết ngay mà, các nàng cũng đều không thoát khỏi lòng bàn tay ngươi. Chỉ là không ngờ lại là Khinh Khinh, ta cứ tưởng là Phượng Nghi cơ."</p>
+    <p>Diệp Phi nhớ tới dì cả Liễu Phượng Nghi, trong lòng một hồi lửa nóng, trên mặt lại cười khổ: "Nàng đúng là biết nghĩ, làm sao có thể là dì cả được."</p>
+    <p>"Sao lại không thể?" Diệp Ngưng Sương bĩu môi nói: "Vừa rồi ánh mắt nàng nhìn ngươi rất đặc biệt, như thể hận không thể để ngươi địt ngay lập tức ấy. Ta còn tưởng nàng cũng giống ta, đều bị tên tiểu bại hoại này địt rồi chứ."</p>
+    <p>Diệp Phi lúc nãy không chú ý đến ánh mắt Liễu Phượng Nghi, lúc này không khỏi bán tín bán nghi. Diệp Ngưng Sương lại cười nói: "Ta thấy ngươi không bằng tranh thủ chiếm lấy nàng luôn đi. Chẳng phải ngươi luôn muốn địt mẹ mình sao? Nếu đã chiếm được những người xung quanh bà ấy, đến lúc đó chúng ta hợp sức tác hợp cho ngươi, chẳng phải ngươi sẽ thỏa mãn nguyện vọng sao?"</p>
+    <p>Từ trước đến nay, chỉ có Diệp Ngưng Sương biết phần tà ác trong lòng Diệp Phi, nên đối mặt với nàng, Diệp Phi không cần giải thích nhiều. Nghe đề nghị của nàng, trong lòng hắn không khỏi chờ mong. Nếu thực sự có thể làm vậy thì đúng là kết quả tốt nhất. Chỉ cần nghĩ đến đôi lồn mềm mại, no đủ như trái đào chín mọng của mẹ, Diệp Phi liền không nhịn được kích động.</p>
+    <p>Diệp Ngưng Sương rất nhạy cảm phát hiện con cặc đang cắm trong lồn mình biến hóa, cười hì hì: "Sao? Có khả thi không? Có cần bác giúp ngươi 'hóng gió' không, đến lúc đó chúng ta cùng nhau cho ngươi địt?"</p>
+    <p>"Muốn, muốn!" Diệp Phi gật đầu lia lịa, hôn lên môi Diệp Ngưng Sương: "Bác ngoan, nàng thật sự quá tốt, cháu biết cảm ơn nàng thế nào đây!"</p>
+    <p>Diệp Ngưng Sương bị dương vật hắn đâm vào trong lồn, dục hỏa đã bốc cao ngùn ngụt. Nghĩ đến việc có ngày mình sẽ cùng Liễu gia tỷ muội cùng nhau cho hắn địt, càng kích động không thôi, nũng nịu nói: "Vậy thì dùng sức địt bác đi, đó là cách báo đáp tốt nhất cho bác."</p>
+    <p>Yêu cầu này Diệp Phi đương nhiên không từ chối. Hắn dùng sức đẩy hông, để dương vật ra vào nhanh chóng trong dâm huyệt của nàng. Vì tâm tình kích động, hắn không ngừng nghỉ mà địt Diệp Ngưng Sương mấy ngàn cái, khiến số lần cao trào của nàng không thể đếm xuể, còn chính hắn cũng bắn tới ba lần trong tiểu dâm huyệt của bác, lúc này mới dừng lại, ôm nhau nằm nghỉ.</p>
+    <p>Lần này Diệp Ngưng Sương thực sự không còn chút sức lực nào, rất nhanh đã chìm vào giấc ngủ trong lòng Diệp Phi. Còn Diệp Phi dù vẫn còn tinh thần, nhưng không nỡ quấy rầy nàng. Hắn cứ ôm lấy cơ thể mềm mại của nàng, trong lòng không khỏi nhớ tới những lời vừa rồi. Người ta vẫn bảo phụ nữ hiểu phụ nữ nhất, chẳng lẽ Diệp Ngưng Sương nói đúng, Liễu Phượng Nghi thật sự cũng đã động tâm với mình?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0135.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0137.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

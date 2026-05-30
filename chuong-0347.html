@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 347 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 347</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 347</small>
+    Chương 347: Trước mặt mọi người tỏ tình
+  </h1>
+  <div class="chapter-body">
+    <p>"Tại sao không thấy Mộc a di cùng Vi Nhi tỷ?" Nhìn quanh một vòng, vẫn không phát hiện bóng dáng hai mẹ con, Diệp Phi không nhịn được hỏi Tư Đồ Ảnh đang ngồi bên trái mình.</p>
+    <p>Tại phòng chiếu phim, Trác Phượng Nhi và Tư Đồ Ảnh ngồi hai bên Diệp Phi. Mọi người trong công ty thấy vị đại mỹ nữ trưởng thành gợi cảm ngồi cạnh Diệp Phi thì vô cùng tò mò, thỉnh thoảng lại đưa mắt nhìn sang. Thế nhưng Trác Phượng Nhi căn bản không để tâm đến những ánh mắt đó, toàn bộ tâm trí đều đặt trên người Diệp Phi. Tuy nàng không muốn như vậy, nhưng lòng dạ cứ không nghe lời, giờ phút này nghe hắn nhắc đến hai người phụ nữ khác, trong lòng không khỏi giật thót, thầm trách cứ không thôi. Sao tiểu nam nhân này lại dính líu đến nhiều người thế không biết? Vừa mới liếc mắt đưa tình với ba cô bé tinh linh đáng yêu, giờ lại hỏi đến phụ nữ khác.</p>
+    <p>Tư Đồ Ảnh tự nhiên không biết trong khoảnh khắc đó, Trác Phượng Nhi ngồi bên kia Diệp Phi lại có nhiều suy nghĩ như vậy, bèn trêu ghẹo: "Sao nào, nhớ Vi Nhi tỷ của cậu rồi? Yên tâm đi, nàng chỉ là quay chụp xong muốn thư giãn một chút, nên để Mộc a di đưa ra ngoài chơi, chắc trưa là về."</p>
+    <p>Diệp Phi thầm nghĩ, ai mà nhớ cái kẻ tâm hồn nam nhi trong thân xác nữ nhi kia chứ, ta là nhớ Mộc a di xinh đẹp rồi! Nhưng lời này đương nhiên không thể nói trước mặt người khác, bèn cười nói: "Ra là vậy, thế thì tốt, có thể kịp đại hội ăn mừng của chúng ta."</p>
+    <p>"Đại hội ăn mừng gì cơ?" Tư Đồ Ảnh ngạc nhiên hỏi, vì cô không nhớ công ty có sắp xếp như vậy.</p>
+    <p>"Hiện tại chúng ta có thể nói là ba chuyện vui cùng lúc, sao có thể không ăn mừng cho ra trò." Diệp Phi cười giải thích: "Thứ nhất, Phượng Nhi tới công ty làm phó tổng. Có nàng cùng cô, công ty chắc chắn sẽ phát triển không ngừng. Thứ hai, phim của chúng ta đã làm xong, đây là tác phẩm đầu tay kể từ khi công ty tái cơ cấu, đương nhiên phải ăn mừng. Thứ ba, ba cô bé nhà Cốc gia diễn xuất rất tuyệt, chẳng lẽ không đáng ăn mừng sao?"</p>
+    <p>"Cậu cứ yêu chiều bọn trẻ như vậy, dù sao cậu cũng nhiều tiền mà." Tư Đồ Ảnh không nể mặt nói, nhưng trong lòng cũng thấy Diệp Phi nói rất có lý.</p>
+    <p>Đúng là gần mực thì đen! Ở chung với cái cô Hứa Vi Nhi kia lâu ngày, đến Tư Đồ Ảnh cũng học được cách không nể mặt mình rồi, Diệp Phi thầm thở dài trong lòng, lập tức chuyển sự chú ý sang bộ phim vừa bắt đầu trình chiếu.</p>
+    <p>Tuy trước đó đã xem qua phần trước, nhưng đó chỉ là bản quay sơ bộ. Hiện tại sau khi được biên tập kỹ lưỡng, mọi phương diện của bộ phim đều mạnh hơn trước rất nhiều, ngay cả Diệp Phi nhất thời cũng không nhịn được mà chìm đắm vào đó.</p>
+    <p>Trác Phượng Nhi vốn đặt tâm tư trên người Diệp Phi, sau khi xem vài cảnh cũng không khỏi hoàn toàn đắm chìm. Giờ nàng mới hiểu tại sao Diệp Phi lại nói Tư Đồ Ảnh là thiên tài biên đạo, bởi vì ngay cả người đã lăn lộn trong nghề gần hai mươi năm như nàng cũng phải bội phục trí tưởng tượng bay bổng cùng kỹ năng đạo diễn xuất thần nhập hóa của Tư Đồ Ảnh. Không chỉ có vậy, nàng còn có mắt nhìn người cực chuẩn. Hai nhân vật chính trong phim, dù là vị tiểu tiên tử tính cách thẳng thắn có chút mơ hồ, hay cô bé Hoa Yêu hoạt bát đáng yêu (Cốc Tuyết Hàm, sau khi phát hiện thiên tài của cô bé, Tư Đồ Ảnh đã thêm rất nhiều đất diễn trong phần sau, khiến vai Hoa Yêu trở thành nhân vật chính thứ hai), đều diễn xuất vô cùng sống động, không hề có chút gượng ép nào, hành động còn xuất sắc hơn cả những ngôi sao lớn đã thành danh từ lâu.</p>
+    <p>Sau khi bộ phim dài 120 phút trình chiếu xong, đèn trong đại sảnh bật sáng, tiếng vỗ tay kéo dài không dứt vang lên. Giờ khắc này, bất kể là cao tầng hay nhân viên bình thường trong công ty, đều cảm thấy vô cùng tự hào vì công ty mình có thể tạo ra một bộ phim hoàn mỹ đến thế.</p>
+    <p>Lúc này, Diệp Phi gõ tay lên mặt bàn phía trước, lớn tiếng hỏi: "Mọi người thấy bộ phim Phi Tiên của chúng ta thế nào?"</p>
+    <p>"Tốt!" Các nhân viên đồng thanh đáp lại. Họ không phải đang nịnh nọt Diệp Phi, mà là bộ phim này thực sự quá thành công, vượt xa sự mong đợi của họ.</p>
+    <p>Diệp Phi hài lòng gật đầu, lại hỏi: "Vậy các bạn nghĩ bộ phim này sau khi công chiếu có thể đạt thành tích tốt không?"</p>
+    <p>"Tuyệt đối có thể!" Lại là một tiếng đồng thanh, trong giọng nói của mọi người không có chút gượng ép nào, chỉ có sự tự tin và kiêu hãnh vô tận. Bởi vì đây là kết quả của sự nỗ lực chung, từ bộ phim thành công ngoài mong đợi này, họ dường như đã nhìn thấy tương lai huy hoàng của công ty. Những nhân viên vốn vô cùng trung thành này làm sao có thể không kích động?</p>
+    <p>"Xem ra mọi người cũng có lòng tin như tôi. Không sai, tác phẩm đầu tay của chúng ta vô cùng thành công, tất cả là nhờ vào sự nỗ lực của mọi người. Để báo đáp các bạn, tôi có một tin vui muốn chia sẻ." Diệp Phi nói xong, vẫy tay gọi Trác Phượng Nhi, đợi nàng lên sân khấu cạnh mình mới giới thiệu: "Hôm nay, tôi đã mời được một vị phó tổng cực kỳ tài năng, Trác Phượng Nhi nữ sĩ, mọi người hoan nghênh!"</p>
+    <p>Là một ngọc nữ từng làm mưa làm gió cả nước năm nào, sau này lại là một trong những nữ đại gia hiếm hoi trong giới, danh tiếng của Trác Phượng Nhi vô cùng vang dội. Vừa rồi đã có người thấy nàng rất giống Trác Phượng Nhi trong truyền thuyết, chỉ là không ai dám nghĩ tới khả năng này. Lúc này được Diệp Phi xác nhận, mọi người không khỏi reo hò. Đúng như Diệp Phi vừa nói, công ty có Trác Phượng Nhi và Tư Đồ Ảnh, muốn không phát triển nhanh cũng khó.</p>
+    <p>Đợi mọi người bớt hò reo, Diệp Phi tiếp tục nói: "Phượng Nhi tổng tài không những đến công ty chúng ta nhậm chức, mà còn sáp nhập các công ty cũ của mình vào dưới trướng Lăng Vân. Vì vậy, hiện tại Lăng Vân đã là một trong những công ty lớn số một số hai trong nước. Với quy mô như vậy, chắc chắn chúng ta sẽ còn tiến xa hơn nữa."</p>
+    <p>Nghe Diệp Phi nói vậy, trong đại sảnh im lặng trong giây lát, bởi vì họ thực sự quá chấn kinh. Sản nghiệp dưới tên Trác Phượng Nhi lớn gấp mười lần Lăng Vân, vậy mà giờ lại sáp nhập vào Lăng Vân, sao có thể không khiến người ta ngạc nhiên? Vì Diệp Phi luôn rất hòa đồng, mọi người không hề sợ hãi hắn như người ngoài, cuối cùng có người không nhịn được lớn tiếng hỏi: "Diệp tổng, Trác tổng sao lại sáp nhập công ty vào Lăng Vân vậy? Hai người không phải..."</p>
+    <p>Người này dù nói chưa hết câu nhưng mọi người đều hiểu ý, không khỏi cười ồ lên.</p>
+    <p>Diệp Phi không hề tức giận, mỉm cười nói: "Muốn nói tôi với Trác tổng có quan hệ gì, thì thật sự là không có. Nếu cố bắt tôi nói, thì đó là tôi rất ngưỡng mộ nàng, hiện tại đang theo đuổi đấy!"</p>
+    <p>Trác Phượng Nhi không thể ngờ được Diệp Phi lại tỏ tình với mình ngay trong hoàn cảnh này. Cho dù nàng có hào phóng đến đâu cũng không khỏi xấu hổ đến đỏ bừng mặt, không thể ngồi lại trên sân khấu được nữa, vội vàng bước nhanh xuống chỗ ngồi.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0346.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0348.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

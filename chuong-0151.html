@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 151 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 151</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 151</small>
+    Chương 151: Lần đầu giương âm mưu
+  </h1>
+  <div class="chapter-body">
+    <p>"Đừng nói bậy!" Diệp Phi vỗ nhẹ lên cái đầu nhỏ của Diệp Vân Khinh. Diệp Vân Khinh thè lưỡi, cười với Lâm Linh ở bên cạnh: "Ta chỉ là nói đùa thôi, chị dâu đừng giận nha." Tuy không phải lần đầu bị Diệp Vân Khinh gọi là chị dâu, nhưng nghe nàng xưng hô như vậy, Lâm Linh vẫn không nhịn được hơi đỏ mặt, thấp giọng nói: "Ta biết rồi, Diệp tử ca ca sẽ không thích cô gái như vậy đâu." "Xem ra chị dâu của ta khá là tự tin đấy!" Diệp Vân Khinh cười khúc khích trêu chọc Lâm Linh, đôi mắt xoay chuyển, lại hỏi: "Vậy ngươi nói xem, nếu có một cô gái giống ta, ca ca có thích hay không?" "Đương nhiên là có!" Lâm Linh không chút do dự đáp: "Đừng nói là hắn, nếu ta là con trai, cũng nhất định sẽ thích ngươi!" "Vậy nếu có một cô gái giống ta cũng thích ca ca, ngươi có cãi nhau với nàng không?" Diệp Vân Khinh vội vàng hỏi. Dù đã từng thăm dò ý của Lâm Linh, nhưng nàng vẫn chưa hoàn toàn yên tâm nên nhân cơ hội này hỏi lại lần nữa. Lâm Linh thở dài một tiếng: "Đương nhiên là không rồi. Có đôi khi ta cứ nghĩ, nếu ngươi không phải là muội muội của Diệp tử ca ca thì tốt biết mấy, như vậy ba chúng ta có thể mãi mãi ở bên nhau." Diệp Vân Khinh chợt rưng rưng, chân thành nói: "Linh Linh, cảm ơn ngươi!" Từ trước tới nay, nàng lo lắng nhất hai chuyện, một là sợ chuyện của mình và Diệp Phi bị mẹ phản đối, hai là sợ Lâm Linh không chấp nhận mình. Giờ nghe nàng nói vậy, sao nàng không khỏi xúc động cho được? Lâm Linh hơi ngẩn người, không hiểu tại sao Diệp Vân Khinh lại kích động như thế. Diệp Phi liền tiếp lời: "Vậy thì ba chúng ta sẽ mãi mãi ở bên nhau!" Lâm Linh hiểu rõ tình cảm của Diệp Phi và Diệp Vân Khinh, lúc này tự nhiên cũng sẽ không nói mấy câu sát phong cảnh kiểu như Diệp Vân Khinh sau này phải lập gia đình, chỉ gật đầu bảo: "Đúng vậy, không ai có thể tách chúng ta ra!" Vì đã hiểu rõ tâm ý của Lâm Linh, tâm trạng Diệp Vân Khinh tốt vô cùng. Cộng thêm cú điện thoại kia của dì Liễu Phượng Nghi, dù vẫn thấy Tiêu Phỉ không thuận mắt, nhưng cả buổi chiều nàng không hề gây khó dễ gì. Tiêu Phỉ sau khi biết sự chênh lệch giữa mình và Diệp Vân Khinh cũng rất biết điều, buổi chiều trôi qua khá bình yên. Sau khi tan học, Diệp Phi và Diệp Vân Khinh không về tiểu viện Diệp gia mà bắt taxi đến biệt thự Diệp gia ở phía đông. Đã lâu không về nhà nên họ muốn ghé qua thăm một chút. Còn về phần tiểu viện, tâm trạng Hứa Thư Vân đã khá hơn nhiều, lại có Diệp Tĩnh ở bên cạnh nên không cần lo lắng bà sẽ nghĩ ngợi chuyện cũ nữa. Hai người trở về cũng không báo trước, nên khi sắp đến nhà, họ nhìn nhau cười, rất mong chờ vẻ mặt ngạc nhiên của mẹ cùng chị cả, chị hai khi thấy họ. Còn chị ba thì không cần nghĩ tới, chắc chắn đang ở trường học rồi. Dùng chìa khóa mở cửa, Diệp Phi và Diệp Vân Khinh lặng lẽ bước vào phòng khách biệt thự. Họ không thấy bóng dáng chị cả hay chị hai, chỉ có mẹ Liễu Diệc Như đang ngồi đó với vẻ mặt đầy ưu tư. Bà hẳn là vừa từ công ty về, mặc bộ trang phục công sở: áo vest cổ bẻ màu đen, chân váy ngang gối, dù không mặc tất nhưng đôi bắp chân mượt mà trông còn nhẵn nhụi, mềm mại hơn cả những người phụ nữ mặc tất lụa. Chỉ nhìn bà thôi đã khiến Diệp Phi thấy kích động hơn nhiều so với những người phụ nữ không mảnh vải che thân. Bên cạnh mẹ là một người phụ nữ có vài nét tương đồng, chính là dì nhỏ của Diệp Phi - Liễu Quân Di. Dù đang ở nhà nhưng bà vẫn mặc quân phục, ngồi thẳng tắp. Vì tư thế ngồi, bộ ngực vốn đầy đặn của bà càng trở nên nổi bật. Bộ quân phục này khoác trên người bà càng thêm phần phong tình. Khác với mẹ, trên mặt dì nhỏ lại lộ vẻ tươi cười rạng rỡ. "Dì nhỏ!" Diệp Vân Khinh có tình cảm rất tốt với Liễu Quân Di, thấy bà ở đó liền reo lên rồi chạy tới, trực tiếp ngồi vào lòng bà. Liễu Quân Di ôm Diệp Vân Khinh vào lòng như thuở nhỏ, cười nói: "Lớn thế này rồi mà vẫn còn như hồi bé nhỉ." Diệp Phi thì ngồi xuống cạnh mẹ, đưa tay ôm vai bà, hỏi: "Mẹ, có chuyện gì phiền lòng sao?" Bình thường hắn không to gan như vậy, nhưng mấy ngày nay vì tâm trạng Hứa Thư Vân không ổn định, mỗi lần ngồi chung phòng khách hắn đều ôm bà an ủi như thế nên đã thành thói quen. Chỉ là sau khi hỏi xong, hắn mới nhận ra người trong lòng mình là nữ thần, không khỏi thấy lo lắng. Liễu Diệc Như không nghĩ nhiều, thoải mái tựa người vào lòng Diệp Phi, thở dài: "Dì nhỏ của con ngày mai phải ra chiến trường rồi, mẹ sao có thể không lo?" Thấy Liễu Diệc Như không phản đối, Diệp Phi rất vui mừng. Dù sao đây cũng là lần đầu tiên ôm bà khi bà tỉnh táo. Cảm nhận cơ thể mềm mại mà mình hằng ao ước áp sát vào lồng ngực, hắn không khỏi vô cùng kích động. Nhưng nghe lời mẹ nói, hắn sững sờ hỏi: "Bây giờ chẳng phải thời bình sao? Sao lại ra chiến trường?" Điểm kiều diễm trong lòng vì câu nói này mà tan biến hết.</p>
+    <p>Liễu Quân Di cười nói: "Chị hai, chị cứ làm quá lên, đây tính là chiến trường gì chứ, chỉ là vài tên khủng bố thôi, không có uy hiếp gì với chúng ta cả." Liễu Diệc Như vẫn không yên lòng, đầy vẻ ưu tư: "Đừng xem thường bọn khủng bố đó, trong đó có không ít kẻ tài giỏi, sợ là không kém đặc chiến đội của các em là bao đâu." Liễu Quân Di vẫn cười chẳng chút để tâm: "Chúng ta đã nhận được tin tức chính xác, băng nhóm khủng bố đó tuy không ít nhưng cũng chỉ có vài trăm tên. Chỉ riêng Vọng Hải đặc chiến đội của chúng ta đã có thể xử lý dễ dàng rồi, huống hồ lần này còn có hơn hai mươi đặc chiến đội trên cả nước, gần một ngàn người cơ đấy." Diệp Phi nhíu mày, hỏi: "Dì nhỏ, Vọng Hải đặc chiến đội của các người đã có hơn năm trăm người rồi, sao hơn hai mươi đặc chiến đội cả nước cộng lại mới chưa tới một ngàn người?" "Là thế này." Liễu Quân Di giải thích: "Vì cơ hội thực chiến như vậy không nhiều, nên phía trên quyết định mỗi đặc chiến đội tối đa chỉ được phái ra năm mươi tinh anh, thế nên mới có bấy nhiêu người. Nhưng những người được chọn đều là tinh anh trong tinh anh, đối phó với đám khủng bố đó tất nhiên không thành vấn đề." Trong lòng Diệp Phi khẽ động, hỏi: "Dì nhỏ, mấy ngày trước dì vừa thăng thiếu tướng, lần hành động này là do dì tổng chỉ huy sao?" "Đúng vậy, lần này tổng chỉ huy chính là ta!" Nhắc đến đây, Liễu Quân Di và đồng đội rất tự hào. Vì Vọng Hải đặc chiến đội tuy rất mạnh nhưng những nơi khác cũng không kém, thậm chí có vài đội lão làng còn có danh tiếng cao hơn. Lần này Liễu Quân Di được làm tổng chỉ huy, những đại đội trưởng vốn cùng cấp với bà nay đều là cấp dưới, điều này khiến người của Vọng Hải đặc chiến đội vô cùng hãnh diện. Liễu Quân Di vui vẻ, nhưng lông mày Diệp Phi lại nhíu chặt hơn. Từ lần nghe được cuộc điện thoại của viên sĩ quan tới trao huân chương cho Liễu Quân Di, Diệp Phi đã nghi ngờ đây là một âm mưu. Dù sau đó không có động tĩnh gì làm hắn yên tâm phần nào, nhưng chuyện lần này lại khiến hắn liên tưởng tới chuyện đó. Càng nghĩ càng thấy không đúng, đây đích thực là âm mưu nhắm vào Liễu Quân Di, thậm chí là tất cả các đặc chiến đội. Dù sao với quy định như vậy, người do các đại đội trưởng mang theo chắc chắn đều là thân tín của họ. Nếu gom hết số người này lại một chỗ mà tiêu diệt, kẻ nào đó hoặc thế lực nào đó có thể nhân cơ hội thâu tóm cơ quan đặc chủng này, ít nhất cũng có thể cài người vào. Về phần tại sao lại để Liễu Quân Di làm tổng chỉ huy, chắc chắn họ đã chuẩn bị sẵn hai phương án. Vì các đại đội trưởng khác tuy quyền cao chức trọng nhưng vẫn không bằng Liễu Quân Di. Ở Vọng Hải, Liễu gia có Liễu Phượng Nghi trong giới chính trị, Liễu Diệc Như trong giới kinh doanh, Liễu Quân Di trong giới quân sự, có thể nói là đã hoàn toàn nắm giữ Vọng Hải. Cộng thêm mối quan hệ với Diệp gia - thế lực ngầm của Vọng Hải, toàn bộ Vọng Hải như một khối thép bền vững, không ai có thể nhúng tay vào. Còn lần này, chỉ sợ thế lực kia có liên quan tới đám khủng bố, và đã chuẩn bị kỹ càng. Dù không thể tiêu diệt hết đám người này, họ cũng sẽ không để nhiệm vụ thành công. Như vậy, họ sẽ có lý do chính đáng để cách chức Liễu Quân Di, từ đó tạo một lỗ hổng trong khối thép Vọng Hải này. Tất cả chỉ là suy đoán của Diệp Phi, nhưng hắn có chín phần tự tin mình đoán đúng. Nếu để Liễu Quân Di đi, hắn thật sự rất lo lắng. Dù bà mạnh hơn những đặc chiến đội viên bình thường, nhưng "song quyền nan địch tứ thủ", đến lúc đó chắc chắn sẽ có nguy hiểm. Hắn tự nhiên sẽ không để dì nhỏ mình yêu quý đi mạo hiểm. "Dì nhỏ, hay là lần này để con đi cùng các người đi." Biết không thể cãi lệnh quân đội, hắn quyết định đi theo, đến lúc đó có thể tự mình bảo vệ bà, như vậy dì sẽ an toàn hơn. "Hồ đồ!" Liễu Quân Di tất nhiên không hiểu nỗi khổ tâm của Diệp Phi, cứ tưởng hắn muốn đi chơi. Dù bà tự tin vào lần hành động này nhưng cũng biết nguy hiểm là khó tránh khỏi. Bà yêu thương Diệp Phi như vậy, sao nỡ để hắn đi mạo hiểm? Thế là bà sa sầm mặt lại: "Con tưởng đây là đi chơi sao? Có thể sẽ rất nguy hiểm đấy!" Liễu Diệc Như lại sáng mắt lên. Bản lĩnh của Diệp Phi dù bà chưa hiểu hết, nhưng chỉ một phần lộ ra thôi đã mạnh hơn cả người mạnh nhất trong ba chị em là Liễu Quân Di rồi. Nếu có Diệp Phi đi cùng Liễu Quân Di, bà sẽ yên tâm hơn. Hơn nữa, Diệp Phi tuy đang thể hiện ngày càng tốt nhưng bà vẫn muốn hắn ra ngoài rèn luyện để nhanh chóng trưởng thành. Bà lên tiếng: "Mẹ thấy như vậy đi, nhân tiện để Tiểu Mãn theo con rèn luyện một chút, cho nó mở mang tầm mắt." Liễu Quân Di cười khổ: "Chị, sao chị cũng hùa theo nó hồ đồ thế? Lần này tuy chúng ta rất chắc chắn, nhưng ai dám đảm bảo không có chút nguy hiểm nào? Đến lúc đó em còn phải phân tâm chăm sóc nó, nhỡ đâu xảy ra sơ suất thì sao." Diệp Phi là đứa trẻ bà nhìn lớn lên, trong mắt bà hắn vẫn là một đứa trẻ, nên bà cũng chẳng cần giữ ý tứ gì, nói rất thẳng thừng. Diệp Phi tất nhiên không để bụng lời dì nhỏ, nhưng mặt lại giả vờ không phục: "Dì nhỏ, dì coi thường người khác quá. Con không còn là con của ngày xưa nữa, bây giờ con cũng rất lợi hại, đến lúc đó biết đâu còn là con bảo vệ dì ấy chứ!" Nhìn vẻ trẻ con của Diệp Phi, Liễu Quân Di bật cười. Chuyện Diệp Phi diệt Vũ gia lần trước bà cũng biết, nhưng khi biết thì sự việc đã kết thúc nên không rõ chi tiết. Thêm vào đó, lúc ấy Liễu Phượng Nghi nói với bà là Diệp Phi nhờ vào lực lượng của một người "đại ca" rất lợi hại, nên bà vẫn cho rằng Diệp Phi dựa hơi "đại ca" kia mới diệt được Vũ gia, về bản lĩnh của Diệp Phi vẫn chỉ là mơ hồ. "Tiểu Mãn, lần này dì đi làm việc chính sự, con ngoan ngoãn đừng quậy, nếu không dì về sẽ kể hết mọi chuyện cho con nghe, được không?" Liễu Quân Di hết cách, đành dùng giọng dỗ trẻ con. Diệp Phi cũng hơi bất lực, đành nói: "Vậy rốt cuộc dì nhỏ thế nào mới chịu cho con đi cùng?" Liễu Quân Di cười: "Trừ khi con thắng được dì, như vậy dì mới tin là con có khả năng tự bảo vệ mình." Diệp Phi mắt sáng lên, đáp: "Được thôi, chúng ta đấu thử một trận xem con có năng lực tự bảo vệ mình không." Liễu Quân Di chỉ nói miệng, không ngờ Diệp Phi lại coi là thật. Nhưng nghĩ lại vậy cũng tốt, để Diệp Phi biết thực lực chân chính là gì, cũng tránh việc sau này hắn không biết trời cao đất dày mà gây họa, nên cười bảo: "Được thôi, nhưng lát nữa bị dì đánh thì không được khóc nhè đâu nhé!" Nghe tin Diệp Phi tỉ thí với Liễu Quân Di, Liễu Diệc Như và Diệp Vân Khinh cũng rất hứng thú. Họ cũng không biết rõ thực lực thật sự của Diệp Phi. Diệp Vân Khinh biết rõ hơn mẹ một chút, biết đừng nói là Diệp Phi, ngay cả chính mình bây giờ cũng mạnh hơn dì nhỏ, nhưng nàng vẫn muốn xem thử thực lực thật sự của Diệp Phi. Bốn người cùng đi xuống phòng luyện công dưới tầng hầm. Diệp Phi đi cạnh Liễu Diệc Như, chợt hỏi: "Mẹ, sao không thấy chị cả và chị hai?" Liễu Diệc Như cười: "Võ quán của chị hai con dạo này nhiều học viên lắm, nó bận không xuể. Còn công việc ở công ty cũng xong xuôi nên mẹ bảo chị cả con sang giúp nó. Hôm nay chắc là chúng nó bận quá nên không về nhà." Mấy người xuống tầng hầm, Liễu Quân Di đứng đó, cười bảo: "Tiểu Mãn, con định dùng chiêu gì đấu với dì?" Diệp Phi đứng trong sân, cũng cười nói: "Chẳng dùng chiêu gì cả, vì con không nỡ ra tay với dì nhỏ, thôi thì cứ để dì tấn công, con phòng thủ vậy." "Thằng nhóc thúi này!" Liễu Quân Di cười mắng: "Tự tin ghê nhỉ, vậy chuẩn bị kỹ đi, dì tới đây!" Diệp Phi khẽ gật đầu, vẫn chưa lộ vẻ nghiêm túc. Liễu Quân Di cũng như muốn trêu chọc hắn, giơ chưởng vỗ tới nhưng chỉ dùng chưa đầy ba phần lực.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0150.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0152.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

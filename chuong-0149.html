@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 149 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 149</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 149</small>
+    Chương 149: Cường thế chinh phục
+  </h1>
+  <div class="chapter-body">
+    <p>Nhìn Diệp Phi nhìn thẳng mình với vẻ mặt hiên ngang, Đường Nhu càng tức giận, lớn tiếng hỏi: "Diệp Phi, đầu tuần tại sao em không đến đi học?"</p>
+    <p>Diệp Phi biết rõ cô nàng này cố ý gây khó dễ cho mình, dù sao chuyện của mình ở Vọng Hải hầu như ai cũng biết, nàng là người có mối quan hệ sâu xa với nhà mình, sao có thể không biết? Tuy nhiên, cậu vẫn lớn tiếng đáp: "Đầu tuần nhà em có việc, nên không đến được."</p>
+    <p>"Nhà có việc không phải lý do, em vô cớ trốn học, nói xem, tôi nên phạt em thế nào đây?" Đường Nhu vẫn dùng giọng lạnh băng nói.</p>
+    <p>Tượng đất còn có ba phần nóng nảy, huống hồ Diệp Phi là một cường giả có thể hô mưa gọi gió, Đường Nhu ba phen mấy bận tìm mình gây chuyện khiến trong lòng cậu không khỏi nóng giận, lạnh lùng nói: "Em đã xin nghỉ với Ngọc lão sư rồi, sao có thể là vô cớ trốn học?"</p>
+    <p>Đường Nhu thấy cậu còn dám mạnh miệng thì càng tức giận: "Vậy sao tôi không biết?"</p>
+    <p>"Tại sao phải cho cô biết?" Diệp Phi nhếch miệng: "Em chỉ cần xin nghỉ với chủ nhiệm là được!"</p>
+    <p>"Em!" Đường Nhu tức đến thở hổn hển, nhưng cũng chẳng làm gì được, vì Diệp Phi nói đúng, cậu chỉ cần xin nghỉ với giáo viên chủ nhiệm là xong, cô là giáo viên thể dục, vốn chẳng quản mấy việc vặt này.</p>
+    <p>Thấy Đường Nhu tức giận, học sinh đang đứng trong đội đều không dám nói gì, dù sao họ cũng biết thủ đoạn huấn luyện của cô, còn Diệp Vân Khinh thì lén giơ ngón tay cái với Diệp Phi.</p>
+    <p>Đường Nhu tức tối một hồi rồi đột nhiên nói: "Diệp Phi, em đi theo cô, những người khác tự do hoạt động!" Nói xong, cô không quay đầu lại mà đi về phía phòng dụng cụ.</p>
+    <p>Diệp Phi lúc này cũng tức trong lòng, đang muốn hỏi xem tại sao cô cứ nhằm vào mình, nên cũng đi theo.</p>
+    <p>Lâm Linh thấy Diệp Phi và Đường Nhu mâu thuẫn, không khỏi lo cậu chịu thiệt nên muốn đi theo khuyên ngăn, nhưng bị Diệp Vân Khinh kéo lại.</p>
+    <p>"Lo lắng làm gì, ông xã của cậu bây giờ lợi hại lắm, Đường lão sư không dùng bạo lực thì thôi, nếu dùng thì người chịu thiệt chỉ là cô ấy." Diệp Vân Khinh cười khúc khích nói. Cô vốn là tiểu ma nữ không sợ chuyện lớn, chỉ là thời gian này bị tình cảm dành cho Diệp Phi che lấp, vừa rồi thấy Đường Nhu nhằm vào Diệp Phi khiến cô cũng thấy bất bình, nên bản tính lại bộc lộ ra, chỉ mong Diệp Phi dạy dỗ Đường Nhu một trận, tất nhiên sẽ không để Lâm Linh đi phá đám.</p>
+    <p>Nghe Diệp Vân Khinh nói, Lâm Linh hơi yên tâm hơn chút, nhưng đối với việc Diệp Phi và cô giáo bất hòa vẫn thấy bất an, nhưng cũng không định đi khuyên can nữa.</p>
+    <p>Vào phòng dụng cụ, Đường Nhu khóa trái cửa, đôi mắt xinh đẹp chăm chú nhìn Diệp Phi, trong đó lộ ra vẻ tiếc sắt không thành thép, nhưng một câu cũng không nói.</p>
+    <p>Diệp Phi nhìn nàng một hồi, thấy nàng dường như muốn cứ nhìn như vậy mãi, bèn mở miệng: "Này Đường lão sư, sao chúng ta cũng coi như là thế giao, cô tại sao cứ nhằm vào em vậy?"</p>
+    <p>Diệp Phi vừa mở miệng, Đường Nhu không còn trầm mặc nữa: "Chính vì chúng ta là thế giao nên tôi mới phải quản em, bằng không tôi mới chẳng thèm quan tâm!"</p>
+    <p>Diệp Phi không khỏi nổi nóng, nhưng cố nén hỏi: "Vậy rốt cuộc em có điểm nào khiến cô không vừa mắt? Chỉ vì em yếu đuối sao?"</p>
+    <p>"Đương nhiên không phải, em tuy thể chất yếu, nhưng qua chuyện lần trước tôi biết em là người có lòng hiệp nghĩa." Lời của Đường Nhu khiến ngọn lửa trong lòng Diệp Phi tiêu tan bớt, nhưng câu tiếp theo lại làm cậu tức giận hơn: "Nhưng tôi không thể ngờ, em lại làm ra chuyện như vậy, đem công lao của người khác tính lên đầu mình, còn lớn tiếng tuyên dương khắp thành phố. Là chỗ thế giao, tôi không thể không nhắc nhở em, làm như vậy căn bản không giống một người đàn ông!"</p>
+    <p>Mặc dù biết mục đích của Đường Nhu là tốt, nhưng Diệp Phi vẫn bị nàng làm cho tức điên. Cậu đâu biết rằng, Đường Nhu tuy đã hơn hai mươi tuổi, nhưng vì từ nhỏ say mê võ thuật, đối nhân xử thế căn bản không rành, cộng thêm tính cách thẳng thắn, nhìn thấy chuyện không vừa mắt là nói thẳng ra.</p>
+    <p>Đường Nhu nói xong không thèm để ý đến Diệp Phi nữa, xoay người ngồi xổm xuống nhặt mấy tấm đệm trên mặt đất, nhưng tư thế này lại vô tình để lộ cặp mông đẹp đầy đặn trước mặt Diệp Phi.</p>
+    <p>Chăm chú nhìn vào cặp mông gợi cảm đang khẽ cử động như hai vầng trăng khuyết trước mắt, ngọn lửa giận chưa tiêu của Diệp Phi cùng ngọn lửa do Ngọc Vô Hà khơi dậy từ sáng sớm lại bùng lên. Hai ngọn lửa đan xen trong lồng ngực khiến lý trí cậu dần bị nhấn chìm, cậu gầm nhẹ một tiếng, xông lên phía trước đè Đường Nhu xuống đệm, ôm chặt nàng vào lòng.</p>
+    <p>Đường Nhu bị hành động đột ngột của Diệp Phi làm hoảng sợ, kêu lên: "Em làm gì đó?" Nói xong liền giãy giụa, nhưng nàng phát hiện thiếu niên vốn dĩ yếu đuối trong mắt mình lúc này lại có sức mạnh kinh người, khiến nàng không có lấy một chút đường phản kháng.</p>
+    <p>Đôi mắt Diệp Phi đỏ ngầu, cười tà mị: "Cô không phải nói em không phải đàn ông sao? Bây giờ em cho cô biết thế nào là đàn ông!" Nói xong, cậu dùng ngón tay điểm lên người Đường Nhu.</p>
+    <p>Đường Nhu kinh ngạc phát hiện, theo một cái điểm đó, toàn thân nàng không còn chút sức lực nào, ngay cả nhúc nhích ngón tay cũng không được. Điều này khiến nàng kinh hãi đồng thời cũng hiểu ra thực lực thật sự của Diệp Phi. Khi đến bái phỏng Liễu gia, nàng từng luận bàn với tỷ muội Liễu gia và được chứng kiến công phu điểm huyệt của họ, nhưng ngay cả người mạnh nhất là Liễu Quân Di cũng không đạt tới trình độ khiến người ta toàn thân mềm nhũn như vậy. Dù khiếp sợ, nhưng trong lòng nàng nhiều hơn là cảm giác khuất nhục, lớn tiếng kêu: "Đồ khốn này, buông ra!"</p>
+    <p>Diệp Phi đứng dậy khỏi người Đường Nhu, trước tiên dùng sức nhéo mạnh vào cặp mông mê người của nàng vài cái, mới lật người nàng lại, để mặt đối diện với mình.</p>
+    <p>Chứng kiến hai luồng lửa đan xen trong mắt Diệp Phi, Đường Nhu hiểu rằng cậu đã rơi vào trạng thái điên cuồng. Nàng càng phản kháng, e rằng cậu càng không giữ được lý trí. Nếu là khuyên nhủ nhẹ nhàng, có lẽ cậu còn tỉnh táo lại, nhưng bảo nàng, một người vốn cương liệt, phải nói lời mềm mỏng thì còn khó chịu hơn cả cái chết, nên nàng chỉ im lặng, hung hăng trừng mắt nhìn Diệp Phi.</p>
+    <p>Đường Nhu nghĩ đúng, nếu lúc này nàng thực sự mềm giọng van xin, Diệp Phi đang trong trạng thái này có lẽ thực sự sẽ khôi phục lý trí. Thế nhưng, cái nhìn căm tức của nàng lại càng khiến Diệp Phi nổi giận, mất đi chút lý trí cuối cùng. Cậu mạnh tay túm lấy áo nàng, dùng sức kéo mạnh về hai phía, làm bung hết cúc áo.</p>
+    <p>Thoát được áo của Đường Nhu, Diệp Phi trước hết bóp nhẹ vài cái lên đôi bầu ngực đầy đặn qua lớp áo ngực bảo thủ, rồi mạnh tay giật phăng nó xuống.</p>
+    <p>Khi áo ngực rời khỏi người, đôi bầu ngực tuyệt đẹp của Đường Nhu nhảy vọt ra, khác hẳn với làn da màu lúa mì trên cơ thể, bầu ngực của nàng trắng nõn dị thường, trông như hai quả cầu bạch ngọc, trên đỉnh là đôi nhũ hoa đỏ thắm vô cùng quyến rũ.</p>
+    <p>Dù đã không còn lý trí, nhưng Diệp Phi với kinh nghiệm dày dặn bên các cô gái dường như đã biến việc khiến phụ nữ vui vẻ thành bản năng. Cậu lập tức cúi đầu, ngậm lấy một bên nhũ hoa nhẹ nhàng mút mát, tay kia thì nắm trọn bầu ngực còn lại mà vuốt ve.</p>
+    <p>Khoái cảm chưa từng có khiến Đường Nhu đang giận dữ đột nhiên ngừng quát mắng. Từ nhỏ say mê võ học, nàng chưa từng có kinh nghiệm trong chuyện này, ngay cả thủ dâm nàng cũng chưa bao giờ thử. Giờ đây, khoái cảm lạ lẫm này khiến nàng tạm thời quên cả giận dữ, nhắm mắt lại hưởng thụ.</p>
+    <p>Lưu luyến trên bầu ngực Đường Nhu một hồi, Diệp Phi chậm rãi di chuyển xuống dưới, đồng thời cởi luôn quần của nàng, trên người nàng lúc này chỉ còn lại chiếc quần lót nhỏ.</p>
+    <p>Cảm giác Diệp Phi chạm vào quần lót khiến Đường Nhu tỉnh lại từ khoái cảm đó. Thấy Diệp Phi chuẩn bị cởi bỏ lớp phòng bị cuối cùng, nàng vội kêu lên: "Không được mà!" Mặt nàng đỏ bừng.</p>
+    <p>Đường Nhu có một bí mật khó nói, đó là vùng kín của nàng hoàn toàn không có một sợi lông nào, nên nàng bảo vệ nó rất kỹ, đừng nói là đàn ông, ngay cả phụ nữ cũng chưa từng nhìn thấy. Lúc này, bí mật sắp bị Diệp Phi nhìn thấy, nàng đã quên cả giận, một nỗi xấu hổ to lớn khiến nàng suýt khóc.</p>
+    <p>Sự phản kháng bằng lời nói của Đường Nhu không có tác dụng gì với Diệp Phi. Cậu dùng sức giật phăng chiếc quần lót. Đã mất đi lý trí, chỉ còn lại bản năng, cậu dường như cũng biết thưởng thức, nhìn chằm chằm vào "cô bé" trắng trắng mềm mềm, không một sợi tóc của Đường Nhu một lúc lâu, mới dùng sức hôn lên đó.</p>
+    <p>Khoái cảm mãnh liệt hơn nhiều so với khi bị mút nhũ hoa khiến Đường Nhu bàng hoàng. Thấy cậu đang liếm hôn vùng kín của mình, nàng muốn mắng cậu vô sỉ, nhưng khoái cảm chưa từng thử qua khiến nàng muốn ngừng mà không được. Vùng kín vốn chưa từng trải sự đời của nàng sớm đã tràn đầy dâm thủy, phát ra những tiếng kêu chóp chép dưới sự mút mát của Diệp Phi.</p>
+    <p>Tiếng động dâm đãng đó khiến Đường Nhu càng xấu hổ, nhưng lại không nhịn được mà hưởng thụ. Nếu bây giờ nàng có thể cử động, e rằng điều đầu tiên nàng muốn làm không phải là đẩy Diệp Phi ra, mà là kẹp chặt hai chân để kích thích của cậu lên tiểu huyệt của mình thêm mãnh liệt.</p>
+    <p>Có lẽ cảm nhận được tiểu huyệt của Đường Nhu đã đủ ướt át, Diệp Phi chui ra từ dưới háng nàng, tự cởi quần mình, cầm lấy "cậu nhỏ" đã cứng như gậy sắt, trước tiên ma sát vài cái trên vùng kín của nàng. Chờ bề mặt dính đầy dịch nhờn, cậu mới chậm rãi chen vào miệng tiểu huyệt chưa bao giờ bị xâm nhập của nàng.</p>
+    <p>Khi thấy Diệp Phi móc ra "vật báu" to lớn đáng sợ kia, Đường Nhu đã biết mình sắp phải đối mặt với điều gì. Trong lòng vừa phẫn nộ, xấu hổ, lại có chút sợ hãi. Thứ to lớn như vậy, tiến vào tiểu huyệt nhỏ bé ngay cả một ngón tay cũng khó vào của nàng, chẳng phải sẽ làm hỏng nàng sao?</p>
+    <p>Đến lúc này, Đường Nhu chẳng còn quan tâm đến thể diện, cầu xin: "Diệp Phi, đừng như vậy, em là học sinh của tôi, chúng ta lại là thế giao, van xin em tha cho tôi đi."</p>
+    <p>Đừng nói Diệp Phi đang trong trạng thái mất lý trí, ngay cả khi tỉnh táo, đến mức này rồi thì cậu cũng không thể dừng lại được, huống hồ là lúc này? Đặc biệt là từ "học sinh" nàng thốt ra càng kích thích Diệp Phi. Cậu dùng sức, đâm thẳng vào bên trong.</p>
+    <p>Lần này Đường Nhu khổ sở rồi. Dương vật của Diệp Phi quá lớn, ngay cả một người phụ nữ đã từng trải sự đời khi bị đâm mạnh như vậy cũng khó lòng chịu đựng, huống hồ là một xử nữ như Đường Nhu? Nàng đau đớn kêu thảm một tiếng, mắng: "Đồ khốn, đau chết mất, xin em rút ra đi!"</p>
+    <p>Diệp Phi nào nghe lời nàng, lúc này cậu chỉ cảm thấy "cậu nhỏ" đang bị tiểu huyệt chật hẹp kẹp chặt lấy, sướng đến mức chẳng quan tâm Đường Nhu còn là lần đầu, cứ thế mà đâm vào.</p>
+    <p>Mặc dù có màn dạo đầu, tiểu huyệt của Đường Nhu cũng đã đủ trơn ướt, nhưng nàng vẫn bị Diệp Phi làm cho kêu thảm không thôi. Sự xé rách trong âm đạo khiến nàng không nhịn được mà rơi nước mắt, lăn dài trên gương mặt tái nhợt nhưng lại đầy vẻ sướng khoái khó tin.</p>
+    <p>Có lẽ dần thích nghi được với kích thước của Diệp Phi, Đường Nhu cảm thấy vùng kín không còn quá đau nữa. Theo sự giảm bớt của cơn đau, một khoái cảm to lớn dâng lên. Khoái cảm này mãnh liệt đến mức ý định giết chết Diệp Phi trong lòng nàng cũng dần dao động.</p>
+    <p>Lúc này, Diệp Phi như phúc chí tâm linh, một bên dùng dương vật đâm rút nhanh chóng trong âm đạo Đường Nhu, hai tay lại vuốt ve bầu ngực đầy đặn của nàng.</p>
+    <p>Hai mặt trên dưới cùng bị tấn công, khoái cảm của Đường Nhu càng dữ dội, cơn đau gần như không đáng kể. Cảm giác này khiến nàng như muốn bay lên tận trời cao, không nhịn được mà bắt đầu hưởng thụ.</p>
+    <p>Đột nhiên, Đường Nhu há miệng thét lên. Cơ thể vốn không dùng được chút sức lực nào nay bỗng cử động, hai tay ôm chặt lấy Diệp Phi, cặp mông lớn xoay tròn phi tốc, sau đó mạnh mẽ đứng yên, để dương vật Diệp Phi cắm sâu nhất vào trong tiểu huyệt. Tiếp theo, dâm huyệt co rút mạnh mẽ, những đợt dịch nóng bỏng trào dâng từ hoa tâm của nàng.</p>
+    <p>Diệp Phi bị nàng kích thích như vậy cũng gầm nhẹ một tiếng, dương vật bành trướng, tinh dịch nồng đậm cuồng bắn ra, hai dòng chất lỏng giao hòa trong dâm huyệt chật hẹp của Đường Nhu.</p>
+    <p>Một lúc lâu sau, cơ thể Đường Nhu mới ngừng run rẩy, mềm nhũn ngã xuống đệm, hai tay ôm Diệp Phi cũng buông lỏng.</p>
+    <p>Sau lần phát tiết này, Diệp Phi cũng khôi phục lý trí. Nhìn vệt nước mắt chưa khô trên gương mặt Đường Nhu, trong lòng cậu không khỏi áy náy, ôn nhu nói: "Xin lỗi."</p>
+    <p>Đường Nhu vốn định khôi phục lại sẽ giết Diệp Phi, nhưng khoái cảm vừa rồi quá đỗi mãnh liệt, khiến nàng chẳng nảy sinh nổi chút hận thù nào. Tuy vậy, nàng cũng chẳng cho Diệp Phi sắc mặt tốt, hừ lạnh một tiếng, quay mặt đi không nhìn cậu.</p>
+    <p>Thấy dáng vẻ của Đường Nhu, Diệp Phi đột nhiên cười. Trải qua Tô Ngọc Nhàn và Tiêu Hàm Nguyệt, cậu hiểu ra một đạo lý: sự thỏa mãn trên cơ thể là cách dễ nhất để khiến một người phụ nữ phục tùng. Đường Nhu bây giờ cũng vậy, những đợt cao trào mãnh liệt đã đưa cậu vào sâu trong lòng nàng. Hơn nữa, với tính cách của nàng, Diệp Phi biết nàng không thích những kẻ khúm núm. Đã như vậy, chi bằng cứ dùng sự mạnh mẽ để chinh phục nàng.</p>
+    <p>"Vừa rồi có thoải mái không?" Đã quyết định xong, Diệp Phi không xin lỗi nữa mà cười hỏi.</p>
+    <p>"Hừ!" Đường Nhu lại hừ lạnh, "Chẳng lẽ em không thoải mái?" Diệp Phi cười lẩm bẩm: "Xem ra lúc nãy em chưa chuẩn bị kỹ, chi bằng bây giờ thử lại xem." Nói xong, cậu cử động nhẹ nhàng "cậu nhỏ" vẫn đang cắm chặt trong tiểu huyệt, lúc này đã cứng trở lại.</p>
+    <p>Đường Nhu vẫn quay mặt đi không để ý tới cậu, nhưng cơ thể đã bán đứng nàng, theo nhịp đâm của Diệp Phi mà không tự chủ được khẽ giãy dụa.</p>
+    <p>Diệp Phi thấy thế mừng rỡ, một bên tiếp tục đâm rút, miệng không ngừng hôn hít cổ và bầu ngực nàng, một tay vuốt ve cặp mông đầy đặn co dãn, tay kia rời khỏi chỗ giao hợp, đè lên hạt đậu nhỏ đã sung huyết cương cứng mà đùa bỡn.</p>
+    <p>Vừa rồi chỉ là Diệp Phi bản năng đâm rút đã khiến Đường Nhu hồn xiêu phách lạc, nay thêm thủ pháp tán tỉnh thuần thục, Đường Nhu cảm thấy lần này còn thoải mái hơn lúc nãy gấp bội. Trên mặt tuy không biểu lộ gì, nhưng cơ thể đã phối hợp, không ngừng giãy dụa cặp mông, giúp dương vật Diệp Phi cọ xát vào những điểm nhạy cảm nhất trong âm đạo.</p>
+    <p>Có Đường Nhu phối hợp, Diệp Phi càng hăng hái, nhịp độ đâm rút càng nhanh hơn. Không còn tâm lý mâu thuẫn, cộng thêm kỹ xảo của Diệp Phi, Đường Nhu bị làm cho mị nhãn như tơ, nếu không cắn chặt môi, có lẽ nàng đã rên rỉ lớn tiếng từ lâu.</p>
+    <p>Đợt cao trào thứ hai của Đường Nhu đến nhanh hơn. Sau vài trăm nhịp đâm rút, nàng lại co rút dữ dội, đạt đến đỉnh phong. Vì nàng là lần đầu, lại vừa trải qua màn "phá trinh" mạnh bạo, Diệp Phi không nỡ làm tiếp, trong lúc nàng cao trào cũng bắn thêm đợt tinh dịch thứ hai vào, sau đó ôm chặt nàng không cử động.</p>
+    <p>Hai người nằm nghỉ trên đệm rất lâu, mãi đến khi gần tan học mới đứng dậy. Diệp Phi giúp Đường Nhu chỉnh lý lại bộ quần áo bị mình xé nát. Trong quá trình này, Đường Nhu tuy không phản kháng nhưng mặt không cảm xúc, như thể có thâm cừu đại hận với Diệp Phi vậy.</p>
+    <p>Chỉnh lý xong quần áo, Diệp Phi ôm lấy Đường Nhu, hôn lên đôi môi nhỏ, cười nói: "Ôn Nhu, chúng ta như thế này là đã xong xuôi rồi nhé, từ nay về sau cô đã là người của em."</p>
+    <p>Mặt Đường Nhu cuối cùng cũng hiện lên tia đỏ ửng, mắng: "Ai là người của em? Hôm nay em dám đối xử với tôi như vậy, xem tôi quay về không nói cho Liễu a di!"</p>
+    <p>Diệp Phi cười: "Vậy thì tốt quá, em sẽ để mẹ làm chủ cho chúng ta, từ nay về sau làm một đôi vợ chồng chính thức!"</p>
+    <p>Đường Nhu nhìn Diệp Phi một hồi lâu, đột nhiên nhớ ra điều gì, mặt vốn chỉ có chút đỏ ửng bỗng chốc đỏ bừng, cúi đầu nói nhỏ: "Tôi đi trước đây, em thu dọn một chút rồi hãy ra!" Nói xong không đợi Diệp Phi đáp lời liền đi ra ngoài.</p>
+    <p>Nhìn dáng đi có chút biến dạng của Đường Nhu, Diệp Phi thấy thương cảm, vội giữ nàng lại, ôm lấy nói: "Cô bây giờ không tiện, hay là về nghỉ ngơi đi, lát nữa em sẽ nói với bọn họ là cô có việc bận."</p>
+    <p>"Ai cần em lo!" Đường Nhu nói một câu cộc lốc, nhưng trong lòng lại dâng lên tia dòng nước ấm, nhẹ nhàng tránh khỏi vòng tay Diệp Phi, tranh thủ lúc chưa tan học, trong sân trường còn chưa có người, vội vã trở về ký túc xá của mình.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0148.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0150.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

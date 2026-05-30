@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 244 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 244</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 244</small>
+    Chương 244: Tạm thời bảo tiêu
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi thong thả lái xe chậm rãi trên đường lớn, thoải mái tựa người vào ghế, một bên hừ một giai điệu dân ca không rõ tên, một bên đánh giá người đi đường qua lại. Tuy hiện tại đã vào tháng mười một, nhưng thời tiết ở Vọng Hải vẫn còn khá nóng, nhất là giữa trưa, chẳng mát mẻ hơn mùa hè là bao. Bởi vậy, người đi trên đường đều mặc rất phong phanh, những cô nàng diện váy ngắn trông khá bắt mắt. Tuy tư sắc của họ có thể chỉ ở mức bình thường, nhưng ai nấy đều cố gắng thể hiện mặt hoàn mỹ nhất của mình, nhìn từ xa thì rất được, nhưng lại gần thì thôi vậy. Ở Vọng Hải, những mỹ nữ không ngại lại gần để người ta ngắm chắc đều đã tụ tập quanh mình hắn cả rồi.</p>
+    <p>Đang lúc Diệp Phi tưởng rằng mình có thể nhàn nhã vượt qua một buổi chiều tốt đẹp, điện thoại bỗng vang lên. Cầm máy nhìn tên người gọi, hắn không khỏi lộ ra nụ cười giễu cợt, nghe máy nói: "Sương nhi, nhớ ta rồi à?"</p>
+    <p>"Tiểu Phi, ngươi hiện tại đang bận sao?"</p>
+    <p>Đầu dây bên kia, Diệp Ngưng Sương nói rất nghiêm túc, hiển nhiên bên cạnh nàng đang có người khác.</p>
+    <p>Biết rõ "bác" không tiện thân mật quá mức với mình, Diệp Phi cũng thu lại vẻ khinh bạc, đáp: "Không bận, đang dạo phố chơi đây."</p>
+    <p>"Thật tốt quá."</p>
+    <p>Diệp Ngưng Sương tỏ ra thập phần kinh hỉ: "Vậy lát nữa ba giờ, ngươi tới sân bay đón giúp bác một người nhé. Cô bé đó là con gái của một người bạn tốt của ta, hôm nay tới Vọng Hải, đón được con bé rồi thì giúp chăm sóc một chút, sau đó tối cùng con bé đến cảng tòa nhà tham gia một buổi tiệc triển lãm. Tình hình cụ thể con bé sẽ nói cho ngươi biết, đến lúc đó chúng ta gặp nhau ở đó."</p>
+    <p>Nói xong, không đợi Diệp Phi từ chối, nàng đã cúp điện thoại. Chẳng bao lâu sau, nàng lại gửi một email, chuyển tiếp thông tin của người cần đón cho hắn.</p>
+    <p>Diệp Phi không nhịn được cười khổ. Đây gọi là chuyện gì chứ? Mình vất vả tranh thủ được ngày rảnh rỗi, vậy mà lại đụng phải chuyện phiền phức này. Tối lại còn không được về nhà, mình tối phải về nhà với mẹ cơ mà?</p>
+    <p>Sau khi xem xong thông tin Diệp Ngưng Sương gửi, nụ cười của Diệp Phi càng thêm bất đắc dĩ. Hóa ra cô gái tên Hứa Vi Nhi mà hắn cần đón lại là một tiểu minh tinh mới xuất đạo, nhiệm vụ của hắn còn bao hàm cả nghĩa vụ bảo tiêu.</p>
+    <p>Có nhầm không vậy? Diệp Phi thầm than trong lòng, trên đời này còn có ai có tư cách bắt mình làm bảo tiêu sao? Nếu người cần bảo vệ là một cô gái dịu dàng đáng yêu thì thôi đi, đằng này nhìn ảnh chụp là biết Hứa Vi Nhi thuộc loại nghịch ngợm phá phách, tuy rất xinh đẹp nhưng bên cạnh mình chẳng lẽ thiếu mỹ nữ sao?</p>
+    <p>Dù trong lòng phàn nàn thế nào, Diệp Phi cũng chỉ đành lái xe về hướng sân bay. Vì chuyện này là Diệp Ngưng Sương nhờ, không nể mặt nàng sao được? Bằng không lần sau nàng không cho lên giường thì tính sao?</p>
+    <p>Để không lỡ chuyến bay mà làm thất bại kiếp bảo tiêu đầu đời, Diệp Phi đã có mặt tại sân bay lúc hai giờ rưỡi và bắt đầu chờ đợi một cách nhàm chán. Để giết thời gian, hắn thậm chí còn đếm cả máy bay cất cánh và hạ cánh trong phi trường.</p>
+    <p>Cuối cùng, khi Diệp Phi đếm đến chiếc máy bay thứ ba mươi bảy, một chuyến bay từ thành phố Cam ở Tây Bắc Trung Quốc từ từ hạ xuống.</p>
+    <p>Diệp Phi vội dồn sự chú ý vào chuyến bay đó. Rất nhanh, hắn đã thấy người cần đợi, chỉ là điều khiến hắn dở khóc dở cười chính là Hứa Vi Nhi. Giữa thời tiết này mà cô nàng lại kéo theo một chiếc vali nhỏ, mặc một chiếc áo khoác dài, trên mặt còn đeo một chiếc kính râm đắt tiền. Nếu không phải nhãn lực của Diệp Phi cực tốt, e rằng thật sự rất khó nhận ra cô nàng.</p>
+    <p>Nhìn hành động có vẻ rất cẩn thận của Hứa Vi Nhi, Diệp Phi muốn nói với cô rằng: Tiểu thư à, cô mới chỉ vừa xuất đạo, đừng nói là ăn mặc kín mít thế này, cho dù cô có giơ một tấm bảng viết rõ tên mình, có ai biết Hứa Vi Nhi là ai hay không còn là chuyện khác đấy! Tuy nhiên, dù sao cũng là lần đầu gặp mặt, khó mà nói những lời này, vì vậy Diệp Phi đón lên phía trước, khách khí nói: "Chào cô, phải Hứa tiểu thư không?"</p>
+    <p>Hứa Vi Nhi lùi lại, cảnh giác nhìn Diệp Phi hỏi: "Ngươi là ai?"</p>
+    <p>"Ta là người được cử tới đón cô, xe đang ở ngoài, mời Hứa tiểu thư."</p>
+    <p>Diệp Phi nói xong liền ra hiệu mời, định tiếp lấy chiếc vali nhỏ trong tay cô.</p>
+    <p>"Chờ chút!"</p>
+    <p>Hứa Vi Nhi lại né tránh, rút điện thoại từ trong áo ra nói: "Ta gọi điện trước đã, không ai biết ngươi có phải người xấu hay không."</p>
+    <p>Nói xong, cô bấm một số rồi đi sang một bên nói khẽ.</p>
+    <p>Sau khi nói chuyện xong, Hứa Vi Nhi đi đến trước mặt Diệp Phi hỏi: "Diệp Phi?"</p>
+    <p>Thấy Diệp Phi gật đầu, lúc này cô mới thở phào, đưa vali cho hắn rồi nói: "Hóa ra ngươi chính là bảo tiêu mà mẹ ta và Diệp a di tìm cho ta à? Trông cũng đẹp trai đấy, nhưng sao ngươi lại cùng họ với Diệp a di?"</p>
+    <p>Diệp Phi đã sớm đoán được cô nàng này khó hầu hạ, nên cũng không vì lời cô nói mà tức giận, cười khổ đáp: "Ta là người thân của nàng."</p>
+    <p>Đồng thời, hắn thầm mắng trong lòng: Sương nhi này dám nói mình là bảo tiêu, đúng là nợ đòn, tối nay gặp rồi xem mình trị nàng thế nào!</p>
+    <p>"Ta đã bảo mà, ngươi trông chẳng giống bảo tiêu chút nào, hóa ra là người quen gửi gắm à."</p>
+    <p>Hứa Vi Nhi ra vẻ rành rẽ nói: "Tuy ngươi đẹp trai, nhưng làm bảo tiêu đâu chỉ cần mỗi đẹp trai là được."</p>
+    <p>"Vậy Hứa tiểu thư cho rằng thế nào mới là một bảo tiêu tốt?"</p>
+    <p>Diệp Phi không nhịn được hỏi. Dù hắn không thực sự là bảo tiêu, nhưng bị một cô bé mới gặp lần đầu khinh bỉ thật sự khó mà nhẫn nhịn.</p>
+    <p>"Đương nhiên là phải kiểu lạnh lùng, thần thái tinh anh ấy."</p>
+    <p>Cô bé Hứa bĩu môi nói: "Nhìn ngươi xem? Trông chẳng ra làm sao!"</p>
+    <p>"Được rồi!"</p>
+    <p>Diệp Phi cười khổ, không nói thêm gì nữa. Hắn đã nhìn ra, cô nàng này tuy bước chân vào giới văn nghệ phức tạp, nhưng tính tình rõ ràng rất đơn thuần, kiến thức hầu như toàn từ phim truyền hình mà ra, bằng không sẽ chẳng cho rằng bảo tiêu là phải lạnh lùng.</p>
+    <p>Tuy Diệp Phi không muốn nói thêm, nhưng cô bé họ Hứa lại không tha cho hắn. Đi chưa được mấy bước, cô đã bực bội lau những giọt mồ hôi trên trán, càm ràm: "Cái nơi quỷ quái này sao mà nóng thế không biết?"</p>
+    <p>Diệp Phi cạn lời: "Tiểu thư, cô không nhìn xem mình đang mặc bộ đồ gì à, không nóng mới là lạ đó!"</p>
+    <p>Cô bé nhìn chiếc áo khoác của mình, lại nhìn người đi đường bên cạnh toàn mặc áo ngắn tay, biết mình trách nhầm thời tiết rồi. Tuy nhiên cô vừa từ thành phố Cam tới, bên đó thời tiết đã rất lạnh, nên nhất thời không để ý cũng là chuyện thường.</p>
+    <p>Dù biết mình sai, cô bé Hứa làm sao chịu nhận? Trừng mắt nhìn Diệp Phi: "Đồ bảo tiêu tồi, dám nói ta như vậy, tin ta mách cho ngươi thất nghiệp không?"</p>
+    <p>"Không tin, ta là người quen gửi gắm, cô có mách cũng vô dụng thôi!"</p>
+    <p>Diệp Phi thản nhiên đáp. Cô nàng này chọc tức mình bao lâu nay, cũng đến lúc mình phải chọc lại cô ta.</p>
+    <p>Không ngờ cô bé không những không giận mà còn tỏ ra hào hứng: "Đúng rồi, thế mới giống bảo tiêu chứ, xem ra là ta dạy bảo có cách rồi!"</p>
+    <p>Diệp Phi hoàn toàn bại trận. Tư duy của cô nàng này không thể dùng thường thức để lý giải, bất quá cũng rất đáng yêu. Khóe miệng Diệp Phi khẽ lộ một nụ cười nhạt.</p>
+    <p>Trong tiếng phàn nàn của cô bé, hai người nhanh chóng ra khỏi sân bay, lên xe Diệp Phi. Đến lúc này, cô bé mới thở phào, cởi áo khoác và tháo chiếc kính râm đắt tiền xuống. Điều này khiến Diệp Phi thấy hơi kinh diễm, không ngờ cô nàng này khi bỏ kính ra lại xinh đẹp hơn, vóc dáng cũng cực kỳ ổn, suýt soát với những mỹ nữ bên cạnh hắn rồi.</p>
+    <p>Cô bé Hứa chưa va chạm xã hội không khỏi thấy mất tự nhiên trước ánh mắt nhìn thẳng của Diệp Phi, mặt hơi đỏ lên, trừng mắt nói: "Nhìn cái gì? Nói cho ngươi biết, không được có suy nghĩ không thực tế gì đấy. Dù ngươi đẹp trai, lại là người thân của Diệp a di, nhưng chúng ta là không thể nào đâu. Bản tiểu thư căn bản chưa từng nghĩ đến chuyện đó, ta muốn toàn tâm toàn ý vùi đầu vào sự nghiệp diễn xuất, làm Chưởng môn nhân ngọc nữ thế hệ mới!"</p>
+    <p>Nhìn vẻ tự tin tràn trề của cô bé, Diệp Phi thầm bĩu môi. Ngọc nữ? Đừng cuối cùng lại thành dục nữ thì có! Nhưng nói thật, cô nàng này dù chưa biết tài năng nghệ thuật thế nào, nhưng tự thân đã có tiềm chất trở thành minh tinh thần tượng: Rất xinh đẹp nên không cần trang điểm, dáng người cũng tốt nên không cần độn ngực, hơn nữa sau lưng còn có người cha giàu có, lại càng không cần phải đi nhận cha nuôi nào cả. Nếu sau này thành danh, biết đâu lại thực sự có thể làm một "ngọc nữ" chân chính.</p>
+    <p>"Hứa tiểu thư, chúng ta trực tiếp tới cảng tòa nhà, hay là đi dạo quanh Vọng Hải trước?"</p>
+    <p>Diệp Phi không tiếp lời cô, chuyển sang hỏi về hành trình.</p>
+    <p>"Đương nhiên là đi dạo rồi, đến cái nơi quỷ quái đó sớm làm gì?"</p>
+    <p>Cô bé đáp không cần suy nghĩ: "Thật không hiểu mẹ nghĩ gì nữa, vậy mà bắt mình tới tham gia cái buổi triển lãm quái đản này. Có gì mà đẹp chứ? Chẳng qua là lấy ra khoe khoang để bán được giá cao thôi."</p>
+    <p>"Ta nhớ mẹ cô làm vậy là vì sự nghiệp của cô đấy, vì những buổi tiệc này có rất nhiều nhân vật nổi tiếng tham gia, giúp ích rất nhiều cho việc nâng cao danh tiếng của cô."</p>
+    <p>Tuy miệng nói vậy, nhưng trong lòng Diệp Phi lại thập phần tán thành lời cô bé. Bản thân hắn không có chút hảo cảm nào với những buổi triển lãm trang sức như vậy, đúng như cô nói, chẳng qua là muốn tạo thế để bán hàng, hoặc là chẳng hề muốn bán, thuần túy là lấy ra để "làm màu".</p>
+    <p>Cô bé Hứa khinh thường bĩu môi: "Ta gia nhập giới này đâu phải vì mấy nhân vật nổi tiếng đó, mà là vì đông đảo người bình thường. Nâng cao danh tiếng trong đám người đó thì có tác dụng gì?"</p>
+    <p>Từ những lời này, Diệp Phi biết cô không chỉ muốn thỏa mãn lòng hư vinh mà là thực sự yêu thích nghề này. Trong lòng hắn đối với cô lại có chút công nhận, thầm quyết định sau này nếu có cơ hội sẽ giúp cô một tay. Biết đâu cô thực sự có thể mang lại một làn gió tươi mới cho cái vòng tròn dơ bẩn này.</p>
+    <p>Dẫn cô bé dạo quanh một hồi lâu, đến khi trời đã tối dần, hai người mới tới cảng tòa nhà nằm ở hướng đông nam Vọng Hải. Tòa nhà này là do một trong hai đại phú hào có gia sản ở Vọng Hải xây dựng, là một khách sạn năm sao tích hợp. Những chủ nhân của các món trang sức triển lãm sở dĩ chọn nơi này thay vì các cơ sở an toàn hơn của Liễu gia hay Diệp gia, là vì dù là Liễu Diệc Như hay Diệp Ngưng Sương đều rất hiểu tính cách của Diệp Phi. Họ biết hắn không có thiện cảm với những buổi triển lãm như vậy nên không bao giờ tiếp nhận loại công việc này. Tuy nhận làm sẽ có rất nhiều lợi ích, nhưng họ cũng sẽ không vì thế mà động lòng.</p>
+    <p>Đến cửa tòa nhà, hai người lại gặp chút khó khăn vì Diệp Phi không có thiệp mời, mà tư cách tiểu minh tinh của Hứa Vi Nhi cũng chưa đủ để đưa thêm một người vào.</p>
+    <p>"Hay là chúng ta đợi một lát đi, Diệp a di và mẹ ta tới nhất định sẽ đưa ngươi vào được."</p>
+    <p>Sau vài giờ tiếp xúc, cô bé Hứa đã xem Diệp Phi là bạn. Bạn bè của cô không nhiều nên cô rất quý trọng, thậm chí vì Diệp Phi mà muốn đợi ở ngoài.</p>
+    <p>Diệp Phi lúc này mới biết mẹ của cô bé đã ở Vọng Hải. Nghĩ đến người ở cạnh Diệp Ngưng Sương lúc nãy hẳn chính là bà ấy. Chỉ là không biết là "bác" đã quên hay cố tình không đưa thiệp mời mà bắt mình cùng Hứa Vi Nhi tới đây.</p>
+    <p>"Cô vào trước đi, ta có cách, lát nữa vào rồi ta tìm cô."</p>
+    <p>Diệp Phi dĩ nhiên không thể để cô bé đợi ngoài, bằng không lát nữa bị "bác" nhìn thấy mình không vào được, chẳng phải bị cười cho sao? Phải nói là cái tên Diệp Phi này có chủ nghĩa đại nam tử khá nặng. Lúc đối ngoại hắn có thể tỉnh táo tuyệt đối, nhưng trước mặt người phụ nữ của mình, lúc nào cũng không muốn mất mặt.</p>
+    <p>Nhìn vẻ tự tin của Diệp Phi khi nói câu đó, cô bé Hứa không chút do dự tin tưởng: "Vậy ngươi mau vào nhé, ta chờ ngươi ở sảnh tầng một."</p>
+    <p>Nói rồi cô tự mình đi vào, sau khi kiểm tra thiệp mời liền đứng trong góc sảnh chờ Diệp Phi.</p>
+    <p>Vì không thích những buổi tiệc như thế này, Hứa Vi Nhi cũng không ăn mặc cầu kỳ, chỉ mặc bộ đồ thường ngày đơn giản. Cô đứng giữa những người mặc lễ phục sang trọng trông hơi lạc quẻ, nhưng vì bản thân quá xuất sắc, điều đó không những không che giấu được mị lực mà còn khiến cô trở thành phong cảnh nổi bật nhất trong sảnh, khiến không ít gã tự cho là phong lưu chạy tới làm quen.</p>
+    <p>Dùng lễ nghi vừa học được để đối phó với đám "ruồi nhặng", cô bé vừa thấy chán ghét vừa thấy khẩn trương. Tuy đã lập chí làm một ngọc nữ minh tinh, nhưng cô mới xuất đạo, trước đó hầu như chưa từng rời nhà, giờ ở nơi lạ lẫm, làm sao có thể không hồi hộp?</p>
+    <p>Giây phút này, cô bé Hứa bỗng kỳ lạ nhớ đến Diệp Phi. Nếu hiện tại hắn ở bên cạnh mình, liệu mình có thoát khỏi những phiền toái này không?</p>
+    <p>Đang lúc nghĩ về Diệp Phi, cô bỗng thấy vai mình bị vỗ một cái, không khỏi giật mình lùi lại phía sau. Khi nhìn rõ người vỗ vai mình chính là Diệp Phi, trong mắt cô không khỏi lóe lên tia kinh hỉ: "Sao nhanh vậy? Ngươi vào bằng cách nào thế?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0243.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0245.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

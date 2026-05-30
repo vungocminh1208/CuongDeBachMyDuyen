@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 334 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 334</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 334</small>
+    Chương 334: Lâu ngày có thể sinh tình
+  </h1>
+  <div class="chapter-body">
+    <p>"Nếu là như vậy, vậy tại sao sau này ngươi lại buông tay, còn để lộ hành tung của mẹ ta?" Nghi vấn này đã tồn tại trong lòng Diệp Phi từ khi nghe tiểu di nhắc tới chuyện năm xưa, vì vậy nhân cơ hội này liền hỏi ra.</p>
+    <p>Trác Phượng Nhi thở dài thườn thượt, tiếp tục nói: "Sau khi tìm được hắn, ta thổ lộ tâm ý của mình, nhưng hắn lại nói, từ khi vợ hắn qua đời, lòng hắn cũng đã chết. Điều duy nhất hắn muốn làm là phát triển Lăng Vân Hội lớn mạnh. Ta biết, nếu muốn đạt được mục tiêu này, liên hôn cùng Liễu gia là lựa chọn tốt nhất. Vì vậy, để thành toàn cho hắn, ta đã bán đứng mẹ ngươi rồi rời khỏi Vọng Hải."</p>
+    <p>Dù biết nếu không có những chuyện năm đó thì sẽ không có mình, nhưng Diệp Phi vẫn không kiềm chế được sự bất bình thay cho mẹ, hừ một tiếng nói: "Vậy các ngươi có từng nghĩ đến cảm nhận của mẹ ta không?"</p>
+    <p>"Nếu ngươi nghĩ như vậy thì đã trách oan cha ngươi rồi." Trác Phượng Nhi nói: "Lúc ấy không chỉ là mẹ ngươi, mà ngay cả cha ngươi cũng phản đối cuộc hôn nhân này. Nhưng sau khi ông ngoại ngươi tìm được mẹ ngươi, bà ấy lại thay đổi ý định, đồng ý cuộc hôn nhân đó. Lúc ấy cha ngươi cũng khuyên bà ấy, nhưng bà ấy căn bản không nghe. Về phần tại sao, đến tận bây giờ ta vẫn không hiểu rõ."</p>
+    <p>Trác Phượng Nhi không hiểu, nhưng Diệp Phi thì đã hiểu ra đôi chút. Tuy mẹ chưa bao giờ kể chuyện năm xưa, nhưng hắn đã đoán được vài phần. Sở dĩ ban đầu mẹ phản đối hôn sự, có lẽ là vì lúc đó bà còn là thiếu nữ, cũng giống như bao cô gái khác đang khao khát một mối tình đẹp đẽ, nên không muốn gả cho Diệp Lăng Vân, người mà bà luôn xem là ca ca. Thế nhưng, khao khát chỉ là khao khát, chưa từng tự mình trải nghiệm nên tất nhiên sẽ không có cảm giác khắc cốt ghi tâm. Vì áp lực từ ông ngoại, lại muốn giúp đỡ hảo tỷ muội chăm sóc con gái, mẹ mới hạ quyết tâm như vậy. Diệp Phi tin rằng, nếu lúc đó mình đã xuất hiện, mẹ chắc chắn dù chết cũng sẽ không gả. Tất nhiên, đó là chuyện không thể nào xảy ra.</p>
+    <p>"Sau khi ta rời đi được hơn một năm, chợt nghe tin hắn qua đời." Có lẽ vì khơi gợi lại ký ức, Trác Phượng Nhi vừa nói vừa không thể dừng lại: "Thật ra, ngay từ đầu ta đã biết, chuyện này không trách mẹ ngươi được, ngược lại là ta có lỗi với bà ấy. Nhưng ta vẫn hận bà ấy, bởi vì sau khi biết cha ngươi qua đời, ta không biết mình sống tiếp vì mục đích gì nữa. Nếu không có phần hận ý không nên có này, ta đã sớm không còn động lực để sống trên cõi đời này rồi."</p>
+    <p>"Cho nên hiện tại ngươi không hận mẹ ta nữa, là vì ngươi cũng không muốn sống nữa đúng không?" Diệp Phi nhìn vào mắt Trác Phượng Nhi nói: "Nhưng hiện tại ngươi chết đi, ngươi thấy mình có mặt mũi nào đi gặp cha ta sao?"</p>
+    <p>Trác Phượng Nhi vô thức cúi đầu nhìn thoáng qua vết máu nhạt nhòa giữa hai chân, thở dài nói: "Đúng là không có mặt mũi gặp hắn, vì ta đã không giữ được sự trong sạch chỉ dành cho hắn."</p>
+    <p>"Ta không nói chuyện đó." Diệp Phi cười khổ trong lòng, xem ra Trác Phượng Nhi thật sự coi trọng chuyện này. Nhưng như vậy càng tốt, nàng càng coi trọng thì mình, người đàn ông đầu tiên của nàng, càng có thể để lại ấn tượng sâu sắc trong lòng nàng.</p>
+    <p>"Vậy là chuyện gì?" Trác Phượng Nhi hỏi. Diệp Phi đoán không sai chút nào, nếu là người khác, sau khi kể hết chuyện năm xưa, Trác Phượng Nhi chắc chắn sẽ không còn tâm trí để ý tới nữa. Nhưng đối với Diệp Phi, nàng lại không làm được điều đó, luôn vô thức muốn nghe ý kiến của hắn.</p>
+    <p>Diệp Phi nghiêm mặt hỏi: "Năm đó ngươi có thể buông tay để thành toàn tâm nguyện cho cha ta, chứng tỏ ngươi rất muốn hắn đạt được tâm nguyện, đúng không?"</p>
+    <p>"Không sai." Trác Phượng Nhi gật đầu: "Ta yêu hắn, nên tâm nguyện của hắn cũng là tâm nguyện của ta."</p>
+    <p>"Nhưng giờ đây tâm nguyện đó vẫn chưa hoàn thành, ngươi lại muốn chết, ngươi thấy có phụ lòng hắn không?" Diệp Phi hỏi.</p>
+    <p>Trác Phượng Nhi kỳ lạ đáp: "Nhưng mà, Lăng Vân Hội hiện tại dưới sự cố gắng của ngươi, đã vượt xa kỳ vọng của hắn năm đó rồi mà."</p>
+    <p>"Đó chỉ là công lao của ta thôi, ngươi căn bản chưa góp được một phần sức lực nào." Diệp Phi phủ nhận một câu, sau đó nói dối: "Hơn nữa, những gì ngươi thấy chỉ là vẻ ngoài. Hiện tại Lăng Vân Hội vì phát triển quá nhanh, tuy về mặt vũ lực không có gì đáng ngại, nhưng quản lý lại xuất hiện vấn đề rất lớn. Nếu không thể giải quyết, e rằng chẳng bao lâu nữa Lăng Vân Hội sẽ tan rã, công sức của cha ta và ta sẽ hóa thành bọt nước."</p>
+    <p>"Thật sao?" Trác Phượng Nhi không khỏi kinh ngạc. Nàng tuy là một thương nhân thành công, nhưng đối với chuyện thế giới ngầm lại không hiểu rõ, nên vô thức tin lời Diệp Phi.</p>
+    <p>Thấy chiêu này hiệu quả, Diệp Phi tiếp tục phóng đại: "Đây mới chỉ là trạng thái lý tưởng. Nếu làm không tốt, sau khi chia rẽ, Lăng Vân Hội sẽ bị thế lực khác thôn tính, từ đó cái tên 'Lăng Vân Hội' sẽ biến mất hoàn toàn trên thế giới này."</p>
+    <p>Vì đã coi mục tiêu của Diệp Lăng Vân là của chính mình, cộng thêm hai chữ "Lăng Vân" trong Lăng Vân Hội khiến nàng không thể dứt bỏ tình cảm, Trác Phượng Nhi vội vàng hỏi: "Vậy phải làm sao bây giờ?"</p>
+    <p>"Biện pháp không phải không có, đó là ngươi đến Lăng Vân Hội giúp đỡ. Hiện tại tuy sản nghiệp của ngươi đã cho kẻ kia rồi, nhưng năng lực quản lý vẫn còn đó. Hiện tại ngươi tới giúp ta, chúng ta cùng nhau cố gắng hoàn thành tâm nguyện của cha ta, thế nào?"</p>
+    <p>Trác Phượng Nhi ngẩn người một chút, lập tức trở nên kiên định, gật đầu nói: "Được! Chúng ta cùng nhau cố gắng!"</p>
+    <p>Thấy Trác Phượng Nhi lấy lại ý chí chiến đấu và mục tiêu, Diệp Phi thở phào nhẹ nhõm, nhưng trong lòng vừa vui mừng lại vừa có chút bất đắc dĩ. Bởi vì hắn căn bản là đang lợi dụng tình cảm của nàng dành cho phụ thân, đây không phải điều hắn muốn. Thế nhưng hắn cũng hiểu, muốn Trác Phượng Nhi lập tức chuyển tình cảm từ phụ thân sang mình là điều không thực tế. Việc cấp bách bây giờ là khiến nàng có động lực sống tiếp, sau đó hắn từ từ cố gắng là được. Hơn nữa hắn rất tự tin, ít nhất trải qua đêm nay, cơ thể Trác Phượng Nhi đã không còn thuộc về riêng nàng nữa. Ở độ tuổi mà phụ nữ có nhu cầu lớn nhất này, đôi khi lý trí thật khó mà kiểm soát được cơ thể. Cộng thêm việc đến Lăng Vân Hội, nàng sẽ ở ngay bên cạnh mình, cơ hội như vậy chắc chắn rất nhiều. Khi đó, hắn nhất định có thể chiếm được trái tim nàng, bởi vì câu nói "lâu ngày sinh tình" đôi khi vẫn rất có đạo lý.</p>
+    <p>Vì lại có mục tiêu sống, tâm trạng Trác Phượng Nhi không còn tro tàn như vừa rồi. Khi khôi phục trạng thái bình thường, vô tình nhận ra mình vẫn còn đang bị Diệp Phi ôm trọn trong lòng, nàng không khỏi vô cùng thẹn thùng, vội vàng lui về phía sau tách khỏi ngực hắn, sau đó kéo chăn che kín người, nói với Diệp Phi: "Ngày mai ta sẽ đến Vọng Hải, bây giờ ngươi có thể rời đi rồi chứ?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0333.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0335.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

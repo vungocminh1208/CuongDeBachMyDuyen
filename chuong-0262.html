@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 262 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 262</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 262</small>
+    Chương 262: La lỵ hấp dẫn
+  </h1>
+  <div class="chapter-body">
+    <p>Qua một hồi lâu, Đông Phương Nhược Lan mới từ cực hạn vui sướng hồi phục tinh thần lại, nhẹ nhàng đẩy Diệp Phi vẫn còn áp trên người mình ra, có chút hờn dỗi nói: "Tiểu bại hoại, thật là lãng phí, ở nơi này cũng trêu chọc người ta, cũng không sợ bị các nàng phát hiện, còn không mau đứng lên!"</p>
+    <p>"Vậy vừa rồi ngươi còn gọi lớn tiếng như vậy, chẳng lẽ không sợ làm cho các nàng nghe thấy sao?" Diệp Phi cười xấu xa, khẽ động thân thể, khiến cho thứ đại gia hỏa vẫn còn đang nằm sâu trong cơ thể nàng đỉnh một cái vào nơi mềm mại kia.</p>
+    <p>"A..." Đông Phương Nhược Lan lúc này đúng là thời điểm mẫn cảm nhất, bị Diệp Phi làm như vậy, không khỏi khẽ kêu một tiếng, lập tức khuôn mặt đỏ bừng, dùng nắm đấm nhỏ đánh nhẹ vào vai Diệp Phi, sẵng giọng: "Không được làm nữa!"</p>
+    <p>Diệp Phi cũng cảm thấy thời gian của mình quả thật có chút quá dài, vì vậy không cưỡng cầu nữa, cười hắc hắc rồi chậm rãi bò dậy khỏi thân thể mềm mại quyến rũ của Đông Phương Nhược Lan. Bất quá hắn cũng không rút ra ngay, mà là từng chút một rút ra phía ngoài, vừa rút vừa cử động.</p>
+    <p>Đông Phương Nhược Lan bị hắn làm cho gân cốt rã rời, trong lòng khát vọng cũng lần nữa dâng lên. Ngay khi hắn sắp rút ra ngoài, nàng đột nhiên dùng đôi chân thon dài ôm chặt lấy eo hắn, lần nữa đè ép hắn trở về, đồng thời có chút vội vàng nói: "Mặc kệ, tiếp tục đi!"</p>
+    <p>Ba tiểu nha đầu ngồi ở kia đã có chút sốt ruột, thấy hai người bọn họ cuối cùng cũng đi ra, Cốc Tuyết Hân không khỏi hỏi: "Phương Đông a di, Diệp Tử ca ca, hai người làm gì mà lâu thế ạ?"</p>
+    <p>"Đúng vậy, hơn nữa bên trong còn truyền ra một loại âm thanh rất kỳ quái, hình như là rất không thoải mái, chúng ta đều lo lắng cho hai người đấy." Cốc Tuyết Mai cũng nói.</p>
+    <p>Đông Phương Nhược Lan không khỏi đỏ mặt, ngồi xuống dưới sự đỡ đần của Diệp Phi, có chút bối rối nói: "Cái kia, là có một ống nghiệm bị vỡ, a di bị đâm phải, có chút đau, cho nên mới kêu một tiếng."</p>
+    <p>"À." Ba tiểu nha đầu hiểu ý gật đầu, lại nhìn về phía Diệp Phi, hỏi: "Diệp Tử ca ca, sao anh không giúp đỡ ạ? Còn để cho Phương Đông a di bị đâm."</p>
+    <p>Diệp Phi trên mặt lộ ra một nụ cười xấu xa: "Ta có giúp mà, nhưng vẫn bị kẹp vào, đều có chút sưng lên đây này. Chỉ là ta là nam nhân, sức chịu đựng tốt hơn, nên không kêu lên thôi."</p>
+    <p>"A? Vậy Diệp Tử ca ca có sao không? Nhanh để chúng ta xem nào!" Ba tiểu nha đầu đồng thời kinh hô. Các nàng tuy có mối quan hệ rất tốt với Đông Phương Nhược Lan, nhưng vẫn so kém hơn Diệp Phi, lại thêm trong lòng đã nảy sinh một chút tình cảm mông lung, càng khiến các nàng quan tâm Diệp Phi cực kỳ.</p>
+    <p>"Hiện tại không sao rồi, không cần lo lắng đâu." Diệp Phi nói, hắn tất nhiên không thể để ba tiểu nha đầu nhìn cái nơi "bị kẹp" kia.</p>
+    <p>Tiểu nha đầu lúc này mới yên lòng lại, lại hỏi Đông Phương Nhược Lan: "Phương Đông a di, dì đã pha chế xong dược dịch chưa ạ? Khi nào chúng em mới có thể đứng lên được?" Từ khi nảy sinh tình cảm mông lung với Diệp Phi, các nàng càng thiết tha muốn sớm bình phục, vì như vậy có thể có nhiều thời gian hơn ở bên cạnh Diệp Phi, hơn nữa cũng không cần chuyện gì cũng phải để anh giúp đỡ nữa.</p>
+    <p>"Cái này, vẫn chưa, vừa rồi thí nghiệm thất bại, dược dịch làm ra sẽ có tác dụng phụ rất lớn, nên vẫn phải đợi sau này mới nghiên cứu tiếp. Còn về chân của các em, không dùng được bao lâu nữa là có thể khá hơn." Khuôn mặt Đông Phương Nhược Lan lại ửng hồng, lắp bắp giải thích với mấy cô bé. Vừa rồi nơi đó của nàng còn có thể lo lắng nhìn mấy lọ dược dịch kia sao? Thậm chí mấy cái lọ Diệp Phi mới đi vào lúc nhìn qua cũng đều vì thời gian quá lâu mà hỏng rồi, sau đó tuy bọn họ có tạo ra thêm nhiều chất lỏng, thậm chí đến chiếc áo khoác trắng nàng đang mặc cũng bị làm ướt, nhưng thứ đó đối với đôi chân của tiểu nha đầu lại chẳng có tác dụng gì cả.</p>
+    <p>Đang lúc Đông Phương Nhược Lan nghĩ đến chất lỏng trên quần áo mình, ba tiểu nha đầu cũng ngửi thấy mùi lạ này, không khỏi hỏi: "Phương Đông a di, trên người dì sao lại có mùi kỳ quái vậy ạ?"</p>
+    <p>"Hả?" Khuôn mặt Đông Phương Nhược Lan trong nháy mắt đỏ bừng, hận không thể tìm một cái lỗ mà chui xuống. Cũng may ba tiểu nha đầu này chưa từng trải qua chuyện loại này, nên không đoán được đó là gì, bằng không Đông Phương Nhược Lan chỉ sợ muốn chết tâm luôn rồi.</p>
+    <p>Thấy Đông Phương Nhược Lan rơi vào trạng thái này, Diệp Phi vội vàng giải thích thay nàng: "Vừa rồi không phải đã bảo các em sao? Phương Đông a di bị ống nghiệm đâm phải, chất lỏng bên trong dính cả lên người dì ấy, cái mùi các em ngửi thấy chính là mùi của chất lỏng đó."</p>
+    <p>Tiểu nha đầu lập tức cảm kích nhìn về phía Đông Phương Nhược Lan: "Phương Đông a di, cám ơn dì, dì vất vả phối dược cho chúng em còn bị thương." Các nàng còn tưởng rằng Đông Phương Nhược Lan là vì không điều chế được thuốc nên mặt đỏ, trong lòng không khỏi thập phần cảm kích.</p>
+    <p>"Không có gì, a di là bác sĩ mà, đây đều là việc nên làm." Phương Đông đỏ mặt đáp, cảm thấy mình thật sự không tiện ở lại đây tiếp, hơn nữa phía dưới cũng dính dớp vô cùng khó chịu, vì vậy đứng dậy vừa hướng ra phía ngoài vừa nói: "Các em cứ nói chuyện đi, ta đi thay bộ quần áo."</p>
+    <p>Ánh mắt đầy ngưỡng mộ nhìn theo bóng lưng Đông Phương Nhược Lan rời đi, Cốc Tuyết Dung có chút mong đợi hỏi Diệp Phi: "Diệp Tử ca ca, khi nào chúng em mới có thể tự đi lại được ạ? Thực hâm mộ anh và dì."</p>
+    <p>Diệp Phi trong lòng không khỏi nhói đau. Ở cái tuổi mà những cô gái đồng trang lứa khác đều đang mơ mộng làm công chúa, hoàng hậu, yêu cầu của ba nàng lại đơn giản như vậy, chỉ là hy vọng có thể như người bình thường dùng hai chân đi bộ. Điều này khiến hắn có xúc động muốn chữa trị ngay lập tức cho các nàng, bất quá cuối cùng vẫn nhịn xuống, khẽ cười nói: "Rất nhanh thôi, y thuật của Phương Đông a di cao như vậy, nhiều nhất cũng chỉ cần ba năm ngày nữa là được rồi. Đến lúc đó Diệp Tử ca ca đưa các em đi chơi được không?"</p>
+    <p>"Được ạ!" Tiểu nha đầu hoan hô lên: "Chúng em muốn đến trường học xem thử, đã nhiều năm rồi không được đi học nữa."</p>
+    <p>"Trường học?" Diệp Phi không khỏi sững sờ, hắn thật không ngờ nguyện vọng đầu tiên của ba tiểu la lỵ này lại là cái này.</p>
+    <p>"Vâng." Cốc Tuyết Hân gật đầu nói: "Từ sau khi ba ba gặp chuyện, chúng em đều không được đến trường nữa. Nhưng sau đó tỷ tỷ có tìm gia sư cho chúng em, nên những kiến thức cần học chúng em đều không bỏ sót."</p>
+    <p>Diệp Phi vẫn không hiểu vì sao các nàng lại muốn đến trường học, nên tiếp tục hỏi: "Nếu như vậy, sao các em còn muốn đến trường?"</p>
+    <p>"Bởi vì vị gia sư kia quá nghiêm khắc, chúng em đều có chút sợ ông ấy." Cốc Tuyết Dung hơi xấu hổ nói: "Tỷ tỷ vốn muốn đổi người khác, nhưng thầy giáo đó là do Vương thúc và Vương thẩm giới thiệu, nên không tiện đổi ạ."</p>
+    <p>Diệp Phi trong lòng bừng tỉnh, xem ra vị gia sư đó chắc chắn cũng là người âm thầm bảo vệ các nàng. Vì vậy hắn không đào sâu vấn đề này nữa, cười nói: "Vậy chờ các em khỏe lại, ca ca sẽ giới thiệu các em vào trường tốt nhất, không cần phải để ý đến kẻ nghiêm khắc kia nữa, được không?"</p>
+    <p>"Tốt quá!" Ba tiểu la lỵ đều vui vẻ đồng ý, rồi lại nói: "Vậy Diệp Tử ca ca có thể giúp tỷ tỷ tìm trường học không ạ? Mấy năm nay tỷ ấy cũng đều tự học đấy."</p>
+    <p>Nghe lời các nàng, Diệp Phi trong lòng lại xót xa. Đúng vậy, Cốc Tuyết Hàm cũng chỉ trạc tuổi mình, vốn dĩ nên là một học sinh trung học, nhưng vì chăm sóc ba người muội muội mà phải bước vào xã hội gian nan này, còn làm cả nghề trộm cắp bị người xem thường. Sự chua xót này chỉ sợ chính nàng mới hiểu rõ nhất. Vì vậy hắn vui vẻ đáp: "Được, nếu có thể, hãy bảo nàng đến trường của Diệp Tử ca ca đi, chỗ đó có muội muội của ta ở đó, không ai dám bắt nạt nàng đâu."</p>
+    <p>Thấy chuyện của tỷ tỷ cũng được giải quyết, ba tiểu la lỵ còn vui hơn cả việc chính mình được đi học, líu ríu trò chuyện với Diệp Phi. Từ khi Diệp Phi xuất hiện trong cuộc sống của các nàng, ba cô bé vốn có chút trầm mặc đã dần dần khôi phục sự hoạt bát đúng với lứa tuổi.</p>
+    <p>Không bao lâu sau, Đông Phương Nhược Lan đã rửa mặt sạch sẽ và thay bộ quần áo khác quay trở lại. Cảm giác nhẹ nhàng khoan khoái khiến nàng tự nhiên hơn nhiều, bất quá vẫn lườm Diệp Phi một cái đầy oán trách, sau đó mới thay mấy tiểu tỷ muội thu hồi châm.</p>
+    <p>Sau khi châm cứu xong, Đông Phương Nhược Lan đảo mắt một vòng, đột nhiên nói: "Tiểu Mãn, con giúp các em mặc lại quần đi, ta còn có chút việc phải làm." Nói xong liền nhanh chóng rời khỏi văn phòng.</p>
+    <p>"Được ạ." Diệp Phi vô thức đáp ứng, nhưng ngay lập tức ý thức được có chỗ không ổn, vội vàng muốn gọi Đông Phương Nhược Lan lại, lại phát hiện nàng sớm đã đi mất hút. Hắn biết nàng chắc chắn là cố ý, không biết là do trả thù mình làm nàng xấu hổ, hay là cố ý tạo cơ hội cho mình, hoặc là cả hai.</p>
+    <p>Lúc này trong văn phòng chỉ còn lại bốn người, ba tiểu la lỵ vốn đang hoạt bát cũng trở nên trầm mặc, khuôn mặt đáng yêu đều mang theo một vệt ửng hồng ngượng ngùng. Các nàng tuy chưa trải qua chuyện nam nữ, nhưng cũng mông lung hiểu biết chút ít, hơn nữa quần ngắn các nàng đang mặc đều là của bệnh viện, nếu muốn thay lại quần cũ thì nhất định phải cởi quần ngắn ra, như vậy bên dưới chỉ còn lại một chiếc quần lót nhỏ, chẳng phải sẽ để Diệp Phi nhìn thấy hết sao?</p>
+    <p>Qua rất lâu, vẫn là Cốc Tuyết Mai ngây thơ nhất lên tiếng trước: "Diệp Tử ca ca, giúp Tiểu Mai thay quần áo đi ạ, Phương Đông a di không biết còn phải bận tới khi nào nữa."</p>
+    <p>Đã nàng nói như vậy, Diệp Phi tự nhiên không khách khí nữa, gật đầu đi đến trước mặt Cốc Tuyết Mai ngồi xổm xuống. Đợi nàng tự mình cởi khuy quần, hắn đưa tay nắm lấy quần ngắn nhẹ nhàng kéo xuống. Khi đến đầu gối, hắn nắm lấy đôi chân trắng như ngọc của nàng khẽ nhấc lên để rút quần ra, nhưng rồi lập tức sững sờ.</p>
+    <p>Quá mê người! Diệp Phi trong lòng âm thầm gào thét. Vì vị trí, hắn vừa vặn có thể nhìn thấy xuân sắc bên dưới của tiểu nha đầu, chiếc quần lót trắng nhỏ xíu bị chỗ mê người nhất của nàng nhô lên, tạo thành một đường cong. Chỉ bằng suy đoán thôi Diệp Phi cũng biết, tiểu nha đầu này vậy mà giống hệt mẹ mình, là loại mật đào mà hắn yêu thích nhất, chỉ là không biết sau này nàng lớn lên có được no đủ như mẹ mình hay không. Vừa nghĩ như thế, trong lòng Diệp Phi càng thêm tà niệm, đột nhiên có một loại xúc động muốn lột chiếc quần lót kia ra để thưởng thức một phen.</p>
+    <p>"Diệp Tử ca ca." Ba tiểu nha đầu bình thường đều do tỷ tỷ giúp mặc quần áo, buổi trưa cũng là Đông Phương Nhược Lan và Mầm Hân hỗ trợ, nên Cốc Tuyết Mai từ lúc chào đời tới nay là lần đầu tiên được nam giới chạm vào chân mình, hơn nữa lại còn là nam hài mà mình ngưỡng mộ. Cảm nhận được nhiệt độ từ bàn tay to lớn của hắn, lại thêm ánh mắt hắn nhìn chằm chằm vào chỗ nhạy cảm của mình, giọng nói tiểu nha đầu có chút run rẩy.</p>
+    <p>Nghe tiếng tiểu nha đầu, Diệp Phi mới tỉnh lại từ trong mê loạn, vội vàng kéo quần ngắn ném sang một bên, sau đó cầm lấy quần của nàng, nhanh chóng giúp nàng mặc vào. Chỉ là quần của tiểu nha đầu có chút chật, trong quá trình mặc, bàn tay to lớn của hắn không khỏi liên tục va chạm vào làn da kiều nộn của nàng, khiến trong lòng tiểu nha đầu cảm giác khác thường càng thêm mãnh liệt, khuôn mặt nhỏ nhắn đỏ bừng, hơi thở cũng có chút dồn dập.</p>
+    <p>Đến lúc sắp mặc xong, Diệp Phi lại phạm một sai lầm lớn. Vì khẩn trương, thân thể tiểu nha đầu cứng ngắc, ngay lúc sắp kéo quần lên thì bị kẹt ở phía trước, Diệp Phi không nghĩ nhiều, trực tiếp cầm phần phía trước kéo lên. Như vậy, ngón tay hắn vô tình lướt qua nơi no đủ được bao bọc bởi chiếc quần lót nhỏ của tiểu nha đầu.</p>
+    <p>"A..." Tiểu nha đầu không biết là cảm giác thoải mái hay khó chịu khiến thân thể yêu kiều khẽ run lên, trong miệng nhỏ thốt ra một tiếng rên rỉ ôn nhu. Còn Diệp Phi trong lòng thì thầm sướng, cảm giác mềm mại khi ngón tay chạm vào lúc nãy thật sự quá tuyệt vời, thật muốn sờ thêm vài cái nữa. Bất quá nhìn thấy hai tiểu nha đầu kia vì nghe tiếng rên của muội muội mà tò mò xoay đầu lại, hắn đành phải thu hồi tà niệm, nhanh chóng giúp Cốc Tuyết Mai thắt đai lưng.</p>
+    <p>Giải quyết xong Cốc Tuyết Mai, Diệp Phi lại mồ hôi đầy đầu giúp hai tiểu nha đầu còn lại mặc quần áo, lần này hắn đặc biệt chú ý nên không để các nàng cảm nhận được sự khác thường như tiểu muội của mình.</p>
+    <p>Vừa giúp các tiểu nha đầu mặc xong quần áo, Đông Phương Nhược Lan liền từ bên ngoài đi vào, Diệp Phi càng khẳng định nàng là cố ý. Bất quá hắn cũng không trách nàng, trực tiếp nói với các nàng: "Thời gian không còn sớm, ta mời các em đi ăn cơm."</p>
+    <p>"Được ạ, ta đi gọi Tiểu Hân." Đông Phương Nhược Lan tự nhiên không khách khí với Diệp Phi, bất quá sau khi nói xong lại ý thức được ở đây cũng có một người tên là Tiểu Hân, liền cười nói: "Ta đang nói đến Mầm Hân, từ sau khi các nàng ở cùng nhau cũng không biết làm sao lại thân thiết như vậy."</p>
+    <p>Cốc Tuyết Hân tự nhiên biết Đông Phương Nhược Lan đang nói gì, cười đáp: "Phương Đông a di gọi em là Vui Sướng là được rồi ạ, tỷ tỷ em bình thường cũng gọi như vậy."</p>
+    <p>Đông Phương Nhược Lan mỉm cười, nhanh chóng đi gọi Mầm Hân đang nghỉ ngơi, sau đó cùng Diệp Phi rời khỏi quân khu.</p>
+    <p>Các nàng không phải là người xa hoa, dù bây giờ có Diệp Phi là siêu cấp đại gia ở đây, nhưng cũng không tìm nơi nào sang trọng, chỉ tùy tiện tìm một quán ăn gần quân khu, gọi vài món đơn giản.</p>
+    <p>Sau khi dùng xong bữa trưa có chút muộn này, Diệp Phi và ba tiểu nha đầu không cùng Đông Phương Nhược Lan quay lại bệnh viện, mà trực tiếp quay trở về Bắc khu.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0261.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0263.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 182 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 182</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 182</small>
+    Chương 182: Nữ hài phẫn nộ
+  </h1>
+  <div class="chapter-body">
+    <p>Mặc dù Diệp Phi nói mình không chắc chắn, nhưng Mầm Hân vẫn không khỏi thán phục. Tình huống của Lý Vân thế nào nàng rất rõ, đừng nói là nàng, ngay cả Đông Phương Nhược Lan nếu chưa nghiên cứu ra Thông gân tục mạch đan cũng đành bó tay chịu trói. Vậy mà hiện tại Diệp Phi lại nói có thể thử xem, làm sao nàng không kinh ngạc cho được? Về phần Diệp Phi có nói dối hay không, nàng ngược lại không nghĩ tới. Không phải vì nàng hiểu rõ Diệp Phi đến mức nào, mà do từ nhỏ đã sống trong quân doanh, ít tiếp xúc với bên ngoài. Các binh sĩ nơi này đều là những người rất thật thà, còn Đông Phương Nhược Lan vì say mê học thuật nên cũng chưa từng dạy nàng thói đời hiểm ác. Vì vậy trong nhận thức của nàng, một người căn bản không thể nói dối về những việc hệ trọng.</p>
+    <p>Ba người đi đến phòng bệnh khi Lý Vân vẫn chưa tỉnh lại. Trương Cường vốn muốn gọi hắn dậy, nhưng bị Diệp Phi ngăn cản. Hiện tại Diệp Phi cũng không có lòng tin tuyệt đối với loại khôi phục hoàn này, hơn nữa sau khi nghe nói Đông Phương Nhược Lan đang nghiên cứu Thông gân tục mạch đan, cậu không muốn để Lý Vân dùng loại dụng cụ kia nữa, nên không đành lòng quấy rầy, muốn để hắn nghỉ ngơi thêm một lúc.</p>
+    <p>Nhìn thân thể vốn cực kỳ tráng kiện của Lý Vân giờ đã trở nên khô quắt, trong lòng Diệp Phi trào dâng cảm giác tự trách. Cậu thầm quyết định, sau này nhất định phải báo đáp hắn thật tốt. Nhưng cậu cũng hiểu, người đã hiến thân cho Đặc biệt chiến đội như hắn có lẽ chẳng cần gì từ mình, nên chỉ đành quyết định giúp hắn chăm sóc gia đình. Dù sao vì công việc quá bận rộn, hắn cũng không có nhiều thời gian bên người thân, mà thu nhập từ công việc này cũng chẳng cao là bao.</p>
+    <p>"Lý thúc, người tỉnh rồi?" Mãi đến gần trưa, Lý Vân vẫn luôn ngủ say mới chậm rãi mở mắt. Diệp Phi ngồi ở đầu giường nhìn thấy đầu tiên, vội vàng chào hỏi.</p>
+    <p>Nhìn thấy Diệp Phi, Lý Vân nở một nụ cười: "Tiểu Mãn, cháu đến rồi, cháu vẫn khỏe chứ! Chuyện ngày hôm qua, lão Trương và bọn họ đã kể cho ta nghe rồi." Nói đến đây, sắc mặt Lý Vân trở nên trịnh trọng: "Cảm ơn cháu, nếu không phải nhờ cháu và đội trưởng, chỉ sợ chúng ta đã toàn quân bị diệt rồi."</p>
+    <p>Lòng Diệp Phi không khỏi chấn động. Đúng là một quân nhân đáng kính, chẳng những không hề kể công mà còn vì muốn bảo toàn cho chiến hữu mà cảm ơn mình. Tình chiến hữu như thế, làm sao không khiến người ta cảm động?</p>
+    <p>"Lý thúc, đừng nói vậy. Cháu cũng là thành viên hành động tổ, đó đều là bổn phận của cháu. Nếu phải cảm ơn, thì người cần cảm ơn chính là cháu mới đúng." Được sự cảm động thôi thúc, Diệp Phi chân thành nói.</p>
+    <p>Lý Vân còn muốn nói thêm gì đó, nhưng bị Trương Cường chặn lại: "Ta nói hai người các người đừng ở đó khách sáo nữa. Lão Lý, ông cứu Tiểu Mãn là xuất phát từ tình chiến hữu, Tiểu Mãn giúp chúng ta tiêu diệt địch nhân cũng là xuất phát từ tình chiến hữu. Hai người cứ cảm ơn qua lại như vậy thì có ý nghĩa gì?"</p>
+    <p>Diệp Phi và Lý Vân đều cười xấu hổ. Trương Cường nói rất đúng, họ quả thực hơi khách sáo. Nhưng cũng chẳng thể trách họ được, Diệp Phi dù sao cũng là lần đầu tham gia hành động như vậy, càng là lần đầu được chiến hữu yểm hộ, nên trong lòng khó tránh khỏi không bình tĩnh. Lý Vân cũng ý thức được điều đó, sợ Diệp Phi gánh nặng tâm lý nên mới có chút khác thường.</p>
+    <p>Diệp Phi đưa tay vào túi áo, thực ra là lấy từ trong không gian ra một bình thủy tinh nhỏ, bên trong có hơn hai mươi viên khôi phục hoàn: "Lý thúc, đây là thứ cháu tình cờ có được, có thể phục hồi phần lớn thể lực. Cháu cũng không biết có hiệu quả với thương thế của người hay không, người ăn thử một viên xem."</p>
+    <p>Nhìn những viên thuốc tròn nhỏ trong bình, mắt Mầm Hân đột nhiên sáng lên. Nàng biết đây chính là nguồn gốc sự tự tin của Diệp Phi, vội rót một cốc nước, sau đó nhận lấy cái chai từ tay Diệp Phi, đổ ra một viên dược hoàn cho Lý Vân uống.</p>
+    <p>Chưa đầy một phút, sắc mặt vốn tái nhợt của Lý Vân đã khôi phục hồng hào. Cơ bắp khô quắt trên cánh tay lộ ra ngoài chăn cũng khôi phục với tốc độ mắt thường có thể thấy được, trong thời gian cực ngắn đã quay về trạng thái thời kỳ toàn thịnh.</p>
+    <p>Sự biến hóa này khiến cả Trương Cường và Mầm Hân đều trố mắt kinh ngạc. Lý Vân vì căn bản không cảm giác được cơ thể mình nên không giật mình như họ, nhưng nhìn sắc mặt của người chiến hữu lâu năm, hắn biết cơ thể mình hẳn đã có khởi sắc lớn, vì vậy không khỏi rất vui mừng.</p>
+    <p>Chỉ có Diệp Phi biết trước kết quả nên sắc mặt không đổi, nhìn Lý Vân hỏi: "Lý thúc, người thử xem, xem có dùng được khí lực không?"</p>
+    <p>Lý Vân làm theo thử một chút, cười khổ nói: "Không được, vẫn như trước, không cách nào khống chế cơ thể, thậm chí cảm giác cũng không có."</p>
+    <p>Diệp Phi không khỏi nhíu mày. Nhìn bề ngoài của Lý Vân, khôi phục hoàn rõ ràng đã phát huy tác dụng, nhưng tại sao lại không giúp hắn khống chế được cơ thể? Chẳng lẽ dùng quá ít? Dù sao một viên chỉ phục hồi khoảng mười phần trăm, vì vậy cậu nói: "Hay là, uống thêm vài viên thử xem?"</p>
+    <p>"Đừng vội." Lúc này Mầm Hân đã bình tĩnh lại sau cú sốc ban đầu, dường như nghĩ tới điều gì, nàng hỏi Diệp Phi: "Cậu có thể nói cho tôi biết công hiệu cụ thể của viên thuốc này không?"</p>
+    <p>"Đương nhiên." Diệp Phi gật đầu, thuật lại những gì mình biết về khôi phục hoàn trong đầu.</p>
+    <p>Nghe xong, cả ba người Lý Vân lại một phen kinh ngạc, không ngờ viên dược hoàn nhỏ bé này lại có công hiệu lợi hại như vậy. Đặc biệt là Mầm Hân, vốn dĩ nàng định xin Diệp Phi vài viên để nghiên cứu, nhưng sau khi nghe công hiệu, nàng đã bỏ ý định đó. Tuy không quá thông hiểu sự đời, nhưng nàng rất thông minh, tự nhiên hiểu rõ loại thuốc này đối với những người thường xuyên vào sinh ra tử như Đặc biệt chiến đội có ý nghĩa thế nào. Đó chính là một mạng người vào thời khắc mấu chốt. Nàng không muốn lãng phí đồ tốt như vậy trong tay mình. Dù có nghiên cứu ra dược lý thì cũng có thể tự chế tạo, nhưng đâu có dễ dàng gì? Chỉ riêng Thông gân tục mạch đan mà thầy mình đã nghiên cứu lâu như vậy vẫn chưa có đầu mối, nói gì đến thứ nghịch thiên thế này.</p>
+    <p>Lý Vân thở dài: "Đồ tốt như vậy, vẫn là nên để dành cho sau này dùng, đừng lãng phí trên người ta nữa."</p>
+    <p>"Cái gì lãng phí hay không? Chỉ cần Lý thúc có thể khỏe lại, vài viên dược hoàn thì đáng là bao?" Diệp Phi vội nói: "Hơn nữa thứ này cháu vẫn còn rất nhiều, người cứ yên tâm dùng đi." Nói xong, Diệp Phi lấy thêm vài cái bình nhỏ đầy dược hoàn từ trong không gian ra, nhưng vẫn không nói là thứ này mình có thể tùy ý chế tạo. Không phải không tin tưởng ba người họ, mà là lá bài tẩy thì người biết càng ít càng tốt, nhỡ đâu có người lỡ miệng nói ra, đó cũng là một phiền toái nhỏ.</p>
+    <p>"Cho dù có nhiều hơn nữa, chỉ sợ đối với Lý thúc thúc cũng vô ích thôi." Mầm Hân lại đột nhiên dội cho Diệp Phi một gáo nước lạnh: "Loại dược hoàn này dùng để khôi phục các hao tổn và chữa trị các vết thương chưa khép miệng, nhưng đối với Lý thúc thúc thì không ích gì, vì các dây thần kinh bị đứt của người hiện đã tự khép lại rồi, viên thuốc này căn bản không thể giúp nó kết nối lại."</p>
+    <p>Diệp Phi sững sờ: "Ý của cô là, nếu lúc mới bị thương thì thứ này hữu dụng, nhưng bây giờ thì vô dụng đúng không?"</p>
+    <p>Mầm Hân thở dài: "Đúng vậy. Thực ra cũng trách chúng ta, vốn dĩ vết thương của Lý thúc thúc không thể khép lại nhanh như thế, nhưng chúng ta đã dùng cho người một loại thuốc mà mẹ nuôi vừa nghiên cứu chế tạo giúp miệng vết thương nhanh lành. Vốn muốn cho người bớt chịu đau khổ, không ngờ lại làm ơn mắc oán."</p>
+    <p>Cả ba người Diệp Phi đều không nhịn được mà cười khổ, nhưng thực lòng đều hiểu, việc này không thể trách Đông Phương Nhược Lan và Mầm Hân, dù sao họ cũng là hảo tâm.</p>
+    <p>Thấy Mầm Hân vẫn còn chút tự trách, Diệp Phi định an ủi nàng, thì chợt nghe tiếng động nhỏ truyền đến từ cửa phòng bệnh. Quay đầu nhìn lại, một nữ hài trạc tuổi cậu đẩy cửa bước vào. Cô bé mặc bộ đồng phục không rõ của trường nào, chiều cao không tính là cao, chỉ khoảng một mét sáu, sắc mặt hơi tái nhợt, đôi mắt sưng đỏ. Dù vậy, vẫn khó che giấu nét quốc sắc thiên hương. Đây là một tiểu mỹ nữ xinh đẹp hơn cả Mầm Hân, có thể sánh ngang với Lâm Linh, hơn nữa vì gương mặt hiện tại lại càng tăng thêm vài phần khiến người ta muốn che chở.</p>
+    <p>"Mầm Hân tỷ tỷ." Nữ hài thấy trong phòng có nhiều người, miễn cưỡng mỉm cười chào Mầm Hân, sau đó nói với Trương Cường: "Trương bá bá, người lại đến thăm cha cháu ạ?"</p>
+    <p>Diệp Phi lúc này mới biết, cô bé này chính là Lý Tiếu Tiếu, con gái của Lý Vân. Trước đó khi Lý Vân nói về nhan sắc của con gái, cậu còn nửa tin nửa ngờ, giờ xem ra Lý Vân chẳng hề nói quá. Còn sắc mặt tái nhợt và đôi mắt sưng đỏ kia hẳn là vì lo lắng cho cha mình. Diệp Phi trong lòng càng kiên định ý định muốn "chăm sóc" nàng, dù rằng lúc này, ý nghĩa của từ "chăm sóc" kia đã bất tri bất giác lệch khỏi mục đích ban đầu.</p>
+    <p>"Đúng vậy." Trương Cường mỉm cười, chỉ vào Diệp Phi nói: "Ta giới thiệu với cháu, đây là người mà ta và cha cháu thường nhắc đến với cháu đây, Tiểu Mãn, đại danh là Diệp Phi."</p>
+    <p>"Diệp Phi?" Lý Tiếu Tiếu lẩm bẩm lặp lại một lần, sắc mặt đột nhiên trở nên phẫn nộ, nhìn chằm chằm Diệp Phi nói: "Anh đi ra ngoài, nơi này không chào đón anh!"</p>
+    <p>Diệp Phi vốn còn muốn nhân cơ hội này nắm lấy bàn tay nhỏ bé của nàng, không ngờ nàng lại có thái độ như vậy, nghĩ rằng chắc là vì thương thế của Lý Vân, khiến cậu không nhịn được mà cười khổ.</p>
+    <p>Lý Tiếu Tiếu vốn dĩ đã vô cùng tức giận, thấy Diệp Phi còn cười, càng giận không kềm được, mặc kệ Trương Cường ngăn cản và Lý Vân quát bảo, lớn tiếng khẽ quát Diệp Phi: "Cút đi ra ngoài!"</p>
+    <p>Diệp Phi sờ mũi, bất đắc dĩ xoay người rời khỏi phòng bệnh. Cậu hiểu, nếu mình còn ở lại đó, chỉ làm Lý Tiếu Tiếu thêm tức giận, mối quan hệ giữa hai người sau này chỉ sợ càng khó chữa trị.</p>
+    <p>Sau khi Diệp Phi rời đi, Trương Cường và Mầm Hân cũng bước theo ra ngoài. Trương Cường vỗ nhẹ vào vai Diệp Phi: "Đừng trách Tiểu Yên, nó cũng là vì lão Lý mới thế thôi."</p>
+    <p>"Cháu biết." Diệp Phi gật đầu. Đối với tâm trạng của Lý Tiếu Tiếu, cậu rất hiểu. Bởi lúc Lý Vân mới bị thương, chính cậu cũng phẫn nộ như nàng. Mà mình cũng chỉ là chiến hữu của Lý Vân thôi, huống chi là đứa con gái ruột như Lý Tiếu Tiếu.</p>
+    <p>Liễu Quân Di hiện vẫn chưa về, chuyện của Đặc biệt chiến đội đều do Trương Cường và hai đội trưởng khác quản lý, nên anh ta không thể ở đây lâu. Sau khi nói chuyện với Diệp Phi vài câu thì rời đi. Mầm Hân cũng muốn về ăn cơm trưa cùng Đông Phương Nhược Lan, vốn muốn mời Diệp Phi đi cùng, nhưng cậu muốn ở lại nghe xem cha con Lý Vân nói gì, để hiểu rõ vì sao Lý Tiếu Tiếu lại hận mình. Cậu đã quyết định sẽ "chăm sóc" Lý Tiếu Tiếu thật tốt, tự nhiên không muốn giữa hai người xuất hiện bất kỳ vết rạn nào.</p>
+    <p>Sau khi mấy người Diệp Phi rời đi, Lý Tiếu Tiếu bước đến trước giường bệnh của cha, đối mặt với ánh mắt hơi giận dữ của Lý Vân đầy quật cường.</p>
+    <p>Qua một hồi lâu, thấy con gái không hề có ý thỏa hiệp, Lý Vân khẽ thở dài: "Tiểu Yên, sao con lại nói như vậy? Tiểu Mãn là chiến hữu của ba mà."</p>
+    <p>"Thì đã sao?" Lý Tiếu Tiếu nghe thấy cái tên Diệp Phi, vẫn vô cùng phẫn nộ.</p>
+    <p>Thấy con gái không hiểu ý mình, Lý Vân thực sự hơi giận: "Sao nào? Con có biết thế nào là chiến hữu không? Đó là người có thể giao cả tính mạng trên chiến trường! Lúc đó ba chỉ là yểm hộ cho cậu ấy, hơn nữa cũng chỉ là bị thương thôi. Con có nghĩ tới những người vì yểm hộ ba trước đây mà hy sinh, con cái của họ sẽ nghĩ thế nào không? Chẳng lẽ đều giống con sao?"</p>
+    <p>Thấy cha hiểu lầm mình, Lý Tiếu Tiếu không khỏi ủy khuất, bĩu môi nói: "Con đâu có vì ba bị thương mà giận anh ta, con chỉ tức thái độ của anh ta thôi! Rõ ràng hôm qua đã về rồi, sao tận hôm nay mới đến thăm ba? Các chú khác thì hôm qua đã đến hết rồi! Chẳng lẽ vì anh ta là cháu của đại đội trưởng mà có thể coi sự hy sinh của người khác là điều đương nhiên sao?"</p>
+    <p>Lý Vân lúc này mới biết mình hiểu lầm con gái. Nhưng vì cũng biết sơ qua về Diệp Phi, hắn không tin Diệp Phi là người như vậy, vì thế nói: "Tiểu Mãn không phải người như thế đâu, có lẽ hôm qua có việc gì quan trọng hơn làm cậu ấy bận bịu thôi."</p>
+    <p>"Hừ!" Lý Tiếu Tiếu thấy cha nói đỡ cho Diệp Phi, trong lòng bất mãn, bĩu môi sang bên cạnh giận dỗi, để lại Lý Vân vẻ mặt cười khổ.</p>
+    <p>Đối thoại của hai cha con không sót một chữ nào lọt vào tai Diệp Phi, cũng hiểu rõ mấu chốt ở đâu, liền quyết định đi gỡ bỏ hiểu lầm này. Cậu gõ cửa nhẹ nhàng rồi bước vào.</p>
+    <p>Thấy người bước vào là Diệp Phi, Lý Tiếu Tiếu quay lưng lại trên ghế sô pha. Diệp Phi giả vờ như không thấy, đi tới trước giường bệnh của Lý Vân: "Lý thúc, cháu muốn về trước, chiều sẽ lại đến."</p>
+    <p>Lý Vân cười nói: "Không cần đâu, cháu có việc thì cứ đi làm đi, Lý thúc không sao."</p>
+    <p>"Việc gì cũng không quan trọng bằng thân thể của Lý thúc đâu ạ. Người vì cháu mà bị thương, đáng lẽ hôm qua vừa về cháu phải đến ngay, nhưng vì muốn người nhanh chóng bình phục, cháu mới về chuẩn bị ít đồ." Diệp Phi nói dối một cách trịnh trọng. Cậu không thể nói với Lý Vân là vì bản thân mình trọng sắc khinh bạn, vội vàng về thăm những cô gái mình yêu mến nên mới không lo lắng cho hắn được.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0181.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0183.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

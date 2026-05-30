@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 234 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 234</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 234</small>
+    Chương 234: Hương diễm tra tấn
+  </h1>
+  <div class="chapter-body">
+    <p>"Không cho ngươi đi ra ngoài!" Liễu Diệc Như đè thấp giọng, nhưng giọng điệu lại vô cùng kiên định dặn dò Diệp Phi một câu. Thấy hắn gật đầu đáp ứng, lúc này nàng mới mặc quần áo tử tế, cố chống thân thể như nhũn ra bước ra khỏi phòng. "Dì, mẹ, người ở nhà ạ?" Diệp Vân Khinh mắt sắc, nhìn thấy mẹ từ trong phòng ngủ bước ra liền cất tiếng hỏi. Đối mặt với con gái, dù đã sớm đưa ra quyết định, Liễu Diệc Như vẫn không khỏi đỏ mặt, có chút bối rối nói: "Ừ, lúc nãy nấu cơm thấy hơi mệt, mẹ vào phòng nghỉ một lát, ai ngờ ngủ quên mất." Diệp Vân Khinh vội vàng chạy tới đỡ lấy mẹ, để thân thể đang như nhũn ra của bà ngồi xuống bên cạnh Đông Phương Nhược Lan, rồi nói: "Phương Đông dì, người xem giúp mẹ con xem có phải bị bệnh rồi không." Nhưng trong lòng cô thầm nghĩ, không biết anh trai đã làm cách nào, mà trong thời gian ngắn ngủi như vậy đã khiến mẹ thành ra thế này, chẳng lẽ anh ấy đã đắc thủ rồi? Đông Phương Nhược Lan gật đầu, kéo tay trái của Liễu Diệc Như đặt lên chân mình, duỗi ngón tay ngọc nhẹ nhàng đặt lên cổ tay trắng ngần của bà. Lông mày nàng bỗng hơi nhíu lại, hỏi: "Diệc Như, vừa rồi có phải cậu vận dụng nội lực không? Sao thân thể lại yếu ớt thế này?" Khuôn mặt Liễu Diệc Như lại ửng hồng. Nơi đó đâu phải nội lực tổn thất quá độ, rõ ràng là do tinh hoa xói mòn quá nhiều. Nghĩ đến cảnh mình vừa "nôn" đầy mặt con trai, trong lòng bà không nhịn được vừa ngượng ngùng lại vừa hưng phấn. "Không có gì, chỉ là vừa dùng nội lực giúp Tiểu Mãn đả thông kinh mạch, dùng hơi quá sức thôi." Liễu Diệc Như sợ Đông Phương Nhược Lan nhìn ra sơ hở, vội vàng giải thích một câu rồi rút cổ tay về. "Vậy thì tốt. Cây tuyết sâm cậu đưa cho tôi đã bào chế xong thành hoàn thuốc, tổng cộng có hơn năm mươi viên. Ngoài việc Khinh Khinh lấy một ít cho Tình Tình, còn lại đều ở đây cả. Thứ này rất có hiệu quả cho việc tu luyện và khôi phục nội lực, cậu mau uống một viên đi." Đông Phương Nhược Lan nói rồi lấy ra một bình sứ bạch ngọc tinh xảo, trông sang trọng hơn hẳn chiếc lọ thủy tinh mà Diệp Phi tùy tiện tìm được để đựng thuốc khôi phục trước đó. Liễu Diệc Như tiện tay nhận lấy, đổ ra một viên dược hoàn như trân châu bỏ vào miệng nuốt xuống. Sau khi vận công hóa giải dược lực, bà phát hiện thứ này quả nhiên đúng như lời Đông Phương Nhược Lan nói, là dược liệu thượng hạng. Nó không chỉ hiệu quả với nội lực, mà ngay cả thân thể đang bị "xói mòn" quá mức của bà cũng được cải thiện rõ rệt, chỉ một lát sau đã hồi phục sức lực. Điều duy nhất khiến Liễu Diệc Như bất an lúc này là vì lúc nãy quá bất ngờ, mình và con trai chưa thống nhất lời nói. Nhưng may thay, hắn vẫn tuân theo lời bà mà không bước ra ngoài, nếu không chắc chắn sẽ bị lộ chuyện. Đang lúc Liễu Diệc Như thở phào nhẹ nhõm, Diệp Phi lại ngáp dài bước ra từ phòng ngủ của bà, và câu nói tiếp theo của cô con gái khiến bà rơi vào trạng thái căng thẳng tột độ. "Anh? Sao anh lại ở trong phòng của mẹ?" Diệp Vân Khinh ngạc nhiên hỏi. "Phương Đông dì tốt ạ." Diệp Phi chào hỏi Đông Phương Nhược Lan trước, sau đó mới đáp: "Vừa rồi mẹ giúp em đả thông kinh mạch, khiến cả hai đều mệt mỏi, nên em nằm nghỉ trong phòng mẹ một lát." "Đồ xấu hổ, lớn tướng rồi còn ngủ cùng mẹ!" Diệp Vân Khinh giơ ngón tay thon dài cạo cạo lên gương mặt xinh đẹp của mình, trêu chọc Diệp Phi. Thấy con gái hoàn toàn không nghi ngờ gì, Liễu Diệc Như cuối cùng cũng thở phào một hơi dài, trong lòng hoàn toàn bình tĩnh lại. Xem ra mình đúng là lo xa quá rồi, mẹ con ngủ cùng phòng thôi mà, ai lại nghĩ ngợi lung tung chứ? Về phần Đông Phương Nhược Lan, nàng tuy biết mình giúp con trai, nhưng vì nàng là thầy thuốc lại chính là người gợi ý việc này, nên chắc chắn sẽ không nghĩ ngợi linh tinh. Liễu Diệc Như nở nụ cười nhẹ nhõm, nói với ba người: "Các con cứ nói chuyện đi, mẹ đi làm cơm, sắp xong rồi." Nói đoạn, bà bước những bước nhẹ nhàng vào phòng bếp. Kỳ thật, việc Đông Phương Nhược Lan và Diệp Vân Khinh đến vào lúc này hoàn toàn là sự sắp đặt của Diệp Phi. Hắn làm vậy, thứ nhất là muốn cho mẹ bị kích thích cực hạn để hai người có thể tận hưởng khoái lạc hơn; thứ hai là muốn bà sớm quen với cảm giác được người nhà chạm vào. Chỉ cần người nhà không nghi ngờ, hắn tin bà sẽ sớm điều chỉnh tâm tính và sau này sẽ nhập tâm hơn khi ở bên hắn. Điểm thứ nhất, Diệp Phi đã làm được, nhớ lại cảnh mẹ "nôn" đầy mặt mình, hắn đến giờ vẫn thấy kích động. Điểm thứ hai, cô em gái thông minh khéo léo đã giúp hắn hoàn thành, điều đó thể hiện rõ qua nụ cười thoải mái trên khuôn mặt khuynh quốc khuynh thành của mẹ lúc nãy. "Anh, vừa rồi mẹ mệt đến thế sao? Anh đã đắc thủ rồi đúng không?" Diệp Vân Khinh thấy mẹ đã vào bếp, không còn ai trong phòng khách, vội hạ thấp giọng hỏi. Đông Phương Nhược Lan bên cạnh cũng lộ vẻ chờ mong. "Chưa, nhưng cũng gần rồi." Diệp Phi lắc đầu: "Anh nói này, độc giả của chúng ta còn chưa nóng lòng, hai em vội cái gì?" "Tất nhiên là vội rồi, anh đã hứa đến lúc đó để em và mẹ cùng ở bên anh mà." Diệp Vân Khinh bĩu môi: "Để trừng phạt việc anh tiến triển chậm chạp, hôm nay em và Phương Đông dì, ai cũng đừng hòng đụng vào!" Câu nói của Diệp Vân Khinh khiến mặt Đông Phương Nhược Lan đỏ bừng. Dù nàng đã ở bên Diệp Phi, nhưng chưa có kinh nghiệm "chung đụng" với phụ nữ khác, nên đương nhiên không táo bạo được như Diệp Vân Khinh. Vì đã chuẩn bị từ trước, Liễu Diệc Như nhanh chóng mang bữa tối ra, Diệp Phi và mọi người cũng vội qua giúp một tay. Sau khi ăn xong, bốn người trò chuyện một lúc rồi chuẩn bị nghỉ ngơi. Diệp Vân Khinh bỗng nói: "Mẹ, lâu rồi không ngủ cùng mẹ, tối nay con muốn ngủ với mẹ." "Đúng đấy, Diệc Như, chúng ta cũng lâu rồi không ngủ cùng nhau, tối nay ba người chúng ta ngủ chung đi." Đông Phương Nhược Lan cũng nói thêm. Liễu Diệc Như vốn định đợi hai người ngủ rồi lén chạy vào phòng con trai, bởi hôm nay hắn đã khiến bà thỏa mãn như vậy mà hắn vẫn còn đang nhịn, bà muốn giúp hắn giải tỏa. Nhưng trước yêu cầu của con gái và bạn tốt, bà không thể từ chối, đành thất vọng gật đầu: "Được rồi, tối nay chúng ta ngủ chung." Diệp Vân Khinh đắc ý liếc nhìn Diệp Phi một cái, hai tay khoác chặt tay mẹ và Đông Phương Nhược Lan, kéo họ vào phòng ngủ của Liễu Diệc Như, để lại Diệp Phi một mình trong phòng khách. Nhìn theo bóng lưng quyến rũ của ba người phụ nữ khuất sau cửa phòng, mặt Diệp Phi không khỏi méo xệch. Hắn không ngờ Diệp Vân Khinh nói là làm thật, xem ra tối nay hắn phải chịu cảnh cô đơn rồi. Hừ! Sớm muộn gì cũng có ngày ta thu phục cả ba người, bốn người cùng ngủ chung! Diệp Phi thầm thề trong lòng, rồi chợt hiểu ra dụng ý của em gái. Hiện tại nàng làm vậy là để chuẩn bị, muốn để mẹ thích ứng với việc có nàng bên cạnh, mà chỉ cần đã làm được điều đó, những người khác tự nhiên sẽ trở nên dễ dàng. Giây phút này, Diệp Phi cảm động trước Diệp Vân Khinh. Trong lòng mọi người, người yêu hắn sâu đậm nhất cuối cùng vẫn là Diệp Vân Khinh. Tình yêu của nàng đã không còn cái tôi, tất cả đều xoay quanh Diệp Phi. Chỉ cần hắn vui, bất cứ việc gì nàng cũng làm, dù là nghịch thiên cũng không tiếc. Còn tình yêu của mẹ đối với hắn cũng sâu đậm không kém, nhưng lại là một dạng khác, pha trộn giữa tình mẫu tử, một tình yêu đặc biệt. Trong khi bà dành cho hắn sự bao dung vô bờ bến như biển cả, bà vẫn kiên trì một vài nguyên tắc để dẫn dắt con đường cho hắn. Cả hai dạng tình yêu này đều vô tư, khiến Diệp Phi vừa cảm động vừa chìm đắm, đồng thời tạo cho hắn động lực vô tận. Vì họ, Diệp Phi có thể đối kháng với cả đất trời! Một đêm trôi qua không có gì đáng kể. Sáu giờ sáng hôm sau Diệp Phi đã thức dậy. Không phải hắn muốn tập thể dục hay gì cả, với thực lực hiện tại, việc rèn luyện thân thể cơ bản đã vô dụng, thậm chí luyện cả đời cũng không bằng một lần song tu với người phụ nữ của mình. Sở dĩ hắn dậy sớm như vậy là vì không ngủ nổi. Ngay vách tường bên cạnh là ba mỹ nhân khuynh quốc khuynh thành đang ngủ, họ đều có quan hệ đặc thù với hắn, mà hắn lại chỉ có thể nhìn chứ không được ăn. Cảnh hương diễm này đúng là tra tấn cực hình. Diệp Phi không phải chưa từng nghĩ đến việc lén đi tìm những người phụ nữ khác như mẹ con Lâm Linh, họ chắc chắn sẽ hoan nghênh hắn, nhưng nghĩ đến việc sau khi bị người này từ chối lại đi tìm người khác, thứ nhất là không công bằng với họ, thứ hai là mặt mũi hắn cũng không để đâu cho hết. Ân, không ngờ mình cũng có ngày biết sĩ diện hão. Cho đến khi Diệp Phi làm xong bữa sáng, ba vị mỹ nhân mới cùng bước ra khỏi phòng. Nhìn tinh thần của họ, có vẻ tối qua ngủ rất ngon, điều này lại khiến Diệp Phi thấy bất công. Để báo thù, hắn quyết định sau khi công hạ được mẹ, nhất định phải tìm cách thu phục cả ba người họ, giày vò họ cả đêm, khiến ngày hôm sau không ai xuống giường được! "Oa, bữa sáng làm xong rồi ạ?" Diệp Vân Khinh hoan hô, chạy đến bàn ăn đầu tiên, tỏ vẻ đói bụng, cầm lấy cái bánh bao nhét vào miệng, vừa ăn vừa hỏi mơ hồ: "Anh, hôm nay anh có đi học không?" "Tất nhiên, không đi học thì đi đâu? Sao tự nhiên hỏi vậy?" Diệp Phi ngồi xuống cùng mẹ và Đông Phương Nhược Lan, hỏi ngược lại. Diệp Vân Khinh uống một ngụm cháo, nuốt nốt miếng bánh bao rồi nói: "Tất nhiên là phải hỏi, anh mỗi ngày đều nhiều việc, ai biết được anh lại bày ra trò gì." Liễu Diệc Như thấy con gái ăn đến mức miệng đầy dầu mỡ, bất đắc dĩ cầm khăn giấy lau cho cô, nhẹ nhàng trách: "Con bé này, ăn nhanh thế làm gì? Có ai tranh với con đâu." "Cảm ơn mẹ." Diệp Vân Khinh ngọt ngào cười với Liễu Diệc Như: "Mẹ thật dịu dàng, nếu con là con trai, nhất định con sẽ theo đuổi mẹ." Câu nói như ẩn chứa thâm ý của con gái khiến mặt Liễu Diệc Như hơi ửng đỏ, bà gõ nhẹ vào đầu cô một cái, mắng: "Nói linh tinh gì đấy? Đúng là tiểu nha đầu không có dáng vẻ gì cả!" "Con đâu có nói linh tinh, không tin mẹ hỏi anh xem. Anh, em nói đúng không? Anh có muốn theo đuổi mẹ không?" Diệp Vân Khinh cười hi hi hỏi Diệp Phi. Diệp Phi cười đáp: "Tất nhiên, mẹ chính là nữ thần trong lòng anh, em nói xem anh có muốn theo đuổi mẹ không?" Nói xong, Diệp Phi trao cho mẹ ánh mắt chỉ hai người họ mới hiểu. Trong lòng Liễu Diệc Như ngọt ngào, lập tức bình tĩnh lại. Vì Diệp Phi càng nói như thế, Diệp Vân Khinh lại càng không nghi ngờ gì. Qua màn trêu đùa này, bà cảm thấy mình có thể đối mặt với tình cảnh hiện tại một cách thong dong hơn rồi. Sau bữa sáng, bốn người chia tay tại cửa. Liễu Diệc Như đến công ty, Đông Phương Nhược Lan cũng về khu của nàng, còn hai anh em Diệp Phi thì tới trường. Lần này, Diệp Phi không để mẹ đưa mình đi nữa mà tự lái xe. Dù chưa có bằng lái, nhưng hắn không quan tâm. "Anh, anh học lái xe từ bao giờ thế?" Ngồi ở ghế phụ, Diệp Vân Khinh hỏi khi thấy anh trai khởi động xe thuần thục. Diệp Phi lái xe ra đường, cười nói: "Mấy hôm trước thôi. Cái này với anh em mình đơn giản lắm, lát nữa em thử chút là biết ngay." "Thật không?" Diệp Vân Khinh phấn khích, đôi mắt đẹp nheo lại thành hình trăng khuyết, làm vẻ mặt đáng yêu nũng nịu: "Anh, giờ anh dạy em luôn được không?" "Sắp vào học rồi, chiều đi. Tan học xong chúng ta ra vùng ngoại ô tập." Diệp Phi thuận miệng nói. Hiện tại hắn chẳng bận tâm đến chuyện bằng lái, đương nhiên không muốn em gái bị ràng buộc bởi mấy cái đó. "Được, anh hứa rồi đấy nhé!" Diệp Vân Khinh vui vẻ bĩu môi. Dù với thực lực hiện tại, nàng dùng khinh công còn nhanh hơn lái xe, nhưng trước đây vì luôn phải đi xe điện, ước mơ lớn nhất của nàng là có một chiếc ô tô cho riêng mình. Giờ nguyện vọng sắp thành hiện thực, nàng đương nhiên rất vui. "Đúng rồi, tối qua các người ngủ chung thì trò chuyện những gì?" Diệp Phi nhìn cô em gái đang phấn khích, không khỏi buồn cười. Diệp Vân Khinh cười hi hi: "Như Lan tỷ tỷ muốn giúp mẹ giới thiệu đàn ông đấy." "Cái gì?" Diệp Phi giật mình, suýt nữa lái xe đâm vào dải phân cách, giọng hơi cứng lại: "Nàng ta muốn làm gì? Đào góc tường của anh sao?" "Đồ ngốc này!" Diệp Vân Khinh bất mãn bĩu môi: "Anh nghĩ mẹ giờ còn có thể dung chứa người đàn ông nào khác sao? Như Lan tỷ tỷ là đang giúp anh, muốn mẹ hiểu rõ hơn điều bà thực sự khao khát là gì mà thôi." "Hóa ra là vậy, lại trách oan nàng ấy rồi." Diệp Phi xấu hổ cười. Hiện tại thứ duy nhất khiến hắn mất bình tĩnh chính là vấn đề về mẹ. Chỉ cần có một chút manh mối không hay, hắn đã không thể suy nghĩ tỉnh táo, nếu không với đạo lý dễ hiểu như vậy, không lý nào hắn lại không nhận ra.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0233.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0235.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

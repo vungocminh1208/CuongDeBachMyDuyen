@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 137 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 137</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 137</small>
+    Chương 137: Cự đại kinh hỉ
+  </h1>
+  <div class="chapter-body">
+    <p>Ngày hôm sau, đang lúc mọi người chìm trong tâm tình bi thống, Diệp Lăng Thiên cuối cùng được an táng tại một nghĩa trang ở vùng ngoại thành Vọng Hải. Sau đó, Diệp Phi liền vội vã chạy tới mật thất dưới lòng đất của Lăng Vân Hội. Không sai, hắn đã không thể chờ đợi được muốn bắt đầu kế hoạch của mình rồi.</p>
+    <p>Trong mật thất, ngoại trừ Diệp Phi, chỉ còn đầu trọc, Tím Mao và Trương Nhất Đức. Đối với những người này, hắn có thể hoàn toàn tín nhiệm. Những người khác thì thôi, dù sao chuyện này người biết càng ít càng tốt, Diệp Phi ngay cả Liễu Diệc Như và các nàng cũng không muốn nói cho.</p>
+    <p>Đầu tiên là hỏi thăm qua về nhóm người đầu trọc, đám người họ thu phục tại Lâm Hải hiện tại xem ra cũng không tệ. Tuy rằng ưu thế trong cuộc chiến với Thanh Long bang không quá lớn, nhưng những người này không có một ai lâm trận bỏ chạy, điều này làm cho Diệp Phi có chút thỏa mãn.</p>
+    <p>Rất nhanh, năm gã bị trói như bánh chưng được Trương Nhất Đức dẫn tới. Năm người này chính là được lựa chọn từ đám người đi theo Diệp Vũ. Vì biết rõ Diệp Phi muốn làm cái gì, Trương Nhất Đức trực tiếp chọn những kẻ có thân thủ rất tốt, dù sao cho dù thất bại, những người này cũng là chết không có gì đáng tiếc.</p>
+    <p>"Đã rơi vào tay các ngươi, muốn đánh muốn giết tùy ý, không cần đùa giỡn hoa dạng gì cả!" Điều làm Diệp Phi hơi bất ngờ là năm người này lại khá kiên cường, vừa vào cửa đã lớn tiếng rống lên với hắn.</p>
+    <p>"Phi! Các ngươi đám phản đồ này, còn có mặt mũi ở đây làm bộ làm tịch?" Trương Nhất Đức sắc mặt đỏ bừng vì giận dữ, phẫn nộ quát: "Lúc trước Lăng Thiên bang chủ đối xử với các ngươi như thế nào, vậy mà các ngươi lại đi theo tên mất dạy Diệp Vũ kia phản bội ông ấy!"</p>
+    <p>Năm người kia tựa hồ có chút đuối lý, nhưng vẫn không phục trừng mắt nhìn đám người Diệp Phi. Diệp Phi mỉm cười nói: "Trương gia gia, không cần nói nhảm với bọn họ, hạng người này không đáng để ngài tức giận." Nói xong, hắn đột nhiên ra tay, thân hình lóe lên đã tới phía sau bọn họ, cơ hồ cùng lúc đánh vào gáy, khiến cả năm người ngất xỉu.</p>
+    <p>Đây là lần đầu tiên Trương Nhất Đức chứng kiến Diệp Phi ra tay. Ngày hôm qua giết Hồ Nhất Bưu, hắn dùng súng ngắn, còn chuyện Diệp Vũ chết như thế nào ông cũng không thấy. Vì vậy, giờ phút này ông mới biết, Diệp Phi căn bản không phải tiểu thiếu gia yếu đuối kia, mà là một cao thủ thâm bất khả trắc. Đám người đầu trọc tuy từng thấy Diệp Phi ra tay, nhưng lúc này cũng có chút kinh ngạc, bởi vì chỉ vài ngày không gặp, tốc độ của Diệp Phi rõ ràng đã nhanh hơn trước rất nhiều.</p>
+    <p>Theo ra hiệu của Diệp Phi, đám người đầu trọc lấy ra vài cái chụp đầu trông giống như thiết bị nhuộm tóc. Đây chính là kỹ thuật Diệp Phi lấy được từ đảo quốc, cho đám người đầu trọc chế tạo ra, một loại công cụ có thể tách biệt tư tưởng con người.</p>
+    <p>Loại công cụ này rất tà môn, có thể tùy ý tăng thêm hoặc hút ra trí nhớ trong đầu một người. Vốn dĩ thứ này không có tác dụng quá lớn, dù sao người có thân phận không thể tùy tiện bắt giữ, còn người thường có khống chế được cũng vô dụng. Ở đảo quốc, họ chỉ dựa vào cái này để khống chế vài đặc công, nhưng khi vào tay Diệp Phi, tác dụng của nó đã bị phóng đại vô hạn, bởi vì ngoại trừ cái này, Diệp Phi còn có một thứ khiến người ta trong nháy mắt trở nên cường đại.</p>
+    <p>Đem năm cái chụp đầu cài lên đầu năm người đang hôn mê, Diệp Phi vừa định hạ lệnh hút trí nhớ của bọn họ thì trong lòng chợt động. Những người này không phải là người cô độc, đa số đều có gia quyến. Nếu hút sạch trí nhớ của bọn họ, cho dù mình có cấy vào mệnh lệnh hoàn mỹ đến đâu, e rằng cũng bị người nhà nhìn ra sơ hở. Như vậy, bí mật này của mình có thể sẽ bị bại lộ, khi đó thứ mình phải đối mặt không phải đả kích bình thường. Trước khi thực lực chưa đạt tới mức tuyệt đối cường thế, Diệp Phi vẫn không dám công khai đối nghịch với cả thế giới.</p>
+    <p>Vậy nếu không hút trí nhớ, chỉ cấy một mệnh lệnh cưỡng chế vào trong não bộ, khiến họ từ nay về sau tuyệt đối hiệu trung với mình, không biết có được hay không?</p>
+    <p>Nghĩ là làm luôn là nguyên tắc của Diệp Phi. Vì vậy, hắn cầm lấy mấy cái dụng cụ, sửa đổi mệnh lệnh muốn chấp hành, rồi mới mang lên đầu một người, bật nguồn điện.</p>
+    <p>Sau khi mang dụng cụ không lâu, cơ thể người nọ bắt đầu run rẩy nhẹ. Tuy vẫn chưa mở mắt, nhưng nhìn vẻ mặt có chút giãy dụa kia, đám người Diệp Phi đều hiểu hắn đã tỉnh rồi.</p>
+    <p>Kể cả Diệp Phi, tất cả mọi người đều có chút khẩn trương nhìn người nọ. Tuy tri thức hiện tại trong đầu Diệp Phi không hề thua kém bất kỳ học giả xuất sắc nào trên thế giới, hơn nữa chỉ cần muốn học, hắn có thể học tận thiên hạ tất cả tri thức, tư duy logic của hắn cũng không phải loại người bình thường nào có thể so sánh. Nhưng vật này dù sao cũng là thứ đảo quốc trải qua nghiên cứu lâu dài mới làm ra, hắn dù lợi hại, muốn sửa chữa hoàn thiện cũng không phải chuyện một sớm một chiều. Nếu lần này không thành công, kế hoạch của hắn e rằng phải hoãn lại một khoảng thời gian.</p>
+    <p>Dưới cái nhìn chăm chú đầy khẩn trương của mọi người, sắc mặt người nọ từ vặn vẹo chuyển sang bình thản, cuối cùng trở nên an nhiên, chậm rãi mở mắt. Khi nhìn thấy Diệp Phi, trong mắt hắn vậy mà để lộ ra một loại hào quang cuồng nhiệt. Không màng tới vật trên đầu, hắn vùng dậy, cúi người chào Diệp Phi: "Gặp qua bang chủ!"</p>
+    <p>Từ lúc người này tỉnh lại, Diệp Phi vẫn luôn chú ý tới hắn. Trong ánh mắt đó, Diệp Phi không nhìn thấy một tia mờ mịt nào, chỉ có sự sùng bái và tôn kính điên cuồng đối với mình, cùng với sự thần phục tuyệt đối.</p>
+    <p>Ánh mắt như thế, cho dù là diễn viên lợi hại nhất thế giới cũng không thể diễn ra được. Vì thế, Diệp Phi biết mình đã thành công. Trong lòng hắn vô cùng kinh hỉ, thứ mình tạo ra căn bản không phải con rối, mà là một con người bằng xương bằng thịt tuyệt đối hiệu trung với mình. Một con người có tư duy như vậy, chắc chắn có tác dụng hơn nhiều so với loại con rối chỉ biết nghe lệnh làm việc.</p>
+    <p>Trương Nhất Đức cùng đám người đầu trọc cũng mừng rỡ, đặc biệt là đám người đầu trọc, họ hiểu rõ điều này có ý nghĩa gì. Họ không thể chờ đợi được mà chuyển cái rương lớn Diệp Phi từng dùng lần trước ra, người kia theo lệnh của Diệp Phi liền không chút do dự nằm vào trong.</p>
+    <p>Lại là một hồi chờ đợi dài dòng buồn chán, người nọ từ trong rương đi ra. Diệp Phi thử thân thủ của hắn, vậy mà còn lợi hại hơn cả lúc mình mới tăng tiến thực lực trước kia. Xem ra thứ này cải tạo nhân thể vẫn phải xem thực lực bản thân của mỗi người. Điều này làm Diệp Phi càng thêm thỏa mãn. Tuy không biết tại sao cái dụng cụ làm ra lần này không thể tiếp tục tăng tiến năng lực như lúc hắn tự cải tạo, nhưng chỉ như vậy cũng đã rất tốt rồi. Trên thế giới này còn có bao nhiêu người lợi hại như bọn họ chứ? Chỉ cần cứ thế tiếp tục, Diệp Phi chẳng khác nào có được một đội quân tuyệt đối vô địch.</p>
+    <p>Trương Nhất Đức trợn mắt há hốc mồm nhìn gã cường đại trong nháy mắt này, thực sự có chút hâm mộ, không nhịn được mở miệng hỏi: "Tiểu Mãn, vật này của ngươi nếu không thông qua cái dụng cụ rèn luyện lúc trước, liệu có dùng được không?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0136.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0138.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

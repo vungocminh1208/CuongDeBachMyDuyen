@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 286 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 286</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 286</small>
+    Chương 286: âm mưu nổi lên
+  </h1>
+  <div class="chapter-body">
+    <p>"Tiểu Minh, không nên vọng động!" Nhìn ra có gì đó không ổn, Kim Đại Thuận vội vàng kéo Vương Tiểu Minh lại. Vương Tiểu Minh không biết thực lực chân chính của Diệp Tư Dao, nhưng Kim Đại Thuận thì biết rất rõ. Nếu thực sự xông lên, hắn và đám người hộ vệ của Vương Tiểu Minh cộng lại cũng không chịu nổi vài chiêu của cô. Hơn nữa tại Vọng Hải, Diệp Tư Dao có đánh tàn phế hai người bọn họ cũng chẳng có ai dám đứng ra bênh vực, thậm chí nếu việc này đến tai Diệp Phi trong truyền thuyết, khả năng bọn họ bị giết cũng không phải là không có. Lúc này hắn thật sự có chút hối hận vì đã không nói thân phận thật sự của Diệp Tư Dao cho Vương Tiểu Minh biết. Vốn dĩ hắn sợ Vương Tiểu Minh biết được hoàn cảnh của Diệp Tư Dao rồi sẽ cạnh tranh với mình, nhưng hiện tại xem ra, người ta đã là "danh hoa có chủ", mình cần gì phải sợ Vương Tiểu Minh chen chân vào?</p>
+    <p>Trong lòng đã quyết định, Kim Đại Thuận vội vàng kéo Vương Tiểu Minh đang còn tức giận bất bình đi sang một bên, ghé vào tai hắn thấp giọng nói cho hắn biết thân phận của Diệp Tư Dao.</p>
+    <p>Nghe xong những lời của Kim Đại Thuận, Vương Tiểu Minh không khỏi toát mồ hôi lạnh. Diệp gia là một trong hai đại gia tộc mạnh nhất Vọng Hải – thành phố lớn nhất Đông Nam, hắn sao có thể chưa từng nghe qua? Tuy hắn tự đại nhưng không hề ngu ngốc, làm sao có thể không biết kết cục của kẻ đắc tội với Diệp gia? Bất quá đối với lời Kim Đại Thuận nói rằng Diệp Phi sẽ giết mình, hắn có chút không cho là đúng. Trong mắt hắn, một đứa trẻ mười sáu tuổi dù có lợi hại đến đâu thì cũng chẳng đến mức nào, chắc chắn là do người dân Vọng Hải đã khuếch đại năng lực của cậu ta mà thôi.</p>
+    <p>Dù trong lòng không tin Diệp Phi lợi hại đến vậy, nhưng người của Diệp gia thì hắn vẫn không dám đắc tội. Vì thế, hắn thu lại cảm xúc, trên mặt hiện lên nụ cười chân thành giả tạo, đi đến trước mặt Diệp Tư Dao nói: "Diệp tiểu thư, thật xin lỗi, vừa rồi nhớ tới một số chuyện không vui nên nhất thời không khống chế được cảm xúc, mong cô đừng trách."</p>
+    <p>Khi Vương Tiểu Minh nói những lời này, trong mắt hắn lóe lên một tia hận ý cực kỳ nhạt, ngay cả Diệp Tư Dao đứng đối diện cũng không nhìn ra. Tuy nhiên, nó lại không qua mắt được Diệp Phi. Loại ánh mắt này khiến Diệp Phi không khỏi kinh ngạc, xem ra Vương Tiểu Minh có thể thành danh quả nhiên không phải ngẫu nhiên, tên này lòng dạ thật sự rất thâm sâu. Bất quá, Diệp Phi tạm thời không định đụng tới hắn, bởi vì ngay dưới mắt mình, cậu không tin có kẻ nào có thể giở trò được, huống chi nơi này còn là Vọng Hải.</p>
+    <p>Diệp Phi đoán không sai chút nào. Là một kẻ phải nhờ vào việc nhận cha nuôi mới có thể phất lên, tâm lý Vương Tiểu Minh thực chất đã có chút vặn vẹo. Hắn ghen ghét nhất là những kẻ sinh ra đã ngậm thìa vàng như Diệp Tư Dao. Tuy trước mặt những người này hắn luôn tỏ vẻ cung kính, nhưng trong lòng luôn tính toán làm sao để kéo bọn họ xuống. Cho nên, lúc này đối với Diệp Tư Dao, hắn không còn là thèm muốn mà là ghen ghét.</p>
+    <p>Diệp Tư Dao tuy không nhìn ra tia hận ý trong mắt Vương Tiểu Minh, nhưng qua biểu hiện của đối phương, nàng biết ngay là Kim Đại Thuận đã nói cho hắn biết thân phận của mình. Tuy nhiên, ngay từ đầu nàng đã không có ý định lấy thân phận ra để dọa người, nên khi thấy Vương Tiểu Minh không còn ánh mắt khó chịu đó nữa, biểu cảm của nàng cũng buông lỏng hơn. Nàng mỉm cười nói: "Vương tiên sinh khách khí rồi, ngài có thể đến giúp đỡ, chúng ta đã rất cảm kích, sao có thể trách móc? Bây giờ chúng ta hãy bàn công chuyện đi, Vương tiên sinh thấy cách bố trí ở đây đã ổn chưa?"</p>
+    <p>Vương Tiểu Minh tuy không có tài cán gì lớn, nhưng dù sao cũng là một "lão diễn viên" đã đóng phim nhiều năm, đối với việc bố trí bối cảnh vẫn khá am hiểu. Lúc này, hắn tùy ý chỉ ra vài điểm thiếu sót, Diệp Tư Dao liền cho người làm theo ý hắn để sửa đổi.</p>
+    <p>Thấy người mình mời đến như Vương Tiểu Minh lại tỏ ra chuyên nghiệp, Kim Đại Thuận vừa mới cảm thấy mất mặt nay lại vênh váo, đứng bên cạnh Vương Tiểu Minh lớn tiếng chỉ đạo các học viên làm cái này cái kia, cứ như thể hắn mới là quán chủ ở đây vậy. Bất quá, Diệp Phi và Diệp Tư Dao đều lười so đo với hắn, cứ để mặc hắn làm gì thì làm.</p>
+    <p>Rất nhanh, đại sảnh đã được bố trí xong dưới sự sắp xếp của Vương Tiểu Minh. Tiếp theo là quay một số thước phim có Vương Tiểu Minh, sau đó đem đến đài truyền hình để phát sóng.</p>
+    <p>Tuy nhiên, Diệp Tư Dao không hề lộ diện trong lần này. Người phụ trách nói chuyện và biểu diễn mấy đường quyền pháp là một học viên nữ tên là A Phương. A Phương là học viên khóa đầu của võ quán, hiện tại đã bắt đầu làm việc chính thức tại đây. Sau khi quyết định giúp Diệp Phi, Diệp Tư Dao đã đề bạt cô làm phó quán chủ, giao cho cô phụ trách một số công việc trong quán, dự định sau khi mình rời đi sẽ giao võ quán lại cho cô.</p>
+    <p>Việc Diệp Tư Dao không ra mặt khiến các học viên cảm thấy đôi chút tiếc nuối, nhưng không thể phủ nhận rằng để A Phương chủ trì có rất nhiều lợi ích. A Phương vóc người cao ráo, đứng đó có khí thế rất mạnh, hơn nữa mấy bộ công phu biểu diễn cũng khá ổn, nghĩ rằng chắc chắn sẽ thu hút được những người thực sự yêu thích võ thuật. Nếu để Diệp Tư Dao lên thì đúng là rất xinh đẹp, nhưng lại có vẻ hơi yếu đuối, người ngoài nghề sao có thể nhìn ra nội lực thâm hậu của nàng? Do đó, hiệu quả chắc chắn không bằng A Phương. Đương nhiên, nếu Diệp Tư Dao lộ diện thì võ quán chắc chắn sẽ có rất nhiều người đến, nhưng e rằng những kẻ đó chẳng phải người yêu võ thuật gì, mà chỉ là đám ong bướm mà thôi.</p>
+    <p>Toàn bộ quá trình quay chụp rất thuận lợi, nhưng vì có quá nhiều thứ cần quay, thêm vào đó các học viên còn khá lạ lẫm với việc này nên khi xong xuôi thì trời đã gần tối. Diệp Tư Dao với tư cách là quán chủ tất nhiên phải mời mọi người đi ăn một bữa tử tế, dù sao thì cả buổi trưa mọi người cũng chỉ gọi đồ ăn ngoài để đối phó.</p>
+    <p>"Vương tiên sinh, thật sự rất cảm ơn anh." Diệp Tư Dao khoác tay Diệp Phi cùng đến bên cạnh Vương Tiểu Minh, chân thành nói. Mặc dù Vương Tiểu Minh lúc đầu có vẻ hơi "không bình thường", nhưng khi làm việc sau đó lại rất nghiêm túc, nên thiện cảm của Diệp Tư Dao đối với hắn cũng tăng lên không ít. Nghĩ rằng người ta đã giúp đỡ tận tình, nàng đương nhiên không muốn để người ta tốn công vô ích, vì vậy lại nói: "Nếu không chê, mời anh đến phòng làm việc của tôi nói chuyện thù lao nhé."</p>
+    <p>Vương Tiểu Minh vội vàng xua tay nói: "Diệp tiểu thư nói gì vậy, cô là bạn của Đại Thuận thì đương nhiên cũng là bạn của Vương Tiểu Minh tôi. Bạn bè giúp nhau việc nhỏ, sao có thể đòi hỏi thù lao?"</p>
+    <p>Kim Đại Thuận không ngờ Vương Tiểu Minh lại biết điều như vậy, trong lòng không khỏi mừng rỡ, cười nói: "Đúng vậy, đã là bạn bè cả rồi thì đừng nhắc đến chuyện thù lao nữa, nói ra nghe khách sáo quá." Nói đoạn, hắn lén làm thủ thế với Vương Tiểu Minh, ý là mình sẽ không bạc đãi hắn.</p>
+    <p>Nhìn thấy thủ thế của Kim Đại Thuận, Vương Tiểu Minh càng cười tươi hơn. Sở dĩ hắn nói như vậy là vì đã nghĩ ra cách để trả thù Diệp Tư Dao, mà cách này chỉ có thể thực hiện sau khi đã gây dựng mối quan hệ thân thiết hơn với nàng. Vì vậy hắn mới bỏ qua thù lao với mục đích khiến Diệp Tư Dao coi mình là bạn, chỉ cần là bạn bè bình thường thôi là đủ rồi. Không ngờ Kim Đại Thuận lại biết ý như vậy, còn muốn lén đưa tiền cho mình, số tiền đó thì hắn quyết không từ chối.</p>
+    <p>Diệp Tư Dao vội vàng ngăn lại: "Như vậy sao được, bạn bè là một chuyện, nhưng cũng không thể để Vương tiên sinh làm không công, chúng ta..."</p>
+    <p>"Dao Dao." Diệp Phi lúc này đột nhiên lên tiếng cắt ngang lời Diệp Tư Dao. Thủ thế bí ẩn vừa rồi của Kim Đại Thuận không thể qua mắt cậu. Tuy không biết hai tên này định làm gì, nhưng Diệp Phi nhàn rỗi cũng không ngại chơi đùa với bọn họ một chút, bèn nói: "Đã là bạn bè cả rồi, cô đừng khách sáo nữa. Hơn nữa, Kim tiên sinh cũng coi như là một thành viên của võ quán, làm chút chuyện cho võ quán cũng là việc nên làm, đúng không, Kim tiên sinh?"</p>
+    <p>"Đúng vậy, đúng vậy!" Kim Đại Thuận vội vàng cười đáp, nhưng trong lòng lại âm thầm khinh bỉ Diệp Phi không biết điều, rõ ràng muốn nhờ mình giúp đỡ mà lại không muốn nợ ân tình.</p>
+    <p>Vì Diệp Phi đã nói vậy, Diệp Tư Dao cũng không nói thêm gì nữa, quay sang Vương Tiểu Minh bảo: "Vậy thì cảm ơn Vương tiên sinh."</p>
+    <p>Vương Tiểu Minh cười nhẹ, không nói gì. Kim Đại Thuận lại cười nói: "Thế mới phải chứ. À đúng rồi, Tư Dao, cô vẫn chưa giới thiệu chính thức bạn trai của cô cho tôi biết, không ngại để tôi làm quen chút chứ?" Tên này được đằng chân lân đằng đầu, trực tiếp gọi Diệp Tư Dao bằng cái tên thân mật.</p>
+    <p>Nghe Kim Đại Thuận nói Diệp Phi là bạn trai mình, trong lòng Diệp Tư Dao không khỏi vui mừng, cũng chẳng so đo chuyện hắn gọi mình như thế nào nữa. Bất quá, tên thật của Diệp Phi thì không thể nói ra, mà nàng nhất thời cũng không nghĩ ra cái tên nào khác, đành nói: "Vậy anh phải hỏi cậu ấy rồi."</p>
+    <p>Thấy Kim Đại Thuận nhìn mình, Diệp Phi cười nói: "Tôi tên là Thu Phong, mùa thu thu, gió gió gió." Cậu trực tiếp lấy cảm hứng từ tập đoàn Thu Phong để đặt tên cho mình.</p>
+    <p>"Tên hay đấy, nghe cái đã thấy sảng khoái, cứ như đang bước vào tiết trời thu mát mẻ vậy." Kim Đại Thuận khoe khoang tán dương, nhưng trong lòng lại thầm mắng: Cái tên quái gì thế? Nghe là biết tên lừa đảo rồi!</p>
+    <p>Chờ bọn họ giới thiệu xong, Diệp Tư Dao nói với Vương Tiểu Minh: "Vương tiên sinh, chúng tôi chuẩn bị đi ăn mừng một chút, không biết ngài có nể mặt tham gia không?"</p>
+    <p>Vương Tiểu Minh không nhận thù lao chính là vì cơ hội này, sao có thể từ chối, vội vàng cười nói: "Đó là vinh hạnh của tôi."</p>
+    <p>Diệp Phi vốn định rời đi ngay để về với Tiểu Bác, nhưng bây giờ xem ra không được rồi. Tuy thực lực của Diệp Tư Dao rất mạnh, nhưng ở cùng với kẻ có lòng dạ thâm sâu như Vương Tiểu Minh, Diệp Phi thực sự có chút không yên tâm. Vì vậy, sau khi báo với Diệp Tư Dao một tiếng, cậu đi đến một góc khuất, bấm số gọi cho Diệp Ngưng Băng.</p>
+    <p>"Tiểu Mãn, có chuyện gì sao?" Giọng nói ngọt ngào của Diệp Ngưng Băng nhanh chóng truyền tới từ loa điện thoại.</p>
+    <p>Diệp Phi không khỏi sững sờ, Tiểu Bác sao lại hỏi mình có chuyện gì? Hơn nữa cách xưng hô này cũng không đúng, vì vậy cậu liền thay đổi giọng điệu và cách xưng hô trở lại như cũ, hỏi: "Tiểu Bác, cô đang ở đâu?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0285.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0287.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

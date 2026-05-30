@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 224 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 224</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 224</small>
+    Chương 224
+  </h1>
+  <div class="chapter-body">
+    <p>Quay trở về biệt thự, Diệp Phi từ trong ga-ra tùy tiện lấy một chiếc xe lái đi. Thông qua chuyện của Liễu Phượng Nghi, hắn đã nhìn rõ ràng, cái gì danh tiếng, cái gì tác phong, tất cả đều là trò hề. Chỉ có thực lực tuyệt đối mới là chân lý, cho nên hắn quyết định không hề ủy khuất bản thân nữa. Không có hộ chiếu thì đã sao? Hắn không tin, trên mảnh đất Vọng Hải này, lại có kẻ nào dám tra xét Diệp Phi hắn!</p>
+    <p>Ra khỏi biệt thự, Diệp Phi trực tiếp nhấn ga chạy về hướng con đường dẫn tới khu nam Vọng Hải. Đúng vậy, người hắn muốn tìm chính là Tô Ngọc Nhàn. Nghĩ lại bây giờ việc nhà nàng hẳn cũng đã xong xuôi, giáo sư Minh sớm đã chuyển đến phòng thí nghiệm, nên lúc này tìm nàng là hợp lý nhất.</p>
+    <p>Vì đi đường vành đai nên giao thông vô cùng thuận lợi, hơn nửa canh giờ sau, xe của Diệp Phi đã dừng lại dưới lầu nhà Tô Ngọc Nhàn.</p>
+    <p>Dựa theo trí nhớ, Diệp Phi lên lầu, nhấn chuông cửa. Nhớ tới thân thể mỹ diệu của Tô Ngọc Nhàn, trong lòng hắn không khỏi dâng lên chút chờ mong.</p>
+    <p>"Ai đó?"</p>
+    <p>Một giọng nói ngọt ngào vang lên từ trong nhà. Chất giọng quen thuộc cho Diệp Phi biết người hỏi chính là Tô Ngọc Nhàn. Tuy nhiên Diệp Phi không đáp lời, mà lại nhấn chuông thêm lần nữa.</p>
+    <p>Lần này Tô Ngọc Nhàn không hỏi lại mà mở ngay cửa. Khi nhìn thấy Diệp Phi đứng ngoài cửa, vẻ mặt nàng lộ rõ sự kinh ngạc. Cú sốc bất ngờ khiến nàng ngẩn người, quên cả nói chuyện, chỉ biết ngây ngốc nhìn hắn.</p>
+    <p>Còn Diệp Phi, khi nhìn thấy Tô Ngọc Nhàn cũng không khỏi kinh ngạc. Bởi vì lúc này Tô Ngọc Nhàn mang lại cho hắn cảm giác vô cùng kinh diễm; không chỉ trông trẻ trung hơn mà diện mạo dường như cũng có chút thay đổi.</p>
+    <p>Phải biết rằng, Diệp Phi lớn lên trong sự bao vây của các tuyệt sắc mỹ nữ nên đã có sức miễn dịch rất mạnh, hiếm có người phụ nữ nào khiến hắn cảm thấy kinh diễm. Trước kia Tô Ngọc Nhàn tuy xinh đẹp cực kỳ, thậm chí không kém cạnh ba chị em nhà họ Liễu, nhưng vẫn chưa từng cho hắn loại cảm giác này. Vậy mà hôm nay lại có, điều đó chứng tỏ những ngày không gặp, Tô Ngọc Nhàn đã trở nên xinh đẹp hơn trước nhiều.</p>
+    <p>Rất nhanh, Diệp Phi hiểu ra, đây nhất định là công lao của mình. Bởi vì Diệp Vân Khinh cũng có sự thay đổi này, hơn nữa còn rõ ràng hơn, nếu không Diệp Phi đã chẳng khẳng định nàng là đệ nhất mỹ nữ Vọng Hải. Nghĩ lại thì, những người phụ nữ từng có quan hệ thân mật với hắn, dù là Liễu Phượng Nghi, Liễu Quân Di hay Diệp Ngưng Sương, tất cả đều có biến hóa không nhỏ. Chỉ là khi ở bên họ, Diệp Phi chú trọng vào sự giao thoa tâm hồn và sự kích thích đặc thù hơn, nên không quá để ý tới ngoại hình.</p>
+    <p>Đến giờ, Diệp Phi đã có thể khẳng định, bộ công pháp của mình thực sự có tác dụng rất lớn đối với phụ nữ. Về phần tại sao Diệp Vân Khinh biến hóa lớn nhất, Diệp Phi nghĩ rằng có lẽ vì nàng còn đang trong độ tuổi phát dục, khả năng thay đổi cao hơn phụ nữ trưởng thành. Muốn biết có phải vậy không, đến lúc gặp Lâm Linh sẽ rõ.</p>
+    <p>"Ngọc Nhàn, anh tới rồi."</p>
+    <p>Diệp Phi dịu dàng nói.</p>
+    <p>Lời của Diệp Phi cuối cùng cũng khiến Tô Ngọc Nhàn bừng tỉnh. Tiếp đó, nàng làm ra một cử động khiến Diệp Phi hết sức bất ngờ: lao mạnh vào lòng hắn, thậm chí cửa cũng quên đóng, thì thầm nói: "Anh rốt cuộc cũng tới, em cứ tưởng anh quên em rồi."</p>
+    <p>Nói đến cuối, trong giọng nói của nàng còn vương chút nức nở. Vốn dĩ nàng nghĩ bản thân chỉ là mê luyến cơ thể hắn, nhưng đến giờ mới nhận ra, mình đã thực sự yêu chàng trai trẻ tuổi hơn con gái mình rất nhiều này.</p>
+    <p>Diệp Phi không ngờ rằng một người đã ngoài bốn mươi như Tô Ngọc Nhàn lại khóc như một cô bé. Trong lòng hắn cảm động trước sự thâm tình của nàng, nhẹ nhàng vỗ vỗ lưng nàng, ôn tồn nói: "Nói ngốc cái gì vậy? Anh sao có thể quên em? Đời này cũng không bao giờ."</p>
+    <p>"Vâng."</p>
+    <p>Tô Ngọc Nhàn hạnh phúc gật đầu. Ý thức được sự thất thố của mình, mặt nàng hơi đỏ lên, rời khỏi vòng tay Diệp Phi rồi đóng cửa lại. Lúc này nàng mới thâm tình nhìn hắn: "Anh mau ngồi đi, em đi rót nước cho anh."</p>
+    <p>"Không cần đâu."</p>
+    <p>Diệp Phi nắm lấy bàn tay nhỏ nhắn của Tô Ngọc Nhàn, dẫn nàng đến bên ghế sofa ngồi xuống, sau đó ôm nàng đặt lên đùi mình, cười nói: "Một lát nữa đi ra ngoài với anh nhé."</p>
+    <p>"Đi ra ngoài làm gì vậy?"</p>
+    <p>Tô Ngọc Nhàn tò mò hỏi. Nàng cứ nghĩ Diệp Phi tới là để làm "chuyện ấy", bản thân nàng cũng đang khao khát đến cực điểm, rất mong muốn bắt đầu ngay, không ngờ Diệp Phi lại muốn đưa mình ra ngoài.</p>
+    <p>"Không có gì, chỉ là dạo phố, ăn bữa cơm thôi."</p>
+    <p>Diệp Phi cười nói: "Chúng ta bây giờ là tình nhân rồi, cũng phải có dáng vẻ của tình nhân chứ."</p>
+    <p>Tô Ngọc Nhàn cảm thấy trong lòng ngọt lịm. Diệp Phi nói vậy nghĩa là muốn xác định quan hệ với nàng, sao nàng không vui cho được? Nhưng nàng vẫn lắc đầu: "Thôi bỏ đi, em cũng có tuổi rồi, còn làm mấy cái hình thức đó làm gì? Hơn nữa, để người quen thấy cũng không hay."</p>
+    <p>"Có gì không hay chứ? Cùng lắm thì nói với người ta em là mẹ nuôi của anh, con nuôi đưa mẹ đi dạo phố thì có gì sai?"</p>
+    <p>Diệp Phi nói tiếp: "Hơn nữa em đừng có tự ti quá, nếu em và Tâm tỷ cùng đi ra ngoài, anh dám khẳng định mọi người sẽ nói hai người là chị em, thậm chí có người bảo em là em gái của Tâm tỷ cũng chẳng lạ."</p>
+    <p>Dù biết Diệp Phi đang trêu cho mình vui, nhưng Tô Ngọc Nhàn vẫn không khỏi tâm hoa nộ phóng, đưa ngón tay ngọc điểm nhẹ lên trán Diệp Phi, cười nói: "Cái miệng của anh lúc nào cũng ngọt."</p>
+    <p>"Ngọt sao?"</p>
+    <p>Diệp Phi tinh quái liếm liếm môi, rồi ôm lấy Tô Ngọc Nhàn, hôn mạnh lên khuôn miệng nhỏ nhắn của nàng một cái, cười nói: "Sao anh lại thấy miệng em mới là ngọt nhất nhỉ?"</p>
+    <p>"Đồ đáng ghét."</p>
+    <p>Tô Ngọc Nhàn đỏ mặt, nhẹ nhàng cấu Diệp Phi một cái rồi đứng lên khỏi lòng hắn: "Em đi thay đồ."</p>
+    <p>"Để anh đi cùng nhé."</p>
+    <p>Diệp Phi cười hì hì đứng dậy theo.</p>
+    <p>"Không được!"</p>
+    <p>Tô Ngọc Nhàn lườm hắn một cái, bước nhanh vào phòng ngủ rồi khóa trái cửa lại. Vì nàng biết, nếu mình thay đồ trước mặt Diệp Phi, hắn chắc chắn sẽ động tay động chân, mà cơ thể nàng căn bản không thể kháng cự hắn. Nàng tuy rất muốn thân mật với Diệp Phi, nhưng không muốn bỏ lỡ cơ hội được đi dạo phố cùng hắn, vì như vậy khiến nàng có cảm giác đang yêu đương, còn nếu bây giờ làm chuyện ấy, sợ rằng nàng sẽ bị hắn làm cho không xuống nổi giường mất.</p>
+    <p>Thay đồ xong, Tô Ngọc Nhàn bước ra khỏi phòng, nhưng trước khi đi lại dặn dò Diệp Phi: "Nhớ kỹ, trước mặt người ngoài phải gọi em là mẹ nuôi đấy nhé."</p>
+    <p>Nàng rất sợ Diệp Phi sẽ gọi thẳng tên hoặc những xưng hô thân mật hơn nơi công cộng, như vậy không chỉ khiến nàng xấu hổ mà còn hủy hoại danh tiếng của hắn. Phải biết rằng, hai chữ "Diệp Phi" hiện nay gần như đã đại diện cho cả Vọng Hải rồi.</p>
+    <p>"Được được được!"</p>
+    <p>Diệp Phi gật đầu lia lịa, cười hì hì nói: "Mẹ nuôi thì là mẹ nuôi, anh thích nhất là mẹ nuôi."</p>
+    <p>Chữ cuối cùng, hắn cố ý nhấn mạnh thanh điệu.</p>
+    <p>Tô Ngọc Nhàn kiều mị lườm hắn một cái, rồi lập tức điều chỉnh lại nét mặt nghiêm nghị, lúc này mới mở cửa đi ra ngoài cùng Diệp Phi. Dáng vẻ nghiêm túc đó khiến Diệp Phi một lần nữa cảm thán, phụ nữ đúng là sinh ra đã là diễn viên chuyên nghiệp.</p>
+    <p>Cho đến khi xuống lầu, hai người vẫn không đụng mặt người quen nào của Tô Ngọc Nhàn, điều này khiến nàng thở phào nhẹ nhõm. Dù hiện tại hai người đã có quan hệ "hợp lý", nhưng nàng vẫn không khỏi chột dạ, cứ như đang vụng trộm, mà thực tế thì... đúng là họ đang vụng trộm thật.</p>
+    <p>"Mẹ nuôi, mời lên xe."</p>
+    <p>Diệp Phi giúp Tô Ngọc Nhàn mở cửa chiếc Long Đằng dòng xe sang bản cao cấp, làm một tư thế xin mời đầy ưu nhã. Liễu Diệc Như các nàng tuy không phải người xa xỉ, nhưng vì làm kinh doanh nên luôn phải chuẩn bị những vật dụng thể diện, hơn nữa nhà họ Liễu chưa bao giờ thiếu tiền, nên trong ga-ra toàn là siêu xe. Diệp Phi muốn tìm một chiếc bình thường hơn cũng không được.</p>
+    <p>Tô Ngọc Nhàn yêu Diệp Phi vì con người hắn chứ không phải gia thế, nên chưa bao giờ quan tâm đến mấy thứ này. Lúc này nhìn thấy chiếc limousine vốn chỉ thấy trên TV, nàng hơi sững sờ, nhưng nghĩ đến thân phận của hắn cũng thấy bình thường, vì vậy rất tự nhiên ngồi vào. Biểu cảm của nàng vô cùng bình thản, không chút hào hứng vì được ngồi xe sang, cũng không hề khẩn trương vì bộ quần áo mộc mạc của mình có chút không hợp với sự xa hoa này, rõ ràng là nàng căn bản không để tâm đến những thứ đó.</p>
+    <p>Biểu hiện của Tô Ngọc Nhàn khiến Diệp Phi rất hài lòng. Nếu Tô Ngọc Nhàn thực sự có tâm tư hám danh lợi, Diệp Phi chắc chắn sẽ xem thường nàng. Nhưng bây giờ xem ra, dù là ngoại hình hay nội tâm, nàng đều là cực phẩm, rất đáng để hắn yêu thương.</p>
+    <p>"Trung tâm thương mại Bay Khinh" là trung tâm mua sắm lớn nhất Vọng Hải. Đúng như tên gọi, tòa nhà này được xây dựng để kỷ niệm sự ra đời của Diệp Phi và Diệp Vân Khinh, cũng là dự án hợp tác chính thức duy nhất giữa nhà họ Liễu và nhà họ Diệp. Cổ phần công ty do hai anh em Diệp Phi và Diệp Vân Khinh mỗi người nắm giữ năm mươi phần trăm, bình thường do đại diện hai nhà quản lý.</p>
+    <p>Là một trong những ông chủ của trung tâm thương mại phồn hoa này, đây lại là lần đầu tiên Diệp Phi tới đây, còn ông chủ kia thì chưa bao giờ đặt chân đến.</p>
+    <p>Sở dĩ đưa Tô Ngọc Nhàn tới đây, Diệp Phi không phải muốn khoe khoang thực lực, mà vì ở đây hàng hóa đầy đủ nhất, cho Tô Ngọc Nhàn nhiều sự lựa chọn hơn.</p>
+    <p>Chỉ là điều khiến Diệp Phi vừa vui vừa buồn cười chính là, Tô Ngọc Nhàn hình như chỉ hứng thú với những loại quần áo và trang sức bình dân. Theo lời nàng: "Em không phải muốn tiết kiệm tiền cho anh, mà là dùng mấy thứ cao cấp kia, cứ cảm giác mình trở thành cái giá treo đồ. Dù có thu hút sự chú ý của người khác, cũng chỉ là vì những thứ đắt tiền đó, còn bản thân người mặc lại bị xem nhẹ."</p>
+    <p>Diệp Phi cảm thấy những lời này rất có lý, trong lòng cũng thắc mắc, tại sao nhiều phụ nữ lại thích những thứ quý giá đến thế? Vốn dĩ muốn thu hút ánh mắt người khác, kết quả dù bản thân có ưu tú đến đâu, cũng luôn bị trang sức cướp hết danh tiếng, bản thân lại chẳng được ai nhớ tới, như vậy chẳng phải quá đau lòng sao?</p>
+    <p>Có những người phụ nữ dùng sự ưu tú của bản thân để tôn vinh đồ vật bên ngoài, nhưng cũng có những người dùng đồ vật bên ngoài để làm mình trông có vẻ ưu tú. Tô Ngọc Nhàn không nghi ngờ gì chính là đại diện cho mẫu người thứ nhất. Sau khi nghe lời khuyên của Diệp Phi, cuối cùng nàng cũng mặc thử một bộ quần áo vừa mua. Khi bước ra khỏi phòng thay đồ, Tô Ngọc Nhàn lập tức thu hút ánh nhìn của mọi người trên tầng đó. Dù là nam hay nữ, lúc này đều không khỏi lộ ra vẻ kinh diễm. Bị mọi người dồn sự chú ý, Tô Ngọc Nhàn không quan tâm gì nữa, dứt khoát lao vào lòng Diệp Phi, kéo hắn nhanh chóng rời khỏi chỗ đó.</p>
+    <p>Mãi đến khi lên xe, Tô Ngọc Nhàn mới thở phào nhẹ nhõm, vỗ vỗ lên bộ ngực đầy đặn của mình, hơi sợ hãi nói: "Đáng sợ thật, từ nay về sau có nói gì em cũng không đến nơi đó nữa."</p>
+    <p>Diệp Phi cười nói: "Thế càng chứng tỏ em ưu tú mà. Phải biết nhiều phụ nữ mơ ước được nhiều người chú ý đến vậy đấy."</p>
+    <p>Nhưng trong lòng hắn cũng hiểu rõ, Tô Ngọc Nhàn vốn quen ở nhà chăm sóc gia đình, nhất thời vẫn chưa thể thích ứng với những trường hợp như vậy. Mà hắn cũng chẳng muốn nàng phải thích ứng, vẻ đẹp của nàng, chỉ có thể dành riêng cho một mình hắn mà thôi!</p>
+    <p>Rút kinh nghiệm, khi Diệp Phi muốn đưa nàng đến một nhà hàng xa hoa ăn trưa, Tô Ngọc Nhàn nhất quyết không chịu đi. Diệp Phi cũng không cưỡng ép, chỉ cùng nàng vào một tiệm cơm nhỏ bên ngoài khu chung cư ăn tạm, rồi cùng nàng về nhà.</p>
+    <p>"Em đi tắm trước đây."</p>
+    <p>Đi dạo cả buổi sáng, người ưa sạch sẽ như Tô Ngọc Nhàn cảm thấy trên người không thoải mái. Với Diệp Phi nàng cũng chẳng cần khách sáo, nói một câu rồi đi về phía phòng tắm.</p>
+    <p>"Đợi một chút."</p>
+    <p>Diệp Phi gọi nàng lại, như làm ảo thuật lấy ra một bộ nội y trông rất bình thường cùng một món đồ đen sẫm, đưa vào tay nàng, cười nói: "Tắm xong thì thay bộ này nhé."</p>
+    <p>Tô Ngọc Nhàn tiện tay nhận lấy, cũng không nghĩ nhiều, gật đầu rồi bước vào phòng tắm. Diệp Phi thì bật TV, tùy tiện tìm một kênh xem.</p>
+    <p>Một lúc lâu sau, Tô Ngọc Nhàn quấn khăn tắm bước ra khỏi phòng tắm, trên mặt lộ rõ vẻ ngượng ngùng đỏ ửng. Bởi vì bộ nội y Diệp Phi đưa cho nàng tuy trông bình thường, nhưng những bộ phận quan trọng đều bị cắt bỏ, mặc vào sẽ khiến nơi tư mật nhất của nàng lộ ra hoàn toàn. Còn món đồ màu đen kia là một chiếc tất da chân gần như trong suốt. Ngay cả khi chưa mặc, Tô Ngọc Nhàn đã có thể tưởng tượng đôi chân thon dài mượt mà của mình khi được bao bọc bởi nó sẽ quyến rũ đến nhường nào. Đáng xấu hổ nhất chính là, phần đũng của chiếc tất này cũng đã bị cắt bỏ, nên dù mặc cả hai món lên, nơi ấy vẫn sẽ lộ ra ngoài không khí, thậm chí còn gợi cảm hơn cả không mặc gì.</p>
+    <p>Vùng vẫy trong nội tâm hồi lâu, Tô Ngọc Nhàn mới cố nén ngượng ngùng mặc những thứ đó vào người. Trong lòng thầm trách Diệp Phi quá quái đản, nhưng lại có loại xúc động khó tả, muốn hắn nhìn thấy mình trong bộ dạng này ngay lập tức.</p>
+    <p>Nhìn đoạn chân lộ ra ngoài của Tô Ngọc Nhàn, Diệp Phi biết nàng đã mặc đồ mình đưa. Trong lòng hắn nóng như lửa đốt, bật dậy khỏi sofa, nói một câu "Đợi anh với" rồi xông vào phòng tắm. Chưa đầy ba phút đã lao ra, ôm lấy Tô Ngọc Nhàn đang đứng ngay cửa, đặt nàng nằm lên ghế sofa trong phòng khách, nhẹ nhàng tháo khăn tắm của nàng ra.</p>
+    <p>Khi chiếc khăn tắm rộng thùng thình rời khỏi cơ thể, thân hình đầy đặn của Tô Ngọc Nhàn trong bộ nội y đen lập tức phơi bày trước mắt Diệp Phi. Dưới sự tôn lên của màu đen, làn da trắng như ngọc của nàng càng thêm chói mắt. Đôi nhũ hoa vốn dĩ đã đầy đặn dưới sự trói buộc của áo ngực càng thêm cao ngất. Vì nàng đang đứng trên sofa, đầu Diệp Phi vừa vặn ngang tầm ngực nàng, thu hết cảnh sắc tuyệt mỹ này vào tầm mắt. Chiếc áo ngực trông rất bình thường nhưng tại điểm cao nhất đã được khoét hai lỗ bằng đồng xu, vừa vặn để lộ hai nhũ hoa non hồng cùng quầng vú màu hồng phấn. Tuy chưa chính thức bắt đầu, nhưng hai đầu nhũ hoa của Tô Ngọc Nhàn đã sung huyết cương cứng, hiển nhiên là bị bầu không khí dâm mị này cùng bộ nội y táo bạo trên người làm cho xuân tình bùng nổ.</p>
+    <p>Ánh mắt Diệp Phi tiếp tục di chuyển xuống dưới, lướt qua vòng eo nhỏ nhắn không chút mỡ thừa dù nàng đã hơn bốn mươi tuổi, rồi dừng lại ở vị trí quan trọng nhất. Vì xấu hổ, mỹ phụ khép chặt đôi chân lại, khiến Diệp Phi không thể nhìn thấy nơi tuyệt vời nhất. Nhưng người tuyệt thế mỹ phụ vốn ngượng ngùng hướng nội, lại bị Diệp Phi khai phá thành phong thái lẳng lơ này, có lẽ vì muốn làm Diệp Phi hưng phấn hơn, vậy mà không mặc thêm chiếc quần lót nhỏ nào mà mặc trực tiếp chiếc tất da chân đen gần như trong suốt kia. Xuyên qua lớp đen nhạt, Diệp Phi có thể nhìn thấy rõ ràng phần mu lồn đầy đặn rậm rạp của nàng, còn đôi chân thon dài ngọc ngà kia, vì khoác lên lớp đen mỏng manh mà tỏa ra thứ hào quang dâm mị cực độ, khiến "cái ấy" của Diệp Phi đã sớm cương cứng, thiếu chút nữa làm rách cả quần mà bắn ra.</p>
+    <p>Âm thầm nuốt nước miếng, Diệp Phi nhanh chóng cởi bỏ đồ đạc của mình, rồi kéo người mỹ phụ vừa ngượng ngùng vừa lẳng lơ này nằm lên ghế sofa, mình đè lên, trước tiên ngậm lấy đôi môi quyến rũ của nàng mút một hồi, rồi hôn xuống vành tai mượt mà.</p>
+    <p>"A..."</p>
+    <p>Cảm giác tê ngứa cực độ khiến người mỹ phụ lẳng lơ thốt lên một tiếng yêu kiều run rẩy không thôi. Dù chỉ mới bắt đầu, Diệp Phi thậm chí chưa chạm vào vùng nhạy cảm nhất, Tô Ngọc Nhàn - người vốn từ đoan trang bị Diệp Phi khai phá thành lẳng lơ này - đã chịu không nổi nữa. Dục hỏa bị đè nén bấy lâu nay bùng phát, khát vọng cơ thể khiến nàng trút bỏ hết sự e dè, run giọng cầu khẩn: "Lão công tốt, em chịu không nổi nữa, muốn lắm, nhanh lên cho em đi!"</p>
+    <p>Diệp Phi cười hắc hắc: "Tiểu mỹ nhân, đừng gấp, chúng ta còn cả buổi chiều mà, lão công sẽ để em nếm trải khoái lạc tột cùng."</p>
+    <p>Nói xong, Diệp Phi không đếm xỉa đến lời cầu khẩn của mỹ phụ, tiếp tục liếm hôn khắp làn da không tì vết của nàng, từ vành tai xuống tới chiếc cổ trắng ngần, cho đến khi dưới thân mình gần như đã đẫm ướt bởi nước miếng, mới tiếp tục di chuyển xuống, cuối cùng tìm đến bầu ngực đầy đặn đầy hấp dẫn của nàng.</p>
+    <p>Dùng hai tay nắm chặt lấy một bên nhũ hoa cực đại, khiến đôi nhũ hoa đã cương cứng lại càng thêm lồi ra, mẫn cảm hơn, Diệp Phi há miệng ngậm lấy một bên, dùng đầu lưỡi vòng quanh nhũ hoa liếm láp quầng vú, sau đó nhẹ nhàng dùng hàm răng cọ xát đầu nhũ hoa cương cứng vài cái.</p>
+    <p>"Nha..."</p>
+    <p>Kích thích mãnh liệt khiến mỹ phụ rên lên một tiếng dài đầy rung động, bộ ngực cố sức nhô lên, muốn nhận thêm nhiều sự đụng chạm hơn nữa. Đôi bàn tay nhỏ nhắn mềm mại đặt trên lưng trần của Diệp Phi, vuốt ve vô định, dường như đang tìm kiếm sự an ủi cơ thể.</p>
+    <p>Diệp Phi như đứa trẻ bú sữa mẹ nhấm nháp đôi vú mềm của người mỹ phụ lẳng lơ dưới thân, cho đến khi đôi nhũ hoa của nàng như sắp sưng tấy lên, mới buông tha nó, chuyển sang tấn công bên còn lại.</p>
+    <p>Tô Ngọc Nhàn đang "tao tình đại phát" dưới thân Diệp Phi cố sức giãy dụa. Kẻ đói khát bấy lâu như nàng căn bản không thể thỏa mãn chỉ bằng việc mút nhũ hoa, nàng muốn nhận được nhiều khoái lạc hơn. Cuối cùng, như có linh tính, nàng dang rộng đôi chân thon dài bao bọc trong lớp tất đen gợi cảm, quấn chặt lấy eo Diệp Phi. Tuy vì tư thế mà chưa chạm được vào nơi khao khát nhất, nhưng chừng đó đã là đủ rồi. Nàng cố sức nâng mông lớn, dùng tiểu dâm huyệt đang khao khát cực độ cọ xát lên cơ bụng rắn chắc của Diệp Phi, chẳng mấy chốc đã làm bụng hắn đẫm nước dịch nhờn của mình.</p>
+    <p>Diệp Phi thầm ngạc nhiên trước sự khao khát mãnh liệt của Tô Ngọc Nhàn, nhưng vẫn không cho nàng ngay, vì chỉ khi đẩy dục hỏa của nàng lên mức cao nhất, một lát nữa địt nàng mới càng thêm đã ghiền.</p>
+    <p>"Mẹ nuôi, con trai làm mẹ thoải mái không?"</p>
+    <p>Diệp Phi nhả đầu nhũ hoa đỏ hồng vì bị mình đùa nghịch ra, nở nụ cười dâm đãng, đầy ác ý nhìn gương mặt tuyệt mỹ đã đỏ bừng vì dục hỏa của mỹ phụ mà hỏi.</p>
+    <p>Thân hình mỹ phụ lẳng lơ run lên bần bật, Diệp Phi cảm nhận rõ ràng rằng tiểu dâm huyệt đang dán chặt lên bụng mình kia trong giây lát đã trào ra càng nhiều dâm thủy. Trong lòng hắn đắc ý vô cùng, biết mình nghĩ không hề sai.</p>
+    <p>Đúng như dự đoán của Diệp Phi, Tô Ngọc Nhàn nghe thấy cách xưng hô này thì xuân tình lại càng dâng cao. Dù nàng không có con trai, nhưng cách xưng hô cấm kỵ này lại khiến nàng cảm thấy kích thích vô cùng, lẩm bẩm: "Thoải mái, thật thoải mái, con ngoan, mẹ nuôi muốn bị con đùa nghịch đến chết đây, đừng trêu mẹ nữa, nhanh lên cho mẹ đi."</p>
+    <p>Nói xong, nàng buông hai chân đang quấn trên lưng Diệp Phi ra, nằm ườn trên sofa, chờ đợi sự tấn công mạnh mẽ nhất từ Diệp Phi.</p>
+    <p>Nhưng Diệp Phi vẫn không chiều lòng người mẹ nuôi xinh đẹp mới quen này, thân thể hạ thấp xuống, tiếp tục hôn từ bụng phẳng lì của nàng xuống dưới, khiến vị mẹ nuôi lẳng lơ này thất vọng thở dài mấy tiếng.</p>
+    <p>Để lại những dấu hôn trên chiếc bụng phẳng lì của mẹ nuôi, đôi môi của Diệp Phi cuối cùng cũng tìm đến khu vực tam giác đầy hấp dẫn, hôn lên phần mu lồn đầy lông lá qua lớp tất da chân đen. Chất liệu của đôi tất này rất tốt, hôn lên trên cũng chẳng khác nào hôn trực tiếp lên làn da mịn màng, thậm chí Diệp Phi còn có thể cảm nhận được xúc cảm lạ lẫm khi đám lông lồn cọ xát lên môi mình.</p>
+    <p>Động tác của Diệp Phi khiến Tô Ngọc Nhàn lại một lần nữa hưng phấn. Sự dâm đãng trỗi dậy khiến nàng chẳng còn màng đến e dè, dang rộng đôi chân thon dài gợi cảm, tạo điều kiện cho Diệp Phi liếm hôn.</p>
+    <p>Diệp Phi làm theo ý nguyện của mẹ nuôi, tiếp tục hôn xuống dưới, vừa hôn làn da bên đùi non nớt qua lớp tất mỏng manh gợi cảm, vừa mở to mắt tỉ mỉ đánh giá tiểu dâm huyệt vừa cọ xát lên bụng mình lúc nãy. Lúc này, đôi môi âm hộ lớn của nàng đã tự động mở ra, đôi môi nhỏ bao bọc huyệt động tuyệt mỹ đóng mở nhẹ nhàng, rỉ ra một tia dâm thủy trong suốt.</p>
+    <p>Diệp Phi đưa ngón trỏ, vuốt ve nhẹ nhàng lên âm hạch nhỏ đã cương cứng của Tô Ngọc Nhàn. Thân hình mỹ phụ run lên bần bật, đôi môi âm hộ nhỏ đóng mở, một dòng chất lỏng trong suốt tuôn ra ồ ạt, nhiều hơn hẳn lúc nãy, theo khe mông chậm rãi chảy xuống, cuối cùng biến mất vào nơi huyệt đạo tuyệt mỹ của nàng.</p>
+    <p>Cố nén khát khao được nhấm nháp tiểu dâm huyệt non nớt trước mắt, Diệp Phi từ từ hôn dọc theo đùi Tô Ngọc Nhàn xuống dưới, từ bắp đùi gợi cảm mượt mà, đến bắp chân thon dài thẳng tắp, cuối cùng nâng đôi chân ngọc khéo léo bao bọc trong đôi tất trong suốt lên, qua lớp vải mỏng, há miệng ngậm lấy gót chân non mịn của nàng.</p>
+    <p>Điều khiến Diệp Phi không ngờ tới là, bàn chân này vậy mà cũng là điểm nhạy cảm của người mẹ nuôi xinh đẹp. Ngay khi hắn ngậm lấy gót chân khéo léo mút mát, Tô Ngọc Nhàn vốn đã bình phục lại một chút lại kích động lên, những ngón chân tinh tế cuộn tròn trong miệng Diệp Phi, miệng kêu lớn: "Con trai, con trai ngoan của mẹ, đừng trêu mẹ nữa, cầu xin con, nhanh lên cho mẹ đi!"</p>
+    <p>"Thế mẹ muốn con trai làm gì?"</p>
+    <p>Diệp Phi ngậm ngón chân của mẹ nuôi, giọng mập mờ hỏi.</p>
+    <p>"Dương vật, mẹ muốn dương vật của con trai."</p>
+    <p>Tô Ngọc Nhàn đang bị dục hỏa đốt cháy buông xuống mọi tôn nghiêm, cầu khẩn: "Con trai ngoan, cầu xin con nhanh dùng con cặc lớn chơi mẹ đi, mẹ khổ sở quá."</p>
+    <p>"Được như ý mẹ."</p>
+    <p>Diệp Phi cười hắc hắc, nhả ngón chân của mẹ nuôi ra, hai tay bưng đôi chân ngọc khéo léo của nàng kẹp chặt vào "con cặc" đã cứng như gậy sắt của mình, cọ xát vài cái, sau đó nắm lấy, dùng đầu cặc nóng hổi ấn lên lòng bàn chân non nớt của nàng, nhẹ nhàng cọ xát.</p>
+    <p>Bị Diệp Phi làm như vậy, Tô Ngọc Nhàn tuy cũng rất thoải mái, nhưng mức độ này sao có thể thỏa mãn dục hỏa đầy ngập trong nàng? Thế là tiếp tục cầu khẩn: "Con trai ngoan, không phải thế, mẹ muốn con dùng con cặc lớn địt lồn mẹ, cầu xin con, dâm huyệt của mẹ ngứa quá, cầu con nhanh cắm vào, dùng sức địt mẹ đi."</p>
+    <p>"Đừng gấp, hôm nay con trai sẽ hiếu thuận mẹ thật tốt, dùng 'cây gậy' mà mẹ thích nhất mát-xa toàn thân cho mẹ."</p>
+    <p>Diệp Phi nở nụ cười dâm đãng, buông đôi chân ngọc của mẹ nuôi ra, tứ chi chống lên sofa, để cơ thể lơ lửng trên thân thể người mẹ nuôi xinh đẹp lẳng lơ này, phần eo nhẹ nhàng phập phồng, dùng "cây gậy" nóng hổi từng chút từng chút đẩy lên bắp chân quyến rũ của mỹ phụ, hơn nữa dần dần dời lên trên. Động tác mờ ám này, đối với Diệp Phi mà nói thật là dễ dàng.</p>
+    <p>Chờ đến khi tới gốc đùi mỹ phụ, Diệp Phi lại không tiếp tục, mà đột nhiên ngồi dậy, hai tay ôm lấy thân hình mềm mại của nàng, mạnh bạo lật người lại, khiến nàng quỳ bò trên ghế sofa.</p>
+    <p>Điều tuyệt vời nhất trên người Tô Ngọc Nhàn không phải gương mặt đẹp tựa thiên tiên, cũng không phải bộ ngực đầy đặn cao ngất, mà chính là cái mông tuyệt đẹp hoàn mỹ vô cùng về cả hình dáng lẫn xúc cảm. Tuy so với mẹ thì có phần nhỏ hơn một chút, nhưng chính điều đó lại khiến nó càng thêm gợi cảm. Trong tất cả những người phụ nữ của Diệp Phi, ngoài mẹ ra, thì chỉ có dì cả Liễu Phượng Nghi mới có thể so sánh với Tô Ngọc Nhàn.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0223.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0225.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

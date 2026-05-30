@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 202 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 202</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 202</small>
+    Chương 202: Giả mạo tình lữ
+  </h1>
+  <div class="chapter-body">
+    <p>Mua xong quần áo, hai mẹ con cùng nhau đi xuống lầu. Bởi vì có người thương lượng, bọn họ mua sắm đồ đạc nhiều hơn so với dự định lúc đầu. Nghe Liễu Diệc Như nói, đi vào phía sau núi Trường Bạch khả năng phải ở lại trong núi, Diệp Phi vội vàng đi mua một chiếc lều cắm trại loại dày; mà nghe Diệp Phi nói muốn thường xuyên ăn những món chính tay mình làm, Liễu Diệc Như không chút nghĩ ngợi liền mua một bộ đồ làm bếp có thể nạp điện.</p>
+    <p>Cứ như vậy, hai người mua cả những món đồ vốn không có khả năng dùng tới, Diệp Phi chạy tới chạy lui vài chuyến mới đem những vật này đưa vào trong xe của Liễu Diệc Như.</p>
+    <p>Liễu Diệc Như vốn thấy hơi kỳ quái, Diệp Phi rõ ràng đã mất sạch thực lực, trở nên yếu ớt như trước kia, nhưng tại sao khi chuyển những vật này lại tỏ ra rất nhẹ nhàng? Bất quá nàng rất nhanh liền tìm cho con trai mình một lý do rất tốt, đó là tuy hắn đã mất đi thực lực, nhưng cơ thể vẫn khỏe hơn trước kia nhiều. Ừ, hẳn là chính là như vậy! Liễu Diệc Như tự nhủ trong lòng. Đến chính nàng cũng không biết, tại sao mình lại dễ dàng bị cái lý do rõ ràng rất khiên cưỡng này thuyết phục, có lẽ là vì nàng đối với chuyến đi chỉ có hai mẹ con này quá mức mong chờ, căn bản không muốn bỏ lỡ mà thôi.</p>
+    <p>Về đến nhà, Diệp Phi lại vội vàng đem đồ đạc trên xe chuyển xuống vì muốn chỉnh lý lại. Vừa rồi ở trung tâm thương mại nhất thời cao hứng nên mua nhiều quá, ngày mai chắc chắn là không mang hết được, hiện tại chỉ có thể chọn ra những món đồ cần thiết để mang theo.</p>
+    <p>Nhìn bóng dáng Diệp Phi bận rộn trước sau, khóe miệng Liễu Diệc Như không khỏi lộ ra một nụ cười ngọt ngào. Nàng đột nhiên cảm thấy lần này mình không phải đi tìm Băng Linh Thảo gì cả, mà là đang chuẩn bị cho một chuyến trăng mật. Nghĩ đến đây, trong lòng Liễu Diệc Như không khỏi giật mình, vội vàng ngăn ý nghĩ đó lại, nhưng gương mặt đã hiện lên một vệt ửng hồng động lòng người.</p>
+    <p>Đêm đó, Diệp Phi không làm phiền Liễu Diệc Như nữa, mà Liễu Diệc Như cũng vì ngày mai phải xuất phát nên tạm thời buông bỏ mọi tâm sự, để bản thân được nghỉ ngơi thoải mái.</p>
+    <p>Sáng hôm sau thức dậy, tinh thần Liễu Diệc Như đã khôi phục trạng thái sung mãn, xem ra tối qua ngủ rất ngon. Tuy nhiên khi nhìn thấy sắc mặt Diệp Phi rõ ràng ảm đạm hơn hôm qua, lòng nàng lại không khỏi thắt lại, âm thầm kiên định quyết tâm tiếp tục "trị liệu" cho con trai.</p>
+    <p>Bởi vì đồ đạc hơi nhiều, đi xe vận chuyển rất không tiện, hơn nữa Liễu Diệc Như cũng sợ Diệp Phi trên đường xảy ra sơ suất, cho nên quyết định tự mình lái xe đi. Dù sao với thực lực của nàng, dù có tập trung tinh thần lái xe suốt một ngày một đêm cũng sẽ không thấy mệt mỏi.</p>
+    <p>Đêm qua chuyện bọn họ muốn đi núi Trường Bạch đã thông báo cho tất cả người thân, cho nên hai mẹ con không trì hoãn thêm nữa, sau khi ăn sáng xong liền xuất phát.</p>
+    <p>Hiện tại mới hơn sáu giờ sáng, đúng là lúc dòng xe cộ trên đường ít nhất, cho nên chẳng mất bao lâu, xe của họ đã rời khỏi phía bắc thành phố Vọng Hải, lao nhanh trên đường cao tốc.</p>
+    <p>Ngồi trong xe, Diệp Phi rất hiếu kỳ quan sát cảnh sắc bên đường. Hắn thật sự tò mò, vì từ nhỏ đến lớn, hắn chỉ rời khỏi thành phố Vọng Hải này trong thời gian ngắn ngủi khi chấp hành nhiệm vụ trước kia và lần đến Lâm Hải, mà lúc đó vì có việc bận nên cũng chẳng có tâm trạng ngắm cảnh. Cho nên lần này đối với hắn mà nói là một hành trình rất mới mẻ. Nói thẳng ra, dù Diệp Phi có lợi hại thế nào, nội tâm hắn cũng chỉ là một thiếu niên vừa tròn mười sáu tuổi mà thôi.</p>
+    <p>Nhìn non sông tráng lệ ngoài cửa sổ, trong lòng Diệp Phi không khỏi dâng lên vạn trượng hào hùng. Một ngày nào đó, hắn muốn giẫm tất cả những thứ này dưới chân, không vì gì khác, chỉ vì những người phụ nữ mình yêu thương, hắn muốn tạo ra một không gian tuyệt đối an toàn cho họ, để họ có thể vô tư lự mà tự do bay lượn!</p>
+    <p>Lúc này, Liễu Diệc Như đang lái xe vừa vặn quay đầu lại. Trong lòng nàng có chút kỳ quái, bình thường Diệp Phi ở bên cạnh mình luôn nói rất nhiều, sao bây giờ lại không nói lời nào? Vì vậy muốn nhìn xem hắn đang làm gì, không ngờ vừa hay nhìn thấy gương mặt cương nghị tràn đầy tự tin kia.</p>
+    <p>Không thể không nói, nếu một người đàn ông, đặc biệt là người có tướng mạo anh tuấn, tràn đầy tự tin thì mị lực của hắn cực kỳ kinh người. Liễu Diệc Như nhìn thấy cảnh này cũng bị loại mị lực đặc thù chỉ đàn ông mới có đó làm cho kinh ngạc, tâm hồn thiếu nữ không khỏi nhảy dựng lên, đột nhiên nảy sinh ý muốn nhào vào lòng hắn. Trong lòng nàng không tự chủ được lại nhớ tới cảnh tượng kiều diễm ngoài ý muốn hôm qua.</p>
+    <p>Ký ức đầy kích tình đó khiến gương mặt khuynh quốc khuynh thành của Liễu Diệc Như đỏ bừng lên. Hơn nữa, nàng có thể cảm nhận rất rõ ràng mình đã có phản ứng, phía dưới cũng hơi ẩm ướt rồi.</p>
+    <p>"Cái này không thể trách mình! Không phải mình cố ý nhớ tới, mà là cảm giác hôm qua thật sự quá khó quên, làm người ta rất mê muội!" Liễu Diệc Như thầm biện hộ trong lòng, không dám nghĩ tiếp nữa, chuyên tâm lái xe.</p>
+    <p>Đến đêm, hai người Diệp Phi đã đi được một nửa hành trình, dừng lại ở một thành phố nhỏ không mấy nổi danh, bước vào một khách sạn khá sang trọng. Tuy họ không phải người xa xỉ, nhưng đã có điều kiện này thì cần gì phải chịu ủy khuất?</p>
+    <p>Khi đăng ký, họ không dùng tên thật mà dùng hai cái tên giả là "Lá Đầy" và "Liễu Như". Dù sao danh tiếng của họ ở Vọng Hải quá lớn, nếu dùng tên thật thì khó lòng tránh khỏi bị người khác nhận ra. Đổi tên đi thì không còn vấn đề đó nữa, bởi vì dưới sự bảo vệ của Liễu Phượng Nghi, ảnh chụp của Diệp Phi căn bản không lưu truyền ra ngoài. Ngay cả Liễu Diệc Như, chỉ có ảnh chụp từ mười năm trước khi tiếp quản tập đoàn Liễu thị mới xuất hiện trên truyền thông. Nhưng đã mười năm trôi qua, tin rằng hầu hết mọi người không còn nhớ rõ nàng trông như thế nào. Hơn nữa, dù có người nhìn ra nàng rất giống Liễu Diệc Như thời đó, nhưng ai có thể tin được mười năm tuế nguyệt chẳng những không để lại dấu vết gì trên mặt nàng, trái lại còn khiến nàng trông trẻ trung xinh đẹp hơn?</p>
+    <p>Vì đây là khách sạn chính quy, hai người Diệp Phi rất yên tâm để đồ đạc trong cốp xe. Sau khi nhận chìa khóa phòng và biết vị trí, họ lại đi xuống, vì đã vất vả đi ra ngoài một chuyến, sao có thể không trải nghiệm phong cảnh đất khách?</p>
+    <p>Tuy nhiên, sau khi ra khỏi cổng chính khách sạn, hai người lại có chút hoang mang, bởi vì đối với nơi này, họ có thể nói là hoàn toàn không biết gì. Tuy điều này không ảnh hưởng đến việc dạo phố, nhưng không có kế hoạch thì không bằng.</p>
+    <p>Đường cùng, Liễu Diệc Như đành phải quay trở lại khách sạn, trao đổi với người phụ trách ở đó để họ giúp tìm một hướng dẫn viên du lịch, sau đó cùng Diệp Phi ngồi vào một bên chờ đợi.</p>
+    <p>Không lâu sau, một cô gái tướng mạo bình thường nhưng rõ ràng là người thật thà dưới sự hướng dẫn của người phụ trách khách sạn đã đi tới trước mặt hai người, khách khí hỏi: "Tiên sinh, nữ sĩ, xin hỏi có phải hai vị đang tìm hướng dẫn viên du lịch không ạ?"</p>
+    <p>Xem ra cô gái này chính là người được quản lý khách sạn tìm đến theo yêu cầu của Liễu Diệc Như. Bởi vì yêu cầu của nàng là người thật thà và không được quá xinh đẹp, chính nàng cũng không biết tại sao phải thêm điều kiện sau, mà còn vì thế mà cho người quản lý kia một khoản tiền boa khá hậu hĩnh.</p>
+    <p>"Đúng vậy."</p>
+    <p>Diệp Phi đứng lên, cười nói: "Tôi tên là Lá Đầy, đây là bạn gái của tôi, Liễu Như. Xin hỏi tiểu thư họ gì?"</p>
+    <p>Liễu Diệc Như không ngờ tới Diệp Phi lại nói với người ngoài mình là bạn gái của hắn, gương mặt không khỏi đỏ lên, nhưng cũng không phản đối lời hắn nói.</p>
+    <p>Cô hướng dẫn viên kia hiển nhiên không nhận ra điều gì bất thường. Vì Diệp Phi đã trải qua nhiều chuyện, trên mặt sớm mất đi vẻ ngây thơ vốn có của độ tuổi này, trông chừng hai mươi tuổi. Mà Liễu Diệc Như trông cũng chỉ khoảng mười sáu, mười bảy tuổi, hơn nữa bây giờ lại thịnh hành kiểu tình chị em, nên với cô thì chuyện này rất bình thường. Vì vậy cô cười nói: "Các người cứ gọi tôi là Tiểu Phương là được. Diệp tiên sinh và Liễu tiểu thư thật đúng là xứng đôi nha."</p>
+    <p>Lời nói này của cô không phải nịnh nọt mà là phát xuất từ thật lòng, vì Diệp Phi và Liễu Diệc Như quả thực đều là nam thanh nữ tú hiếm gặp, hơn nữa khí chất lại tốt.</p>
+    <p>Lời của cô hướng dẫn viên khiến mặt Liễu Diệc Như lại ửng hồng, vội vàng che đậy nói: "Tiểu Phương, chúng tôi hôm nay mới đến đây, không biết thành phố này có nơi nào mang ý nghĩa kỷ niệm không?"</p>
+    <p>"Chúng tôi chỉ là một thành phố nhỏ, không có danh lam thắng cảnh gì cả."</p>
+    <p>Tiểu Phương lắc đầu, nhìn ra được cô ấy là một người thật thà. Nếu đổi thành hướng dẫn viên khác, dù nơi này chẳng có gì cũng sẽ thổi phồng lên, để khách hàng đi nhiều nơi hơn nhằm kiếm thêm lợi nhuận.</p>
+    <p>May mà lời này của Liễu Diệc Như chỉ để che đậy sự bối rối trong lòng, không phải thực sự muốn tham quan danh thắng, vì vậy nàng cũng không thất vọng, tiếp tục hỏi: "Vậy cô giới thiệu cho chúng tôi vài chỗ hay ho đi, ví dụ như những nét đặc sắc của nơi này chẳng hạn."</p>
+    <p>"Vậy ạ?"</p>
+    <p>Tiểu Phương suy nghĩ một chút rồi nói: "Nếu nói đến đặc sắc thì chỉ có tượng đất ở chỗ chúng tôi, có rất nhiều sư phó tay nghề rất giỏi. Hai vị nếu có hứng thú thì có thể đến đó xem thử."</p>
+    <p>"Vậy được, phiền cô dẫn đường giúp chúng tôi nhé?"</p>
+    <p>Liễu Diệc Như cười nói.</p>
+    <p>"Đương nhiên rồi, đó là công việc của tôi mà."</p>
+    <p>Tiểu Phương cũng cười, vừa đi ra ngoài vừa nói: "Hai vị đi theo tôi."</p>
+    <p>Ra khỏi cổng khách sạn, Liễu Diệc Như lén nhìn Tiểu Phương đi phía trước, thấy cô ấy cách mình khá xa, bèn giơ tay nhỏ bấm mạnh vào phần thịt mềm bên hông Diệp Phi, hờn dỗi: "Thằng nhóc thối, vừa rồi sao lại nói như vậy?"</p>
+    <p>"Sao cơ?"</p>
+    <p>Diệp Phi vẻ mặt vô tội nói: "Tôi làm sao?"</p>
+    <p>"Vừa rồi sao lại nói ta là..."</p>
+    <p>Khuôn mặt Liễu Diệc Như hơi đỏ lên: "...Nói ta là bạn gái của cậu?"</p>
+    <p>"Vậy cô bảo tôi phải nói thế nào?"</p>
+    <p>Diệp Phi vẫn giữ vẻ vô tội: "Chẳng lẽ nói với cô ấy cô là mẹ của tôi? Người ta cũng phải tin chứ. Không thì bây giờ cô đến hỏi cô ấy xem, cô ấy chắc chắn sẽ nói hai người chúng ta tuổi tác không khác nhau lắm, thậm chí còn cho rằng cô trẻ hơn tôi cũng nên!"</p>
+    <p>"Nói bậy!"</p>
+    <p>Gương mặt Liễu Diệc Như càng đỏ hơn, nhưng trong lòng lại có chút vui mừng, vì nàng hiểu Diệp Phi đây là đang ngầm khen mình trẻ trung xinh đẹp. Tuy nàng không quan tâm đến cái nhìn của người ngoài, nhưng không hiểu sao, thái độ của Diệp Phi lại là ngoại lệ. Dẫu vậy, nàng vẫn nói: "Vậy cậu cũng có thể nói ta là tỷ tỷ của cậu mà."</p>
+    <p>"Thôi đi."</p>
+    <p>Diệp Phi cười khổ nói: "Nói như vậy chỉ sợ chẳng bao lâu nữa hai chúng ta sẽ bị một đám đàn ông vây lấy."</p>
+    <p>"Tại sao chứ?"</p>
+    <p>Liễu Diệc Như có chút không hiểu, cho dù vì tướng mạo của mình mà được nhiều người theo đuổi, nhưng những người đó vây quanh Diệp Phi làm gì?</p>
+    <p>"Nịnh bợ tôi, để tôi giúp nói đỡ, rồi làm anh rể của tôi!"</p>
+    <p>Diệp Phi cười nói: "Cho nên, tôi vẫn là làm bạn trai của cô tốt hơn, như vậy có thể tránh được rất nhiều phiền toái không cần thiết."</p>
+    <p>"Vậy... được rồi."</p>
+    <p>Liễu Diệc Như rốt cuộc gật đầu đồng ý, vì Diệp Phi nói rất có đạo lý, hơn nữa trở thành "bạn gái" của hắn.</p>
+    <p>Dù chỉ là trên danh nghĩa, nhưng thực sự khiến nàng ngoài sự khẩn trương còn có một loại cảm giác ngọt ngào không nói nên lời. Lại thêm nơi này không có ai quen biết hai người, cho nên Liễu Diệc Như quyết định dứt khoát buông lỏng tâm tình, làm theo ý nghĩ sâu thẳm nhất trong lòng, để bản thân được phóng túng một lần.</p>
+    <p>"Thế mới đúng chứ."</p>
+    <p>Diệp Phi cười, thuận thế ôm lấy eo nhỏ của Liễu Diệc Như.</p>
+    <p>Liễu Diệc Như không khỏi giật mình, vội vàng né tránh, hỏi: "Cậu làm gì đấy?"</p>
+    <p>"Không làm gì cả, ôm bạn gái của mình thôi mà. Cô xem trên đường những cặp tình lữ kia chẳng phải đều như vậy sao?"</p>
+    <p>Diệp Phi cười hắc hắc nói: "Hơn nữa, còn có người hôn nhau trên phố kìa, nếu không, chúng ta cũng thử xem?"</p>
+    <p>"Đi chết đi!"</p>
+    <p>Liễu Diệc Như kiều mỵ lườm một cái, nhưng lại không tiếp tục giãy giụa, trái lại tựa người vào lòng hắn, cảm nhận hơi ấm từ vòng tay ấy. Trong lòng, loại hạnh phúc nhỏ nhoi không dám nói ra kia không khỏi bùng lên.</p>
+    <p>Dưới sự dẫn dắt của Tiểu Phương, hai người đi tới một con ngõ nhỏ. Vị trí con ngõ này rất vắng vẻ, nếu không có người địa phương dẫn đầu, e là rất khó tìm thấy.</p>
+    <p>Tại con ngõ không lớn này, lúc này vậy mà đông đúc người qua lại, hơn nữa nghe giọng nói thì phần lớn những người này không phải là người địa phương. Xem ra Tiểu Phương nói không sai, tượng đất ở chỗ này thực sự rất nổi tiếng.</p>
+    <p>Dừng lại trước một gian hàng nhỏ, Diệp Phi và Liễu Diệc Như bắt đầu xem tay nghề của vị sư phó kia. Chỉ thấy trong tay ông, ban đầu chỉ là một khối đất sét bình thường, rất nhanh đã biến thành dáng vẻ của một nhân vật. Sau đó người nọ cầm lấy bút vẽ bên cạnh, tùy ý chấm phá vài nét, bức tượng đất nhỏ bé kia lập tức biến thành một hình tượng sống động, hơn nữa nhìn qua lại có tám phần giống với diễn viên trên tivi.</p>
+    <p>Tay nghề thần kỳ như vậy khiến Diệp Phi và Liễu Diệc Như kinh ngạc, không nhịn được cảm thấy thú vị, trong lòng không khỏi có chút kích động.</p>
+    <p>"Sư phó, xin hỏi ngoài những hình tượng phim ảnh này ra, ông còn có thể nặn những thứ khác không?"</p>
+    <p>Diệp Phi hỏi.</p>
+    <p>Vị sư phó nặn tượng cười nói: "Đương nhiên, chỉ cần là ta từng thấy qua, đều có thể nặn được. Tiểu huynh đệ có phải muốn cùng bạn gái của mình nặn một bức để làm kỷ niệm không?"</p>
+    <p>Trên đường đi, cánh tay phải của Diệp Phi luôn đặt trên eo nhỏ của Liễu Diệc Như, nên vị sư phó kia lập tức nhìn ra mối quan hệ hiện tại của họ.</p>
+    <p>"Đúng vậy, chúng tôi chính là muốn nặn như thế. Xem ra vị sư phó này chẳng những tay nghề tốt mà ánh mắt cũng rất khá. Xin hỏi chúng tôi cần tạo tư thế thế nào?"</p>
+    <p>Diệp Phi cười hỏi.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0201.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0203.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

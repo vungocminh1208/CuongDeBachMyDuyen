@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 159 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 159</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 159</small>
+    Chương 159: Quân Di hồng hoàn
+  </h1>
+  <div class="chapter-body">
+    <p>"Chính là ta không biết." Diệp Phi nụ cười trên mặt trở nên có chút xấu xa: "Cô không phải là không dám nhìn sao?" Liễu Quân Di vốn cũng rất muốn nhìn xem, chỉ là quá mức xấu hổ mà thôi, lúc này bị hắn kích tướng, cắn răng nói: "Có cái gì không dám? Lúc cháu còn bé ta cũng không phải chưa từng xem, lúc giúp cháu tắm rửa còn sờ qua nữa là!" Nói xong, cô cao cao ngẩng khuôn mặt lên, vẻ mặt đầy kiêu ngạo. Cơ hội tốt như vậy, Diệp Phi làm sao có thể buông tha? Hắn vội vàng đến ngồi bên cạnh chiếc giường lớn ở giữa phòng, nhanh chóng cởi bỏ quần. Khi định làm tiếp thì bị Liễu Quân Di ngăn lại. "Hay là xử lý vết thương trên đùi trước đi." Sự đã tới nước này, Liễu Quân Di lại có chút không thả lỏng được, nhưng lời đã nói ra, tất nhiên không thể thu hồi, đành phải nói vậy để bản thân có cơ hội hòa hoãn tâm trạng. Diệp Phi cũng không ép buộc cô, cười ngồi xuống, thân mình thả lỏng. Liễu Quân Di rót chút rượu thuốc vào lòng bàn tay, xoa nóng lên rồi tiếp tục bôi vào vết thương trên đùi hắn. Cô phát hiện đứng không tiện, đành ngồi xổm xuống trước người Diệp Phi, chìa bàn tay nhỏ nhắn hơi run rẩy xoa nắn hai chân hắn. Tư thế này nhìn thế nào cũng giống hành vi kia, Diệp Phi không khỏi tâm thần kích động, bất quá sợ làm Liễu Quân Di hoảng sợ, hắn vội vàng cố gắng kìm nén phản ứng của mình. Nhưng thứ duy nhất được lớp vải mỏng che đậy bên dưới vẫn không nhịn được mà hơi ngẩng đầu. Cũng may Liễu Quân Di vì ngượng ngùng, lúc bôi thuốc rượu cứ cúi đầu thật thấp nên không thấy được màn này. Lúc Diệp Phi không dùng đến kỹ năng phòng ngự, cơ thể vẫn còn chút không chịu nổi khi va chạm với vũ khí nóng uy lực lớn. Nửa thân trên thì khá hơn chút, còn phía dưới thì hơi yếu thế. Chỉ thấy những vết đỏ trên đùi hắn không những màu sắc đậm hơn nửa người trên, mà còn có vết ẩn ẩn rỉ máu. Liễu Quân Di nhìn mà đau lòng không thôi, nhất thời quên cả xấu hổ, vô cùng dịu dàng giúp hắn bôi thuốc rượu, động tác cẩn thận hơn lúc xoa bóp nhiều. Nhìn vẻ mặt đau lòng của Liễu Quân Di, ngọn tà hỏa trong lòng Diệp Phi cũng tan biến bớt, phản ứng cũng không còn mạnh mẽ như trước. "Còn chỗ này nữa." Liễu Quân Di rốt cuộc đã bôi xong rượu thuốc lên vết thương trên hai chân hắn, sau đó có chút chần chừ, hai tay nắm lấy viền chiếc quần lót tứ giác duy nhất còn lại trên người hắn, đôi mắt đẹp nhìn thẳng vào mắt Diệp Phi. Tim Diệp Phi đập mạnh, hắn khích lệ gật đầu với cô. Liễu Quân Di cắn môi, hai tay nắm chặt viền quần của Diệp Phi, dùng sức kéo xuống, rốt cuộc giải phóng "vũ khí" của hắn ra. Dục vọng của Diệp Phi tuy đã giảm bớt, nhưng "cậu nhỏ" vẫn chưa hoàn toàn xìu xuống. Dù không cứng như thanh sắt nhưng nó hơi vểnh lên, hơn nữa chính vì trạng thái nửa mềm nửa cứng này mà nó lại càng run rẩy, dường như đang chào hỏi tiểu di của mình. "Á? Lớn như vậy rồi sao?" Liễu Quân Di nhìn "cự vật" to đến vượt quá tưởng tượng của cô, không khỏi kinh hô một tiếng. Diệp Phi lúc nhỏ rất quấn quýt cô, cô cũng không ít lần giúp hắn tắm rửa. Chỉ là "cậu nhỏ" của đứa bé năm sáu tuổi khi đó còn chưa lớn bằng ngón tay cô. Cô thật không ngờ, mười năm không gặp, nó lại lớn đến mức bằng cổ tay cô, lại còn dài như thế. Nhìn vật như cự mãng đang không ngừng lắc lư trước mặt, Liễu Quân Di đột nhiên cảm thấy sợ hãi. Trên đó đúng là có vài vết đỏ, nhưng nhạt hơn trên ngực hắn nhiều, căn bản không cần bôi rượu thuốc, chỉ sợ chưa đến nửa đêm đã hồi phục hoàn toàn. Tuy nhiên, dù sợ hãi nhưng Liễu Quân Di không muốn bỏ lỡ cơ hội này. Từ nhỏ đến lớn, cô chỉ thấy thứ này trên sách sinh lý thời trung học, hình vẽ trên đó khác xa với của Diệp Phi. Còn về người thật, cô chỉ từng thấy của Diệp Phi lúc nhỏ. Khi ở cùng Ngọc Vô Hà, tuy có xem qua một vài bộ phim, nhưng họ toàn xem phim về nữ đồng rồi học theo bắt chước lẫn nhau. Cắn răng, Liễu Quân Di thầm nghĩ, dù sao khi hắn còn bé mình cũng đã xem qua, sờ qua, giờ chỉ là lớn hơn một chút thôi, sờ thêm cũng chẳng sao, thế là chuẩn bị lấy thêm rượu thuốc. Nhưng Diệp Phi lại nghĩ, có lẽ lát nữa sẽ phải dùng đến nó, không thể dính rượu thuốc được, vội ngăn Liễu Quân Di lại: "Tiểu di, nó rất nhạy cảm, bôi lên sẽ không thoải mái. Dù sao trên tay dì vẫn còn dư chút ít, bôi chỗ kia là được rồi." Thật ra trên tay Liễu Quân Di làm gì còn rượu thuốc? Vừa rồi đổ ra không nhiều, đã bôi hết lên hai chân hắn rồi, giờ tay cô chỉ còn thoang thoảng mùi thuốc thôi. Nhưng Liễu Quân Di nhìn thấy vết đỏ trên vật đó sau khi hắn nói, cũng biết không cần bôi thuốc nữa, lúc này cô chỉ muốn sờ thử thôi, nên gật đầu, chìa tay phải hơi run rẩy ra, chậm rãi nắm lấy vật thô to của cháu trai. "Hí!" Vật nóng bỏng bị bàn tay nhỏ nhắn, mềm mại lại hơi lạnh vì căng thẳng của tiểu di nắm lấy, Diệp Phi không khỏi sướng đến hít vào một hơi. Vật vốn đang nửa mềm nửa cứng kia lập tức đứng thẳng dậy, như thanh sắt gồng lên trong lòng bàn tay Liễu Quân Di, khiến cô không thể khép kín ngón tay lại. "Chà, vậy mà còn biết cứng lên!" Liễu Quân Di như thấy món đồ chơi thú vị, hoan hô một tiếng, hiếu kỳ nâng lên hạ xuống, còn tự mày mò xoay chuyển hai cái. Tuy kỹ thuật của Liễu Quân Di không có gì, nhưng Diệp Phi nhìn tiểu di của mình đang ngồi xổm trước mặt, dùng bàn tay nhỏ nhắn đùa nghịch với "cậu nhỏ" của hắn, đặc biệt là khuôn mặt có bảy phần giống mẹ mình chỉ cách có một thước, thỏa mãn về mặt tâm lý là không gì sánh bằng. Hắn không nhịn được khen: "Tiểu di, dì thật tốt, khiến cháu thoải mái quá!" "Như vậy thực sự thoải mái sao?" Liễu Quân Di ngẩng khuôn mặt lên nhìn Diệp Phi, trên mặt lộ ra ý cười nghịch ngợm, nắm lấy vật của hắn lại nhẹ nhàng xoay vài cái. "Ừ." Diệp Phi vội vàng gật đầu lia lịa: "Rất thoải mái, tiểu di, dì tiếp tục giúp cháu được không?" "Được chứ!" Liễu Quân Di cũng đã chơi đến hứng thú với vật cứng như sắt nhưng cầm trong tay lại thấy hơi mềm này, không chút suy nghĩ liền đáp ứng, dứt khoát dùng cả tay trái nắm lấy vật của Diệp Phi, hai tay cùng nhau đùa nghịch.</p>
+    <p>Vì cả hai tay đều phải cầm, đầu Liễu Quân Di không khỏi cúi thấp hơn, gần như áp sát vào đầu khấc đang sưng vồng. Nhìn cái miệng nhỏ gợi cảm của tiểu di ở ngay trước mắt, Diệp Phi rất muốn đưa vật đó vào cho cô ngậm, bất quá hắn cũng biết nếu đưa ra yêu cầu như vậy lúc này, chỉ sợ sẽ làm cô sợ hãi. Vì vậy, sau khi tận hưởng sự đùa nghịch của cô một hồi, hắn rút vật đó ra khỏi bàn tay nhỏ nhắn của cô, nắm lấy tay cô nói: "Tiểu di, lên giường chơi đi, ngồi xổm dưới chân lâu dễ bị mỏi." Với thân thủ của Liễu Quân Di, dù ngồi xổm ba ngày ba đêm cũng không thể mỏi, nhưng vì sự quan tâm của Diệp Phi, cô vẫn rất vui vẻ. Cô cởi giày lên giường, nghiêng người dựa vào Diệp Phi, bàn tay nhỏ nhắn lại không rời khỏi vật kia lấy một giây. "Tiểu di, dì thật tốt!" Cảm nhận được bầu ngực đầy đặn của Liễu Quân Di áp vào người mình, "cậu nhỏ" của Diệp Phi càng thêm cứng ngắc, hắn khẽ khen cô một câu, cúi đầu hôn lên khuôn mặt cô. Liễu Quân Di không phản đối, hai mắt dán chặt vào vật đang không ngừng di chuyển trong hai tay mình, càng nhìn càng cảm thấy thú vị. Diệp Phi dần dần bạo dạn hơn, hôn lên mặt cô vài cái, thừa lúc cô không chú ý, đột nhiên áp môi mình lên miệng cô. Thân thể Liễu Quân Di cứng đờ, bàn tay đang nắm vật của Diệp Phi cũng siết chặt lại, bất quá rất nhanh đã thả lỏng, tiếp tục nhẹ nhàng đùa nghịch, đôi mắt thì đã nhắm nghiền. Diệp Phi mừng thầm, khẽ đẩy hàm răng ngọc của tiểu di ra, thâm nhập đầu lưỡi vào cái miệng nhỏ ngọt ngào của cô, tìm lấy chiếc lưỡi nhỏ trơn mềm quấn quýt lấy nhau. Liễu Quân Di bị hắn hôn đến mơ màng. Trước kia cô cũng thường xuyên hôn môi với Ngọc Vô Hà, nhưng hiện tại bị Diệp Phi hôn, cô lại cảm thấy cảm giác này khác biệt, thậm chí còn khiến người ta say mê hơn lúc trước. Trong lòng cô thầm nghĩ, lẽ nào đây chính là mị lực của nam nhân sao? Vậy không bằng thừa dịp này, thử xem nam nhân và nữ nhân rốt cuộc có gì khác biệt. Có suy nghĩ này, Liễu Quân Di quyết định không còn bị động mà chủ động dùng lưỡi quấn quýt lấy đầu lưỡi Diệp Phi. Diệp Phi càng lúc càng bạo dạn, dần dần không còn chỉ hôn mỗi miệng nữa, chậm rãi đưa tay lên ngực tiểu di, bắt đầu cởi cúc áo. Liễu Quân Di tất nhiên biết Diệp Phi muốn làm gì, lúc này đã quyết định rồi nên cô không phản đối, tiếp tục hôn Diệp Phi, bàn tay nhỏ vẫn tiếp tục đùa nghịch, còn thân trên thì hơi nhổm dậy rời khỏi người Diệp Phi để hắn cởi áo cho mình. Có sự phối hợp của Liễu Quân Di, Diệp Phi rất nhanh đã cởi bỏ áo cô, trước tiên là bóp nhẹ hai bầu vú qua lớp áo ngực, sau đó cởi bỏ áo ngực, trực tiếp nắm lấy đôi bầu vú to không kém gì mẹ và dì cả của cô. Có lẽ vì chưa kết hôn nên ngực tiểu di không mềm mại hoàn toàn như mẹ và dì cả, nhưng cảm giác tràn đầy đàn hồi lại có hương vị riêng, khiến Diệp Phi vuốt ve không muốn rời tay. Khi ngón tay Diệp Phi lướt qua hai đầu nhũ hoa đang cương cứng của Liễu Quân Di, thân thể cô không khỏi run rẩy, cái miệng nhỏ đang hôn Diệp Phi khẽ thốt lên một tiếng rên rỉ, bàn tay đang đùa nghịch vật của Diệp Phi cũng nhanh hơn vài phần. Từ động tác và tiếng rên rỉ của tiểu di, Diệp Phi biết cô đã động tình, vì vậy đôi tay rời khỏi bầu vú cô, chuyển xuống phía dưới, chuẩn bị cởi quần áo thân dưới của cô. Liễu Quân Di vậy mà vẫn không phản đối, rất phối hợp để mặc Diệp Phi cởi quần và quần lót của mình. Rất nhanh, cô đã giống Diệp Phi, không mảnh vải che thân. Tay trái Diệp Phi vươn lên tiếp tục vuốt ve bầu vú cô, tay phải thì thẳng tiến đến nơi hiểm yếu, di chuyển vào giữa hai chân cô, xoa nắn "cửa mình" mềm mại đang no đủ giống hệt mẹ và dì cả. Vừa chạm vào đã thấy trơn ướt, hiển nhiên là dâm thủy đã chảy ra vì động tình. Diệp Phi mừng thầm, dùng ngón tay mượn độ trơn của dâm thủy, ra vào khe "cửa mình" của cô, còn thỉnh thoảng xoa nhẹ âm hạch nhỏ đang cương cứng. Thân thể Liễu Quân Di run rẩy dữ dội hơn, không thể tiếp tục hôn môi với Diệp Phi được nữa, cô khẽ tránh khỏi môi hắn, cái miệng nhỏ khẽ nhếch, thở gấp, đôi mắt có chút mê ly nhìn khuôn mặt Diệp Phi, tay cũng ngừng lại. Sau khi làm nhẹ nhàng một hồi, Diệp Phi cúi đầu cười nhìn Liễu Quân Di, hỏi: "Tiểu di, dì thoải mái không? Cháu làm thế nào?" Khuôn mặt Liễu Quân Di hơi đỏ lên, nhưng vẫn gật đầu nói: "Cháu làm rất tốt, tiểu di rất thoải mái!" "Vậy tiểu di cũng khiến cháu thoải mái được không?" Diệp Phi tiếp tục cười hỏi. Lúc này Liễu Quân Di mới nhận ra hai tay mình đang đùa nghịch vật của hắn đã ngừng lại từ lúc nào, cô khẽ ừ một tiếng rồi tiếp tục đùa nghịch. Diệp Phi lại không thỏa mãn với việc cô chỉ làm vậy, hắn ngăn tay cô lại, nhìn cái miệng nhỏ gợi cảm kia, nói: "Tiểu di, dì giúp cháu ngậm một chút được không?" "Á?" Liễu Quân Di kinh ngạc, lập tức lắc đầu: "Không được, cái đó bẩn lắm!" "Tuyệt đối không bẩn đâu." Diệp Phi nói xong liền ôm lấy Liễu Quân Di xoay người, để cô nằm trên giường, thân mình co lại, vùi đầu vào dưới háng cô, trực tiếp hôn lên "cửa mình" no đủ mê người kia, dùng đầu lưỡi nhẹ nhàng liếm láp khe "cửa mình" kiều nộn của cô. "A!" Liễu Quân Di không khỏi bị hắn làm cho thốt lên một tiếng rên rỉ thỏa mãn. Cô chỉ cảm thấy bị Diệp Phi liếm còn thoải mái hơn khi được Ngọc Vô Hà liếm. Đôi chân dài thon thả như ngọc không kiềm chế được mà quấn chặt lấy cổ Diệp Phi, đùi kẹp chặt lấy đầu hắn, dùng sức kéo vào trong, dường như muốn hắn liếm láp "cửa mình" của mình mạnh mẽ hơn. Khoái cảm thấu cốt khiến Liễu Quân Di nheo mắt lại, nhưng trong lòng lại thấy hơi kỳ quái. Tại sao Diệp Phi lại chịu liếm chỗ này của mình? Với Ngọc Vô Hà, vì hai người yêu nhau nên mới không ghét bỏ đối phương, còn Diệp Phi thì sao? Chẳng lẽ hắn thích mình? Suy đoán này khiến lòng cô kinh hãi, cô buông đôi chân đang kẹp đầu Diệp Phi ra, thân thể lùi về phía sau, khiến "cửa mình" đang khao khát rời khỏi môi hắn, hỏi: "Tiểu Mãn, cháu nói thật đi, có phải cháu thích tiểu di rồi không?" Diệp Phi không ngờ cô lại hỏi câu này, hắn ngẩng đầu lên, nhìn thẳng vào mắt cô, nghiêm túc nói: "Không sai, cháu luôn rất thích tiểu di. Khi còn bé, cháu thích quấn quýt bên cạnh dì, lúc đó cháu còn tưởng mình giống những đứa trẻ khác, không muốn rời xa người lớn. Nhưng sau này khi đã hiểu về chuyện nam nữ, cháu liền biết, tình cảm cháu dành cho tiểu di căn bản không phải loại đó, mà là tình yêu giữa nam và nữ. Những ngày này cháu luôn nghĩ, nếu đời này cháu có thể mãi mãi ở bên tiểu di thì tốt biết bao. Chúng ta cùng luyện công, cùng vui đùa, cùng ăn cơm trên một cái bàn, ngủ trên một cái giường, một đời một kiếp đều ở bên nhau." Đôi mắt Liễu Quân Di không khỏi trở nên mê ly. Cô vốn đã vô cùng yêu thương Diệp Phi, mà Diệp Phi lại là nam nhân duy nhất không làm cô bài xích trong lòng. Cộng thêm biểu hiện kinh người của hắn ban ngày hôm nay, một người luôn sùng bái cường giả như cô đã có chút mê đắm từ lúc đó. Lúc này lại nghe được những lời này, nhất thời không khỏi tâm trí hướng về. Trong khoảnh khắc này, cô thậm chí quên cả Ngọc Vô Hà, thật sự muốn nói với Diệp Phi rằng muốn ở bên hắn cả đời. Trong tâm tình kích động, cô vậy mà nhẹ nhàng gật đầu nói: "Tiểu Mãn, tiểu di cũng yêu cháu." Lời của Liễu Quân Di khiến Diệp Phi mừng rỡ, vui vẻ hỏi: "Tiểu di, dì nói là sự thật sao?" Vẻ mặt kinh hỉ của Diệp Phi khiến tâm hồn thiếu nữ của Liễu Quân Di thấy ngọt ngào, cô khẽ cười nói: "Tất nhiên là thật rồi." "Tốt quá! Tiểu di, cháu yêu dì chết mất, cháu muốn báo đáp dì thật tốt!" Diệp Phi hét lớn một tiếng, lại vùi đầu vào dưới háng Liễu Quân Di, càng thêm ra sức liếm láp "cửa mình" của cô. "Tiểu Mãn, đợi chút." Liễu Quân Di lại ngăn Diệp Phi lại, sau đó xoay người, cùng hắn tạo thành tư thế 69, để hắn tiếp tục liếm láp "cửa mình" của mình, còn chính cô thì dùng hai tay nắm lấy vật của Diệp Phi, mở cái miệng nhỏ nhẹ nhàng ngậm lấy. Có lẽ vì đã thổ lộ lòng mình, Liễu Quân Di lúc này tuyệt không cảm thấy vật của Diệp Phi bẩn, chỉ là cô không có bất kỳ kinh nghiệm gì, sau khi ngậm vào miệng thì không biết phải làm gì tiếp theo, đành phải nhẹ nhàng mút, đồng thời dùng bàn tay nhỏ nắm lấy phần bên ngoài, nhẹ nhàng đùa nghịch. Tuy khoái cảm trên vật kia không quá mãnh liệt, nhưng lúc này lại được chính tiểu di, người thân muội muội của mẹ ngậm lấy, sự thỏa mãn trong lòng Diệp Phi đã át hết thảy. Để báo đáp tiểu di, động tác trên "cửa mình" của cô lại càng thêm ra sức. Rất nhanh, thân thể Liễu Quân Di run rẩy kịch liệt, cái miệng nhỏ ở phía dưới cũng kẹp chặt đầu lưỡi hơi thâm nhập vào của Diệp Phi. Diệp Phi biết cô sắp lên đỉnh rồi, hắn lại đột nhiên dừng lại, dùng tay lau đi phần dâm thủy của tiểu di dính đầy trên môi, cười hỏi: "Tiểu di, cảm giác thế nào?" Liễu Quân Di đối với việc hắn đột nhiên dừng lại rất bất mãn, nhổ vật của hắn ra, quay đầu trừng mắt nói: "Chẳng tốt chút nào, lớn như vậy, làm người ta đau hết cả miệng!" "Thế càng chứng tỏ sự lợi hại của nó chứ sao." Diệp Phi cười nói: "Tiểu di, muốn thử uy lực của nó không?" "Thử thế nào hả?" Liễu Quân Di hơi khó hiểu hỏi. Diệp Phi cười sờ lên "cửa mình" dâm thủy liên liên của cô, cười nói: "Tất nhiên là dùng tiểu dâm huyệt của dì rồi!" Liễu Quân Di lúc này đã bị hắn làm cho dục hỏa đốt người, đừng nói là lúc này đã nảy sinh tình cảm, dù chỉ là mối quan hệ trước kia của hai người, cô cũng chưa chắc từ chối. Chỉ là câu "tiểu dâm huyệt" của hắn khiến cô rất ngượng ngùng, cô nhẹ gật đầu nói: "Thử thì thử, nhưng không cho phép cháu nói những từ như vậy nữa!" "Được, không nói!" Diệp Phi cũng biết, mình không thể nóng vội. Đêm nay có thể đạt được thân thể cô đã là ngoài ý muốn kinh hỉ rồi, còn về những lời lẽ rên rỉ, để sau này chờ cô thích ứng rồi điều giáo từ từ cũng không muộn. Ngồi dậy, Diệp Phi để tiểu di nằm ngửa trên giường, hai tay tách hai đôi chân dài thon thả của cô ra đặt ở hai bên thân mình, sau đó cầm vật to lớn của mình, dùng đầu khấc đặt lên tiểu dâm huyệt no đủ mật đào giống hệt mẹ cô, mượn độ trơn của dâm thủy, dùng sức ma sát xuống khe "cửa mình" non hồng của cô. "Á..." Một loại khoái cảm mãnh liệt chưa từng có truyền từ "cửa mình" lên toàn thân, khiến Liễu Quân Di không nhịn được thốt lên một tiếng rên rỉ thật dài. Cô cảm giác chỉ riêng lần này thôi, đã thoải mái hơn nhiều so với việc Ngọc Vô Hà dùng hết vốn liếng khiến mình sung sướng. Đợi đầu khấc dính đầy dâm thủy của tiểu di, Diệp Phi dùng hai tay nhẹ nhàng tách mép "cửa mình" của cô, đặt đầu khấc lên miệng "cửa mình" đang khép chặt, dùng sức đâm vào. "Á, đau quá!" Vừa mới vào một chút đầu khấc, Liễu Quân Di không nhịn được kêu đau. Diệp Phi cũng cảm nhận được "cửa mình" của tiểu di chặt đến vượt quá tưởng tượng. Hắn đâm thêm một chút, lại cảm giác được trên đầu khấc có một tầng màng mỏng rất đàn hồi. Không ngờ Liễu Quân Di giả phượng hư hoàng với Ngọc Vô Hà lâu như vậy mà vẫn chưa phá tầng màng này. Phát hiện này khiến Diệp Phi càng thêm hưng phấn, bất quá động tác lại càng thêm cẩn thận. Hắn nhẹ nhàng rút đầu khấc đã cắm vào "cửa mình" của tiểu di ra, tiếp tục ma sát trên mép "cửa mình", đợi cô chảy ra nhiều dâm thủy hơn, lúc này mới lại nhẹ nhàng đỉnh vào một chút, ôn nhu nhìn Liễu Quân Di nói: "Tiểu di, cháu sắp vào rồi!" "Ừ." Liễu Quân Di nhẹ gật đầu, đôi mắt nhìn thẳng Diệp Phi, trong đó tràn đầy nhu tình và hạnh phúc. Đã có kinh nghiệm phá thân ở chỗ tiểu muội, Diệp Phi tất nhiên hiểu rõ đạo lý đau dài không bằng đau ngắn. Lúc tiểu di vừa gật đầu, hắn liền mạnh mẽ hạ eo, "cậu nhỏ" to dài cắm thẳng vào hơn một nửa căn vào "cửa mình" mềm mại của tiểu di. "Á! Đau quá!" Liễu Quân Di nhịn đau hét lớn một tiếng. Vượt qua nỗi đau này thì phụ nữ bình thường đều chịu được, huống chi là người luyện võ tâm chí kiên định như Liễu Quân Di. Chỉ là vật của Diệp Phi quá to, mà "cửa mình" của cô lại trời sinh nhỏ hẹp hơn phụ nữ bình thường rất nhiều, nỗi đau đương nhiên cũng lớn hơn nhiều. Diệp Phi lúc này sướng đến mức suýt thì bắn ra. "Cửa mình" của tiểu di vốn đã chặt, lúc này vì đau đớn, da thịt mềm mại bên trong càng cắn chặt vật của hắn, gần như muốn bẻ gãy nó. Bất quá hắn không rảnh để hưởng thụ, vội cúi đầu hôn lên miệng cô. Hai tay cũng không nhàn rỗi, một tay vuốt ve bầu vú, tay kia rời khỏi chỗ giao hợp, hoạt động trên âm hạch nhỏ nhạy cảm của cô để khiến dục hỏa cô bay lên lần nữa, thích ứng với vật to lớn của mình. Qua hồi lâu, thân thể tiểu di mới dần tĩnh lại, da thịt mềm mại bên trong "cửa mình" không còn cắn chặt vật của Diệp Phi nữa. Diệp Phi biết cô đã vượt qua nỗi đau ban đầu, liền đỉnh động vòng eo, để "cậu nhỏ" ra ra vào vào một cách nhẹ nhàng trong tiểu dâm huyệt lần đầu trải qua nhân sự của tiểu di mình. Diệp Phi vừa động, Liễu Quân Di liền cảm thấy một loại khoái cảm phong phú vô cùng truyền thẳng tới toàn thân, khiến cô không khỏi sung sướng mà rên rỉ phóng đãng, mông lớn chậm rãi vặn vẹo, phối hợp với sự ra vào của cháu trai. Cô ôm chặt cổ hắn, dùng bầu vú cọ xát vào lồng ngực hắn để tăng thêm khoái cảm. Vì Liễu Quân Di vốn đã đến gần cao trào, tuy vừa rồi bị đâm vào do đau đớn mà tạm ngừng một chút, nhưng dưới sự ra vào càng lúc càng nhanh của Diệp Phi, cô rất nhanh đạt tới đỉnh phong, rên rỉ nói: "Tiểu Mãn, tiểu di thoải mái quá, muốn... muốn tới rồi!" Diệp Phi cũng cảm nhận được tiểu dâm huyệt bắt đầu co rút lại, lập tức không thể nhẫn nhịn được nữa: "Tiểu di, cháu cũng nhanh rồi, chúng ta cùng đi thôi!" Nói xong liền dùng sức đỉnh động, để đầu khấc lớn va chạm mạnh mẽ vào hoa tâm của cô vài cái. Chỉ vài cái như vậy, Liễu Quân Di liền không thể chịu đựng thêm được nữa, hét lên một tiếng, tứ chi quấn chặt lấy Diệp Phi. Tiểu dâm huyệt co rút mạnh mẽ, từng đợt âm tinh nóng bỏng tuôn ra từ hoa tâm, còn Diệp Phi bị cô làm cho như vậy liền gầm nhẹ một tiếng, đâm vật đó vào sâu nhất tiểu dâm huyệt của cô, đầu khấc sưng vồng lên, tinh dịch phun trào mạnh mẽ vào trong "cửa mình" chặt khít của cô. Hai người ôm nhau nghỉ ngơi một hồi, Liễu Quân Di đột nhiên kinh hô: "Chà, sao cháu lại bắn vào trong? Tiểu di hôm nay đâu phải kỳ an toàn đâu." Diệp Phi cười nói: "Không sao đâu, tinh dịch của cháu tạm thời không thể khiến người khác thụ thai được." Về điểm này, Diệp Phi cũng hơi sầu não. Từ ngày nói chuyện đó với tiểu muội, mỗi lần làm chuyện đó hắn đều xuất vào trong, nhưng đã lâu như vậy mà cô vẫn chưa có động tĩnh gì, khiến hắn nghi ngờ liệu mình có phải không còn khả năng sinh dục hay không. "Sao cháu biết?" Đôi mắt đẹp của Liễu Quân Di nheo lại, trong ánh mắt lộ ra một tia sát khí: "Có phải đã sớm thử với nữ nhân khác rồi không?" Diệp Phi giật mình trong lòng, mình chỉ lo an ủi tiểu di mà quên mất khẳng định như vậy sẽ khiến cô nghĩ tới điểm đó, đành phải đổ lên người Lâm Linh, người chưa từng lên giường với mình: "Là Linh Linh, lúc cháu và cô ấy cũng toàn xuất vào trong đấy, nhưng cô ấy mãi chẳng có vấn đề gì cả." Hắn lại đem chuyện của tiểu di và Lâm Linh ra nói riêng. Nghe là Lâm Linh, Liễu Quân Di tuy vẫn không nhịn được ghen tị, nhưng biết rõ cô và Diệp Phi đã đính ước từ nhỏ nên không tiện nói thêm gì. Nhìn vẻ mặt hơi không thoải mái của tiểu di, Diệp Phi ôn nhu hỏi: "Tiểu di, dì đang ghen sao?" "Dì mới không có." Liễu Quân Di vội phủ nhận: "Như vậy càng tốt, cháu có Linh Linh của cháu, ta từ nay về sau vẫn cứ ở cùng Vô Hà, ai cũng không cần phiền ai nữa, cứ coi như bây giờ là một sai lầm đi." Lời nói tuy vô cùng tiêu sái, nhưng khó che giấu được vẻ đắng chát trong giọng nói. "Không!" Diệp Phi ôm chặt lấy cô nói: "Từ nay về sau dì là của cháu, không ai có thể cướp dì khỏi tay cháu, Ngọc lão sư cũng không được!" "Cháu định muốn cả hai người bọn ta sao?" Liễu Quân Di hỏi. Gặp Diệp Phi gật đầu, cô lại cười nói: "Nhanh như vậy đã mềm nhũn rồi, cháu muốn thế nào cơ?" Nói xong, cô vận nội lực, dùng tiểu dâm huyệt vừa mới cao trào xong khẽ kẹp lấy vật đang cắm sâu trong người mình mà đã xìu xuống. Bị "cửa mình" mềm mại của tiểu di kẹp lấy, vật của Diệp Phi lập tức cứng lại, rất muốn làm cô lần nữa, bất quá nghĩ tới cô vừa mới phá thân, đành phải nói: "Đừng vội, chờ dì khỏe lại rồi nói sau." "Không, ta muốn bây giờ, có phải cháu đạt được xong rồi thì không cần người ta nữa phải không?" Trên mặt Liễu Quân Di lộ vẻ ủy khuất, mông lớn khẽ vặn vẹo, khiến vật của Diệp Phi cọ xát trong "cửa mình" mình. Đội cho chiếc mũ này lên đầu, Diệp Phi tất nhiên không thể để cô thất vọng, liền nâng mông lớn của cô lên, hung hăng "chinh phạt" "cửa mình" nhỏ bé vừa mới được khai phá của cô. Dù mới phá thân nhưng Liễu Quân Di dường như bị nghiện, vậy mà quấn lấy Diệp Phi đòi bốn lần, cuối cùng mới kiệt sức mà thiếp đi. Sau khi Diệp Phi "phun" bốn lần trong "cửa mình" của tiểu di, hắn cũng vô cùng thỏa mãn, giúp cô thanh lý một chút rồi ôm cô chìm vào giấc ngủ. Ngày hôm sau khi trời vừa sáng, Diệp Phi đã mở mắt ra, nhìn thấy Liễu Quân Di đã tỉnh trước mình đang nhìn mình đầy kinh ngạc. Đôi mắt xinh đẹp vốn luôn tràn đầy kiên định và trí tuệ giờ lại đầy mịt mờ và bối rối. Vẻ mặt này khiến Diệp Phi không khỏi đau lòng, hắn vươn tay phải ôm lấy thân hình yêu kiều chưa kịp mặc quần áo của cô vào lòng, ôn nhu hỏi: "Sao vậy?" Liễu Quân Di dán khuôn mặt xinh đẹp lên ngực hắn, sâu kín hỏi: "Chúng ta làm như vậy rốt cuộc có đúng không?" Diệp Phi siết chặt vòng tay ôm cô, hỏi ngược lại: "Dì đang vì mối quan hệ của chúng ta mà bối rối sao?" "Không phải." Liễu Quân Di khẽ lắc đầu: "Không giấu gì cháu, trước đây ta vốn có bản năng chán ghét nam nhân, ngược lại thích ở bên nữ hài hơn. Nguyên tưởng rằng cả đời này ta sẽ ở bên Vô Hà, mãi mãi không có nam nhân. Nhưng tối hôm qua khi ở bên cháu, ta không những không bài xích mà cảm giác còn thoải mái hơn khi ở bên Vô Hà. Thật muốn cứ thế này cả đời bên cháu, nhưng trong lòng ta lại không buông bỏ được cô ấy." "Dì đang phiền não vì không cách nào chọn lựa giữa hai bọn ta sao?" Diệp Phi hỏi. "Ừ." Liễu Quân Di lại gật đầu. Diệp Phi hiểu rõ, việc cô có thể nói ra chuyện giữa mình và Ngọc Vô Hà cho thấy trong tiềm thức cô đã nhận định hắn rồi. Chỉ là mối quan hệ bao năm qua với Ngọc Vô Hà khiến cô không nỡ bỏ. Hắn không vạch trần tâm tư cô, chỉ cười nói: "Đã nhất thời không thể chọn lựa, vậy thì đừng nghĩ tới nó nữa. Mấy ngày nay chúng ta cứ vui vẻ bên nhau chẳng phải xong rồi sao, mọi chuyện đợi sau này trở về rồi hãy nói." Liễu Quân Di nghe xong lời hắn liền thông suốt, cười nói: "Cháu nói đúng, chuyện phiền lòng cứ để sau này hãy nói. Bây giờ cứ vui vẻ được ngày nào hay ngày đó. Dù sao dù có chọn cháu – tên tiểu tử thối này đi chăng nữa, mối quan hệ của chúng ta cũng không thể công khai, cùng lắm thì đến lúc đó hai người các ngươi ta đều muốn tất!" Diệp Phi thầm nghĩ, chính là hai người các dì để ta đều muốn đi! Nhưng khi chưa hoàn toàn chiếm được trái tim cô, lời này không dễ nói ra, nên chỉ cười nói: "Tốt thôi, đến lúc đó để cô ấy làm vợ cả của dì, cháu chịu chút ủy khuất, làm tiểu lão bà là được!" Liễu Quân Di bị hắn chọc cho cười khanh khách, lại nũng nịu trong lòng hắn một hồi, sau đó thoải mái vén chăn ngồi dậy. Vì tập võ từ nhỏ nên dáng người Liễu Quân Di thậm chí còn đẹp hơn cả những ngôi sao dựa vào vóc dáng để kiếm cơm. Dù tối qua đã nhìn ngắm rất lâu, nhưng Diệp Phi vẫn bị thân thể hoàn mỹ của cô làm cho tâm ngứa khó nhịn. Hắn nhìn chằm chằm vào cô, thì thào khen: "Thật là quá đẹp!" "Đẹp đến mấy cũng chẳng phải tiện nghi cho tên tiểu tử thối như cháu sao!" Vì đã có mối quan hệ thân mật nhất với hắn, Liễu Quân Di không còn vì ánh mắt mê luyến kia mà ngượng ngùng, ngược lại còn tự hào ưỡn ngực, khiến đôi gò bồng đảo trước ngực nhảy nhót vài cái, chọc cho Diệp Phi mắt đờ đẫn rồi lại cười khanh khách, nhanh chóng mặc quần áo vào. Lúc này bên ngoài đã truyền đến tiếng người, Diệp Phi tất nhiên không thể nằm lì trên giường nữa, liền nhảy phắt dậy, đứng trước mặt Liễu Quân Di. Phản ứng tự nhiên buổi sáng cộng thêm sự quyến rũ vừa rồi của Liễu Quân Di, "cậu nhỏ" của hắn dưới đó đã trướng đến không thể trướng hơn, sau khi hắn đứng lên, vật kia vểnh lên 90 độ, chỉ thẳng vào Liễu Quân Di. Dù việc lộ thân thể trước mặt hắn không còn khiến Liễu Quân Di ngượng ngùng, nhưng nhìn thấy...</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0158.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0160.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

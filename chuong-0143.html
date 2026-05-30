@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 143 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 143</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 143</small>
+    Chương 143: Đăng môn con rể
+  </h1>
+  <div class="chapter-body">
+    <p>Minh giáo thụ đi rồi, Diệp Phi ba người cũng đều ăn gần như xong xuôi. Giúp Tô Ngọc Nhàn thu dọn xong, Minh Nguyệt Tâm cũng muốn đi tới cục cảnh sát. Hôm nay tuy đã là thứ bảy, nhưng nàng là kiểu người chăm chỉ làm việc suốt bảy ngày mỗi tuần, chắc là không biết ở nhà nghỉ ngơi đâu.</p>
+    <p>Diệp Phi nhìn về phía Tô Ngọc Nhàn, chỉ thấy trong mắt nàng thoáng hiện một tia mong chờ, hiển nhiên là hy vọng mình có thể ở lại với nàng. Thế nhưng hôm nay Diệp Phi còn có việc rất trọng yếu cần làm, đó là đến nhà Lâm Linh chơi. Chuyện này đã kéo dài mấy cái cuối tuần rồi, hiện tại không thể trì hoãn thêm được nữa.</p>
+    <p>Trao cho Tô Ngọc Nhàn ánh mắt xin lỗi, Diệp Phi đi theo Minh Nguyệt Tâm ra cửa, nhưng trong lòng lại thấy không thoải mái. Mình như thế này đúng là có chút vô tình, nếu là nữ nhân bình thường thì thôi, đằng này với Tô Ngọc Nhàn, hắn thật tâm yêu thích, tự nhiên không muốn nàng có chút nào không vui. Vì vậy, hắn dừng lại, nói với Minh Nguyệt Tâm: "Tâm tỷ, điện thoại của ta quên trong nhà rồi, ta phải lên lấy."</p>
+    <p>"Ngươi nha, sao không đem cả bản thân mình làm mất luôn đi?" Minh Nguyệt Tâm vừa bực mình vừa buồn cười nhìn Diệp Phi, ánh mắt ấy có ba phần trách cứ, cũng có bảy phần cưng chiều, tựa hồ thực sự coi Diệp Phi như thân đệ đệ của mình: "Vậy ngươi mau đi đi, ta chờ trong xe."</p>
+    <p>Diệp Phi đáp một tiếng, bước nhanh lên lầu, đẩy cửa vào phòng khách. Quả nhiên giống như hắn nghĩ, Tô Ngọc Nhàn đang ngồi thẫn thờ ở đó, đến cái bàn cũng chưa lau, vẻ mặt lộ rõ vẻ cô đơn không nói nên lời.</p>
+    <p>Diệp Phi không khỏi đau lòng, vội vàng đi tới ngồi xuống bên cạnh nàng, vòng tay ôm lấy vòng eo nhỏ nhắn, ghé vào tai nàng nói: "Tỷ tỷ, ngươi sao thế?"</p>
+    <p>Tô Ngọc Nhàn lúc này mới sực tỉnh khỏi dòng suy nghĩ của mình, phát hiện Diệp Phi vậy mà đã trở lại, không khỏi kinh hỉ, vội vàng ôm chặt lấy hắn: "Ta biết ngay là ngươi sẽ không bỏ mặc ta mà!"</p>
+    <p>Dáng vẻ yếu đuối đó khiến Diệp Phi mềm lòng, nhưng cuối cùng hắn vẫn cố cứng lòng lắc đầu: "Ta chỉ lên nói với ngươi một tiếng, vẫn phải đi thôi." Hôm nay cuộc hẹn này nói gì cũng không thể thất hứa nữa. Tuy hắn rất thích Tô Ngọc Nhàn, nhưng vẫn kém hơn chút so với tình cảm sâu đậm dành cho Lâm Linh, cũng chỉ có thể tạm thời khiến nàng thất vọng, đợi sau này đưa các nàng về chung một chỗ, mình sẽ không cần phải được cái này mất cái kia nữa.</p>
+    <p>Nghe Diệp Phi nói vậy, mặt Tô Ngọc Nhàn lộ vẻ thất vọng, nhưng vẫn rất nghe lời: "Vậy ngươi đi đi, ta không sao đâu."</p>
+    <p>"Tỷ tỷ, ngươi đừng như vậy, thật ra ta cũng rất muốn ở lại cùng ngươi, nhưng hôm nay quả thực là chuyện quan trọng." Diệp Phi dịu dàng an ủi bên tai nàng: "Huống chi chúng ta còn cả một đời một kiếp để ở bên nhau, cần gì phải quá để ý lúc này chứ?"</p>
+    <p>Sở dĩ Tô Ngọc Nhàn lo được lo mất như vậy, một phần là vì Diệp Phi không thể ở lại, nhưng phần lớn là vì nàng nghĩ mình và hắn chẳng có tương lai gì. Nàng không dám mơ tưởng xa xôi, chỉ hy vọng khi Diệp Phi còn thích mình thì có thể ở gần hắn thêm chút nữa. Nhưng khi nghe câu "một đời một kiếp" của Diệp Phi, nàng lập tức vui vẻ hẳn lên.</p>
+    <p>"Vậy ngươi ôm ta thêm một lát rồi hãy đi." Sau khi mở lòng mình ra với Diệp Phi vào tối qua, Tô Ngọc Nhàn đối với hắn cực kỳ quyến luyến, đâu còn giống một người phụ nữ trưởng thành, mà giống hệt một cô gái nhỏ mới rơi vào bể tình.</p>
+    <p>"Được thôi." Diệp Phi siết chặt vòng tay quanh eo nàng, cười nói: "Vậy thì ôm thêm một lát, dù sao hôm nay là thứ bảy, Tâm tỷ cũng không cần vội đến cục cảnh sát."</p>
+    <p>"Ngươi nói Tâm nhi vẫn đang chờ dưới đó?" Tô Ngọc Nhàn kinh hô một tiếng, vội vàng thoát khỏi vòng tay Diệp Phi, nhẹ nhàng đẩy hắn: "Vậy ngươi mau xuống đi, không lát nữa nàng sốt ruột lại chạy lên bây giờ."</p>
+    <p>Diệp Phi lúc này cũng có chút sốt ruột, bởi vì đã gần chín giờ, hắn còn phải hội hợp với Diệp Vân Khinh rồi cùng đến nhà Lâm Linh. Nếu không xuất phát thì trước giữa trưa e là không xong được. Tuy nhiên, dù đang vội, hắn vẫn ôm chặt Tô Ngọc Nhàn một cái, hôn lên miệng nàng rồi mới tạm biệt. Đến cửa, hắn quay đầu nói: "Đúng rồi, tỷ tỷ, thân phận thật của ta Tâm tỷ và bá phụ vẫn chưa biết, ngươi tạm thời đừng nói cho họ nhé."</p>
+    <p>Đối với lời dặn của Diệp Phi, Tô Ngọc Nhàn tuy có chút khó hiểu nhưng nàng vốn không có nhiều chủ kiến, hơn nữa hiện tại thể xác lẫn tinh thần đều đã trao cho hắn, tự nhiên là nói gì nghe nấy: "Ta biết rồi, ngươi mau đi xuống đi, không Tâm nhi lại lên đây mất."</p>
+    <p>Đúng là biết con không ai bằng mẹ, Diệp Phi vừa mở cửa chuẩn bị bước ra thì đã thấy Minh Nguyệt Tâm đang bước nhanh lên lầu. Thấy Diệp Phi, nàng bất mãn quát: "Ngươi đi lấy điện thoại hay là đi dọn nhà thế? Sao mà chậm thế?"</p>
+    <p>Diệp Phi thầm cười Minh Nguyệt Tâm đúng là tính tình nóng nảy, miệng lại đáp: "Ta không phải đang tạm biệt a di sao, ngươi gấp cái gì chứ?"</p>
+    <p>"Tạm biệt cái gì? Sau này muốn tới thì tới, trong cục cả đống việc đang chờ ta xử lý kìa, ngươi tưởng ta cũng giống đứa trẻ chẳng có chuyện gì làm như ngươi sao?" Minh Nguyệt Tâm thấy bộ dạng không chút bận tâm của Diệp Phi thì càng bất mãn, dứt khoát lôi kéo hắn chạy nhanh xuống lầu.</p>
+    <p>Tô Ngọc Nhàn đứng nhìn Diệp Phi và Minh Nguyệt Tâm tranh luận, trong lòng cũng thấy vui thay cho con gái. Nàng vốn chỉ biết đến công việc, bình thường chẳng có mấy người bạn, khó khăn lắm mới thấy Diệp Phi hợp ý đến vậy, mới gặp có mấy lần mà đã thân thiết như chị em ruột.</p>
+    <p>Tỷ đệ? Nghĩ tới đây, Tô Ngọc Nhàn ngẩn người. Nàng mới nhận ra, Diệp Phi còn nhỏ tuổi hơn cả con gái mình. Vậy mà mình lại yêu một chàng trai nhỏ tuổi đến thế, không chỉ thân thể bị hắn chinh phục, mà từ tối qua đến cả trái tim cũng trao cho hắn không giữ lại chút gì. Chuyện này quả thực có chút hoang đường, nhưng nghĩ đến sự mạnh mẽ và dịu dàng của Diệp Phi, nàng lại thấy chênh lệch tuổi tác chẳng đáng là bao, trong lòng chỉ còn lại ngọt ngào và thẹn thùng.</p>
+    <p>Diệp Phi tự nhiên không biết sau khi mình đi, Tô Ngọc Nhàn lại có những biến chuyển tâm lý như vậy. Ngồi lên xe Minh Nguyệt Tâm, hắn bảo nàng thả mình ở một ngã tư rồi vẫy tay tạm biệt. Minh Nguyệt Tâm giờ đây dường như thực sự coi Diệp Phi là đệ đệ, trước khi đi còn dặn dò hắn có thời gian phải về nhà hoặc qua cơ quan thăm nàng. Sau khi nghe Diệp Phi cam đoan, nàng mới hài lòng lái xe rời đi.</p>
+    <p>Đưa mắt nhìn xe Minh Nguyệt Tâm đi xa, Diệp Phi đón một chiếc taxi. Lên xe, hắn không bảo về nhà Diệp Lăng Thiên mà yêu cầu đến "Thời Không quảng trường" cách đó không xa. Hiện tại, chuyện vị Gia chủ đời trước của Diệp gia qua đời và việc hắn kế vị không còn là bí mật. Dưới sự truyền tin của truyền thông, ngay cả người dân bình thường cũng biết tin này. Hơn nữa, qua sự khuếch đại của truyền thông, một người từng thu thập ác ma Diệp Vũ như hắn giờ đây chẳng khác nào một siêu anh hùng. Nếu nói đến tiểu viện nhà họ Diệp, e rằng người ta sẽ nhận ra thân phận của hắn ngay, mà hắn thì không muốn bị nhìn như quái vật.</p>
+    <p>Dù chỉ nói là một địa điểm gần đó, người tài xế trung niên vẫn ngạc nhiên nhìn hắn.</p>
+    <p>Diệp Phi sờ mặt mình, cười hỏi: "Đại thúc, sao thế? Mặt ta có hoa à?"</p>
+    <p>Người tài xế nhận ra mình thất thố, cười ngại ngùng: "Xin lỗi tiểu huynh đệ, ta hơi ngẩn người chút. Đúng rồi, ngươi muốn tới Thời Không quảng trường, ngươi sống ở gần đó sao?"</p>
+    <p>"Vâng, ta ở ngay phụ cận." Diệp Phi đáp. Hắn hiện đang ở trong tiểu viện nhà họ Diệp, nói vậy cũng không phải là nói dối.</p>
+    <p>Người tài xế đột nhiên phấn khích, nhìn Diệp Phi hỏi: "Vậy ngươi có biết Diệp Phi không?"</p>
+    <p>"Không biết." Diệp Phi lắc đầu.</p>
+    <p>Người tài xế lộ vẻ thất vọng, khởi động xe, không nói chuyện với Diệp Phi nữa.</p>
+    <p>Thế nhưng Diệp Phi lại muốn biết suy nghĩ của người dân thường đối với mình và Diệp gia, bèn hỏi tiếp: "Đại thúc, ngươi tìm Diệp Phi có chuyện gì à?"</p>
+    <p>"Không phải, không phải, ta chỉ là muốn biết thêm về cậu ấy thôi." Người tài xế vừa lái xe vừa lắc đầu, trên mặt lộ vẻ hào hứng, nói tiếp: "Nghe nói cậu ấy bằng tuổi ngươi thôi, vậy mà đã thu thập được tên Diệp Vũ kia, đủ thấy lợi hại thế nào. Thật hy vọng dưới sự dẫn dắt của Diệp Phi, Diệp gia có thể trở lại như xưa, để người bình thường như chúng ta sống an tâm hơn."</p>
+    <p>Diệp Phi thầm mừng thầm. Xem ra danh tiếng của Diệp gia trong lòng dân chúng vẫn rất tốt. Diệp Vũ làm bao chuyện xấu nhưng vẫn không khiến người ta hoàn toàn thất vọng về Diệp gia. Xem ra sau này mình phải chú ý hơn đến khía cạnh này, dù ở thời đại nào thì dân tâm cũng rất quan trọng. Thật đáng tiếc là những kẻ ngồi ở tầng lớp cao nhất lại xem nhẹ điều đó.</p>
+    <p>"Cậu ấy thật sự bằng tuổi ta sao?" Diệp Phi thuận miệng hỏi.</p>
+    <p>Người tài xế gật đầu lia lịa: "Đúng vậy, nói không chừng còn nhỏ hơn ngươi một chút. Nghe bảo mới mười sáu tuổi thôi. Hắc hắc, nghĩ lại lúc ta mười sáu tuổi chỉ biết chơi đùa như đứa trẻ, thật hy vọng có thể diện kiến cậu ấy một lần."</p>
+    <p>Diệp Phi tự cười thầm, không ngờ vị tài xế trung niên này lại có tâm hồn "truy tinh" như vậy, miệng cũng phụ họa theo: "Vâng, ta cũng mười sáu tuổi, bình thường chỉ biết chơi, xem ra sau này phải cố gắng nhiều hơn."</p>
+    <p>Nghe Diệp Phi nói vậy, người tài xế như tìm được tri âm, lập tức thao thao bất tuyệt trò chuyện với hắn.</p>
+    <p>Vọng Hải là thành phố lớn nhất phương Nam, đường từ khu Nam đến trung tâm thành phố vốn rất dài. Diệp Phi vốn tưởng hành trình này sẽ nhàm chán, không ngờ người tài xế này lại có tài ăn nói, hơn bốn mươi phút đồng hồ không ngơi nghỉ, chuyện gì cũng kể, khiến Diệp Phi biết thêm không ít chuyện của tầng lớp bình dân.</p>
+    <p>Đến nơi, người tài xế nhất quyết không chịu nhận tiền xe, nói đến mức có chút nôn nóng, Diệp Phi vốn chưa bao giờ chiếm tiện nghi của ai, đành phải phá lệ chấp nhận.</p>
+    <p>Sau khi xác định vị tài xế nhiệt tình kia đã đi khuất, Diệp Phi mới từ Thời Không quảng trường đi ra, hướng về phía tiểu viện nhà họ Diệp.</p>
+    <p>Tuy hiện nay báo chí tạp chí đều muốn đăng ảnh của Diệp Phi cho bàn dân thiên hạ biết, nhưng nơi đây lại rất an toàn. Kể cả những phóng viên gan dạ nhất cũng không dám đến đây chụp ảnh, không phải vì sợ Diệp gia trả thù, mà là vì một loại tôn trọng, không muốn quấy rầy cuộc sống của người nhà Diệp gia, nên Diệp Phi không lo bị chụp trộm.</p>
+    <p>"Ngươi chạy đi đâu rồi? Giờ mới về, không nhìn xem mấy giờ rồi sao? Hôm nay mà còn chậm trễ nữa, xem Linh Linh trị ngươi thế nào!" Vừa vào cửa, Diệp Vân Khinh vốn đã chuẩn bị xong xuôi từ sáng sớm đã "khai hỏa" ngay với Diệp Phi.</p>
+    <p>Diệp Phi cười khổ: "Có chút việc làm chậm trễ, chúng ta xuất phát thôi!" Trong lòng hắn lại thấy vui, từ khi thân mật với nhau đến nay, Diệp Vân Khinh luôn dịu dàng phục tùng, đã lâu không thấy vẻ giương nanh múa vuốt này. Hiện tại thấy lại, hắn cảm thấy rất thân thuộc như quay về ngày trước. Đồng thời hắn cũng hiểu, Diệp Vân Khinh làm vậy là để Hứa Thư Vân và Diệp Tĩnh xem, nàng còn chưa dám công khai mối quan hệ trước mặt người nhà vì sợ họ nhìn ra manh mối từ biểu hiện trước sau bất nhất của nàng.</p>
+    <p>Diệp Tĩnh nghe Diệp Vân Khinh nói hôm nay bọn họ đến nhà Lâm Linh chơi cũng rất muốn đi, bèn kéo tay Diệp Phi nói: "Ca, dẫn ta đi cùng nhé?"</p>
+    <p>Diệp Tĩnh và Lâm Linh cũng khá quen thuộc, hơn nữa nàng vừa mất cha, hiện tại rất cần được vỗ về, Diệp Phi tự nhiên không muốn từ chối, nhưng vẫn nhìn sang Hứa Thư Vân đang ngồi bên cạnh.</p>
+    <p>Hứa Thư Vân mỉm cười: "Các ngươi đi đi, tối đừng về muộn quá, ngày mai trước khi trời tối nhất định phải về, hậu thiên còn phải đi học nữa." Sau vài ngày được mọi người an ủi, nàng đã không còn đau buồn như lúc đầu, khôi phục lại vẻ dịu dàng trang nhã thường ngày.</p>
+    <p>"Con biết rồi!" Diệp Phi gật đầu với Hứa Thư Vân, dẫn hai cô gái xuất phát. Vì Liễu Phượng Nghi chưa đồng ý cho Diệp Phi làm bằng lái, nên ba người đành phải bắt taxi đến nhà Lâm Linh.</p>
+    <p>Nhà Lâm Linh ở vùng ngoại ô, nhưng khác với nhà Diệp Phi ở phía Tây, mười mấy năm trước sau khi cha Lâm Linh và cha Diệp Phi qua đời, Liễu Diệc Như đã khuyên Tiêu Hàm Nguyệt dọn đến ở cùng, Tiêu Hàm Nguyệt khi đó cũng đồng ý, nhưng sau đó vì có việc chậm trễ nên chưa chuyển được.</p>
+    <p>Đến trước cửa biệt thự nhà Lâm Linh, Diệp Phi nhấn chuông, cửa nhanh chóng được mở. Lâm Linh đã nhìn thấy họ qua mắt mèo, như một chú chim nhỏ vui sướng bay ra, cười nói: "Diệp tử ca ca, Khinh Khinh, các ngươi tới rồi, oa, Tĩnh Tĩnh cũng tới à?"</p>
+    <p>Diệp Phi cười đón lên, mở rộng vòng tay chờ Lâm Linh nhào vào lòng, nhưng Lâm Linh tuy trước mặt Diệp Vân Khinh đã không còn quá kiêng dè, nhưng hiện tại còn có Diệp Tĩnh ở đó, quan trọng nhất là mẹ nàng đang ở phía sau, nàng xấu hổ không để Diệp Phi ôm trọn, cơ thể khẽ chuyển, lách qua như một chú thỏ nhỏ.</p>
+    <p>Diệp Phi cũng không để ý, cười ha hả rồi nhìn về phía sau lưng nàng, ánh mắt đột nhiên trở nên ngẩn ngơ.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0142.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0144.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

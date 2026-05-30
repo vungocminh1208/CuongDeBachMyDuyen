@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 231 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 231</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 231</small>
+    Chương 231
+  </h1>
+  <div class="chapter-body">
+    <p>Mang theo đầy nghi vấn, Diệp Phi đi theo mẹ và chị xuống lầu. Ngồi vào ghế sau xe của mẹ, cuối cùng cậu không nhịn được lại hỏi: "Mẹ, rốt cuộc chúng ta muốn đi đâu thế ạ?"</p>
+    <p>"Con đoán xem nào?"</p>
+    <p>Liễu Diệc Như mỉm cười đầy tinh nghịch. Nghĩ đến cảnh tượng Diệp Phi xấu hổ lát nữa, nàng cũng thấy vui vẻ. Hừ, gọi thằng nhóc hư hỏng này buổi trưa làm nàng ra nông nỗi đó, suýt nữa khiến nàng ngượng chín mặt, lần này cũng phải cho nó nếm thử cảm giác xấu hổ mới được.</p>
+    <p>Diệp Phi cười xấu xa: "Chẳng lẽ mẹ thấy ở nhà không tiện, nên muốn cùng con ra ngoài thuê phòng? Nhưng mà mang theo đại tỷ thì không tiện lắm đâu nhỉ?"</p>
+    <p>"Đi chết đi!"</p>
+    <p>Liễu Diệc Như bị con trai trêu chọc đến đỏ bừng mặt, trong lòng không khỏi nhớ lại cảm giác tiêu hồn thực cốt kia, suýt nữa lái xe lao vào dải phân cách.</p>
+    <p>Suốt dọc đường, bất kể Diệp Phi hỏi thế nào, Liễu Diệc Như đều không tiết lộ mục đích chuyến đi. Mãi đến khi xe dừng lại, Diệp Phi mới phát hiện ra tiểu biệt thự trước mắt trông rất quen thuộc. Khi nhìn thấy căn nhà này, cậu chợt nhớ ra một chuyện: hôm nay là sinh nhật mười ba tuổi của tiểu biểu muội Vân Sơ Tình.</p>
+    <p>"Mợ tốt, đại tỷ tốt, ca ca tốt!"</p>
+    <p>Có lẽ nghe thấy tiếng xe, Vân Sơ Tình mặc váy công chúa, đáng yêu như một thiên sứ nhỏ chạy từ trong biệt thự ra, lần lượt chào hỏi Diệp Phi và mọi người.</p>
+    <p>"Tình Tình, xin lỗi nhé, mợ đến muộn rồi." Liễu Diệc Như cười nhẹ.</p>
+    <p>"Không muộn đâu ạ." Vân Sơ Tình nghiêng cái đầu nhỏ: "Tuy mọi người tới sau cùng, nhưng mà thời gian vẫn chưa tới mà."</p>
+    <p>"Không muộn là tốt rồi, chúng ta vào thôi." Liễu Diệc Như vừa nói vừa nắm lấy bàn tay nhỏ bé của Vân Sơ Tình.</p>
+    <p>Vân Sơ Tình chìa bàn tay kia ra nắm lấy Diệp Phi, sau đó nói với Diệp Tư Kỳ: "Đại tỷ, xin lỗi nhé, Tình Tình không phải kẻ trộm nên không thể bắt tay với chị được."</p>
+    <p>Kẻ trộm? Cả ba người Diệp Phi đều ngẩn người, suy nghĩ một lúc mới hiểu ra cô bé này đang nói đến trò chơi bắt trộm. Nhìn cô bé lém lỉnh này, Diệp Phi không khỏi nhớ tới "tím mao muội muội" nha nha, trong lòng thầm cầu nguyện ngàn vạn lần đừng để hai tiểu ma nữ này nhận biết nhau, bằng không thiên hạ sẽ đại loạn mất. Chỉ là cậu không biết rằng, hai tiểu ác ma này vốn dĩ đã là bạn cùng lớp, hơn nữa quan hệ còn vô cùng thân thiết, thế là chuỗi ngày khổ sở của cậu sau này vẫn còn dài lắm.</p>
+    <p>Vào phòng khách, Diệp Phi phát hiện người thân của mình, ngoại trừ tam tỷ vẫn còn ở phần đất bên ngoài và con gái của Diệp Ngưng Sương là lý Tiểu Uyển ra, thì đều đã tới đủ cả. Giờ khắc này, dù là cậu cũng không nhịn được mà ngẩn ngơ. Từ người lớn nhất là Diệp Ngưng Sương cho đến nhỏ nhất là Vân Sơ Tình, ai nấy đều là tuyệt thế mỹ nữ khó gặp trên đời. Hiện tại tụ họp lại một chỗ, quả thực có thể miểu sát mọi nam giới bình thường. Chẳng trách dượng Vân Tĩnh của cậu lại trốn mất, giờ chỉ còn mỗi mình cậu là bị miểu sát.</p>
+    <p>"Mẹ, ca ca, hai người cả ngày chạy đi đâu vậy? Sao điện thoại mãi không gọi được thế ạ?" Diệp Vân Khinh thấy mẹ và anh trai bước vào liền đón chào hỏi ngay.</p>
+    <p>Liễu Diệc Như cười nói: "Cả ngày hôm nay chúng ta ở công ty, còn điện thoại chắc là hết pin thôi." Nói xong, nàng không nhịn được lườm Diệp Phi một cái. Buổi trưa tên nhóc hư hỏng này sợ bị làm phiền nên lén tắt điện thoại của nàng, mãi đến tận khi họp buổi chiều nàng mới phát hiện ra.</p>
+    <p>"Sao lại trùng hợp thế? Cùng lúc hết pin?" Diệp Vân Khinh hồ nghi hỏi: "Hai người không phải trốn đi làm chuyện xấu gì đấy chứ?"</p>
+    <p>Liễu Diệc Như trong lòng giật thót, dù cảm thấy con gái không thể biết chuyện đã xảy ra, nhưng lòng vẫn không khỏi bối rối, sắc mặt hơi đỏ lên.</p>
+    <p>Diệp Phi hiểu rằng tiểu muội đang giúp mình khiến mẹ dần quen với tâm tính hiện tại. Tuy nhiên, việc này nếu quá đà sẽ phản tác dụng, chỉ nên kích thích nhỏ thôi. Vì vậy, cậu vươn tay vỗ nhẹ vào mông cô bé, cười mắng: "Con nhóc này nói hưu nói vượn!"</p>
+    <p>"Đồ dã man, dám đánh mông em, không muốn sống nữa hả?" Diệp Vân Khinh kêu lên một tiếng, chộp lấy Diệp Phi đè xuống ghế sofa, rồi nhào tới cù lét cậu.</p>
+    <p>Mọi người ở đây đều nhìn họ lớn lên, nên đã quá quen với cảnh hai anh em "đánh nhau" kiểu này. Họ biết Diệp Vân Khinh chỉ là la lối vậy thôi chứ chẳng bao giờ nỡ làm đau anh trai, nên ai nấy đều bật cười. Vài nét mất tự nhiên trên mặt Liễu Diệc Như cũng không ai chú ý tới.</p>
+    <p>Đùa nghịch một hồi, mọi người bắt đầu tặng quà cho tiểu thọ tinh. Từng món quà khiến cô bé lộ ra nụ cười thiên sứ, chỉ là đến lượt Diệp Phi thì cậu có chút ngượng ngùng.</p>
+    <p>"Tình Tình, xin lỗi nhé, ca ca tới vội quá nên chưa chuẩn bị quà."</p>
+    <p>Nói đến đây, Diệp Phi chợt khựng lại. Vừa rồi mẹ vừa tặng cô bé một chiếc vòng cổ do chính tay nàng làm, cậu không nhịn được ngẩng đầu nhìn sang, thấy mẹ đang đắc ý mỉm cười với mình. Diệp Phi hiểu ngay, nàng cố tình không nhắc mình, mục đích là để trả đũa việc cậu làm nàng xấu hổ buổi trưa. Đối với điều này, Diệp Phi cảm thấy rất vui, vì tâm tính mẹ ngày càng cởi mở hơn, nghĩa là ngày cậu thành công không còn xa nữa. Ân, nửa tháng nữa là sinh nhật cậu và tiểu muội, Diệp Phi quyết định, chậm nhất là hôm đó, mình nhất định phải trở về nơi mình đã đến thế giới này.</p>
+    <p>"Không sao đâu ạ, Tình Tình biết ca ca là người hiểu em nhất, nên sau này bù lại cũng được." Vân Sơ Tình nghe Diệp Phi không chuẩn bị quà chẳng những không thất vọng, mà trong mắt còn lóe lên tia phấn khích: "Nhưng mà, Tình Tình muốn gì thì ca ca không được từ chối đâu nhé."</p>
+    <p>Diệp Phi không ngờ tiểu ác ma này lại tha cho mình dễ dàng thế, vội vỗ ngực cam đoan: "Yên tâm, chỉ cần là Tình Tình muốn, dù trên thế giới này không có, ca ca cũng sẽ làm ra cho con!"</p>
+    <p>"Được, thế thì móc tay!" Vân Sơ Tình vui vẻ nói, tia phấn khích trong mắt khiến Diệp Phi thầm cảm thấy bất an. Nhưng đã lỡ lời, cậu đành bất đắc dĩ vươn ngón tay ra móc ngoéo với cô bé.</p>
+    <p>Sau Diệp Phi là đến lượt Diệp Vân Khinh. Nàng lấy từ túi quần ra một vật giống như trân châu đưa vào bàn tay nhỏ bé của Vân Sơ Tình: "Chúc mừng sinh nhật!"</p>
+    <p>"Đây là gì vậy? Trân châu ạ?" Vân Sơ Tình hiếu kỳ ngắm nghía vật tròn trịa trong tay, mãi mà không nhận ra đó là gì.</p>
+    <p>Diệp Vân Khinh cười nói: "Đây gọi là Tuyết Sâm hoàn, có thể tăng cường nội lực đấy. Chẳng phải em nói tâm pháp của mình mãi không luyện qua tầng thứ nhất sao? Ăn cái này là được."</p>
+    <p>Vân Sơ Tình vì hiếu kỳ nên từng quấn lấy Liễu Diệc Như dạy tâm pháp, chỉ là tính cách hiếu động của cô bé vốn không hợp với việc tu luyện tĩnh tâm, nên luyện nhiều năm vẫn không có tiến triển gì, chỉ là cơ thể linh hoạt và sức lực tăng lên đôi chút, khiến cô bé càng thêm lém lỉnh.</p>
+    <p>"Tuyết Sâm hoàn?" Diệp Phi lặp lại, cậu nhớ tới cây ngàn năm tuyết sâm hai mẹ con mang về từ Trường Bạch sơn, không biết có liên quan gì đến nó không.</p>
+    <p>"Chính là cây tuyết sâm em cùng con mang về từ Trường Bạch sơn đó. Lúc trước mẹ giao cho dì Phương Đông, không ngờ kết quả lại ra nhanh thế." Liễu Diệc Như giải thích cho con trai, không khỏi nhớ lại cảnh tượng lúc đó. Giờ nàng đã hiểu, cây tuyết sâm đó vốn mọc trên vách núi, là do con trai vì muốn nàng vui mà lén hái xuống đặt ở đó. Mỗi khi nghĩ đến, lòng nàng lại trào dâng cảm động ngọt ngào. Lúc này, nàng thầm hối hận về cách hành xử vừa rồi, đàn ông quan trọng nhất là sĩ diện, một người phụ nữ tốt phải khiến người đàn ông của mình luôn ngẩng cao đầu, vậy nên sau này nàng tuyệt đối không được làm cậu mất mặt nữa.</p>
+    <p>Vừa quyết định như vậy, tim Liễu Diệc Như đập nhanh hơn, vì nàng phát hiện ra mình đã bắt đầu quen với việc coi cậu là "người đàn ông của mình".</p>
+    <p>Quà tặng xong xuôi, mọi người ngồi vào bàn ăn lớn trong phòng khách. Diệp Phi ngồi giữa Diệp Vân Khinh và Diệp Tĩnh, ngắm nhìn những mỹ nữ quen thuộc này, cảm thấy mình như đang ở trong Chúng Hương quốc, đây tuyệt đối là sự hưởng thụ lớn nhất của đàn ông!</p>
+    <p>Đợi mọi người ngồi vào chỗ, tiểu thọ tinh Vân Sơ Tình rời chỗ, đi đến bên cạnh ba người Diệp Phi. Cô bé nhìn Diệp Vân Khinh và Diệp Tĩnh, cuối cùng đặt mục tiêu vào Diệp Vân Khinh, nhẹ nhàng kéo góc áo, chu cái miệng nhỏ ra vẻ ủy khuất: "Tỷ tỷ..."</p>
+    <p>Dáng vẻ ủy khuất của tiểu ác ma này quả thực là sát thủ đối với mọi giới. Ngay cả Diệp Vân Khinh cũng không chịu nổi, vội đứng lên nói: "Được được, đổi cho em là được rồi, đừng dùng vẻ mặt đó dọa chị nữa."</p>
+    <p>"Cảm ơn tỷ tỷ!" Vân Sơ Tình nở nụ cười ngọt ngào, đặt mông ngồi vào vị trí vừa rồi của Diệp Vân Khinh, rồi quay sang Diệp Phi: "Ca ca, tay em ngắn, anh gắp thức ăn cho em được không?"</p>
+    <p>Trước kia vì hiểu lầm giữa Liễu Phượng Nghi và Diệp Ngưng Tuyết nên mọi người chưa bao giờ tụ họp đông đủ thế này. Giờ đây khi mọi hiểu lầm đã được hóa giải, ai nấy đều vui mừng khôn xiết, chơi đến tận hơn mười giờ tối mới chuẩn bị ra về.</p>
+    <p>Đúng lúc này, Vân Sơ Tình bất ngờ nắm chặt tay Diệp Phi rồi nói với Liễu Diệc Như: "Mợ, đêm nay cho ca ca ở lại đây được không ạ?"</p>
+    <p>"Được." Dù trong lòng cực kỳ không muốn, nhưng Liễu Diệc Như không nỡ từ chối tiểu ma nữ nên đành gật đầu đáp ứng.</p>
+    <p>"Cảm ơn mợ!" Vân Sơ Tình vui vẻ hôn lên má Liễu Diệc Như, rồi kéo Diệp Phi: "Ca ca, đi phòng con giúp em mở quà nào."</p>
+    <p>Diệp Phi bị mẹ "bán đứng" cho tiểu ma nữ, đành bất đắc dĩ đi theo cô bé vào phòng, bắt đầu bóc những gói quà. Đây không chỉ là quà của mọi người vừa tặng mà còn rất nhiều thứ cô bé nhận được từ người khác, nên nhất thời chưa thể bóc hết.</p>
+    <p>Đúng lúc Diệp Phi cảm thấy nhàm chán, giọng nói dịu dàng của tiểu cô Diệp Ngưng Băng từ bên ngoài truyền vào: "Về rồi đấy à?"</p>
+    <p>Vừa rồi lúc ăn cơm, trong lòng Diệp Phi đã nảy sinh một chí hướng vĩ đại: đó là thu phục những mỹ nữ xinh đẹp như tiên này vào túi. Một là vì cậu thực sự yêu họ, muốn đem lại hạnh phúc lớn nhất cho họ; hai là vì người cậu yêu nhất là mẹ. Cậu hiểu rằng, dù sau này mẹ ở bên cậu, trong lòng khó tránh khỏi những rào cản tâm lý. Nếu cậu biến họ thành người của mình, ít nhất khi đối mặt với gia đình, mẹ có thể hoàn toàn thoải mái. Vì hai lý do đó, cậu nhất định phải làm được.</p>
+    <p>Trong số các mỹ nữ, độ khó lớn nhất không nghi ngờ gì chính là tiểu cô Diệp Ngưng Băng. Vì nàng có tình cảm rất tốt với chồng và còn có Vân Sơ Tình làm kết tinh tình yêu, nên bước đầu tiên để chinh phục tiểu cô là phải phá vỡ tình cảm vợ chồng của họ. Dù làm vậy có chút vô sỉ, nhưng Diệp Phi đã không quản được nhiều như vậy, cậu tin mình có thể mang lại cho tiểu cô hạnh phúc hơn hiện tại.</p>
+    <p>Biết chắc là Vân Tĩnh đã về, Diệp Phi vừa đối phó với tiểu ma nữ, vừa thả ý niệm ra ngoài. Cảnh tượng trong phòng khách hiện lên trong đầu cậu: một người đàn ông tướng mạo khá anh tuấn từ ngoài bước vào, sắc mặt hơi âm trầm, không hề quan tâm đến vợ mà lên thẳng lầu về phòng ngủ. Diệp Ngưng Băng vội vã đi theo.</p>
+    <p>Ý niệm của Diệp Phi đi theo hai người lên lầu, bắt đầu nghe lén. Nghe một hồi, trên mặt cậu nở nụ cười.</p>
+    <p>Một lúc lâu sau, Vân Sơ Tình mới sắp xếp xong quà, vui vẻ nhìn Diệp Phi hỏi: "Ca ca, đêm nay em ngủ với anh được không?"</p>
+    <p>"Không được!" Diệp Phi quả quyết từ chối. Cô bé này tuy còn nhỏ nhưng cơ thể đã phát dục, nếu ngủ cạnh cậu chẳng phải là muốn khiến cậu phạm tội sao?</p>
+    <p>"Tại sao ạ?" Vân Sơ Tình bĩu môi không vui.</p>
+    <p>Diệp Phi cười giải thích: "Vì Tình Tình đã lớn rồi, không thể ngủ cùng con trai được."</p>
+    <p>"Hừ!" Tiểu ma nữ giậm chân, chạy nhanh ra khỏi phòng.</p>
+    <p>Diệp Phi cười bất đắc dĩ rồi cũng rời phòng cô bé, trở về căn phòng khách mà tiểu cô vừa chuẩn bị cho mình. Vừa ngồi xuống, đã thấy tiểu ma nữ đẩy cửa đi vào, trên mặt là nụ cười đắc ý, theo sau là Diệp Ngưng Băng mặc đồ ngủ.</p>
+    <p>Nhìn đường cong cao vút nơi ngực tiểu cô, lòng Diệp Phi nóng lên. Nhưng cậu biết, nếu để tiểu cô thấy ánh mắt rực lửa của mình, e rằng sẽ ảnh hưởng đến kế hoạch tương lai, nên vội quay mặt đi hỏi: "Tiểu cô, sao cô lại tới đây?"</p>
+    <p>"Con bé Tình Tình cứ nằng nặc đòi ngủ với con, cô cũng hết cách, con cứ cho nó ở lại một đêm đi." Diệp Ngưng Băng cười khổ.</p>
+    <p>"Nhưng mà..." Diệp Phi muốn giải thích với tiểu cô nhưng không biết mở lời thế nào.</p>
+    <p>Diệp Ngưng Băng dịu dàng cười: "Không sao, con là đứa trẻ ngoan, cô tin con."</p>
+    <p>Diệp Phi thầm cười khổ trong lòng, chính cậu còn không tin mình nữa là? Nhưng vì tiểu cô đã mở lời, Diệp Phi dĩ nhiên không thể từ chối, đành gật đầu: "Vậy cũng được."</p>
+    <p>"A, ca ca vạn tuế!" Tiểu ma nữ nghe Diệp Phi đồng ý thì hoan hô, chẳng quản mẹ còn ở đó, nhảy lên giường, cởi đồ chỉ còn lại bộ đồ lót màu hồng phấn rồi chui tọt vào chăn.</p>
+    <p>Hai cô cháu nhìn nhau cười khổ. Diệp Ngưng Băng nhìn Diệp Phi với ánh mắt nhờ vả rồi xoay người rời khỏi phòng.</p>
+    <p>"Ca ca, sao anh không ngủ?" Vân Sơ Tình thấy Diệp Phi ngồi bên giường liền thúc giục.</p>
+    <p>"À, anh đang suy nghĩ chút việc, con ngủ trước đi." Diệp Phi qua loa đáp.</p>
+    <p>Vân Sơ Tình bất ngờ chui ra khỏi chăn, dùng sức kéo Diệp Phi: "Thế anh nằm xuống nghĩ cũng được mà, ca ca ngoan, anh ngủ nhanh đi!"</p>
+    <p>"Được được, anh ngủ ngay đây." Diệp Phi phát hiện, đôi gò bồng đảo nhỏ nhắn phía dưới của tiểu ma nữ vẫn có chút sát thương với cậu. Để cô bé yên ổn, đành giữ nguyên quần áo nằm xuống bên cạnh.</p>
+    <p>Thế nhưng, lý tưởng thì hoàn mỹ mà hiện thực lại tàn khốc. Diệp Phi nằm xuống cũng không khiến tiểu ma nữ yên tĩnh, cô bé ngược lại còn xoay người ghé vào ngực cậu. Hai gò bồng đảo phát dục như bánh bao hấp đè nặng trên ngực khiến cậu tâm viên ý mã.</p>
+    <p>"Ca ca, giờ đến lượt anh tặng quà sinh nhật cho em rồi." Tiểu ma nữ đắc ý nói.</p>
+    <p>Diệp Phi bất đắc dĩ: "Chẳng phải nói rồi sao, hôm nay không chuẩn bị kịp, sau này bù sau. Hơn nữa hôm nay anh chẳng mang theo gì, không thể biến ra quà được đâu."</p>
+    <p>"Không, anh có mang theo mà, em biết!" Tiểu ma nữ không chịu buông tha. Lời nói của cô bé khiến Diệp Phi nhớ tới một ký ức đáng sợ: đó là lần cậu giả vờ hôn mê, cô bé này rất hứng thú với "đồ chơi" của cậu. Hôm nay cô bé đòi quà, chẳng lẽ là...</p>
+    <p>Quả nhiên, ý nghĩ này còn chưa dứt, tiểu ma nữ đã đưa bàn tay nhỏ bé chạm vào dây lưng cậu. Diệp Phi vội vã đè bàn tay cô bé lại: "Cái này không được."</p>
+    <p>"Tại sao ạ?" Tiểu ma nữ bất mãn bĩu môi, dùng giọng đầy ủy khuất hỏi: "Người ta vừa rồi không đòi, chỉ là chơi đùa chút thôi không được sao?"</p>
+    <p>"Không vì sao cả, anh nói không được là không được!" Diệp Phi mặc kệ đại pháp làm nũng của tiểu ma nữ, trầm mặt nói.</p>
+    <p>Thấy chiêu trang ủy khuất không có tác dụng với Diệp Phi, tiểu ma nữ dứt khoát không giả vờ nữa, đôi mắt đen láy xoay chuyển hai vòng, bỗng nhiên nói: "Được, vậy em sẽ đi nói với mẹ anh, nói anh ép em xem thứ đó của anh. Hừ, dù sao nó thô dài bao nhiêu, hình dáng thế nào em đều nhớ hết rồi, lúc đó mẹ anh sẽ tin ai!"</p>
+    <p>Thực ra, đối với yêu cầu của tiểu ma nữ, lòng Diệp Phi vẫn có chút phấn khích. Dù sao cô bé cũng là một mầm non mỹ nhân hư hỏng. Nhưng vì cô bé còn quá nhỏ, khiến Diệp Phi không nỡ ra tay; hai là sợ tiểu cô sau khi biết sẽ có ấn tượng xấu. Nhưng giờ bị uy hiếp, Diệp Phi đành thuận thế.</p>
+    <p>"Vậy con không được nói cho ai khác biết!" Diệp Phi nghiêm túc dặn. Thấy cô bé gật đầu mạnh, lúc này mới nhẹ nhàng cởi dây lưng.</p>
+    <p>Vân Sơ Tình dường như rất muốn nhìn thấy thứ đó của ca ca, vừa thấy dây lưng nới lỏng, đôi bàn tay nhỏ bé liền kéo quần Diệp Phi xuống, để lộ ra vật đang chưa có phản ứng gì của cậu.</p>
+    <p>"Ơ, sao trông không giống lần trước thế ạ?" Tiểu ma nữ tò mò cầm vật mềm mại của biểu ca nghiên cứu. Bàn tay nhỏ bé sờ soạng khiến dục hỏa Diệp Phi bùng cháy, vật đó rất nhanh đã bị tiểu biểu muội làm cho cứng ngắc.</p>
+    <p>"Oa!" Sự thay đổi thần kỳ khiến tiểu ma nữ phấn khích: "Lại còn biến được, vui quá! Ca ca, anh làm nó biến lại như cũ đi!"</p>
+    <p>Diệp Phi cười nói: "Cái này anh chịu, nhưng con có thể thử xem."</p>
+    <p>"Tại sao không có cách nào ạ? Không phải là đồ của anh sao?" Tiểu ma nữ khó hiểu.</p>
+    <p>Diệp Phi đẩy hông, để vật cứng rắn của mình cọ xát trong bàn tay nhỏ bé của cô bé, cười hỏi: "Con có thể khống chế tim mình ngừng đập không?"</p>
+    <p>Tiểu ma nữ lắc đầu: "Đương nhiên là không, nhưng nó liên quan gì tới tim ạ?"</p>
+    <p>"Sao không liên quan? Tim cung cấp máu cho cơ thể nên không thể dừng đập, còn vật này của ca ca là do sung huyết mới cứng như vậy, phải để máu rút ngược lại mới mềm ra được." Diệp Phi giải thích, thực chất là muốn dụ dỗ tiểu biểu muội giúp mình thoải mái.</p>
+    <p>"Vật này của ca ca là con gà trống ba chân ạ?" Tiểu ma nữ rất phấn khích, cuối cùng cũng biết tên món đồ chơi của ca ca: "Nhưng làm sao để máu chảy ngược lại ạ?"</p>
+    <p>"Vậy thì cần con giúp rồi." Diệp Phi dụ dỗ tiểu biểu muội thiên chân vô tà: "Chỉ cần con không ngừng kích thích nó, đẩy máu đi nơi khác là được, cứ làm thế này này, con thử xem."</p>
+    <p>Nói xong, Diệp Phi cầm lấy cổ tay tiểu biểu muội, bắt cô bé nắm lấy vật cứng rắn của mình khuấy động vài cái.</p>
+    <p>Tiểu ma nữ thích thú dùng bàn tay nhỏ bé nắm lấy vật cứng của ca ca khuấy động, lại thấy tay mình quá nhỏ, không nắm nổi một vòng, hơn nữa chỉ cầm được một đoạn ngắn. Thế là cô bé dứt khoát xoay người, ghé vào giữa hai chân biểu ca, dùng cả hai bàn tay nhỏ bé nắm lấy, vừa khuấy động vừa cười: "Vật của ca ca chơi vui thật, vừa to vừa cứng, lại còn hơi nóng nữa."</p>
+    <p>Diệp Phi không khỏi thắc mắc, cậu chưa bao giờ thấy vật này có gì hay ho, chẳng lẽ đây là cảm giác đặc biệt của con gái?</p>
+    <p>Một lúc sau, tiểu ma nữ thấy hơi chán, vì hai tay đều mỏi mà thứ đó vẫn chưa mềm ra, ngược lại còn cứng hơn.</p>
+    <p>"Ca ca, khi nào nó mới ra ạ?" Tiểu ma nữ bất mãn bĩu môi, tính cách vội vàng khiến cô bé mất kiên nhẫn.</p>
+    <p>"Cái này không nhất định, tùy vào mức độ kích thích." Diệp Phi dụ dỗ tiến thêm một bước: "Có lẽ bàn tay nhỏ bé của con chưa kích thích được nó, vì phần đầu mới là chỗ nhạy cảm nhất, con thử cách khác xem."</p>
+    <p>Tiểu ma nữ vội cầm đầu khấc của Diệp Phi lên, nhưng vì không có bao quy đầu, lại không có chất bôi trơn, cô bé làm không được suôn sẻ. Sốt ruột quá, đôi mắt lanh lợi xoay chuyển, cô bé bất ngờ cúi đầu, mở cái miệng nhỏ ra ngậm lấy quy đầu. Miệng cô bé quá nhỏ, chỉ ngậm được hơn một nửa, nhưng vậy cũng đã khiến cô bé rất vui.</p>
+    <p>Diệp Phi cười thầm, tiểu biểu muội này thật sự rất có thiên tài, không cần chỉ điểm cũng biết dùng cái miệng nhỏ, xem ra sau này phải dạy dỗ cẩn thận, biết đâu cô bé còn nghĩ ra nhiều trò hay hơn cả tiểu di.</p>
+    <p>Tiểu ma nữ vừa ngậm vật cứng của ca ca, vừa chú ý đến biểu cảm của cậu. Thấy cậu lộ vẻ thoải mái, lòng cô bé đắc ý: Hừ hừ, thế này mà anh không ra sao?</p>
+    <p>Diệp Phi vươn tay vuốt ve mái tóc mềm mại của cô bé, cổ vũ: "Tình Tình lợi hại lắm, ca ca thoải mái quá, cố lên, sắp ra rồi, thứ này vừa ngon vừa bổ đấy, nếu con làm nó ra được, anh sẽ ban thưởng cho con ăn!"</p>
+    <p>Được ca ca cổ vũ, tiểu ma nữ càng ra sức. Lần này không chỉ ngậm mà còn bắt đầu mút, cái đầu nhỏ cũng vô sư tự thông lắc nhẹ, để quy đầu cọ xát trong cái miệng nhỏ mềm mại. Một lúc sau, cô bé còn thông minh dùng cái lưỡi thơm tho liếm láp, bao quanh quy đầu, đồng thời dùng cả hai tay khuấy động phần dưới.</p>
+    <p>Diệp Phi không ngờ tiểu biểu muội lần đầu bú liếm lại có nhiều kỹ xảo thế. Cậu phấn khích thầm nghĩ, không biết có phải di truyền từ tiểu di không? Nếu đúng thế thì tuyệt quá. Dù tính cách tiểu di dịu dàng ngại ngùng chắc chưa thử bao giờ, nhưng dưới sự khai phá của cậu, nàng chắc chắn sẽ làm rất tốt.</p>
+    <p>Nghĩ vậy, Diệp Phi dường như thấy cảnh hai mẹ con tiểu di và tiểu ma nữ cùng phục vụ mình. Sự kích thích này khiến cậu càng phấn khích.</p>
+    <p>Rất nhanh, dưới kỹ xảo ngày càng thuần thục của tiểu biểu muội, Diệp Phi cảm thấy khoái cảm ập đến, không nhịn được nữa liền chủ động thả tinh quan, nói: "Tình Tình, ca ca sắp ra rồi, chuẩn bị kỹ nhé, đừng để lãng phí thứ tốt!"</p>
+    <p>Tiểu ma nữ ngậm lấy quy đầu, gật đầu lia lịa, vội tăng cường lực hút, đồng thời bàn tay cũng nhanh hơn. Cuối cùng, cô bé cảm thấy quy đầu căng vọt lên, từng đợt chất lỏng ấm nóng phun vào trong miệng.</p>
+    <p>Vì Diệp Phi phun liên tục, tiểu ma nữ không kịp thưởng thức vị đã vội nuốt lấy, muốn hứng hết thứ tốt của ca ca mà không lãng phí giọt nào.</p>
+    <p>Đến khi Diệp Phi bắn xong, cô bé mới buông ra. Cảm giác thứ nhận được trong miệng không ngon như ca ca nói, cô bé vội nhảy khỏi giường, chạy ra thùng rác nhổ hết ra.</p>
+    <p>"Ca ca hư hỏng, anh gạt người, chả ngon gì cả!" Tiểu ma nữ quay lại bên giường, mặt đỏ bừng trừng mắt nhìn Diệp Phi. Dù không rõ chuyện nam nữ nhưng cô bé không thấy ghét tinh dịch, chỉ là trách cậu lừa mình.</p>
+    <p>"Sao lại thế?" Diệp Phi giả vờ ngơ ngác: "Anh thấy trên mạng bảo nhiều cô gái thích ăn thứ này lắm, hơn nữa nó toàn lòng trắng trứng, bổ lắm."</p>
+    <p>"Hừ, anh nói dối! Anh chỉ muốn mình thoải mái nên mới lừa người ta ngậm thứ đó của anh, lại còn bắt em ăn cái thứ không ăn được đó, ca ca anh đúng là đồ đại bại hoại!" Tiểu ma nữ thông minh lém lỉnh, lúc này dĩ nhiên không bị gạt, giận dữ nói: "Ngày mai em sẽ mách mẹ, bảo anh lừa em ngậm cái đó, còn bắt em ăn thứ chảy ra, xem mẹ có đánh chết anh không!"</p>
+    <p>Diệp Phi sợ nhất chiêu này, vội đầu hàng: "Được được, là ca ca không tốt, ca ca là đồ hư hỏng, lừa Tình Tình đáng yêu của chúng ta. Con nói xem muốn ca ca thế nào, ca ca nguyện ý đền bù cho con!"</p>
+    <p>Tiểu ma nữ vốn không định mách lẻo, dù bị lừa ăn cái thứ đó nhưng vật cứng của ca ca vẫn rất thú vị, sau này cô bé còn muốn chơi thường xuyên. Giờ nghe ca ca đền bù, cô bé vô cùng kinh ngạc. Đôi mắt đen láy xoay chuyển một vòng rồi chán nản: "Được rồi, em chưa nghĩ ra."</p>
+    <p>"Ca ca thì nghĩ ra rồi." Diệp Phi cười tà ác: "Vừa rồi Tình Tình làm ca ca thoải mái, để đền bù cho con, ca ca cũng làm con thoải mái nhé?"</p>
+    <p>Tiểu ma nữ có lẽ cảm thấy hơi lạnh, lại nhảy lên giường nằm xuống cạnh Diệp Phi: "Làm thế nào cho Tình Tình thoải mái ạ?"</p>
+    <p>"Chính là cách như vừa rồi con làm cho anh." Diệp Phi cười hì hì.</p>
+    <p>Tiểu ma nữ thắc mắc: "Nhưng Tình Tình đâu có thứ đó như ca ca, sao anh dùng cách như vừa rồi được?"</p>
+    <p>"Tình Tình có cái lồn mà, ca ca nhất định sẽ làm cái lồn nhỏ của con rất thoải mái." Diệp Phi cười dâm ô.</p>
+    <p>"Lồn? Đó là cái gì ạ?"</p>
+    <p>Diệp Phi nhẹ nhàng tách hai chân mảnh khảnh của cô bé, dùng ngón tay cách lớp vải lót nhẹ nhàng cong vào khe nhỏ non nớt, cười nói: "Chính là ở chỗ này đây."</p>
+    <p>"Á..." Sự kích thích lạ lẫm khiến tiểu ma nữ kinh hô. Chỗ này đến cả cô bé còn chưa bao giờ chạm tới, chỉ khi đi vệ sinh mới lau qua, chưa từng có cảm giác như bị điện giật khi ngón tay ca ca lướt qua như lúc này.</p>
+    <p>"Đây chính là cái lồn của Tình Tình ạ? Thực sự có thể làm em thoải mái sao?" Tiểu ma nữ không mấy tin tưởng, nhưng cảm giác ngón tay ca ca lướt qua quả thực rất thú vị.</p>
+    <p>Dù kiến thức về phương diện này hoàn toàn là con số không, nhưng nghĩ đến việc ca ca sẽ dùng miệng với chỗ đó của mình, cô bé theo bản năng cảm thấy ngượng ngùng.</p>
+    <p>Nhìn vẻ mặt đỏ bừng đáng yêu của tiểu biểu muội, lòng Diệp Phi nóng rực, cười dụ dỗ: "Đương nhiên, lần này ca ca không lừa con, nó thật sự có thể mang lại cho con cảm giác bay bổng khoái lạc."</p>
+    <p>Nghĩ đến biểu cảm thoải mái của ca ca lúc nãy, tiểu ma nữ không khỏi động tâm, gật đầu: "Được rồi, vậy Tình Tình phải làm sao ạ?"</p>
+    <p>"Con chỉ cần nằm hưởng thụ là được." Diệp Phi nói xong, nhẹ nhàng cởi bỏ chiếc áo lót nhỏ trên người cô bé, thân thể non nớt của tiểu ma nữ...</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0230.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0232.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

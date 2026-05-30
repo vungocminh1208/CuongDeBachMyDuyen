@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 226 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 226</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 226</small>
+    Chương 226: Cường thế nữ vương
+  </h1>
+  <div class="chapter-body">
+    <p>Nghe mẹ nói xong, gương mặt tuyệt mỹ của Minh Nguyệt Tâm bỗng chốc đỏ bừng. Nàng trừng mắt lườm Diệp Phi một cái sắc lẹm, rồi mới ôn nhu nói với Tô Ngọc Nhàn: "Mẹ, mẹ nghỉ ngơi cho tốt nhé, cơm tối để con làm." Nói xong, nàng đứng dậy, nắm tay Diệp Phi kéo rời khỏi phòng Tô Ngọc Nhàn. Hai người ra tới phòng khách ngồi xuống, Diệp Phi mở lời: "Tâm tỷ, em..." "Ngừng, đã tới mức này rồi, cậu còn gọi tôi là tỷ?" Minh Nguyệt Tâm cắt ngang lời Diệp Phi. Nàng bây giờ đã chẳng còn hận hắn nữa. Qua biểu hiện vừa rồi của mẹ, nàng thừa biết mẹ mình thật sự đã yêu chàng trai nhỏ hơn mình này. Hơn nữa, những thay đổi của mẹ trong thời gian qua Minh Nguyệt Tâm đều thu hết vào mắt, nên trong lòng thậm chí còn có chút cảm kích Diệp Phi. Chỉ là bảo nàng phải tỏ thái độ tốt với hắn ngay lúc này thì không thể nào. Vả lại, hắn đã cùng mẹ mình như vậy mà vẫn gọi nàng là tỷ, điều này khiến Minh Nguyệt Tâm cảm thấy vô cùng quái đản. Nhưng nếu không cho gọi như thế, nàng cũng chẳng biết phải làm sao, chẳng lẽ lại bắt hắn gọi mình là cô? Diệp Phi gãi gãi đầu: "Mẹ cô là mẹ nuôi của em, cô lại lớn hơn em, không gọi chị thì gọi là gì?" "Hừ!" Minh Nguyệt Tâm hừ lạnh một tiếng, thầm nghĩ, còn mẹ nuôi? Rõ ràng là "mẹ" theo kiểu khác thì có. Nhưng là một cô gái, nàng không thể nào thốt ra những lời đó được, đành hừ một tiếng rồi mặc kệ Diệp Phi. Hai người cứ lặng lẽ ngồi đó một lúc, Diệp Phi cảm thấy có chút ngượng ngùng nên lên tiếng: "Em đi nấu cơm đây." "Nấu cơm? Chẳng lẽ tối nay cậu định ở lại đây?" Minh Nguyệt Tâm kinh ngạc hỏi. Diệp Phi gật đầu: "Không được sao?" "Đương nhiên là không!" Minh Nguyệt Tâm quả quyết: "Từ nay về sau cậu có thể tới, nhưng phải là lúc tôi không có nhà, và tuyệt đối không được ở lại qua đêm." Dẫu hiện tại Minh Nguyệt Tâm đã miễn cưỡng chấp nhận mối quan hệ giữa Diệp Phi và mẹ, nhưng đó chỉ có thể là khi nàng không nhìn thấy. Bằng không, họ ở ngay trong phòng cách mình một bức tường mà thân mật, bảo nàng làm sao chịu nổi? "Được rồi." Diệp Phi hơi bất đắc dĩ đứng dậy, dặn dò: "Nhưng cô phải chăm sóc mẹ cho tốt, đừng để bà mệt." "Còn chẳng phải tại cậu gây ra sao? Được rồi, mau đi đi." Minh Nguyệt Tâm xua tay, sợ Diệp Phi nhìn thấy gương mặt đỏ bừng của mình. Đưa mắt nhìn Diệp Phi rời đi, Minh Nguyệt Tâm không khỏi nhớ lại câu nói vừa rồi của mẹ: "Bị hắn giày vò dữ quá, chân hơi nhũn."</p>
+    <p>Tên này có mạnh tới mức đó sao? Có thể khiến một người phụ nữ đang độ tuổi "hổ lang" biến thành như vậy, mà bản thân hắn vẫn còn sung sức cực kỳ. Nghĩ đến đây, Minh Nguyệt Tâm không khỏi thẫn thờ. Xuống tới lầu dưới, Diệp Phi quay đầu nhìn lại căn hộ nhà họ Minh, khóe miệng lộ ra nụ cười tà ác. Vừa rồi trước mặt Minh Nguyệt Tâm, cái vẻ ngoan ngoãn kia hoàn toàn là hắn giả vờ. Thực ra, tên tà ác này đã chuẩn bị ra tay với cả Minh Nguyệt Tâm rồi. Một tuyệt sắc mỹ nữ có cá tính như vậy, tự nhiên không thể để người khác hưởng lợi. Chỉ là chuyện này không thể vội, phải thuyết phục được Tô Ngọc Nhàn phối hợp với mình đã. Nhìn đồng hồ, mới sáu giờ chiều, về nhà bây giờ thì còn sớm quá. Sau khi ra khỏi khu chung cư, Diệp Phi lái xe hướng vào trung tâm thành phố. Đã lâu không tới trụ sở Lăng Vân Hội xem xét, thừa dịp hôm nay có thời gian, hắn định qua đó một chuyến. Dọc đường không nói chuyện, Diệp Phi nhanh chóng đến trụ sở Lăng Vân Hội. Điều khiến hắn hơi lạ là nơi vốn dĩ khá cởi mở này hôm nay lại có vẻ phòng bị nghiêm ngặt. Trước cửa lớn treo tấm biển tạm dừng kinh doanh, đứng xung quanh cũng có rất nhiều kẻ trông bặm trợn. Tuy nhiên, Diệp Phi biết rõ những người này chỉ là lớp tiểu đệ tầng đáy, dùng để làm kiểng là chính, còn các cao thủ mà hắn dày công gây dựng đều đang ẩn mình trong bóng tối. Xuống xe, Diệp Phi rảo bước về phía cửa định hỏi xem chuyện gì đang xảy ra. Ngờ đâu chưa kịp lên tiếng, đã có một người trông như quản lý đi tới, khách khí nói: "Xin lỗi tiên sinh, hôm nay chúng tôi tạm dừng kinh doanh, ngài mai hãy ghé lại nhé." "Hửm?" Diệp Phi nhíu mày, chẳng lẽ tên này không biết hắn? Theo lý mà nói, đã làm đến chức quản lý thì phải nhận ra mặt chủ chứ, liền hỏi: "Anh là mới tới à?" "Đúng vậy, tôi mới được điều từ chi nhánh khác tới. Chắc tiên sinh là khách quen của chúng tôi nhỉ?" Người quản lý vẫn giữ nụ cười khách khí: "Thật sự ngại quá, hôm nay bên trong đang có việc." Diệp Phi đang định giải thích thân phận thì bên cạnh có người nhận ra hắn, vội vàng lên tiếng: "Bang chủ, ngài đã tới?" "Ừ." Diệp Phi gật đầu với người nọ, hỏi: "Đức thúc có ở đây không?" Trước mặt người ngoài, Diệp Phi đương nhiên không thể gọi Trương Nhất Đức là ông, mà xưng hô là Đức thúc. Đây là cách gọi thống nhất trong bang vì Trương Nhất Đức là nguyên lão, gọi như vậy cũng thể hiện sự tôn trọng. "Đức thúc đang ở trên lầu tiếp khách quý ạ." Lúc này người quản lý mới sực tỉnh, vội vàng đáp: "Bang chủ, thật xin lỗi, vừa rồi tôi không nhận ra ngài." Diệp Phi mỉm cười: "Không sao, anh làm rất đúng, giờ dẫn ta lên gặp Đức thúc đi." "Vâng!" Người quản lý đáp lời, đích thân dẫn đường lên phòng họp trên lầu. Dọc đường, Diệp Phi hỏi về lai lịch của anh ta. Hóa ra, Trương Nhất Đức và nhóm Đầu Trọc sợ nhân viên trung tầng ở một vị trí quá lâu sẽ làm ra chuyện mờ ám, nên quyết định cứ sau một khoảng thời gian lại luân chuyển họ. Cách này tuy hơi phiền nhưng ngăn chặn được rất nhiều vấn đề nội bộ. Tới cửa phòng họp, Diệp Phi xua tay ra hiệu cho người quản lý rời đi, sau đó nhẹ nhàng gõ cửa rồi đẩy bước vào. Trong phòng lúc này chỉ có mười mấy người. Tại chiếc bàn dài, chỉ có hai người ngồi đó: một là Trương Nhất Đức, người đối diện là một phụ nữ mặc đồ đen, nhan sắc tuyệt đối có thể sánh ngang với Liễu Diệc Như. Đó là một người phụ nữ khó đoán tuổi. Nhìn gương mặt thì như mới ngoài hai mươi, nhưng vóc dáng nóng bỏng lại giống như đã ngoài ba mươi, còn khí thế và ánh mắt thì lại tràn đầy vẻ lão luyện của người đã ngoài bốn mươi. Thấy một tên nhóc trực tiếp xông vào, người phụ nữ tuy xinh đẹp nhưng thần sắc lạnh băng kia không khỏi nhíu mày, trong lòng thấy bất mãn với quy củ của Lăng Vân Hội. Nhưng Trương Nhất Đức đã đầy mặt tươi cười đứng dậy, cung kính nói: "Bang chủ, ngài tới rồi?" Cũng như Diệp Phi không gọi Trương Nhất Đức là ông trước mặt người ngoài, ở những trường hợp chính thức, Trương Nhất Đức luôn gọi hắn là Bang chủ. Nghe Trương Nhất Đức xưng hô như vậy, người phụ nữ áo đen không khỏi kinh ngạc đứng dậy. Đến lúc này, Diệp Phi mới nhìn rõ vóc dáng thật của nàng: cao chừng một mét tám, gần như bằng hắn. Trong bộ đồ bó màu đen, vóc dáng nàng trông cực kỳ bốc lửa. Khác với vẻ hoàn mỹ ở mọi góc độ của Liễu Diệc Như, vóc dáng người phụ nữ này không theo tỉ lệ thông thường, đôi chân của nàng hơi quá dài, nhưng Diệp Phi không thể không thừa nhận, điểm gợi cảm nhất ở người phụ nữ này chính là đôi chân thẳng tắp, thon dài kia. Nhìn rõ khí thế và gương mặt nàng, một đoạn tư liệu hiện ra trong đầu Diệp Phi: Diệp Tuyền, người kiểm soát thế giới ngầm ở thành phố Gần Biển, năm nay ba mươi lăm tuổi. Nguyên là vợ của bang chủ Phi Long bang – một trong những bang phái lớn ở Gần Biển. Mười một năm trước, sau khi chồng qua đời, nàng mới hai mươi bốn tuổi đã tiếp quản Phi Long bang. Sau mười năm dốc sức, nàng cuối cùng thống nhất thế giới ngầm ở Gần Biển, tuyệt đối là một nữ vương thực thụ. Diệp Phi mỉm cười, gật đầu với Trương Nhất Đức, ngồi xuống vị trí cũ của ông, rồi làm động tác "mời" với Diệp Tuyền, cười bảo: "Tự giới thiệu một chút, tôi là bang chủ hiện tại của Lăng Vân Hội, Diệp Phi. Nói ra thì, tôi với bang chủ Diệp đây vẫn là người trong tộc đấy." Lời Diệp Phi làm Diệp Tuyền kinh ngạc. Nàng không ngờ vị bang chủ trẻ tuổi quá mức này lại nhận ra mình ngay lập tức, trong khi mình thì coi đối phương như một tên tiểu đệ không hiểu chuyện. Sự khinh thị trong lòng dành cho Diệp Phi giảm đi đáng kể. Nàng ngồi xuống theo cử chỉ của hắn, mỉm cười: "Quá khen, tôi cũng từng nghe danh của Diệp bang chủ từ lâu." "Không biết bang chủ Diệp đột nhiên đại giá quang lâm Vọng Hải chúng tôi có chuyện gì?" Sau vài câu xã giao, Diệp Phi đi thẳng vào vấn đề. Diệp Tuyền tuy đã bắt đầu coi trọng Diệp Phi nhưng vẫn chưa thật sự đặt hắn vào mắt. Thấy hắn thẳng thắn như vậy, nàng nói: "Tình huống cụ thể tôi đã bàn với Đức thúc của quý hội rồi, chẳng lẽ Đức thúc chưa nói với Diệp bang chủ sao?" "Ồ? Vậy Đức thúc nói xem nào." Diệp Phi mỉm cười với Trương Nhất Đức, thầm nghĩ người phụ nữ này thật độc địa, vừa lên tiếng đã muốn chia rẽ hắn và Trương Nhất Đức. Nhưng sự ăn ý giữa hai người sao người ngoài có thể hiểu nổi? Chưa nói tới việc Diệp Phi đã giao toàn bộ quyền hành trong bang cho Trương Nhất Đức, dù không có thì hắn cũng chẳng bao giờ vì một câu nói của nàng mà nghi kỵ ông. Trương Nhất Đức ngồi cạnh Diệp Phi cũng mỉm cười: "Là thế này, lần này Diệp Tuyền bang chủ tới là muốn hợp tác với chúng ta." Vừa rồi nghe Diệp Phi và Diệp Tuyền gọi nhau là "bang chủ Diệp", ông cảm thấy khá quái dị nên khi tới lượt mình nói, ông gọi thẳng tên đầy đủ của Diệp Tuyền. Diệp Phi chuyển ánh mắt sang Diệp Tuyền, nhìn chằm chằm vào gương mặt đẹp đến mức khiến người ta hoa mắt kia, hỏi: "Không biết Diệp bang chủ định hợp tác thế nào?" Diệp Tuyền không chút yếu thế đối diện với Diệp Phi, chậm rãi nói: "Lăng Vân Hội các người hiện đã cơ bản kiểm soát toàn bộ Vọng Hải, còn Phi Long bang chúng tôi ở Gần Biển cũng có vị thế tương tự. Nhưng vùng Lâm Hải – nơi cùng với chúng ta xưng là Tam Hải Đông Nam – đang rất hỗn loạn. Cho nên tôi nghĩ, chúng ta có thể hợp tác cùng nhau chiếm lấy Lâm Hải." "Đề nghị không tồi." Diệp Phi cười nói: "Chỉ là thế lực ở Lâm Hải rắc rối phức tạp, không dễ nuốt như vậy đâu. Hơn nữa, dù có chiếm được rồi thì Diệp bang chủ định phân chia lợi ích thế nào?" "Đương nhiên là mỗi bên một nửa." Diệp Tuyền nói: "Tất nhiên, nếu Diệp bang chủ muốn hợp tác lâu dài, chúng ta có thể kết đồng minh, cùng nhau kinh doanh. Lâm Hải là một miếng thịt béo bở đấy." Diệp Phi cười đáp: "Nếu đã như vậy, sao Diệp bang chủ không tự mình ăn trọn miếng thịt này, lại muốn chia ra một nửa lợi ích?" "Vừa rồi cậu cũng nói rồi đấy, thế lực Lâm Hải rắc rối phức tạp. Nói thật, chỉ dựa vào một mình Phi Long bang chúng tôi thì chắc chắn không nuốt trôi." Diệp Tuyền thẳng thắn: "Lăng Vân Hội các người cũng vậy thôi. Chỉ khi chúng ta hợp tác mới làm nên chuyện. Đến lúc đó, thế lực cả hai đều mở rộng thêm năm mươi phần trăm, cớ sao không làm?" "Quả thật rất đáng để tâm động." Diệp Phi gật đầu, nhưng ngay lập tức xoay chuyển lời nói: "Chỉ là, có Vọng Hải trong tay, tôi đã thấy hài lòng rồi. Hơn nữa anh em dưới quyền tôi cũng chỉ có chừng đó, khống chế một mình Vọng Hải đã là hết sức, nếu thêm nơi khác nữa e là nhân lực không đủ." Trong mắt Diệp Tuyền lóe lên tia khinh miệt, thầm khinh bỉ Diệp Phi là kẻ không có chí lớn. Tuy nhiên, nàng vẫn tiếp tục: "Anh em có thể chiêu mộ thêm mà. Đợi chúng ta chiếm được Lâm Hải, chắc chắn sẽ có rất nhiều người tới đầu quân." "Nhưng mà làm chuyện này, e là sẽ có thương vong lớn lắm?" Diệp Phi lắc đầu: "Tôi không muốn anh em trong hội phải mạo hiểm như vậy. Cho nên, Diệp bang chủ mời tìm người khác đi." Diệp Tuyền tuyệt đối không ngờ Diệp Phi lại từ chối trực tiếp như vậy. Trong lòng nàng có chút lo lắng nhưng vẫn không đổi sắc mặt, nhìn sang Trương Nhất Đức: "Đức thúc, ý ông cũng vậy sao?" "Đương nhiên." Trương Nhất Đức không chút do dự đáp: "Ý của bang chủ chính là ý của tôi, cho nên tôi chỉ có thể nói lời xin lỗi." "Trước khi tới đây, tôi cũng đã nghe danh bang chủ mới của Lăng Vân Hội, nghe đồn ghê gớm lắm." Diệp Tuyền cười lạnh: "Không ngờ danh bất hư truyền, cậu chỉ là một kẻ nhát gan không có chí lớn mà thôi. Xem ra Lăng Vân Hội cũng không trụ được bao lâu nữa đâu." "Phép khích tướng đó vô dụng với tôi thôi." Diệp Phi cười nhạt: "Hơn nữa, hy vọng Diệp bang chủ nhớ cho, đây là Vọng Hải chứ không phải Gần Biển. Tôi có thể không để bụng lời cô nói, nhưng anh em của tôi thì chưa chắc. Thế nên, kính mong Diệp bang chủ cẩn thận lời nói. Đức thúc, tiễn khách." Trương Nhất Đức không có được sự hàm dưỡng tốt như Diệp Phi, lúc này cũng đã tức giận, đứng dậy trầm giọng: "Diệp bang chủ, mời cho." "Chờ đã." Trong mắt Diệp Tuyền thoáng qua tia khuất nhục, nàng nghiến răng nói: "Tôi có thể xin lỗi về lời nói vừa rồi, nhưng vẫn hy vọng có thể hợp tác với Lăng Vân Hội. Lần này lợi ích có thể chia bốn sáu, các người chiếm sáu, chúng tôi chiếm bốn!" Diệp Phi như không hề nghe thấy lời nàng, dùng tay chống cằm, cúi đầu nhìn bàn hội nghị như thể trên đó có thứ gì đáng nghiên cứu lắm. Còn Trương Nhất Đức, khi chưa nhận được chỉ thị mới từ Diệp Phi, vẫn như cũ làm động tác tiễn khách.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0225.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0227.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

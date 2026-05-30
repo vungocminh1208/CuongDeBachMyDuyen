@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 188 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 188</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 188</small>
+    Chương 188
+  </h1>
+  <div class="chapter-body">
+    <p>============================================================ Chương 188: Nhạc mẫu hậu đình hoa</p>
+    <p>Cho đến khi tia sức lực cuối cùng cũng tiêu tán, trong sự kích động Đường Nhu mới thở gấp gáp xin Diệp Phi tha thứ.</p>
+    <p>Diệp Phi nhìn đồng hồ, phát hiện hiện tại không những đã tan học, mà ngay cả thời gian giải lao cũng đã qua hơn phân nửa, trong lòng không khỏi toát mồ hôi. Dưới sự cuồng nhiệt của Đường Nhu, bản thân hắn cũng có chút quên mình, cũng may lúc này không có ai tới đây, bằng không chẳng phải sẽ bị người ta bắt gặp sao? Để tránh đêm dài lắm mộng, hắn vội vàng rời khỏi thân thể mềm mại của Đường Nhu, chậm rãi rút con cặc lớn của mình ra khỏi tiểu dâm huyệt đang chịu đủ tàn phá của nàng, khiến cho Đường Nhu lại phát ra liên tiếp tiếng yêu kiều.</p>
+    <p>Lấy một tờ khăn ướt từ trong túi áo ra, giúp Đường Nhu làm sạch một chút, Diệp Phi đang muốn mặc lại y phục, không ngờ Đường Nhu lại kéo hắn lại, bắt hắn nằm xuống bên cạnh mình. Nàng tựa khuôn mặt tuyệt mỹ đã khôi phục vẻ hồng nhuận vào ngực hắn, một tay ôm cổ hắn, bàn tay còn lại đưa xuống phía dưới, nhẹ nhàng vuốt ve con cặc lớn dù đã phóng thích nhiều lần nhưng vẫn tinh thần vô cùng kia, ôn nhu nói: "Ở lại cùng ta một lát đi, thuận tiện kể cho ta nghe hành tung của ngươi mấy ngày nay."</p>
+    <p>"Nhưng mà..." Diệp Phi quay đầu nhìn về phía cửa, ý muốn hỏi nếu có người đến thì phải làm sao?</p>
+    <p>Đường Nhu cười nói: "Cả buổi sáng chỉ có lớp các ngươi có tiết thể dục, hơn nữa phòng dụng cụ này là do ta phụ trách, nếu không phải giờ lên lớp thì căn bản sẽ không có ai tới."</p>
+    <p>Diệp Phi lúc này mới yên tâm, nhẹ nhàng nhắm mắt lại, một bên hưởng thụ bàn tay nhỏ bé của nàng âu yếm, một bên cười nói: "Nếu là kể chuyện xưa, ta đây dù sao cũng phải có chút phúc lợi chứ."</p>
+    <p>"Được." Đường Nhu đáp ứng, thân thể nhẹ nhàng trượt xuống phía dưới, đi thẳng tới hai chân hắn, sau đó hai tay nâng bầu vú đầy đặn của mình lên, nhẹ nhàng kẹp dương vật của Diệp Phi vào giữa, lại dùng bầu vú bao trọn lấy dương vật, chậm rãi chuyển động, đồng thời ngẩng đầu cười quyến rũ với Diệp Phi: "Phúc lợi này thế nào?"</p>
+    <p>Diệp Phi không khỏi kinh ngạc mở to mắt nhìn Đường Nhu, hỏi: "Sao ngươi biết chiêu này?" Vấn đề này lúc nãy hắn đã thấy lạ, chỉ là nhất thời không nhớ ra để hỏi.</p>
+    <p>"Đừng tưởng chỉ có bọn nam nhi các ngươi mới biết xem phim bậy!" Đường Nhu liếc mắt đưa tình đầy kiều mỵ, sau đó cúi đầu, mở cái miệng nhỏ nhắn ngậm lấy đầu cặc lớn mà bầu vú nàng không thể bao trọn hết.</p>
+    <p>"Hóa ra là vậy, ngươi đúng là một tiểu sắc nữ." Diệp Phi cười nói: "Bất quá ta rất thích, cứ như vậy mà phục vụ lão công cho tốt đi, lão công kể chuyện xưa cho nàng nghe."</p>
+    <p>Khi tiếng chuông tan học vang lên, Diệp Phi cũng đã đại khái kể xong lần hành động này cho Đường Nhu, mà hắn cũng đã đạt đến cực hạn dưới sự phục vụ của nàng, thân thể rung lên dữ dội, sau đó bùng nổ ngay trong cái miệng nhỏ của nàng.</p>
+    <p>Lúc này, Đường Nhu không hề trốn tránh, mà là chăm chú ngậm lấy đầu cặc của hắn, cho đến khi hắn phun ra giọt cuối cùng, mới để con cặc dù đã mềm nhũn nhưng quy mô vẫn vô cùng kinh người kia rời khỏi miệng mình.</p>
+    <p>Ngay khi Diệp Phi tưởng rằng Đường Nhu sẽ nhổ thứ đó ra, thì nàng lại "ực" một tiếng nuốt xuống, hơn nữa dường như còn chưa thỏa mãn, thè lưỡi liếm sạch những gì còn dính nơi khóe miệng.</p>
+    <p>Động tác của Đường Nhu khiến Diệp Phi vừa cảm động vừa kích động, hắn nâng khuôn mặt nàng lên, ôn nhu nói: "Thật dịu dàng, nàng không cần miễn cưỡng bản thân, ta biết thứ đó vị không ngon."</p>
+    <p>"Sao lại không ngon chứ." Đường Nhu rất hưởng thụ sự nhu tình của Diệp Phi, cười nói: "Bất quá ta không hề miễn cưỡng, bởi vì ta thích hương vị của chàng!"</p>
+    <p>Cô gái như vậy, làm sao có thể không khiến Diệp Phi thêm yêu thương? Hắn không nhịn được ôm nàng vào lòng, âu yếm thêm một lúc lâu mới cùng nàng rời khỏi phòng dụng cụ.</p>
+    <p>Đưa Đường Nhu về ký túc xá xong, Diệp Phi không đi tìm Diệp Vân Khinh và Lâm Linh ăn trưa, vì hắn muốn đến tổng bộ Lăng Vân Hội xem xét. Hiện tại quan trọng nhất chính là kế hoạch chế tạo cao thủ của hắn, mặc dù vô cùng yên tâm về Trương Nhất Đức và Đầu Trọc, nhưng Diệp Phi vẫn muốn đích thân kiểm tra tiến độ.</p>
+    <p>Gọi điện cho Diệp Vân Khinh báo lịch trình buổi chiều của mình, đồng thời nhờ nàng nhắn lại với Lâm Linh rằng tối nay hắn sẽ đến nhà nàng. Về việc giải thích với Lâm Linh lý do vì sao rời đi cùng Đường Nhu mà không quay lại, thì đó là việc của Diệp Vân Khinh, tin rằng người đã biết hết mọi chuyện như nàng sẽ hoàn thành tốt nhiệm vụ này.</p>
+    <p>Đối với Lâm Linh, trong lòng Diệp Phi vẫn rất hổ thẹn, vì bản thân đã đem người đáng lẽ chỉ dành trọn tình yêu cho cô chia làm vô số phần, nên Diệp Phi không muốn giấu giếm điều gì, chỉ là sợ nàng nhất thời không tiếp nhận được nên mới quyết định tạm thời chưa nói chân tướng, đợi sau này có cơ hội sẽ từ từ thổ lộ.</p>
+    <p>Phải nói rằng, Trương Nhất Đức tuy tuổi đã cao, nhưng sự quyết đoán trong công việc lại chẳng thua kém bất kỳ người trẻ tuổi nào. Đêm qua vừa mới định ra lộ trình phát triển với Diệp Phi, đến trưa hôm nay, ông đã thu phục được năm bang hội nhỏ, thu nhận các thành viên và thống nhất đưa về tầng hầm ngầm của Lăng Vân Hội.</p>
+    <p>Tầng hầm ngầm hiện tại đã khác xa tối hôm qua, những đồ đạc khác đều đã được chuyển đi, trong đó chỉ còn lại vài chục thiết bị do Đầu Trọc và đám người gấp rút chế tạo. Như vậy, gần như mỗi giờ đều có hơn mười cao thủ được tạo ra, tiến độ này khiến Diệp Phi khá hài lòng.</p>
+    <p>Hơn nữa, mức độ an toàn nơi này cao hơn ngày hôm qua rất nhiều lần. Diệp Phi cảm ứng một chút, xung quanh tầng hầm này, ngoài sáng trong tối có đến cả trăm cao thủ bảo vệ. Vì những cao thủ này khi cải tạo đều được cấy lệnh tuyệt đối trung thành với Diệp Phi, dù trước kia chưa từng gặp hắn cũng có thể nhận ra ngay lập tức, nên khi Diệp Phi đến đây đã được đón tiếp vô cùng cung kính.</p>
+    <p>"Lão đại, ngươi đến rồi!" Vừa vào cửa, Diệp Phi đã nghe thấy vài âm thanh vui mừng, chính là đám người Đầu Trọc từ Lâm Hải trở về hỗ trợ. Tình hình Lâm Hải hiện tại cũng đã cơ bản ổn định, mặc dù vẫn còn không ít thế lực chiếm giữ, nhưng đám người Đầu Trọc đã có thể rút ra được rồi.</p>
+    <p>Diệp Phi gật đầu với họ, ra hiệu mọi người ngồi xuống, sau đó hỏi Trương Nhất Đức: "Trương gia gia, tiến độ thế nào rồi?"</p>
+    <p>Trương Nhất Đức cười nói: "Rất không tồi, từ tối qua đến giờ chúng ta đã có thêm hơn ba trăm cao thủ, con số này vẫn đang không ngừng tăng lên. Tin rằng không bao lâu nữa, đừng nói là Vọng Hải và Lâm Hải, ngay cả khi cậu muốn thống nhất thế giới ngầm toàn Trung Quốc cũng không thành vấn đề."</p>
+    <p>"Việc đó không vội, hiện tại việc cấp bách là phải triệt để khống chế Vọng Hải trước." Diệp Phi xua tay nói: "Đúng rồi, những người bị cải tạo kia có phản ứng gì không?"</p>
+    <p>"Dựa theo phân phó của cậu, trước khi cải tạo chúng tôi đều đã nói rõ tác dụng phụ cho họ biết. Ban đầu họ đều không muốn tiếp nhận cải tạo." Nói đến đây, Trương Nhất Đức cười: "Nhưng sau khi đám người Đầu Trọc phô diễn thực lực, tuyệt đại đa số mọi người đã đồng ý. Dù sao thì trong giới này, thực lực mới là quan trọng nhất, nên cơ bản không ai quan tâm đến tác dụng phụ đó. Chỉ có một số rất ít kẻ quá coi trọng chuyện này là không tình nguyện, nhưng điều đó đâu tới lượt họ quyết định."</p>
+    <p>Diệp Phi thở phào một hơi, cười nói: "Vậy là tốt rồi, vốn dĩ tôi còn lo họ không muốn tiếp nhận. Tuy chúng ta có thể khiến họ tuyệt đối trung thành, nhưng ý thức vốn có của họ không mất đi, nếu họ có ý kiến thì e rằng sau này làm việc sẽ tiêu cực, đó không phải là điều tôi muốn thấy."</p>
+    <p>"Yên tâm đi lão đại, những kẻ phản đối chúng tôi đều đã ghi nhớ rồi." Đầu Trọc nói: "Sau này chỉ cần không giao cho họ nhiệm vụ quan trọng là được."</p>
+    <p>"Không sai." Diệp Phi tán thưởng gật đầu, rất hài lòng về sự cẩn thận của họ, lại hỏi: "Đúng rồi, tình hình phía Lâm Hải của các ngươi thế nào? Người thu nhận vào có đáng tin không?"</p>
+    <p>"Chuyện này..." Tím Mao gãi đầu, cười đầy xấu hổ: "Vì lần trước đối đầu với Thanh Long bang thực lực quá chênh lệch, căn bản không đo lường được độ trung thành của họ. Nhưng giờ đã có thiết bị này, thật sự không cần sợ họ có dị tâm nữa."</p>
+    <p>Lời Tím Mao nói rất có lý, vì vậy Diệp Phi không dây dưa thêm ở vấn đề này nữa, tán gẫu với họ một lúc rồi rời khỏi tổng bộ Lăng Vân Hội.</p>
+    <p>Khi ra ngoài, thời gian vẫn chưa tới giờ tan học. Diệp Phi không ngờ mọi việc lại thuận lợi như vậy, hiện tại còn thời gian, hắn quyết định đến trường đón Lâm Linh để tạo cho nàng một bất ngờ nhỏ.</p>
+    <p>Nghĩ là làm, Diệp Phi tiện tay bắt một chiếc taxi, đầu tiên bảo tài xế đưa mình đến một cửa hàng đồ dùng tình nhân mua vài thứ, sau đó mới tiến đến trường học.</p>
+    <p>Khi Diệp Phi đến cổng trường, tiếng chuông tan học vừa vang lên. Đợi một lát, hắn thấy Diệp Vân Khinh và Lâm Linh tay trong tay đi ra, gần như cùng lúc nhìn thấy Diệp Phi đang đợi ở đó.</p>
+    <p>Trên mặt Lâm Linh lộ ra nụ cười ngọt ngào, cô chạy tới cùng Diệp Vân Khinh, hỏi: "Việc của huynh làm xong rồi sao?"</p>
+    <p>"Đúng vậy, rất thuận lợi, nên mới tới đón các nàng đây." Diệp Phi cười nói.</p>
+    <p>Trong lòng Lâm Linh và Diệp Vân Khinh đều dâng lên một chút hạnh phúc. Lâm Linh hỏi: "Nghe Khinh Khinh nói tối nay huynh muốn đến nhà chúng ta ở, phải không?"</p>
+    <p>Diệp Phi gật đầu cười, Diệp Vân Khinh lại nói: "Không phải chúng ta hai người, mà là một mình huynh ấy. Thẩm thẩm và Tĩnh Tĩnh đều còn chưa biết tin ca trở về đâu, ta phải đi báo cho họ một tiếng." Nói đến đây, nàng hì hì cười: "Hơn nữa, ta cũng không muốn làm kỳ đà cản mũi hai người nha." Nói xong, không đợi Lâm Linh phản ứng, nàng đã khúc khích cười rồi chạy mất.</p>
+    <p>Diệp Phi kéo bàn tay nhỏ bé của Lâm Linh đang hơi ửng đỏ, nói: "Chúng ta cũng đi thôi."</p>
+    <p>"Ân." Vì ngượng ngùng mà hơi mơ màng, Lâm Linh đi theo Diệp Phi vài bước mới nhớ ra hôm nay mẹ sẽ đến đón mình, vì vậy nói: "Vẫn là đợi lát nữa đi, mẹ ta sắp tới rồi."</p>
+    <p>Nghe nói sắp được gặp Tiêu Hàm Nguyệt, trong lòng Diệp Phi không khỏi kích động, hắc hắc, trong không gian của hắn đã chuẩn bị sẵn một món quà đặc biệt cho nàng rồi.</p>
+    <p>Qua không lâu, hai người thấy chiếc xe quen thuộc của Tiêu Hàm Nguyệt đỗ lại trước cổng trường. Tiêu Hàm Nguyệt trong bộ trang phục công sở bước xuống xe, nhìn quanh quất. Lâm Linh biết mẹ đang tìm mình, nên vẫy tay gọi: "Mẹ, chúng con ở đây."</p>
+    <p>Vì Diệp Phi và Lâm Linh đứng cách cổng ra vào một chút, lúc Tiêu Hàm Nguyệt đi tới không nhìn thấy Lâm Linh, trong lòng không khỏi sốt ruột. Nhưng ngay lập tức nghe thấy tiếng con gái, quay đầu lại, hình ảnh đầu tiên đập vào mắt lại là bóng dáng mà nàng ngày nhớ đêm mong.</p>
+    <p>Trong mắt Tiêu Hàm Nguyệt lóe lên tia kinh hỉ và kích động, nhưng trước mặt con gái tự nhiên không thể bộc lộ ra, nên nàng cố nén, trên mặt lộ ra nụ cười nhàn nhạt: "Tiểu Mãn, con về rồi à?"</p>
+    <p>Diệp Phi cười nói: "Vâng, hôm nay con tới nhà dì quấy rầy một chút, không biết có mạo muội quá không ạ?"</p>
+    <p>"Đương nhiên là không, lên xe trước đã, chúng ta vừa đi vừa nói chuyện." Tiêu Hàm Nguyệt cười, lên xe trước rồi khởi động. Lâm Linh có chút kỳ quái nhìn mẹ và Diệp Phi dường như trở nên xa lạ, nhưng cũng không hỏi gì, kéo Diệp Phi cùng lên xe.</p>
+    <p>Vì chột dạ khi đối mặt với con gái, suốt dọc đường Tiêu Hàm Nguyệt không nói chuyện với Diệp Phi mà chỉ chuyên tâm lái xe, khiến lòng Lâm Linh càng thêm nghi hoặc.</p>
+    <p>Trở lại biệt thự nhà họ Lâm, Tiêu Hàm Nguyệt đi chuẩn bị bữa tối, trong phòng khách chỉ còn lại Diệp Phi và Lâm Linh. Lâm Linh rốt cuộc hỏi ra nghi vấn trong lòng: "Diệp Tử ca ca, huynh và mẹ ta cãi nhau sao?"</p>
+    <p>"Không có đâu." Diệp Phi sững sờ, hỏi: "Tại sao lại hỏi vậy?"</p>
+    <p>Lâm Linh nhíu đôi mày thanh tú: "Sao ta cảm giác hai người hôm nay đều rất kỳ lạ?"</p>
+    <p>Diệp Phi toát mồ hôi hột, vốn định tránh việc lộ ra thái độ thân mật trước mặt Lâm Linh, không ngờ lại quá đà, càng khiến nàng nghi ngờ, đành cười nói: "Không có, có thể là mấy ngày nay không gặp nên hơi xa lạ thôi."</p>
+    <p>"Thế à?" Lâm Linh gật đầu, tuy trong lòng vẫn cảm thấy có gì đó không ổn nhưng không hỏi thêm nữa.</p>
+    <p>Trong bầu không khí hơi quái dị, ba người ăn tối, ngồi xem tivi một lát rồi ai về phòng nấy nghỉ ngơi.</p>
+    <p>Đợi đến hơn mười giờ đêm, đoán chừng Lâm Linh đã ngủ, Diệp Phi mới rời khỏi phòng ngủ, lặng lẽ đi đến phòng ngủ của Tiêu Hàm Nguyệt.</p>
+    <p>Lúc này Tiêu Hàm Nguyệt vẫn chưa ngủ, mặc bộ đồ ngủ nằm nghiêng, tay cầm cuốn sách nhưng căn bản không đọc, hiển nhiên là đang chờ Diệp Phi.</p>
+    <p>Vì vừa mới tắm xong, mái tóc dài của Tiêu Hàm Nguyệt không buộc lại mà xõa xuống vai như thác nước. Dưới ánh đèn dịu nhẹ, khuôn mặt vốn đẹp tuyệt nhân gian toát lên một làn hào quang như ngọc, thêm bộ đồ ngủ như ẩn như hiện khiến nàng lộ ra vẻ quyến rũ kinh người, làm Diệp Phi thấy vậy lòng nóng như lửa đốt.</p>
+    <p>Lúc này Tiêu Hàm Nguyệt cũng nhìn thấy Diệp Phi, vội vã ném cuốn sách sang bên, gần như cùng lúc Diệp Phi mở rộng vòng tay, nàng đã lao vào ngực hắn, thì thầm: "Cuối cùng con cũng về rồi, Nguyệt Nguyệt nhớ con lắm!"</p>
+    <p>Diệp Phi không nói nhiều, trực tiếp cúi đầu hôn lên miệng nàng, Tiêu Hàm Nguyệt cũng nhiệt tình đáp lại, phảng phất muốn thông qua nụ hôn này để thổ lộ hết nỗi nhớ nhung suốt nhiều ngày qua.</p>
+    <p>Hai người tuy mới chỉ có hai lần, nhưng lại như vợ chồng phối hợp lâu năm, vô cùng ăn ý giúp đối phương cởi bỏ quần áo. Khi nụ hôn kết thúc, hai con người vốn không nên yêu nhau này đã không còn ngăn cách mà ôm nhau nằm xuống.</p>
+    <p>Ngay lúc Diệp Phi chuẩn bị đi vào chính đề, Tiêu Hàm Nguyệt chợt nhớ ra điều gì, vội ngăn hắn lại, vẻ mặt xin lỗi nói: "Không được, hai ngày này dì đang đến tháng."</p>
+    <p>Diệp Phi sững sờ, vô thức nhìn xuống nơi đó. Tuy không thấy gì chướng mắt, nhưng hắn cũng hiểu rõ. Chưa nói đến nhu cầu vốn đã mãnh liệt hơn người thường của nàng, chỉ riêng việc nàng dành cho hắn tình yêu không giữ lại chút gì cũng đủ để khẳng định nàng sẽ không lừa dối hắn. Về phần trước đó tại sao không nói, Diệp Phi cũng đoán được đại khái, đó là vì nàng quá nhớ hắn, đến mức khi gặp lại vì kích động mà quên mất.</p>
+    <p>Thấy Diệp Phi không nói gì, Tiêu Hàm Nguyệt tưởng hắn thất vọng, liền kéo tay hắn đặt lên ngực mình: "Nếu không, dì dùng nơi này giúp con nhé?"</p>
+    <p>"Thật ra, dì còn một nơi khác có thể giúp con." Diệp Phi đưa bàn tay lớn mân mê trước ngực nàng, khẽ cười.</p>
+    <p>Tiêu Hàm Nguyệt bị hắn trêu chọc đến phát ra liên tiếp tiếng yêu kiều, đứt quãng hỏi: "Nơi đó là đâu?"</p>
+    <p>Diệp Phi cười đưa tay phải trượt xuống dưới, vuốt ve cặp mông đầy đặn như trăng rằm của nàng, nhẹ nhàng chạm vào cửa sau, nói: "Nơi này ạ."</p>
+    <p>"Á!" Tiêu Hàm Nguyệt bị hắn chạm vào liền run lên một cái, đánh rùng mình, khiến Diệp Phi càng thêm hưng phấn khi phát hiện ra một điểm nhạy cảm khác của nàng.</p>
+    <p>"Nơi này sao? Vẫn là thôi đi." Tiêu Hàm Nguyệt do dự từ chối.</p>
+    <p>Diệp Phi không khỏi thất vọng, nhưng thật sự không đành lòng ép nàng, cười nói: "Dì nếu không muốn thì thôi."</p>
+    <p>Tiêu Hàm Nguyệt khẽ lắc đầu: "Nguyệt Nguyệt là của con, làm sao lại không muốn cho con chứ? Chỉ là hiện tại không có chuẩn bị gì, dì sợ sẽ làm bẩn đồ."</p>
+    <p>"Nhưng con có chuẩn bị mà!" Diệp Phi cười ha hả, lấy ra một đống đồ trong không gian, chính là thứ hắn mua buổi chiều. Vốn hắn mua những thứ này chỉ là để lo trước khỏi họa, không ngờ Tiêu Hàm Nguyệt lại đồng ý ngay, sao hắn có thể không vui?</p>
+    <p>Thấy những thứ này, Tiêu Hàm Nguyệt đỏ mặt, mắng: "Con đúng là chuẩn bị kỹ càng, có phải sớm đã có ý đồ xấu muốn chà đạp dì rồi không?"</p>
+    <p>"Đúng vậy!" Diệp Phi cười nói: "Vậy Tiểu Nguyệt Nguyệt của con có nguyện ý để con lãng phí không?"</p>
+    <p>"Dù không muốn thì có thể làm gì?" Tiêu Hàm Nguyệt ra vẻ bất đắc dĩ: "Người ta đã rơi vào ma chưởng của con rồi, còn thoát được sao?"</p>
+    <p>Diệp Phi cười ha hả, bế thốc nàng lên mang vào phòng tắm. Nhưng khi hắn chuẩn bị giúp Tiêu Hàm Nguyệt, nàng lại đẩy hắn ra. Dù hai người đã không còn gì bảo lưu, nhưng Tiêu Hàm Nguyệt vẫn chưa thể thuyết phục bản thân để hắn giúp làm loại việc này, thật sự quá mức khó xử.</p>
+    <p>Diệp Phi không cưỡng cầu, mỉm cười lui ra. Tiêu Hàm Nguyệt không để hắn đợi lâu, chốc lát sau đã bước ra khỏi phòng tắm, mặt đỏ bừng, trong mắt vẻ kiều mỵ như sắp tan chảy.</p>
+    <p>Diệp Phi không khỏi mừng rỡ, xem ra mình đoán không sai, nơi đó đúng là một trong những điểm nhạy cảm của nàng, chỉ cần rửa sạch thôi cũng đã khiến nàng động tình.</p>
+    <p>Nhảy lên giường, Diệp Phi ôm chặt thân thể đầy đặn nhưng không mập mạp của Tiêu Hàm Nguyệt, hôn lên miệng nàng một cái, cười nói: "Nguyệt Nguyệt tốt của con, mau để vi phu thương yêu dì cho thỏa nhé." Nói xong đặt nàng lên giường, mình đè lên.</p>
+    <p>Kéo phăng chiếc khăn tắm trên người nhạc mẫu, Diệp Phi nâng cặp vú đầy đặn không thua kém gì mẹ mình lên, dùng sức xoa nắn, cúi đầu ngậm lấy một hạt nhũ hoa không ngừng mút mát. Cảm giác tê dại khiến Tiêu Hàm Nguyệt không nhịn được cười phóng đãng, bàn tay nhỏ bé cũng đưa xuống phía dưới, nắm lấy con cặc lớn đã sớm cứng ngắc của hắn, vô cùng thuần thục kích thích.</p>
+    <p>Như vậy một lúc, Diệp Phi cảm thấy bất mãn, vì vậy kéo nhạc mẫu xinh đẹp phong tao lại, để nàng quỳ sấp trên giường, nâng cặp mông đầy đặn lên cao.</p>
+    <p>Cũng giống như mông của dì Liễu Phượng Nghi, cặp mông của nhạc mẫu xinh đẹp này luôn khiến Diệp Phi yêu thích không buông tay. Lúc này cũng không ngoại lệ, thấy nhạc mẫu đã nằm sấp tốt, Diệp Phi vội cúi thấp thân thể, dùng sức hôn lên mông nàng mấy cái rồi mới ngồi thẳng lên, quỳ sau lưng nàng, nắm lấy con cặc cứng rắn vô cùng, dùng quy đầu thô ráp ma sát nhẹ nhàng trên làn da mông mềm mại như ôn ngọc, cuối cùng dứt khoát đặt vào trong khe mông, qua lại huy động.</p>
+    <p>Nơi đó chính là một trong những điểm nhạy cảm của Tiêu Hàm Nguyệt, lúc này bị Diệp Phi làm vậy, nàng nhịn không được vừa ngứa vừa cười, bất mãn giãy giụa cặp mông như muốn thoát khỏi sự trêu chọc của hắn, không ngờ nàng vừa động đậy, quy đầu của Diệp Phi vừa vặn chạm vào tiểu dâm huyệt đang khao khát đã lâu.</p>
+    <p>Hơi thở Tiêu Hàm Nguyệt trở nên dồn dập, nàng quay đầu, vẻ mặt cầu khẩn nhìn Diệp Phi: "Tiểu Mãn, con rể tốt, tiểu dâm huyệt của dì ngứa quá, con địt nó một hồi được không?"</p>
+    <p>Diệp Phi cúi đầu nhìn lại, quả nhiên thấy trong tiểu dâm huyệt của nhạc mẫu xinh đẹp đã bắt đầu chảy ra dâm thủy. Bất quá hắn vẫn lắc đầu nói: "Không được, muốn con địt lồn thì sau này còn nhiều cơ hội, nhưng hôm nay không được, dì đang đến tháng, như vậy sẽ làm hại dì."</p>
+    <p>"Vậy cũng được." Tiêu Hàm Nguyệt bĩu môi, trong lòng vì hắn không địt mình mà hơi bất mãn, nhưng lại vì sự quan tâm của hắn mà cảm thấy vô cùng hạnh phúc: "Vậy con muốn làm gì thì mau lên đi, con làm thế này, dì ngứa lắm."</p>
+    <p>"Ân." Diệp Phi gật đầu, lấy lọ gel bôi trơn từ trong túi nhỏ cạnh giường ra, nhẹ nhàng tách hai bên mông đầy đặn của nhạc mẫu, nhỏ vài giọt lên cửa sau xinh xắn của nàng.</p>
+    <p>Bị chất lỏng lạnh buốt kích thích, cửa sau màu nâu nhạt của Tiêu Hàm Nguyệt nhịn không được co rút lại, hút vài giọt gel vào trong, khiến Diệp Phi thấy vô cùng thú vị. Nhưng hắn không màng chơi đùa thêm, tiếp tục đổ một lượng lớn vào lòng bàn tay rồi bôi lên con cặc của mình.</p>
+    <p>Chuẩn bị xong xuôi, Diệp Phi áp quy đầu to lớn vào cửa sau nho nhỏ của nhạc mẫu, ôn nhu nói: "Nguyệt Nhi, con vào nhé."</p>
+    <p>"Ân, vào đi." Tiêu Hàm Nguyệt gật đầu, cửa sau của nàng nhạy cảm vô cùng, Diệp Phi chỉ mới ép dương vật lên trên đã khiến thân thể nàng run rẩy. Loại cảm giác ngứa ngáy này dù không bằng lúc bị hắn địt lồn, nhưng cũng không khó chịu, mà là một cảm giác vô cùng mới lạ.</p>
+    <p>Thấy nhạc mẫu xinh đẹp đã chuẩn bị kỹ càng, Diệp Phi không chần chờ thêm, nhẹ nhàng thúc vòng eo, khiến dương vật to lớn từng chút một đào vào cửa sau của nhạc mẫu.</p>
+    <p>Sau khi quy đầu đã vào được, Diệp Phi dừng lại hỏi: "Thế nào? Có đau lắm không?"</p>
+    <p>"Đau thì có một chút, nhưng không đáng kể, chỉ là thấy căng căng thôi. Con rể tốt, không cần quan tâm đến dì, tiếp tục đi, tiểu dâm huyệt của nhạc mẫu không thể cho con lần đầu, bây giờ nhạc mẫu muốn đem tất cả những lần đầu tiên còn lại cho con."</p>
+    <p>Trong lòng Diệp Phi cảm động, càng muốn cho nàng nếm trải cảm giác khác biệt này, vì vậy tiếp tục cắm vào. Lần này mua được gel bôi trơn không hổ là đồ chuyên dụng, lần trước phá trinh tiểu di dù có dâm thủy của nàng làm trơn nhưng vẫn không bằng thứ này, nên Diệp Phi rất thuận lợi cắm ngập cả con cặc lớn vào cửa sau của Tiêu Hàm Nguyệt. Thấy nàng không có gì khó chịu, hắn nhẹ nhàng đút vào rút ra.</p>
+    <p>Lúc bắt đầu, Tiêu Hàm Nguyệt không cảm thấy khoái cảm gì, chỉ thấy con cặc của hắn khiến cửa sau mình căng lên, nhưng sau khi Diệp Phi đâm chọc một lúc, một loại khoái cảm khác với địt lồn trào dâng từ cửa sau, đồng thời khiến người ta hưng phấn. Nàng không nhịn được khẽ giãy giụa mông, phối hợp cùng Diệp Phi.</p>
+    <p>Thấy nhạc mẫu bắt đầu phối hợp, Diệp Phi biết nàng đã nếm được ngon ngọt, liền hỏi: "Nguyệt Nhi tốt, nhạc mẫu ngoan của con, bị dương vật của con rể địt cửa sau cảm giác thế nào?"</p>
+    <p>"Thật thoải mái, không kém gì để con địt lồn, hơn nữa khi địt nơi này, trong lồn cũng có khoái cảm. Con rể tốt, dùng sức địt đi, lại chơi đùa bầu vú nhạc mẫu nữa, để nhạc mẫu càng sướng hơn." Tiêu Hàm Nguyệt nói xong kéo tay Diệp Phi đặt lên ngực mình.</p>
+    <p>Diệp Phi cầm lấy bầu vú đầy đặn của nàng dùng sức xoa nắn, phía dưới cũng tăng tốc độ, khiến con cặc lớn ra vào nhanh chóng trong trực tràng của nhạc mẫu, địt nàng rên rỉ lớn tiếng: "Thật... thật sâu... con rể ngoan... con cặc lớn... lão công... dùng sức địt... địt dâm huyệt của dì... địt chết Nguyệt Nhi đi... Nguyệt Nhi thích... để con rể tốt... địt dì... nơi nào trên người Nguyệt Nhi... cũng là của... lão công tốt... con cặc lớn... muốn địt nơi nào... thì địt nơi đó... Nguyệt Nhi nguyện ý... chết dưới... con cặc lớn... của con rể tốt..."</p>
+    <p>Diệp Phi cười hắc hắc: "Được lắm, lần sau con sẽ địt cả cái miệng nhỏ ngọt ngào này của dì!"</p>
+    <p>"Địt đi... địt đi... con muốn địt... chỗ nào cũng được... con cặc lớn... con rể tốt... lại dùng lực... tiểu dâm huyệt của nhạc mẫu... sắp tới rồi... nhanh dùng lực địt dì... Á..." Thân thể Tiêu Hàm Nguyệt đột nhiên run lên, hai chân co quắp, ngay sau đó, tiểu dâm huyệt không bị Diệp Phi địt của nàng đột nhiên mở ra, một dòng chất lỏng trong suốt bừng lên, chính là đã đạt tới cao trào.</p>
+    <p>Diệp Phi thúc mạnh thêm vài cái, cũng theo đó mà thân thể chấn động, phun một lượng lớn tinh dịch vào trong trực tràng của nhạc mẫu xinh đẹp.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0187.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0189.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

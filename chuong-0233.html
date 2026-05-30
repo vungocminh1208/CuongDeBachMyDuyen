@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 233 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 233</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 233</small>
+    Chương 233: Mẹ ơi, phun!
+  </h1>
+  <div class="chapter-body">
+    <p>"Vậy được rồi, lát nữa sẽ thử xem." Tiểu ma nữ tuy nói như vậy, nhưng trong lòng cũng đã tin lời Diệp Phi. Một lát sau, Diệp Ngưng Băng thay một bộ trang phục chỉnh tề từ trên lầu đi xuống, sắc mặt hơi kém. Vốn dĩ Vân Sơ Tình không để ý tới, hiện tại trải qua Diệp Phi nhắc nhở, mới phát hiện mẹ thật sự trông rất mệt mỏi, nên đối với lời Diệp Phi nói lại càng thêm tin tưởng. Diệp Phi khá vất vả mới dời được ánh mắt khỏi thân hình thành thục gợi cảm của tiểu dì, lại lấy ra một viên Khôi Phục Hoàn, nói với Diệp Ngưng Băng: "Tiểu dì, con thấy tinh thần người không tốt lắm, đây là Khôi Phục Hoàn con lấy được từ chỗ dì Phương Đông, người ăn thử một viên xem sao." Diệp Ngưng Băng tất nhiên biết đại danh của Đông Phương Nhược Lan, lập tức không chút do dự tiếp nhận Khôi Phục Hoàn bỏ vào miệng nhỏ. Viên thuốc này không có mùi vị gì, nhưng vừa vào miệng là tan, nuốt xuống chỉ cảm thấy trong bụng dâng lên một luồng nhiệt khí khiến người ta vô cùng thoải mái, trong nháy mắt lan tỏa khắp toàn thân. Diệp Ngưng Băng không khỏi toàn thân chấn động, chỉ cảm thấy sự mệt mỏi tích tụ gần như thức trắng đêm qua đã bị quét sạch, tinh thần đại chấn đồng thời cũng cảm thấy thân thể trở nên cực kỳ thoải mái, không khỏi kinh ngạc thốt lên: "Thuốc này quá linh nghiệm rồi, không biết dì Phương Đông của con làm ra bằng cách nào." Tiểu ma nữ Vân Sơ Tình nãy giờ vẫn luôn chăm chú nhìn mẹ, chứng kiến sự thay đổi trong nháy mắt của bà, trong lòng không còn chút nghi ngờ nào với lời Diệp Phi, đồng thời cũng quyết định, từ nay về sau đi đâu cũng phải ngủ cùng mẹ, tuyệt đối không thể để ba ba lại "hại" bà nữa, hơn nữa trong lòng cô cũng bắt đầu nảy sinh một tia bất mãn với Vân Tĩnh. Diệp Phi lại lấy ra một bình nhỏ chứa vài chục viên Khôi Phục Hoàn, đưa cho Diệp Ngưng Băng nói: "Trong này còn có, nếu người cảm thấy mệt mỏi gì thì có thể ăn một viên. Bất quá, tiểu dì, người cũng ngàn vạn lần phải chú ý nghỉ ngơi, không được vì có thứ này mà làm việc ngày đêm, dù sao tiền làm thế nào cũng không hết, với con mà nói, cả Diệp thị tập đoàn cũng không quan trọng bằng người, biết không?" Lời quan tâm của cháu trai khiến lòng Diệp Ngưng Băng không khỏi ấm áp, ôn nhu cười nói: "Dì biết rồi, cảm ơn con, Tiểu Mãn." Giờ khắc này, bà thực sự có chút bị Diệp Phi cảm động. Nhìn từ dược hiệu của những viên thuốc này, những thứ này chắc hẳn đã tiêu tốn rất nhiều tâm huyết của Đông Phương Nhược Lan, hơn nữa số lượng có thể không nhiều, hiện tại Diệp Phi đưa hết cho mình, làm sao bà không cảm động cho được? Bất quá đối với tính cách của Diệp Phi bà rất hiểu rõ, biết rằng nếu mình không nhận thì cháu trai chắc chắn sẽ rất khó xử, cho nên đành phải nhận lấy. "Đây là chuyện nên làm mà, đừng nói người là dì của con, dù không phải, con cũng không đành lòng để một đại mỹ nữ như người phải mệt mỏi thế này đâu." Diệp Phi cười hì hì nói. Diệp Ngưng Băng bị hắn chọc cho cười khúc khích: "Đứa nhỏ này, miệng càng ngày càng ngọt rồi." Ba người cười nói đi ra khỏi tiểu biệt thự của Diệp Ngưng Băng. Diệp Phi từ chối lời đề nghị đưa đón của tiểu dì, bảo bà đi đưa Vân Sơ Tình đến trường. Bất quá trước khi tiểu ma nữ lên xe, Diệp Phi lại kéo cô lại, nhỏ giọng nói: "Chuyện chúng ta vừa nói, em tuyệt đối phải nhớ kỹ nhé, nhưng tuyệt đối không được nói với mẹ em tại sao lại phải ngủ cùng bà. Nếu bà biết chân tướng, chắc chắn sẽ rất xấu hổ đấy." "Biết rồi!" Tiểu ma nữ làm dấu tay OK với Diệp Phi, kiên định gật đầu. Đưa mắt nhìn hai mẹ con tiểu dì và tiểu biểu muội rời đi, Diệp Phi tự mình gọi một chiếc taxi. Vốn định đến tòa nhà Liễu thị tìm mẹ, không ngờ lúc gọi điện thoại cho bà, bà lại nói hôm nay có một hội nghị rất quan trọng, không có thời gian gặp hắn, hơn nữa hai mục tiêu khác —— đại tỷ Diệp Tư Kỳ và nhạc mẫu Tiêu Hàm Nguyệt cũng phải tham gia. Hắn dứt khoát bảo tài xế đổi hướng, chạy thẳng về phía trường học. Đứng trước cổng trường, Diệp Phi trong lòng không khỏi có chút cảm khái, mình bây giờ dường như hơi tách rời với những thứ này, lập tức âm thầm quyết định, từ nay về sau không có việc gì thì nên đến trường nhiều hơn, bởi vì hắn rất hy vọng mình khi đối phó với những kẻ địch trong tối ngoài sáng vẫn có thể giữ lại một phần sự ngây thơ, chất phác thuộc về lứa tuổi này. Đôi khi, chỉ trong tâm trạng vô ưu vô lự như thế, đầu óc mình mới có thể càng thêm tỉnh táo. Bởi vì trên đường trì hoãn một chút thời gian, lúc Diệp Phi đến phòng học thì tiết học đầu tiên đã bắt đầu rồi. Bất quá tiết này không phải tiết của Ngọc Vô Hà, nên Diệp Phi cũng không có hứng thú gì, sau khi báo cáo liền đi vào. Nhưng còn chưa đến chỗ ngồi, hắn đã nhạy bén cảm nhận được ba đạo ánh mắt bắn về phía mình, trong đó hai đạo tràn đầy nhu tình, Diệp Phi không cần nhìn cũng biết là tiểu muội và Lâm Linh, mà một đạo ánh mắt đầy hận thù lại làm cho Diệp Phi không khỏi sững sờ. Theo tầm mắt đó nhìn lại, chỉ thấy sắc mặt hơi tái nhợt của Tiêu Phỉ đang vội vàng cúi đầu. Diệp Phi trong lòng hơi chấn động, chẳng lẽ nàng đã biết chuyện của mình và mẹ nàng? Mang theo nghi hoặc đó, Diệp Phi đi về phía chỗ ngồi của mình, vừa mới ngồi xuống, Diệp Vân Khinh liền cúi cái đầu nhỏ nói: "Chú ý Tiêu Phỉ nhé, nàng có khả năng sẽ trả thù chúng ta."</p>
+    <p>Nói xong, cô lấy từ trong cặp sách ra một chiếc máy tính bảng, mở một bài tin tức cho Diệp Phi xem. Diệp Phi vừa nhìn thoáng qua liền không khỏi kinh ngạc. Đây là một bài đăng không rõ của ai vào đêm qua, hiện tại đã bị các trang web lớn điên cuồng lan truyền, nhưng bài đăng gốc đã biến mất từ lâu. Đây là một đoạn văn tự được viết dưới giọng điệu suy đoán, phía trên suy đoán về hai vụ bê bối xảy ra cách nhau trước sau tại Vọng Hải và kinh thành vài ngày trước. Điều khiến Diệp Phi cảm thấy khiếp sợ là người này lại liên kết hai chuyện này lại với nhau, hơn nữa ngoài việc không nói đến Trương Lâm Tâm và không đoán được hacker đã công chiếm tất cả trang web ngày hôm đó, còn lại những điều khác đều nói chính xác hoàn toàn với sự thật, chỉ có điều chuyện vốn do một mình Diệp Phi hoàn thành lại bị nói thành sự kết hợp của hai nhà Diệp, Liễu. Xem hết bài đăng này, Diệp Phi lập tức hiểu rõ một chuyện, đây tuyệt đối không phải là trùng hợp, mà là do người biết chuyện cố ý tiết lộ ra ngoài. Chỉ có điều Diệp Phi lại nghĩ mãi không ra tại sao người đó lại làm vậy, bởi vì hệ người của cha nuôi Tiêu Phỉ cơ bản đã xong đời cả rồi, tung tin tức này ra ngoài, ngoài việc khiến Tiêu Phỉ và Trương Lâm Tâm thù địch với hai nhà Diệp, Liễu ra, căn bản không có bất cứ tác dụng gì. Đã không nghĩ ra, Diệp Phi dứt khoát không nghĩ nữa, bởi vì hắn có sự tự tin tuyệt đối, dù bên trong có âm mưu gì, mình cũng có thể thong dong ứng phó. Về phần nguồn gốc bài đăng này, vì tối hôm qua bài gốc đã biến mất, Diệp Phi cũng căn bản không nghĩ đến việc đi tìm. Thấy ca ca chỉ tùy ý nhìn một chút rồi thu máy tính lại, Diệp Vân Khinh biết hắn không để chuyện này trong lòng, không khỏi hỏi: "Em thấy Tiêu Phỉ có vẻ rất thù địch với chúng ta, anh định làm thế nào? Còn nữa, cả mẹ của nàng nữa, nếu nàng gây khó dễ cho dì cả thì thật sự không dễ thu xếp chút nào." Diệp Phi không khỏi thở dài, chuyện này đã công khai rồi, sự thật về Trương Lâm Tâm đúng là không dễ che giấu, đành phải nói thẳng với tiểu muội: "Trương Lâm Tâm hiện tại cũng là người phụ nữ của anh rồi." Sau đó, hắn kể lại chân tướng sự việc cho cô nghe, lại mơ hồ giảng cho cô về việc mình đi trả thù Trương Lâm Tâm, ngược lại khiến cô nói về sự chung thủy của mình đối với hắn. "Anh xấu lắm, vậy mà lại hành hạ người ta như vậy, dù sao người ta cũng là vì muốn bảo vệ con gái mình mà." Diệp Vân Khinh hờn dỗi cấu vào lưng ca ca một cái, sau đó lại cười nói: "Vậy thì dễ rồi, cùng lắm thì xử lý Tiêu Phỉ giống như vậy luôn. Tính khí của nàng tuy không tốt lắm, nhưng dù sao cũng là một tiểu mỹ nhân mà." "Chuyện này để sau hãy nói đi." Diệp Phi xua xua tay, hỏi: "Đúng rồi, mấy ngày nay có gặp Đường Nhu không? Trước khi đi anh không nói với nàng một tiếng, không biết hiện tại nàng thế nào." Nghĩ đến việc mình vừa đi đã gần nửa tháng, không hề nhắn nhủ một câu với nàng, Diệp Phi trong lòng không khỏi có chút áy náy. Diệp Vân Khinh cười nói: "Cuối cùng cũng nhớ tới người ta rồi à? Em đang định nói với anh chuyện này đây, Nhu tỷ tỷ nhờ em nói cho anh biết, nàng có việc phải về nhà một chuyến, khoảng hai tháng nữa mới có thể trở về." "Nàng nhờ em nói với anh?" Diệp Phi không khỏi trừng lớn mắt: "Chẳng lẽ nàng đã nói thẳng với em rồi?" "Đương nhiên không phải rồi, nàng chỉ nói bóng gió với em một chút thôi, nhưng kẻ ngốc cũng biết là muốn thông qua miệng em để nói cho anh biết chứ sao." Diệp Vân Khinh liếc xéo một cái: "Người ta đối với anh chính là mối tình thắm thiết nha." "Vậy còn em thì sao?" Nhìn vẻ kiều mỵ của tiểu muội, lòng Diệp Phi không khỏi một hồi lửa nóng, nhẹ nhàng vươn tay ôm lấy vòng eo mảnh khảnh của cô. Đã lâu không thân mật với ca ca, Diệp Vân Khinh làm sao chịu nổi sự khiêu khích này? Đôi mắt to trong nháy mắt trở nên ngập nước, hiển nhiên đã động tình. Bất quá nghĩ đến hoàn cảnh nơi này, cô vội vàng gạt tay lớn của Diệp Phi ra, gắt giọng: "Không được nghịch ngợm, làm người ta khó chịu lắm, mà lại không thể làm thật được." "Vậy thì làm một chút cho đỡ ghiền không được sao." Diệp Phi hắc hắc cười xấu xa, nhẹ nhàng vén làn váy của Diệp Vân Khinh lên, đưa bàn tay to của mình vào trong. Nhẹ nhàng đẩy chiếc quần lót nhỏ mỏng manh của tiểu muội ra, Diệp Phi trực tiếp đặt bàn tay to lên tiểu huyệt kiều nộn của cô, lại phát hiện mình chỉ mới trêu chọc một chút, cô đã hơi ẩm ướt rồi. Biết tiểu muội mấy ngày nay nhịn có chút khổ sở, Diệp Phi vốn chỉ muốn trêu đùa nàng liền quyết định đền bù cho cô ngay bây giờ. Vì vậy, đầu tiên hắn dùng ngón tay ở khe nộn đang ngày càng ẩm ướt của tiểu muội thăm dò vài cái, sau đó thuần thục tìm đúng vị trí, nhẹ nhàng đưa một ngón tay chậm rãi cắm vào tiểu huyệt chặt khít, từng chút đút vào. "Ca... Ca..." Thân thể yêu kiều của Diệp Vân Khinh vốn đã được ca ca khai phá nên đầy đặn hơn trước, giờ nhẹ nhàng run rẩy lên. Cô chỉ có thể để ca ca nghe được tiếng nỉ non trầm thấp, bàn tay nhỏ bé lại vươn đến phía dưới của ca ca, nhẹ nhàng kéo khóa kéo của hắn, phóng ra "con trym" mà mình đã nhung nhớ suốt nhiều ngày, dùng bàn tay nhỏ bé nhẹ nhàng cầm lấy, khuấy động với biên độ nhỏ. Trong bầu không khí khẩn trương như vậy, hai huynh muội đều vô cùng kích động, nhưng vì động tác biên độ quá nhỏ, loay hoay cả nửa ngày chẳng những không thấy thoải mái mà dục hỏa ngược lại càng thêm tăng vọt. "Ca, em không chịu nổi rồi, khó chịu quá, em muốn anh địt em!" Diệp Vân Khinh ghé miệng nhỏ vào tai ca ca, nhỏ giọng cầu khẩn. Diệp Phi cũng cảm thấy như vậy rất khó chịu, vì vậy nhìn xung quanh một chút, phát hiện không có ai chú ý tới họ, bèn gật đầu. Hắn thân thủ bắn ra hai đạo chỉ phong, điểm trúng huyệt ngủ của hai người đồng học ngồi phía sau, khiến họ chẳng những không phát hiện ra việc mình và tiểu muội đang làm, ngược lại còn trở thành tấm chắn cho hai người. Hắn để tiểu muội đứng lên trước, mình thì dịch người xuống, ngồi lên ghế của tiểu muội, thân trên hơi ngả về sau. Như vậy, người bên ngoài nhìn vào chỉ thấy hai huynh muội họ ngồi gần nhau một chút thôi. Người duy nhất có thể thấy tình huống chân thật là Lâm Linh ngồi bên cạnh, chỉ là Lâm Linh đang chăm chú nghe giảng bài, không chú ý tới vị hôn phu của mình đang chuẩn bị địt chính em gái ruột của mình. Diệp Vân Khinh nhẹ nhàng vén làn váy, cởi chiếc quần lót nhỏ đã bị dâm thủy làm ướt ra đến đầu gối, sau đó dùng bàn tay nhỏ bé vịn lấy "con trym" của ca ca, chậm rãi ngồi xuống. Cảm thụ được dương vật cự đại của ca ca từng chút chống đỡ mở lớp thịt mềm mại trong tiểu huyệt của mình, cảm giác sảng khoái cực độ khiến Diệp Vân Khinh muốn rên rỉ thành tiếng, nhưng bận tâm đến hoàn cảnh nơi này, cô vẫn nhịn xuống, cắn chặt đôi môi đỏ mọng, cố gắng làm cho mình không rên lên. Trong lúc Diệp Vân Khinh sảng khoái vạn phần, Diệp Phi cũng sướng không chịu nổi. Cảm giác "con trym" lớn của mình đang bị thịt mềm kiều nộn trong "lồn" muội muội bao bọc từng chút một, khiến hắn thiếu chút nữa không nhịn được muốn dùng sức thúc mạnh lên, nhưng nghĩ đến nếu mình làm vậy, muội muội chắc chắn sẽ sảng đến kêu thành tiếng, nên mới cố nén lại. Một hồi lâu sau, khi quy đầu nóng bỏng của Diệp Phi sâu sắc đâm vào hoa tâm kiều nộn của muội muội, bờ mông mềm mại của muội muội cũng ngồi xuống bụng hắn, lúc này hai huynh muội đã không còn chút ngăn cách nào nữa. Chỉ là lúc này hai huynh muội lại có chút khó xử, bởi vì hoàn cảnh hiện tại, Diệp Phi căn bản không thể hoạt động thân thể để đút vào trong tiểu huyệt của muội muội, Diệp Vân Khinh cũng vậy. Tuy nàng rất muốn điên cuồng vặn vẹo thân thể mềm mại để ca ca cảm nhận được sự ma sát của mình, nhưng nàng biết trong hoàn cảnh này là không thực tế. Tiểu huyệt ngứa ngáy khó chịu, Diệp Vân Khinh không khỏi lại đưa ánh mắt cầu cứu về phía ca ca. Hiện tại trong lòng nàng, ca ca đã trở thành từ đồng nghĩa với vạn năng, căn bản không có chuyện gì có thể làm khó hắn. Diệp Phi lúc này cũng có chút khó xử, nhưng sau khi linh cơ lóe lên, hắn chợt nhớ tới tiểu dì Liễu Quân Di của mình, tuyệt chiêu để thịt mềm tự vận động trong "lồn" mà nàng tự phát minh khiến Diệp Phi ký ức vẫn còn mới mẻ. Hơn nữa lúc trước vì tò mò hắn cũng từng hỏi qua, nên vội vàng nói bí quyết đó vào tai tiểu muội. Diệp Vân Khinh vừa cố nén sự khó chịu trong "lồn", vừa cân nhắc thử phương pháp ca ca nói cho mình. Không thể không nói, Diệp Vân Khinh tuyệt đối là thiên tài võ học. Đúng lúc Diệp Phi đang cân nhắc xem liệu phương pháp này có thể áp dụng lên người mình hay không, đột nhiên cảm giác được tiểu huyệt của muội muội tự động co rút lại một chút, sau đó ngày càng linh hoạt, lớp thịt mềm bên trong bắt đầu nhẹ nhàng nhúc nhích, từng chút một khuấy động lên "con trym" của ca ca. Tuy cảm giác vẫn kém hơn so với việc bị ca ca dùng sức địt, nhưng Diệp Vân Khinh đã rất hài lòng rồi, dù sao vừa rồi chỉ có thể bị ca ca cắm mà không thể động đậy, cảm giác đó thực sự quá khó chịu. Đúng lúc đó, nghiên cứu của Diệp Phi cũng có tiến bộ vượt bậc. Dương vật đang cắm sâu trong "lồn" muội muội đột nhiên động đậy, tuy vẫn cứng như gậy sắt nhưng lúc này lại giống như một con cự xà linh hoạt, vặn vẹo điên cuồng, loạn đâm mọi nơi trong tiểu huyệt mỹ diệu của muội muội. Điều này khiến Diệp Vân Khinh sướng đến mê người. Để không để mình kêu lên thành tiếng, nàng dùng một bàn tay nhỏ bé bịt chặt miệng mình, tay kia thì kéo tay lớn của Diệp Phi, để hắn áp qua lớp quần áo đặt lên ngực mình, dùng sức xoa nắn bộ ngực mà so với lần đầu tiên bị hắn địt đã lớn hơn không ít, đôi mắt đẹp tràn đầy xuân tình si ngốc nhìn ca ca của mình, trong ánh mắt chứa chan vô tận nhu tình và sùng bái. Diệp Phi lúc này vô cùng hưng phấn, không ngờ chiêu thức của tiểu dì cũng có tác dụng với chính mình. Mà đây mới chỉ là bắt đầu, tin rằng đợi thời gian nữa, "con trym" của mình chắc chắn có thể biến thành Như Ý Bổng, muốn động thế nào thì động, mang đến nhiều khoái lạc hơn cho các người phụ nữ của mình. Được muội muội cổ vũ, Diệp Phi tăng cường nội lực, dương vật cự đại vặn vẹo càng thêm điên cuồng trong tiểu huyệt của muội muội. Diệp Vân Khinh bị ca ca địt đến mức linh hồn suýt chút nữa bay lên, căn bản đã quên mất việc tự mình vận động, chỉ chuyên tâm hưởng thụ khoái lạc mà ca ca mang lại. "Diệp Vân Khinh đồng học, mời em trả lời câu hỏi này." Đang lúc Diệp Vân Khinh bị ca ca địt đến sảng khoái đến mức không tìm thấy phương hướng, thầy giáo trên bục giảng đột nhiên nói. "À?" Diệp Vân Khinh cả kinh, vô ý thức đứng bật dậy, lại quên mất "con trym" của ca ca vẫn đang cắm sâu trong tiểu huyệt mình. Theo một tiếng "phực" nhỏ, dương vật cự đại trong nháy mắt thoát ra khỏi "lồn" nhỏ hẹp của muội muội, mang ra một lượng lớn dâm thủy trơn ướt, văng cả lên quần của Diệp Phi. Nhìn chiếc quần bị làm ướt một mảng lớn, Diệp Phi không nhịn được cười khổ. Nếu không phải biết ông thầy nhỏ này bị cận thị nặng mà thế nào cũng không chịu thừa nhận, càng không chịu đeo kính, căn bản không nhìn rõ đồ vật ngoài một mét, Diệp Phi đã tưởng ông ta nhìn ra gì đó rồi. Nhưng hắn biết, ông ta chỉ là thói quen gọi Diệp Vân Khinh, vì thành tích của Diệp Vân Khinh rất tốt nên ông ta thích đặt câu hỏi cho nàng. Vì căn bản không nghe giảng bài, Diệp Vân Khinh tự nhiên không trả lời được câu hỏi này. Bất quá ông thầy đó cũng không để ý, cười nói: "Ừm, vấn đề này chúng ta vẫn chưa giảng tới, Diệp Vân Khinh đồng học, em cũng không cần buồn, mời ngồi xuống." Diệp Vân Khinh trong lòng không khỏi có chút tức giận, chưa giảng tới mà hỏi cái khỉ gì chứ! Vì vậy cô lại quên mất phía dưới còn có "con trym" của ca ca đang chờ đợi mình, dùng sức ngồi xuống. "Phập!" "Con trym" của Diệp Phi được tiểu huyệt của muội muội chụp vào chuẩn xác không sai một ly, cắm vào tận gốc rồi đụng mạnh vào hoa tâm kiều nộn của nàng. Sướng! Thật sự quá sướng! Diệp Vân Khinh bị cú đâm này khiến cho sướng đến mức suýt chút nữa kêu thành tiếng, tiểu huyệt mẫn cảm thiếu chút nữa vì bị ca ca đảo mà cuồng tiết ra. Đang dạo chơi bên bờ vực cao trào, Diệp Vân Khinh lại bị đâm một cú nặng nề như vậy, nhưng nàng biết căn bản không thể làm quá lên, đành phải ném ánh mắt hơi ủy khuất về phía ca ca. Cũng may kỹ thuật của Diệp Phi lại có chút tiến bộ, hiện tại "con trym" cắm trong "lồn" muội muội không chỉ tự vặn vẹo mà còn có thể đút vào với biên độ nhỏ. Diệp Phi thầm vận nội lực, để dương vật tự động đút vào nhanh chóng trong "lồn" mềm mại của muội muội, quy đầu cự đại lần lượt chạm vào hoa tâm kiều nộn của nàng, tuy xa xa không bằng lúc nãy, nhưng cũng không kém hơn so với những lần địt nàng trước đây. Dưới sự nỗ lực của ca ca, Diệp Vân Khinh cuối cùng cũng được địt đến mức từ giận chuyển thành cười, lại kéo bàn tay to của hắn, dùng bầu ngực của mình áp sát vào người hắn. Vì hai huynh muội đều không cố ý nhẫn nại, nên sau khoảng năm phút Diệp Phi điên cuồng khoan thăm dò trong tiểu huyệt muội muội, cả hai huynh muội gần như đồng thời đạt đến đỉnh phong. Diệp Vân Khinh cuối cùng không nhịn được, phát ra một tiếng rên rỉ cực độ bị đè nén từ trong cổ họng, thân thể mềm mại căng cứng, sau một hồi co rút nhẹ, tiểu huyệt bắt đầu co thắt nhúc nhích không tự chủ được, mà quy đầu của Diệp Phi cũng tăng vọt, cuối cùng sau khi lại một lần hung hăng đâm mạnh vào hoa tâm của muội muội, bắt đầu phun ra sức mạnh. Bị tinh túy nóng bỏng của ca ca dội vào, hoa tâm kiều nộn của Diệp Vân Khinh không khỏi mở rộng ra, một lượng lớn chất lỏng mát lạnh từ sâu trong tiểu huyệt của nàng tuôn ra, xối ướt lên đầu "con trym" nóng rực của ca ca. Một hồi lâu sau, hai huynh muội mới từ đỉnh phong khoái cảm hạ xuống. Diệp Vân Khinh gắng gượng thân thể mềm yếu đứng lên khỏi người ca ca, để "con trym" dính đầy dịch nhờn của mình và tinh dịch của hắn từng chút rút ra khỏi "lồn" mình, sau đó vội vàng lấy tay che lại để tránh hỗn hợp chất lỏng chảy ra, rồi lấy băng vệ sinh từ trong túi xách ra dán vào, sau đó mới kéo quần lót nhỏ lên, thả làn váy xuống. Làm xong hết thảy, Diệp Vân Khinh lại gục vào đùi ca ca đã trở lại chỗ ngồi, mở miệng nhỏ ngậm lấy "con trym" sau khi bắn vẫn còn cứng như vậy, làm sạch hết dịch nhờn và tinh dịch dính trên đó, lúc này mới ngẩng đầu lên, có chút vô lực gục xuống bàn. Yêu thương nhìn tiểu muội đang mềm nhũn gục trên bàn, Diệp Phi có chút áy náy ôn nhu nói: "Khinh Khinh, thực xin lỗi, mấy ngày nay vắng vẻ em rồi." "Không có gì nha, hiện tại mẹ mới là quan trọng nhất mà." Diệp Vân Khinh trước mặt Diệp Phi vĩnh viễn là hiểu chuyện như vậy: "Bất quá, đợi anh thành công rồi, nhất định phải hảo hảo đền bù cho em đấy nhé." "Đương nhiên, đến lúc đó cho em và mẹ cùng đi, thế nào?" Diệp Phi cười nói. Lời của Diệp Phi khiến Diệp Vân Khinh có chút mơ mộng, loại kích động không tên này khiến hơi thở của nàng lại trở nên dồn dập. Bất quá lúc này tiếng chuông tan học đã vang lên, khiến nàng không còn thời gian để cho ca ca làm mình một lần nữa. Vừa rồi loại kích thích khẩn trương tột độ này khiến nàng rất là hưng phấn, thậm chí còn có chút mê luyến. Bởi vì trong lớp này đều là những học sinh chăm chỉ, động tác của hai người lại nhỏ nhất nên căn bản không bị ai chú ý tới, Diệp Phi cũng chính vì điểm này mới to gan như vậy. Nhưng hắn lại xem nhẹ một người, đó chính là Tiêu Phỉ – kẻ rất thù địch với họ. Tiết thứ hai, Diệp Vân Khinh chủ động đổi chỗ ngồi với Lâm Linh, mình đã nhận được sự an ủi của ca ca, nàng tự nhiên không quên cô bạn tốt cũng đang nhung nhớ hắn như mình. Đúng như Diệp Phi dự đoán, mấy ngày không gặp, Lâm Linh quả nhiên càng thêm xinh đẹp, nhan sắc hiện tại đã đuổi kịp Diệp Vân Khinh, khiến rất nhiều người cảm thấy kỳ lạ. Lâm Linh cũng rốt cuộc hiểu ra "bí quyết làm đẹp" mà Diệp Vân Khinh nói với mình trước kia là gì. "Linh Nhi, mấy ngày nay nhớ anh không?" Diệp Phi nắm bàn tay nhỏ bé của Lâm Linh, nhẹ giọng hỏi. "Ừm, nhớ lắm." Khuôn mặt Lâm Linh đỏ ửng gật đầu, lại nói: "Mẹ em cũng rất nhớ anh." Nói những lời này, Lâm Linh cảm thấy có chút kỳ diệu, bởi vì nhung nhớ Diệp Phi, hai mẹ con mỗi ngày đều ngủ rất muộn, lúc đó sẽ cùng nhau trò chuyện, rồi từ từ chuyển thành ngủ chung với nhau. Lúc bắt đầu cả hai đều không tiện nhắc đến hắn, bất quá về sau không biết là ai mở đầu, chủ đề của họ đều chuyển về Diệp Phi. Cho tới bây giờ, hai mẹ con ngủ chung, trò chuyện về người đàn ông mà họ cùng yêu, sau đó mang theo nỗi nhớ về hắn chìm vào giấc ngủ, đã trở thành một hạnh phúc nhỏ nhoi của hai mẹ con tuyệt sắc này. Qua những lời đơn giản của Lâm Linh, Diệp Phi nghe ra tình thâm vô tận mà vị hôn thê đã đính thân từ nhỏ với mình dành cho hắn, không khỏi nắm chặt bàn tay nhỏ bé của nàng, ôn nhu nói: "Yên tâm đi, chờ anh có thời gian, nhất định sẽ đến chỗ các em, nếu anh hoàn thành chuyện này, các em dời qua đây ở có được không?" Lâm Linh tự nhiên biết Diệp Phi nói là chuyện gì, lập tức gật đầu: "Ừm, em rất mong đợi ngày này." Suốt một ngày, Diệp Phi đều ở lại trường học, nói chuyện tình cảm với tiểu muội và Lâm Linh, hoặc cười đùa với các học sinh, cũng trôi qua vô cùng thoải mái. Chỉ có điều khiến hắn hơi tiếc là chẳng những Đường Nhu về nhà, mà ngay cả Ngọc Vô Hà cũng không thấy bóng dáng đâu, hỏi thăm mới biết là nàng đi tu nghiệp rồi. Tiêu Phỉ biến mất từ tiết thứ hai, nhưng Diệp Phi căn bản không để ý, với năng lực của nàng, căn bản không thể giở trò gì được, huống chi mẹ nàng là Trương Lâm Tâm hiện tại đã là người của mình. Tan học buổi chiều, Diệp Phi ghé tai Diệp Vân Khinh dặn dò vài câu, sau đó ngồi taxi về nhà. Hiện tại đã bước sang tháng mười một, ngày càng ngắn hơn, hơn nữa trường tan học cũng hơi muộn, nên khi Diệp Phi về đến nhà trời đã tối đen. Dùng chìa khóa mở cửa, Diệp Phi phát hiện mẹ đã đang bận rộn trong phòng bếp rồi. Một thân cách ăn mặc ở nhà, trước ngực còn treo một chiếc tạp dề nhỏ, Liễu Diệc Như khác hẳn với khí chất khi ở công ty, nhưng đều gợi cảm mê người như vậy. Diệp Phi không nhịn được đi vào phòng bếp, mở hai tay từ phía sau nhẹ nhàng ôm thân thể mềm mại của mẹ vào lòng, cằm đặt trên vai thơm của nàng, ngửi mùi hương nhàn nhạt, thâm tình nói: "Mẹ, con rất nhớ mẹ!" Liễu Diệc Như không khỏi bật cười: "Mới một ngày không gặp, nhớ cái gì chứ?" "Chẳng lẽ mẹ chưa từng nghe câu 'Một ngày không thấy như cách ba thu' sao? Tâm tình của con hiện tại chính là như vậy đấy." Diệp Phi nói xong, đôi tay sắc ma đã từ vòng eo thon nhỏ của mẹ di chuyển lên ngực nàng, nhẹ nhàng nắm lấy. Liễu Diệc Như bị con trai làm cho thân thể nhũn ra, không khỏi gắt giọng: "Đừng nghịch, bằng không thức ăn xào cháy khét, xem con ăn bằng gì!" "Hiện tại con muốn ăn mẹ cơ!" Diệp Phi nói xong thân thủ tắt bếp, sau đó bế thốc mẹ lên, bước nhanh về phía phòng ngủ của bà. Chưa rời khỏi phòng bếp, đôi tay sắc ma của Diệp Phi đã vừa ôm mẹ vừa cầm lấy bầu vú to mềm mại và kiên quyết của nàng. Qua cảm giác mỹ diệu đó, có thể cảm nhận rất rõ ràng rằng nàng không hề mặc nịt ngực, điều này khiến lòng Diệp Phi không khỏi vui mừng, chẳng lẽ mẹ đã hoàn toàn thả lỏng? Diệp Phi đoán không sai chút nào, từ sau sự tình nồng cháy hôm qua, Liễu Diệc Như đã nghĩ thông suốt một chuyện, đó là mình thật sự đã không cách nào rời xa con trai được nữa. Dù mình có hạ quyết tâm lớn đến đâu, chỉ cần hắn khiêu khích một chút, thân thể đã bị hắn chinh phục hoàn toàn sẽ bán đứng mình. Phần tình cảm không chỉ là tình mẫu tử này đã sinh ra, hơn nữa mình và con trai đều không thể kháng cự sự hấp dẫn của nó, nàng dứt khoát không kháng cự nữa. Chỉ cần mình giữ được điểm mấu chốt, không để "con trym" lớn của hắn tiến vào "lồn" mình, hơn nữa không để người nhà phát hiện, thì mình hoàn toàn có thể cùng con trai hưởng thụ tình cảm đầy cấm kỵ này và những khoái lạc vô tận mà nó mang lại. Vào phòng ngủ của mẹ, Diệp Phi khóa trái cửa từ bên trong, sau đó đặt thân thể yêu kiều gợi cảm vô hạn của mẹ lên giường, đang chuẩn bị cởi đồ mặc ở nhà của nàng ra, không ngờ Liễu Diệc Như lại nhanh hơn hắn một bước, vội vàng cởi bỏ hết quần áo trên người, không hề giữ lại mà phô bày thân thể gợi cảm vô cùng trước mắt con trai. Trong ánh mắt hơi kinh ngạc của Diệp Phi, Liễu Diệc Như nằm nghiêng trên giường, tạo một tư thế vô cùng gợi cảm, dùng đôi mắt tràn đầy khát vọng và nhu tình nhìn con trai đang đứng trước giường, dịu dàng nói: "Hảo nhi tử, mau lại đây nào, mẹ muốn con, con mau làm cho mẹ khoái lạc đi!" Diệp Phi vui mừng quá đỗi, vừa nhanh chóng cởi y phục trên người, vừa tham lam chăm chú nhìn thân thể yêu kiều đầy đặn gợi cảm của mẹ. Lúc này mẹ đang nằm nghiêng mặt hướng về phía mình, một cánh tay ngọc chống đầu trên mặt giường, mái tóc dài như thác nước có một phần rủ xuống từ bên cổ ngọc trước ngực, khiến đôi vú hoàn mỹ dù nằm cũng không hề mất hình dáng kia tràn đầy thần bí hấp dẫn. Vòng eo thon mảnh vì tư thế mà càng thêm không chịu nổi nắm chặt, đôi chân ngọc thẳng tắp gợi cảm vô cùng, một chân duỗi thẳng trên giường, chân kia lại co lên, khiến con trai có thể nhìn thấy rõ ràng dưới ánh đèn nơi mu "lồn" đầy lông đen rậm rạp cùng "lồn" mềm đầy đặn ẩn hiện dưới đám lông. Nhưng tay kia của nàng lại đặt lên vòng eo, những ngón tay ngọc thon dài vừa vặn che đi phong cảnh tuyệt vời nhất, khiến con trai nhìn thế nào cũng không rõ lắm, nhưng lại kích động hơn so với việc nhìn trực tiếp. Cuối cùng cũng cởi hết quần áo, bị mẹ hấp dẫn đến mức sắp không nhịn được, Diệp Phi lao mạnh lên giường, hai tay nâng khuôn mặt kiều diễm thành thục khuynh quốc khuynh thành của mẹ, dùng sức hôn lên miệng nhỏ ngọt ngào của nàng. Liễu Diệc Như chuyển từ nằm nghiêng sang nằm thẳng, đôi cánh tay ngọc không tỳ vết cuốn chặt lấy cổ con trai, vong tình hôn nồng nhiệt cùng con trai, thân thể yêu kiều đầy đặn gợi cảm dùng sức áp sát vào thân dưới của con trai, để thân hình khỏe mạnh của hắn đặt chặt lên thân thể đầy khát vọng của mình, hơn nữa hơi giãy dụa, dùng đôi vú to bị hắn ép biến hình ma sát lên lồng ngực rắn chắc của hắn, đôi chân thon dài mượt mà hơi tách ra, kẹp "con trym" nóng bỏng vô cùng của con trai vào giữa hai chân, hoạt động đôi chân nhẹ nhàng an ủi nó. Biết mẹ hiệ...</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0232.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0234.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

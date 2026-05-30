@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 295 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 295</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 295</small>
+    Chương 295: Mới nếm thử Minh Nguyệt Tâm
+  </h1>
+  <div class="chapter-body">
+    <p>Thật lâu sau, Tô Ngọc Nhàn mới thở ra một hơi dài, buông lỏng đôi chân ngọc đang quấn chặt lấy thắt lưng Diệp Phi, thả lỏng thân thể yêu kiều gợi cảm của mình ngã xuống ghế sa lon. Tuy nhiên, đôi cánh tay ngọc vẫn ôm cổ Diệp Phi, hai mắt si mê nhìn hắn, nũng nịu nói: "Tiểu oan gia, ngươi thật sự càng ngày càng lợi hại!"</p>
+    <p>Ánh mắt thỏa mãn và kiều mỵ của Tô Ngọc Nhàn khiến Diệp Phi vừa đắc ý vừa nóng rực trong lòng. "Thằng nhỏ" vừa mới tạm nghỉ không lâu lại trở nên cứng rắn như sắt nung trong cơ thể mỹ phụ, khiến hắn không nhịn được mà nhấp nhẹ một cái, cười dâm đãng: "Còn có chỗ lợi hại hơn nữa, mẹ nuôi tốt của ta, nàng có muốn thử một chút không?"</p>
+    <p>"Nha..." Tô Ngọc Nhàn bị Diệp Phi chọc cho khẽ kêu một tiếng, vội vàng cầu xin: "Tiểu bại hoại, để cho người ta nghỉ ngơi một chút không được sao?"</p>
+    <p>Diệp Phi biết Tô Ngọc Nhàn chưa từng luyện qua công pháp nào, tự nhiên không thể so được với các mẹ khác, nên cũng không cưỡng cầu nữa. Hắn chỉ lưu lại thật sâu trong nơi thâm sâu nhất của nàng rồi dừng mọi động tác, thâm tình ngắm nhìn khuôn mặt tuyệt mỹ của người mỹ phụ thành thục gợi cảm dưới thân, vẻ đẹp ấy sau khi được hắn làm dịu đã không hề kém cạnh Liễu Diệc Như chút nào.</p>
+    <p>Thấy Diệp Phi thương tiếc mình như vậy, Tô Ngọc Nhàn vừa cảm động vừa dâng lên nhu tình vô tận. Nàng nhìn sâu vào mắt Diệp Phi, chủ động dâng đôi môi nhỏ, hôn hắn say đắm cho đến khi thở không ra hơi mới rời khỏi, ôn nhu hỏi: "Bây giờ có thể nói cho ta biết chuyện của Tâm nhi được chưa?"</p>
+    <p>Diệp Phi ôm vị mỹ phụ gợi cảm này xoay người, tự mình ngồi trên ghế sa lon, để nàng dạng chân trên người mình. Hai tay hắn luồn vào quần áo nàng, vuốt ve tấm lưng cùng cặp mông bóng loáng, cười hỏi: "Nàng ấy thì có chuyện gì? Nàng muốn ta nói cái gì?"</p>
+    <p>"Nói xem tại sao con bé lại đau lòng? Nếu ta đoán không lầm, chuyện này nhất định có liên quan đến ngươi đúng không? Có phải ngươi đã nói gì với nó?" Tô Ngọc Nhàn chớp chớp đôi mắt to, nhìn thẳng vào Diệp Phi. Vẻ đoan trang dịu dàng thường ngày lúc này trong mắt lại ẩn hiện nét trêu tức và kích động.</p>
+    <p>Diệp Phi không ngờ Tô Ngọc Nhàn vốn không hay để ý chuyện đời mà lại nhìn thấu sự việc chuẩn xác đến thế, không khỏi hỏi: "Tại sao lại nghĩ là có liên quan đến ta?"</p>
+    <p>"Nữ nhi của ta, làm sao ta lại không biết cơ chứ?" Tô Ngọc Nhàn bỗng thở dài sâu kín: "Con bé cũng giống như ta, đã yêu ngươi – tên tiểu oan gia này rồi. Chỉ là nha đầu này sợ rằng còn chưa nhận ra tâm tư của chính mình thôi."</p>
+    <p>Diệp Phi thầm đổ mồ hôi, Tô Ngọc Nhàn nói chắc chắn không sai. Nhưng sau chuyện ngày hôm nay, hẳn là Minh Nguyệt Tâm cũng đã hiểu rõ lòng mình. Cả ngày nay nàng không vui, sợ rằng phần lớn là vì tâm tư rối bời. Hắn lập tức có chút xấu hổ nói: "Không thể nào, có phải nàng nhìn lầm rồi không?"</p>
+    <p>Tô Ngọc Nhàn quả quyết nói: "Sẽ không đâu, ta hiểu rõ nó lắm. Có thể nói cho ta biết rốt cuộc hôm nay đã xảy ra chuyện gì không?"</p>
+    <p>Diệp Phi gật đầu, không giấu giếm, kể lại chuyện xảy ra trong xe cho Tô Ngọc Nhàn nghe, rồi kết luận: "Ta đã xin lỗi nàng ấy rồi, không hiểu sao nàng vẫn còn tức giận."</p>
+    <p>"Ngươi không nên xin lỗi." Tô Ngọc Nhàn thở dài: "Nha đầu này sợ rằng đã tự đưa mình vào ngõ cụt rồi. Ngươi xin lỗi nó chỉ khiến nó cảm thấy ngươi chẳng có chút cảm giác nào với nó, nên nó mới thất lạc."</p>
+    <p>"Oan uổng quá!" Diệp Phi kêu oan: "Ai nói ta không có cảm giác với nàng ấy?"</p>
+    <p>Tô Ngọc Nhàn vừa bực vừa buồn cười liếc hắn một cái, nhẹ nhàng lắc lư thân thể yêu kiều, dùng diệu dụng co thắt nhẹ nhàng siết lấy "thằng nhỏ" nóng rực của Diệp Phi, nói: "Trong tình huống như thế mà nói với một người phụ nữ khác là có cảm giác, hơn nữa người phụ nữ đó lại chính là con gái ta, ngươi không thấy không ổn sao?"</p>
+    <p>"Ta chỉ là nói lời thật lòng thôi mà." Diệp Phi hiểu Tô Ngọc Nhàn không hề tức giận nên không chút kiêng dè cười hắc hắc, sau đó nghiêm mặt hỏi: "Nàng thấy ta nên làm thế nào? Ta nghe theo nàng hết!"</p>
+    <p>"Xét về lý trí, ta không hy vọng Tâm nhi ở bên ngươi." Tô Ngọc Nhàn thở dài: "Nhưng xét về mặt tình cảm, ta lại hy vọng ngươi có thể mang lại cho nó niềm vui lớn nhất. Như vậy không những các ngươi vui vẻ, mà ta cũng có thể đường hoàng ở bên ngươi hơn."</p>
+    <p>"Tại sao lý trí lại không muốn chúng ta ở bên nhau?" Diệp Phi nửa đùa nửa thật hỏi: "Chẳng lẽ nàng thấy ta không xứng với Tâm tỷ tỷ sao?"</p>
+    <p>"Không phải." Tô Ngọc Nhàn lắc đầu, không để tâm đến lời đùa của hắn, vô cùng nghiêm túc nói: "Ngươi không có điểm nào không xứng với nó. Ít nhất trong lòng ta, trên đời này không có người đàn ông nào tốt hơn ngươi. Nhưng chính vì ngươi quá ưu tú, phụ nữ bên cạnh nhất định không ít. Ta thì không sao, nhưng Tâm nhi còn quá trẻ, ta sợ nó ở bên ngươi rồi sẽ không hạnh phúc, vì tinh lực một người dù sao cũng có hạn."</p>
+    <p>"Nàng lo lắng hơi thừa rồi nha." Diệp Phi cười hắc hắc, dùng sức nhấp vào sâu trong người Tô Ngọc Nhàn: "Người khác tinh lực có hạn, nhưng ta là vô hạn. Chẳng lẽ nàng còn lo nó sẽ không được 'hạnh phúc' sao?"</p>
+    <p>Hai người nói chuyện một lúc, Tô Ngọc Nhàn đã hồi phục sức lực. Giờ lại bị hắn trêu chọc, ngọn lửa kìm nén bấy lâu không khỏi lại bùng lên. Dù biết Diệp Phi chỉ đang ngụy biện, nhưng tình cảm dành cho hắn đã hoàn toàn đánh tan lý trí. Nàng hiểu rằng chuyện con gái ở bên Diệp Phi là điều thiên kinh địa nghĩa, nên không nghĩ nhiều nữa, nhẹ nhàng vặn vẹo thân thể phối hợp với động tác của hắn.</p>
+    <p>Cảm nhận được sự phối hợp của Tô Ngọc Nhàn, Diệp Phi mừng thầm, dùng sức nghiêng người, một lần nữa đè nàng xuống dưới, định thay đổi tư thế để thỏa mãn nàng một phen. Không ngờ Tô Ngọc Nhàn lại ngăn cản động tác của hắn.</p>
+    <p>"Đến phòng Tâm nhi làm đi!" Sau khi ngăn Diệp Phi lại, khuôn mặt Tô Ngọc Nhàn đỏ bừng nói.</p>
+    <p>"Cái gì?" Diệp Phi sững sờ. Tuy Minh Nguyệt Tâm từng thấy cảnh thân mật của hắn và Tô Ngọc Nhàn, nhưng đó chỉ là ngoài ý muốn. Hiện tại nàng còn chưa phải người phụ nữ của hắn, làm vậy sợ không hay lắm. Hơn nữa, Tô Ngọc Nhàn vốn e thẹn, sao hôm nay lại điên cuồng như vậy?</p>
+    <p>Thấy Diệp Phi ngạc nhiên, Tô Ngọc Nhàn cố nén sự xấu hổ, giải thích: "Các ngươi đã muốn ở bên nhau thì phải để nó tiếp nhận tất cả những điều này. Nếu nó không thể tiếp nhận thì cũng tốt, coi như kịp thời tỉnh ngộ, tránh để lún càng sâu."</p>
+    <p>Diệp Phi lúc này mới hiểu ý của Tô Ngọc Nhàn. Hắn không những không trách mà còn càng yêu thương nàng hơn. Bởi ngay trong thời điểm này, nàng vẫn nghĩ đến cảm nhận của con gái trước tiên. Tấm lòng người mẹ này khiến hắn nhớ đến Liễu Diệc Như. Thứ tình yêu có thể nói là đạt đến cực hạn này mới là điều khiến người ta cảm động nhất. Nếu Tô Ngọc Nhàn vì nịnh nọt hắn mà bỏ qua cảm nhận của con gái, Diệp Phi mới là người coi thường nàng.</p>
+    <p>Gật đầu đồng ý với đề nghị của Tô Ngọc Nhàn, nhưng Diệp Phi không hề xuống khỏi người nàng, mà là kéo đôi cánh tay ngọc của nàng ôm lấy cổ mình, sau đó hai tay nâng mông nàng lên, cứ thế ôm chặt lấy nhau từng bước đi về phía phòng của Minh Nguyệt Tâm.</p>
+    <p>Bị Diệp Phi đùa bỡn trong tư thế này, lại còn sắp phải xuất hiện trước mặt con gái, điều này khiến Tô Ngọc Nhàn thẹn thùng khôn cùng. Tuy nhiên, khoái cảm xâm nhập chưa từng có khiến nàng không thể nói lời từ chối. Hơn nữa, trong lòng nàng lúc này bỗng trỗi dậy một ý nghĩ điên cuồng, đó là muốn "biểu hiện" thật tốt trước mặt con gái. Chỉ cần nghĩ đến cảnh tượng sắp tới, nàng đã cảm thấy một sự kích thích tột độ.</p>
+    <p>Lại nói đến Minh Nguyệt Tâm, sau khi về phòng nằm xuống, nàng hoàn toàn không thể ngủ nổi. Trong đầu cứ hiện lên cảnh tượng ban nãy, đồng thời nghĩ thầm lúc này Diệp Phi và mẹ hẳn là lại bắt đầu rồi! Nghĩ đến đó, trong lòng nàng chẳng những không có sự bài xích như lần đầu thấy, ngược lại còn dấy lên một sự tò mò muốn được nhìn lại.</p>
+    <p>Ý nghĩ này khiến Minh Nguyệt Tâm giật mình, vội vàng lắc đầu xua đi. Không ngờ ngay lúc đó, ngoài cửa truyền đến tiếng rên rỉ yêu kiều của mẹ Tô Ngọc Nhàn.</p>
+    <p>Tòa nhà của nhà họ Minh do đại học Vọng Hải cấp cho giáo sư Minh, cách âm không tốt lắm. Thêm vào đó, Tô Ngọc Nhàn đang lúc vong tình nên âm thanh khá lớn, Minh Nguyệt Tâm nghe rõ mồn một. Nàng thầm trách, hai người này quá nôn nóng rồi? Lại khai chiến ngay trong phòng khách, chẳng lẽ không chút quan tâm đến cảm nhận của mình sao?</p>
+    <p>Minh Nguyệt Tâm – người vốn đang trong trạng thái "rúc vào sừng trâu" – nghĩ đến việc Diệp Phi "hư tình giả ý" với mình, lòng thầm đau xót. Nhưng âm thanh truyền từ phòng khách vẫn kích thích thần kinh nàng, khiến nàng vừa đau khổ vừa có chút phản ứng cơ thể.</p>
+    <p>Vốn tưởng sẽ nhanh chóng kết thúc, nhưng Minh Nguyệt Tâm không ngờ âm thanh trong phòng khách không hề dừng lại mà kéo dài mãi. Dần dần, nàng cảm thấy bên dưới mình đã rất ướt át, khát vọng trong lòng cũng ngày một lớn dần.</p>
+    <p>Cuối cùng, sau một tiếng thét chói tai của Tô Ngọc Nhàn, Minh Nguyệt Tâm không thể nhịn được nữa, nhẹ nhàng chui vào chăn, cởi bỏ quần áo, đưa bàn tay nhỏ bé xuống bên dưới, chậm rãi cử động.</p>
+    <p>Tuy lòng có chút không thoải mái, nhưng có lẽ do sự kích thích từ những âm thanh bên ngoài, những ngón tay của Minh Nguyệt Tâm khi cử động mang lại khoái cảm mạnh mẽ hơn bình thường rất nhiều. Nàng dần mất đi lý trí, động tác tay ngày một nhanh hơn, chỉ muốn truy cầu khoái cảm cực hạn đó.</p>
+    <p>Đúng lúc Minh Nguyệt Tâm sắp chạm đến đỉnh điểm, âm thanh bên ngoài đột nhiên dừng lại. Thiếu đi sự kích thích đó, nàng bỗng phát hiện mình không thể lên đỉnh được nữa.</p>
+    <p>Minh Nguyệt Tâm không cam lòng, bực bội vứt chăn ra, động tác tay lại nhanh hơn, nhưng không thể tìm lại cảm giác vừa rồi. Giờ khắc này, nàng rất hy vọng hai người trong phòng khách có thể tiếp tục, thậm chí còn có khao khát được gia nhập cùng họ. Nàng bỗng ghen tị với mẹ mình, vì nàng biết Diệp Phi đối với Tô Ngọc Nhàn tuyệt đối là thật lòng. Còn với mình, nàng không dám nghĩ, vừa hy vọng hắn cũng thật lòng, lại sợ như vậy sẽ làm tổn thương mẹ.</p>
+    <p>Đúng lúc Minh Nguyệt Tâm đang giằng xé, cửa phòng đột nhiên mở ra. Tiếp đó, nàng nhìn thấy Diệp Phi và mẹ cùng bước vào, nhưng tư thế của hai người lại...</p>
+    <p>Chỉ thấy lúc này, mẹ như chú gấu túi, tứ chi quấn chặt lấy người Diệp Phi, còn hắn thì nâng cặp mông lớn của nàng lên. Hai người cứ thế bước vào. Tuy bộ phận quan trọng nhất bị chiếc váy rộng thùng thình của mẹ che khuất, nhưng đừng nói là Minh Nguyệt Tâm thông minh, dù là kẻ ngốc cũng hiểu rõ trạng thái của hai người lúc này.</p>
+    <p>Minh Nguyệt Tâm không ngờ họ lại đột nhiên vào phòng mình, hơn nữa còn ở trạng thái như vậy. Trong lòng vừa thẹn thùng lại vừa cảm thấy sự kích thích mãnh liệt. Những ngón tay đang vuốt ve "vùng kín" dưới chăn của nàng vô tình thâm nhập vào nơi chưa từng có dị vật nào đặt chân tới. Nếu không phải sự đau đớn nhói lên nhắc nhở, sợ rằng tấm thân xử nữ của nàng đã bị những ngón tay chính mình phá hủy rồi.</p>
+    <p>"Các ngươi vào đây làm gì?" Minh Nguyệt Tâm hỏi, trong lòng có chút chột dạ, nàng rất sợ Diệp Phi và mẹ phát hiện ra bộ dạng mình lúc này, nên vội vàng đắp chăn che kín.</p>
+    <p>Diệp Phi cười nói: "Đến phòng nàng, dĩ nhiên là để tìm nàng!" Nói xong, hắn ôm Tô Ngọc Nhàn đi đến bên giường Minh Nguyệt Tâm, ngồi phịch xuống.</p>
+    <p>Trong tư thế bị Diệp Phi "đâm" như vậy, dương vật vốn đã cắm rất sâu, cú ngồi xuống này khiến đầu khấc nóng rực va chạm mạnh vào hoa tâm kiều nộn của Tô Ngọc Nhàn.</p>
+    <p>"Nha..." Tô Ngọc Nhàn bị cú đâm mạnh này khiến kìm lòng không được rên lên một tiếng. Thấy con gái đang nhìn mình, nàng cười nói: "Tâm nhi, xin lỗi con, mẹ không cố ý, chỉ là sung sướng quá." Nếu là bình thường, Tô Ngọc Nhàn vốn hướng nội sẽ không bao giờ nói ra những lời này, nhất là trước mặt con gái ruột. Nhưng hôm nay thì khác, nàng ghi nhớ rõ mục đích đến đây. Ý nghĩ muốn giúp con gái tìm kiếm hạnh phúc cả đời khiến nàng hoàn toàn phóng khoáng, nên những lời này tự nhiên mà nói ra.</p>
+    <p>Nghe mẹ nói câu khác thường như vậy, Minh Nguyệt Tâm bị dọa cho ngẩn người, thầm suy đoán dụng ý của mẹ. Chẳng lẽ mẹ muốn khoe khoang với mình? Điều này hiển nhiên không thể, mẹ không phải người như vậy, huống chi mẹ chỉ có yêu thương vô hạn với nàng, sao có thể kích thích mình?</p>
+    <p>Tuy nhiên, Diệp Phi và Tô Ngọc Nhàn đều không giải thích gì thêm. Diệp Phi chỉ nhìn sâu vào Minh Nguyệt Tâm nói: "Tâm tỷ tỷ, ta đến để giải thích chuyện trên xe buổi sáng. Lúc đó thật sự là có chút kìm lòng không được."</p>
+    <p>"Sáng nay ngươi đã xin lỗi rồi, cho nên không cần giải thích nữa." Nhắc đến chuyện buổi sáng, sắc mặt Minh Nguyệt Tâm lạnh xuống, những khát vọng vô tận trong lòng cũng tiêu tán không ít.</p>
+    <p>"Không, nàng không hiểu!" Diệp Phi nói: "Sáng nay ta xin lỗi nàng không phải vì ta sờ soạng nàng, mà là vì đã sờ nàng mà chưa được sự đồng ý của nàng!"</p>
+    <p>Ngay trước mặt mẹ nhắc tới việc này khiến khuôn mặt Minh Nguyệt Tâm ửng đỏ. Nhưng đã nói đến nước này, nàng cũng không muốn che giấu gì nữa, hỏi: "Cái này có gì khác nhau sao?"</p>
+    <p>"Tất nhiên là có khác rồi." Tô Ngọc Nhàn tiếp lời, cười nói: "Nếu hắn xin lỗi vì đã sờ nàng, nghĩa là hắn coi đó là hành động vô tình, trong lòng không có ý gì với nàng. Nhưng vì hắn xin lỗi vì chưa được nàng đồng ý, nghĩa là trong lòng hắn thật sự thích nàng, có ý với nàng, chẳng qua vì tôn trọng nàng nên mới coi trọng việc nàng có đồng ý hay không như vậy."</p>
+    <p>Lời của mẹ khiến trái tim Minh Nguyệt Tâm đập mạnh, không khỏi nhìn Diệp Phi đầy dò hỏi.</p>
+    <p>Diệp Phi nhìn thẳng vào mắt Minh Nguyệt Tâm, gật đầu chắc chắn: "Không sai, Tâm tỷ tỷ, ta thực sự thích nàng, từ rất lâu rồi, từ trước cả khi ta quen mẹ nuôi."</p>
+    <p>Tuy Diệp Phi vừa "cắm" mẹ mà lại nói thích con gái người ta nghe rất vớ vẩn, nhưng Minh Nguyệt Tâm đã tin lời hắn, chỉ là vẫn nói: "Ngươi là tình nhân của mẹ ta, sao có thể lại yêu thích ta?"</p>
+    <p>"Ngốc nữ nhi." Tô Ngọc Nhàn ôn nhu cười nói: "Tuổi tác giữa mẹ và các ngươi cách xa như vậy, đã định trước là không thể quang minh chính đại ở bên hắn. Hơn nữa con cũng thấy rồi, tên tiểu tử này lợi hại như vậy, một mình mẹ làm sao ứng phó nổi? Cho nên các con nhất định nên ở bên nhau, như vậy mẹ cũng có thể danh chính ngôn thuận hơn ở bên hắn. Tuy hai mẹ con ta cùng theo hắn nghe có chút khó nghe, nhưng có gì quan trọng hơn hạnh phúc của chúng ta đâu?"</p>
+    <p>"Tâm tỷ tỷ, ta yêu nàng thật lòng, làm phụ nữ của ta có được không?" Diệp Phi nhân cơ hội nói, đồng thời vươn tay nâng khuôn mặt Minh Nguyệt Tâm lên, chậm rãi cúi đầu.</p>
+    <p>Có lẽ vì những lời của Tô Ngọc Nhàn phát huy tác dụng, Minh Nguyệt Tâm không né tránh, tùy ý để Diệp Phi hôn lên đôi môi đỏ của mình, rồi nhanh chóng tan chảy trong sự nhiệt tình của hắn.</p>
+    <p>Thấy hai người rốt cuộc cũng hôn nhau, Tô Ngọc Nhàn mỉm cười thỏa mãn. Nàng cố nén dục hỏa, từ từ rời khỏi người Diệp Phi, giải phóng "cự vật" của hắn ra, rồi ra hiệu cho Diệp Phi – người đang vừa hôn con gái vừa nhìn mình.</p>
+    <p>Diệp Phi không chần chừ nữa, thừa lúc Minh Nguyệt Tâm đang hôn đến mê mẩn, hắn một tay vén chăn của nàng, bàn tay lớn từ từ vuốt ve làn da bóng loáng, đi thẳng tới "cửa vào" xử nữ còn đang ướt át dâm thủy.</p>
+    <p>Phát hiện này khiến Diệp Phi mừng rỡ. Có vẻ như kịch chiến giữa mình và Tô Ngọc Nhàn ban nãy đã kích thích Minh Nguyệt Tâm rất nhiều, khiến giai đoạn tiền hí cũng được rút gọn. Hắn chậm rãi xoay người đè lên người Minh Nguyệt Tâm, chen chân vào giữa hai chân nàng, rồi rời khỏi đôi môi, thâm tình nhìn nàng nói: "Tâm tỷ tỷ, làm phụ nữ của ta nhé!"</p>
+    <p>Cho đến khi đôi môi nóng bỏng của Diệp Phi rời đi, Minh Nguyệt Tâm đang mê mẩn mới khôi phục thần trí. Nàng thấy mình đang trần như nhộng trước mặt Diệp Phi, hai chân mở rộng, nơi tư mật nhất từ mười tuổi đến nay ngay cả mẹ cũng chưa từng nhìn qua đang phơi bày trước mắt hắn, mà cự vật to lớn kia đang chỉ thẳng vào nơi đó. Trong lòng dấy lên sự ngượng ngùng vô tận, nhưng nghe thấy lời Diệp Phi, nàng không nói gì cả.</p>
+    <p>Diệp Phi biết, Minh Nguyệt Tâm lúc này dù nguyện ý cũng xấu hổ không nói nên lời, nên lại nói: "Tâm tỷ tỷ, ta sắp vào rồi, nếu nàng không nguyện ý, có thể phản kháng, ta sẽ dừng lại ngay." Nói xong, hắn hơi đưa eo về phía trước, để cự vật cứng rắn ấn vào nơi xử nữ kiều nộn.</p>
+    <p>Ngay khoảnh khắc dương vật chạm vào "nơi đó", cảm giác mãnh liệt khiến thân thể yêu kiều của Minh Nguyệt Tâm hơi run lên, nhưng nàng không hề nhúc nhích. Diệp Phi sao có thể không hiểu ý nàng? Tuy nhiên, ngay lúc chuẩn bị cắm vào, hắn nảy ra một ý xấu, quay sang Tô Ngọc Nhàn đang nhìn họ với ánh mắt chúc phúc: "Mẹ nuôi, giúp một tay." Nói xong, ánh mắt ra hiệu vào nơi "cậu nhỏ".</p>
+    <p>Lúc này Tô Ngọc Nhàn như biến thành người khác, hoàn toàn không còn vẻ e thẹn ngày thường. Nghe thấy lời Diệp Phi, hiểu được ý hắn, nàng không nghĩ ngợi gì mà tiến lại gần, vươn bàn tay mềm mại cầm lấy dương vật của Diệp Phi, chà xát đầu khấc lên cửa vào của con gái.</p>
+    <p>Minh Nguyệt Tâm không ngờ mẹ lại làm vậy, lập tức lấy hai tay che mặt vì xấu hổ. Còn Diệp Phi thì sướng đến không chịu nổi. Để một người mẹ cầm "cậu nhỏ" của mình cắm vào nơi tư mật của con gái ruột nàng, trên đời còn gì kích thích hơn? Đây mới chỉ là hai mẹ con Tô Ngọc Nhàn thôi, hắn đã quyết định, sau này nhất định phải cho mẹ cùng cô em gái cũng thử như thế này. Chỉ tiếc là ba người tỷ tỷ của mẹ ruột đã mất, bằng không bốn người họ chắc chắn sẽ còn kích thích hơn nữa.</p>
+    <p>Minh Nguyệt Tâm dù ngượng ngùng khôn cùng nhưng cũng bị bầu không khí dâm đãng này kích thích. Khi mẹ dùng dương vật của Diệp Phi chà xát lên cửa vào của mình, âm đạo nàng không khỏi tiết ra càng nhiều dâm thủy. Tô Ngọc Nhàn thấy vậy, biết thời cơ đã chín muồi, liền chậm rãi đưa quy đầu của Diệp Phi cắm vào cửa vào nhỏ hẹp của con gái từng chút một. Sau đó, nàng đè hông Diệp Phi dùng sức đẩy mạnh. Theo một tiếng kêu khẽ vì đau của Minh Nguyệt Tâm, cự vật đã cắm vào quá nửa.</p>
+    <p>"Tâm nhi, không sao đâu, chỉ đau một chút thôi, lát nữa sẽ ổn thôi. Con nhất định sẽ thoải mái giống như mẹ vậy." Thấy Minh Nguyệt Tâm vì đau mà khẽ nhíu đôi mày thanh tú, Tô Ngọc Nhàn vội vàng nhẹ giọng an ủi.</p>
+    <p>Nghe lời mẹ, Minh Nguyệt Tâm cuối cùng cũng hiểu ý nghĩa của việc mẹ cố tình rên rỉ lớn tiếng lúc nãy. Đó là dùng hành động thực tế để nói với nàng rằng chuyện này sẽ thoải mái nhường nào, từ đó khiến nàng nhanh chóng nhập cuộc mà không vì cơn đau lúc đầu mà sợ hãi.</p>
+    <p>Là một cảnh sát, dù chưa từng trải qua, nhưng Minh Nguyệt Tâm cũng biết sơ qua về chuyện này. Cách làm của Tô Ngọc Nhàn có phần hơi thừa thãi, nhưng Minh Nguyệt Tâm không hề nghĩ như vậy. Trong lòng nàng cảm động khôn cùng vì sự chăm sóc của mẹ và Diệp Phi dành cho mình, nên không trầm mặc nữa, gật đầu nói: "Mẹ, con biết rồi. Tiểu Phi, chàng không được quá mạnh tay đâu, tỷ tỷ là lần đầu, hơi đau."</p>
+    <p>"Ta biết rồi." Diệp Phi ôn nhu cười, cự vật trong cửa vào nhỏ hẹp mà nàng vừa khai phá cử động với biên độ nhỏ nhất, giúp nàng thích nghi mà không quá đau đớn. Hai tay hắn cũng vươn lên trước ngực, nhẹ nhàng xoa nắn bầu vú to không thua kém gì mẹ nàng.</p>
+    <p>Dưới sự tấn công trên dưới của Diệp Phi, Minh Nguyệt Tâm nhanh chóng vượt qua cơn đau ban đầu, trong âm đạo bắt đầu ngứa ngáy, liền ngượng ngùng nói: "Đệ đệ tốt, tỷ tỷ không đau nữa, chàng nhanh một chút đi."</p>
+    <p>Diệp Phi lúc này cũng không nhịn được nữa, được sự đồng ý của Minh Nguyệt Tâm, hắn còn chần chừ gì nữa? Động tác lập tức nhanh hơn, khiến Minh Nguyệt Tâm lần đầu trải qua chuyện này cảm thấy tâm thần nhộn nhạo. Nếu không vì nể mẹ đang ở bên cạnh, nàng cảm thấy mình đã không nhịn được mà hét lên thành tiếng như mẹ rồi.</p>
+    <p>Đúng lúc này, Tô Ngọc Nhàn cũng tiến lại gần, rạp người trên ngực con gái, mở khuôn miệng nhỏ nhắn ngậm lấy một đầu vú của nàng, nhẹ nhàng mút mát, giống như lúc con gái còn nhỏ bú sữa mình vậy.</p>
+    <p>Bị mẹ kích thích như vậy, Minh Nguyệt Tâm vốn vì lần đầu mà sức chịu đựng không cao, không khỏi hét lên một tiếng, cặp mông lớn vặn vẹo liên hồi, tiết ra dòng "âm tinh" đầu tiên khi bị người đàn ông mình yêu ân ái.</p>
+    <p>Sau khi Minh Nguyệt Tâm đạt đỉnh, Diệp Phi chỉ hơi dừng lại một chút rồi lập tức bắt đầu đợt đưa đẩy thứ hai. Hắn địt cho đến khi Minh Nguyệt Tâm liên tiếp đạt đỉnh ba lần, cho đến khi nàng vô lực hầu hạ mới buông tha. Vì là lần đầu, lại thêm cả ngày nay không ăn uống gì do tâm trạng không tốt, thể lực đã tiêu hao hết sạch, nên sau khi Diệp Phi rút ra, Minh Nguyệt Tâm nhanh chóng chìm vào giấc ngủ.</p>
+    <p>Sau khi Minh Nguyệt Tâm ngủ, Diệp Phi và Tô Ngọc Nhàn vẫn không rời phòng. Họ tiếp tục làm chuyện đó ngay bên cạnh nàng. Chính vì bên cạnh con gái, đêm nay lại vì tâm lý đặc biệt này mà hoàn toàn buông thả, Tô Ngọc Nhàn thể hiện sự nhiệt tình chưa từng có, không ngừng quấn lấy Diệp Phi, cho đến khi kiệt sức y như con gái mới thỏa mãn nằm ngủ cạnh con.</p>
+    <p>Giường của Minh Nguyệt Tâm không quá lớn, ba người nằm cùng sẽ có vẻ hơi chật chội, nhưng Diệp Phi không hề rời đi, mà chen vào giữa hai mẹ con, một tay ôm một người, cứ thế ngủ thiếp đi.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0294.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0296.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

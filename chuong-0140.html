@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 140 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 140</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 140</small>
+    Chương 140: Ôn lại duyên cũ
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi hiện tại đã hiểu rõ mọi chuyện. Chẳng trách lúc trước nhìn thấy Minh Nguyệt Tâm có chút thất thần, hắn lại cảm thấy quen thuộc đến vậy. Hóa ra mỹ phụ này chính là mẹ nàng. Vốn dĩ chuyện này rất dễ nhận ra, dù sao hai người cũng có nét giống nhau, chỉ là tính cách chênh lệch quá lớn nên Diệp Phi chưa bao giờ nghĩ tới phương diện này.</p>
+    <p>Mâm đựng trái cây rơi xuống đất phát ra tiếng vang thanh thúy, đánh thức mỹ phụ đang ngẩn người khi thấy Diệp Phi. Nàng vội vàng ngồi xổm xuống thu dọn đồ đạc. Chiếc áo mặc ở nhà vốn rộng rãi nay theo động tác của nàng mà ôm sát lấy cơ thể, làm cho vóc dáng nóng bỏng kia lập tức nổi bật lên.</p>
+    <p>Diệp Phi nhìn mỹ phụ vì khom người nhặt trái cây mà vòng ba càng thêm đẫy đà, không khỏi nhớ tới cảnh tượng kiều diễm ngày đó. Trong lòng hắn dâng lên ngọn lửa nóng bỏng, vật nhỏ bên dưới cũng có chút không nghe lời mà cứng lên.</p>
+    <p>"Mẹ, mẹ sao vậy ạ?" Minh Nguyệt Tâm lớn chừng này mới lần đầu thấy mẹ thất thố như vậy, không khỏi thấy kỳ lạ. Minh giáo thụ cũng ném ánh mắt khó hiểu về phía vợ mình.</p>
+    <p>Bị con gái và chồng nhìn chằm chằm, mỹ phụ càng thêm bối rối, lắp bắp nói: "Không... không có gì, chỉ là không ngờ lại là cậu ấy." Tâm hoảng ý loạn, chính nàng cũng không biết mình đang nói gì.</p>
+    <p>"Hai người quen nhau ạ?" Minh Nguyệt Tâm càng thấy kỳ lạ. Mẹ nàng rất ít khi ra ngoài, mà Diệp Phi lại không sống ở khu này, đáng lẽ họ không nên có liên quan gì mới phải.</p>
+    <p>Diệp Phi thấy mỹ phụ như vậy, biết nếu để bà nói thêm sợ sẽ lộ chuyện, liền tiếp lời: "Đúng vậy, cháu cũng rất ngạc nhiên, không ngờ lại gặp cô ở đây."</p>
+    <p>"Hai người quen nhau thế nào vậy?" Minh Nguyệt Tâm thấy Diệp Phi cũng thừa nhận, biết họ thực sự quen nhau nên tò mò hỏi, quan trọng nhất là, mẹ nàng hình như có chút bất thường.</p>
+    <p>"Nhắc tới cũng phải cảm ơn cô. Trước kia cháu chơi đùa gần đây, không cẩn thận ngã xuống cống ngầm, chính cô là người đã kéo cháu lên." Diệp Phi nhìn mẹ Minh Nguyệt Tâm đầy khẩn trương, không khỏi cười xấu xa: "Ngày đó cô mặc váy, nên mắt cháu không cẩn thận mạo phạm cô." Nói xong, Diệp Phi còn làm bộ mặt đỏ bừng.</p>
+    <p>Mẹ con Minh Nguyệt Tâm lúc này mới thở phào. Trong lòng thầm nghĩ bảo sao Minh mẫu nhìn thấy Diệp Phi lại bối rối, hóa ra là do ngày đó bị hắn nhìn thấy chỗ không nên thấy. Nhưng cả hai cũng không để tâm, dù sao trong mắt họ, Diệp Phi vẫn còn là đứa trẻ, Minh mẫu đủ tuổi làm mẹ hắn rồi, nhìn một chút cũng chẳng có gì to tát.</p>
+    <p>Minh mẫu thấy Diệp Phi không những không nói ra chuyện kia mà còn bịa ra một lý do, dù khiến bà ngượng ngùng nhưng vẫn tốt hơn nhiều so với việc để chồng và con gái biết sự thật. Bà cảm kích nhìn Diệp Phi, lại vừa vặn bắt gặp ánh mắt nóng bỏng của hắn. Trong lòng bà bỗng run lên, mặt càng đỏ hơn, vội đặt mâm trái cây lên bàn rồi nói: "Các con ăn trái cây trước đi, mẹ đi làm cơm!" Nói xong, không đợi ai kịp phản ứng, bà bước nhanh vào bếp.</p>
+    <p>Sau khi Minh mẫu rời đi, Minh giáo thụ thoải mái trò chuyện với Diệp Phi. Ông là một giáo sư thâm niên, tính tình cởi mở, nhất là những năm gần đây sức khỏe bản thân không tốt nên cũng chẳng để ý mấy chuyện ong bướm nhỏ nhặt giữa vợ và Diệp Phi.</p>
+    <p>Diệp Phi từ sau khi khai phá não vực, dù không cố tình học hỏi nhưng kiến thức các phương diện đã vô cùng phong phú. Lúc này cùng Minh giáo thụ trò chuyện, dù đối phương nói về lĩnh vực nào, hắn đều có thể ứng phó, thậm chí suy nghĩ nhạy bén với những kiến giải độc đáo khiến Minh giáo thụ cảm thấy tâm đầu ý hợp, trò chuyện vô cùng hưng phấn.</p>
+    <p>Minh Nguyệt Tâm nghe họ nói chuyện một lúc thì thấy chán, liền mở TV, không còn bận tâm đến những thứ mình không hiểu nữa.</p>
+    <p>Hai người trò chuyện hơn một tiếng đồng hồ, mãi đến tận lúc ăn cơm, Minh giáo thụ vẫn còn chưa thỏa mãn. Tuy nhiên, Diệp Phi dù sao cũng là khách lần đầu đến nhà, ông cũng ngại lôi kéo trò chuyện mãi, thấy vợ đã làm cơm xong liền tạm dừng.</p>
+    <p>Lúc này Minh mẫu đã ổn định tâm trạng, dù đối mặt với Diệp Phi vẫn thấy ngượng ngùng nhưng không còn hoảng loạn như trước.</p>
+    <p>Sắp dùng bữa xong, Minh giáo thụ hỏi Diệp Phi: "Tiểu Mãn, tối nay con có việc gì không? Nếu không, có thể ở lại trò chuyện thêm lát nữa không?"</p>
+    <p>Diệp Phi vốn đang có ý định ở lại, nghe vậy liền đáp ngay: "Dạ không có gì ạ, cháu về nhà gọi điện báo với người nhà là được. Cháu cũng đang muốn tâm sự với bác nhiều hơn, như vậy sẽ học hỏi được thêm nhiều điều."</p>
+    <p>Minh giáo thụ thấy Diệp Phi đồng ý thì rất vui, định tiếp tục đề tài vừa rồi, nhưng đúng lúc này lại đến giờ thời sự. Đây là chương trình ông bắt buộc phải xem mỗi ngày nên chỉ đành xem tin tức trước. Minh Nguyệt Tâm cũng cùng cha chú tâm theo dõi.</p>
+    <p>Diệp Phi thấy vậy liền mừng thầm: "Bác, Tâm tỷ tỷ, hai người cứ xem TV đi ạ, để cháu vào giúp cô thu dọn."</p>
+    <p>Minh giáo thụ dù uyên bác nhưng là một người đàn ông truyền thống, việc nhà không hề nhúng tay. Minh Nguyệt Tâm bình thường cũng phụ giúp nhưng lúc này đang bận xem TV, nên sau khi khách sáo một chút, ông liền để Diệp Phi đi.</p>
+    <p>Giúp Minh mẫu thu dọn bàn ăn, Diệp Phi bưng bát đũa theo bà vào bếp, tiện tay khép cửa lại. Để đồ xuống xong, hắn liền ôm lấy bà, thì thầm bên tai: "Tỷ tỷ tốt, mấy ngày nay không gặp, em nhớ chị muốn chết!"</p>
+    <p>Mỹ phụ bị hắn ôm lấy, lập tức như nhũn ra, thân thể mềm yếu tựa vào lòng hắn. Đối với sự mất hồn ngày đó, nàng cũng thường xuyên hoài niệm, giờ chỉ hận không thể cùng Diệp Phi ôn lại chuyện cũ. Nhưng nàng biết bây giờ không phải lúc, liền nhỏ giọng nói: "Không được, không được mà, họ đang ở ngoài kia."</p>
+    <p>"Em không quản, em sợ buông ra rồi, từ nay về sau lại không tìm thấy chị nữa!" Diệp Phi nói xong, hai tay ôm lấy lưng nàng đã bắt đầu di chuyển lên cao, trèo lên gò bồng đảo căng tròn.</p>
+    <p>Vùng nhạy cảm bị đôi bàn tay ấm áp của Diệp Phi bao phủ, thân thể mỹ phụ càng thêm mềm nhũn, thấp giọng cầu khẩn: "Đệ đệ tốt, tỷ tỷ van em, đừng ở đây có được không?"</p>
+    <p>"Vậy được rồi." Diệp Phi không miễn cưỡng nàng nữa, hỏi: "Nhưng lần này tỷ tỷ phải nói cho em biết tên chị là gì chứ?"</p>
+    <p>"Tỷ tỷ tên Tô Ngọc Nhàn." Chuyện đã đến nước này, nàng biết cả đời này khó mà thoát khỏi Diệp Phi, hơn nữa trong lòng nàng cũng chẳng muốn trốn tránh nữa, liền không ngại ngần nói tên. Thấy Diệp Phi vẫn không buông tay, nàng hỏi: "Chị đã nói tên rồi, sao em vẫn không chịu buông ra?"</p>
+    <p>Diệp Phi kéo tay nàng đặt lên chỗ đó trên người mình, vẻ mặt đau khổ nói: "Em cũng muốn buông chị ra chứ, nhưng nó không chịu, biết làm sao bây giờ?"</p>
+    <p>Tô Ngọc Nhàn cảm thấy bàn tay mình chạm phải một vật cứng rắn, thô ráp, trong lòng hiểu rõ đó là gì. Mặt nàng hơi đỏ lên nhưng không né tránh, mà là cách lớp quần áo nắm lấy, nhẹ nhàng nắn bóp, cười nói: "Em muốn làm gì thì làm, chị không quản đâu."</p>
+    <p>Biểu hiện của Tô Ngọc Nhàn khiến Diệp Phi biết nàng đã hoàn toàn chấp nhận mình. Hắn càng siết chặt vòng tay, cầu khẩn: "Tỷ tỷ tốt, chị giúp em đi."</p>
+    <p>"Vậy em muốn chị giúp thế nào?" Tô Ngọc Nhàn không đành lòng nhìn bộ dạng này của hắn, trong lòng mềm nhũn, muốn đáp ứng.</p>
+    <p>Diệp Phi nở nụ cười xấu xa, ghé tai nàng nói nhỏ một câu. Tô Ngọc Nhàn đỏ mặt, mắng: "Chị mới không giúp em!"</p>
+    <p>"Vậy thì thôi!" Diệp Phi lại làm bộ muốn rời đi. Tô Ngọc Nhàn hoảng sợ, vội kéo hắn lại, chỉ vào cái lều lớn ở đũng quần hắn: "Em định cứ thế mà ra ngoài sao?"</p>
+    <p>"Không thế thì sao? Ai bảo chị không giúp em?" Diệp Phi tỏ vẻ vô lại.</p>
+    <p>Tô Ngọc Nhàn mặt càng đỏ, cắn môi, dường như đã quyết định điều gì. Nàng nhẹ nhàng chốt cửa lại, sau đó đối diện với Diệp Phi, từ từ ngồi xổm xuống.</p>
+    <p>Hai tay run rẩy, Tô Ngọc Nhàn vụng về cởi thắt lưng của Diệp Phi, sau đó túm lấy quần hắn cùng quần lót kéo xuống. Khi kéo đến một nửa lại bị vật đó chặn lại, nàng không khỏi dùng sức kéo tuột xuống.</p>
+    <p>"Bộp!" Theo lớp quần áo rơi xuống, con cự vật đã sớm cứng ngắc của Diệp Phi mạnh mẽ bắn ra. Do tư thế, nó đập thẳng vào chiếc cằm tròn trịa của Tô Ngọc Nhàn phát ra tiếng động giòn giã, sau đó lướt qua khuôn mặt xinh đẹp của nàng, thẳng tắp dựng đứng trước mặt nàng.</p>
+    <p>Tô Ngọc Nhàn chăm chú nhìn gốc cây khiến nàng mấy ngày nay mất ăn mất ngủ, ánh mắt có chút mê ly. Tuy lần trước đã bị nó cuồng đâm trong lồn gần hai giờ, nhưng đây là lần đầu tiên nàng nhìn nó ở khoảng cách gần như thế. Bộ dạng dữ tợn kia chẳng những không làm nàng phản cảm mà ngược lại còn khiến nàng cực kỳ yêu thích.</p>
+    <p>Diệp Phi cúi người, nắm lấy hai tay nàng đặt lên dương vật của mình, hỏi: "Tỷ tỷ tốt, nó mấy ngày nay nhớ chị lắm, chị có nhớ nó không?"</p>
+    <p>"Nhớ, nhớ lắm!" Tô Ngọc Nhàn như nói mộng, đôi tay rất tự nhiên cầm lấy nó, nhẹ nhàng vuốt ve, đôi mắt dán chặt vào đầu khất tím đỏ, vẻ mặt si mê.</p>
+    <p>Dương vật của Diệp Phi quá lớn, Tô Ngọc Nhàn cầm không xuể. Nhìn cái miệng nhỏ nhắn đang ở ngay gần đó, Diệp Phi rất muốn nàng ngậm lấy, nhưng biết chuyện này không thể vội vàng, chỉ khen ngợi: "Tỷ tỷ tốt, chị làm em thoải mái quá, nhanh thêm chút nữa đi."</p>
+    <p>Được Diệp Phi khích lệ, Tô Ngọc Nhàn dường như rất vui, hai tay càng dùng sức, tốc độ cũng nhanh hơn.</p>
+    <p>Nhưng kích thích này đối với Diệp Phi vẫn còn quá nhỏ. Tô Ngọc Nhàn đã vuốt ve gần mười phút, cánh tay đều mỏi nhừ mà Diệp Phi vẫn không có dấu hiệu phóng thích, nàng không khỏi ngẩng đầu hỏi: "Đệ đệ, sao em vẫn chưa ra?"</p>
+    <p>Nhìn mỹ phụ ngước đầu dưới háng mình, Diệp Phi cực kỳ hưng phấn, nhất là đôi môi gợi cảm đang khẽ mở khi nói chuyện kia lại càng khiến lòng hắn nóng ran. Hắn thừa cơ nói: "Chắc là kích thích chưa đủ, nếu chỉ thế này thì một giờ cũng không ra được đâu."</p>
+    <p>"Hả? Vậy phải làm sao bây giờ?" Tô Ngọc Nhàn có chút sốt ruột. Đã mười phút trôi qua, chương trình thời sự chỉ còn nửa tiếng nữa là hết, đâu có thời gian cho bọn họ?</p>
+    <p>Diệp Phi kéo nàng đứng dậy, đưa tay vào trong váy dài của nàng, chạm vào tiểu dâm huyệt đã ướt đẫm qua lớp quần lót, cố ý nói: "Nó muốn vào chỗ này, nếu không có cái hang cho nó chui vào, chắc nó sẽ không thỏa mãn đâu."</p>
+    <p>Tô Ngọc Nhàn lúc này cũng ngứa ngáy không chịu nổi, rất muốn Diệp Phi cắm vào để giải ngứa, nhưng trong lòng cũng hiểu, nếu để hắn địt mình, nàng chắc chắn sẽ không nhịn được mà kêu lên. Một khi phát ra tiếng động, sợ rằng chồng và con gái sẽ phát hiện. Nàng đành cố nén dục hỏa, lắc đầu: "Không được, không thể làm ở đây, còn cách nào khác không?"</p>
+    <p>"Chuyện này..." Diệp Phi nhìn chằm chằm vào miệng nàng, ra vẻ chần chừ.</p>
+    <p>Tô Ngọc Nhàn lập tức hiểu ý hắn, biết hắn muốn mình bú liếm cho hắn. Loại chuyện này nàng từng thấy trong sách và phim ảnh, lúc đó thấy rất ghê tởm, bản thân cũng chưa từng làm, nhưng giờ đối mặt với Diệp Phi, nàng lại không hề bài xích, thậm chí rất muốn nếm thử mùi vị dương vật của hắn. Không đợi Diệp Phi nói thêm, nàng lại từ từ ngồi xổm xuống, hai tay cầm lấy dương vật, nhìn đầu khất một hồi rồi chậm rãi há miệng ngậm lấy.</p>
+    <p>"Hít!" Diệp Phi không khỏi sảng khoái hít một hơi lạnh. Dù Tô Ngọc Nhàn chẳng có kỹ thuật gì, nhưng nghĩ đến chồng và con gái nàng đang ở bên ngoài, mà nàng lại đang ngậm lấy của mình, sự kích thích này thật quá lớn.</p>
+    <p>Có lẽ có thiên phú, dù là lần đầu làm nhưng Tô Ngọc Nhàn nhanh chóng nắm bắt được một ít kỹ xảo. Dù chưa thể chơi trò thâm hầu lão luyện, nhưng cũng đã đủ khiến Diệp Phi cực kỳ thoải mái.</p>
+    <p>"Tỷ tỷ tốt, chị làm rất tốt, dương vật của em thoải mái lắm." Diệp Phi tận hưởng cái miệng nhỏ nhắn của Tô Ngọc Nhàn, không tiếc lời khen ngợi.</p>
+    <p>Được tán thưởng, Tô Ngọc Nhàn càng thêm hăng hái, cố gắng để răng không cọ vào dương vật, sau đó mút chặt, phun nuốt nhịp nhàng, thậm chí phát ra những tiếng kêu "hưng phấn".</p>
+    <p>Diệp Phi càng lúc càng thoải mái, dương vật càng trướng càng cứng, sắp sửa phun ra. Đúng lúc này, tiếng gõ cửa vang lên, tiếp đó là giọng Minh Nguyệt Tâm: "Mẹ, Tiểu Mãn, hai người đang làm gì thế?"</p>
+    <p>Bị kích thích mạnh như vậy, Diệp Phi không thể chịu đựng thêm nữa, mạnh mẽ ôm lấy đầu Tô Ngọc Nhàn. Dương vật phồng to, tinh dịch bắn mạnh từng đợt vào trong miệng nàng. Tô Ngọc Nhàn không dám cử động mạnh, chỉ có thể nuốt xuống số tinh dịch tràn ra ngoài.</p>
+    <p>Có lẽ do kích thích quá độ, Diệp Phi liên tục bắn ra mười mấy đợt, khiến cơ thể hắn run rẩy, đôi chân mềm nhũn. Mãi đến khi Diệp Phi trút hết, Tô Ngọc Nhàn mới nhả vật đó ra, mặt lộ vẻ u oán.</p>
+    <p>Diệp Phi xin lỗi nhìn Tô Ngọc Nhàn một cái, rồi hướng ra phía cửa nói: "Cô đang dạy cháu làm vài món tráng miệng, Tâm tỷ tỷ có muốn vào học thử không?"</p>
+    <p>Minh Nguyệt Tâm vốn dĩ luôn tránh xa chuyện bếp núc, nghe vậy liền đáp ngay: "Thôi vậy, cậu học là được rồi, lát nữa cho mình nếm thử là được."</p>
+    <p>"Vậy tỷ tỷ chờ nhé, lát là xong thôi, hít!" Diệp Phi đang nói chuyện với Minh Nguyệt Tâm thì không ngờ Tô Ngọc Nhàn lại ngậm lấy vật đã xìu xuống của hắn, làm sạch tinh dịch còn sót lại, khiến hắn lại sảng khoái hít một hơi lạnh.</p>
+    <p>"Cậu sao thế?" Nghe tiếng hít hà của Diệp Phi, Minh Nguyệt Tâm nghi hoặc hỏi.</p>
+    <p>Diệp Phi đưa tay xuống nắn bóp bộ ngực lớn của Tô Ngọc Nhàn, đáp: "Không có gì, vừa nãy bị nước ấm nóng làm bỏng chút thôi, cậu ra xem TV đi, lát nữa là xong."</p>
+    <p>Nghe tiếng bước chân Minh Nguyệt Tâm đi xa, Diệp Phi nhẹ nhàng thở phào, thấp giọng nói: "Tỷ tỷ dâm đãng, sao chị lại đột ngột tập kích thế, tí nữa thì lộ tẩy rồi."</p>
+    <p>Tô Ngọc Nhàn đỏ mặt, vừa rồi chính nàng cũng không biết chuyện gì xảy ra, nghe tiếng con gái ở bên ngoài, lòng nàng lại hưng phấn lạ thường, không suy nghĩ gì liền ngậm lấy. Giờ nghĩ lại mới thấy ngượng ngùng.</p>
+    <p>Diệp Phi đại khái đoán được tâm tư của nàng, cười nói: "Tỷ tỷ tốt, chỉ cách con gái có một bức tường mà lại ngậm lấy của em, có phải rất kích thích không? Hay là chúng ta địt nhau đi, chắc chắn sẽ còn kích thích hơn!" Nói xong, hắn thúc nhẹ vật đã cứng lên lần nữa vào người Tô Ngọc Nhàn.</p>
+    <p>Tô Ngọc Nhàn rất động tâm, hận không thể cởi váy cho hắn cuồng địt một phen, nhưng cuối cùng lý trí vẫn chiến thắng, nàng đứng dậy nói: "Thôi bỏ đi, thời sự sắp hết rồi, chúng ta mau làm món tráng miệng đi thôi."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0139.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0141.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 166 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 166</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 166</small>
+    Chương 166: Nhân gian tiên cảnh
+  </h1>
+  <div class="chapter-body">
+    <p>Ngày thứ hai khi Diệp Phi tỉnh lại, Liễu Quân Di đã không còn trong phòng, điều này khiến trong lòng hắn không khỏi thầm than, phụ nữ ở phương diện này quả nhiên có ưu thế tiên thiên. Bản thân hắn bây giờ thân thể đã xa xa vượt qua giới hạn nhân loại, đại chiến suốt đêm mà chẳng cảm thấy mệt mỏi chút nào, vậy mà nàng lại có thể thức dậy sớm như vậy, thật là rất giỏi.</p>
+    <p>Diệp Phi không biết rằng, lúc Liễu Quân Di rời giường, cơ thể căn bản không còn chút sức lực nào. Nhưng với tư cách là tổng chỉ huy, nàng không thể đến trễ, đành cố gượng dậy, trong lòng thầm thề tuyệt đối không để cái tên tiểu bại hoại này làm cho điên cuồng như vậy nữa. Thế nhưng, khi nhớ lại cảm giác mình hết lần này tới lần khác bị hắn đưa lên đỉnh phong vào tối qua, nàng lại không nhịn được mà dư vị.</p>
+    <p>Rời giường, chậm rãi rửa mặt xong, Diệp Phi mới bước ra khỏi phòng. Lúc này, trừ hắn ra, tất cả đặc chiến đội viên đều đã tập hợp ngoài sân. Dù sao những người này đều trải qua huấn luyện lâu dài, khái niệm thời gian rất mạnh. Tuy nhiên, đối với việc Diệp Phi đến muộn, không ai có ý kiến gì. Một là mọi người đều biết hắn chỉ là nhân viên ngoài biên chế, không quá chú trọng kỷ luật, hai là điều quan trọng nhất: thực lực của hắn quá mức cường đại, mạnh đến mức khiến người khác thấy sự độc hành của hắn là điều đương nhiên.</p>
+    <p>Mỉm cười gật đầu chào, Diệp Phi đi đến bên cạnh Trương Cường đứng lại. Dù hắn được phân nhiệm vụ đặc thù, nhưng hành trình từ đây đến bìa rừng vẫn phải đi cùng mọi người.</p>
+    <p>"Tiểu Mãn, Tiểu Di của cậu và bọn họ đều đi họp rồi, sao cậu không đi? Tôi nhớ hai lần trước cậu đều tham gia mà." Trương Cường có chút kỳ quái hỏi.</p>
+    <p>Diệp Phi cười nói: "Nhiệm vụ của tôi đã sắp xếp xong xuôi, tự nhiên không cần đi góp vui làm gì."</p>
+    <p>Trương Cường sửng sốt, hỏi: "Chẳng lẽ cậu không hành động cùng bọn họ sao?"</p>
+    <p>Diệp Phi gật đầu, kể cho anh nghe về nhiệm vụ một mình thâm nhập sào huyệt địch. Hiện tại mọi người trong nhiệm vụ đều là người trên cùng một chiến tuyến, có tình huống gì cũng không cần giấu diếm, mà Trương Cường lại là người tuyệt đối có thể tin tưởng.</p>
+    <p>"Nguyên lai là vậy, đây đúng là một biện pháp không tồi. Với thực lực của cậu, hành động một mình chắc sẽ không có nguy hiểm gì." Trương Cường cảm thán.</p>
+    <p>"Đó là đương nhiên." Diệp Phi cười hắc hắc: "Tiểu Di thương tôi như vậy, có chuyện nguy hiểm tự nhiên sẽ không để tôi đi làm."</p>
+    <p>"Tiểu Mãn, cậu còn dám nói cậu và nữ Thần Thương Thủ kia không có chuyện gì mờ ám?" Lúc này, một thành viên trong túc xá vốn nổi tiếng bát quái đột nhiên bí hiểm ghé sát lại, nhỏ giọng nói: "Từ khi cậu đến, cô ấy cứ lén nhìn về phía này mấy lần rồi đấy."</p>
+    <p>Diệp Phi theo ánh mắt anh ta nhìn lại, quả nhiên thấy Vệ Thanh đang nhìn về phía mình, ánh mắt có chút phức tạp, như muốn nói gì đó nhưng lại ngại ngùng. Khi thấy Diệp Phi nhìn mình, cô lập tức cúi đầu.</p>
+    <p>Điều này khiến Diệp Phi hơi lạ. Với tính cách nhút nhát của Vệ Thanh, dù có chuyện thật cũng không thể tìm hắn trong hoàn cảnh đông người thế này. Mà nếu nói không có việc gì thì càng không thể, vì hành vi lén nhìn của cô rất dễ bị người khác phát hiện.</p>
+    <p>Nghĩ mãi không ra, Diệp Phi dứt khoát đi thẳng đến bên cạnh Vệ Thanh, cười hỏi: "Cô có chuyện gì à?"</p>
+    <p>Vệ Thanh cắn môi dưới, đáp không đúng câu hỏi: "Tối hôm qua cậu ở cùng Liễu đội trưởng sao?"</p>
+    <p>Trong lòng Diệp Phi giật thót, nhưng mặt vẫn tỏ ra bình thản: "Đúng vậy, hôm trước tôi bị chút thương, Tiểu Di có chút tâm đắc về trị liệu nên cô ấy chăm sóc tôi thôi."</p>
+    <p>"Thì ra là vậy." Vệ Thanh như có điều suy nghĩ gật đầu, nhưng trong lòng vẫn không thoải mái. Vừa thấy Diệp Phi bước ra từ phòng Liễu Quân Di, lại còn trong bộ dạng vừa ngủ dậy, lòng cô không lý do gì mà thấy chua xót. Sự thật việc Diệp Phi và Liễu Quân Di tối ở cùng nhau nhiều người đều biết, nhưng Vệ Thanh là con gái, tâm tư nhạy cảm, lại có cảm tình với Diệp Phi, nên không giống những người khác xem hắn là đứa trẻ. Dù sao hắn cũng mười sáu tuổi, cơ thể đã trưởng thành, mà Liễu Quân Di cũng chẳng lớn hơn hắn bao nhiêu. Điều này làm cô nghĩ ngợi nhiều, lúc nãy định hỏi thẳng, giờ nghe giải thích, dù tin nhưng vẫn thấy có gì đó không đúng.</p>
+    <p>Nhìn sắc mặt Vệ Thanh, Diệp Phi biết cô vẫn chưa yên tâm, bèn cười nói: "Sao vậy? Cô không phải là ghen cả với Tiểu Di của tôi đấy chứ?"</p>
+    <p>Tâm tư bị nói toạc ra, Vệ Thanh hoảng loạn, đỏ mặt, khẽ hừ một tiếng: "Tôi mới không có, cậu đừng có nghĩ lung tung!" Cô nhìn quanh rồi nói: "À, đội trưởng bọn họ ra rồi, cậu nhanh về hàng đi."</p>
+    <p>Diệp Phi làm theo, nhưng trong lòng tự trách mình làm việc quá lộ liễu. May mà Vệ Thanh đã có tình cảm với hắn, dù có đoán ra gì đó cũng không nói lung tung. Nhưng ai biết được sau này có xuất hiện người thứ hai, thứ ba cẩn thận như cô hay không? Xem ra sau này phải chú ý hơn mới được.</p>
+    <p>Sau khi họp xong, mọi người tản ra đứng ở phía trước đội ngũ. Liễu Quân Di bước lên một đài cao trong sân, nói qua về nhiệm vụ sắp tới rồi ra lệnh xuất phát.</p>
+    <p>Trải qua hơn hai giờ hành trình, vài chục xe quân dụng dừng lại tại cứ điểm tạm thời bên bìa rừng, nơi quân đội địa phương đã dựng lên trong đêm qua. Từ nay về sau, đây sẽ là nơi tiếp tế và trung chuyển của họ, còn bình thường phải ở trong rừng rậm.</p>
+    <p>Chào tạm biệt Liễu Quân Di và những người quen, Diệp Phi một mình xuất phát. Nhiệm vụ của hắn rất đơn giản: dùng tốc độ nhanh nhất tìm tòi toàn bộ rừng nguyên sinh, xác định vị trí tập kết của kẻ địch mà không để chúng phát hiện, để sau khi tiêu diệt đại bộ đội, sẽ thực hiện bao vây, không để một tên nào chạy thoát. Còn những người khác, nhiệm vụ đơn giản hơn, là từ ngoài bìa rừng từng bước tiến vào trong tìm tòi, đồng thời dọn sạch các điểm mai phục, không để kẻ địch có cơ hội.</p>
+    <p>Lần hành động này có gần ngàn người, nhưng muốn chải vuốt lại khu rừng nguyên sinh rộng hơn vạn cây số vuông này, ít nhất cũng phải mất vài năm. Kẻ đứng sau lưng kia nhất định sẽ không đợi nổi, mà họ chính là muốn điều này, tạo vẻ như chuẩn bị cho cuộc chiến kéo dài, chờ đợi mệnh lệnh từ cấp trên rồi mới tiến vào rừng. Như vậy có thể khiến hành động tập thể của họ càng thêm hợp lý, thậm chí tra ra rốt cuộc là ai đứng sau gây chuyện.</p>
+    <p>Chia tay mọi người, Diệp Phi nhanh chóng tiến vào khu rừng nguyên sinh mênh mông này. Các đặc chiến đội viên tuy ai cũng có bản lĩnh, nhưng trong mắt Diệp Phi, họ không nghi ngờ gì chính là vướng víu. Hiện tại đã không còn họ làm phiền, Diệp Phi chỉ cảm thấy thiên địa khoáng đạt hơn nhiều. Hắn dứt khoát dùng tốc độ của mình, như thể chân không chạm đất, lao đi giữa những gốc cổ thụ che trời. Với tốc độ hiện tại, dù có trực diện đụng phải những phần tử khủng bố đó, chúng cũng chỉ tưởng mình hoa mắt.</p>
+    <p>Diệp Phi dự định trực tiếp đến khu vực trung tâm rừng rậm, sau đó vừa đi vừa tìm tòi ra phía ngoài. Cách này nghe thì khó, nhưng với tốc độ của hắn lại chẳng phải việc gì khó khăn.</p>
+    <p>Chỉ mất chưa đầy hai mươi phút, Diệp Phi đã đến nơi được cho là trung tâm rừng rậm. Cũng may cảm giác phương hướng của hắn rất mạnh, nếu không trong rừng đi lâu như vậy, e rằng ngay cả hắn cũng chẳng biết mình đang ở đâu.</p>
+    <p>So với bên ngoài, nơi này yên tĩnh hơn nhiều. Đừng nói là dấu vết nhân loại, ngay cả dấu vết thú dữ cũng không thấy. Điều này khiến Diệp Phi rất lấy làm lạ, chẳng lẽ đây là nơi ở của bá chủ trong truyền thuyết của khu rừng?</p>
+    <p>Nhưng dù là bá chủ gì, thì cũng chỉ là dã thú thôi, mà nơi này lại dường như được tạo ra từ tự nhiên, không có dấu hiệu bị phá hoại.</p>
+    <p>Trong lòng đầy thắc mắc, Diệp Phi chú ý tìm tòi, hy vọng tìm được chút tin tức hữu dụng. Nhưng nhìn hồi lâu, nơi này ngoại trừ những gốc đại thụ tráng kiện hơn bên ngoài và lớp lá rụng dày đặc dưới đất, thì chẳng có gì cả.</p>
+    <p>Đang lúc Diệp Phi sắp mất kiên nhẫn, định từ bỏ việc tìm tòi nơi này, thì vừa hay nhìn thấy ở gốc một cái cổ thụ mười người ôm không xuể có một huyệt động to bằng thùng nước.</p>
+    <p>"Chẳng lẽ đây là sào huyệt của bá chủ rừng rậm đó?" Diệp Phi thầm nhủ, lòng đầy tò mò. Còn về việc nơi này có phải là nơi ẩn thân của địch không, hắn không hề nghi ngờ, vì dù chúng có ngụy trang tốt đến đâu cũng không thể không để lại chút dấu vết nào.</p>
+    <p>Người có tài thường gan lớn, dưới sự thôi thúc của lòng hiếu kỳ, Diệp Phi dùng các kỹ năng phòng ngự, dọn sạch lá khô ở cửa động rồi chui vào trong.</p>
+    <p>Cái động này bề ngoài trông không lớn, nhưng khi vào rồi Diệp Phi mới biết nó kỳ lạ đến mức nào, dù hắn đứng thẳng cũng không hề bất tiện.</p>
+    <p>Tình huống quỷ dị khiến lòng hiếu kỳ của Diệp Phi càng tăng, vì vậy hắn dứt khoát đi sâu vào trong. Đi được khoảng năm mươi mét, ánh sáng từ cửa động đã biến mất hoàn toàn, nơi này trở nên tối om.</p>
+    <p>Diệp Phi đành lấy đèn pin cường quang tùy thân, kẹp vào một cành cây rồi nâng cao hơn hai mét phía trước mình, lúc này mới bật công tắc. Tình huống nơi này quá quỷ dị, hắn tuyệt không dám chủ quan, đặt đèn ở khoảng cách xa như vậy, nếu có thứ gì đánh lén theo ánh sáng, hắn cũng có thể phản ứng nhanh nhất.</p>
+    <p>Nhưng điều khiến Diệp Phi ngạc nhiên là hắn đã đi trong cái động này không dưới hai giờ mà vẫn không có chuyện gì xảy ra. Cái động này dường như không có điểm cuối, tốc độ tiến lên của hắn tuy không nhanh, nhưng nếu tính theo khoảng cách đường thẳng, e rằng đã ra khỏi khu rừng nguyên sinh này rồi.</p>
+    <p>Đúng lúc Diệp Phi sắp hết kiên nhẫn, cái động dường như luôn thẳng tắp này cuối cùng cũng có biến hóa, bắt đầu chậm rãi dốc xuống. Đi tiếp một đoạn, độ dốc càng lúc càng nghiêm trọng, gần như thẳng đứng. May mà là Diệp Phi, nếu thay là người khác, chắc giờ đã ngã nhào rồi.</p>
+    <p>Dù lúc này Diệp Phi phải dùng cả tay lẫn chân mới miễn cưỡng đi lại được, nhưng cũng bắt đầu khó khăn. Thế nhưng điều này lại càng kích phát lòng hiếu thắng của hắn, nhất định phải tìm hiểu cho ra lẽ, vì vậy dứt khoát không kiểm soát cơ thể nữa, để mình trượt xuống theo vách động trơn nhẵn, chỉ thỉnh thoảng mới mượn lực ở những chỗ nhô lên để không bị thương khi xuống tới nơi.</p>
+    <p>Cứ trượt như vậy mất trọn mười lăm mười sáu phút, Diệp Phi mới thấy một luồng sáng phía dưới, điều này khiến hắn không khỏi âm thầm tặc lưỡi. Giờ chắc mình đã thâm nhập sâu dưới đất hơn mười dặm rồi, vậy mà nơi sâu như thế này sao vẫn có ánh sáng?</p>
+    <p>Cuối cùng, mang theo đầy rẫy nghi vấn, Diệp Phi rơi xuống, tiếp tục đi theo phía ánh sáng chiếu vào, rất nhanh đã ra khỏi cái động quỷ dị này.</p>
+    <p>Thích ứng một chút với ánh sáng hơi chói mắt, Diệp Phi nhìn quanh, miệng không khỏi há hốc. "Nhân gian tiên cảnh"! Trong lòng hắn lúc này chỉ có từ đó mới hình dung được nơi này. Đây giống như một thung lũng nhỏ, bốn phía đều là vách núi cao không thấy đỉnh, trong thung lũng tràn ngập sương mù nhàn nhạt, còn trên bầu trời không thấy mặt trời, cũng chẳng biết ánh sáng từ đâu tới.</p>
+    <p>Dưới màn sương nhàn nhạt đó, những loại hoa cỏ nở rộ dị thường tiên diễm càng thêm duy mỹ như mộng cảnh, còn rất nhiều tiểu thú chưa từng thấy chạy nhảy khắp nơi lại tăng thêm vài phần sức sống cho nơi này.</p>
+    <p>Chẳng lẽ trên đời này thực sự có Tu Chân giả trong truyền thuyết? Mà nơi này chính là động phủ của vị Tu Chân giả đó? Mang theo nghi hoặc, Diệp Phi dạo quanh thung lũng, nhưng rất nhanh đã thất vọng, vì nơi này cũng giống trung tâm rừng rậm, không một dấu chân người. Mà Diệp Phi tin rằng, dù là Tu Chân giả, cũng không thể không có chút dấu vết hành vi của con người, xem ra nơi này hẳn là tự nhiên hình thành.</p>
+    <p>Phát hiện này khiến Diệp Phi hơi thất vọng. Tuy thiên địa linh khí ở đây mạnh hơn bên ngoài không biết bao nhiêu lần, lại còn có những linh quả chỉ tồn tại trong truyền thuyết, nếu tu luyện ở đây chắc chắn mạnh hơn nhiều, nhưng với hắn, tất cả chỉ là đồ gân gà. Vì dù linh khí ở đây có nồng hậu thế nào cũng không bằng tốc độ song tu của hắn, kể cả có thêm hiệu quả của những linh quả kia cũng vậy.</p>
+    <p>Sau khi thấy nơi này không có trọng dụng gì với mình, Diệp Phi mất dần hứng thú, dứt khoát đi đến biên giới thung lũng, muốn trèo lên xem nơi này rốt cuộc là đâu. Vì trước khi đến, hắn đã nghiên cứu bản đồ ở đây nhưng chưa từng nghe qua có một thung lũng nhỏ như vậy.</p>
+    <p>Vận khí, Diệp Phi nhảy mạnh lên cao hơn mười mét, sau đó mượn lực trên vách đá tiếp tục nhảy lên. Nhưng điều khiến hắn hoảng sợ là, sau khi bay lên vài chục mét, hắn cảm thấy thân thể mình nặng nề hẳn lên, càng lên cao cảm giác này càng nghiêm trọng. Cố gắng trèo đến độ cao hơn trăm mét, hắn hoàn toàn không thể nâng cái cơ thể vốn đã nặng như mấy tấn của mình lên thêm được nữa.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0165.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0167.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

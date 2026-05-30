@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 212 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 212</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 212</small>
+    Chương 212: Kích tình an ủi
+  </h1>
+  <div class="chapter-body">
+    <p>"Đây rốt cuộc là chuyện gì xảy ra? Kẻ đứng sau màn độc thủ là ai? Còn nữa, ta muốn biết rõ, rốt cuộc là ai cho tòa soạn báo này lá gan, dám ở Vọng Hải nhắm vào Liễu gia?" Diệp Phi ngồi xuống, liên tiếp hỏi ra một đống vấn đề. "Sự tình chính là như vậy, nghĩ đến ngươi cũng nên biết rồi." Trương Nhất Đức không hổ là lão tướng kinh nghiệm sa trường, vô cùng trấn định nói: "Về phần kẻ đứng sau màn độc thủ, chúng ta từ khoảnh khắc đó gặp chuyện không may liền bắt đầu điều tra, bất quá đến bây giờ vẫn chưa có kết quả gì; còn tòa soạn báo này, chúng ta cũng đã bắt toàn bộ người của bọn họ tới rồi. Theo bọn họ nói, là có người gửi cho bọn họ một phong thư nặc danh, trong đó có hai tấm ảnh kia, ngay cả bài báo đưa tin ngày đó cũng là người gửi thư kia viết sẵn, bọn họ chỉ là nhận một ngàn vạn tiền thù lao rồi đăng tin tức lên mà thôi." Nói xong, Trương Nhất Đức đưa một phần báo chí vào tay Diệp Phi. Diệp Phi vốn không nghĩ sẽ phát hiện được gì trên báo, nhưng sau khi nhìn thoáng qua lại có chút chấn kinh. Tấm thứ hai thì không có gì, tuy phía trên có Liễu Phượng Nghi, nhưng Diệp Phi biết rõ nàng đối với tình cảm của mình là tuyệt đối sẽ không làm ra chuyện có lỗi, cho nên tấm hình này chắc chắn là người khác thông qua cắt ghép hoặc lợi dụng kỹ thuật chỉnh sửa mà thành. Điều khiến hắn khiếp sợ lại là tấm thứ nhất, chỉ cần nhìn thoáng qua là hắn có thể nhận ra, tấm hình này tuyệt đối là thật, hơn nữa địa điểm chính là nơi ở của Liễu Phượng Nghi tại Vọng Hải lâu, người đàn ông ôm nàng cũng chính là mình. Khó trách sẽ không có ai hoài nghi, Diệp Phi thầm nghĩ trong lòng, bởi vì tấm hình thứ nhất là thật, dù dùng kỹ thuật gì cũng không thể chứng minh nó là sản phẩm cắt ghép. Mà một khi đã có nó, thì tấm hình thứ hai thật giả cũng không còn quan trọng nữa, bởi vì ai cũng biết Liễu Phượng Nghi tuy có chồng nhưng hai người hầu như luôn ở riêng. Việc bên cạnh nàng có một người đàn ông, lại còn thân mật như vậy, đã đủ để nói rõ tất cả. Chỉ là điều khiến Diệp Phi không hiểu nổi chính là, rốt cuộc ai có năng lực lớn đến mức có thể vào ban đêm đến tận bên ngoài gian phòng của Liễu Phượng Nghi để quay chụp? Về phần tại sao lúc ấy hắn không hề hay biết, Diệp Phi cũng không thấy lạ, vì ngoài người nhà ra, chẳng có mấy ai có thể vào đó vào ban đêm. Cho nên lúc bình thường ở đó, tính cảnh giác của hắn đều ở mức thấp nhất, bị người ta chụp được cũng không phải chuyện lạ. Có được manh mối này, Diệp Phi trong lòng cũng đã có chút dự tính, đợi quay lại cùng Liễu Phượng Nghi nghiên cứu kỹ, hẳn là không khó tìm ra kẻ quay chụp, từ đó tìm được kẻ đứng sau màn độc thủ cũng sẽ dễ dàng hơn nhiều. "Tiếp tục điều tra, bằng mọi giá phải tìm ra kẻ đứng sau màn độc thủ, ta muốn cho hắn phải trả một cái giá mà hắn không thể tưởng tượng nổi!" Tuy trong lòng đã có hướng đi, nhưng Diệp Phi không muốn bỏ qua bất kỳ cơ hội nào. "Rõ." Trương Nhất Đức gật đầu đáp lời, rồi hỏi lại: "Còn những người ở tòa soạn báo kia, chúng ta xử lý thế nào?" Diệp Phi suy nghĩ một chút rồi nói: "Thả bọn họ về, nhưng phải giám thị nghiêm mật, không được để bọn họ rời khỏi tầm mắt của chúng ta. Đợi chuyện này xong xuôi, tạo cho bọn họ một tai nạn. Ta không muốn để bất cứ kẻ nào gây tổn thương cho người nhà của ta còn tồn tại trên đời này!" Sở dĩ bây giờ chưa giết bọn họ, Diệp Phi lo lắng vẫn là danh dự của Liễu Phượng Nghi, bởi vì nếu động thủ ngay lúc này, rất dễ khiến người ta nghĩ đây là hành động trả thù của họ. "Đã rõ!" Trương Nhất Đức hiện tại ngày càng quen với sự sát phạt quyết đoán của Diệp Phi, hơn nữa đối với sự trưởng thành của hắn cảm thấy rất vui mừng. Vì trong lòng lo lắng cho Liễu Phượng Nghi, Diệp Phi không dừng lại lâu ở tổng bộ Lăng Vân Hội, biết rõ ràng chuyện này xong liền lập tức rời đi. Đi đến tiểu biệt thự riêng của Liễu Phượng Nghi, trong phòng ngủ của nàng, Diệp Phi thấy Liễu Phượng Nghi đang vẻ mặt tiều tụy, cùng các nữ nhân trong gia tộc đang an ủi nàng. Lúc này Liễu Phượng Nghi đã không còn vẻ thành thục ổn trọng thường ngày, gương mặt có vài phần tương tự với Liễu Diệc Như tuy vẫn đẹp đến mức khiến người ta không dám nhìn thẳng, nhưng lúc này lại ẩn hiện một nỗi lo âu, đôi mắt đẹp vốn dĩ sáng ngời cực kỳ cũng ẩn chứa một tia bất an. Điều này khiến Diệp Phi nhìn thấy mà không khỏi thập phần đau lòng, ôn nhu nói: "Dì, ta tới rồi." Mãi cho đến khi Diệp Phi lên tiếng, Liễu Phượng Nghi vốn đang tâm hồn treo ngược cành cây mới phát hiện ra hắn, trên mặt không khỏi dâng lên một tia kích động, nhưng bất an trong ánh mắt lại càng mãnh liệt hơn.</p>
+    <p>"Tốt rồi, để ca ca cùng dì tâm sự một hồi đi, chúng ta đi ra ngoài trước." Diệp Vân Khinh biết rằng, lúc này Liễu Phượng Nghi cần nhất chính là sự an ủi của Diệp Phi, vì vậy lên tiếng đề nghị. Diệp Ngưng Sương cũng nói: "Đúng vậy, Phượng Nghi thường ngày hiểu rõ Tiểu Mãn nhất, hắn có lẽ sẽ có tác dụng hơn chúng ta nhiều, chúng ta đi ra ngoài trò chuyện một lát đi." Đã Diệp Ngưng Sương cùng Diệp Vân Khinh đều lên tiếng, các nữ nhân khác cũng không còn dị nghị gì, đều mỉm cười với Diệp Phi rồi đi ra ngoài, người cuối cùng rời đi là Diệp Ngưng Sương còn giúp họ khóa cửa phòng lại từ bên ngoài. Đợi cho các nữ nhân đều rời đi, Liễu Phượng Nghi rốt cuộc không khống chế nổi sự ủy khuất trong lòng, nhào mạnh vào ngực Diệp Phi, thì thào nói: "Không phải sự thật, cái đó không phải thật, ngươi nhất định phải tin ta, trừ ngươi ra, ta chưa từng để bất kỳ người đàn ông nào chạm vào." Nói xong, người nữ cường nhân vốn luôn kiên cường này vậy mà chảy ra nước mắt. Diệp Phi lúc này mới biết sự bất an trong mắt nàng đến từ đâu, trong lòng không khỏi nhu tình đại động, nhẹ nhàng vỗ vỗ lên lưng nàng, nói: "Ta đương nhiên tin tưởng ngươi, chẳng lẽ ta còn không hiểu cách làm người của ngươi sao?" Thấy Diệp Phi tin tưởng mình, tâm tình Liễu Phượng Nghi tốt hơn nhiều, bất quá vẫn nói: "Nhưng mà, hai tấm ảnh kia thì sao?" "Ảnh chụp là có thể ghép, cũng có thể thông qua kỹ thuật chỉnh sửa để tạo ra biểu hiện giả dối, nếu ta muốn, loại ảnh này ta cũng có thể lấy được." Diệp Phi cười nói: "Cái này ngươi nên biết chứ?" "Cái kia ta đương nhiên biết rõ, nhưng tấm thứ nhất ta đã tìm người nghiệm qua rồi, nghiệm thế nào cũng là thật, nhưng ta thật sự không hề làm chuyện đó mà." Liễu Phượng Nghi ngẩng đầu từ trong ngực Diệp Phi, nhìn thẳng vào mắt hắn, tựa hồ muốn hắn tin tưởng mình. "Tấm thứ nhất đương nhiên là thật." Diệp Phi mỉm cười lau đi nước mắt trên mặt Liễu Phượng Nghi, lại nhẹ nhàng véo mũi nàng, nói: "Nhưng tấm đó là người khác chụp trộm ta và ngươi, ngươi có phải thực sự trở nên ngốc rồi không? Ngay cả cái này cũng không nhìn ra?" Trước đó Liễu Phượng Nghi vì lo lắng Diệp Phi hiểu lầm mình, trong lòng rất loạn, nào có tâm trí đâu mà nhìn kỹ ảnh chụp. Hiện tại dưới sự nhắc nhở của Diệp Phi, nàng liếc mắt liền nhận ra bối cảnh phía trên chính là nơi ở của mình tại Vọng Hải lâu, tuy đã bị người ta xử lý làm mờ, nhưng nơi này nàng quá mức quen thuộc. "Nguyên lai là vậy, xem ra ta thật sự biến thành ngốc rồi." Giải tỏa được khúc mắc lớn nhất, Liễu Phượng Nghi không khỏi nín khóc mỉm cười, nhẹ nhàng nằm trong ngực Diệp Phi, lau nước mắt lên áo trước ngực hắn, cười nói: "Vẫn là ở bên cạnh ngươi là tốt nhất!" Nhìn nụ cười rạng rỡ của Liễu Phượng Nghi, Diệp Phi mới biết sự bất an trước đó của nàng hoàn toàn là vì mình, chút nào cũng không bận tâm đến chức vụ của bản thân có bị tước mất hay không, trong lòng không khỏi càng thêm yêu thương nàng. Nhưng càng như vậy, hắn càng không thể để nàng phải chịu đựng sự ủy khuất này, vì vậy nói: "Yên tâm đi, ta rất nhanh sẽ giải quyết xong chuyện này, khôi phục lại thân phận nguyên bản cho ngươi." "Ta mới không muốn những thứ thân phận đó." Liễu Phượng Nghi si mê nhìn Diệp Phi: "Ta chỉ muốn làm tiểu nữ nhân bên cạnh ngươi mà thôi." Sự thâm tình của Liễu Phượng Nghi khiến tâm thần Diệp Phi không khỏi kích động, cũng chẳng màng các nữ nhân khác đang ở bên ngoài, ôm chặt lấy Liễu Phượng Nghi, cúi đầu hôn lên miệng nhỏ của nàng. Những ngày này, Liễu Phượng Nghi cũng nhớ Diệp Phi vô cùng, nhất là sau khi xảy ra những chuyện này, càng thêm bất an. Hiện tại tâm tình đột nhiên buông lỏng, tự nhiên cũng là kích động không thôi. Vậy nên nàng chẳng những không ngăn cản Diệp Phi, ngược lại rất nhiệt tình đáp lại, hơn nữa đôi bàn tay nhỏ bé từ việc ôm cổ hắn dần trượt xuống dưới, nhẹ nhàng tiến vào trong áo hắn. Nhẹ nhàng nắm lấy "cây gậy" làm mình mê luyến không thôi của cháu trai, Liễu Phượng Nghi thì thầm bên tai hắn: "Cháu trai tốt, dì rất nhớ ngươi, nhanh dùng "cây gậy" lớn của ngươi an ủi dì một chút đi." Diệp Phi gật đầu, hai tay nhanh chóng nghịch ngợm trên người đối phương, trong nháy mắt đã cởi sạch quần áo của cả hai. Nhưng khi Liễu Phượng Nghi nhịn không được định hướng "cây gậy" lớn của hắn vào tiểu huyệt đang dâm thủy róc rách của mình, hắn lại ngăn hành động của nàng lại, ngược lại xoay người, cùng nàng đổi sang tư thế 69, nhẹ nhàng tách đôi chân thon dài của nàng ra, vùi đầu vào dưới háng nàng. Tuy đã làm Liễu Phượng Nghi không ít lần, nhưng Diệp Phi vẫn chưa thưởng thức kỹ cơ thể nàng, mà hôm nay nàng cũng thật sự không thể chịu nổi những cú đâm mạnh mẽ của hắn, nên Diệp Phi muốn nhân cơ hội này mang đến cho nàng những khoái cảm khác biệt. Chậm rãi tách hai mép lồn đầy đặn – mà độ no đủ không hề kém cạnh mẹ của mình – ra, Diệp Phi duỗi dài đầu lưỡi liếm nhẹ trong khe lồn nàng, thầm nghĩ trong lòng, không hổ là chị em ruột, dâm thủy của dì và mẹ có mùi vị gần như giống hệt nhau, chỉ là không có cảm giác mát lạnh như mẹ mà thôi. "A..." Dâm huyệt đang khao khát được người đàn ông yêu dấu dùng đầu lưỡi liếm qua, cảm giác đó tuy không thống khoái bằng bị hắn dùng "cây gậy" đâm vào, nhưng cũng khiến nàng sướng không thôi. Để tạ ơn cháu trai đã mang đến khoái cảm cho mình, Liễu Phượng Nghi chủ động cầm lấy "cây gậy" đang đứng sững trước mắt mình, mở miệng nhỏ ngậm lấy. Các nữ nhân bên ngoài, ngoại trừ Diệp Vân Khinh ra, sợ rằng sẽ không ai nghĩ tới, bên trong Diệp Phi đang dùng cách này để an ủi dì mình. Vì đã thể xác và tinh thần đều mệt mỏi, Liễu Phượng Nghi rất nhanh đã bị Diệp Phi đưa lên cao trào. Mà kỹ thuật dùng miệng của nàng còn mạnh hơn em gái mình nhiều, cộng thêm Diệp Phi không cố ý khống chế, nên khi nàng cao trào, Diệp Phi cũng phun lượng lớn tinh dịch vào miệng nàng. Cùng nuốt xuống chất lỏng tràn đầy yêu thương của đối phương, hai người nhìn nhau cười. Liễu Phượng Nghi lật người lại, nhẹ nhàng nằm sấp trong ngực Diệp Phi, bàn tay nhỏ bé vuốt ve trên ngực hắn, hỏi: "Đúng rồi, chuyến đi này của ngươi có thu hoạch gì không? Với Tiểu Như đã tiến triển tới trình độ nào rồi?" Diệp Phi nhẹ nhàng vén một sợi tóc bên trán nàng, hôn lên gương mặt tuyệt mỹ đã khôi phục lại phong thái thường ngày, cười nói: "Vừa rồi chúng ta thế nào, thì ta với nàng tiến triển thế ấy." "À, thảo nào ngươi không cho cái tên khốn kiếp kia tiến vào, hóa ra là đã quen với cách làm như vậy." Liễu Phượng Nghi cười khúc khích: "Bất quá ta không phải em gái, ngươi có thể yên tâm tiến vào." "Bốp!" Diệp Phi vỗ nhẹ vào mông lớn đầy đặn của Liễu Phượng Nghi: "Nói bậy, sao ta có thể quen được, chỉ là ở bên nàng không thể làm thật sự, hiện tại lại thêm chuyện của ngươi, ta vốn đang kìm nén sự tức giận, nếu đi vào, ta sợ mình sẽ không khống chế được mà khiến ngươi chịu không nổi." "Thì ra là vậy." Liễu Phượng Nghi nghĩ tới cơ thể mình, hai ngày này xác thực vì lo lắng quá mức mà đã tiều tụy không chịu nổi, chỉ sợ thật sự không chịu được. Nếu miễn cưỡng, cuối cùng nàng không chịu nổi, ngược lại khiến hắn càng khó chịu hơn, nên nàng cười nói: "Quên đi, một lát nữa ngươi đi tìm người có thể chịu được là được rồi. Mà ngươi với Tiểu Như tiến triển thuận lợi thật nha, đều đã trải qua đến mức đó rồi, xem ra đều là tại ta, nếu không phải vì chuyện của ta, ngươi hẳn là đã sớm như ý rồi." "Việc này không liên quan gì đến ngươi cả." Nhắc đến chuyện này, Diệp Phi cũng có chút bất đắc dĩ, cười khổ nói: "Thực ra, từ mấy ngày trước chúng ta đã như vậy rồi, chỉ là nàng nói thế nào cũng không cho ta tiến thêm một bước." "Cái này ngươi không cần gấp gáp, nàng là em gái ta, ta hiểu rõ nhất, đã nàng để ngươi như vậy rồi, chỉ cần tiếp tục, nàng nhất định sẽ cho ngươi như ý thôi. Bất quá ngươi cũng không được quá nôn nóng." Liễu Phượng Nghi nói, nàng hiểu cá tính của em gái mình, biết rằng nếu Diệp Phi quá nôn nóng, sợ rằng sẽ phản tác dụng, cho nên lúc này nhắc nhở hắn một câu. "Ta hiểu rồi." Diệp Phi cười hôn lên mặt Liễu Phượng Nghi lần nữa: "Bất quá ngươi hình như rất sốt sắng, chẳng lẽ không biết ăn dấm chua sao?" "Nàng là em gái ta mà, ta ăn dấm chua của em gái làm gì?" Liễu Phượng Nghi bĩu môi nhỏ nói: "Hơn nữa, đừng tưởng ta không biết, người ngươi yêu nhất vẫn luôn là nàng, nếu ta mà ghen với nàng, sợ rằng ngươi chẳng cần ta nữa đâu." "Ta..." Diệp Phi không khỏi có chút xấu hổ, nhưng bảo hắn nói người hắn yêu nhất không phải Liễu Diệc Như, hắn lại không mở lời được, bởi vì hắn không cách nào lừa dối bản thân. "Khúc khích, đùa ngươi thôi mà." Liễu Phượng Nghi cười: "Tuy người ngươi yêu nhất là nàng, nhưng ta biết, ngươi cũng yêu ta. Chỉ cần có thể ở bên cạnh ngươi đã là hạnh phúc lớn nhất rồi, huống chi ngươi còn quan tâm ta như vậy, ta còn gì không hài lòng đâu chứ?" "Phượng Nghi, cảm ơn nàng!" Diệp Phi có chút động tình ôm chặt lấy người mỹ nhân thành thục khéo hiểu lòng người này. Liễu Phượng Nghi bị hắn ôm như vậy, không khỏi lại có chút ham muốn, nhưng cũng biết trạng thái hiện tại của mình xác thực không thể chịu nổi sự điên cuồng của hắn, nên cười nói: "Cái đó vẫn là đợi ngươi trút hết cơn tà hỏa này, hoặc là khi ta có thể chịu được thì hãy đến cảm ơn ta thật tốt nhé." Để tránh cả mình và Liễu Phượng Nghi cùng khó chịu, Diệp Phi không trêu chọc nàng nữa, ngược lại nói đến chính sự: "Ở nơi ở của nàng tại Vọng Hải lâu, ngoại trừ người nhà chúng ta ra, còn ai có thể vào ban đêm đi lên?" "Ngươi đang hoài nghi người chụp ảnh là một trong số họ sao?" Nhắc đến chính sự, Liễu Phượng Nghi cũng khôi phục sự tỉnh táo thường ngày, nàng vốn là một người phụ nữ cực kỳ khôn khéo, nếu không đã không thể ngồi vững trên chiếc ghế Thị trưởng Vọng Hải vô cùng đặc thù này lâu như vậy. Diệp Phi gật đầu nói: "Không phải hoài nghi, ta cảm thấy căn bản chính là như vậy." "Thường ngày có thể đến chỗ ta vào ban đêm, cũng chỉ có Rõ Ràng, trợ lý mới tới là Lâm Tâm và bạn tốt của ta là Điền Lộ mà thôi." Liễu Phượng Nghi nói ra ba cái tên, rồi nói: "Nhưng mà, các nàng không ai có khả năng hại ta cả." "Điền Lộ?" Đối với Chu Minh Minh cùng Trương Lâm Tâm thì Diệp Phi biết, nhưng cái tên Điền Lộ lại khiến hắn có chút lạ lẫm. "Đó là bạn học đại học của ta, chủ trì đài truyền hình thành phố." Liễu Phượng Nghi mở to mắt, cười nói: "Hơn nữa, cũng là một đại mỹ nữ nha." Lời giải thích của Liễu Phượng Nghi khiến Diệp Phi nhớ lại lần đầu tiên sau khi có được năng lượng, hắn đến Vọng Hải lâu một lần, nhìn thấy người phụ nữ đó ở bên cạnh Liễu Phượng Nghi, lúc ấy chỉ thấy quen mắt, giờ mới biết nàng lại còn là chủ trì chương trình. Nghe nói vị đại mỹ nữ này tại Vọng Hải có nhân khí không hề thấp hơn Liễu Phượng Nghi, tại do mình bình thường không hay xem TV nên mới không nhận ra ngay. Bất quá lúc này Diệp Phi không có tâm trí nghĩ tới việc đó, nói: "Rõ Ràng tỷ hẳn là có thể tin tưởng được, về phần hai người kia rốt cuộc là ai, ta cần phải tra kỹ lại." "Lâm Tâm và Lộ Lộ cũng sẽ không làm vậy đâu, các nàng đều là bạn rất thân của ta." Liễu Phượng Nghi vội vàng nói, nàng biết Diệp Phi đối tốt với mình thế nào, sợ hắn xúc động mà đi tìm hai nữ gây phiền phức. Nhưng Diệp Phi đã quyết định phải điều tra hai người phụ nữ này, chỉ là không nói với Liễu Phượng Nghi, cười nói: "Được rồi, ta sẽ tra thêm ở phương diện khác. Nàng cũng mệt rồi, nghỉ ngơi cho khỏe đi." "Ừm." Liễu Phượng Nghi đáp lời, ngoan ngoãn nằm xuống. Diệp Phi mặc quần áo tử tế, đi tới cửa rồi lại quay người trở lại, cười nói: "Đợi chuyện này giải quyết, nàng vẫn là tiếp tục làm Thị trưởng đi. Tuy ta rất hy vọng nàng có thể ngoan ngoãn ở bên cạnh ta làm một tiểu nữ nhân, nhưng lại không hy vọng nàng biến thành bình hoa. Hơn nữa, coi như muốn lui xuống, chúng ta cũng phải lui một cách huy hoàng, tuyệt đối không thể thua dưới âm mưu của người khác." "Được rồi, ngươi đã nói vậy rồi, ta liền miễn cưỡng làm thêm một thời gian nữa." Liễu Phượng Nghi cười khúc khích, nàng là một người phụ nữ rất thông minh, tuy hy vọng nhất là có thể mãi mãi ở bên cạnh Diệp Phi, nhưng cũng biết, phụ nữ nếu không có sự nghiệp, rất dễ dàng héo tàn. Đến lúc đó, mình chỉ sợ sẽ thực sự biến thành một bình hoa. "Vậy là tốt rồi." Diệp Phi cười, hắn hy vọng nữ nhân của mình cũng có thể làm những việc họ ưa thích, chứ không chỉ vì mình mà sống, như vậy các nàng mới có thể càng thêm kiều diễm. Liễu Phượng Nghi gật đầu, bỗng nhiên lại nghịch ngợm cười nói: "Nhưng ta lại càng thích làm bình hoa của ngươi hơn, mỗi ngày để ngươi cắm vào trong đó." Câu nói đầy ẩn ý của Liễu Phượng Nghi khiến tâm Diệp Phi không khỏi rung động, thân thủ vỗ một cái lên mông lớn của nàng, cười nói: "Yên tâm đi, dù không phải bình hoa, ta cũng sẽ không để nàng nhàn rỗi đâu!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0211.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0213.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

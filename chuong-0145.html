@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 145 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 145</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 145</small>
+    Chương 145: Rượu là chất xúc tác của sắc dục
+  </h1>
+  <div class="chapter-body">
+    <p>Thật lớn, đẹp tuyệt trần! Diệp Phi cảm giác hai mắt mình nhìn không xuể, đây đúng là một đôi cực phẩm, chẳng những hình thái hoàn mỹ, kích thước to lớn, mà còn không chút rủ xuống, tuyệt không kém cạnh Diệp Ngưng Sương cùng Liễu Diệc Như. Tiêu Hàm Nguyệt lúc này cũng ý thức được mình bị lộ hàng, không khỏi hét lên một tiếng, nhanh chóng rụt người xuống, đem toàn bộ cơ thể giấu vào trong nước, thậm chí ngay cả đầu cũng không dám ló ra. Chính lần lặn xuống này, lại khiến nàng nhìn thấy một màn kinh ngạc: cự long phía dưới của Diệp Phi không biết từ lúc nào đã chen chúc chui ra từ cạnh quần bơi, thẳng tắp vươn lên trong nước, đong đưa theo dòng chảy, dường như đang chào hỏi nàng. Tuy trong nước nhìn không quá rõ, nhưng Tiêu Hàm Nguyệt vẫn thấy được sự cường tráng và to lớn đó. Trong lòng nàng không khỏi trào dâng một cảm xúc lạ, cơ thể chỗ nào đó thậm chí bắt đầu ướt át. Cũng may lúc này đang ở dưới nước, không lo bị người khác phát hiện. Lúc này, mấy cô gái cũng chú ý tới, Diệp Vân Khinh cùng Lâm Linh vội vàng đuổi Diệp Phi đi, Tiêu Hàm Nguyệt mới dám ngoi lên khỏi mặt nước, lập tức lên bờ, quay về xe mặc quần áo, từ đó về sau không chịu xuống nước nữa. Tiêu Hàm Nguyệt vừa rời đi, Diệp Phi cùng mấy người chơi một hồi cũng thấy chán, bèn lên bờ cát chơi đùa. Một lúc lâu sau, Tiêu Hàm Nguyệt mới nguôi ngoai sự xấu hổ, gia nhập cùng mọi người, bất quá khi nhìn về phía Diệp Phi, vẫn không nhịn được đỏ mặt. Mãi đến khi trời chập tối, mọi người mới tận hứng lái xe về nhà. Trên đường, Diệp Phi mua rất nhiều đồ ăn chín để Tiêu Hàm Nguyệt không cần phải nấu nướng nữa. Chơi cả buổi chiều, các cô gái đều có chút mệt mỏi. Sau khi tắm rửa xong, chẳng ai muốn thay trang phục chỉnh tề, đều mặc nguyên đồ ngủ đi ra, kể cả Tiêu Hàm Nguyệt cũng không ngoại lệ. Có lẽ nàng nghĩ rằng dù sao cơ thể mình hắn cũng đã nhìn thấy hết rồi, mặc đồ ngủ cũng chẳng sao cả. Hơn nữa không biết tại sao, trong tiềm thức nàng lại hy vọng Diệp Phi có thể dùng ánh mắt đó nhìn mình, đồng thời luôn nghĩ đến vật kia đã thấy dưới nước. Tụ tập lại trong phòng khách chuẩn bị ăn tối, Diệp Vân Khinh lên tiếng: "Khó lắm mới cao hứng thế này, ngày mai lại không phải dậy sớm đi học, hay là chúng ta uống chút rượu đi." Nói xong còn lén lút nháy mắt với Diệp Phi. Tuy hiện tại trí tuệ của Diệp Phi thông minh bậc nhất, cũng tâm linh tương thông với Diệp Vân Khinh, nhưng nhất thời vẫn chưa hiểu rõ ý cô, chỉ biết Diệp Vân Khinh làm vậy chắc chắn có dụng ý và sẽ có lợi cho mình, nên gật đầu: "Được thôi, nhưng chỉ được uống một chút thôi nhé." Tiêu Hàm Nguyệt vốn định từ chối, không ngờ Diệp Phi lại đồng ý trước. Hôm nay bị hắn nhìn thấy hai lần khiến nàng có chút kích thích, thầm nghĩ uống chút cồn để tê liệt bản thân cũng tốt, nên không nói thêm gì nữa. Nàng lấy từ tủ rượu ra một chai vang đỏ, rót cho mỗi người một ít, ngay cả Diệp Tĩnh cũng không bỏ sót. "Oa, ngon thật, chua chua ngọt ngọt, dễ uống hơn nước trái cây nhiều!" Diệp Tĩnh vừa được rót đã nếm thử ngay, lập tức kinh hỉ kêu lên. Diệp Vân Khinh cùng Lâm Linh cũng chưa từng uống rượu, nghe vậy cũng nếm thử, mắt lập tức sáng rực lên, uống cạn ly rồi lại đưa tay đòi Tiêu Hàm Nguyệt rót thêm. Tiêu Hàm Nguyệt cười cười rót thêm cho họ, dặn dò: "Uống chậm thôi, rượu này tuy dễ uống nhưng tác dụng chậm rất lớn, đừng để say đấy." "Có sao đâu, con rất muốn biết cảm giác say rượu là thế nào. Ba con trước kia hay uống rượu, mỗi lần uống ông đều rất vui." Diệp Tĩnh hồn nhiên đáp, nhưng trong lòng lại nhớ đến cha, khuôn mặt nhỏ nhắn đang hưng phấn liền ảm đạm đi. Diệp Phi thấy sắc mặt Diệp Tĩnh không ổn, nhẹ nhàng vỗ vai nàng: "Tĩnh Tĩnh, đừng nghĩ đến những chuyện không vui nữa, hôm nay chúng ta chỉ nói chuyện vui thôi, được không?" Tiêu Hàm Nguyệt cũng phụ họa: "Tiểu Mãn nói đúng, hiếm khi thư thái thế này, chỉ nói chuyện vui thôi. Đúng rồi, trường các em có chuyện gì thú vị không? Kể cho chị nghe đi, bắt đầu từ Tĩnh Tĩnh nhé." Diệp Tĩnh là cô bé hiểu chuyện, không muốn tâm trạng mình ảnh hưởng đến mọi người, bèn kể về một chuyện ở trường. Kể xong, cô bé dần quên đi nỗi buồn, lại hào hứng kể tiếp. Sau đó đến lượt Diệp Phi, Diệp Vân Khinh và Lâm Linh. Vì cả ba học chung một lớp, nên Diệp Vân Khinh đại diện kể chuyện Diệp Phi bị khinh bỉ trước kia. Những chuyện này ngay cả Lâm Linh cũng không rõ, khiến cả cô và Tiêu Hàm Nguyệt đều nghe rất say sưa. Nếu là lúc trước, mọi người sẽ không nhắc đến nỗi đau của Diệp Phi, nhưng giờ đây ai cũng biết hắn không còn như xưa nữa nên chẳng còn kiêng dè gì. Mỗi lần Diệp Vân Khinh kể đến đoạn Diệp Phi bị bắt nạt, sau đó cô giúp hắn báo thù, lại khiến cả nhóm bật cười. Mọi người cười nói đến tận hơn mười một giờ đêm. Ban đầu Tiêu Hàm Nguyệt chỉ định cho mọi người uống một chút, nhưng thấy các cô gái thích loại đồ uống này nên không ngăn cản nữa. Nhìn những cô gái vui vẻ, chính nàng cũng cảm thấy mình trẻ ra nhiều. Bản thân nàng cũng đã lâu rồi không được thả lỏng như vậy, bình thường tham gia yến hội vì nhan sắc quá nổi bật nên luôn phải đề phòng những gã đàn ông xấu xa, không dám uống rượu. Hôm nay không có người ngoài, nàng cũng thả lỏng hẳn. Kết quả, đồ ăn còn nguyên nhưng năm người đã uống hết ba chai vang đỏ. Ba cô gái lần đầu uống rượu, tuy lượng không nhiều nhưng cũng đã say khướt. Diệp Vân Khinh vốn định uống chút rượu để Diệp Phi nhân cơ hội tán tỉnh Lâm Linh, nhưng uống nhiều quá nên quên mất ý định này. Tiêu Hàm Nguyệt dù tửu lượng tốt, nhưng hôm nay uống trọn một chai nên cũng có chút choáng váng, đành ngã xuống sofa ngủ thiếp đi giống như các cô gái nhỏ. Hiện tại người duy nhất giữ được tỉnh táo là Diệp Phi. Dù hắn uống nhiều nhất, nhưng từ khi cơ thể biến dị, khả năng kháng cồn của hắn vượt xa người thường, chút rượu này chẳng thấm vào đâu. Cười khổ một tiếng, Diệp Phi lần lượt bế các cô gái vào phòng Lâm Linh. Đến lượt Tiêu Hàm Nguyệt, hắn lại có chút do dự. Có lẽ vì nóng, Tiêu Hàm Nguyệt nằm nghiêng trên sofa, vô thức kéo nhẹ đồ ngủ ra, lộ ra mảng da thịt trắng nõn đầy đặn trước ngực. Khe sâu hun hút đó khiến tâm trí Diệp Phi chao đảo, vạt áo ngủ vén lên cao, lộ ra đôi chân dài mịn màng như ngọc. Nhìn mỹ nhân trưởng thành như hoa hải đường say ngủ trước mắt, Diệp Phi nuốt nước bọt, phía dưới đã cứng đờ. Phải mất rất nhiều sức lực hắn mới bình tĩnh lại, chỉnh lại đồ ngủ cho nàng rồi bế thốc lên. Mỗi lần được Diệp Phi bế, Tiêu Hàm Nguyệt lại vô thức vòng tay ôm cổ hắn, cơ thể dán chặt vào nhau. Cảm nhận bầu ngực mềm mại đầy đàn hồi ép sát lồng ngực mình, hơi thở Diệp Phi càng thêm dồn dập, không dám nghĩ ngợi nhiều, vội bế nàng vào phòng ngủ. Từ phòng khách đến phòng ngủ chỉ vài bước chân, nhưng khi đặt Tiêu Hàm Nguyệt xuống giường, trán Diệp Phi đã lấm tấm mồ hôi. Hắn hít sâu một hơi, không dám nhìn thêm cơ thể mê người của nàng, cúi xuống tháo giày cho nàng. Đôi bàn chân trắng ngọc ngà lại khiến hắn sững sờ, nhịn không được nắm trong tay vuốt ve một lúc lâu mới đắp chăn cho nàng. Không ngờ lúc này Tiêu Hàm Nguyệt như mơ thấy điều gì, đột nhiên nắm lấy tay Diệp Phi kéo xuống. Lực kéo không mạnh, nhưng lúc này tâm trí Diệp Phi đang dồn hết cho việc kiềm chế bản năng, bước chân không vững, loạng choạng ngã ập lên cơ thể mềm mại của nàng. Sự kiên nhẫn của Diệp Phi đã đến giới hạn. Tiếp xúc thân mật với Tiêu Hàm Nguyệt khiến hắn không thể khống chế được nữa, cúi đầu hôn lên đôi môi nhỏ gần trong gang tấc. Tiêu Hàm Nguyệt bị hôn, mơ mơ màng màng đáp lại. Diệp Phi vừa hôn, đôi tay bắt đầu không thành thật, luồn vào trong đồ ngủ, vuốt ve làn da trơn láng, dần dần tiến tới trước ngực, xuyên qua lớp áo lót mà nắn bóp đôi bầu ngực to lớn kia. Sờ soạng một hồi, Diệp Phi không thỏa mãn với việc vuốt ve bên ngoài, bèn rời đôi môi đang thở dốc của Tiêu Hàm Nguyệt, cởi đồ ngủ và chiếc áo lót ren màu trắng của nàng ra. Đôi bầu ngực cực đại lập tức nhảy ra. Dù ban ngày đã thấy qua, nhưng lúc này Diệp Phi vẫn không khỏi sững sờ: đầy đặn, cao ngất, trắng như ôn ngọc, nhũ hoa đỏ hồng như hai hạt anh đào xinh xắn, thật sự quá đẹp! Nắm lấy đôi bầu ngực tuyệt mỹ, Diệp Phi thỏa mãn vô cùng, nhịn không được cúi đầu ngậm lấy một bên nhũ hoa mút mát. "Ưm!" Tiêu Hàm Nguyệt phát ra tiếng rên rỉ kiều mỵ, hé mắt nhìn Diệp Phi đang bận rộn trước ngực mình, thì thầm: "Tiểu Mãn?" Diệp Phi giật mình dừng lại. Nhưng Tiêu Hàm Nguyệt gọi xong lại im bặt, cơ thể vì sự dừng lại đột ngột của hắn mà bất mãn, khẽ giãy giụa, đẩy bầu ngực vào miệng hắn lần nữa. Được Tiêu Hàm Nguyệt khích lệ, Diệp Phi vô cùng hưng phấn, tiếp tục mút mát. Hắn không biết Tiêu Hàm Nguyệt lúc này đã tỉnh táo đôi chút nhưng vẫn còn chín phần men say, tuy ẩn ẩn hiểu ra người đang mút ngực mình là con rể tương lai, nhưng nàng cho rằng mình đang nằm mơ. Vì ban ngày đã bị Diệp Phi vô tình khơi gợi tính dục, nên đối với giấc mơ này, nàng không hề phản đối, cứ thế buông thả bản thân theo khoái cảm. Tiếng rên rỉ của Tiêu Hàm Nguyệt khiến Diệp Phi càng hưng phấn, sau khi lưu luyến bầu ngực nàng hồi lâu, hắn chậm rãi di chuyển xuống phía dưới, hôn qua vùng bụng phẳng lì, tới tận vùng tam giác thần bí. Khi hôn đến nơi đó, Diệp Phi phát hiện chiếc quần lót mỏng manh của nàng đã ướt sũng. Cởi bỏ nó, Tiêu Hàm Nguyệt phối hợp nâng mông lên, giúp hắn trút bỏ lớp phòng thủ cuối cùng. Vứt chiếc quần ướt sang bên, Diệp Phi tách đôi chân dài của nàng ra, ánh mắt dán chặt vào nơi tuyệt vời nhất. Thật sự rất đẹp, dù không đầy đặn như mẹ hắn, nhưng hình dáng vùng kín của Tiêu Hàm Nguyệt cực kỳ hoàn mỹ, mép da hồng phấn mê người. Diệp Phi ấn ngón tay vào, một giọt dâm thủy trong suốt lập tức rỉ ra. Đối mặt với mỹ vị, Diệp Phi không chút khách khí, hôn lên đó, dùng đầu lưỡi nhẹ nhàng vuốt ve khe thịt, sau đó ngậm lấy hạt đậu nhỏ đang cương cứng mà mút mát, rồi cuối cùng ngậm trọn vùng kín của nàng vào miệng, dùng sức hút, đồng thời dùng đầu lưỡi đẩy vào trong miệng âm hộ đang không ngừng rỉ dâm thủy. Bị Diệp Phi làm như vậy, Tiêu Hàm Nguyệt như muốn mất mạng, đôi chân kẹp chặt đầu hắn, tiếng rên rỉ ngày một lớn. Bất quá Diệp Phi đã chốt cửa kỹ, không sợ bị các cô gái phòng bên nghe thấy. Đầu lưỡi hoạt động trong miệng âm hộ nàng hồi lâu, Diệp Phi mới chậm rãi rút ra, để lại một sợi tơ dâm thủy kéo dài giữa hai người. Cảnh tượng dâm mĩ khiến Diệp Phi không thể kìm lòng, nhanh chóng cởi bỏ quần áo mình, quỳ giữa hai chân nàng, dùng quy đầu ma sát nhẹ nhàng vài cái rồi đâm mạnh vào. "Ư..." Theo cú đâm của Diệp Phi, Tiêu Hàm Nguyệt phát ra một tiếng rên dài. Khi hắn cắm vào tận cùng, nàng bản năng dùng chân cuốn lấy eo hắn, cơ thể bên trong co thắt chặt chẽ, không ngừng nhúc nhích. Lúc này Diệp Phi có chút nghi hoặc: âm đạo Tiêu Hàm Nguyệt dù kẹp hắn rất chặt, nhưng rõ ràng không chặt bằng Diệp Ngưng Sương lần đầu tiên, lẽ ra người đã hơn mười năm không có đàn ông không nên như vậy mới đúng. "Tiểu Mãn, đâm ta, nhanh lên, dùng sức đâm ta!" Tiêu Hàm Nguyệt ngứa ngáy khó chịu, rất muốn Diệp Phi đâm mạnh vào. Thấy Diệp Phi không động, nàng bất mãn vặn vẹo cơ thể. Cử động này làm chiếc gối dưới lưng dịch chuyển, lộ ra một chiếc dương vật giả kích thước không kém Diệp Phi là bao. Thấy vật này, nỗi nghi hoặc trong lòng Diệp Phi lập tức được giải đáp. Thì ra nàng thường dùng nó tự an ủi, trách không được không chặt như vậy. Hiểu rõ mọi chuyện, Diệp Phi không chần chờ nữa, phần eo dùng sức, dương vật ra vào dâm huyệt từ chậm đến nhanh, đôi tay cũng nắm chặt bầu ngực nàng mà vuốt ve. Tiêu Hàm Nguyệt vốn thường dùng dương vật giả giải khát, nhưng đồ giả sao sánh được với thật? Huống chi lại là của Diệp Phi, nàng lập tức rên rỉ lớn tiếng: "Tiểu Mãn... đứa trẻ ngoan... con đâm dì... Tiêu dì... đẹp quá... thật thoải mái... dương vật của con... thật lợi hại... đâm Tiêu dì... sướng chết rồi... dùng sức... dùng sức đâm... dâm huyệt của Tiêu dì..." Tiếng rên rỉ của Tiêu Hàm Nguyệt càng kích thích dục vọng của Diệp Phi. Hắn ôm lấy vòng eo mảnh khảnh của nàng, đâm rút điên cuồng, mang theo từng đợt dâm thủy trào ra. Có lẽ vì dương vật của Diệp Phi dùng tốt hơn đồ giả, không lâu sau, Tiêu Hàm Nguyệt đạt tới đỉnh phong, ôm chặt lấy Diệp Phi, mông lớn phi tốc chuyển động, hét lên một tiếng, âm tinh trào ra cuồn cuộn. Khi Tiêu Hàm Nguyệt cao trào, âm đạo nàng sinh ra một lực hút mạnh mẽ, hút khiến tinh quan của Diệp Phi buông lỏng. Hắn cũng không muốn nhẫn nữa, lập tức phóng xuất tinh dịch nóng hổi vào sâu trong dâm huyệt. Được tinh dịch tưới tắm, Tiêu Hàm Nguyệt càng thoải mái, vòng tay ôm Diệp Phi càng chặt, hạ thể dùng sức đẩy tới, dường như muốn nuốt chửng dương vật hắn. Một lúc lâu sau, Tiêu Hàm Nguyệt mới dần dịu lại, rũ người nằm trên giường, cơ thể buông lỏng. Cảm giác say rượu cũng như theo âm tinh mà tiết ra ngoài, nàng dần tỉnh táo lại. Nhìn thấy Diệp Phi đang áp trên người mình, nàng kinh hô: "Tiểu Mãn, con..." Diệp Phi tưởng nàng trách mình bắn vào trong, áy náy nói: "Xin lỗi, con không cố ý, chỉ là dì kẹp chặt quá, con nhịn không được." "Dì không nói chuyện đó, sao con lại ở trong phòng dì, còn..." Tiêu Hàm Nguyệt nhớ lại chuyện vừa rồi, cảm nhận được thứ gì đó vẫn đang cắm trong cơ thể mình, không khỏi nóng nảy: "Con đã làm gì dì?" Diệp Phi ngờ vực: "Làm gì dì không biết sao? Vừa rồi..." "Đừng nói nữa, con mau ra ngoài đi!" Tiêu Hàm Nguyệt vội vã đuổi hắn. Diệp Phi sững sờ, sao thái độ nàng lại khác hẳn vừa rồi? Nhưng lập tức hiểu ra, nàng vừa rồi là vô thức. Sự việc đã đến nước này, Diệp Phi không đời nào chịu đi. Hắn từng học được một đạo lý từ Tô Ngọc Nhàn: muốn có được một người phụ nữ, nhất là những người đoan trang, cách trực tiếp nhất là chinh phục thể xác, dùng uy lực của dương vật mang lại cho nàng sự thỏa mãn khó quên, lúc đó muốn chiếm lấy trái tim nàng sẽ dễ dàng hơn nhiều. Hắn cười nói: "Chẳng phải vừa rồi dì rất phối hợp sao, sao giờ lại đuổi con đi?" "Dì... dì tưởng mình đang nằm mơ!" Tiêu Hàm Nguyệt ngượng ngùng giải thích. "Cũng vì cảm thấy trong mơ nên dì mới phối hợp, mới yêu cầu con đâm dì đúng không?" Diệp Phi cười hỏi. Mặt Tiêu Hàm Nguyệt đỏ bừng, lí nhí: "Đúng vậy." Diệp Phi cười xấu xa: "Hóa ra dì nằm mơ cũng muốn con đâm mình à, vậy giờ con thỏa mãn dì!" Nói xong, hắn bắt đầu chuyển động, chiếc dương vật chưa từng mềm đi lại đâm rút trong dâm huyệt ướt át của nàng. Cảm nhận sự thô ráp của quy đầu ma sát trong dâm huyệt, Tiêu Hàm Nguyệt sướng đến mức suýt thì hét lên. Nàng vốn là người có tính dục cao, vừa rồi cao trào chưa đủ làm nàng thỏa mãn. Trong sâu thẳm, nàng hy vọng Diệp Phi tiếp tục. Thậm chí nàng hối hận vì đã tỉnh táo, nếu giả vờ ngủ thêm chút nữa thì tốt. Nhưng mối quan hệ giữa hai người khiến nàng kiêng dè, cố nén khoái cảm, nói: "Tiểu Mãn, không được thế!" "Tại sao chứ?" Diệp Phi nhìn đôi mắt đầy xuân tình của nàng, vừa hỏi vừa tăng tốc độ. Tiêu Hàm Nguyệt sướng đến mức cắn chặt môi mới khôi phục lý trí: "Dì là mẹ của Linh Linh, sau này sẽ là mẹ vợ của con, không thể như thế được!" Diệp Phi biết nàng miệng nói cự tuyệt nhưng cơ thể lại phản ứng thật thà, trong lòng tự tin hơn hẳn, cười nói: "Dì nói đúng, dì là mẹ vợ con, nên chúng ta không hề có quan hệ huyết thống, dì làm dì con cũng không ai nói được gì, đúng không?" Ý chí của Tiêu Hàm Nguyệt dưới ngọn lửa dục vọng vốn đã mong manh, lời của Diệp Phi lại rất có lý, khiến nàng mê man. "Huống chi chúng ta đã làm rồi, dì nếu còn nghĩ không thông, cứ xem như đang nằm mơ đi, mọi chuyện cứ để con lo." Diệp Phi thừa thắng xông lên. Tiêu Hàm Nguyệt vậy mà thực sự nhắm mắt lại như đang ngủ, nhưng hơi thở nặng nề đã bán đứng nàng. Diệp Phi hưng phấn vô cùng, không chút kiêng dè, đâm rút điên cuồng, đồng thời ngậm lấy đầu nhũ hoa mút mát. Trong trạng thái tỉnh táo bị Diệp Phi đâm mạnh như vậy, khoái cảm của Tiêu Hàm Nguyệt mãnh liệt hơn hẳn vừa rồi. Cảm nhận chiếc dương vật thô to đâm sâu vào, mỗi tấc da thịt trong dâm huyệt đều được ma sát toàn diện, sự nóng bỏng của nó là điều mà dương vật giả không bao giờ làm được. Quá sảng khoái, Tiêu Hàm Nguyệt muốn hét lên nhưng sự ngượng ngùng khiến nàng cắn chặt môi đến mức sắp rách. Trong phòng lúc này, ngoài hơi thở dồn dập, chỉ còn tiếng "đâm chọc" khi dương vật ra vào dâm huyệt đầy ắp dâm thủy. Mút mát đôi gò bồng đảo của Tiêu Hàm Nguyệt một lúc, Diệp Phi ngẩng đầu muốn hôn nàng, thấy nàng đang cắn chặt môi thì đau lòng, đồng thời thiếu mất tiếng rên rỉ kiều mỵ nên không được đã ghiền, bèn nói: "Tiêu dì, mẹ vợ tốt của con, dì đang nằm mơ mà, muốn thế nào được thế đó, không ai biết đâu!" Được Diệp Phi ám hiệu, Tiêu Hàm Nguyệt không kìm nén nữa, mở miệng thốt ra những lời dâm mĩ: "Tiểu Mãn... con rể tốt... dùng sức đâm dì... đâm dâm huyệt của mẹ vợ... dương vật của con... tốt quá... đâm chết mẹ vợ đi... mẹ vợ sướng quá..." Tiếng gọi "mẹ vợ, con rể" của Tiêu Hàm Nguyệt khiến Diệp Phi càng thêm kích thích, đâm liên tục mấy ngàn cái, khiến nàng đạt thêm năm lần cao trào nữa. Mỗi lần nàng cao trào, Diệp Phi cũng không nhẫn nhịn, mượn lực hút của nàng mà bắn ra lượng lớn tinh dịch. Cho đến khi nàng sướng đến mức thất thần, hắn mới dừng lại. Hai người ôm nhau thở dốc một hồi lâu. Tiêu Hàm Nguyệt khôi phục chút sức lực, nhìn gương mặt trẻ trung anh tuấn của Diệp Phi, nhẹ nhàng thở dài. "Dì sao vậy?" Diệp Phi nắm chặt vòng tay ôm lấy nàng, cố tình hỏi. "Chúng ta, ai..." Tiêu Hàm Nguyệt không biết nói gì, chỉ thở dài. Diệp Phi hôn lên gương mặt tuyệt mỹ của nàng: "Dì đang nghĩ, sau này chúng ta phải làm sao đúng không?" "Ừm." Tiêu Hàm Nguyệt gật đầu, yếu đuối lộ ra vẻ u sầu: "Thôi, coi như hôm nay là sai lầm đi, từ nay về sau không ai được nhắc lại nữa." "Không!" Diệp Phi ôm chặt lấy nàng, kiên định nói: "Có lẽ đó là sai lầm, nhưng con muốn sai mãi mãi!" Nhìn vẻ mặt kiên nghị của Diệp Phi, Tiêu Hàm Nguyệt si mê, nhưng lại lắc đầu: "Dì không muốn phá hỏng tình cảm của con và Linh Linh." "Tình cảm của con và Linh Linh vĩnh viễn không bao giờ hỏng, nhưng con cũng sẽ không bao giờ buông tha dì!" Sự kiên quyết của Diệp Phi khiến lòng Tiêu Hàm Nguyệt ấm áp, đột nhiên trở nên kiều tiếu: "Đồ con ngốc, dì chỉ nói không muốn làm hỏng các con, chứ đâu nói muốn rời bỏ con, chỉ cần không để nó biết, con muốn sao cũng được." Nàng từ khi Diệp Phi mới ra đời đã xem hắn như con rể, đối với hắn yêu thương không kém Lâm Linh, thậm chí còn hơn. Vốn dĩ tình mẫu tử ấy muốn chuyển hóa thành loại tình cảm khác là việc không thể, nhưng sau khi bị Diệp Phi chinh phục hoàn toàn thể xác, lại khiến nàng cảm động và chuyển hóa một cách tự nhiên.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0144.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0146.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

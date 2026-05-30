@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 238 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 238</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 238</small>
+    Chương 238: Chiến thần buông xuống
+  </h1>
+  <div class="chapter-body">
+    <p>Bởi vì những tên côn đồ này đều là nhân viên tầng dưới, ai trả thù lao thì bọn họ giúp kẻ đó, thậm chí còn không biết người phía trên là thân phận gì, cho nên Diệp Tuyền căn bản không làm khó dễ bọn hắn, sau khi răn đe một lúc thậm chí liền trói cũng không trói đã để họ rời đi. Đây cũng là điều Diệp Phi đã an bài từ trước, mục đích chính là muốn cho những tên côn đồ này hướng lên trên thông báo. Tin rằng những kẻ kia sau khi biết tin Diệp Tuyền dẫn người giết tới sẽ không sợ hãi, mà là muốn tiêu diệt triệt để Phi Long bang. Như vậy, chính là đưa cho Diệp Phi cơ hội dẫn dụ chúng ra ngoài để quét sạch tận gốc.</p>
+    <p>Đoàn người bắt đầu từ khu vực gần biển phía Tây Bắc, một đường thẳng tiến vào trung tâm thành phố. Theo quy mô cuộc chiến càng lúc càng lớn, những dòng chính của phe kia cuối cùng cũng xuất hiện. Mà lúc này đây, Diệp Tuyền và đồng đội mới chính thức được chứng kiến thực lực của các cao thủ Lăng Vân Hội. Mỗi khi đến một chỗ, bất kể đối phương có bao nhiêu người hay bao nhiêu súng, họ đều có thể trong thời gian ngắn nhất đánh tan đối thủ. Tuy rằng bọn họ bị đạn bắn trúng cũng sẽ bị thương, nhưng đối phương rất ít khi bắn trúng, bởi vì họ luôn có thể ra tay trước một bước thu phục đối phương trước khi chúng kịp nổ súng.</p>
+    <p>Khi đối phó với những kẻ thuộc dòng chính sau này, Diệp Tuyền không còn nhân từ như đối với lũ côn đồ kia nữa. Chỉ cần là dòng chính của đối phương, nơi bọn họ đi qua căn bản không còn người sống. Mặc dù trong số những kẻ này có không ít người Trung Quốc, nhưng với loại người bán đứng quốc gia để giúp đỡ người Nhật Bản này, căn bản không cần nương tay. Nếu cần thiết, thà bỏ qua cho người Nhật còn hơn là tha cho bọn chúng.</p>
+    <p>Khoảng bốn giờ rạng sáng, đoàn người cuối cùng cũng giết tới khu vực gần trung tâm thành phố, lực cản cũng ngày càng lớn. Trong khoảng thời gian này, Diệp Phi hoàn toàn không ra tay, chỉ lặng lẽ ngồi trong xe. Trong tay hắn cầm một thanh trường đao có chiều dài gần bằng với chiều cao hiện tại của hắn. Bởi vì hai thanh đại kiếm kia đã trở thành chiêu bài của Diệp Phi, dù chỉ có những người trong đặc chiến đội mới nhìn thấy, nhưng để đảm bảo an toàn, Diệp Phi vẫn chưa dùng đến chúng mà chọn một loại vũ khí khác. Hắn muốn tạo ra một biểu hiện giả dối cho tất cả mọi người, rằng Diệp Phi và "người khổng lồ" hiện tại là hai cá thể độc lập. Như vậy, khi thân phận Diệp Phi không tiện ra mặt, hắn có thể dùng thân phận này để hành động, đồng thời xây dựng cho Lăng Vân Hội một hình tượng vô địch, khiến tất cả kẻ địch tiềm ẩn hoặc công khai đều phải kiêng dè.</p>
+    <p>Lý do hắn mãi chưa xuất thủ là vì muốn luyện binh. Những cao thủ này tuy thân thủ mạnh đến mức phi lý, nhưng dù sao trước kia cũng chỉ là lũ lưu manh, chưa từng trải qua đại chiến, cùng lắm chỉ là cầm đao chém giết. Diệp Phi muốn rèn luyện phản ứng của họ trên chiến trường, từ đó tạo ra một đội quân mũi nhọn siêu cường.</p>
+    <p>Nhìn biểu hiện của những cao thủ bên ngoài, Diệp Phi không khỏi khẽ lắc đầu. Kinh nghiệm của họ vẫn quá ít, đối diện kẻ địch chỉ biết dựa vào tốc độ phản ứng siêu phàm và thân thủ vượt trội để giết địch, còn đối với những viên đạn bắn ra từ chỗ tối thì chỉ biết dùng thân thể có khả năng phòng ngự cực cao để chống đỡ. Nếu là người của đặc chiến đội, tuy thân thủ xa không bằng những cao thủ này, nhưng họ tuyệt đối có thể làm được việc không để bản thân bị thương, cũng không ai có thể lén lút ra tay với họ. Đó chính là sự khác biệt về kinh nghiệm, mà kinh nghiệm là thứ ngay cả Diệp Phi cũng không thể dạy cấp tốc, chỉ có thể thông qua thực chiến nhiều lần mới bồi dưỡng được.</p>
+    <p>Rất nhanh, hành động không kiêng nể gì của đám người này đã gây ra chấn động lớn tại gần biển. Rất nhiều người đã phát hiện ra đội ngũ giết người không chớp mắt này, phía quan phủ cũng bị kinh động và phái ra nhiều cảnh sát. Chỉ là hành động của Diệp Tuyền quá nhanh, những cảnh sát vốn nổi tiếng chậm chạp đó chỉ có thể chạy theo sau lo lắng suông.</p>
+    <p>Đối với tình huống này, Diệp Phi cũng đã tính toán từ trước khi lên đường, nhưng hắn không mấy bận tâm. Hắn biết rõ chuyện này dù làm lớn thế nào cũng không gây ra sự bất an thực sự. Cho dù truyền thông hoặc cư dân mạng quá khích có đưa những hình ảnh này lên mạng, cũng chắc chắn sẽ bị các tầng lớp cao cấp Trung Quốc — những kẻ luôn tuyên truyền rằng quốc gia đang vô cùng ổn định và hài hòa — nhanh chóng dập tắt.</p>
+    <p>Về việc liệu các tầng lớp cao cấp sau này có đối phó với mình hay không, Diệp Phi cũng không sợ hãi. Sau khi chiếm cứ khu vực gần biển, hắn đã là "Đông Nam chi vương" thực sự, đặt ở thời cổ đại chính là một phương chư hầu. Những kẻ cấp cao đến cả một quốc gia Nhật Bản nhỏ bé hay một thành phố nhỏ hơn cũng không dám đối đầu, thì khi chưa thăm dò được hư thực của hắn, không biết sau lưng hắn còn thế lực nào chống đỡ hay không, chắc chắn sẽ không dám ra tay với hắn. Và trong khoảng thời gian giảm xóc này, hắn chắc chắn có thể đứng ở một vị trí cao hơn nữa. Khi đó, sẽ không còn ai dám động đến hắn. Bởi vì từ hơn một tháng trước, hắn đã phái người của Đầu Trọc đến quốc gia mạnh nhất thế giới hiện nay là Mỹ. Tại đó, bằng tài lực vô tận của mình, hắn bắt đầu hỗ trợ một vài con rối, đợi đến khi thời cơ chín muồi, hắn sẽ... Thôi, nói nữa là lộ hết kịch bản mất.</p>
+    <p>Đang lúc Diệp Phi trầm tư, những kẻ vốn không hề bị tổn thất gì nhiều lại bắt đầu tan tác toàn diện, dần rút lui về hướng Đông Nam gần biển. Tuy nhiên chúng không chạy quá nhanh, khiến Diệp Tuyền vẫn luôn bám sát được.</p>
+    <p>Kế dụ địch vụng về như vậy sao có thể qua mắt được Diệp Tuyền, nhưng nàng cũng không vì thế mà dừng hành động, trái lại còn đuổi theo sát sao. Bởi vì hiện tại nàng đã bội phục Diệp Phi sát đất, đối với lệnh của hắn tất nhiên không chút do dự làm theo. Trong bức thư điện tử Diệp Phi gửi cho nàng đã nhắc đến tình huống này, chỉ thị của hắn rất rõ ràng: đừng bận tâm đối phương có âm mưu gì, cứ toàn lực truy kích là được.</p>
+    <p>Đối phương vốn tưởng rằng phải tốn không ít công sức mới dẫn dụ được Diệp Tuyền, không ngờ tình huống lại diễn ra thuận lợi như vậy. Nghĩ rằng Diệp Tuyền đã bị chiến thắng tạm thời làm cho mụ mị đầu óc, chúng không khỏi mừng rỡ, vì vậy thay đổi sách lược, trong lúc không để cho xe phía sau bị vứt lại quá xa, đã dùng tốc độ nhanh nhất tiến về phía ngoài thành.</p>
+    <p>Hai bên một đuổi một chạy, rất nhanh đã ra khỏi nội thành gần biển, tiến tới vùng ven biển phía Đông Nam. Nơi đây có một khu công trình kiến trúc chưa hoàn thành, chính là do tên thủ lĩnh người Nhật đầu tư xây dựng với mục đích làm một khu biệt thự nghỉ dưỡng bên bờ biển. Để đối phó Diệp Tuyền, hắn dứt khoát chọn chiến trường ở đây. Hắn nghĩ rằng, tuy điều này có thể khiến công trường bị tổn thất ít nhiều, nhưng chỉ cần có thể tiêu diệt hoàn toàn Phi Long bang, thì những tổn thất đó hoàn toàn có thể chấp nhận được.</p>
+    <p>Sau khi ra khỏi nội thành, Diệp Phi kinh ngạc phát hiện những chiếc xe cảnh sát bám theo phía sau đột nhiên biến mất. Điều này làm hắn dở khóc dở cười, đây đúng là phong cách làm việc của quan chức Trung Quốc. Gây chuyện trên địa bàn của họ thì được, chỉ cần không làm chuyện gì quá lớn (nói trắng ra là không chọc thủng trời) thì muốn quậy phá thế nào cũng được, dù sao cũng không ảnh hưởng tới con đường làm quan của họ. Cho nên khi cả hai phe ra khỏi nội thành và không còn bị dân thường nhìn thấy nữa, họ dứt khoát không can thiệp nữa.</p>
+    <p>Tuy nhiên đối với việc này, Diệp Phi vừa bất lực vừa có chút vui mừng, vì hắn cũng không muốn làm tổn thương dân thường. Dù rất bất mãn với các tầng lớp cao cấp Trung Quốc, nhưng hắn vẫn có tình cảm sâu sắc với quốc gia này.</p>
+    <p>Khu công trường này đã đình công từ lúc họ đối phó với Phi Long bang, nên không có công nhân nào ở đây. Hai bên không cần kiêng dè gì nữa mà triển khai giao hỏa kịch liệt. Súng ống đạn dược là thứ mà Lăng Vân Hội sẵn sàng đụng độ, đặc biệt là từ sau khi Diệp Phi tiếp quản, càng tăng cường độ mạnh tay. Dưới sự hỗ trợ của tài lực vô tận, trang bị của Lăng Vân Hội thậm chí còn hoàn mỹ hơn cả đối phương.</p>
+    <p>Khi xe còn chưa dừng hẳn, ba mươi cao thủ đã mỗi người cầm một khẩu tiểu liên nhảy xuống xe. Ngay cả những người bị thương vừa rồi, động tác cũng nhanh nhẹn như nhau. Họ tuy không có lực phòng ngự biến thái như Diệp Phi, nhưng đạn thông thường cũng chỉ có thể găm vào lớp da ngoài cùng, không gây ra thương tổn quá lớn cho bọn họ.</p>
+    <p>Diệp Phi lúc này vẫn chưa bước xuống. Tuy chiếc xe này không phải loại đặc chế chống đạn như xe của Diệp Tuyền, nhưng Diệp Phi căn bản không sợ hãi. Hiện tại đừng nói là đạn thông thường, ngay cả đạn xuyên giáp cũng không thể gây ra bất kỳ thương tích nào cho hắn.</p>
+    <p>Ngồi trong xe, Diệp Phi dùng ánh mắt sắc bén nhìn quanh bốn phía, cuối cùng dừng lại ở tòa nhà cao tầng duy nhất đã hoàn thiện. Trên tầng thượng tòa nhà đó đang đứng vài người, một kẻ trông có vẻ mặt mũi gian xảo hẳn là thủ lĩnh của chúng. Diệp Phi trong lòng cảm thấy Diệp Tuyền thật đáng thương, trước đây vậy mà lại bại dưới tay một tên như thế này. Nhưng nghĩ đến hình tượng phổ biến của người Nhật, hắn lại cảm thấy bình thường trở lại, biết đâu kẻ này ở nước hắn lại là một "nam thần" cũng nên.</p>
+    <p>Đột nhiên, Diệp Phi cảm thấy có điều bất thường vì tiếng súng của đối phương bỗng chậm lại. Hắn vội nhìn vào chiến trường, chỉ thấy ba mươi cao thủ cùng hai chiếc xe của mình đã bị đối phương bao vây. Không biết từ đâu xuất hiện một làn sương đen nhàn nhạt bao phủ khu vực này. Trong màn sương, động tác của các cao thủ rõ ràng chậm lại, không thể tránh né những viên đạn của đối phương nữa. Liên tiếp có người bị thương, mấy kẻ nặng nhất thậm chí đã mất sức chiến đấu, chỉ có thể nấp sau chiếc xe của Diệp Tuyền.</p>
+    <p>Mấy tên đứng trên mái nhà sau khi thấy cảnh này thì theo một cái thang nâng bên ngoài hạ xuống, đi đến cách vị trí của Diệp Phi không xa, cười ngạo nghễ: "Diệp Tuyền, không ngờ ngươi lại có những cao thủ như vậy. Nhưng rất tiếc, điều này đối với chúng ta mà nói chỉ là chuyện nhỏ. Thế nào? Bây giờ chúng ta có thể nói chuyện hợp tác được chưa?"</p>
+    <p>Lúc này Diệp Tuyền cũng trợn tròn mắt. Nàng luôn tin tưởng tuyệt đối vào sự an bài của Diệp Phi, không ngờ cuối cùng vẫn rơi vào vòng vây của đối phương. Nàng hiểu rằng lần này mình coi như xong đời, bởi vì nàng biết rõ cái gọi là "hợp tác" của đối phương có nghĩa là muốn nàng trở thành món đồ chơi, đến nỗi nàng đã chuẩn bị sẵn tâm lý tự sát.</p>
+    <p>Trong khi đó, Diệp Phi vẫn ngồi trong xe cuối cùng cũng tìm ra nguồn gốc của màn sương đen quỷ dị này. Chỉ thấy ở tám phương hướng bên ngoài chiến trường, không biết từ bao giờ đã xuất hiện tám người áo đen ăn mặc kỳ quái, đang làm những thủ thế, rõ ràng là đang khống chế một cái trận pháp.</p>
+    <p>Diệp Phi hiểu rằng, trước đây mình đã có chút xem thường anh hùng thiên hạ. Ngay cả một nước Nhật nhỏ bé cũng có những thủ đoạn quỷ dị như vậy, thì Trung Quốc với nhân tài đông đảo từ xưa đến nay tự nhiên cũng sẽ có rất nhiều người tài dị sĩ, chỉ là họ chưa bao giờ xuất hiện trong tầm mắt của công chúng mà thôi.</p>
+    <p>Nhưng dù thế nào đi nữa, Diệp Phi căn bản không sợ những thứ bàng môn tả đạo này. Hắn biết nếu mình không xuất hiện lúc này thì mọi chuyện sẽ hỏng bét, vì vậy mạnh mẽ bật dậy trong xe, trực tiếp phá tung trần xe, nhảy vọt lên cao hơn hai mươi mét, rồi ầm ầm rơi xuống giữa chiến trường. Đảo mắt quét một vòng, hắn ngửa mặt lên trời phát ra một tiếng hét lớn kinh thiên động địa. Một vòng sóng âm vô hình lấy hắn làm trung tâm lan ra bốn phía, trong chớp mắt đánh tan toàn bộ màn sương đen. Ngay sau đó, tám tên người áo đen đang đứng đằng xa bỗng nhiên run rẩy, rồi đổ gục xuống như một đống bùn nhão.</p>
+    <p>Diệp Phi kéo lê trường đao, trầm giọng nói với ba mươi cao thủ kia: "Các ngươi ra ngoài vòng vây đi, không được buông tha bất kỳ tên nào, nơi này giao cho ta!"</p>
+    <p>Sự tự tin vô tận đó trong nháy mắt tiếp thêm động lực cho đám cao thủ, sau khi nhìn hắn với ánh mắt sùng bái, họ rời khỏi khu vực chiến trường này.</p>
+    <p>Sở dĩ Diệp Phi xuất hiện như vậy không phải là muốn cố ý ra oai, mà là muốn tạo ra một hình tượng chấn động, để tất cả mọi người biết rằng Lăng Vân Hội có một chiến thần vô địch. Đương nhiên, mục đích chủ yếu vẫn là để cho đám người Phi Long bang xem, bởi vì sau hôm nay chúng sẽ không còn cơ hội nhớ lại điều gì nữa.</p>
+    <p>Biến cố đột ngột này làm tất cả mọi người sững sờ. Trong lòng Diệp Tuyền tràn đầy kinh hỉ, xem ra mình đã trách nhầm Diệp Phi rồi. Hắn không hề quá tự tin, mà là căn bản đã chuẩn bị xong tất cả. Vị trước mắt này, chưa nói đến cái gì khác, chỉ riêng chiều cao đó thôi đã đủ dọa vỡ mật kẻ địch. Diệp Tuyền cũng vô cùng kinh ngạc, không ngờ trên đời này lại có người cao đến vậy.</p>
+    <p>Tên thủ lĩnh đối phương cũng sợ ngây người, không ngờ gã khổng lồ đáng sợ này vừa xuất hiện đã giải quyết bài tẩy của hắn — tám tên âm dương sư đó — hiện tại không biết sống chết thế nào. Hắn không khỏi run giọng kêu lên: "Nổ súng, nổ súng, giết chết hắn cho ta!"</p>
+    <p>Nói xong, chính hắn lại vội vã chạy thục mạng về phía sau.</p>
+    <p>"Ngươi chạy thoát sao?"</p>
+    <p>Diệp Phi quát lớn một tiếng, thân hình to lớn tạo ra một chuỗi tàn ảnh, trong nháy mắt lướt qua bên cạnh tên thủ lĩnh kia, đầu của tên đó lập tức lìa khỏi thân thể.</p>
+    <p>Sự kinh ngạc mà Diệp Phi gây ra lần này thậm chí còn lớn hơn lần trong rừng rậm, bởi vì hình tượng hiện tại của hắn hầu như đã không còn giống con người nữa. Những kẻ đối phương tuy sức chiến đấu không tệ, nhưng tố chất tâm lý sao có thể so được với những lính đánh thuê dày dạn kinh nghiệm? Thế là chúng lập tức sụp đổ, vừa tứ tán chạy trốn vừa vô thức nổ súng vào Diệp Phi.</p>
+    <p>Diệp Phi căn bản không thèm để ý những viên đạn bắn vào người, thân hình khổng lồ hóa thành một làn khói nhẹ, chớp động khắp khu công trình chưa hoàn thiện này. Mỗi lần xuất hiện là một sinh mạng bị tước đoạt. Tử trạng của những kẻ này cực kỳ thảm thiết, kẻ thì bị hắn dùng trường đao chém bay đầu, kẻ thì bị chém làm đôi. Nhưng trong mắt Diệp Tuyền, những cảnh đó không hề đáng sợ, ngược lại còn mang một vẻ đẹp đầy bạo lực.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0237.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0239.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

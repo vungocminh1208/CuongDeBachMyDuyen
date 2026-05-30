@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 197 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 197</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 197</small>
+    Chương 197: Nghịch ngợm biểu muội
+  </h1>
+  <div class="chapter-body">
+    <p>Liễu Diệc Như có chút bối rối, vội vàng giúp Diệp Phi thu dọn, dùng khăn ướt lau sạch sẽ cho hắn. Vốn định mặc quần ngủ vào cho hắn, nhưng nghĩ tới lát nữa lại phải phiền phức, dứt khoát không thèm bận tâm nữa, kéo chăn mỏng đắp lên người hắn rồi vội vàng rời khỏi phòng.</p>
+    <p>Ra khỏi phòng ngủ của Diệp Phi, Liễu Diệc Như thở dài một hơi nhẹ nhõm. Trở về phòng mình, cô lấy một bộ quần áo rồi đi vào phòng tắm. Hiện tại trên người cô không chỉ dính đồ vật của Diệp Phi mà còn có cả của chính mình, cần phải tẩy rửa sạch sẽ. Cũng may sau khi trải qua sự bối rối vừa rồi, cảm giác khao khát khi đối mặt với Diệp Phi đã vơi đi nhiều, cũng không còn làm cô phiền não nữa.</p>
+    <p>Tắm rửa thay quần áo xong, Liễu Diệc Như ngồi xuống phòng khách, lấy điện thoại gọi cho Diệp Tư Kỳ và Diệp Tư Dao. Dù sao các cô cũng là tỷ tỷ của Diệp Phi, việc Diệp Phi tẩu hỏa nhập ma các cô có quyền được biết. Dù biết sau khi biết tin chắc chắn sẽ lo lắng như mình, nhưng cũng không biết khi nào Diệp Phi mới tỉnh lại, chuyện này không thể giấu mãi được. Hơn nữa, gọi các cô tới cũng tiện sắp xếp, dặn dò các cô gần đây nên ở ngoài, không cần quay về, tránh làm phiền việc cô trị liệu cho Diệp Phi.</p>
+    <p>Nghĩ đến đây, Liễu Diệc Như không khỏi đỏ mặt, tại sao mình lại có cảm giác như đang sợ các cô phá hỏng chuyện tốt của mình vậy?</p>
+    <p>Còn có tỷ tỷ Liễu Phượng Nghi, người vốn không có con cái nên yêu thương Diệp Phi còn hơn cả cô, nếu chuyện này không báo trước, sợ rằng sau này bà sẽ trách mình. Ngoài ra còn có ba vị bác của Diệp Phi, cùng với Hứa Thư Vân. Còn về Liễu Quân Di và Diệp Vân Anh, các cô hiện tại đang ở nơi khác, để tránh các cô lo lắng, Liễu Diệc Như quyết định tạm thời chưa báo tin.</p>
+    <p>Gọi điện xong, Liễu Diệc Như không nói rõ chuyện gì, chỉ bảo các cô trưa đến chỗ cô một chuyến. Dù sao tình huống của Diệp Phi đã tạm thời được cô "khống chế", cũng không cần vội vàng trong phút chốc.</p>
+    <p>Làm xong hết thảy, Liễu Diệc Như ngồi ngẩn người trong phòng khách. Cô phát hiện mình không biết từ lúc nào đã nảy sinh một ý nghĩ rất ích kỷ, đó là hy vọng Diệp Phi cứ hôn mê thế này càng lâu càng tốt. Bởi vì chỉ như vậy, cô mới có cảm giác hoàn toàn sở hữu hắn. Nếu hắn tỉnh lại, chẳng phải sẽ đi tìm Lâm Linh sao?</p>
+    <p>Nhưng ý nghĩ này chỉ lóe lên trong đầu Liễu Diệc Như một chút rồi bị cô xua đi. Dù xét trên phương diện nào, cô vẫn hy vọng Diệp Phi có thể khỏe lại, dù sau khi khỏi hẳn hắn không còn thuộc về cô, nhưng chỉ cần thấy hắn vui vẻ, cô cũng đã thỏa mãn rồi.</p>
+    <p>Thời gian trôi qua, Liễu Diệc Như ngẩn người đến tận trưa. Nghe thấy tiếng xe bên ngoài, cô biết là Diệp Tư Kỳ và Diệp Tư Dao đã về. Vừa định đứng dậy ra đón, cô lại chợt nghĩ đến một vấn đề.</p>
+    <p>Đông Phương Nhược Lan đã nói, trong cơ thể Diệp Phi hiện tại có lượng lớn cương dương khí, mà việc cô vừa giúp hắn giải quyết chỉ sợ chỉ là một phần rất nhỏ, hiện tại liệu hắn có...</p>
+    <p>Nghĩ tới đây, Liễu Diệc Như không kịp đón hai người con gái lớn nữa, vội vàng đẩy cửa phòng Diệp Phi đi vào. Quả nhiên, chỗ chăn đắp trên người hắn lúc này lại bị nhô lên cao.</p>
+    <p>"Tiểu bại hoại này!" Liễu Diệc Như đỏ mặt lẩm bẩm một câu, vội vàng đi đến bên giường, đưa bàn tay nhỏ bé đè thứ đồ khốn kiếp kia xuống. Nhưng ngay lập tức cô lại ý thức được, mình cứ đè thế này cũng không phải là cách. Tuy trong lòng không hề bài xích mà thậm chí còn rất thích, nhưng nếu con gái vào mà bắt gặp, chẳng lẽ cô cứ cầm lấy nó mãi?</p>
+    <p>Trong tình thế cấp bách, Liễu Diệc Như muốn giúp Diệp Phi mặc quần ngủ vào, nhưng lúc này bên ngoài đã vang lên tiếng Diệp Tư Kỳ mở cửa. Bây giờ mới mặc vào thì không kịp nữa, chẳng còn cách nào khác, Liễu Diệc Như đành xoay người Diệp Phi lại, để hắn nằm sấp xuống. Vì sợ sức nặng cơ thể đè hỏng thứ đó, cô lại đưa tay giúp hắn điều chỉnh vị trí một chút, rồi mới vội vàng rời khỏi phòng.</p>
+    <p>Liễu Diệc Như vừa ra ngoài, Diệp Tư Kỳ và Diệp Tư Dao đã vào đến phòng khách. Thấy sắc mặt Liễu Diệc Như hơi đỏ, Diệp Tư Kỳ tò mò hỏi: "Mẹ, mẹ sao thế ạ?"</p>
+    <p>"Mẹ không sao." Liễu Diệc Như đưa tay vén những sợi tóc rối trên trán để che đi vết đỏ trên mặt, vội chuyển chủ đề: "Sao hai đứa lại cùng về vậy?"</p>
+    <p>"Con đi được nửa đường thì thấy Dao Dao đang chạy về nhà nên tiện đường đón em ấy luôn." Diệp Tư Kỳ cười nói.</p>
+    <p>Thấy Liễu Diệc Như nhìn mình đầy kỳ lạ, Diệp Tư Dao ngại ngùng cười: "Xe con hỏng rồi, chưa kịp đi sửa, lúc đó cũng gọi không được taxi nên... Đúng rồi mẹ, mẹ gọi bọn con đến có việc gì không ạ?" Hai cô tuy chỉ kém Liễu Diệc Như mười mấy tuổi nhưng sống chung rất hòa hợp. Vậy nên dù gọi là mẹ, nhưng trong lòng hai người đều coi Liễu Diệc Như như một người chị tốt không có gì giấu nhau.</p>
+    <p>Nhắc đến chuyện này, tâm trạng Liễu Diệc Như chùng xuống, thở dài: "Tiểu Mãn, thằng bé xảy ra chuyện rồi."</p>
+    <p>"Dạ?" Diệp Tư Kỳ và Diệp Tư Dao đồng thanh kinh hô. Các cô quan tâm Diệp Phi không kém gì Liễu Diệc Như. Diệp Tư Kỳ vội vàng hỏi: "Em ấy sao thế ạ? Giờ em ấy ở đâu? Con phải vào xem em ấy ngay!"</p>
+    <p>"Đang ở trong phòng của thằng bé." Liễu Diệc Như đứng dậy, dẫn hai người đi về phía phòng Diệp Phi, đồng thời nói: "Tẩu hỏa nhập ma, hiện tại đang hôn mê."</p>
+    <p>Vào phòng Diệp Phi, thấy Diệp Phi nằm sấp bất động, hai vị tỷ tỷ đều giật mình, vội vàng chạy đến bên giường. Diệp Tư Kỳ đưa tay nhẹ nhàng vuốt ve khuôn mặt Diệp Phi: "Đệ đệ, đệ làm sao vậy? Đại tỷ đây, đệ tỉnh lại đi." Nói xong, nước mắt cô đã trào ra.</p>
+    <p>"Phương Đông a di đã xem qua chưa ạ?" Diệp Tư Dao rất tỉnh táo hỏi, nhưng đôi mắt đỏ hoe cũng đã chứng minh sự lo lắng trong lòng cô không hề thua kém tỷ tỷ, chỉ là cô không giỏi biểu đạt cảm xúc.</p>
+    <p>"Xem rồi." Liễu Diệc Như gật đầu, kể lại lời Đông Phương Nhược Lan cho hai người nghe, chỉ là giấu đi đoạn hướng dẫn cụ thể.</p>
+    <p>Hai vị tỷ tỷ không ngờ cơ thể Diệp Phi lại xảy ra tình huống như vậy, trong lòng không khỏi sốt ruột, đồng thanh hỏi: "Vậy Phương Đông a di có cách gì giải quyết không ạ?"</p>
+    <p>"Chúng ta ra ngoài nói đi, đừng làm phiền Tiểu Mãn nghỉ ngơi." Liễu Diệc Như sợ ở lâu các cô sẽ phát hiện ra điểm bất thường trên người Diệp Phi nên gọi các cô ra phòng khách: "Có cách, Lan Lan dạy mẹ một phương pháp dùng nội lực để dẫn đạo, có thể chậm rãi đưa khí tức trong cơ thể nó ra ngoài, chỉ là thời gian hơi lâu thôi."</p>
+    <p>"Vậy chúng ta cùng giúp em ấy dẫn đạo, có nhanh hơn không ạ?" Diệp Tư Dao hỏi: "Hay mẹ dạy phương pháp đó cho bọn con, mọi người cùng nhau làm đi."</p>
+    <p>Liễu Diệc Như đương nhiên không thể để các cô nhúng tay vào, liền lắc đầu: "Không được, nội lực của các con chưa tới hỏa hầu, không giúp được gì cho nó đâu."</p>
+    <p>Diệp Tư Kỳ thở dài: "Ai, đáng tiếc tiểu di bây giờ còn đang ở Kinh thành, nếu không có cô ấy đến thì tốt rồi, nội lực của cô ấy là mạnh nhất nhà ta."</p>
+    <p>"Yên tâm đi, mẹ tuy không lợi hại bằng tiểu di của các con, nhưng đối với Tiểu Mãn thì cũng đã đủ rồi. Hơn nữa đông người quá cũng không có tác dụng gì, chỉ có thể từ từ thôi." Liễu Diệc Như nói: "Hơn nữa Lan Lan nói, Tiểu Mãn lúc này cần sự yên tĩnh, vì vậy các con tạm thời cứ ở công ty với võ quán đi nhé." Để thuận lợi "trị liệu" cho con trai, Liễu Diệc Như đành phải tạm thời "đuổi" hai người con gái thân như chị em này đi.</p>
+    <p>"Vâng ạ!" Hai vị tỷ tỷ không chút do dự đồng ý. Diệp Tư Kỳ lại dặn: "Nhưng nếu Tiểu Mãn có biến chuyển gì, mẹ nhớ phải báo ngay cho bọn con biết đấy ạ."</p>
+    <p>Ba người đang nói chuyện thì ngoài cửa vang lên tiếng chuông. Liễu Diệc Như biết chắc là chị em nhà họ Diệp hoặc Hứa Thư Vân đến, vì Liễu Phượng Nghi có chìa khóa biệt thự nhà họ Liễu. Cô liền dẫn Diệp Tư Kỳ và Diệp Tư Dao ra ngoài.</p>
+    <p>Mở cửa, một chiếc xe con lao vào. Sau khi dừng hẳn, ba đại mỹ nữ khuynh quốc khuynh thành cùng một cô bé bước xuống, chính là ba vị bác của Diệp Phi – ba chị em nhà họ Diệp cùng Vân Sơ Tình, con gái 12 tuổi của Diệp Ngưng Băng.</p>
+    <p>"Diệc Như." "Chị Diệc Như." "Đại mợ." Thấy Liễu Diệc Như, Diệp Ngưng Sương, Diệp Ngưng Băng cùng Vân Sơ Tình đồng loạt cất tiếng. Nhờ sự điều giải của Diệp Ngưng Sương, mối quan hệ giữa ba chị em nhà họ Diệp và Liễu Diệc Như đã tốt hơn nhiều, chỉ có Diệp Ngưng Tuyết trong lòng vẫn còn khúc mắc nên chỉ liếc nhìn Liễu Diệc Như một cách lạnh lùng.</p>
+    <p>Liễu Diệc Như cũng không chấp nhặt thái độ của Diệp Ngưng Tuyết, dẫn các cô vào phòng khách rồi nói lại tình hình của Diệp Phi một lần nữa.</p>
+    <p>Ba chị em nhà họ Diệp cũng yêu thương Diệp Phi vô cùng, trừ Diệp Ngưng Sương đã biết rõ nội tình, những người còn lại đều lo lắng không thôi, đòi vào xem Diệp Phi.</p>
+    <p>Tuy lo rằng người đông sẽ lộ tẩy, nhưng Liễu Diệc Như không thể từ chối nên đành dẫn các cô vào phòng.</p>
+    <p>Vì trước đó đã dặn là không được làm phiền Diệp Phi, nên ba chị em nhà họ Diệp tuy đau lòng nhưng chỉ lặng lẽ nhìn Diệp Phi nằm sấp, không ai lên tiếng. Chỉ có Vân Sơ Tình tò mò hỏi: "Ca ca sao lại nằm sấp ngủ thế ạ?"</p>
+    <p>Được con gái nhắc nhở, Diệp Ngưng Băng cũng thấy có gì đó không ổn, nhỏ giọng nói: "Đúng rồi, chị Diệc Như, sao không cho Tiểu Mãn nằm ngửa ra, ít nhất như thế cũng thoải mái hơn chứ?"</p>
+    <p>Liễu Diệc Như hoảng hốt, vội đáp: "Không phải đâu, chị chỉ thấy nó nằm từ hôm qua tới giờ rồi, đã giúp nó đổi tư thế, lát nữa sẽ chỉnh lại sau."</p>
+    <p>Dù cảm thấy lý do của Liễu Diệc Như hơi khiên cưỡng, nhưng mọi người cũng không nghĩ nhiều, vì không muốn làm phiền Diệp Phi nên nhanh chóng rời khỏi phòng ngủ.</p>
+    <p>Ba chị em nhà họ Diệp và Vân Sơ Tình dù là người nhà nhưng đến đây cũng là khách, không thể để các cô thiệt thòi, Diệp Tư Kỳ và Diệp Tư Dao cố nén đau lòng vào bếp chuẩn bị cơm nước.</p>
+    <p>Diệp Ngưng Băng không muốn để hai người cháu vất vả, dặn con gái ngồi ngoan rồi đi vào phụ giúp. Trong ba chị em nhà họ Diệp, Diệp Ngưng Băng xem như là người hạnh phúc nhất, chẳng những có con gái thông minh đáng yêu mà trượng phu cũng rất tốt, dù không có bao nhiêu bản lĩnh nhưng dựa vào gia nghiệp lớn của nhà họ Diệp, cũng chẳng cần ông phải kiếm tiền làm gì.</p>
+    <p>Sau khi ba người vào bếp, Liễu Diệc Như ngồi trò chuyện với Diệp Ngưng Sương và Diệp Ngưng Tuyết. Nhưng không ai phát hiện ra, cô bé Vân Sơ Tình hiếu kỳ đã lén chạy vào phòng Diệp Phi.</p>
+    <p>"Ca ca, ca tỉnh dậy đi, tỉnh dậy chơi với Tinh Nhi!" Vân Sơ Tình đóng kỹ cửa, đi đến bên giường Diệp Phi, khẽ lay hắn.</p>
+    <p>Vì phải diễn trọn vở kịch, Diệp Phi vẫn đang vận công làm nhiệt độ cơ thể mình cao lên. Vân Sơ Tình chạm vào thấy nóng hổi, hoảng sợ kêu lên: "Ca ca, ca nóng lắm ạ? Để Tinh Nhi đắp chăn cho ca nhé!" Nói đoạn, cô bé kéo phăng chiếc chăn mỏng trên người Diệp Phi ra.</p>
+    <p>"Á, xấu hổ quá! Ca ca không mặc quần áo kìa!" Vân Sơ Tình nhìn thấy cái mông trần của Diệp Phi, khúc khích cười, đưa bàn tay nhỏ bé che khuôn mặt đỏ ửng của mình.</p>
+    <p>Diệp Phi lúc này thầm kêu khổ trong lòng, hắn không ngờ cô nhóc nghịch ngợm này lại chui vào đây. Cũng may mình đang nằm sấp nên không sợ bị cô bé nhìn thấy gì.</p>
+    <p>Nhưng Diệp Phi vui mừng quá sớm, thấy ca ca không trả lời mình, Vân Sơ Tình bất mãn lay hắn mạnh hơn: "Ca ca, ca mau dậy đi mà!"</p>
+    <p>Vì muốn giả vờ hôn mê, Diệp Phi đương nhiên không thể vận công chống cự, kết quả bị Vân Sơ Tình đẩy một cái, cơ thể lập tức lật lại. Thứ đại gia hỏa chưa bao giờ yên tĩnh kia ngay lập tức phơi bày trước mắt cô bé.</p>
+    <p>"Ơ, cái gì đây ạ?" Vân Sơ Tình tò mò nhìn thứ kỳ quái trên người ca ca. Dưới sự thôi thúc của tính hiếu kỳ, cô bé đưa tay nhỏ bé kéo nó xuống, vật kia lập tức lắc lư theo.</p>
+    <p>"Hi hi, vui quá!" Vân Sơ Tình như vừa phát hiện ra châu lục mới, dùng ngón tay nhỏ nhắn liên tục búng lấy món đồ chơi to bự này, khiến nó lắc lư nhẹ nhàng trước mặt. Hơn nữa vì nằm sấp khá gần, cái miệng nhỏ của cô bé cách vật đó chỉ vài phân, Diệp Phi thậm chí cảm nhận được hơi nóng từ miệng cô bé phả ra.</p>
+    <p>Điều này làm Diệp Phi hỏa đại không thôi. Cô nhóc này, thật sự quá tra tấn người ta! Một ngày nào đó, ca ca nhất định sẽ cho nhóc biết uy lực của nó!</p>
+    <p>Cũng may sự tò mò của cô bé chỉ là nhất thời. Dù cảm thấy thứ thô ráp nhưng không gây cấn tay này chơi rất vui, nhưng vì ca ca mà cô bé thích không thể chơi cùng, nên sau khi đùa nghịch chán chê, cô bé mất hứng thú. Sau khi quyết định đợi ca ca tỉnh lại rồi chơi tiếp, cô bé lặng lẽ chạy ra ngoài.</p>
+    <p>Đợi cô nhóc đi khuất, Diệp Phi mới thở phào một hơi dài, vội vàng xoay người về tư thế cũ, dùng chăn đắp kín người. Ý niệm vừa động, mọi âm thanh ngoài phòng khách lại lọt vào tai hắn.</p>
+    <p>Lúc này Liễu Diệc Như và mọi người đang nói về chuyện của Diệp Phi. Nghe tin Diệp Phi đã có cách chữa, Diệp Ngưng Tuyết lại khôi phục vẻ lạnh lùng vốn có, còn Diệp Ngưng Sương thì thầm cười trong lòng. Xem ra kế hoạch của Diệp Phi đang tiến hành cực kỳ thành công, mình cũng sắp trở thành chị em tốt chính thức với Liễu Diệc Như rồi!</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0196.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0198.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

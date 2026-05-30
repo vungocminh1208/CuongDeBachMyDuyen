@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 168 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 168</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 168</small>
+    Chương 168: Toàn bộ mục tiêu mới
+  </h1>
+  <div class="chapter-body">
+    <p>Khi Diệp Phi đang dùng môi phong tỏa đôi môi nhỏ nhắn gợi cảm và ngọt ngào của Liễu Quân Di, thân thể hai người đột nhiên đồng thời chấn động. Một luồng khí lạnh lẽo từ sâu trong nơi tư mật của Liễu Quân Di bừng lên, thông qua dương vật đang cắm thật sâu trong đó truyền vào cơ thể Diệp Phi. Sau khi dạo một vòng trong cơ thể Diệp Phi, nó lại hóa thành một luồng khí nóng bỏng truyền qua đôi môi đang hôn nhau trở lại cơ thể Liễu Quân Di. Luồng nội tức kỳ dị này vậy mà hình thành một vòng tuần hoàn trong cơ thể hai người.</p>
+    <p>Luồng khí này tựa hồ có hiệu quả cực kỳ mãnh liệt, chỉ mới vận chuyển ba vòng chu thiên trong cơ thể, thân thể vốn đã mềm nhũn vì bị Diệp Phi chiếm hữu của Liễu Quân Di đã lập tức khôi phục trạng thái tốt nhất.</p>
+    <p>Hơn nữa, luồng khí này dường như còn có tác dụng kích thích tình dục. Vừa hồi phục, Liễu Quân Di cảm thấy nơi tư mật ngứa ngáy dữ dội, không nhịn được khẽ vặn vẹo mông, để dương vật của Diệp Phi ma sát bên trong tiểu huyệt của mình.</p>
+    <p>Diệp Phi cũng cảm thấy cực kỳ thoải mái khi luồng khí lạnh truyền đến từ chỗ Liễu Quân Di. Thấy nàng cử động, anh không chần chừ nữa, hai tay bưng lấy mông nàng, từ chậm đến nhanh bắt đầu đâm rút, đôi môi vẫn không hề rời nhau.</p>
+    <p>Dần dần, vì quá nhập tâm, thân thể họ từ từ chìm xuống nước. Những người đã đạt tới "Tiên Thiên chi cảnh" như họ vốn dĩ có thể nhịn thở thời gian dài, nhưng trước kia dù sao vẫn cảm thấy đôi chút bị đè nén, còn hiện tại thì không hề có cảm giác đó. Dường như luồng khí liên tục tuần hoàn trong cơ thể đã cung cấp cho họ đầy đủ dưỡng khí.</p>
+    <p>Đắm chìm trong khoái cảm vô biên, cả hai không hề ý thức được điểm này. Vì không cảm thấy khó chịu, họ cũng chẳng vội vã ngoi lên mặt nước, chỉ tận tình nỗ lực vì đối phương.</p>
+    <p>Diệp Phi dùng biên độ lớn nhất, mỗi lần rút ra chỉ để lại một chút quy đầu cho hai cánh hoa kiều nộn của tiểu di ngậm lấy, sau đó lại dùng lực thúc mạnh, đem dương vật cắm sâu vào tiểu huyệt nhỏ hẹp. Bởi vì dương vật quá lớn, mỗi lần đâm vào đều chạm tới tử cung của nàng.</p>
+    <p>Liễu Quân Di bị anh làm cho cuồng tính đại phát, hai tay ôm chặt cổ anh, dùng bầu ngực đẫy đà cọ xát vào ngực anh để gia tăng khoái cảm. Không lâu sau, nàng lại một lần nữa đạt đến đỉnh điểm.</p>
+    <p>Lần này Diệp Phi không hề xuất ra cùng nàng, mà cứ để nguyên dương vật cứng rắn cắm sâu trong huyệt nhỏ, tận tình hấp thụ luồng khí lạnh càng thêm mãnh liệt theo cao trào của nàng.</p>
+    <p>Sau vài vòng tuần hoàn, Liễu Quân Di lại một lần nữa khôi phục thể lực. Nàng xoay mông tốc độ cao, dẫn dắt cả hai bước vào một cơn lốc tình dục mới.</p>
+    <p>Trận đại chiến dưới nước của hai người kéo dài suốt hơn hai giờ đồng hồ. Liễu Quân Di đã chẳng nhớ mình đã xuất ra bao nhiêu lần, còn Diệp Phi sau nhiều lần phun ra cũng cảm thấy thể xác tinh thần đều sảng khoái.</p>
+    <p>Cuối cùng, sau khi Liễu Quân Di lại một lần nữa cuồng hoan, thân thể nàng triệt để mềm nhũn, luồng khí kia cũng không thể khiến nàng khôi phục thêm. Diệp Phi bế nàng lên bờ, nhưng vì dương vật vẫn không hề rút ra khỏi tiểu huyệt, trong quãng thời gian đi lại ngắn ngủi đó, nơi mẫn cảm của nàng lại tiết ra thêm lần nữa.</p>
+    <p>Sau khi lên bờ, cả hai lại dựa vào phương pháp song tu vừa rồi nghỉ ngơi hồi lâu, Liễu Quân Di mới thực sự hồi phục. Dưới sự đòi hỏi mãnh liệt của Diệp Phi, cả hai đều không mặc quần áo, cứ thế trần trụi đùa nghịch trong sơn cốc. Dù sao nơi này cũng không có khả năng có người ngoài, chỉ có vài con vật nhỏ không biết gì, nên Liễu Quân Di cũng hoàn toàn thả lỏng. Trong lúc đùa nghịch thỉnh thoảng lại có những cử chỉ trêu chọc, khiến Diệp Phi không nhịn được lại "ăn" nàng thêm vài lần. Dù sao có bộ công pháp song tu kia, cũng chẳng sợ sau đó không còn thể lực để trở về.</p>
+    <p>Diệp Phi và Liễu Quân Di chơi trong sơn cốc đến tận khuya mới buộc phải rời đi để quay về căn cứ. Lúc gần đi, Liễu Quân Di vô cùng lưu luyến. Cảnh sắc nơi này tuy tuyệt đẹp, nhưng điều làm nàng không nỡ hơn cả chính là cảm giác vô câu vô thúc khi được ở bên Diệp Phi tại đây. Một khi ra ngoài, vì mối quan hệ của cả hai, nàng lại phải lo người khác đàm tiếu.</p>
+    <p>Thông qua buổi "trao đổi" nửa ngày trong hồ, Diệp Phi phát hiện mình vậy mà có thể hiểu được tâm tư của Liễu Quân Di qua nét mặt và động tác. Loại cảm giác này tuy không hoàn toàn giống như sự tâm ý tương thông giữa anh và Diệp Vân Khinh, nhưng cũng chẳng kém bao nhiêu; những gì Liễu Quân Di đang nghĩ, anh đều tự nhiên mà thấu hiểu.</p>
+    <p>Từ khi có được năng lực này, Diệp Phi có thể nói là mọi chuyện đều thuận lợi. Ngay cả khi đối mặt với những kẻ địch cùng hung cực ác, anh cũng chỉ lo không tìm được chỗ ẩn thân của chúng, còn lại chẳng hề để tâm. Hiện tại, anh lại đột ngột ngộ ra một đạo lý: hình như mình hơi lười biếng rồi. Trước kia khi ở bên Diệp Vân Khinh, nàng còn quá nhỏ, không suy nghĩ sâu xa, chỉ cần được ở bên anh là đã rất vui vẻ, nên anh cũng chẳng nghĩ đến những chuyện khác. Về phần Diệp Ngưng Sương, Diệp Phi lại không đạt được trạng thái tâm linh tương thông với nàng. Mãi cho đến hôm nay bên cạnh Liễu Quân Di, Diệp Phi mới hiểu ra rằng, trước đây mình đã nghĩ quá đơn giản.</p>
+    <p>Trước kia Diệp Phi luôn cho rằng, chỉ cần hai người yêu nhau thì những chuyện khác không cần bận tâm. Quả thật, hiện tại anh và Diệp Vân Khinh, Diệp Ngưng Sương, Liễu Quân Di đều yêu nhau, nhưng càng như vậy, áp lực trong lòng họ lại càng lớn. Mà anh, với tư cách là người đàn ông của họ, tự nhiên không thể để các nàng tiếp tục như vậy. Các nàng đã không oán không hối đi theo mình, sao mình có thể không mang lại cho các nàng một không gian sống tự do tự tại?</p>
+    <p>Liễu Quân Di thấy Diệp Phi dường như đang trầm tư điều gì, biểu cảm trên mặt vô cùng nghiêm trọng, không khỏi nhói lòng, ôn nhu hỏi: "Ngươi đang suy nghĩ gì vậy?"</p>
+    <p>Diệp Phi kéo nàng lại, nhẹ nhàng ôm vào lòng, thở dài nói: "Ta đang nghĩ, làm thế nào mới có thể quang minh chính đại ở bên nàng, không bao giờ phải sợ người khác bàn tán nữa."</p>
+    <p>Liễu Quân Di không thể biết suy nghĩ của Diệp Phi, đây cũng là điểm khác biệt lớn nhất so với sự tâm linh tương thông giữa Diệp Phi và Diệp Vân Khinh. Nàng không ngờ Diệp Phi lại nghĩ giống mình, thấy anh vì mình mà phiền lòng, trong lòng không khỏi vừa cảm động vừa ngọt ngào. Nàng không muốn tăng thêm gánh nặng cho anh, bèn gạt bỏ nỗi buồn, cười nói: "Tại sao phải như vậy chứ? Ta thấy hiện tại rất tốt rồi, ngươi đừng vì chuyện này mà hao tâm tổn trí."</p>
+    <p>Diệp Phi lờ mờ cảm nhận được đó là lời thật lòng của nàng, nàng thực sự cam nguyện cứ âm thầm không danh không phận đi theo anh cả đời. Anh vô cùng cảm động, nhưng càng như vậy, anh lại càng muốn cho nàng một câu trả lời thỏa đáng. Anh suy nghĩ cẩn thận rồi hỏi: "Nàng nói xem, nếu sau này ta có được thực lực và thế lực không ai sánh kịp, hai chúng ta ở bên nhau, liệu còn có ai dám nói gì không?"</p>
+    <p>Liễu Quân Di sững sờ, hỏi: "Ý ngươi là sao?"</p>
+    <p>Thực ra ý nghĩ này đã sớm nhen nhóm trong lòng Diệp Phi. Chỉ là trước kia anh chỉ dừng lại ở suy nghĩ, việc làm cũng chỉ là để Độc Bào bọn họ đến Lâm Hải gây dựng, chứ chưa làm gì lớn lao. Tất cả những thứ đó chẳng qua chỉ để phòng thủ kẻ âm mưu đứng sau lưng. Nhưng hiện tại, anh muốn chủ động xuất chiêu. Và trước mắt đang có một cơ hội tuyệt vời, chính là đám thành viên đặc chiến đội kia. Thực lực của bọn họ tuy trong mắt anh không tính là gì, nhưng đặt ở người bình thường thì đã là siêu cường rồi. Nếu anh có thể hoàn toàn khống chế bọn họ trong tay, thì cũng tương đương với việc khống chế toàn bộ bộ đội đặc chủng của Trung Quốc. Đến lúc đó, anh mới thực sự có thực lực để khiêu chiến với kẻ đứng sau lưng kia. Mà tất cả những thứ này, mới chỉ là một sự khởi đầu, sắp tới anh sẽ khiến cả thế giới này phải run rẩy vì sự tồn tại của Diệp Phi!</p>
+    <p>Tuy đã quyết định trong lòng, nhưng Diệp Phi chỉ muốn một mình hoàn thành, không muốn gây thêm áp lực cho Liễu Quân Di và người thân của những người khác. Anh nhàn nhạt cười nói: "Không có gì, ta chỉ nói vậy thôi. Từ nay về sau chúng ta thường xuyên tới đây được không?"</p>
+    <p>Nhớ tới một ngày khoái lạc này, Liễu Quân Di cảm thấy ba mươi năm qua của mình cộng lại cũng không bằng, trong lòng tự nhiên rất hướng tới đề nghị của anh. Nàng quên mất lời nói vừa rồi của anh dường như có ẩn ý gì đó, tươi cười rạng rỡ nói: "Đương nhiên tốt rồi, nơi này chính là một ngôi nhà khác của chúng ta mà. Từ nay về sau đương nhiên phải thường xuyên tới. Chỉ tiếc nơi này cách Vọng Hải quá xa, bằng không sau khi trở về gọi tỷ tỷ bọn họ tới, cả nhà chúng ta cùng đến chơi thì mới thực sự tuyệt vời."</p>
+    <p>Một câu nói của Liễu Quân Di khơi gợi lên sự mơ mộng vô hạn của Diệp Phi. Qua một hồi lâu, anh mới cười nói: "Chuyện đó có gì khó? Sau khi trở về để mẹ ta mua một chiếc chuyên cơ tư nhân, lúc đó muốn đến đây cũng chỉ mất mấy tiếng đồng hồ mà thôi."</p>
+    <p>Mắt Liễu Quân Di sáng lên. Dù là Liễu gia hay Diệp gia, muốn sở hữu một chiếc chuyên cơ tư nhân là chuyện cực kỳ đơn giản. Chỉ là trước đây do việc kinh doanh của gia tộc phần lớn ở bản địa, mà người hai nhà cũng không thích phô trương nên mới không sắm loại phương tiện này. Chính vì vậy mà nàng nhất thời không nghĩ tới. Hiện tại Diệp Phi vừa nhắc đến, nàng lập tức hiểu việc này đơn giản như anh nói, bèn cười nói: "Lại là ta nghĩ phức tạp rồi, vẫn là lão công đầu óc ngươi dùng tốt."</p>
+    <p>Diệp Phi cười ha hả: "Đó là đương nhiên! Bằng không làm sao có tư cách làm lão công của nàng?"</p>
+    <p>"Đồ tự luyến, nói ngươi béo ngươi lại thở gấp rồi!" Liễu Quân Di làm mặt quỷ, cười khúc khích.</p>
+    <p>Hai người cười đùa quay trở lại hang động dưới lòng đất. Tuy phải mang theo một người nhưng thân pháp của Diệp Phi không hề trở ngại, rất nhanh đã tới đầu địa đạo nghiêng. Đây cũng là nhờ lợi ích to lớn từ buổi song tu với Liễu Quân Di hôm nay.</p>
+    <p>Cảm nhận được thực lực siêu cường khó tưởng tượng của Diệp Phi, Liễu Quân Di vô cùng mừng cho anh, đồng thời cũng có chút chờ mong đối với thực lực của chính mình. Nàng tin rằng không bao lâu nữa, mình cũng nhất định đạt tới trình độ đó. Cho dù Diệp Phi không tìm thấy nửa phần còn lại của bộ công pháp kia cũng không sao, vì hiệu quả song tu trong hồ nhỏ linh khí dồi dào kia thực sự quá tuyệt vời.</p>
+    <p>Ra khỏi khu vực đó, Liễu Quân Di quay đầu nhìn lại. Trong mắt nàng, nơi đó giờ chẳng khác gì ban ngày, căn bản không thể nào đi thông được. Dù đã ở đó suốt một ngày nhưng lúc này nàng vẫn không nhịn được cảm thấy thật thần kỳ. Cũng may mắn là Diệp Phi có bản lĩnh như vậy, bằng không chỗ thần kỳ này có lẽ cả đời này nàng cũng không thể đặt chân tới.</p>
+    <p>Hai người trở về cứ điểm lúc đã gần mười một giờ đêm, nhưng đám thành viên đặc chiến đội kia vẫn chưa nghỉ ngơi. Thấy hai người trở về, Trương Cường vội vàng đón chào, nói: "Liễu đội, tiểu Mãn, các ngươi cuối cùng cũng trở về rồi, ban ngày chúng ta lại gặp phục kích."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0167.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0169.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 242 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 242</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 242</small>
+    Chương 242: Nhị tỷ ôn nhu
+  </h1>
+  <div class="chapter-body">
+    <p>Không lâu sau, tên đàn em gọi Địa Long đã trở lại. Diệp Phi đến tận bây giờ mới biết tên hắn. Nghe tên là biết, người này chắc chắn là thuộc hạ đời đầu cùng lão bang chủ Phi Long bang gây dựng cơ nghiệp, độ trung thành thì không cần bàn cãi, vì vậy Diệp Phi càng thêm tin tưởng hắn.</p>
+    <p>"Bang chủ, chính là cô gái vừa ở cạnh tôi, ngài xem có hài lòng không?"</p>
+    <p>Địa Long đi đến bên cạnh Diệp Phi, thấp giọng hỏi.</p>
+    <p>Diệp Phi gật đầu: "Cũng được, trông không có vẻ gì là dân chơi. Bước tiếp theo, bảo cô ta đến quán cà phê gần đây. Sau khi đến nơi hãy gọi vào số điện thoại này, tự nhiên sẽ có người hướng dẫn cô ta phải làm gì. Anh cũng dặn dò cô ta một tiếng, nếu làm tốt, chắc chắn sẽ không bạc đãi đâu."</p>
+    <p>Nói xong, Diệp Phi đưa cho Địa Long một mảnh giấy có ghi một dãy số điện thoại.</p>
+    <p>Địa Long nhận lấy mảnh giấy, gật đầu nói: "Tôi hiểu rồi, bang chủ còn gì dặn dò nữa không?"</p>
+    <p>"Còn nữa, sau khi xong việc thì đừng để cô ta tiếp tục ở Đông Nam nữa, đi càng xa càng tốt. Tất nhiên, không được bạc đãi cô ta và gia đình."</p>
+    <p>Diệp Phi dặn dò câu cuối cùng. Ý của cậu là muốn sau khi xong việc, người phụ nữ kia sẽ rời đi thật xa, Lăng Vân Hội sẽ đưa tiền để cô ta đảm bảo từ nay về sau áo cơm không lo. Thế nhưng Địa Long lại hiểu sai ý, về sau định diệt khẩu, kết quả suýt chút nữa gây thành một bi kịch. Đó là chuyện sau này, tạm thời không nhắc tới.</p>
+    <p>Sau khi Địa Long nhận lệnh rời đi, Diệp Phi cũng rời khỏi tổng bộ. Trong lòng thầm cảm thấy may mắn vì không bị cô nhóc Phương Ngọc Thiến nhìn thấy mình, nếu không chắc chắn sẽ bị cô nàng dây dưa không dứt. Tuy cô tiểu la lỵ này ngoài tính cách có chút tinh quái ra thì cũng rất đáng yêu, nhưng Diệp Phi thực sự tạm thời không muốn trêu chọc nàng.</p>
+    <p>Rời khỏi tổng bộ Lăng Vân Hội, Diệp Phi nhìn đồng hồ, đã hơn mười giờ sáng. Giờ này đến trường cũng chẳng có việc gì, nên cậu định đến Đặc Chiến Đội xem sao. Tuy tiểu di vẫn chưa về, nhưng Diệp Phi cũng có chút nhớ những người anh em từng vào sinh ra tử cùng mình.</p>
+    <p>Tuy nhiên, khi lái xe đi ngang qua một tòa cao ốc văn phòng tổng hợp, cậu lại đổi ý, tấp xe vào bãi đỗ dưới tòa nhà rồi lên thang máy đi thẳng lên tầng cao nhất.</p>
+    <p>Tòa nhà này là do chủ sở hữu cho thuê, nên hầu như mỗi tầng là một công ty khác nhau. Còn ở tầng cao nhất, các căn phòng đều đã được đập thông để tạo thành một không gian rộng lớn. Điểm nổi bật nhất của không gian này là biểu tượng chiếc lá cách điệu khổng lồ, bên cạnh lá cây viết bốn chữ lớn "Bay Lên Võ Quán".</p>
+    <p>Dù hiện tại không còn là nghỉ hè, nhưng công việc kinh doanh của võ quán vẫn cực kỳ nóng hổi. Một là vì võ quán này dạy những thứ thực sự có ích, hai là vì quán chủ võ quán là một đại mỹ nữ. Dù vị quán chủ này không trực tiếp dạy võ cho học viên nam, và ngày nào cũng mặc bộ quần áo luyện công kín mít, nhưng phong thái tuyệt thế của nàng vẫn thu hút không ít nam học viên đến "no mắt".</p>
+    <p>Lúc này, vị quán chủ đang đứng ở chính giữa đại sảnh, nhìn các học viên người thì chăm chỉ luyện tập, người thì lười biếng dùng mánh khóe, thỉnh thoảng lại chỉ đạo, uốn nắn động tác cho họ. Nàng mặc một bộ quần áo luyện công trắng muốt, kết hợp với dung nhan tuyệt mỹ diễm lệ như đào lý lại lạnh lùng, khiến nàng toát ra một khí chất thanh tao quạnh quẽ, tựa như đóa Tuyết Liên nở trên vách đá cheo leo, khiến người ta dù thô tục đến đâu cũng không dám sinh tâm khinh nhờn.</p>
+    <p>Đột nhiên, vị quán chủ tuyệt sắc như Tuyết Liên này dừng bước, ánh mắt hướng về phía cửa đại sảnh, khóe miệng khẽ cong, nở một nụ cười cực kỳ ôn nhu. Trong chớp mắt, Tuyết Liên nở rộ, nụ cười nhàn nhạt ấy như ánh mặt trời mùa đông, tức thì làm tan chảy mọi băng tuyết, khiến người ta cảm thấy ấm áp cả tâm hồn.</p>
+    <p>Cảnh tượng này khiến tất cả những người chứng kiến không khỏi sững sờ. Trong số họ, có không ít người đã ở đây từ khi võ quán mới thành lập, đến nay đã hơn hai năm, nhưng họ có thể khẳng định rằng suốt hai năm qua, quán chủ chưa bao giờ cười. Thậm chí có người còn đoán nàng là người trời sinh không biết cười. Nhưng hôm nay họ mới biết, quán chủ không phải không biết cười, mà là không cười với họ. Nàng vốn dĩ đã đẹp tuyệt trần, lúc cười lên lại càng mê người đến thế.</p>
+    <p>Mọi người tò mò không khỏi nhìn theo hướng mắt của quán chủ về phía cửa ra vào. Chỉ thấy một chàng trai không thể dùng từ "soái" để hình dung đang chậm rãi đi vào, trên mặt cũng mang theo nụ cười ấm áp. Trong nhất thời, nhìn chàng trai này đối lập với quán chủ, trong lòng họ nảy ra bao nhiêu mỹ từ: "Kim Đồng Ngọc Nữ", "Trời sinh một cặp", v.v. Tóm lại, họ đều cảm thấy chỉ có nhân tài như vậy mới xứng đôi với quán chủ của họ.</p>
+    <p>Tuy nhiên, trong số đó cũng có kẻ không thoải mái, Kim Đại Thuận là một trong số đó. Hắn là bạn học đại học của quán chủ, theo đuổi nàng từ thời đó. Sau khi nàng mở võ quán, hắn liền trở thành học viên khóa đầu tiên. Chỉ là bao năm qua, bất kể dùng cách gì hắn cũng không thể lay chuyển được tâm hồn giai nhân, thậm chí khiến nàng nở một nụ cười cũng không xong. Điều này khiến Kim Đại Thuận khá bất đắc dĩ nhưng vẫn không từ bỏ. Thứ nhất là vì quán chủ quá đẹp, khiến hắn không sao buông bỏ được; thứ hai là vì hắn biết thân phận thực sự của quán chủ. Nhà họ Kim của hắn tuy cũng được coi là một đại gia tộc, nhưng so với nhà họ Diệp thì chênh lệch quá xa. Vì vậy, chỉ cần có thể lọt vào mắt xanh của nàng, hắn có thể tiết kiệm cả đời phấn đấu.</p>
+    <p>Lúc này thấy vị quán chủ xinh đẹp lại nở nụ cười mà hắn chưa bao giờ thấy với một tên "tiểu bạch kiểm", Kim Đại Thuận sao có thể chịu nổi? Hắn liền bước nhanh tới chặn trước mặt chàng trai kia, hỏi: "Cậu là ai, đến võ quán chúng tôi làm gì?"</p>
+    <p>Diệp Phi đã lâu không gặp Nhị tỷ, vốn dĩ đang rất vui mừng, muốn qua thân mật với nàng một chút, không ngờ lại bị một tên chặn đường. Trong lòng không khỏi ngạc nhiên, liếc nhìn kẻ đó một cái, nhàn nhạt hỏi: "Anh là ai? Võ quán này do anh mở à?"</p>
+    <p>Sự ghen ghét mãnh liệt đã khiến đầu óc Kim Đại Thuận mụ mị. Hắn không hề nghĩ rằng, Diệp Tư Dao đã lộ ra nụ cười như vậy với chàng trai này thì chắc chắn quan hệ rất thân thiết, sao hắn có thể ngăn cản? Thấy Diệp Phi dường như không nể mặt mình, hắn không khỏi tức giận nói: "Tuy không phải tôi mở, nhưng với tư cách là đại sư huynh ở đây, tôi có trách nhiệm hỏi han người ngoài."</p>
+    <p>Vì đến sớm nhất, Kim Đại Thuận ở đây luôn tự xưng là đại sư huynh.</p>
+    <p>"Đại sư huynh?"</p>
+    <p>Diệp Phi khẽ cười, vươn tay nắm lấy cánh tay Kim Đại Thuận, khẽ rung lên, nói: "Vậy hãy để tôi thử xem công phu của anh."</p>
+    <p>Kim Đại Thuận tuy tự xưng là đại sư huynh, nhưng hắn đến đây căn bản không phải để học võ, nên lăn lộn hơn hai năm mà thậm chí còn không bằng người mới bắt đầu. Diệp Phi lần này căn bản không dùng chút sức lực nào, nhưng vẫn hất văng hắn ra xa ngã nhào trên đất.</p>
+    <p>Bị ném cho đầu váng mắt hoa, Kim Đại Thuận không khỏi giận dữ. Hắn cũng chẳng màng đây là võ quán, trực tiếp quát mấy tên đàn em đứng gần đó: "Cho ta dạy dỗ nó một trận!"</p>
+    <p>Mấy tên kia đều là bảo tiêu hoặc tùy tùng của Kim Đại Thuận, đối với hắn tất nhiên răm rắp nghe theo, vì vậy hò hét lao về phía Diệp Phi. Thân thủ của mấy tên này rõ ràng mạnh hơn Kim Đại Thuận nhiều, nhưng đối với Diệp Phi mà nói thì căn bản chẳng bằng trẻ con. Cậu bước về phía Nhị tỷ không hề dừng lại, hai tay chỉ khẽ vung vài cái, mấy tên kia đã bay ngược ra ngoài, rơi xuống còn thảm hại hơn cả Kim Đại Thuận.</p>
+    <p>Từ đầu đến cuối, Diệp Tư Dao vẫn mỉm cười nhìn, căn bản không ra tay ngăn cản. Khi Diệp Phi đi đến trước mặt, nàng còn làm ra một cử động khiến tất cả học viên không thể tin nổi: Vốn cực kỳ nghiêm khắc với học viên, lại có chút bao che khuyết điểm, nàng không những không trách chàng trai này đả thương đồ đệ của mình, ngược lại còn vươn bàn tay nhỏ nhắn lau đi vệt mồ hôi trên trán cậu, ân cần hỏi: "Em không sao chứ?"</p>
+    <p>Diệp Phi nhẹ nhàng nắm lấy bàn tay nhỏ nhắn của Nhị tỷ, cười nói: "Không sao, mấy tên tép riu này còn chưa đủ cho em khởi động nữa."</p>
+    <p>Diệp Tư Dao trở tay nắm lấy tay đệ đệ, đi về phía bên cạnh, đồng thời nói: "Đến văn phòng của chị đi, ở đây đông người, hơi ồn."</p>
+    <p>Diệp Phi gật đầu, đi theo tỷ tỷ vào một căn phòng nhỏ ở góc đại sảnh. Bên trong bố trí hết sức đơn giản, chỉ có một chiếc giường nhỏ, một chiếc bàn máy tính và vài cái ghế. Đây chính là văn phòng làm việc của Diệp Tư Dao, hơn nữa thời gian này nàng cũng luôn ở lại đây.</p>
+    <p>Nhìn căn phòng nhỏ bé này, Diệp Phi không khỏi đau lòng. Thời gian qua Nhị tỷ thực sự phải chịu ủy khuất, mà nguyên nhân gây ra tất cả lại chính là mình. Điều này khiến Diệp Phi rất hổ thẹn, nhưng bây giờ vẫn chưa phải lúc để tỷ tỷ quay về, cậu chỉ đành đợi sau này mới bù đắp cho nàng.</p>
+    <p>Ngồi trên chiếc giường nhỏ của tỷ tỷ, nhận chén nước nàng đưa, Diệp Phi nói: "Tỷ, thực xin lỗi, đều tại em khiến chị phải chịu khổ rồi."</p>
+    <p>"Không sao đâu."</p>
+    <p>Diệp Tư Dao không ngồi vào ghế mà ngồi xuống bên cạnh Diệp Phi, vươn bàn tay nhỏ nhắn xoa đầu cậu như khi cậu còn bé, khẽ cười nói: "Chị lại thấy nơi này rất thanh tĩnh, thích hợp để luyện công hơn. Những ngày này chị thấy nội lực của mình tăng tiến không ít."</p>
+    <p>"Vậy thì tốt rồi."</p>
+    <p>Diệp Phi đè nén sự hổ thẹn trong lòng, hỏi: "Tỷ, võ quán gần đây thế nào? Có vất vả lắm không?"</p>
+    <p>"Cũng tốt, hiện tại danh tiếng lớn hơn một chút, học viên cũng đông hơn nhiều. May mắn là nhóm học viên khóa đầu hiện tại đã có thể hướng dẫn cơ bản cho người khác rồi, bản thân chị ngược lại cũng không quá vất vả."</p>
+    <p>Diệp Tư Dao nói: "Hơn nữa nhìn võ quán ngày càng phồn vinh, chị cũng rất vui."</p>
+    <p>"Vừa rồi tên đại sư huynh đó là thế nào?"</p>
+    <p>Diệp Phi chần chừ một chút rồi vẫn hỏi lên. Cậu cảm thấy tên đó dường như có ý đồ gì với tỷ tỷ, điều này khiến cậu cảm thấy không thoải mái.</p>
+    <p>Diệp Tư Dao cười nói: "Nó à, là bạn học đại học của chị. Lúc chị mới mở võ quán thì nó vào học. Vì đến sớm nên cứ tự cho mình là đại sư huynh, thật ra chỉ là một tên ăn chơi trác táng, đừng để ý đến hắn làm gì."</p>
+    <p>"Vậy tại sao không dứt khoát đuổi đi? Để hắn ở lại, người khác lại tưởng võ quán của chị dạy không tốt."</p>
+    <p>Dù thấy tỷ tỷ căn bản không có cảm giác gì với tên đó, nhưng Diệp Phi vẫn không muốn hắn ở lại đây.</p>
+    <p>"Đuổi vài lần rồi mà không được, nên chị mặc kệ hắn. Dù sao một mình hắn cũng không thể đại diện cho trình độ của võ quán chị, mà hắn còn có thể kéo thêm vài học viên tới, cũng coi là có chút tác dụng."</p>
+    <p>Diệp Tư Dao là người như vậy, đối với những người hoặc sự việc mà nàng không quan tâm thì căn bản sẽ không để ý. Kim Đại Thuận trong mắt nàng chỉ là một người bạn học bình thường, thậm chí còn không đủ tư cách khiến nàng chán ghét.</p>
+    <p>"Vậy cũng được."</p>
+    <p>Diệp Phi qua biểu cảm của tỷ tỷ biết rằng tên đó căn bản không thể tạo thành mối đe dọa gì với mình, nên cũng chẳng muốn nhắc đến hắn nữa. Cậu phát hiện Nhị tỷ dường như đã thay đổi không ít. Trước kia đối với cậu tuy cũng quan tâm từ đáy lòng nhưng rất ít khi biểu đạt ra ngoài, còn bây giờ lại khác hẳn, hơn nữa nụ cười cũng nhiều hơn trước. Vì vậy, cậu nhân cơ hội hỏi nghi hoặc đã tồn tại từ lâu trong lòng mình: "Đúng rồi tỷ, tại sao chị lại mở võ quán này? Em nhớ chị học quản lý doanh nghiệp mà? Tại sao không vào công ty hỗ trợ gia đình?" Lúc này Diệp Phi không biết, Nhị tỷ sở dĩ thay đổi chính là vì cậu. Chính lần đó cậu thể hiện sự thân thiết (xem chương 8 "Nhị tỷ quan tâm") đã triệt để làm tan chảy trái tim Diệp Tư Dao, khiến nàng vô tình thay đổi.</p>
+    <p>Lý do tại sao Diệp Tư Dao lại chọn tự mở võ quán sau khi tốt nghiệp vốn là một bí mật trong lòng nàng, nhưng đối mặt với đứa đệ đệ yêu quý, nàng không muốn giấu giếm nữa, liền nói: "Em cũng biết tính cách của chị không tốt lắm. Chị sợ vào công ty sẽ ảnh hưởng đến sự đoàn kết, nên muốn tự mình rèn luyện một chút. Việc mở võ quán, một là vì luyện võ vốn là sở thích của chị, hai là có thể tiếp xúc nhiều người, rèn luyện kỹ năng xã giao, chuẩn bị cho việc vào công ty gia đình sau này."</p>
+    <p>Những lời này thực ra đã nằm trong lòng Diệp Tư Dao từ lâu. Sau khi tốt nghiệp nàng không vào công ty, mẹ và đại tỷ tuy không nói gì thêm, nhưng ít nhiều vẫn có chút thất vọng. Trong lòng Diệp Tư Dao cũng rất khó chịu. Dù biết rằng nếu nói ra lý do thì người nhà chắc chắn sẽ hiểu, nhưng vì không giỏi giao tiếp nên nàng chưa từng nói ra. Hiện tại cuối cùng cũng thổ lộ hết với đệ đệ, nàng cảm thấy tâm trạng nhẹ nhõm hơn hẳn.</p>
+    <p>Diệp Phi không ngờ Nhị tỷ vì lý do này mà không vào công ty hỗ trợ, trong lòng không khỏi thầm than, nói: "Tỷ, thật ra chị nên nói rõ với mọi người sớm hơn. Chị quan tâm đến chúng em, chúng em cũng quan tâm chị, mọi người nhất định sẽ giúp chị nghĩ cách, không cần phải một mình gánh vác như vậy."</p>
+    <p>"Chị chẳng phải đang nói với em đây sao?"</p>
+    <p>Diệp Tư Dao cười nói: "Được rồi, không nói về chị nữa, nói về em đi. Hôm nay sao em có thời gian đến chỗ chị? Không cần đi học à?"</p>
+    <p>"Hôm nay em xử lý một chút việc của bang hội nên không đến trường."</p>
+    <p>Diệp Phi cười nói: "Xong việc nhớ chị nên qua thăm thôi."</p>
+    <p>Diệp Tư Dao lúc này mới nhớ ra, đệ đệ đã không còn là cậu bé yếu ớt cần mình bảo vệ nữa, mà là bang chủ của bang hội lớn nhất Vọng Hải. Tuy nhiên, chưa đầy mười bảy tuổi mà cậu có thể xử lý tốt mọi chuyện sao? Quan tâm, nàng không khỏi hỏi: "Việc trong bang hội có phiền phức lắm không?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0241.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0243.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

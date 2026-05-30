@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 287 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 287</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 287</small>
+    Chương 287
+  </h1>
+  <div class="chapter-body">
+    <p>"Ta ở nhà, hôm nay đại bác cùng nhị cô mẹ ngươi đều đến đây, ngươi không cần lo lắng rồi." Diệp Ngưng Băng nói, đồng thời Diệp Phi còn nghe được tiếng nàng đi tới đi lui, hiển nhiên là đang tránh mặt hai vị bác.</p>
+    <p>Diệp Phi rốt cục hiểu vì sao nàng lại thay đổi giọng điệu và cách xưng hô với mình như cũ, vì không biết nàng đã đi xa chưa nên giảm thấp giọng cười nói: "Đêm nay ta sẽ không về, nếu ngứa thì tự mình dùng tay giải quyết đi."</p>
+    <p>"Chán ghét!" Diệp Ngưng Băng cũng hạ thấp giọng, hiển nhiên không hề rời đi quá xa, lập tức nũng nịu nói: "Hiện tại đã ngứa rồi, không có ngươi người ta mới không dùng tay đâu, ngày mai muốn ngươi gấp bội bù lại!"</p>
+    <p>"Ngươi cái đồ tiểu dâm phụ này!" Diệp Phi trong lòng không khỏi rạo rực, chỉ hận không thể lập tức hung hăng chọc ghẹo nàng một phen: "Ngày mai nhất định khiến ngươi không xuống giường được!"</p>
+    <p>Nghe lời Diệp Phi, Diệp Ngưng Băng vốn không ngứa chỗ nào cũng không khỏi ngứa ngáy, sợ nói thêm nữa mình sẽ càng khó chịu, vì vậy nói: "Không nói với ngươi nữa, ngày mai gặp!" Nói xong liền cúp điện thoại.</p>
+    <p>Cất điện thoại, Diệp Phi hiểu rõ, chắc chắn là nhị cô mẹ Diệp Ngưng Tuyết cũng nghe tin chuyện của tiểu bác nên mới kéo đại bác cùng đến an ủi nàng, lại không biết tiểu bác sớm đã được mình an ủi vô cùng tốt rồi.</p>
+    <p>Đêm nay tiểu bác đã có người bầu bạn, Diệp Phi không còn sốt ruột, hít sâu vài hơi, khiến cho "gia hỏa" đang rục rịch bình tĩnh trở lại, lúc này mới trở lại bên cạnh tỷ tỷ, hỏi: "Thương lượng xong đi đâu chưa?"</p>
+    <p>Diệp Tư Dao thuận thế khoác tay Diệp Phi, lắc đầu nói: "Vẫn chưa, ta muốn đến nơi nào đó trang trọng một chút, nhưng Vương tiên sinh lại cảm thấy quá lãng phí."</p>
+    <p>Chứng kiến bộ dáng Diệp Tư Dao chỉ muốn dính lấy Diệp Phi không rời, kim đại thuận không khỏi hâm mộ đến mức mắt đỏ ngầu, nhịn không được chua chát nói: "Tình cảm của hai người thật tốt quá."</p>
+    <p>Tỷ đệ hai nhìn nhau cười, trong mắt đối phương đều lộ ra vẻ nhu tình không che giấu được.</p>
+    <p>Dường như không muốn để bạn mình phải ăn giấm chua ở đây, Vương Tiểu Minh cắt ngang ánh nhìn thâm tình của Diệp Phi và Diệp Tư Dao, nói: "Chúng ta mau tìm một nơi thích hợp đi, tiếp tục chậm trễ nữa là trời tối mất."</p>
+    <p>Diệp Phi cười nói: "Vị Kim đại ca này trông là người có tiền, chắc chắn biết không ít nơi vui chơi chứ nhỉ?"</p>
+    <p>Với chỉ số thông minh của kim đại thuận thì đương nhiên không nghe ra Diệp Phi đang mỉa mai hắn là gã hoàn khố chỉ biết ăn chơi, còn tưởng rằng hắn đang muốn mình mời khách để tiết kiệm tiền cho Diệp Tư Dao. Trong lòng thầm khinh bỉ Diệp Phi, nhưng cũng không muốn bỏ qua cơ hội thể hiện, nên cười nói: "Đó là đương nhiên, nói đến nơi chơi vui nhất ở Vọng Hải thì chắc chắn là Lăng Vân câu lạc bộ đêm rồi." Nói đến đây, đột nhiên ý thức được Diệp Tư Dao chính là nhị tiểu thư Diệp thị, mình nói thế chẳng khác nào không muốn mời khách, vì vậy vội vàng nói thêm: "Tất nhiên, có quán chủ ở đây, vào đó có vẻ không quá phù hợp. Đi thế này, ở nam khu ta biết một chỗ cũng được, chi bằng chúng ta đến đó đi."</p>
+    <p>"Nam khu? Vậy có hơi xa quá không?" Diệp Tư Dao không khỏi hơi nhíu mày, nàng và Diệp Phi đương nhiên không vấn đề gì, nhưng học viên trong võ quán ngoài kim đại thuận ra đa phần đều là người làm công ăn lương, nếu đi nam khu thì chỉ riêng tiền taxi qua lại đã tốn kém không ít. Mà số tiền này nếu do nàng bỏ ra thì các học viên chắc chắn sẽ không nhận, bởi vì những gì họ học ở đây không chỉ là võ công, mà còn là Võ Đức, họ rất chú trọng việc tôn sư trọng đạo, tự nhiên sẽ không để sư phụ như nàng phải xuất tiền.</p>
+    <p>Kim đại thuận tuy chỉ số thông minh không cao, nhưng cũng chưa đến mức ngốc nghếch, nhìn vẻ mặt khó xử của Diệp Tư Dao liền đoán được nàng đang nghĩ gì, vì vậy cười nói: "Yên tâm đi, ta sẽ nói với sư huynh đệ, mọi chi phí đều do ta đài thọ, tin rằng họ sẽ chấp nhận."</p>
+    <p>Diệp Tư Dao biết kim đại thuận không thiếu chút tiền này, nên không chối từ nữa, gật đầu nói: "Được, vậy ngươi đi nói với họ đi!"</p>
+    <p>Thấy Diệp Tư Dao đồng ý, kim đại thuận mừng rỡ nhảy cẫng lên, bước nhanh đến chỗ các học viên thông báo chuyện này. Các học viên tuy không mấy ưa cái gã hoàn khố này, nhưng được hắn mời đi chơi thì không ai có ý kiến gì, đặc biệt khi nghe tin Vương Tiểu Minh cũng sẽ đi cùng, ai nấy càng thêm phấn khởi.</p>
+    <p>Số học viên trong võ quán vốn không nhiều, cộng thêm hôm nay có nhiều người không đến, nên dù tất cả mọi người đều đồng ý thì cũng chỉ có tám nam mười một nữ, tổng cộng mười chín người. Thêm nhóm Diệp Phi nữa là hai mươi ba người.</p>
+    <p>Tuy không đông lắm, nhưng kim đại thuận vốn giàu có, vẫn gọi điện bao trọn gói câu lạc bộ đêm đó. Vì trời chưa tối hẳn, câu lạc bộ chưa bắt đầu kinh doanh, lại thêm kim đại thuận rất quen thân với ông chủ nên mọi việc diễn ra vô cùng thuận lợi.</p>
+    <p>Đoàn người xuống lầu, lần lượt lên xe taxi kim đại thuận gọi đến. Diệp Phi biết tỷ tỷ không muốn phô trương nên không lấy xe riêng, mà cùng nàng lên chung một chiếc taxi, đi cùng họ còn có phó quán chủ a Phương.</p>
+    <p>A Phương này rõ ràng có mối quan hệ rất tốt với Diệp Tư Dao, giờ không có người ngoài, nàng trút bỏ vẻ kính cẩn khi ở võ quán, quay đầu nhìn Diệp Phi và Diệp Tư Dao đang ngồi ở ghế sau, cười nói: "Dao Dao, cậu không ngoan chút nào nha, khi nào thì vụng trộm có bạn trai rồi?"</p>
+    <p>Diệp Tư Dao mặt đỏ bừng, không hiểu sao cũng không giải thích rõ mối quan hệ với đệ đệ cho bạn thân biết, mà Diệp Phi cũng chỉ mỉm cười, không hề đính chính.</p>
+    <p>Thấy hai người ăn ý như vậy, a Phương lại hỏi: "Tiểu soái ca, nói thật đi, làm sao cậu tán đổ được Dao Dao nhà chúng ta vậy? Cậu ấy chính là lãnh mỹ nhân nổi danh đó."</p>
+    <p>Diệp Phi cười nói: "Chúng tôi là thanh mai trúc mã, lớn lên cùng nhau, tình cảm cũng là bồi đắp qua thời gian dài, nên căn bản không cần tán."</p>
+    <p>"Thanh mai trúc mã?" A Phương sửng sốt: "Nhưng tớ thấy cậu hình như trẻ hơn Dao Dao hai tuổi mà, sao lại là thanh mai trúc mã được?"</p>
+    <p>Diệp Phi trong lòng cười thầm, mình đâu chỉ kém tỷ tỷ hai tuổi, rõ ràng là kém sáu tuổi, nhưng ngoài mặt vẫn tỏ vẻ nghiêm túc: "Chẳng lẽ cậu chưa nghe qua khái niệm tỷ tỷ nhà bên sao? Tớ là từ nhỏ đã thích bám lấy chị ấy, lớn lên đương nhiên càng không muốn buông tay rồi."</p>
+    <p>"Thật lãng mạn, nếu tớ cũng có một đệ đệ nhà bên như vậy thì tốt biết bao." A Phương đầy ngưỡng mộ nói.</p>
+    <p>Diệp Phi không ngờ cô gái vốn nam tính này lại có mặt nữ tính như vậy, nhìn ra được nàng thực sự hâm mộ Diệp Tư Dao, nên an ủi: "Tình yêu đẹp không phải lúc nào cũng giống như vậy, tin rằng cậu cũng sẽ tìm được một nửa kia của mình thôi."</p>
+    <p>A Phương lại thở dài: "Nói thì hay lắm, đàn ông các anh đều trọng ngoại hình, giống như tớ đây, muốn tìm người ưng ý e là khó lắm!"</p>
+    <p>"Đừng vơ đũa cả nắm như vậy chứ? Tớ không phải người như thế, cho dù Dao Dao tỷ không xinh đẹp như vậy, tớ vẫn sẽ yêu chị ấy cả đời!" Diệp Phi nghiêm túc nói, nhìn như đang giải thích với a Phương, nhưng cả hắn và Diệp Tư Dao đều hiểu, đây là lời tuyên ngôn tình yêu hắn dành cho tỷ tỷ.</p>
+    <p>Nghe lời Diệp Phi, Diệp Tư Dao nhất thời ngây ngất, không kiềm chế được mà dựa thân thể mềm mại vào lòng hắn, ngước khuôn mặt xinh đẹp nhìn Diệp Phi, trong mắt không còn vẻ mê mang hay sợ hãi, chỉ còn lại nhu tình đậm đà không sao hóa giải được.</p>
+    <p>Vì lúc này còn có người khác, Diệp Phi không làm gì thêm với tỷ tỷ, chỉ nhẹ nhàng ôm lấy thân hình yêu kiều khiến bất cứ người đàn ông nào cũng phải động lòng, thâm tình nhìn vào mắt nàng.</p>
+    <p>Thấy cảnh tượng này, a Phương không quấy rầy họ, quay đầu đi chỗ khác, lặng lẽ không biết đang suy nghĩ điều gì.</p>
+    <p>Nam khu tuy cách võ quán hơi xa, nhưng tình hình giao thông buổi tối khá tốt, nên không mất bao lâu đoàn người đã đến câu lạc bộ đêm được kim đại thuận bao trọn. Điều khiến Diệp Phi buồn cười là, câu lạc bộ này lại chính là tổng bộ cũ của Hắc Lang bang, chỉ là không biết sau khi mình tiêu diệt bang hội đó, bây giờ là ai tiếp quản.</p>
+    <p>Mọi người vừa xuống xe, đã thấy một người đàn ông trung niên hơi hói chào đón, cười ha ha nói: "Kim thiếu, ngài đã lâu không ghé, hôm nay đại giá quang lâm, ta với ngài phải uống vài chén mới được!" Hiển nhiên người trung niên này chính là ông chủ ở đây, hành động nể mặt kim đại thuận như vậy e là đã được kim đại thuận sắp xếp từ trước.</p>
+    <p>Quả nhiên, nghe lời ông chủ, trên mặt kim đại thuận lộ vẻ đắc ý: "Dễ nói, dễ nói, Lý lão bản, đây đều là bạn của ta, các ngươi phải chiêu đãi thật tốt đấy."</p>
+    <p>"Đương nhiên, bạn của Kim thiếu chính là bạn của lão Lý ta, tự nhiên sẽ không để mọi người thất vọng, các vị, mau mời vào!" Ông chủ kia nể mặt kim đại thuận hết mức, nghĩ đến việc từ khi mình tiếp quản thì công việc kinh doanh không được tốt lắm, giờ có người bỏ nhiều tiền bao trọn câu lạc bộ, đương nhiên phải nịnh bợ để vị đại gia này thường xuyên ghé thăm.</p>
+    <p>Vì câu lạc bộ đêm này quy mô không quá lớn, không chứa nổi nhiều ghế lô, lại thêm không có người ngoài, nên mọi người quyết định chọn địa điểm hoạt động ở trong đại sảnh. Tuy chỉ hơn hai mươi người làm không gian có chút trống trải, nhưng không ai bận tâm điều đó, sau khi mở đèn và âm nhạc lên, không khí cũng rất tuyệt.</p>
+    <p>Mọi người trước là khách sáo với Vương Tiểu Minh, để anh ta hát mở màn, sau đó a Phương đột nhiên nhảy lên sân khấu chính, lớn tiếng nói: "Thông báo cho mọi người một tin tốt, quán chủ của chúng ta đã có bạn trai rồi, hơn nữa còn là thanh mai trúc mã đó, bây giờ chúng ta hãy để cặp thanh mai trúc mã này hát cho mọi người một bài tình ca nhé?"</p>
+    <p>Dù mọi người đã sớm đoán được nhưng vẫn chưa dám khẳng định, giờ nghe a Phương nói vậy đều vui mừng khôn xiết. Không ai cảm thấy Diệp Phi không xứng với Diệp Tư Dao, bởi hắn không những tướng mạo bảnh bao mà hôm đó còn thể hiện võ công xuất sắc. Tuy các nam học viên trong võ quán đều coi Diệp Tư Dao là nữ thần, nhưng nữ thần chỉ để chiêm ngưỡng, nên họ chưa từng nghĩ mình có thể chiếm được trái tim nàng. Giờ nghe tin này, ngoài kim đại thuận ra, tất cả mọi người đều chân thành chúc phúc.</p>
+    <p>Thấy cảm xúc mọi người đang cao, Diệp Phi và Diệp Tư Dao cũng không từ chối. Họ tuy không biết nhiều bài hát nhưng những bài kinh điển thì đều từng nghe qua, hơn nữa với nội lực hỗ trợ, họ có thể tùy ý khống chế giọng hát của mình, nên bài hát kinh điển "Tương tư trong mưa gió" được họ thể hiện không kém gì bản gốc.</p>
+    <p>Mãi đến khi nhạc dứt, mọi người vẫn còn chìm đắm trong giai điệu tuyệt vời đó, ai nấy lớn tiếng tán thưởng, a Phương còn lớn tiếng hò reo: "Hôn đi!"</p>
+    <p>"Hôn đi, hôn đi!" Mọi người đều hùa theo.</p>
+    <p>Nghe tiếng mọi người, Diệp Tư Dao quay đầu nhìn Diệp Phi, dưới bầu không khí này, trong mắt nàng không còn sự né tránh, chỉ có vô vàn trông đợi.</p>
+    <p>Diệp Phi đương nhiên không để nàng thất vọng, nắm lấy bàn tay nhỏ bé của nàng nhẹ nhàng kéo vào lòng, sau đó chậm rãi cúi đầu xuống. Trải qua giây phút tưởng chừng như một thế kỷ, đôi môi của hai kẻ yêu nhau mà không dám thổ lộ cuối cùng cũng chạm vào nhau.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0286.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0288.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

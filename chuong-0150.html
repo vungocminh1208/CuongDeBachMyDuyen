@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 150 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 150</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 150</small>
+    Chương 150: Mỹ nữ mới đến
+  </h1>
+  <div class="chapter-body">
+    <p>Thu dọn phòng dụng cụ một chút, Diệp Phi nhìn tấm đệm dính đầy dấu vết của mình và Đường Nhu, đặc biệt là trên đó còn vương lại vết máu lần đầu của nàng, không khỏi có chút đau đầu. Cuối cùng, hắn dứt khoát thu nó vào không gian của mình. Dù sao phòng dụng cụ này thường chỉ có vài thầy giáo thể dục lui tới, thiếu đi một món đồ cũng sẽ không gây ra nghi ngờ gì.</p>
+    <p>Trở lại thao trường, thấy Diệp Phi, Lâm Linh lập tức đón lấy, nắm tay hắn hỏi: "Không sao chứ? Cô Đường có làm khó anh không?" Mối quan hệ giữa nàng và Diệp Phi trong trường căn bản không phải bí mật, nên hắn cũng chẳng cần kiêng dè gì.</p>
+    <p>Các bạn học khác trong lớp cũng xông tới, họ đều muốn biết vị giáo viên tính tình nóng nảy này đã xử lý Diệp Phi như thế nào.</p>
+    <p>Diệp Phi cười khổ nói: "Đương nhiên là bị mắng rồi, nhưng cũng may cô ấy mắng ta vài câu thì nhận được điện thoại rồi đi luôn, lại còn bắt ta ở lại phòng dụng cụ dọn dẹp, mệt muốn chết."</p>
+    <p>Nghe Diệp Phi giải thích, sự tò mò của các học sinh nhanh chóng tan biến, họ lập tức vui vẻ chơi đùa trở lại. Đối với người giáo viên nghiêm khắc như Đường Nhu, bọn họ vẫn còn chút sợ hãi, giờ nghe tin cô không đến nữa, tự nhiên muốn thoải mái vui chơi.</p>
+    <p>Thấy Diệp Phi thực sự không sao, Lâm Linh cũng yên tâm, chạy sang một bên chơi đùa cùng mấy nữ sinh khác. Duy chỉ có Diệp Vân Khinh hiểu Diệp Phi quá rõ lại nhíu mày thanh tú. Diệp Phi nói mình bị Đường Nhu mắng và phạt làm việc, điều này nếu bình thường thì có khả năng, nhưng vừa rồi Diệp Phi rõ ràng đang tức giận, sao có thể tùy ý để Đường Nhu xử phạt?</p>
+    <p>Đi đến bên cạnh Diệp Phi, Diệp Vân Khinh bất ngờ ngửi ngửi cái mũi, trên mặt lộ ra vẻ hiểu rõ, đưa tay véo cánh tay hắn một cái, gắt gỏng: "Đồ hoa tâm, sớm muộn gì cũng có ngày biến thành xác khô!"</p>
+    <p>Diệp Phi cười hắc hắc, hắn biết rõ Diệp Vân Khinh không hề tức giận, chỉ là mượn cơ hội làm nũng mà thôi. Bởi lẽ, thứ nhất, nàng bây giờ không những không bận tâm chuyện hắn có bao nhiêu người phụ nữ, ngược lại còn có xu hướng chủ động giúp hắn tìm thêm. Thứ hai, sau lần giao thủ trước, mối quan hệ giữa nàng và Đường Nhu thoạt nhìn không tốt, nhưng thực chất lại có chút tâm đầu ý hợp, tự nhiên sẽ không phản đối việc Đường Nhu gia nhập.</p>
+    <p>Sau giờ học, Diệp Phi lặng lẽ chạy đến ký túc xá của Đường Nhu, muốn cùng nàng ôn tồn một chút. Không ngờ Đường Nhu rõ ràng đang ở bên trong, nhưng hắn gõ cửa nửa ngày mà nàng nhất quyết không phản hồi. Điều này khiến Diệp Phi vốn rất tự tin trong lòng bắt đầu không chắc chắn. Hắn định phá cửa xông vào tìm nàng hỏi cho rõ, nhưng cuối cùng vẫn nhịn xuống, quyết định xem thái độ nàng thế nào đã, dù sao hắn cũng chắc chắn sẽ không buông tha nàng.</p>
+    <p>Hai ngày sau, Diệp Phi vẫn không gặp được Đường Nhu. Sáng thứ Tư, đến tiết giáo dục thể chất của lớp, nhưng người đến dạy lại là một nam giáo viên của lớp khác. Hỏi ra mới biết, Đường Nhu đã xin nghỉ phép.</p>
+    <p>Điều này khiến Diệp Phi thầm suy đoán, Đường Nhu rõ ràng đang trốn tránh mình. Về lý do, hắn nghĩ không ngoài hai khả năng: Thứ nhất là nàng hận thấu xương, không muốn nhìn thấy hắn. Nhưng khả năng này rất nhỏ, với tính cách cương liệt của nàng, nếu thật như vậy, chỉ sợ đã sớm tìm đến tận nơi liều mạng với hắn rồi. Khả năng thứ hai là, trong lòng nàng đã chấp nhận hắn, nhưng chính vì vậy mà mối quan hệ cũ giữa hai người khiến nàng nhất thời cảm thấy xấu hổ khi đối mặt. Diệp Phi suy đi nghĩ lại, càng nghĩ càng thấy khả năng thứ hai cao hơn. Điều này khiến hắn buông lỏng tâm trí, việc cần làm bây giờ là cho nàng chút thời gian, đợi nàng bớt ngượng ngùng rồi tìm cơ hội nắm bắt hoàn toàn.</p>
+    <p>Nghĩ thông suốt những điều này, tâm trạng Diệp Phi trở nên vô cùng sảng khoái, chơi đùa thỏa thích với các học sinh trong tiết học.</p>
+    <p>Tiết bốn vốn là giờ tự học, nhưng vừa vào lớp, Ngọc Vô Hà đã bước vào, theo sau là một nữ sinh. Cô bé đó nhìn trạc tuổi Diệp Phi, dáng người khá cao ráo, chừng một mét bảy. Trong bộ váy liền màu tím, vóc dáng trông rất khá, nhưng vì váy hơi rộng nên khó nhìn rõ được đường nét. Gương mặt tinh xảo ấy không hề thua kém Lâm Linh đang ngồi bên trái Diệp Phi, chỉ là so với Diệp Vân Khinh sau khi được Diệp Phi cải thiện vẻ đẹp ngày càng hoàn mỹ thì kém hơn một chút.</p>
+    <p>Dù là một mỹ nữ như vậy, nhưng Diệp Phi lại không có chút hảo cảm nào, bởi cô gái này mang theo một cỗ ngạo khí nặng nề, nhìn bạn học xung quanh như đang nhìn đám nhà quê.</p>
+    <p>"Các em trật tự một chút, cô giới thiệu với cả lớp một bạn học mới, bạn ấy là Tiêu Phỉ." Ngọc Vô Hà bước lên bục giảng, gõ nhẹ lên bàn rồi nói với cô gái kia: "Bạn Tiêu Phỉ, em tự giới thiệu mình đi."</p>
+    <p>Tiêu Phỉ lộ vẻ thiếu kiên nhẫn trên mặt, nhưng vẫn bước đến bên cạnh Ngọc Vô Hà nói: "Tôi là Tiêu Phỉ, đến từ kinh thành." Nói xong liền không nói thêm gì nữa.</p>
+    <p>Màn giới thiệu của Tiêu Phỉ tuy ngắn gọn nhưng vẫn thu hút một tràng pháo tay nhiệt liệt, đa phần đến từ đám nam sinh. Lớp học vốn đã có hai đại mỹ nữ, nhưng một người là vị hôn thê của Diệp Phi, một người là tiểu ma nữ không ai dám trêu chọc, nên đám nam sinh chẳng dám có ý kiến gì. Nay cô gái mới đến này tuy có vẻ cao ngạo nhưng nhan sắc không kém Lâm Linh, giọng nói lại dễ nghe, khiến đám nam sinh nghĩ mình có cơ hội nên vô cùng kích động.</p>
+    <p>Mãi đến khi Ngọc Vô Hà giơ hai tay ra hiệu, tiếng vỗ tay mới lắng xuống. Sau đó, cô dẫn Tiêu Phỉ xuống dưới, sắp xếp ngồi vào chỗ trống bên cạnh Diệp Vân Khinh, rồi nói khẽ với Diệp Vân Khinh: "Tiêu Phỉ mới đến, em chiếu cố bạn ấy nhé."</p>
+    <p>Diệp Vân Khinh lập tức nở nụ cười ngọt ngào với Tiêu Phỉ: "Chào cậu!"</p>
+    <p>Tiêu Phỉ lại hừ lạnh một tiếng, quay đầu đi không để ý đến Diệp Vân Khinh. Dù không muốn thừa nhận, nhưng nàng hiểu rõ Diệp Vân Khinh đẹp hơn mình, điều này khiến trong lòng nàng rất khó chịu, tự nhiên sẽ không có thái độ tốt. Phải biết rằng, ở trường cũ nàng vốn được xưng là hoa khôi, không ngờ tới cái nơi mà nàng cho là vùng nông thôn này lại lập tức bị người ta vượt mặt.</p>
+    <p>Diệp Vân Khinh gần đây tuy ôn nhu hơn nhiều nhưng đó là khi đối mặt với Diệp Phi, còn với người ngoài thì nàng vẫn là tính cách tiểu ma nữ ngày nào. Lúc này bị Tiêu Phỉ lạnh nhạt, nàng lập tức nổi nóng, đợi Ngọc Vô Hà rời khỏi phòng học liền muốn đứng dậy dạy cho Tiêu Phỉ một bài học, nhưng bị Diệp Phi kéo lại.</p>
+    <p>"Chấp nhặt với bạn ấy làm gì? Cứ mặc kệ là được, đừng để cô Ngọc khó xử." Diệp Phi thì thầm bên tai Diệp Vân Khinh, trong lòng lại thầm buồn cười. Tiêu Phỉ này thật sự coi mình là cái gì vậy? Kinh thành tuy là thủ phủ, nhưng Vọng Hải với tư cách là thành phố lớn nhất miền Nam, mức độ phồn hoa không hề thua kém, thậm chí xét về thực lực kinh tế đã vượt xa kinh thành. Không hiểu sao nàng ta lại nảy sinh cảm giác ưu việt đó. Nhưng Diệp Phi căn bản không để tâm đến những thứ này, càng không muốn chấp nhặt một đứa trẻ rõ ràng đã bị làm hư như nàng.</p>
+    <p>Bàn tay nhỏ bé được Diệp Phi nắm lấy, cơn giận của Diệp Vân Khinh lập tức tiêu tan hơn nửa, đặc biệt là khi đối mặt với mỹ nữ khác mà Diệp Phi lại đứng về phía mình, khiến nàng vô cùng vui vẻ. Tuy nhiên, miệng vẫn giả vờ bất mãn nói: "Hừ, anh chỉ biết thương cô giáo Ngọc của anh, chẳng bao giờ quan tâm người ta có bị ủy khuất hay không!"</p>
+    <p>Diệp Phi tự nhiên hiểu suy nghĩ của Diệp Vân Khinh, khẽ cười không đáp, chỉ nắm chặt bàn tay nhỏ bé của nàng hơn một chút.</p>
+    <p>Sau bữa trưa, khi Diệp Phi đang ngồi trò chuyện cùng Diệp Vân Khinh và Lâm Linh, Tiêu Phỉ đột ngột xông vào lớp, tiến đến chỗ Diệp Vân Khinh nói: "Này, nghe nói công phu của cậu không tồi, có dám tỷ thí một phen không?" Nàng vô tình nghe được uy danh của Diệp Vân Khinh nên trong lòng không phục, nhan sắc không bằng thì muốn đánh bại đối phương ở phương diện khác.</p>
+    <p>Diệp Vân Khinh dù nghe lời Diệp Phi mà không muốn tính toán với Tiêu Phỉ, nhưng điều đó không có nghĩa là nàng nuông chiều người khác. Nàng liếc nhìn Tiêu Phỉ đầy khinh miệt: "Cậu thật sự đến từ kinh thành à?"</p>
+    <p>"Đương nhiên!" Tiêu Phỉ kiêu ngạo ngẩng đầu hỏi: "Cậu hỏi cái này để làm gì?"</p>
+    <p>"Tớ còn tưởng cậu là người từ xứ củ sâm đến chứ." Diệp Vân Khinh bĩu môi: "Giống hệt bọn họ, chẳng có tí lễ phép nào. Chẳng lẽ người khác không có tên hay sao? Hay là ở chỗ các cậu ai cũng gọi là 'Này'?"</p>
+    <p>"Cậu!" Tiêu Phỉ dù ngạo khí mười phần nhưng làm sao là đối thủ khẩu tài của Diệp Vân Khinh? Nàng tức đến trừng mắt, thủ thế Taekwondo: "Tôi muốn khiêu chiến với cậu!"</p>
+    <p>"Oa, quả nhiên tớ không đoán sai." Diệp Vân Khinh mắt sáng lên như phát hiện ra lục địa mới: "Cậu đúng là người xứ củ sâm rồi, nhìn công phu là biết ngay."</p>
+    <p>Tuy công phu luyện từ nhỏ là Taekwondo, nhưng Tiêu Phỉ rất tự hào mình là người nước Rồng, lúc này bị Diệp Vân Khinh liên tục gọi là người xứ củ sâm khiến nàng vô cùng phẫn nộ, không thèm giữ quy củ võ lâm gì nữa, vung quyền lao về phía Diệp Vân Khinh.</p>
+    <p>Diệp Vân Khinh nhẹ nhàng vươn tay trái, bắt lấy nắm đấm của Tiêu Phỉ, hất nhẹ một cái khiến nàng văng ra ngoài, rất khinh thường nói: "Hừ, múa rìu qua mắt thợ!"</p>
+    <p>Thực chất thực lực của Tiêu Phỉ khá tốt, cú đấm vừa rồi cho thấy nàng đã đạt trình độ rất cao trong Taekwondo, nếu không đã không dám thách thức Diệp Vân Khinh. Chỉ là sau khi song tu với Diệp Phi, Diệp Vân Khinh hiện nay có thể coi là cao thủ đệ nhất trong gia tộc, trừ Diệp Phi ra. Còn Taekwondo loại công phu không có nội lực nuôi dưỡng này, dù luyện đến đâu cũng không thể đe dọa được nàng.</p>
+    <p>Dù bị hất văng ra xa nhưng Tiêu Phỉ không hề bị thương, bởi khi ra tay, Diệp Vân Khinh đã dùng ám kình giúp nàng đứng vững sau khi đáp đất. Đứng thẫn thờ ở đó, Tiêu Phỉ cảm thấy rất khó chịu. Nàng đâu thể không biết công phu của Diệp Vân Khinh giỏi hơn mình, đối phương vừa rồi đã hạ thủ lưu tình. Nàng là người kiêu ngạo, dù trong lòng không phục nhưng lòng tự trọng không cho phép nàng dây dưa với Diệp Vân Khinh. Trừng mắt nhìn Diệp Vân Khinh một cái, nàng nhanh chóng chạy ra ngoài, vẻ mặt đầy thất vọng.</p>
+    <p>"Hừ, nhóc con, không dạy cho một bài học là không biết trời cao đất dày!" Thấy Tiêu Phỉ chạy đi, Diệp Vân Khinh phủi tay, đắc ý nói.</p>
+    <p>Diệp Phi không nhịn được cười khổ, chính nàng cũng là nhóc con, có hơn người ta bao nhiêu đâu? Vừa định trêu chọc Diệp Vân Khinh thì điện thoại hắn vang lên.</p>
+    <p>Diệp Phi lấy ra xem, là dì Liễu Phượng Nghi gọi tới, không khỏi nghi hoặc, vội bắt máy: "Dì, sao giờ này dì lại gọi cho con, có chuyện gì sao ạ?"</p>
+    <p>"Cái thằng nhóc này, không có việc gì thì không được gọi cho con sao?" Liễu Phượng Nghi hiển nhiên tâm trạng rất tốt, trêu chọc Diệp Phi một câu rồi nói tiếp: "Nhưng hôm nay tìm con thật sự có việc. Sáng nay lớp các con có bạn mới đến phải không?"</p>
+    <p>"Vâng ạ, có một em tiểu thư đến!" Diệp Phi tùy miệng đáp.</p>
+    <p>"Thằng nhóc chết tiệt!" Liễu Phượng Nghi cười mắng: "Tiếp quản Lăng Vân Hội xong là thành tiểu lưu manh rồi sao? Ăn nói kiểu gì thế?"</p>
+    <p>Diệp Phi cười khổ nói: "Dạ được rồi, là có một nữ sinh tên Tiêu Phỉ. Sao tự nhiên dì lại quan tâm đến chuyện này vậy ạ?"</p>
+    <p>"Tất nhiên là phải quan tâm." Liễu Phượng Nghi cười nói: "Mẹ của con bé là Trương Lâm Tâm, trợ thủ mới đến của dì, cũng là chị em tốt nhiều năm. Con nhớ phải chăm sóc con bé cho tốt, nghe chưa?"</p>
+    <p>"Cái gì?" Diệp Phi kinh ngạc kêu lên, lập tức cười khổ. Không ngờ Tiêu Phỉ này lại là con gái chị em tốt của dì, vừa rồi mình cùng Diệp Vân Khinh gây chuyện với con bé quả thực hơi quá đáng, hắn không khỏi nhìn về phía Diệp Vân Khinh.</p>
+    <p>Diệp Vân Khinh đang tựa vào người Diệp Phi nên cũng nghe thấy những lời của Liễu Phượng Nghi, thấy Diệp Phi nhìn mình liền thè lưỡi làm mặt quỷ, không hề để tâm.</p>
+    <p>"Sao tự nhiên lại kinh ngạc thế?" Liễu Phượng Nghi bị phản ứng của Diệp Phi làm cho ngẩn người.</p>
+    <p>Diệp Phi cười khổ: "Cuộc điện thoại này của dì đến muộn quá, vừa rồi Khinh Khinh vừa mới đánh nhau với bạn ấy xong."</p>
+    <p>"Con nói cái gì?" Liễu Phượng Nghi hoảng sợ, vội hỏi: "Khinh Khinh có làm bạn ấy bị thương không?"</p>
+    <p>Diệp Vân Khinh có chút bất mãn ghé sát mặt vào điện thoại của Diệp Phi, lớn tiếng nói: "Dì ơi, dì thiên vị quá, sao không hỏi xem Khinh Khinh có bị thương không?"</p>
+    <p>Nghe giọng điệu của Diệp Vân Khinh, Liễu Phượng Nghi biết chắc chắn nàng không làm Tiêu Phỉ bị thương, trong lòng thở phào nhẹ nhõm, cười nói: "Khinh Khinh nhà dì giỏi như vậy, làm sao có thể làm con bị thương được chứ?"</p>
+    <p>Được Liễu Phượng Nghi khen, Diệp Vân Khinh lập tức vui vẻ trở lại, đắc ý nói: "Đó là, đó là!"</p>
+    <p>Sau khi nói thêm vài câu với Liễu Phượng Nghi, Diệp Phi cúp điện thoại, quay sang bảo Diệp Vân Khinh: "Nghe thấy rồi chứ? Tiêu Phỉ là con gái chị em tốt của dì cả, sau này em nên nhường nhịn bạn ấy chút, đừng bắt nạt nữa."</p>
+    <p>"Tiêu Phỉ gì chứ? Em thấy bạn ấy nên theo họ mẹ, gọi là Trương Phi mới đúng, đúng là một con nhỏ dã man!" Diệp Vân Khinh thấy Diệp Phi có vẻ bênh vực Tiêu Phỉ nên bất mãn bĩu môi, rồi lại lập tức cười nói: "Bạn ấy là con nhỏ dã man, anh là tên dã man, hai người đúng là trời sinh một cặp đấy!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0149.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0151.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

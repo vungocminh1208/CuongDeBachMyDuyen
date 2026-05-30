@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 171 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 171</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 171</small>
+    Chương 171: Thu hoạch ngoài ý liệu
+  </h1>
+  <div class="chapter-body">
+    <p>Chứng kiến Diệp Phi chẳng những không quan tâm uy hiếp của mình, ngược lại còn lộ ra vẻ cười nhạo, người trung niên trên mặt rốt cuộc không kìm được nữa, quát khẽ: "Tiểu tử, chịu chết đi!" Nói xong gã lại nâng hai ngón tay, động tác y hệt vừa rồi hướng Diệp Phi điểm tới, chỉ là tốc độ nhanh hơn rất nhiều, lực đạo cũng tăng mạnh gấp đôi, đồng thời hai ngón tay kia vậy mà chuyển thành màu đen.</p>
+    <p>Diệp Phi trong lòng rùng mình, không ngờ gã này vừa rồi lại che giấu thực lực, chỉ sợ hiện tại mới là thực lực chân thật. Nghĩ vậy, Diệp Phi không khỏi hoảng sợ, cũng may mình bám theo sát nút, nếu để Liễu Quân Di gặp phải kẻ này thì căn bản chẳng có lấy một phần thắng. Điều này cũng khiến hắn một lần nữa nhận thức được thế lực đáng sợ của kẻ phía sau màn, tùy tiện có thể phái ra cao thủ thực lực như thế, bất quá chút bản lĩnh này trong mắt hắn vẫn còn xa mới đủ xem.</p>
+    <p>Kỳ thật Diệp Phi không biết, đối phương nào có phải "tùy tiện" phái người? Chính vì cảm thấy Liễu Quân Di quá khó đối phó, kẻ nọ mới phái ra họ Lý này, một trong ba đại cao thủ dưới trướng, mà thực lực của gã cũng chỉ ngang ngửa Liễu Quân Di mà thôi. Về phần kình lực tăng mạnh là do Diệp Phi chọc giận gã, cộng thêm việc không có ai viện thủ, lại ghen ghét Diệp Phi tuổi trẻ mà có thực lực như vậy, người trung niên mới dùng tới bí pháp tổn hại thân thể để tăng lực công kích, muốn giết chết hắn trong một chiêu, tránh đêm dài lắm mộng.</p>
+    <p>Diệp Phi suy nghĩ thì dài dòng, nhưng thực ra chỉ là chuyện trong chớp mắt. Mắt thấy ngón tay người trung niên đã sát trước ngực, Diệp Phi không chút hoang mang nâng tay phải lên, ba ngón cái, trỏ, giữa đồng thời xuất hiện, chộp lấy ngón tay đang điểm tới của gã, cười nói: "Hai ngón tay này của ngươi thật đáng ghét." Nói xong hắn dùng sức bóp mạnh.</p>
+    <p>"Á!" Trung niên nhân thấy hắn hóa giải thế công nhẹ nhàng bâng quơ như vậy, hơn nữa ngón tay bị nắm chặt đến mức không thể dùng lực, gã đâu còn không rõ thực lực đối phương mạnh hơn mình quá nhiều. Trong lòng vừa kinh vừa sợ, đang định nói gì đó thì thấy hai ngón tay truyền đến cơn đau thấu xương. Nhìn kỹ lại, chỉ thấy những ngón tay vốn dùng để tấn công đã bị đối phương bóp nát, cơn đau từ tay hòa cùng nỗi đau lòng khiến gã không tự chủ được mà thét lên một tiếng thảm thiết.</p>
+    <p>"Bây giờ có thể nói lai lịch của ngươi chưa?" Diệp Phi bóp nát ngón tay gã xong cũng không làm khó thêm, buông tay ra, chẳng hề sợ gã bỏ trốn vì kẻ nào có chút đầu óc cũng thấy được, trước mặt hắn, gã căn bản không có cơ hội chạy thoát.</p>
+    <p>Người trung niên cũng không ngu, gã không hề nghĩ đến chuyện chạy trốn, nhưng cũng chẳng trả lời câu hỏi của Diệp Phi mà hỏi ngược lại: "Ngươi rốt cuộc là ai?" Nỗi kinh hãi trong lòng khiến gã quên cả cơn đau trên tay. Là đắc lực thủ hạ của "người kia", bao năm bôn ba, gã đã gặp không ít cao thủ, thậm chí cả những kỳ nhân ẩn thế, nhưng chưa bao giờ nghe nói tới kẻ nào lợi hại như thanh niên trước mắt, lại càng không thể tin đối phương mới chưa đầy hai mươi tuổi. Gã thực sự không thể tưởng tượng nổi, rốt cuộc là nơi nào lại nuôi dưỡng ra loại người như vậy.</p>
+    <p>Nhìn biểu cảm của đối phương, Diệp Phi biết gã đã bị thực lực của mình dọa sợ, trong lòng càng thêm nắm chắc, khẽ mỉm cười: "Ta là ai không cần ngươi quản, ngươi chỉ cần nói cho ta biết ngươi là ai là được."</p>
+    <p>Người trung niên thấy nụ cười của Diệp Phi chẳng những không thấy nhẹ nhõm mà còn càng thêm khẩn trương. Sắc mặt gã biến đổi mấy lần, lúc này mới cắn răng nói: "Ta tên Lý Tư, là Môn chủ Huyền Âm Môn đời này."</p>
+    <p>Lý Tư? Diệp Phi đầy đầu hắc tuyến, thầm nghĩ cái tên này không phải xuyên việt từ thời Tần tới đó chứ? Bất quá câu hỏi thiếu não như vậy hắn tất nhiên không nói ra, chỉ mỉm cười: "Huyền Âm Môn? Chưa nghe bao giờ. Ta không quan tâm ngươi là Môn chủ môn phái nào, ngươi chỉ cần nói cho ta biết, là ai phái ngươi tới là được."</p>
+    <p>Sắc mặt Lý Tư lại biến đổi, kiên định lắc đầu: "Cái này ta không thể nói!"</p>
+    <p>"Ngươi biết nếu không nói sẽ có hậu quả gì không?" Diệp Phi thu lại nụ cười, tay phải giơ lên trước ngực, nhắc nhở rằng hắn có thể lấy mạng gã bất cứ lúc nào.</p>
+    <p>Lần này Lý Tư không hề khẩn trương mà lại nở một nụ cười: "Ta đương nhiên biết. Từ lúc rơi vào tay ngươi, ta đã không nghĩ tới chuyện sống sót rời đi. Chỉ tiếc ta quá tự tin, một mình đuổi tới, giờ không thể truyền tin tức về một cao thủ bất khả chiến bại như ngươi về được nữa."</p>
+    <p>Diệp Phi không ngờ kẻ nhìn có vẻ âm hiểm này lại có mặt tâm huyết như vậy, ác cảm trong lòng giảm đi không ít. Tuy nhiên, khẩu cung của gã vô cùng quan trọng, không thể không lấy, nên hắn cười nói: "Vậy ngươi nói xem nếu ta bắt ngươi rồi tung tin ra, kẻ đứng sau ngươi có tới tìm ta nói chuyện không?"</p>
+    <p>Lý Tư không hề nghĩ ngợi liền lắc đầu: "Chắc chắn là không. Vì đại kế trong lòng hắn, hắn có thể hy sinh bất cứ ai, kể cả thân nhân, mà ta, chẳng qua chỉ là một con cờ trong tay hắn thôi."</p>
+    <p>"Vậy tại sao ngươi còn bán mạng cho hắn? Với thực lực của ngươi, muốn có cuộc sống tốt đẹp hơn hẳn không khó chứ?" Diệp Phi cực kỳ hiếu kỳ với thái độ của gã, tên này chẳng lẽ là Nhạc Phi chuyển thế, sao lại ngu trung như vậy?</p>
+    <p>"Bởi vì hắn có ân tình rất lớn với Huyền Âm Môn chúng ta, nếu không nhờ hắn, môn phái này đã sớm biến mất trên thế gian rồi." Lý Tư lộ ra vẻ buồn khổ: "Cho nên dù có chết, ta cũng sẽ không phản bội hắn."</p>
+    <p>Lời nói của Lý Tư khiến Diệp Phi càng thêm có thiện cảm, nhất thời ngược lại có chút không nỡ giết gã, vì vậy nói: "Ta không muốn giết ngươi, nhưng trước khi phân thắng bại với kẻ nọ, ta không thể để ngươi rời đi. Không bằng ngươi tạm thời theo ta, yên tâm, chỉ cần ngươi không muốn nói, ta tuyệt đối không ép." Diệp Phi không phải lừa gạt gã, dù bắt được hắn có thể dùng dụng cụ để biết toàn bộ trí nhớ, nhưng hắn không muốn làm vậy vì nể phục Lý Tư. Còn về kẻ đứng sau, dù không lấy được tin tức gì, Diệp Phi cũng có lòng tin tuyệt đối khiến đối phương không làm gì được mình và người bên cạnh.</p>
+    <p>"Ta sẽ không và cũng không thể đi theo ngươi. Bất quá ngươi yên tâm, Huyền Âm Môn chúng ta từ nay về sau sẽ không giúp hắn nữa." Lý Tư nhẹ nhàng lắc đầu, trên mặt lộ ra vẻ quyết tuyệt.</p>
+    <p>Thấy biểu cảm đó, Diệp Phi không khỏi giật mình, vội hỏi: "Ngươi làm sao vậy?"</p>
+    <p>Lý Tư ngẩng đầu nhìn bầu trời thấp thoáng trong rừng rậm, trên mặt lộ vẻ hoài niệm, nhẹ nhàng cười nói: "Người kia chưa bao giờ tin tưởng bất cứ ai, nên ai làm việc cho hắn cũng đều bị hắn ép dùng một loại độc dược mãn tính. Loại độc này chính hắn cũng không thể hóa giải, nếu người uống thuốc không tìm hắn nhận thuốc áp chế mỗi ba tháng một lần thì sẽ đau đớn mà chết. Ta không muốn chờ đến ngày đó, nên đã tự ý dẫn phát độc tính." Lý Tư lời còn chưa nói hết, trên mặt đã hiện lên một làn hắc khí, hiển nhiên đã trúng kịch độc.</p>
+    <p>Diệp Phi không chút nghi ngờ, cười khổ: "Ngươi hà tất phải khổ như vậy, nếu chúng ta cùng cố gắng, có lẽ chẳng bao lâu nữa sẽ hóa giải được độc này cho ngươi."</p>
+    <p>Lý Tư lúc này đã đứng không vững, thân thể lay động vài cái, vội vã đưa tay vịn lấy thân cây mới không ngã xuống. Dù vậy, trên mặt gã lại hiện lên vẻ thư thái khó tả, khẽ cười: "Dù có tìm được ta cũng không muốn tìm nữa. Bao năm nay ta sống quá mệt mỏi, vì báo ân mà mang theo đệ tử Huyền Âm Môn làm quá nhiều chuyện trái lương tâm. Hiện tại bọn họ rốt cuộc có thể giải thoát, còn ta, cũng có thể nghỉ ngơi rồi." Nói đến đây, trên mặt Lý Tư hiện lên vẻ thống khổ.</p>
+    <p>Diệp Phi lặng lẽ nhìn gã, trong lòng không đành lòng, nhưng hắn cũng không còn cách nào, vì dù loại độc này có thể giải, cũng chẳng phải chuyện một sớm một chiều.</p>
+    <p>Lý Tư cố nén đau đớn, ánh mắt cầu khẩn nhìn Diệp Phi: "Ta có thể cầu ngươi hai việc không?"</p>
+    <p>"Chuyện gì, ngươi nói đi." Diệp Phi gật đầu.</p>
+    <p>"Nếu ta chết, ta mong kẻ kia đừng làm khó đệ tử Huyền Âm Môn của ta. Bọn họ chỉ chuyên tâm luyện võ, căn bản không biết cách mưu sinh, trước kia có ta chiếu cố còn đỡ, sau này ta không biết phải làm sao. Cho nên ta cầu ngươi, nếu có thể, hãy giúp ta chiếu cố bọn họ." Lý Tư hiện vẻ thẹn thùng, cười khổ: "Đương nhiên, nếu ngươi không đáp ứng cũng chẳng sao, dù sao trước đó chúng ta còn là kẻ địch..."</p>
+    <p>"Ta đáp ứng ngươi!" Diệp Phi không đợi gã nói xong liền gật đầu, hỏi: "Nhưng ta phải tìm bọn họ thế nào đây?"</p>
+    <p>Thấy Diệp Phi đồng ý, Lý Tư mừng rỡ, tay trái run rẩy lấy từ trong người ra một tấm thẻ sắt nhỏ đưa cho Diệp Phi: "Đây là tín vật Chưởng môn Huyền Âm Môn, ngươi chỉ cần tìm người vẽ lại bản vẽ, rồi sai người đưa đến Lâm Hải, các đệ tử của ta sẽ biết phải làm gì." Nói xong gã kỹ càng chỉ dẫn cho Diệp Phi về địa điểm cụ thể của Huyền Âm Môn.</p>
+    <p>Diệp Phi vốn tưởng tổng bộ Huyền Âm Môn ở gần kinh thành, không ngờ lại ở Lâm Hải. Việc tìm kiếm và chiếu cố đệ tử với hắn quá đơn giản, vì vậy hắn nhận lấy thẻ bài, gật đầu: "Yên tâm đi, chỉ cần có ta ở đây, các đệ tử của ngươi sẽ không sao đâu."</p>
+    <p>"Cảm ơn!" Lý Tư nói từ tận đáy lòng, rồi lại nói: "Còn một việc nữa, xin hãy giết ta ngay lập tức!"</p>
+    <p>Diệp Phi chấn động: "Tại sao?"</p>
+    <p>Lý Tư lúc này đã bị độc dược giày vò đến hơi thở thoi thóp, dồn dập thở dốc vài cái mới nói: "Thân là võ giả, ta hy vọng có thể chết trong tay đối thủ, chứ không phải dưới thứ độc dược chết tiệt này!"</p>
+    <p>Diệp Phi chần chừ. Nếu là trước đó, đừng nói là giết gã, ngay cả làm chuyện tàn nhẫn hơn hắn cũng không nương tay. Nhưng sau khi chứng kiến lòng trung nghĩa của Lý Tư, hắn đã nảy sinh sự kính trọng. Dù biết gã nói đúng, và dù hắn không ra tay thì gã cũng chỉ sống được không quá mười phút, nhưng hắn vẫn không đành lòng.</p>
+    <p>Thấy Diệp Phi do dự, Lý Tư đột nhiên quát lớn: "Làm nam nhân, ngươi chẳng lẽ ngay cả chút quyết đoán này cũng không có sao? Đối thủ của ngươi là kẻ ngay cả thân nhân cũng không chút do dự ra tay, còn ngươi đối mặt với kẻ địch lại lòng dạ mềm yếu, sau này làm sao đấu với hắn?"</p>
+    <p>Trong lòng Diệp Phi chấn động, khẽ gật đầu, đưa tay đặt lên ngực gã, nội kình nhẹ xuất, trong nháy mắt cắt đứt tâm mạch.</p>
+    <p>"Cảm ơn!" Trên mặt Lý Tư vốn phủ hắc khí hiện lên một đạo đỏ ửng, gượng nói lời cảm ơn rồi tắt thở.</p>
+    <p>"Là ta phải cảm ơn ngươi mới đúng." Diệp Phi lẩm bẩm, đặt thân hình đã mềm nhũn của Lý Tư xuống đất. Lòng hắn lại vang lên câu nói kia, từ sau khi xử lý xong Diệp Vũ, Diệp Phi tưởng mình đã có thể sát phạt quyết đoán, nhưng xem ra vẫn còn kém xa. Sau này cần phải cố gắng nhiều hơn, tất nhiên không phải trở nên máu lạnh như kẻ phía sau màn, mà là một tâm tính đối địch đúng đắn.</p>
+    <p>Ngồi bên cạnh thi thể Lý Tư suy tư thật lâu, Diệp Phi mới đứng dậy, đào một cái hố lớn giữa những cây đại thụ. Biểu hiện cuối cùng của Lý Tư khiến hắn hoàn toàn công nhận gã, tin rằng nếu không phải vì chủ khác nhau, mình và gã nhất định có thể trở thành bằng hữu tốt, nên tất nhiên không đành lòng để gã phơi thây hoang dã.</p>
+    <p>Chôn cất Lý Tư xong, Diệp Phi không dựng bài vị, vì cuộc gặp gỡ giữa hai người không thể để người ngoài biết.</p>
+    <p>"Ngươi yên tâm đi, lời hứa của ta nhất định sẽ thực hiện!" Diệp Phi nói khẽ về phía nơi an táng Lý Tư. Đang định rời đi, hắn đột nhiên phát hiện tại nơi Lý Tư nằm lúc nãy, có một chiếc nhẫn màu sắc khác lạ đang nằm tĩnh lặng ở đó. Chiếc nhẫn này có kiểu dáng không khác gì nhẫn kim cương bình thường nhưng lại có màu đen, trên mặt nhẫn lóe lên ánh ám kim, viên đá khảm trên đó cũng là màu ám kim, chỉ là nhạt hơn nhẫn một chút.</p>
+    <p>Lúc giao thủ, Diệp Phi đã quan sát gã rất kỹ, không hề thấy gã đeo vật gì, khi đặt thi thể gã xuống cũng không thấy có chiếc nhẫn này, nó giống như xuất hiện từ hư không.</p>
+    <p>Lòng hiếu kỳ thôi thúc Diệp Phi nhặt chiếc nhẫn lên. Ngay khi ngón tay chạm vào, một luồng tin tức kỳ lạ hiện lên trong đầu hắn: "Chiếc nhẫn nguyện vọng của Lý Tư: Sau khi trang bị, có thể khiến người trang bị tăng lên một tầng võ công Huyền Âm Môn."</p>
+    <p>Từ dòng tin tức này, rất dễ dàng nhận ra đây là giới thiệu công năng của chiếc nhẫn. Diệp Phi trong lòng kinh ngạc, sao lại giống giới thiệu vật phẩm trong trò chơi thế này? Chẳng lẽ mình giết người cũng có thể rớt đồ như trong game sao? Nhưng hai ngày trước rõ ràng hắn đã đích thân giết chết vài trăm người, sao lúc đó không thấy thứ gì rơi ra nhỉ?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0170.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0172.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

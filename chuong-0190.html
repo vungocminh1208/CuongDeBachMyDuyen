@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 190 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 190</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 190</small>
+    Chương 190: Tọa ủng mẫu cùng nữ
+  </h1>
+  <div class="chapter-body">
+    <p>Mãi đến khi động tĩnh giữa Diệp Phi và Lâm Linh hoàn toàn biến mất, Tiêu Hàm Nguyệt, người vốn đã mệt nhoài vì Diệp Phi, mới cúp điện thoại, mang theo nụ cười thư thái chìm vào giấc mộng. Nàng nào biết rằng, Lâm Linh vừa mới nếm trải tư vị ấy căn bản không hề có ý định ngủ.</p>
+    <p>Lặng lẽ nép vào ngực Diệp Phi nghỉ ngơi một lúc, Lâm Linh đột nhiên đưa tay nắm lấy cái thứ tuy vừa mới bắt đầu làm nàng đau đớn, nhưng về sau lại mang đến khoái cảm vô tận của Diệp Phi, khẽ vuốt ve rồi thấp giọng nói: "Hiện tại con càng có thể hiểu được nương nương."</p>
+    <p>"Cái gì?" Diệp Phi vô thức hỏi một câu, hắn chỉ mải mê tận hưởng bàn tay nhỏ nhắn mềm mại của Lâm Linh mà không chú ý đến ý tứ trong lời nói của nàng.</p>
+    <p>"Cái này nha!" Lâm Linh hơi dùng sức nắm lấy dương vật đang cứng lên trong tay, cười nói: "Bị nó làm qua rồi, con thấy có chút nghiện, chưa kể đến nương nương đang trong độ tuổi có nhu cầu lớn nhất."</p>
+    <p>"Ta thừa nhận, chuyện ta và mẹ con ở bên nhau có lý do về phương diện này, nhưng nhiều hơn cả là vì ta đã nảy sinh tình cảm với nàng, giống hệt như tình cảm ta dành cho con. Đó mới là lý do thực sự chúng ta ở bên nhau." Diệp Phi không muốn Lâm Linh nghĩ rằng mình và Tiêu Hàm Nguyệt chỉ là quan hệ xác thịt, nên giải thích với nàng.</p>
+    <p>"Ân, con biết mà!" Lâm Linh bò lên người Diệp Phi, có chút nghịch ngợm kẹp dương vật của hắn vào khe chân mình, cười nói: "Người yêu mẹ, cũng yêu con, nên con không lo lắng người sẽ bỏ rơi con nữa."</p>
+    <p>Dù rất hưởng thụ khoái cảm mà Lâm Linh mang lại, Diệp Phi vẫn không nhịn được cười khổ: "Sao con lúc nào cũng lo lắng ta sẽ không cần con thế? Chẳng lẽ ta là loại người đó sao?"</p>
+    <p>"Con đương nhiên biết người không phải loại người đó." Lâm Linh bĩu môi nói: "Chỉ là người có mẹ con là mỹ nhân như vậy, lại thêm Khinh Khinh bây giờ cũng trở nên xinh đẹp nhường ấy, người ta chỉ lo người sẽ chướng mắt con thôi!"</p>
+    <p>"Khinh Khinh?" Diệp Phi trong lòng giật thót, hỏi: "Sao tự nhiên con lại nhắc đến em ấy?"</p>
+    <p>"Hì hì." Lâm Linh bật cười, cầm lấy điện thoại, mở một đoạn video đặt trước mặt hắn: "Người dám nói đây không phải Khinh Khinh sao?"</p>
+    <p>Nhìn đoạn video trước mắt, Diệp Phi không khỏi cạn lời. Hắn không ngờ Diệp Vân Khinh lại nghịch ngợm ghi lại cảnh hoan hảo giữa hai người rồi gửi cho Lâm Linh. Nhưng không thể phủ nhận, nhìn cảnh mình hoan ái từ góc độ của người ngoài cuộc quả thực mang lại một cảm giác rất lạ.</p>
+    <p>Thấy Diệp Phi trầm mặc, Lâm Linh biết mình đã đoán đúng. Đồng thời nàng cũng hiểu ra vì sao trước kia Diệp Vân Khinh luôn hỏi mình rằng nếu có cô gái khác thích Diệp Phi thì sẽ thế nào. Trong lòng nàng không những không trách Diệp Vân Khinh, mà còn thấy cảm kích. Dù sao mình cũng là thanh mai trúc mã với Diệp Phi, nhưng không thể nào sánh bằng tình cảm giữa họ. Nếu Diệp Vân Khinh muốn độc chiếm Diệp Phi, cơ hội của nàng chẳng còn lại bao nhiêu. Thế mà Diệp Vân Khinh không những không làm vậy mà còn tích cực vun vén cho nàng. Sự rộng lượng này sao không khiến Lâm Linh cảm động? Hơn nữa, trong lòng nàng cũng nảy sinh ý nghĩ không chịu thua kém: Ngươi đã đại độ như vậy, ta cũng không thể keo kiệt. Dù sao nhìn dáng vẻ hắn thế này, ứng phó thêm vài người chắc cũng không thành vấn đề.</p>
+    <p>"Sao nào, thừa nhận rồi chứ?" Lâm Linh, kẻ đã trút bỏ được chút ghen tuông nhỏ nhen trong lòng, cười hỏi.</p>
+    <p>Diệp Phi gật đầu: "Không sai, đó chính là Khinh Khinh, em ấy cũng là nữ nhân của ta."</p>
+    <p>Lâm Linh cử động thân mình, toàn thân áp lên người Diệp Phi, dùng hai chân kẹp lấy dương vật của hắn, để nó nhẹ nhàng cọ xát vào nơi vừa được khai phá, cười nói: "Nữ nhân của người còn chưa thiếu đâu, vậy có thể nói cho con biết, người cùng với con và Khinh Khinh lần đó là ai không?"</p>
+    <p>"Chuyện này sau này sẽ nói cho con biết." Diệp Phi ra vẻ thần bí: "Nhưng con có thể đoán thử xem."</p>
+    <p>"Người tưởng con không đoán ra sao?" Lâm Linh hừ một tiếng, suy nghĩ một lát rồi cười hắc hắc: "Xem dáng người thì không khác mẹ con là mấy, năm đó Linh cũng có thể giống như vậy... Oa! Không phải là tương lai bà bà cũng là a di đó chứ?"</p>
+    <p>"Đừng nói nhảm!" Diệp Phi trừng mắt, bàn tay lớn vỗ nhẹ lên mông nàng một cái, nhưng lại khiến dương vật bị nàng kẹp chặt nhún nhảy vài cái.</p>
+    <p>Thấy Diệp Phi trừng mắt, Lâm Linh tưởng mình đùa quá trớn nên có chút hối hận, nhưng ngay lập tức cảm nhận được sự thay đổi của dương vật hắn. Đã học được không ít "lý luận tri thức" từ Diệp Vân Khinh, nàng biết đàn ông chỉ có phản ứng này khi đang kích động. Nàng lập tức hiểu ra điều gì đó, cười nói: "Vậy sau này con gọi là tỷ tỷ của em ấy được không?"</p>
+    <p>Diệp Phi trong lòng giật thót, mạnh mẽ xoay người đè Lâm Linh xuống dưới thân, quát: "Cô nàng tiểu sắc nữ này, xem ta thu thập con thế nào!"</p>
+    <p>Vừa rồi vì thương tiếc Lâm Linh mới phá trinh, Diệp Phi chỉ để nàng lên đỉnh một lần. Điều này căn bản không thể làm thỏa mãn Lâm Linh – người được di truyền tính cách từ Tiêu Hàm Nguyệt. Hơn nữa, lúc cuối khi Lâm Linh nằm sấp trên người hắn, dương vật vẫn ma sát ở tiểu dâm huyệt của nàng một lúc lâu, đã sớm khiến dâm tính của nàng bùng lên. Giờ thấy Diệp Phi muốn tiếp tục, nàng nào có lý do gì để từ chối.</p>
+    <p>"Đại sắc lang, không được đâu, người vừa rồi làm người ta đau lắm, đừng đâm nữa." Lâm Linh miệng thì nói không được, nhưng cái mông nhỏ đã hơi nhô lên, hai chân tách nhẹ, trực tiếp nghênh đón dương vật đang phẫn nộ của Diệp Phi vào trong tiểu dâm huyệt đang tràn trề dâm thủy của mình.</p>
+    <p>Diệp Phi cũng không ngờ Lâm Linh mới lần đầu lại lãng đến vậy, hoàn toàn khác với tính cách thường ngày, trong lòng không khỏi hưng phấn. Hắn dứt khoát nâng hai chân nàng đặt lên trước ngực, khiến cái tiểu dâm huyệt vừa được khai phá càng thêm lồi ra, sau đó dùng hai tay hai chân chống giường, như thể đang đâm vào một thục nữ đã kinh qua mưa gió, điên cuồng thúc đẩy dương vật to lớn của mình vào khe thịt chặt khít của nàng.</p>
+    <p>Dù sao Lâm Linh cũng mới phá trinh, nhất thời cảm thấy khe thịt bị đâm đến đau đớn, nhưng nhiều hơn là khoái cảm mãnh liệt hơn vừa nãy. Nàng đúng là con gái của Tiêu Hàm Nguyệt, tính dục mạnh mẽ không kém gì mẹ mình. Để theo đuổi khoái cảm vô tận đó, nàng chẳng màng đến chút đau đớn nơi hạ bộ, chỉ biết mãnh liệt xoay mông phối hợp với những cú thúc đẩy ngày càng mạnh mẽ của Diệp Phi.</p>
+    <p>Nhìn vị hôn thê lãng mạn nhiệt tình dưới thân, Diệp Phi có chút hối hận vì đến tận bây giờ mới chạm vào nàng. Nếu không, hôm nay có khi đã có một bữa mẹ con cùng giường cũng nên. Nhưng đây chắc chắn là chuyện sớm hay muộn, hắn cũng không quá sốt ruột. Chỉ có điểm duy nhất chưa hoàn mỹ là Lâm Linh dù rên rỉ rất lớn tiếng, nhưng vẫn là "lính mới", căn bản không biết dùng những lời kích thích để khiến hắn thêm hưng phấn. Xem ra sau này phải để Diệp Vân Khinh dạy thêm cho nàng nhiều hơn.</p>
+    <p>Đã biết mùi vị, Lâm Linh quấn lấy Diệp Phi đòi hỏi lần này đến lần khác, cho đến khi nàng thực sự không còn chút sức lực nào, khe thịt mềm mại đã sưng đỏ không chịu nổi. Cũng may hiện tại đã có hoàn phục hồi, nếu không ngày mai chắc chắn không xuống được giường. Nếu Diệp Phi là người đàn ông bình thường thì chắc chắn đã không trụ nổi, nhưng với năng lực của hắn, dẹp yên nàng là chuyện nhẹ nhàng. Diệp Phi ngược lại càng thêm yêu nàng, bởi từ tận đáy lòng, hắn hy vọng nữ nhân của mình sức chiến đấu phải mạnh một chút, như vậy mình mới có thể sướng lâu hơn.</p>
+    <p>Sáng sớm, Diệp Phi tỉnh dậy vì một tràng hắt xì. Hiện tại Tiêu Hàm Nguyệt và Lâm Linh đều đã có quan hệ thân mật nhất với hắn, hơn nữa họ cũng biết về nhau, nên Diệp Phi tự nhiên không cần phải kiêng dè gì nữa. Vì vậy hôm qua hắn đã nghỉ lại tại phòng của Lâm Linh.</p>
+    <p>Mở mắt ra, chỉ thấy Lâm Linh dùng những sợi tóc nghịch ngợm quét nhẹ vào mũi hắn, trên mặt là nụ cười ngọt ngào. Diệp Phi không khỏi thầm cảm khái, phụ nữ ở phương diện này quả nhiên có ưu thế thiên bẩm. Đêm qua bị hắn làm đến mức đó mà sáng sớm nàng đã tinh thần như vậy.</p>
+    <p>Lâm Linh hiển nhiên cũng vừa tỉnh dậy, thậm chí còn chưa mặc quần áo, cứ thế nửa nằm nửa bò trên người Diệp Phi, dùng hai khối mềm mại trước ngực nhẹ đè lên lồng ngực hắn. Thấy Diệp Phi mở mắt, nàng không khỏi khúc khích cười vì trò đùa dai của mình, khiến cặp viên thịt quy mô không nhỏ kia nhấp nhô trên người hắn.</p>
+    <p>Buổi sáng vốn là thời điểm hỏa lực của đàn ông tràn đầy nhất, huống chi hỏa lực của Diệp Phi lại mạnh hơn người thường nhiều. Lúc này bị Lâm Linh trêu chọc, hắn còn nhịn được sao? Lập tức gầm nhẹ một tiếng, nhẹ nhàng nghiêng người, đè vị hôn thê đáng yêu xuống dưới thân, chuẩn bị làm một hiệp luyện công buổi sáng.</p>
+    <p>Lâm Linh đêm qua mới nếm trải tư vị, tự nhiên cũng rất muốn, nhưng cuối cùng lại đỏ mặt ngăn hắn lại, đưa bàn tay nhỏ bé ra giữ lấy cái thứ đang muốn giở trò xấu, nhỏ giọng nói: "Thôi đi, mẹ đã dậy rồi."</p>
+    <p>Diệp Phi không chút bận tâm, tiếp tục hôn nhẹ lên mặt Lâm Linh, cười nói: "Sợ gì chứ, bà ấy không phải không biết, hơn nữa hôm qua con cũng đã trực tiếp gặp bà ấy rồi còn gì."</p>
+    <p>Dù cảm thấy lời Diệp Phi có lý, nhưng Lâm Linh vốn mặt mỏng nên vẫn từ chối: "Để mẹ nghe thấy thì xấu hổ lắm!"</p>
+    <p>"Có gì mà xấu hổ? Các người đều là người yêu của ta, người yêu với nhau sao có thể không làm chuyện mình thích?" Diệp Phi cười xấu xa: "Hơn nữa, nói không chừng sau này các người còn có cơ hội cùng nhau để ta làm như vậy đấy!"</p>
+    <p>Có lẽ vì câu nói của Diệp Phi khiến nàng liên tưởng đến chuyện sau này, trên mặt Lâm Linh hiện lên một tia đỏ ửng khác lạ. Nàng cắn môi, nhỏ giọng nói: "Đó là chuyện sau này, người phải thuyết phục được mẹ đã mới được."</p>
+    <p>Diệp Phi không khỏi mừng rỡ. Hắn nói vậy chỉ là để "tiêm phòng" trước cho Lâm Linh, để sau này nếu mẹ con họ cùng phục vụ mình thì cũng dễ chấp nhận hơn. Không ngờ Lâm Linh lại dễ dàng đáp ứng như vậy. Xem ra ngày đó không còn xa. Về phần chỗ Tiêu Hàm Nguyệt, chỉ cần hắn cố gắng thêm chút nữa trên người nàng, không sợ nàng không đáp ứng. Điều này sao không khiến Diệp Phi mừng như điên cho được?</p>
+    <p>"Tốt lắm Linh Nhi, con nói thật chứ?" Diệp Phi ôm chặt Lâm Linh, muốn xác nhận lại lần nữa.</p>
+    <p>"Cái... cái gì nha?" Lâm Linh lập tức hiểu ý hắn, nhưng vẫn ra vẻ không hiểu hỏi lại. Sự ngượng ngùng của con gái khiến nàng không thể đáp ứng ngay lập tức được.</p>
+    <p>"Lời con vừa nói đó, chỉ cần ta thuyết phục được mẹ con, con sẽ cùng với bà ấy." Diệp Phi cười nói: "Con không được đổi ý đâu nha."</p>
+    <p>"Không đổi ý thì không đổi ý, con không tin người thuyết phục được mẹ con!" Lâm Linh hừ một tiếng không phục, rồi nói: "Vậy bây giờ có thể tiếp tục chưa?"</p>
+    <p>"Thế nhưng, nó phải làm sao đây?" Diệp Phi nói rồi khẽ lướt nhanh qua vật vẫn đang bị nàng giữ trong lòng bàn tay: "Cũng không thể để nó cứ đứng như thế này trên đất được chứ?"</p>
+    <p>"Đại sắc lang!" Lâm Linh bất mãn hừ một tiếng, nhưng thân thể đã từ từ chui vào trong chăn. Dù chưa từng dùng miệng phục vụ Diệp Phi, nhưng cảnh tượng trong đoạn video Diệp Vân Khinh gửi cho nàng cũng có cảnh như vậy. Với sự thông minh của nàng thì học theo cũng không khó, cộng thêm sự chỉ đạo của Diệp Phi, mười phút sau, cuối cùng cũng khiến Diệp Phi thỏa mãn, còn miệng mình thì đầy những thứ đó.</p>
+    <p>"Đồ bại hoại!" Lâm Linh lí nhí mắng một tiếng, chẳng buồn mặc quần áo, nhảy xuống giường chạy thẳng vào phòng vệ sinh. Ngay lập tức từ đó truyền ra tiếng súc miệng.</p>
+    <p>Qua một hồi lâu, Lâm Linh mới bước ra. Lúc này Diệp Phi cũng đã mặc quần áo chỉnh tề, cười hỏi: "Hương vị thế nào?"</p>
+    <p>"Người còn nói!" Lâm Linh chẳng màng ngượng ngùng, lao vào người Diệp Phi, vung nắm tay nhỏ đấm vài cái lên ngực hắn, gắt gỏng: "Đồ bại hoại, đến mà chẳng nói một tiếng, hại người ta không phòng bị, nuốt mất nhiều quá!"</p>
+    <p>"Điểm này con không giống Khinh Khinh tí nào, em ấy lần nào cũng rất vui vẻ mà ăn đấy." Diệp Phi cười hắc hắc, hy vọng dùng cách này để kích Lâm Linh học theo Diệp Vân Khinh.</p>
+    <p>Lâm Linh không hề lùi bước, khẽ nói: "Đừng có lấy Khinh Khinh ra để kích con, có thế nào con cũng không ăn thứ đó của người đâu, ghét chết đi được!" Tuy miệng nói vậy, nhưng trong lòng Lâm Linh cũng không hề có chút bài xích, chỉ là cảm thấy thứ đó vị không được ngon lắm mà thôi.</p>
+    <p>Hai người đùa giỡn một hồi, Lâm Linh mới khó khăn mặc quần áo vào khi Diệp Phi cứ liên tục quấy rối. Họ cùng nhau rửa mặt rồi mới bước ra khỏi phòng.</p>
+    <p>Dù đêm qua vì làm quá kịch liệt mà đã dùng hoàn phục hồi, giúp những vết thương của Lâm Linh hoàn toàn lành lặn, nhưng dù sao nàng cũng mới lần đầu trải qua việc này, đi đứng vẫn có chút không tự nhiên. Điều này khiến Lâm Linh sợ bị mẹ cười, nên trên đường đi từ phòng đến phòng khách, nàng lườm Diệp Phi mấy cái cháy mặt.</p>
+    <p>Hai người tới phòng khách thì thấy bữa sáng đã dọn xong. Tiêu Hàm Nguyệt ngồi bên bàn ăn với vẻ mặt thấp thỏm, hiển nhiên là đang lo lắng con gái không thể tha thứ cho mình. Dù đêm qua qua điện thoại đã nghe hết mọi chuyện, nhưng nàng vẫn không thể chắc chắn đó có phải là do con gái đang trong lúc ý loạn tình mê mà nói liều hay không.</p>
+    <p>Nhìn vẻ mặt cẩn trọng của Tiêu Hàm Nguyệt, Diệp Phi và Lâm Linh không khỏi thấy đau lòng. Sau khi nhìn nhau một cái, Lâm Linh đẩy Diệp Phi ngồi xuống bên cạnh Tiêu Hàm Nguyệt, còn mình thì ngồi xuống phía bên kia của hắn.</p>
+    <p>Kéo một cánh tay của Diệp Phi ôm lấy vai mình, rồi ra hiệu cho hắn dùng tay kia ôm lấy Tiêu Hàm Nguyệt, Lâm Linh cười nói: "Diệp tử ca ca, bảo người đến nhà chúng ta thật không sai mà, bây giờ đúng là tề nhân chi phúc trong truyền thuyết rồi!"</p>
+    <p>Bị Diệp Phi ôm ngay trước mặt con gái, Tiêu Hàm Nguyệt vốn đã bất an nay càng thêm đứng ngồi không yên. Câu nói của con gái cũng khiến nàng không rõ là nó thực sự nghĩ vậy hay đang nói mát. Nhưng khi nhìn biểu cảm của Lâm Linh, Tiêu Hàm Nguyệt mới thở phào nhẹ nhõm, bởi vì nàng là người hiểu con gái mình nhất, con gái có thực sự vui vẻ hay không, nàng liếc cái là biết ngay.</p>
+    <p>"Linh Nhi, con không trách nương nương chứ?" Tiêu Hàm Nguyệt dù đã cơ bản xác định, nhưng vẫn không nhịn được hỏi con gái một câu.</p>
+    <p>"Đương nhiên, con chưa bao giờ trách mẹ cả." Lâm Linh cười nói: "Muốn trách thì chỉ có thể trách cái tên đại phôi đản này thôi!"</p>
+    <p>Nghe nửa câu đầu của Lâm Linh, Tiêu Hàm Nguyệt mừng thầm, nhưng nửa câu sau lại khiến nàng rối bời. Chẳng lẽ con gái vẫn còn canh cánh trong lòng về chuyện này? Chỉ là vì là mình nên nó mới miễn cưỡng cười vui? Nếu là như vậy, chi bằng mình nên nhịn đau rời bỏ Diệp Phi thì hơn.</p>
+    <p>Nhưng ý nghĩ đó của Tiêu Hàm Nguyệt còn chưa dứt, câu nói tiếp theo của Lâm Linh đã đưa nàng từ địa ngục trở về thiên đường, đồng thời cũng vô cùng cảm động trước con gái mình.</p>
+    <p>"Đồ bại hoại này, nếu như sớm nói cho con biết chuyện của hai người thì mẹ đã không phải lo lắng lâu như vậy, hơn nữa cũng sớm có thể quang minh chính đại ở bên cạnh người ta rồi." Lâm Linh hì hì cười nói.</p>
+    <p>"Con gái tốt, cám ơn con!" Tiêu Hàm Nguyệt cảm động đến mức suýt khóc, nhịn không được vươn người qua trước ngực Diệp Phi, ôm chặt lấy Lâm Linh ở bên kia.</p>
+    <p>Lâm Linh cũng vươn người qua, ôm lấy cổ mẹ mình, hì hì cười nói: "Cám ơn cái gì chứ? Cứ coi như anh ấy là món quà con hiếu kính mẹ là được rồi!"</p>
+    <p>Nhìn hai người phụ nữ hòa thuận trong lòng mình, Diệp Phi không khỏi thấy sảng khoái vô cùng. Đồng thời, cơ thể hắn cũng sướng không chịu nổi, bởi vì cả hai người lúc này đều đang nằm sấp trên người hắn. Do vị trí, thứ đồ khốn kiếp đang đứng thẳng đầy tinh thần vì cùng lúc ôm hai người, vừa vặn bị hai đôi bán cầu tuy kích thước khác nhau nhưng hình dạng và xúc cảm đều hoàn mỹ bao bọc tứ phía. Loại cảm giác kỳ lạ này khiến hắn không khỏi kích động. Nếu không phải bận tâm việc lỗ đít nhỏ của Tiêu Hàm Nguyệt đêm qua bị thương quá nặng, mà phía trước lại đang đến ngày nên tạm thời không thể dùng, hắn hận không thể thử ngay mùi vị hai mẹ con cùng ra trận là thế nào.</p>
+    <p>Vì trong lòng nảy sinh ý nghĩ xấu xa, thứ đồ khốn kiếp của Diệp Phi không nhịn được mà nhảy lên nhẹ một cái, khiến hai người phụ nữ cảm nhận được mà lập tức đỏ bừng mặt, vội vàng ngồi thẳng dậy khỏi lòng hắn, không dám kích thích hắn nữa mà tập trung ăn sáng.</p>
+    <p>Diệp Phi cũng không vì không thể ra trận ngay mà buông tha họ, cùng họ ăn xong bữa sáng. Đợi đến khi ăn gần xong, hắn mới mở miệng nói: "Linh Nhi, hôm nay ta không đến trường..." Vừa nói đến đây, điện thoại trong túi quần Diệp Phi đột nhiên vang lên.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0189.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0191.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

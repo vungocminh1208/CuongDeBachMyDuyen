@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 153 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 153</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 153</small>
+    Chương 153: Phát hiện kinh người
+  </h1>
+  <div class="chapter-body">
+    <p>Sáng ngày thứ hai lúc thức dậy, Diệp Phi nhớ tới chuyện tối qua mà vẫn không nhịn được có chút dư vị. Kỳ thực nếu bàn về độ thân sơ, Liễu Phượng Nghi cùng Diệp Ngưng Sương là như nhau, nhưng có lẽ vì nàng là thân tỷ tỷ của nữ thần trong lòng mình, nên ở bên cạnh nàng, Diệp Phi cảm thấy phá lệ kích thích. Nghĩ đến tối qua Liễu Phượng Nghi từ cực lực giãy dụa đến phối hợp mạnh mẽ, chuyển biến quá nhanh, hơn nữa trong quá trình đó còn nói ra những lời như vậy, Diệp Phi cảm thấy có thể nàng đã biết người nọ chính là mình. Bất quá nàng đã không nói ra, có lẽ là cảm thấy như vậy có thể thoải mái hơn một chút, cái đó mình cũng không cần phải nói toạc ra làm gì.</p>
+    <p>Bởi vì hai ngày nữa muốn cùng tiểu di đến biên cảnh, Diệp Phi hôm nay cũng không đến trường. Sau khi Diệp Vân Khinh lưu luyến rời đi, hắn cũng cùng Liễu Quân Di tới quân doanh, nơi hắn từng ở một cái nghỉ hè.</p>
+    <p>Nhìn cái nơi quen thuộc này, trong lòng Diệp Phi không khỏi có chút cảm khái. Mặc dù cách lúc rời đi mới chỉ vừa vặn một tháng, nhưng trên người mình lại xảy ra biến hóa long trời lở đất. Thời điểm đó mình nhược đến mức đi xa một chút cũng không nổi, nhưng hiện tại chỉ sợ tiểu di mang theo những lính đặc biệt kia cùng đi, cũng không phải là đối thủ của mình nữa.</p>
+    <p>"Đội trưởng!" Mới vừa tiến vào đại viện đặc biệt chiến đội, hai người đàn ông hơn ba mươi tuổi treo quân hàm trung tá liền đón chào, đầu tiên là hướng Liễu Quân Di cúi chào vấn an, sau đó cười hì hì nhìn Diệp Phi nói: "Tiểu Mãn, ngươi cũng tới rồi à."</p>
+    <p>"Trương thúc thúc, Lý thúc thúc." Diệp Phi cũng cười bắt chuyện với họ. Hai người này đều là trung đội trưởng của đặc biệt chiến đội, một người tên Trương Cường, một người tên Lý Vân, thêm vào đại dượng Lý Bân của Diệp Phi và các trung đội trưởng khác, bốn người đều là bộ hạ đắc lực nhất của Liễu Quân Di. Đặc biệt chiến đội khác với nơi khác, những vị đội phó này tuy quân hàm không thấp, nhưng ngoài đội trưởng Liễu Quân Di ra, đều không có đặc quyền gì, ký túc xá cũng đều là loại mười người. Lúc trước Diệp Phi ở đây chính là ở cùng ký túc xá với Trương Cường và Lý Vân, cho nên đối với người khác, hắn quen thuộc với họ hơn một chút.</p>
+    <p>"Trương Cường, Lý Vân, đồng chí Diệp Phi là một thành viên trong hành động lần này của chúng ta, các ngươi dẫn hắn làm quen một chút các vấn đề cần chú ý khi tác chiến, mặt khác cũng cho hắn tiếp xúc qua các loại súng ống." Đến quân doanh, Liễu Quân Di không còn vẻ tiểu nữ nhi như ở nhà, trở nên nghiêm túc như thường lệ, ngay cả cách xưng hô đối với Diệp Phi cũng thay đổi.</p>
+    <p>"Rõ!" Trương Cường và Lý Vân lớn tiếng đáp lời. Đợi Liễu Quân Di đi xa, lập tức cười hì hì hỏi Diệp Phi: "Tiểu Mãn, làm sao cũng nghĩ đến biên cảnh chơi thế?"</p>
+    <p>Diệp Phi cười nói: "Đúng vậy ạ, mẹ con nói con còn nhỏ, nên tích lũy kinh nghiệm, cho nên bảo tiểu di dẫn con đi cùng."</p>
+    <p>Trương Cường cười ha hả nói: "Vận khí của ngươi thật không tệ, còn có thể đi cửa sau. Phải biết rằng, đặc biệt chiến đội chúng ta có rất nhiều người muốn đi mà không được đấy."</p>
+    <p>Diệp Phi nhìn bộ dạng thoải mái của họ, không khỏi nhắc nhở: "Nghe nói hành động lần này có chút nguy hiểm, vì sao còn có nhiều người muốn đi thế?"</p>
+    <p>Lý Vân cười nói: "Nguy hiểm tự nhiên không tránh khỏi, bất quá chúng ta làm quân nhân, lại là người của đặc biệt chiến đội, sao có thể sợ nguy hiểm được? Hơn nữa, cũng chỉ là một nhóm khủng bố, chúng ta còn không đến mức sợ bọn chúng."</p>
+    <p>Trương Cường cũng cười nói: "Đúng vậy, đến lúc đó Tiểu Mãn ngươi cứ đi theo Trương thúc thúc, cam đoan ngươi không sao cả!"</p>
+    <p>Diệp Phi thầm thở dài, xem ra họ cũng giống tiểu di, không đủ coi trọng chuyện lần này, nhưng suy đoán của mình lại không thể nói rõ với họ, bằng không sẽ làm nhiễu loạn quân tâm. Đành ngầm hạ quyết định, đến lúc đó nhất định phải bảo vệ tốt những quân nhân đáng yêu này. Dù sao lần này Vọng Hải đặc biệt chiến đội cũng chỉ đi ra ngoài năm mươi người, có mình và tiểu di chiếu ứng, chắc sẽ không có vấn đề gì, về phần người nơi khác, đành để bọn họ tự cầu nhiều phúc.</p>
+    <p>Vừa đi vào trong, Trương Cường và Lý Vân vừa giảng giải cho Diệp Phi những mục cần chú ý và kỹ xảo khi tác chiến. Tuy tri thức của Diệp Phi hiện tại gần như không ai bằng, phương diện quân sự hắn cũng có chút hiểu biết, nhưng dù sao chỉ là lý thuyết suông, làm sao so được với những người đã qua huấn luyện thực chiến thậm chí từng ra chiến trường? Cho nên rất nhiều lời nói của họ làm Diệp Phi có cảm giác sáng tỏ thông suốt, đối với việc bảo vệ họ chu toàn trên chiến trường càng thêm tự tin.</p>
+    <p>Trong lúc bất tri bất giác, ba người đã dạo hơn phân nửa quân doanh, đi tới gần bãi bắn. Dọc đường đi, những người nhìn thấy Diệp Phi đều rất thân mật chào hỏi. Nơi này tổng cộng có năm trăm người, mà hắn lại là cháu trai của đại đội trưởng được mọi người kính nể, cho nên trong hai tháng ở đó, hắn đã rất quen thuộc với mọi người.</p>
+    <p>Trương Cường đột nhiên "ồ" một tiếng nói: "Tiểu Mãn, sao thể chất của ngươi hình như tốt hơn trước nhiều thế?" Phải biết rằng, nơi này tuy người không nhiều, nhưng vì là đặc biệt chiến đội nên vẫn khá được ưu đãi, cái bãi này thực sự không nhỏ, lúc trước Diệp Phi đi được một nửa là không nổi rồi, nhưng bây giờ họ đi vòng vèo hơn nửa vòng mà Diệp Phi vẫn mặt không đỏ, hơi thở không gấp, điều này làm Trương Cường không khỏi kinh ngạc.</p>
+    <p>Trương Cường vừa nói như vậy, Lý Vân cũng phát hiện Diệp Phi khác lạ, cười nói: "Đúng vậy, Tiểu Mãn hình như mạnh hơn trước nhiều thật, có phải một tháng qua có kỳ ngộ gì không?"</p>
+    <p>Tuy rất quen thuộc với hai người, hơn nữa cũng tuyệt đối tin tưởng họ, nhưng Diệp Phi vẫn không muốn nói chuyện của mình cho họ nghe, dù có nói đến việc luyện công pháp của nhà cũng không thể tiết lộ, công pháp lợi hại như vậy nếu truyền ra, chỉ sợ sau này mình không được an bình. Vì vậy hắn cười nói: "Làm gì có kỳ ngộ gì, chỉ là con ở đây hai tháng, thân thể khá hơn một chút, sau khi về có thể luyện công phu mẹ dạy, cho nên mới được như vậy."</p>
+    <p>Trương Cường và Lý Vân là trợ thủ đắc lực của Liễu Quân Di, tự nhiên biết nhà họ Liễu có một bộ võ công gia truyền, nghe Diệp Phi nói vậy, một chút cũng không nghi ngờ, hơn nữa đều rất vui cho Diệp Phi. Trương Cường cười lớn nói: "Trách không được đội trưởng lần này cho ngươi đi, nguyên lai Tiểu Mãn nhà ta bây giờ cũng là cao thủ rồi."</p>
+    <p>"Con đâu dám nhận là cao thủ, mới bắt đầu luyện thôi ạ." Diệp Phi cười khiêm tốn một câu, lại không biết câu khiêm tốn này vài ngày sau suýt nữa làm Lý Vân mất mạng, về sau càng làm một cô gái hận hắn nghiến răng nghiến lợi, tất nhiên đó là chuyện sau này.</p>
+    <p>"Phía trước là bãi bắn bia, Tiểu Mãn có hứng thú thử không?" Lý Vân thấy Diệp Phi hình như không muốn dây dưa chủ đề này nữa, bèn nói đến chuyện hắn cảm thấy hứng thú.</p>
+    <p>Gần như mỗi cậu con trai đều có hứng thú lớn với súng ống, Diệp Phi tự nhiên cũng không ngoại lệ. Vốn dĩ trước kia ở đây, thể chất của hắn căn bản không chịu nổi sức giật của súng, tuy muốn tự tay thử nhưng không được như ý. Sau khi tiếp quản Lăng Vân Hội, lấy được súng cũng là chuyện dễ dàng, nhưng vẫn không có ý nghĩ đó. Cho nên cho tới bây giờ, Diệp Phi chỉ mới dùng súng một lần trong tang lễ Diệp Lăng Thiên, mà chỗ đó vì phẫn nộ trong lòng nên không dụng tâm cảm thụ qua. Vì vậy sau khi nghe lời đề nghị của Lý Vân, không khỏi nổi hứng, vội vàng gật đầu đồng ý.</p>
+    <p>Ba người cùng đi vào bãi bắn bia, phân biệt đứng lại trước một cửa sổ xạ kích. Bởi vì nơi này là đặc biệt chiến đội, nên không giống các bộ đội khác, có súng cũng không cho đạn. Ở đây, chỉ cần ngươi có khả năng, luyện tập dùng bao nhiêu đạn cũng không ai quan tâm.</p>
+    <p>Cầm súng ngắn, Diệp Phi ngưng thần nhìn về phía bia ngắm cách năm mươi mét. Lần đầu tiên chính thức nghịch súng, hắn cũng muốn mình cố gắng bắn chuẩn một chút. Không ngờ lúc ngưng thần, lại phát hiện trước mắt như lắp kính viễn vọng, bia ngắm cách năm mươi mét như đặt ngay trước mắt, điều này làm Diệp Phi không khỏi thấy kỳ lạ.</p>
+    <p>Bên kia Trương Cường và Lý Vân đã bắt đầu xạ kích, tốc độ cực nhanh, chỉ nghe bên tai tiếng súng "bang bang" không ngừng, mà trên màn hình điện tử hiển thị điểm số đều không có viên nào dưới chín vòng. Nhìn ra được, súng pháp của bọn họ đều cực tốt. Bất quá Diệp Phi tạm thời chưa nổ súng, mà tự hỏi về sự biến hóa này của mình. Nghĩ đi nghĩ lại, cách giải thích duy nhất là năng lực đặc thù của cái gã dã man kia, chỉ là trong kỹ năng của gã dã man hình như không có cái gì liên quan tới sự chính xác này.</p>
+    <p>Trương Cường và Lý Vân rất nhanh đã bắn hết đạn trong súng, thấy Diệp Phi đến giờ vẫn chưa bắn viên nào, còn tưởng rằng hắn không tự tin, bèn đi tới bên cạnh hắn. Trương Cường cười lớn nói: "Tiểu Mãn, không cần sợ không trúng, cứ nhắm thẳng vào mà bắn là được."</p>
+    <p>Lý Vân cũng nói: "Đúng vậy, ngươi là lần đầu dùng súng, cho dù không trúng cũng không ai cười ngươi đâu. Nhớ năm đó ta mới nhập ngũ, cũng mười phát không trúng bia viên nào đấy." Đây cũng là Lý Vân cố ý tìm tự tin cho Diệp Phi, lúc mới nhập ngũ tuy súng pháp của hắn còn lâu mới so được hiện tại, nhưng cũng không đến mức không trúng bia.</p>
+    <p>Diệp Phi cười cười, tay giơ lên nhắm vào bia rồi bóp cò. Chỉ nghe "phanh" một tiếng giòn vang, màn hình điện tử hiện ra số vòng hắn đạt được, thế mà là mười vòng.</p>
+    <p>Hai người Trương, Lý đều giật mình, Trương Cường cười lớn nói: "Được đấy Tiểu Mãn, phát súng đầu tiên đã bắn tốt như vậy, tới, thử lại lần nữa!"</p>
+    <p>Diệp Phi biết mình nên thể hiện một chút bản lĩnh, bằng không đến lúc đó họ khó tránh khỏi vì chiếu cố mình mà có nhiều cố kỵ. Vì vậy hắn giơ súng lên tiếp tục xạ kích, chỉ nghe tiếng súng "rầm rầm rầm" liên hồi, Diệp Phi một hơi bắn hết mười một phát còn lại trong súng, tốc độ bắn vậy mà không hề thấp hơn hai người vừa rồi.</p>
+    <p>Hai người Trương, Lý đều thầm cười trong lòng, xem ra Diệp Phi vẫn là tâm tính trẻ con, phát đầu tiên bắn tốt đã đắc ý quên hình, vậy mà học theo hai người họ chơi bắn nhanh. Phải biết rằng bắn súng chuẩn thì không khó, khó là bắn nhanh như vậy. Bởi vì điều này không chỉ đòi hỏi súng pháp cao, mà còn rất khảo nghiệm cơ bắp, phải triệt tiêu sức giật của súng trong thời gian cực ngắn, bằng không căn bản không thể bắn chuẩn.</p>
+    <p>Nhưng sau đó điểm số trên màn hình điện tử lại làm hai người Trương, Lý sững sờ. Diệp Phi trước sau tổng cộng bắn mười hai phát, mà màn hình điện tử hiển thị lại là đúng một trăm hai mươi vòng, nói cách khác, mỗi một phát của Diệp Phi đều trúng hồng tâm mười vòng.</p>
+    <p>"Á! Tiểu Mãn, ngươi làm thế nào vậy?" Ngây người một hồi, hai người Trương, Lý đồng thời tỉnh lại, trăm miệng một lời hỏi.</p>
+    <p>Diệp Phi cười cười nói: "Có lẽ nhãn lực của con khá tốt ạ."</p>
+    <p>Trương Cường lắc đầu nói: "Không thể nào, chỉ nhãn lực mạnh căn bản không làm được điểm này, còn phải cần lực tay lớn và ổn định mới được. Xem ra công phu gia truyền của đội Liễu quả thực lợi hại!" Nói xong không khỏi có chút cảm khái.</p>
+    <p>Lời của Trương Cường làm Diệp Phi sáng tỏ, rốt cục nghĩ tới một khả năng, đó chính là kỹ năng ném mạnh trong bộ kỹ năng của gã dã man. Nếu muốn ném chuẩn xác, tự nhiên yêu cầu cực kỳ nghiêm khắc về lực mắt và lực tay. Năng lực giống như kính viễn vọng của mình chắc hẳn là công lao của kỹ năng này, bất quá chỉ là trong giới thiệu kỹ năng không có nói tới mà thôi. Xem ra bộ kỹ năng dã man này của mình còn có không gian khai phá rất lớn. Vốn cho rằng đây chỉ là căn bản để thân thể mình trở nên mạnh mẽ, tối đa cũng chỉ làm tăng sức mạnh, tốc độ và khả năng phòng ngự, nhưng hiện tại xem ra là mình sai rồi. Bộ kỹ năng này nếu thực sự nghiên cứu thấu triệt, chỉ sợ uy lực không dưới bộ công pháp của mình, điều này làm Diệp Phi rất kích động.</p>
+    <p>Hai người Trương, Lý kinh ngạc một hồi, lại bảo Diệp Phi thử bia di động. Mà Diệp Phi muốn thể hiện năng lực phương diện này của mình, tự nhiên cũng không giấu dốt. Ngoài hai phát đầu do không thích ứng nên bắn ra điểm thấp, về sau vậy mà đều là mười vòng, hơn nữa tốc độ bắn so với lúc bắn bia đứng cũng không chậm hơn bao nhiêu.</p>
+    <p>Hai người Trương, Lý đợi Diệp Phi bắn xong, đột nhiên kích động ôm nhau nhảy cẫng lên. Lý Vân cười ha hả nói: "Ha ha, Vọng Hải đặc biệt chiến đội chúng ta cuối cùng cũng có một Thần Thương Thủ thực thụ rồi, nhìn lũ nhóc kinh thành còn dám khoa trương nữa không!" Dưới sự kích động, họ đã xem Diệp Phi là một thành viên của mình rồi.</p>
+    <p>Diệp Phi nghe mà ngẩn người, hỏi: "Cái gì mà lũ nhóc kinh thành?"</p>
+    <p>Trương Cường bình phục sự kích động, giải thích: "Là thế này, trong cuộc đại tỉ võ đặc chủng nửa năm trước, đặc biệt chiến đội kinh thành đột nhiên xuất hiện một Thần Thương Thủ, đem chúng ta so xuống dưới. Đám người kia đắc ý vô cùng, nếu không phải đại đội trưởng đánh bại bọn chúng trong trận đấu vật tay cá nhân, lần đó chúng ta thực sự mất thể diện. Hiện tại tốt rồi, có ngươi ở đây, chúng ta rốt cuộc không cần sợ so súng pháp với bọn chúng nữa!"</p>
+    <p>Diệp Phi không khỏi dở khóc dở cười, không ngờ đám đặc biệt chiến đội viên thân kinh bách chiến này cũng như trẻ con, tranh giành những thứ không đâu. Bất quá cũng thực sự hiểu rõ, họ chỉ là cạnh tranh lành mạnh, không ảnh hưởng đến việc hợp tác mấy ngày nữa. Vì vậy hắn không nói gì thêm, chỉ cười nói: "Vậy nếu gặp tên Thần Thương Thủ kia, con lại muốn so với hắn rồi."</p>
+    <p>Biết súng pháp của Diệp Phi, hai người Trương, Lý đều rất hưng phấn, vốn định lôi kéo hắn đến sân huấn luyện so tài thêm, bất quá nghĩ đến thân thủ kinh khủng kia của Liễu Quân Di, cuối cùng vẫn không nói ra miệng. Tuy họ không coi trọng mấy cái khác, nhưng nếu để tiểu bối Diệp Phi đánh bại, dù sao cũng khó coi.</p>
+    <p>Sau khi biết nơi này có thể học được những thứ mình chưa biết, Diệp Phi quyết định ở lại quân doanh trước khi xuất phát. Vì vậy hắn gọi điện cho những người mình quan tâm. Với Diệp Ngưng Sương, Tiêu Hàm Nguyệt và Hứa Thư Vân thì nói sự thật, còn với Tô Ngọc Nhàn thì nói mình tham gia một nhóm hoạt động ngoại khóa, muốn qua một thời gian mới về. Chúng nữ biết Diệp Phi có việc chính sự, đều không ngăn cản hắn, bất quá cũng có chút không nỡ, ngay cả Hứa Thư Vân cũng vậy, làm Diệp Phi cảm động, trong lòng cũng vô cùng hưng phấn.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0152.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0154.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

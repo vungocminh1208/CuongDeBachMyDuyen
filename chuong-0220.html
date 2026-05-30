@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 220 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 220</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 220</small>
+    Chương 220: Cố nhân của mẹ
+  </h1>
+  <div class="chapter-body">
+    <p>Điều khiến Diệp Phi thấy thở phào nhẹ nhõm là, vì không phải mùa du lịch cao điểm, lại thêm ba người không đến những nơi nổi tiếng, nên dọc đường đi vẫn khá yên tĩnh.</p>
+    <p>Một buổi sáng, ba người ghé qua không ít địa điểm. Vệ Thanh cũng thoát khỏi vẻ trầm mặc thường ngày, mỗi khi đến một nơi lại giới thiệu cho Diệp Phi và Liễu Quân Di đặc điểm cùng những điển tích lịch sử, thậm chí còn am hiểu hơn cả người dân bản địa, khiến Diệp Phi và Liễu Quân Di hết sức ngạc nhiên.</p>
+    <p>"Thanh muội, sao em lại rành những nơi này thế? Nếu không biết em tốt nghiệp quân hiệu xong là vào đặc biệt chiến đội luôn, chị còn tưởng em từng làm hướng dẫn viên du lịch đấy."</p>
+    <p>Đến trưa chuẩn bị ăn cơm, Liễu Quân Di rốt cuộc không nhịn được hiếu kỳ, nửa đùa nửa thật hỏi.</p>
+    <p>"Mẹ em rất thích nghiên cứu mấy thứ này, lúc nhỏ em thường theo mẹ đi khắp nơi nên biết rõ một chút."</p>
+    <p>Nụ cười rạng rỡ trên gương mặt Vệ Thanh trở nên hơi đắng chát, giọng nói mang theo chút thất lạc: "Sau này mẹ mất, mỗi khi nhớ mẹ, em lại một mình đến những nơi này, thành ra mới quen thuộc như vậy."</p>
+    <p>Liễu Quân Di không ngờ câu hỏi bâng quơ của mình lại gợi lại nỗi đau của Vệ Thanh, không khỏi áy náy: "Thanh muội, chị xin lỗi, chị không nên hỏi chuyện đó."</p>
+    <p>"Không sao ạ, chuyện này đè nặng trong lòng em nhiều năm rồi, em cũng đang muốn tìm người thổ lộ."</p>
+    <p>Vệ Thanh không hổ là tinh anh của đặc biệt chiến đội, tâm lý vững vàng, nhanh chóng điều chỉnh lại cảm xúc, mỉm cười nói: "Hơn nữa, em tin rằng một ngày nào đó mình sẽ tìm được mẹ."</p>
+    <p>Lời của Vệ Thanh khiến Diệp Phi và Liễu Quân Di đều ngẩn người. Họ vốn tưởng mẹ Vệ Thanh đã qua đời, không ngờ còn có ẩn tình khác. Nhưng lúc này rõ ràng không phải lúc bàn chuyện đó, nên cả hai không hỏi thêm. Diệp Phi đề nghị: "Cũng muộn rồi, chúng ta tìm chỗ ăn trưa đã, chiều lại đi tiếp."</p>
+    <p>"Được."</p>
+    <p>Hai cô gái đồng thanh đáp, sau đó một người một bên đi cạnh Diệp Phi. Qua một buổi sáng, Vệ Thanh không chỉ hiểu thêm về Diệp Phi mà còn dần vượt qua sự ngượng ngùng, giờ đã có thể thoải mái đi bên cạnh anh, chỉ là vẫn chưa tự nhiên được như Liễu Quân Di khi khoác tay anh.</p>
+    <p>Nơi họ đang đứng là một cảnh điểm nhỏ không thu phí, khách tham quan ngoài ba người họ ra đa số là cư dân quanh đây. Đến trưa, người dân đều đã về nhà nên nơi này khá tĩnh lặng, rất hợp ý Diệp Phi, người vốn ghét cảnh ồn ào đông đúc.</p>
+    <p>Vệ Thanh dù thuộc lòng điển tích nơi này nhưng đã lâu không ghé lại, nên ba người mất một lúc lâu mới tìm thấy một quán cơm nhỏ. Đang định bước vào thì một đôi nam nữ đi ra.</p>
+    <p>Diệp Phi tuy có lúc bá đạo, thậm chí tàn nhẫn với kẻ địch, nhưng với người bình thường anh vẫn giữ thái độ ôn hòa khiêm tốn. Thấy lối đi trước quán hơi hẹp, anh kéo hai cô gái sang bên cạnh, nhường đường cho đôi nam nữ kia đi trước.</p>
+    <p>Vậy nhưng sự khiêm nhường của Diệp Phi không nhận được phản hồi tương xứng. Đôi nam nữ kia ngẩng cao đầu, nhìn ba người với vẻ khinh khỉnh. Thế nhưng, khi nhìn rõ gương mặt Diệp Phi, sắc mặt họ bỗng trở nên đặc sắc.</p>
+    <p>Người nam khá hơn một chút, sau khi thấy Liễu Quân Di và Vệ Thanh thì ánh lên vẻ kinh diễm, nhưng có vẻ sợ người phụ nữ bên cạnh khó chịu nên vội quay mặt đi. Còn người phụ nữ kia thì hoàn toàn khác hẳn. Khi thấy Diệp Phi, trong mắt cô ta lóe lên vẻ hoang mang xen lẫn kích động, như thể nhìn thấy người không tưởng. Nhưng khi nhìn sang hai cô gái, đặc biệt là khi thấy rõ Liễu Quân Di, sự kinh ngạc ban đầu biến thành vẻ ghen ghét sâu sắc, thái độ thay đổi nhanh đến mức Diệp Phi cũng phải kinh ngạc.</p>
+    <p>Nếu Diệp Phi thích xem truyền hình, anh chắc chắn sẽ nhận ra hai người này. Người phụ nữ là một nữ minh tinh anh từng gặp khi còn nhỏ, còn người nam là một nam diễn viên trẻ đang nổi. Tiếc là Diệp Phi gần như không bao giờ xem ti vi nên chẳng có ấn tượng gì. Tuy nhiên, Liễu Quân Di dường như nhận ra người phụ nữ này, sau khi nhìn rõ mặt cô ta, sắc mặt chị trở nên khó coi.</p>
+    <p>"Ồ, đây chẳng phải Quân Di sao? Sao không ở yên Vọng Hải mà lại chạy đến kinh thành của chúng tôi thế này?"</p>
+    <p>Diệp Phi đoán không sai, người phụ nữ kia quả nhiên quen Liễu Quân Di. Sau khi nhận ra, cô ta lập tức mỉa mai, còn đặc biệt nhấn mạnh hai chữ "kinh thành", khiến Diệp Phi thầm thở dài, lại thêm một kẻ đáng thương mắc bệnh tự phụ vùng miền.</p>
+    <p>"Tôi cứ tưởng là ai, hóa ra là Phượng tỷ tỷ."</p>
+    <p>Trên mặt Liễu Quân Di lộ ra nụ cười lạnh lùng: "Sao tỷ lại rảnh rỗi chạy đến cái nơi nhỏ bé này thế?"</p>
+    <p>Diệp Phi kinh ngạc. Anh khó lòng tưởng tượng được người tiểu di vốn hào sảng như bậc trượng phu lại có lúc tranh cãi gay gắt với người khác như vậy. Điều này chỉ có hai khả năng: một là hai người là bạn thân chí cốt, cách nói chuyện này là để đùa giỡn; hai là Liễu Quân Di cực kỳ ghét người này đến mức không thể kiểm soát cảm xúc. Nhìn tình hình hiện tại, khả năng thứ hai cao hơn hẳn.</p>
+    <p>Sự việc này khơi dậy lòng hiếu kỳ của Diệp Phi, anh không nhịn được hỏi: "Tiểu di, vị này là?"</p>
+    <p>Liễu Quân Di chưa kịp đáp, người phụ nữ kia đã bất chợt nhìn chằm chằm vào Diệp Phi, hỏi: "Cậu là con trai của Liễu Diệc Như?"</p>
+    <p>"Đúng vậy."</p>
+    <p>Diệp Phi không lấy làm lạ khi người này biết mẹ mình, dù sao ba chị em Liễu gia tình cảm rất sâu đậm, mà người phụ nữ này lại có quan hệ không bình thường với Liễu Quân Di. Nhưng Diệp Phi vẫn hỏi: "Cô biết mẹ tôi?"</p>
+    <p>Người phụ nữ nghe Diệp Phi xác nhận, trong mắt lộ ra vẻ phức tạp, nhìn chằm chằm anh một lúc lâu mới trấn tĩnh lại, nở nụ cười gượng gạo: "Biết, đương nhiên là biết. Năm xưa tôi và mẹ cậu là bạn rất thân, cậu có thể gọi tôi là Phượng dì."</p>
+    <p>"Vậy sao? Nhưng tôi chưa từng nghe mẹ nhắc đến cô."</p>
+    <p>Dù miệng đang cười, nhưng Diệp Phi vẫn nhạy bén cảm nhận được sự khác biệt trong ánh mắt của cô ta. Khi nhắc đến Liễu Diệc Như, sự đố kỵ không thể che giấu của cô ta hiện rõ mồn một.</p>
+    <p>Từ biểu hiện đó, Diệp Phi hiểu ra mâu thuẫn giữa cô ta và Liễu Quân Di bắt nguồn từ mẹ mình - Liễu Diệc Như. Công bằng mà nói, người phụ nữ này có phong thái và khí chất tuyệt thế chẳng kém gì mẹ anh. Dù vậy, Diệp Phi cũng không thể nể nang gì vì cô ta đang thù địch với người mẹ mà anh yêu quý nhất.</p>
+    <p>Lời của Diệp Phi khiến người phụ nữ khựng lại, sau đó thở dài, dường như mất đi hứng thú tranh cãi với Liễu Quân Di, quay sang nói với người nam kia: "Chúng ta đi thôi."</p>
+    <p>Nói xong, cô ta chẳng đợi ai phản ứng mà bước thẳng đi, còn người nam kia dường như không có chủ kiến, vội vã đi theo.</p>
+    <p>Liễu Quân Di không nói thêm gì về sự ra đi của họ, chỉ khi bóng họ khuất dần, chị mới bảo Diệp Phi: "Có phải em có điều muốn hỏi chị?"</p>
+    <p>Diệp Phi gật đầu, nhưng không hỏi ngay mà cùng hai người vào quán cơm, đặt một phòng riêng. Sau khi ngồi xuống, anh mới lên tiếng: "Người đó là ai vậy? Có phải có ân oán với mẹ tôi?"</p>
+    <p>"Cũng không hẳn là ân oán."</p>
+    <p>Liễu Quân Di không ngạc nhiên khi Diệp Phi không biết minh tinh đình đám một thời này, chị giải thích: "Cô ta tên Trác Phượng Nhi, đúng như cô ta nói, năm xưa là bạn rất thân với mẹ em. Hơn nữa, xét về một khía cạnh nào đó, em còn phải cảm ơn cô ta nữa đấy."</p>
+    <p>Diệp Phi ngẩn người: "Ý gì ạ? Sao lại nói vậy?"</p>
+    <p>"Vì nếu không có cô ta, trên đời này có lẽ đã không có em và Khinh Khinh."</p>
+    <p>Liễu Quân Di hít sâu một hơi, hồi tưởng lại: "Trác Phượng Nhi và mẹ em là bạn học thời trung học, quan hệ cực kỳ thân thiết. Khi đó cô ta thường xuyên cùng mẹ em đến nhà chơi, chị cũng quen cô ta từ lúc đó. Lúc ấy, cô ta là một cô gái có tính cách rất ôn hòa, chị và cô ta từng rất thân nhau. Chỉ là sau đó xảy ra một chuyện, cô ta suýt mất mạng, đúng lúc được ba em - người chưa kết hôn với mẹ em lúc bấy giờ - cứu sống. Có lẽ vì vậy mà cô ta đem lòng yêu sâu đậm ba em."</p>
+    <p>Diệp Phi không ngờ chuyện cũ lại khúc mắc đến thế, kinh ngạc mở to mắt: "Vậy ra cô ta vì yêu mà không được nên quay sang hận mẹ tôi? Nhưng điều này thì liên quan gì đến sự ra đời của tôi và Khinh Khinh?"</p>
+    <p>Liễu Quân Di thở dài: "Vốn dĩ chị em chúng ta đều cực kỳ phản đối việc gia đình ép hôn mẹ em, nên khi đó đã định giúp mẹ em bỏ trốn. Nhưng ngay khi sắp rời đi, ngoại công của em đã tìm được chúng ta và cưỡng chế đưa mẹ em về nhà. Sau này chúng ta mới biết, hành tung của cả nhóm đều do Trác Phượng Nhi tiết lộ cho ông ngoại em. Về lý do tại sao cô ta làm vậy, chỉ e ngoài chính cô ta ra không ai biết."</p>
+    <p>Diệp Phi càng thêm mơ hồ. Dù dùng đến trí óc của mình, anh cũng không thể hiểu nổi lý do Trác Phượng Nhi làm vậy. Nếu nói cô ta không còn tình cảm với Diệp Lăng Vân thì không thể nào, bằng không cô ta đã chẳng thù địch với Liễu Diệc Như. Nhưng tại sao cô ta lại đẩy người mình yêu đi? Chắc chắn không thể là vì hy sinh cho bạn thân, vì cô ta không thể không biết Liễu Diệc Như vốn không có chút tình cảm nào với Diệp Lăng Vân.</p>
+    <p>Nghĩ tới đây, Diệp Phi cười khổ. Xem ra chuyện tình cảm quả thật phức tạp, đến mình cũng không thể thấu suốt đầu đuôi. Anh cũng chẳng biết nên đối mặt với Trác Phượng Nhi thế nào. Tiểu di nói đúng, không có cô ta thì không có anh và Diệp Vân Khinh. Nhưng bắt anh cảm kích một người thù địch với mẹ mình thì lại là điều không thể. Cũng may từ nay về sau có lẽ chẳng gặp lại Trác Phượng Nhi nữa, cũng đỡ phải phiền lòng.</p>
+    <p>Liễu Quân Di mặc kệ vẻ ngẩn ngơ của Diệp Phi, tiếp tục nói: "Sau khi chúng ta bị ông ngoại em bắt về, Trác Phượng Nhi cũng rời khỏi Vọng Hải. Hai năm sau, cô ta đột nhiên trở thành nghệ sĩ, nổi tiếng khắp cả nước. Chuyện này chắc Thanh muội biết nhỉ?"</p>
+    <p>Vệ Thanh gật đầu: "Em biết cô ấy. Hồi đó vì tiếng hát của cô ấy rất hay, hơn nữa đời tư cũng cực kỳ đoan chính nên em từng hâm mộ cô ấy một thời gian dài. Không ngờ sau đó cô ấy lại đột ngột gả cho một phú hào đã già khú đế, khiến bao người cảm thấy tiếc nuối."</p>
+    <p>Trong lòng Diệp Phi lóe lên một suy đoán, vội hỏi: "Cô ta gả cho vị phú hào đó là trước hay sau khi ba tôi qua đời?"</p>
+    <p>Liễu Quân Di sững sờ, lập tức hiểu ra ý Diệp Phi, thở dài: "Là sau khi tin tức ba em qua đời được lan truyền. Trách không được sau khi nắm giữ toàn bộ sản nghiệp của lão phú hào đó, cô ta lại không biết tự lượng sức mình mà đối địch với Liễu gia chúng ta."</p>
+    <p>Nói đến đây, Liễu Quân Di lại thở dài lần nữa. Chị thầm than Trác Phượng Nhi đúng là một người phụ nữ ngốc nghếch, nhưng cũng không cách nào ghét bỏ cô ta như trước nữa, ngược lại thấy cô ta thật đáng thương.</p>
+    <p>Qua nét mặt Liễu Quân Di, Diệp Phi và Vệ Thanh đều hiểu thêm không ít chuyện, trong lòng không khỏi cảm khái. Thấy không khí trầm mặc, Diệp Phi cười nói: "Thôi, không nói chuyện này nữa, gọi món thôi nào, lát nữa còn đi chơi tiếp."</p>
+    <p>Lời tuy vậy, nhưng trong lòng anh vẫn còn một nghi vấn: năm đó tại sao Trác Phượng Nhi lại tiết lộ hành tung của chị em Liễu gia cho ngoại công anh?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0219.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0221.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

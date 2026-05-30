@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 250 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 250</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 250</small>
+    Chương 250: Mai một tài nữ
+  </h1>
+  <div class="chapter-body">
+    <p>"Hiện tại nghiệp vụ kinh tế của công ty đình trệ, bọn họ ở nơi này cũng không có việc gì, cho nên đại đa số đều xin nghỉ rồi." Người quản lý kia nơm nớp lo sợ nói, trong lòng tuy rất muốn bịa ra một lời hứa, nhưng đứng trước mặt Diệp Phi thì làm sao cũng không dám, cuối cùng vẫn nói lời thật. "Nghỉ không lương?" Diệp Phi nhàn nhạt hỏi. "Cái này..." Người quản lý kia chần chờ một chút, vẫn nhỏ giọng nói: "Có lương, chỉ là không có tiền thưởng gì cả. Hiện tại công ty không làm ra lợi nhuận, nếu không nhờ tổng công ty một mực duy trì, chỉ sợ ngay cả tiền lương cũng không phát nổi. Nhưng chỉ với chút tiền lương này thì các nhân viên không thể nuôi sống gia đình, cho nên rất nhiều người vẫn đang làm thêm bên ngoài, mỗi ngày thay phiên nhau đi làm." Diệp Phi nhàn nhạt ừ một tiếng, chẳng ai biết trong lòng hắn rốt cuộc nghĩ thế nào, sau đó lại hỏi: "Quyết định này là do ai đưa ra? Ta nghĩ nếu không có người đứng đầu chịu trách nhiệm thì các nhân viên cũng sẽ không vô kỷ luật như vậy chứ?" Người quản lý kia cắn răng, trong lòng hạ quyết tâm, chi tiết nói ra: "Là ta bảo bọn họ làm như vậy. Ai ra ngoài làm việc cũng là vì sinh sống, nếu như ngay cả sinh hoạt cũng không lo được thì tin rằng không bao lâu nữa nhân viên ở đây sẽ nghỉ sạch trơn." "Ngươi tên là gì?" Diệp Phi đột nhiên hỏi. Hắn hiện tại cũng không mấy tức giận với người quản lý này, bởi vì ông ta nói rất đúng. Nếu như ngay cả nuôi gia đình cũng không làm được, ai lại ở lại một công ty như thế này để kiên trì? Tin rằng dù có cái danh Diệp gia đè nặng, nhân viên khi đã không có đường lui thì vẫn sẽ rời đi thôi. Chuyện này cũng không trách họ được, chỉ có thể trách công ty này thật sự quá kém cỏi. Mà người quản lý này có thể đưa ra quyết định như vậy trong tình cảnh này, chứng tỏ đối xử với nhân viên dưới quyền thực sự không tệ. "Ta gọi là Trình Huy, lộ trình, quang huy, là tổng giám đốc của Công ty Điện ảnh và Truyền hình Lăng Vân." Người quản lý có chút bất an đáp, không biết vì sao Diệp Phi lại đột nhiên hỏi tên mình. "Quản lý Trình à? Qua việc ngươi có thể đưa ra quyết định như vậy, có thể thấy ngươi đối xử với các nhân viên không tệ, tin rằng bọn họ cũng rất ủng hộ ngươi chứ?" Trên mặt Diệp Phi lộ ra một nụ cười, nói tiếp: "Bất quá, chỉ có lòng nhân từ thì không gánh vác nổi chức tổng giám đốc. Như vậy đi, quản lý Trình, ngươi tạm thời ủy khuất xuống ngồi vào ghế phó tổng. Về phần vị trí tổng giám đốc này, cứ để trống đã, chờ sau này ta tìm được người có năng lực hơn rồi tính sau. Ngươi không có ý kiến gì chứ?" "Không có ý kiến, không có ý kiến!" Trình Huy vội vàng gật đầu nói. Ông đâu phải không có ý kiến, quả thực là sắp kinh hỉ quá độ rồi. Vốn dĩ ông đã nghĩ đến viễn cảnh khốn cùng sau này của mình: Bị đuổi việc vì là người của Diệp thị, ở Vọng Hải căn bản không ai dám dùng, mà nơi khác thì lại lạ nước lạ cái. Nếu vậy thì gia đình ông coi như xong đời. Không ngờ tới bước đường cùng lại có chuyển biến, Diệp Phi chẳng những không đuổi việc mà còn cho mình làm phó tổng, làm sao ông không mừng rỡ khôn xiết? Diệp Phi gật đầu, tiếp tục nói: "Những nhân viên đang đi làm thêm bên ngoài, ngươi hẳn là đều liên hệ được chứ? Thông báo cho bọn họ, tất cả mọi người buổi chiều đến công ty. Vấn đề tiền lương không cần lo lắng, từ nay về sau ta cho bọn họ tăng gấp ba. Nhân viên Diệp thị làm sao có thể đi ra ngoài làm thêm? Bất quá có một điểm, đó là từ nay về sau phải làm việc nỗ lực, không được biếng nhác như vậy nữa. Bằng không, dù họ không chủ động từ chức, ta cũng sẽ chủ động đuổi người đấy. Điều này ngươi hẳn cũng không ý kiến gì chứ?" "Đương nhiên!" Trình Huy nói: "Bọn họ phần lớn đều là nhân viên kỳ cựu của công ty, tự nhiên cũng muốn làm tốt công việc, hiện tại đã có cơ hội, nhất định sẽ rất cố gắng!" "Vậy là tốt rồi." Diệp Phi khẽ mỉm cười: "Hiện tại sắp giữa trưa, thông báo cho tất cả nhân viên trong công ty, ta mời mọi người đi ăn cơm." "Được!" Đối thoại giữa Diệp Phi và Trình Huy đã sớm thu hút sự chú ý của hầu hết mọi người. Lúc nãy Diệp Phi nói chuyện cũng không cố ý hạ giọng, cho nên mọi người trong đại sảnh đều không khỏi hoan hô lên. Đương nhiên, họ vui mừng không phải vì Diệp Phi mời ăn cơm, mà là từ người thiếu niên mười sáu tuổi này, họ thấy được hy vọng để công ty huy hoàng trở lại. Từ nay về sau, nói ra thân phận nhân viên "Điện ảnh và Truyền hình Lăng Vân" sẽ không còn khiến người khác khinh bỉ, mà là hâm mộ! Đang lúc mọi người vui mừng chuẩn bị đi ăn cơm, cô tiếp tân đột nhiên nhắc nhở Trình Huy: "Còn chưa gọi tiểu thư Tư Đồ đúng không ạ?" "À, đúng đúng, suýt chút nữa quên mất cô ấy, ngươi mau đi thông báo đi." Trình Huy vội nói, thấy Diệp Phi mấy người nhìn mình có vẻ lạ lẫm, liền giải thích: "Tiểu thư Tư Đồ là tài nữ của công ty chúng ta, tên đầy đủ là Tư Đồ Ảnh, học biên đạo. Vừa tốt nghiệp đã đến công ty Lăng Vân, chỉ là công ty một mực không khởi sắc nên tài hoa của cô ấy bị mai một." "Ồ?" Diệp Phi không khỏi hứng thú, hỏi: "Tại sao cô ấy không đến những công ty lớn khác? Hơn nữa công ty chúng ta cũng chưa có tác phẩm nào, sao các ngươi lại biết cô ấy rất có tài?" Trình Huy nói: "Kịch bản Tư Đồ tỷ tự viết chúng ta đều đã xem qua, vô cùng xuất sắc, tuyệt đối hơn hẳn những biên kịch nổi tiếng trong nước hiện nay. Về phần tại sao cô ấy vẫn ở lại Lăng Vân, chúng ta cũng không rõ. Không giấu gì ngài, sau khi xem kịch bản của cô ấy, chúng ta không đành lòng để thứ tốt như vậy bị mai một nên từng khuyên cô ấy đến công ty lớn khác quay chụp, hoặc dứt khoát bán đi, nhưng cô ấy vẫn không đồng ý. Hơn nữa mấy năm nay, cô ấy cũng là người duy nhất mỗi ngày đều đến làm việc." Thấy Trình Huy không giống như đang nói dối, Diệp Phi không khỏi có chút chờ mong về Tư Đồ Ảnh này, dứt khoát đứng tại chỗ cùng mọi người chờ đợi cô, mà ba người Diệp Ngưng Sương cũng đồng dạng tò mò đây là người như thế nào. Rất nhanh, cô tiếp tân từ bên trong đi ra, theo sau là một người phụ nữ gầy nhỏ, trông khoảng hai mươi bảy, hai mươi tám tuổi. Tướng mạo nhiều nhất chỉ có thể coi là thanh tú, đeo một cặp kính thật dày, trông cực kỳ bình thường. Bất quá Diệp Phi tuyệt đối không phải kẻ trông mặt mà bắt hình dong, cũng không vì ngoại hình của Tư Đồ Ảnh mà xem nhẹ cô. Khi cô chưa đi đến gần, hắn đã chủ động đón lấy, vươn tay nói: "Tiểu thư Tư Đồ, chào cô, ta là Diệp Phi." "À, Diệp tổng, chào ngài." Mặt Tư Đồ Ảnh hơi đỏ lên, có chút bối rối vươn bàn tay nhỏ bé ra nắm nhẹ với Diệp Phi. Cô vừa nghe cô tiếp tân nói về thân phận của Diệp Phi nên lúc này không khỏi có chút câu nệ. Diệp Phi không ngờ vị biên đạo tài nữ được Trình Huy công nhận lại nhút nhát như cô bé mười mấy tuổi, nghĩ rằng chắc là do cô một lòng dồn hết tâm trí vào công việc, không tiếp xúc với bên ngoài nhiều mới như vậy. Biểu hiện của Tư Đồ Ảnh khiến Diệp Phi hơi thất vọng một chút, dù kịch bản cô viết có tốt đến đâu, cũng nhiều nhất chỉ làm biên kịch thôi, vì tính cách như vậy e rằng rất khó để trở thành một đạo diễn thành công. Nhưng lúc này Diệp Phi cũng không biết rằng, người mà hắn cho rằng không thích hợp làm đạo diễn và người mà hắn từng nghĩ không thích hợp làm diễn viên là Hứa Vi Nhi, trong tương lai không xa sẽ mang lại bao nhiêu vinh quang cho Công ty Điện ảnh và Truyền hình Lăng Vân. Bất quá không quản Diệp Phi có thất vọng hay không, cơm vẫn phải ăn. Sau khi một đám người xuống lầu và ăn một bữa thật ngon ở tửu điếm bên cạnh, đối mặt với rất nhiều ánh mắt khinh thường, Diệp Phi âm thầm thề, không bao lâu nữa, hắn sẽ mở tiệc khánh công cho nhân viên ngay tại tửu điếm này, đến lúc đó nhất định phải cho những người này mở mang tầm mắt! Sau khi ăn xong, Diệp Ngưng Sương và Mộc Linh về trước, chỉ còn lại Hứa Vi Nhi và Diệp Phi ở lại đây. Nàng lập tức sẽ trở thành một thành viên của công ty này, cuộc họp buổi chiều đương nhiên phải tham gia. Trình Huy đã thông báo việc Diệp Phi họp buổi chiều tới từng nhân viên, họ đương nhiên rất vui mừng, chỉ là nhất thời chưa đến kịp. Trở lại tầng lầu công ty, nhân lúc nhân viên chưa đến đông đủ, Diệp Phi gọi Tư Đồ Ảnh vào văn phòng mà Trình Huy nhường lại. Hắn vẫn rất hiếu kỳ với cô gái lớn tuổi này, vì nghe ý của Trình Huy, dường như cô rất trung thành với Diệp gia. Vì trong văn phòng ngoài Diệp Phi ra còn có Hứa Vi Nhi, nên Tư Đồ Ảnh dù hơi câu nệ nhưng cũng không cảm thấy sợ hãi khi được Diệp Phi gọi đến. Nhìn Tư Đồ Ảnh có chút khẩn trương, Diệp Phi cười khẽ, ra hiệu cô ngồi xuống, rồi nói: "Tiểu thư Tư Đồ không cần khẩn trương, từ nay về sau ta sẽ thường xuyên đến đây, chúng ta coi như là đồng sự rồi." Tư Đồ Ảnh khẽ gật đầu, ngồi xuống bên cạnh Hứa Vi Nhi, trong lòng có chút không rõ vì sao Diệp Phi gọi mình lại. "Nghe quản lý Trình nói, Tư Đồ tiểu thư vừa tốt nghiệp đã đến Lăng Vân, chưa bao giờ có ý định rời đi vì kinh tế công ty đình trệ, không biết tại sao lại như vậy?" Diệp Phi mỉm cười đưa ra nghi vấn của mình, lập tức nói thêm: "Đương nhiên, đây chỉ là lòng hiếu kỳ cá nhân, nếu Tư Đồ tiểu thư không tiện nói thì coi như ta chưa hỏi." Sự hiền hòa của Diệp Phi khiến Tư Đồ Ảnh thả lỏng không ít, lúc này cũng lộ ra nụ cười: "Chuyện này không có gì không thể nói. Khi ta còn nhỏ, gia đình từng xảy ra một việc lớn. Nếu không nhờ Diệp lão gia tử giúp đỡ, sợ là cả gia đình ba người chúng ta sớm đã không còn trên cõi đời này rồi. Cho nên từ lúc đó, ta đã quyết định cả đời này phải làm việc cho Diệp gia, nên sau khi tốt nghiệp đại học, ta liền trực tiếp vào Công ty Điện ảnh và Truyền hình Lăng Vân." Diệp Phi không ngờ sự tình lại là như vậy. Đúng là "đời trước trồng cây, đời sau hóng mát", không ngờ gia gia của mình từng làm một việc thiện lại mang đến cho mình một thiên tài biên kịch. Bất quá Diệp Phi không phải người làm ơn mong báo đáp, nên cười nói: "Thật ra Tư Đồ tiểu thư không cần như vậy, tin rằng ngay cả gia gia ta cũng không nghĩ đến việc muốn các ngươi báo đáp gì cả." "Ta biết." Tư Đồ Ảnh nói: "Dù không phải vì báo ân, ta cũng rất yêu thích công ty này. Người ở đây đều rất tốt, tuy họ trông có vẻ hơi lười nhác, thậm chí chạy ra ngoài làm việc khác trong giờ hành chính, nhưng đó cũng là vì vấn đề của bản thân công ty. Nếu công ty có thể vực dậy, bọn họ nhất định cũng sẽ rất nỗ lực." Diệp Phi thầm nghĩ, xem ra Tư Đồ Ảnh này thật sự không có kinh nghiệm xã hội, bằng không sẽ không nói thẳng trước mặt hắn rằng công ty tồi tệ như vậy. Bất quá Diệp Phi không vì thế mà tức giận, mỉm cười nói: "Điểm này là khiếm khuyết của tổng công ty, nhưng Tư Đồ tiểu thư có thể yên tâm, từ nay về sau sẽ không còn chuyện như vậy xảy ra nữa. Tin rằng dưới sự nỗ lực chung của chúng ta, công ty nhất định có thể trở nên mạnh mẽ!" "Ừ, ta tin ngài." Tư Đồ Ảnh không chút do dự tin tưởng lời Diệp Phi nói: "Bởi vì ta thấy được sự tự tin và quyết tâm trong mắt ngài." "Tư Đồ tỷ tỷ, nghe nói kịch bản tỷ viết rất tốt, có thể cho muội xem một chút được không?" Hứa Vi Nhi đột nhiên lên tiếng, nàng rất để tâm đến những lời Trình Huy nói lúc nãy, cũng tò mò liệu đại tỷ tỷ trông rất nhút nhát trước mắt này có thật sự lợi hại như vậy không. Nghe Hứa Vi Nhi nói, Tư Đồ Ảnh chuyển ánh mắt sang nàng. Đây là lần đầu tiên cô chú ý tới Hứa Vi Nhi, lúc này, dưới cặp kính dày, đôi mắt cô bất chợt bừng sáng, vội gật đầu: "Được chứ, muội theo ta đến văn phòng của ta đi." "Ừ!" Hứa Vi Nhi gật đầu đáp ứng. Thế là hai người con gái chẳng hỏi ý Diệp Phi mà trực tiếp rời khỏi văn phòng của hắn, khiến Diệp Phi dở khóc dở cười. Một nàng thì hoàn toàn không quan tâm lễ nghi, người kia thì căn bản không coi hắn là tổng tài. Bất quá nhớ lại ánh mắt Tư Đồ Ảnh nhìn Hứa Vi Nhi, hắn không khỏi nổi da gà, Tư Đồ Ảnh này... không phải là có sở thích đặc biệt đấy chứ? Hai giờ chiều, tất cả nhân viên trong công ty đều đã đến đông đủ. Dưới sự dẫn dắt của Trình Huy, họ vào phòng họp chờ Diệp Phi. Đúng như lời Trình Huy nói, họ đều rất coi trọng tương lai của công ty. Hiện tại thấy Diệp Phi dường như có mục đích làm lớn mạnh công ty, ai nấy đều vô cùng phấn chấn. Nhận được tin báo từ Trình Huy rằng các nhân viên đều đã đến, Diệp Phi đứng dậy rời văn phòng, đi về phía phòng kế toán. Chưa đi được vài bước đã đụng mặt hai cô gái. Một người là Hứa Vi Nhi, còn người bên cạnh làm Diệp Phi ngẩn người. Người phụ nữ này thật sự là Tư Đồ Ảnh vừa nãy sao? Tuy tướng mạo giống hệt lúc nãy, nhưng biến hóa này quá lớn rồi! Chỉ thấy lúc này Tư Đồ Ảnh đã tháo kính mắt xuống. Thứ khiến cô thay đổi lớn chính là đôi mắt đầy linh tính vốn luôn bị che giấu dưới lớp kính dày cộm kia. Đây là đôi mắt gì vậy chứ? Diệp Phi không nhịn được thầm thán phục. Tuy hắn không biết nên hình dung đôi mắt của Tư Đồ Ảnh thế nào, nhưng hắn biết, chỉ bằng đôi mắt này, Tư Đồ Ảnh vốn có tướng mạo bình thường trong nháy mắt đã có được sức hấp dẫn không kém cạnh gì Hứa Vi Nhi. Ngũ quan vốn bình thường, dưới sự tôn lên của đôi mắt này, cũng trở nên xinh đẹp gấp trăm lần. Thấy Diệp Phi sững sờ, Hứa Vi Nhi không khỏi vô cùng đắc ý, cười nói: "Hắc hắc, ngây người rồi à? Có phải bị Ảnh tỷ tỷ làm mê hoặc rồi không?" Nàng hồn nhiên quên mất bản thân mình khi lần đầu tiên thấy Tư Đồ Ảnh tháo kính mắt cũng có biểu cảm giống hệt Diệp Phi. "Khụ khụ." Diệp Phi vội ho vài tiếng để che giấu sự bối rối của mình, rồi nói: "Vừa rồi còn là Tư Đồ tỷ tỷ, bây giờ đã thành Ảnh tỷ tỷ rồi, cách xưng hô của ngươi thay đổi cũng nhanh thật đấy." "Thì sao nào, ta nguyện ý!" Hứa Vi Nhi cong môi, đắc ý nói: "Ngươi còn chưa biết đâu, kịch bản của Ảnh tỷ tỷ thật sự quá xuất sắc! Hơn nữa tỷ ấy còn nói ta rất thích hợp làm nhân vật chính trong kịch bản của tỷ ấy đấy!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0249.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0251.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

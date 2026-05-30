@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 356 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 356</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 356</small>
+    Chương 356
+  </h1>
+  <div class="chapter-body">
+    <p>============================================================ Chương 356: Diệp Phi lá bài tẩy</p>
+    <p>Hai nhà họ Liễu vốn là thế giao, coi như không có chuyện Liễu Diệc Như cùng Diệp Lăng Vân kết hợp, cũng thường xuyên qua lại với nhau. Liễu Quân Di là đứa con út trong nhà, tự nhiên rất được nuông chiều, hồi nhỏ nàng không ít lần cùng Liễu Diệc Như đến chỗ Thủy Dĩnh chơi, cho nên tình cảm với Thủy Dĩnh vô cùng tốt. Lần này gặp lại, sao có thể không vui mừng. Vì rất nhiều chuyện trong điện thoại nói không rõ ràng, nên lúc này Liễu Quân Di mới hiểu được mười tám năm qua Thủy Dĩnh đã trải qua như thế nào. Trong lòng vừa thấy xót xa đồng cảm, lại vừa thấy ngứa nghề. Nàng vốn là người ham mê võ thuật nhất trong ba chị em, nếu không thì lúc trước cũng đã không vượt qua hai người chị gái khi còn ít tuổi. Lúc này nghe nói Thủy Dĩnh là người của ẩn thế môn phái, tự nhiên muốn lãnh giáo một phen. Thủy Dĩnh vốn rất yêu thương Liễu Quân Di từ khi nàng còn nhỏ, hiện tại vẫn không cách nào cự tuyệt yêu cầu của nàng, vì vậy cùng đi xuống phòng luyện công dưới mặt đất với Diệp Phi đang đi theo nàng. Diệp Tư Kỳ vừa gọi điện thoại thông báo tin tức tiểu di đã trở về cho Liễu Diệc Như, cũng đi theo lên. Vì chỉ là tùy tiện luận bàn, hai nữ cũng không chuyên môn đi thay quần áo luyện công. Liễu Quân Di vẫn là bộ quân trang đó, còn Thủy Dĩnh thì mặc thường phục ở nhà. Lúc này hai người đứng đối diện nhau, một người anh tư táp sảng, một người dịu dàng hào phóng, lại đều xinh đẹp vô cùng. Cộng thêm đại tỷ nhã nhặn lịch sự như U Lan trong cốc bên cạnh, Diệp Phi nhất thời thật không biết nên nhìn ai mới tốt. Vốn dĩ Thủy Dĩnh còn muốn nhường Liễu Quân Di một chút, nhưng sau một lần giao thủ, nàng lại kinh ngạc phát hiện nội lực của Liễu Quân Di thâm hậu hơn mình không chỉ một bậc. Hơn nữa, đường lối nội công vẫn là Liễu thị tâm pháp trước kia từng thấy, điều này càng làm cho nàng khiếp sợ vạn phần. Bởi vì nàng thật sự không nghĩ ra, Liễu thị tâm pháp tương đối thô thiển như vậy sao có thể luyện đến cảnh giới này, cho dù Liễu Quân Di có thiên tài đi chăng nữa, cũng không thể nào có chuyện đó được. "Tốt lắm tiểu di, vừa mới trở về đã khi dễ Dĩnh tỷ, không biết chừng mực gì cả phải không?" Ngay lúc Thủy Dĩnh bị Liễu Quân Di ép cho liên tiếp bại lui, một giọng nói mỹ diệu truyền tới, chính là người Diệp Phi yêu nhất, mụ mụ Liễu Diệc Như đã trở về. Nghe thấy giọng nói của tỷ tỷ, Liễu Quân Di vội vàng dừng thế công, thè lưỡi, xấu hổ nói: "Thực xin lỗi nha Dĩnh tỷ, chị cũng biết, em là người một khi đánh nhau lên là quên hết mọi chuyện, đa tạ chị đã nhường nhịn." Thủy Dĩnh không phải kiểu người thua không chịu nhận, nghe vậy liền khẽ cười nói: "Chị nào có nhường em, không ngờ vài chục năm không gặp, tiểu Di vậy mà đã lợi hại đến mức độ này rồi. Chỉ là chị có chút không nghĩ ra, em luyện vẫn là tâm pháp cũ đúng không, sao lại lợi hại như vậy?" "Em cũng không biết, có lẽ là thiên phú của em tốt." Liễu Quân Di hì hì cười nói. Trước mặt Thủy Dĩnh như người chị cả, nàng không cần phải ra vẻ thùy mị. Chỉ là lúc nói chuyện, nàng lại vụng trộm nhìn về phía Diệp Phi. Đối với thực lực đột nhiên tăng mạnh của mình, nàng cũng không rõ là chuyện gì xảy ra, căn bản chính là do tên tiểu bại hoại này gây ra. Liễu Diệc Như hiện tại đã biết chuyện giữa con trai và muội muội, tự nhiên cũng hiểu rõ đây là chuyện gì. Bất quá khi chưa được muội muội đồng ý, nàng cũng không nói những chuyện này cho Thủy Dĩnh biết. Dù sao cũng không bao lâu nữa, chính Thủy Dĩnh cũng sẽ có một bước nâng cao về chất, tin tưởng đến lúc đó nàng có thể hiểu rõ hết thảy. "Được rồi, vừa mới trở về đã không yên phận, chúng ta vẫn là về phòng khách nói chuyện đi." Liễu Diệc Như mỉm cười nói. Tuy Thủy Dĩnh trước kia là đại tỷ, nhưng vì Liễu Diệc Như bây giờ là hậu cung chi chủ cam chịu của Diệp Phi, nên trong nhà vẫn là nàng nói lời có trọng lượng nhất, Thủy Dĩnh cũng đã thành thói quen với những điều này. "Tiểu Di, nhìn bộ dạng này của em, chắc là về thẳng nhà luôn đúng không? Tại sao không đi báo danh ở quân khu trước?" Ngồi xuống trong phòng khách, Liễu Diệc Như hỏi. Đối với quy củ trong quân đội nàng cũng biết một chút, cách làm hôm nay của tiểu muội có chút không hợp quy củ. Liễu Quân Di cười nói: "Vốn là nên về trước, nhưng có người cho em nghỉ phép, tự nhiên lại khác." "Nghỉ phép?" Nhìn hai ngôi sao vàng lấp lánh trên vai Liễu Quân Di, Liễu Diệc Như thật không rõ ở cái đất Vọng Hải này còn ai có thể cho nàng nghỉ phép. "Đúng vậy, Chu bá bá nói, em có thể về nhà trước thăm mọi người, ông ấy đến quân khu là được rồi." Liễu Quân Di cười nói. Liễu Diệc Như không khỏi sững sờ, hỏi: "Chu bá bá cũng tới rồi sao?" Đối với Chu bá bá này, Liễu Diệc Như tự nhiên rất quen thuộc, đó là bạn cũ của phụ thân nàng, cũng chính là ngoại công của Diệp Phi. Tuy những năm này với tư cách là một trong những lãnh đạo cấp cao nhất của quân đội Trung Quốc, ông luôn ở lại kinh thành, nhưng vẫn luôn đi lại cực kỳ gần gũi với nhà họ Liễu. "Đúng vậy a, ông ấy nói muốn xuống thị sát một chút, thuận tiện cũng tới xem những hậu bối như chúng ta." Liễu Quân Di cười nói: "Chức vụ hiện tại của em cũng là ông ấy giúp em tranh thủ đấy, nếu không còn không biết sẽ phải kéo dài đến bao giờ." "Đúng rồi, tiểu di, chức vụ cụ thể hiện tại của người rốt cuộc là gì nha?" Diệp Tư Kỳ nhịn không được hỏi. "Bổn tướng quân bây giờ là Trung đoàn trưởng đặc biệt chiến đội Trung Quốc kiêm Đại đội trưởng đặc biệt chiến đội quân khu Vọng Hải!" Liễu Quân Di tự hào nói. Nàng xuất thân từ đặc biệt chiến đội, đội quân tinh nhuệ nhất này, tự nhiên tình cảm với nơi này là sâu đậm nhất. Bây giờ có thể thống lĩnh đặc biệt chiến đội cả nước, tự nhiên là vui vẻ không thôi. Liễu Diệc Như cùng Thủy Dĩnh đương nhiên hiểu rõ chức vụ Trung đoàn trưởng này có ý nghĩa như thế nào, cũng đều rất vui cho Liễu Quân Di. Nhưng Diệp Phi lại âm thầm nhíu mày, chức vụ này trong mắt hắn căn bản chỉ là hư danh, còn không bằng trực tiếp làm tư lệnh quân khu Vọng Hải cho thiết thực. Dù sao lần hành động trước đó đã khiến đặc biệt chiến đội cả nước đều phục tùng tiểu di rồi, hiện tại chẳng qua là nhiều thêm một cái danh hiệu mà thôi, đối với thực tế căn bản không có ảnh hưởng gì.</p>
+    <p>Tuy nhiên, dù nhìn ra sự thật này, nhưng Diệp Phi lại không muốn làm mất hứng tiểu di đang vui vẻ. Hơn nữa đối với những thứ này hắn cũng không mấy để tâm. Hắn căn bản vẫn là Lăng Vân Hội, hiện tại số lượng cao thủ được tạo ra trong Lăng Vân Hội đã vượt qua con số mười vạn, chiến lực cộng lại đủ để quét ngang bất kỳ quốc gia nào trên thế giới. Thế nhưng đây vẫn chỉ là số lượng trong nước, cao thủ chân chính tập trung lại là ở cái đảo quốc đáng ghét kia. Lúc này tại nơi đó, đàn ông từ bảy mươi tuổi cho đến mười tuổi hầu như đã hoàn toàn trở thành nô lệ của mình, đây mới chính là lá bài tẩy thực sự của Diệp Phi. Chỉ có điều trước khi không có biến cố lớn, Diệp Phi không muốn thả họ ra, tiếp tục để họ chống đỡ cái quốc gia trên thực tế đã đổi chủ kia. Chỉ là như vậy thì lại khổ cho phụ nữ quốc gia đó, tin tưởng không bao lâu nữa, những người không chịu được cô đơn kia e rằng cũng phải tới quốc gia khác để đoạt đàn ông rồi. "Đúng rồi, tiểu di, dì làm trung đoàn trưởng này, không có đặc quyền gì sao, ví dụ như tự mình chọn vài hộ vệ cường lực chẳng hạn?" Diệp Phi hỏi, hắn nhớ tới Vệ Thanh ở xa tận kinh thành. Sau khi cùng ở chung ở Tây Nam và kinh thành lần nữa, mỹ nữ Thần Thương Thủ tràn đầy anh khí nhưng tâm tư nhẵn nhụi này đã lay động sâu sắc lòng hắn.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0355.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0357.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

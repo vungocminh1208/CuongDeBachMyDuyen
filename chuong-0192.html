@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 192 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 192</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 192</small>
+    Chương 192: Tình thiếu nữ thần y
+  </h1>
+  <div class="chapter-body">
+    <p>Vào tiểu lâu, Đông Phương Nhược Lan suy nghĩ một chút, dẫn Diệp Phi lên lầu hai đi vào phòng ngủ của mình. Bởi vì lát nữa khi kiểm tra cần Diệp Phi cởi y phục nằm xuống, mà nơi này có chỗ nằm thì chỉ có phòng ngủ của mình và Mầm Hân, không thể để hắn nằm trên ghế salon ngoài phòng khách được.</p>
+    <p>Phòng ngủ của Đông Phương Nhược Lan bài trí cực kỳ đơn giản, chỉ có một chiếc bàn học nhỏ, phía trên bày vài cuốn sách thuốc, ngoài ra chính là một chiếc giường lớn. Còn về quần áo của nàng thì đều đặt trong tủ đầu giường. Từ đó có thể thấy, Đông Phương Nhược Lan thật sự là kiểu người phụ nữ chỉ biết dốc lòng vào học thuật, đối với những thứ khác căn bản chẳng hề bận tâm.</p>
+    <p>Tuy không thấy vật gì mập mờ, nhưng chỉ riêng việc bước vào phòng ngủ của Đông Phương Nhược Lan đã khiến Diệp Phi có chút xao động. Ánh mắt nhìn về phía Đông Phương Nhược Lan trở nên nóng bỏng, hắn hỏi: "A di, lập tức kiểm tra luôn sao?"</p>
+    <p>Đông Phương Nhược Lan bị hắn nhìn đến mức tim đập loạn nhịp, cúi đầu không dám nhìn thẳng hắn, nói: "Đương nhiên là lập tức bắt đầu rồi, không lẽ ngươi còn muốn đợi ăn cơm trưa mới bắt đầu à?"</p>
+    <p>"Vậy được rồi!" Diệp Phi đáp ứng, nhanh chóng cởi y phục trên người xuống, để lộ thân hình với cơ bắp cuồn cuộn cùng vóc dáng gần như hoàn mỹ trước mắt Đông Phương Nhược Lan, khiến lòng nàng không kìm được mà đập loạn.</p>
+    <p>Đang lúc Diệp Phi chuẩn bị cởi nốt chiếc quần ngắn cuối cùng, Đông Phương Nhược Lan vội vàng ngăn lại, nói: "Cái này tạm thời không cần cởi, lát nữa xem tình hình cụ thể rồi tính sau, ngươi nằm xuống trước đi."</p>
+    <p>"Dạ." Diệp Phi ngoan ngoãn nằm xuống như một đứa trẻ nghe lời, bất quá chỗ cao cao nhô lên trong quần ngắn lại bán đứng tâm tư chân thật nhất của hắn.</p>
+    <p>Đông Phương Nhược Lan xuất thân từ y học thế gia, về sau lại luôn làm công việc này. Mặc dù nàng cố gắng né tránh, từ lúc chào đời tới nay chưa từng thấy thân thể nam nhân, dù là trẻ con, cũng chỉ gặp qua Diệp Phi, nhưng lý luận tri thức thì không ít. Vốn tưởng rằng đối mặt với thân thể Diệp Phi, nàng có thể làm như lúc hắn còn bé, nhìn mà như không thấy, nhưng rất nhanh nàng đã nhận ra mình sai rồi.</p>
+    <p>Giống như thân thể người phụ nữ trời sinh có sức hút cực lớn đối với nam nhân, thì thân thể nam nhân, đặc biệt là một người có vóc dáng hoàn mỹ như Diệp Phi, cũng có thể khiến bất kỳ người phụ nữ bình thường nào tim đập rộn ràng. Lúc này Đông Phương Nhược Lan cũng không ngoại lệ, nhìn thân thể cường tráng cứng như sắt thép của Diệp Phi, tim nàng không nhịn được run rẩy. Cộng thêm tình cảm vô tình nảy sinh đối với Diệp Phi, khiến nàng không kiềm chế nổi mà duỗi ngón tay ngọc thon dài, nhẹ nhàng mơn trớn lồng ngực cường kiện của hắn.</p>
+    <p>Cảm giác như bị điện giật khiến tim cả hai cùng nhảy dựng. Đông Phương Nhược Lan vì ngại ngùng mà cúi đầu, ánh mắt lại vô tình chạm phải chỗ lều trại nhô lên trên quần ngắn. Biết rõ bên dưới là gì, hơn nữa còn từng dùng nơi nhạy cảm của mình chạm qua nó, Đông Phương Nhược Lan trong lòng càng bối rối, cũng chẳng màng trách móc Diệp Phi nữa, vội vàng quay đầu sang một bên.</p>
+    <p>Qua một lúc lâu, Đông Phương Nhược Lan mới thu liễm tinh thần, cố nén xúc động muốn nhìn lại chỗ đó, duỗi hai tay nhanh chóng lướt qua từng huyệt vị trên người Diệp Phi, truyền một tia nội lực như có như không vào cơ thể hắn, dụng tâm cảm nhận tình trạng trong kinh mạch của hắn.</p>
+    <p>Nội lực của Đông Phương Nhược Lan không mấy thâm hậu, kiểm tra chưa được một nửa đã có chút miễn cưỡng. Khuôn mặt tuyệt mỹ xuất hiện vài giọt mồ hôi, hô hấp cũng dồn dập hơn, nhưng nàng không dừng lại mà tiếp tục giúp Diệp Phi kiểm tra.</p>
+    <p>Sự tận tâm của Đông Phương Nhược Lan khiến Diệp Phi cũng thôi không nghĩ đến những chuyện bậy bạ, bên dưới nhanh chóng yên tĩnh trở lại. Tuy nhiên, tình cảm dành cho nàng trong lòng hắn lại được thăng hoa. Nếu như nói trước kia muốn ở bên nàng phần lớn là vì ham mê vẻ đẹp của nàng, thì hiện tại, trong lòng hắn, địa vị của Đông Phương Nhược Lan không hề thua kém bất kỳ người phụ nữ nào khác của hắn.</p>
+    <p>Về sau, động tác của Đông Phương Nhược Lan rõ ràng chậm lại, mỗi lần giơ tay lên đều phải mất hơn mười giây mới có thể điểm vào một huyệt vị khác, sắc mặt cũng trở nên tái nhợt, hiển nhiên đã đến mức nỏ mạnh hết đà. Nhưng vì hiểu rõ tính cách của nàng, Diệp Phi không khuyên nàng dừng lại, chỉ dùng ánh mắt chứa đựng sự xót xa và yêu say đắm nhìn nàng.</p>
+    <p>Cứ như vậy hơn một giờ trôi qua, Đông Phương Nhược Lan mới dừng động tác, thở hổn hển nhìn về phía Diệp Phi, lại vừa vặn bắt gặp ánh mắt đau lòng và yêu say đắm kia. Khoảnh khắc ấy, Đông Phương Nhược Lan cảm thấy lòng mình thật ngọt ngào, cảm thấy tất cả những gì mình bỏ ra đều xứng đáng, nỗi nhớ nhung suốt hai ngày qua cũng không uổng phí. Hạnh phúc đột ngột ập đến khiến nàng có chút không chịu nổi, đôi mắt đẹp hơi đỏ lên, trào ra hai giọt nước mắt trong suốt.</p>
+    <p>Đang đắm chìm trong sự đối mặt thâm tình với Đông Phương Nhược Lan, Diệp Phi giật mình, vội vàng ngồi dậy, nắm chặt bàn tay nhỏ bé của nàng, hỏi: "Làm sao vậy?"</p>
+    <p>Đông Phương Nhược Lan lúc này mới ý thức được sự thất thố, vội vàng quay đầu sang một bên, đồng thời rút tay ra khỏi bàn tay hắn, nói: "Không có gì, chỉ là thấy thân thể ngươi có chuyển biến tốt đẹp, cảm thấy vui mừng mà thôi."</p>
+    <p>Từ những gì nhìn thấy ngoài phòng làm việc lúc trước, Diệp Phi đã hoàn toàn hiểu rõ tâm ý của Đông Phương Nhược Lan. Giờ đây, sau khi vượt qua sự kinh hoảng ban đầu, kẻ thông minh cực kỳ như hắn cũng lập tức đoán được tâm trạng của nàng lúc này. Trong lòng không khỏi âm thầm cảm động, thề hôm nay sẽ cho nàng một cái danh phận, nhưng chuyện này không thể nóng vội nhất thời, vì vậy hắn hùa theo lời nàng: "Thật sao? Thân thể ta đã chuyển biến tốt đẹp rồi ư? Chẳng phải nội lực của ngươi không thể đánh vào trong cơ thể ta sao?"</p>
+    <p>"Trước kia thì không thể, nhưng bây giờ thì khác." Đông Phương Nhược Lan nói: "Trước kia kinh mạch của ngươi hoàn toàn bị tắc nghẽn, nội lực của bất kỳ ai cũng không thể đánh vào trong cơ thể ngươi được. Nhưng bây giờ chính ngươi đã khai mở một phần nhỏ, tự nhiên là được rồi. Hơn nữa, ta cũng đã tìm ra nguyên nhân thực sự khiến kinh mạch ngươi tắc nghẽn."</p>
+    <p>"Đó là nguyên nhân gì?" Diệp Phi vội vàng hỏi, dù sao cũng liên quan đến thân thể mình, sao hắn có thể không vội?</p>
+    <p>"Đó là một loại Tiên Thiên cương dương khí. Người tập võ bình thường, nếu trong thân thể có thể có một tia khí tức như vậy, có thể đạt được thành tựu rất lớn, trở thành tuyệt đỉnh cao thủ." Đông Phương Nhược Lan nhíu mày, dường như có chút buồn rầu: "Chính là ngươi cũng không biết là may mắn hay bất hạnh, trong cơ thể lại tràn đầy loại cương dương khí này, hơn nữa theo thời gian, cơ thể ngươi còn có thể tự sinh ra loại khí tức đó. Nếu có thể luyện hóa hấp thu hoàn toàn, thành tựu võ học của ngươi sẽ không thể tưởng tượng nổi. Nhưng muốn luyện hóa đống dương khí này lại là một việc vô cùng khó khăn, gần như có thể nói là không thể hoàn thành, mà kinh mạch của ngươi cũng bị loại khí tức này làm tắc nghẽn hoàn toàn."</p>
+    <p>"Nguyên ra là vậy." Diệp Phi trong lòng có chút bất đắc dĩ, nhưng cũng không quá phiền não, cười nói: "Vậy thì cứ từ từ luyện hóa thôi, dù sao thực lực bây giờ của ta cũng cơ bản đủ dùng rồi."</p>
+    <p>Đông Phương Nhược Lan không ngờ Diệp Phi lại gạt bỏ ý nghĩ này một cách nhẹ nhàng như vậy, đối với sự khoáng đạt của hắn, nàng không khỏi càng thêm rung động. Nhưng nhớ tới tác dụng phụ khác mà loại khí tức này mang lại cho Diệp Phi, nàng lại không nhịn được nhíu mày: "Chỉ là, nếu ngươi không thể luyện hóa, những thuần dương chi khí này sẽ tự hành hút đi tất cả sinh mệnh khí tức mà ngươi sản sinh ra. Nói cách khác, nếu không thể hoàn toàn luyện hóa chúng, ngươi căn bản không có khả năng sinh con. Hơn nữa, cho dù luyện hóa rồi, những luồng khí tự sinh ra trong cơ thể ngươi vẫn sẽ tiếp tục hấp thụ thuần dương khí tức trên người ngươi để tăng cường thực lực, mà cái giá phải trả là, hậu đại của ngươi không thể nào xuất hiện con trai."</p>
+    <p>"Hả?" Diệp Phi kinh ngạc: "Ngươi nói là, ta có cố gắng gieo hạt thế nào cũng không thể có con trai, chỉ có thể có con gái? Vậy Diệp gia chúng ta chẳng phải là tuyệt hậu sao?"</p>
+    <p>Đông Phương Nhược Lan đỏ mặt, cười khổ nói: "Chỉ sợ là vậy."</p>
+    <p>Diệp Phi cúi đầu trầm tư một chút, đột nhiên cười nói: "Không có con trai thì thôi vậy, chỉ cần ta có thể luyện hóa hết những khí tức này, nói không chừng còn có thể đạt đến cảnh giới trường sinh bất lão. Như vậy, Diệp gia có ta một người là đủ rồi."</p>
+    <p>Đông Phương Nhược Lan cũng không nhịn được bật cười trước lời nói của hắn: "Ngươi lại gạt bỏ suy nghĩ đó, nhưng thực ra cũng có khả năng này. Dù sao tình trạng của ngươi từ xưa đến nay chưa từng có, ai biết có thành tựu ra một lão yêu quái vạn năm không chết hay không? Cho nên ngươi vẫn là thành thật luyện hóa những khí tức này đi."</p>
+    <p>"Chỉ là, thứ này phải luyện hóa như thế nào? Ngươi có cách gì tốt không?" Diệp Phi gãi đầu, trong lòng tuy đã có chút dự đoán, nhưng vẫn muốn nghe ý kiến của Đông Phương Nhược Lan trước, dù sao nàng mới là đại hành gia về y thuật.</p>
+    <p>"Ta làm gì có cách gì tốt? Ngay cả cách dở ta cũng chẳng có đây này." Đông Phương Nhược Lan cười khổ: "Nói thật, việc ngươi luyện hóa được một ít trước kia, ta cũng không nhìn ra là luyện hóa bằng cách nào... À, đúng rồi..."</p>
+    <p>Diệp Phi thấy nàng chỉ nói một nửa rồi dừng lại, không nhịn được hỏi: "Làm sao vậy?"</p>
+    <p>Đông Phương Nhược Lan vừa rồi đột nhiên nghĩ tới một khả năng, nhưng lại có chút xấu hổ, giờ thấy Diệp Phi hỏi, đành cố nén ngượng ngùng hỏi: "Ngươi, có phải đã quan hệ với con gái rồi không?" Không đợi Diệp Phi trả lời, nàng lại nói: "Nhưng cái này cũng không đúng nha, tuy thuần âm khí có thể giúp ngươi luyện hóa loại thuần dương khí tức này, nhưng không thể tự chủ vận hành, trừ phi ngươi biết môn song tu công phu trong truyền thuyết."</p>
+    <p>Sự tình đã đến nước này, Diệp Phi cũng không muốn giấu giếm nàng điều gì, cười nói: "Cái này đúng rồi, ta luyện đúng là môn song tu công phu, hơn nữa cũng là sau khi gần gũi với Linh Nhi mới có biến hóa đấy." Kỳ thật biến hóa của hắn là sau khi gần gũi với Diệp Vân Khinh, nhưng chuyện này tạm thời không thể nói cho Đông Phương Nhược Lan.</p>
+    <p>"Nguyên ra là vậy." Đông Phương Nhược Lan nhẹ nhàng gật đầu, nhưng trong lòng lại có chút đau nhói không hiểu, tựa như có thứ gì quý giá bị người đoạt mất vậy. Nhưng ngay lập tức nàng lại thấy mặt đỏ lên vì suy nghĩ này. Cô bé Linh Nhi đó nàng cũng quen, biết đó là vị hôn thê của Diệp Phi, việc họ xảy ra chuyện gì cũng là thiên kinh địa nghĩa, mình việc gì phải bận tâm? Nhưng không hiểu sao, chỉ cần nghĩ đến Diệp Phi và Lâm Linh ôm ấp nhau như vậy, lòng nàng lại không thoải mái.</p>
+    <p>Diệp Phi nhìn ra sự thất lạc trên mặt Đông Phương Nhược Lan, nhưng không vạch trần, chỉ nhanh chóng xuống giường, quan tâm nói: "A di, ngươi cũng mệt rồi nhỉ? Hay là nghỉ ngơi một chút đi."</p>
+    <p>"Ừ." Đông Phương Nhược Lan gật đầu đáp ứng. Vừa rồi kiểm tra cho Diệp Phi đã tiêu hao hết sạch nội lực, khiến nàng vô cùng mệt mỏi. Sở dĩ chống đỡ lâu như vậy là vì không muốn bỏ lỡ cơ hội được ở gần Diệp Phi. Giờ tâm tình đột nhiên thất lạc, chút tinh thần gắng gượng kia tan biến sạch sẽ, làm sao chịu nổi nữa? Lập tức nằm xuống chỗ Diệp Phi vừa nhường lại, cũng không thèm để ý rằng Diệp Phi sau khi đứng dậy vẫn chưa mặc lại y phục.</p>
+    <p>"A di, ta mát-xa giúp ngươi nhé?" Diệp Phi ngồi bên giường, âu yếm nhìn Đông Phương Nhược Lan đang nằm bệt xuống vì kiệt sức, hai tay duỗi ra đặt lên đôi vai thơm của nàng. Tuy miệng đang hỏi, nhưng đôi tay đã tự hành động.</p>
+    <p>Đông Phương Nhược Lan vốn muốn từ chối, nhưng nhiệt lực truyền từ đôi bàn tay lớn của hắn khiến nàng mê say, chẳng biết làm sao lại gật đầu đồng ý.</p>
+    <p>Diệp Phi đặt hai tay lên vai Đông Phương Nhược Lan, nhẹ nhàng xoa bóp, đồng thời vận một tia nội lực từ lòng bàn tay truyền vào cơ thể nàng, xoa dịu những kinh mạch gần như khô kiệt.</p>
+    <p>Nội lực của Diệp Phi mạnh mẽ biết bao, tuy chỉ một tia nhưng sau khi tiến vào cơ thể Đông Phương Nhược Lan lại đủ để nội lực của nàng phục hồi hoàn toàn. Sự mệt mỏi trên thân thể nàng vốn dĩ chỉ do tiêu hao hết nội lực, nên lúc này nàng đã triệt để phục hồi.</p>
+    <p>Nhưng dù đã phục hồi thể lực, Đông Phương Nhược Lan vẫn không động đậy gì, cũng chẳng muốn động. Tuy thủ pháp của Diệp Phi không mấy cao minh, bản thân nàng cũng sở hữu một bộ thủ pháp mát-xa cực kỳ thượng thừa, hơn nữa đã truyền lại cho Mầm Hân, nhưng ngay cả Mầm Hân cũng không thể đem lại cho nàng cảm giác thoải mái đến thế này. Cảm giác tê tê dại dại thấu tận tâm can ấy khiến thân thể mềm mại của nàng không còn một chút sức lực.</p>
+    <p>Đợi đến khi Đông Phương Nhược Lan phục hồi thể lực, tay Diệp Phi tất nhiên không thể thành thật được nữa. Chậm rãi vuốt ve từ lưng ngọc xuống dưới. Tuy cách một lớp y phục, nhưng Diệp Phi vẫn cảm nhận được làn da mịn màng trên lưng nàng. Xúc cảm mỹ diệu đó khiến hắn được đằng chân lân đằng đầu, tiếp tục lướt xuống, dần dần chạm tới cặp mông nhô cao dưới vòng eo thon nhỏ, chộp lấy hai khe mông mê người mà nhẹ nhàng xoa bóp.</p>
+    <p>Tuy cặp mông của Đông Phương Nhược Lan không nhạy cảm bằng đôi "vật phẩm" mê người trước ngực, nhưng cũng là một trong những điểm gợi cảm trên người nàng. Lúc này bị Diệp Phi ra sức đùa nghịch, khiến nàng không nhịn được phát ra một tiếng rên rỉ đầy thoải mái, khẽ vặn vẹo thân thể nhưng không ngăn cản hắn.</p>
+    <p>Diệp Phi trong lòng mừng thầm, đôi tay tiếp tục trượt xuống, từ từ vén chiếc váy dài của nàng lên, lộ ra đôi chân đẹp càng thêm mượt mà nhờ lớp tất chân mỏng manh, rồi dùng bàn tay chui vào tận sâu bên trong, tới tận chiếc quần lót trắng nhỏ xíu ở nơi mỹ diệu. Nhìn thấy tất cả cảnh tượng đó, Diệp Phi không nhịn được nuốt nước miếng.</p>
+    <p>Chẳng biết từ lúc nào, phía dưới của Đông Phương Nhược Lan đã hơi ẩm ướt, khiến chiếc quần lót nhỏ màu trắng dính sát vào người trở nên hơi trong suốt, khiến Diệp Phi thậm chí có thể nhìn thấy hai cánh hoa nhỏ non hồng và vài sợi lông đen sẫm bên dưới.</p>
+    <p>Âm thầm nuốt nước miếng, Diệp Phi đưa đôi tay từ cặp mông lớn của Đông Phương Nhược Lan xuống, công chiếm đôi chân mượt mà của nàng, dùng lòng bàn tay nóng bỏng ma sát làn da kiều diễm ẩn dưới lớp tất mỏng.</p>
+    <p>"Á..." Đông Phương Nhược Lan lại phát ra một tiếng rên mê người, cặp mông bất an vặn vẹo, hai chân tách rộng ra hơn một chút, để Diệp Phi có thể nhìn rõ hơn khe thịt nhỏ đã trở nên dâm đãng do dính đầy dâm thủy bên dưới lớp quần lót trong suốt.</p>
+    <p>Cảnh tượng này khiến Diệp Phi không thể nhịn thêm nữa, bàn tay đang vuốt ve đùi nàng mạnh mẽ trượt lên, trực tiếp ấn vào tiểu dâm huyệt đang liên tục tiết ra dâm thủy.</p>
+    <p>"Á..." Sự kích thích to lớn đột ngột khiến Đông Phương Nhược Lan vô thức kẹp chặt hai chân, vô tình kẹp chặt bàn tay Diệp Phi vào giữa háng mình, miệng như từ chối lại như mời gọi nói: "Không được, đừng đụng vào chỗ đó."</p>
+    <p>"Đừng đụng vào nơi đó sao?" Diệp Phi cười hỏi, ngón tay bị nàng kẹp lấy vẫn tiếp tục chuyển động lên xuống qua lớp vải mỏng manh trên khe thịt kiều diễm.</p>
+    <p>Khoái cảm to lớn và dồn dập khiến Đông Phương Nhược Lan suýt nữa không nhịn được muốn hắn tiếp tục, nhưng lý trí cuối cùng trong lòng lại khiến nàng ngăn cản ý nghĩ đó. Nàng run rẩy nói: "Tiểu Mãn, đứa trẻ ngoan, đừng đụng vào chỗ đó của a di được không?"</p>
+    <p>Giọng điệu cầu khẩn của Đông Phương Nhược Lan khiến Diệp Phi dừng động tác ngón tay, nhưng không rút tay ra khỏi háng nàng, cười nói: "Nhưng mà, ta thấy a di hình như rất thoải mái mà."</p>
+    <p>"Ta..." Đông Phương Nhược Lan muốn phủ nhận, nhưng lại không thể lừa dối cảm giác chân thật nhất của mình, đành phải nói: "Tóm lại, chỗ đó ngươi tuyệt đối không được đụng vào!"</p>
+    <p>"Vậy được rồi." Diệp Phi gật đầu: "Nhưng ta có một điều kiện, đó là để ta chơi đôi bầu vú của a di một lát."</p>
+    <p>"Bầu vú?" Đông Phương Nhược Lan sửng sốt một chút mới hiểu hắn nói gì. Bình thường vì thói quen nghề nghiệp, nàng đều dùng tên khoa học. Loại từ ngữ có phần thô tục này tuy nàng biết nhưng chưa bao giờ dùng. Lúc này nghe Diệp Phi nói vậy, mặt không khỏi đỏ bừng. Nhưng để Diệp Phi không tiếp tục đùa bỡn "tiểu lồn" mà nàng ngày càng không thể kháng cự, hơn nữa nàng cũng muốn trải nghiệm tiếp khoái cảm mà chàng trai này mang lại, nàng gật đầu nói: "Vậy được rồi, nhưng ngươi phải hứa với a di, tuyệt đối không được đụng vào bên dưới của a di."</p>
+    <p>"Được, trước khi ngươi đồng ý, ta sẽ không đụng vào lồn của ngươi." Diệp Phi cười hì hì nói. Hắn rất có lòng tin, một lát nữa có thể khiến Đông Phương Nhược Lan tự nguyện yêu cầu hắn cắm vào.</p>
+    <p>Nghe đến từ ngữ càng thêm thô tục này, Đông Phương Nhược Lan trong lòng càng ngượng ngùng, lườm hắn một cái: "Không cho phép ngươi nói như vậy nữa."</p>
+    <p>"Được được được!" Diệp Phi đáp ứng, duỗi tay lật thân hình mềm mại của nàng lại, để nàng nằm ngửa trên giường, sau đó nhanh chóng cởi bỏ khuy áo của nàng. Đầu tiên là mát-xa nắn bóp đôi bầu vú to đầy đặn, dị thường nhạy cảm qua chiếc áo ngực màu trắng, rồi kéo phăng chiếc áo ngực của nàng ra.</p>
+    <p>Theo chiếc áo ngực rời khỏi cơ thể, đôi bầu vú to trong suốt như ngọc lập tức bật ra. Nó cực kỳ to và cao vút, hơn nữa quầng vú rất nhạt, gần như không khác biệt mấy với làn da trên bầu vú. Hai đầu núm vú chỉ to bằng hạt đậu nành. Theo quan sát của Diệp Phi, núm vú của Đông Phương Nhược Lan thậm chí còn chưa bằng những cô gái mới phát dục.</p>
+    <p>Đôi bầu vú kỳ lạ như vậy khiến Diệp Phi vô cùng hứng thú. Đầu tiên hắn dùng hai tay nắm lấy nhẹ nhàng vuốt ve một hồi, rồi đột nhiên cúi đầu, há miệng ngậm lấy một bên núm vú, dùng sức mút mạnh một cái.</p>
+    <p>"Á... Ứ..." Khoái cảm mãnh liệt khiến Đông Phương Nhược Lan nhỏ giọng rên rỉ, hô hấp càng dồn dập, thân thể yêu kiều mê người nhẹ nhàng giãy dụa, hai chân cũng không nhịn được kẹp vào nhau ma sát, trên mặt lộ ra biểu cảm khát khao.</p>
+    <p>Diệp Phi không ngờ bầu vú của Đông Phương Nhược Lan còn nhạy cảm hơn mình tưởng tượng, trong lòng đột nhiên nảy ra ý nghĩ trêu chọc, dùng hàm răng nhẹ nhàng cắn lấy núm vú nhỏ, liên tục ma sát.</p>
+    <p>"Á ——" Đông Phương Nhược Lan đột nhiên ưỡn cao bộ ngực, phát ra một tiếng kêu vang hơn nhiều so với vừa rồi, cơ thể cũng căng cứng lại, qua hồi lâu sau mới dần dần mềm nhũn ra.</p>
+    <p>Buông núm vú nhỏ bị mình cắn, Diệp Phi kinh ngạc trừng mắt. Đông Phương Nhược Lan vậy mà đã đạt đến cao trào, xem ra mình vẫn đánh giá thấp độ nhạy cảm của bầu vú nàng.</p>
+    <p>Thừa dịp Đông Phương Nhược Lan vẫn còn đang mơ màng sau cao trào, Diệp Phi nhanh chóng cởi sạch y phục trên người nàng, rồi kéo quần ngắn của mình xuống, để lộ "con cự vật" đã cứng đến mức không chịu nổi hiện ra trước mắt nàng. Nhìn vào ánh mắt nàng, hắn hỏi: "A di, có thể không?"</p>
+    <p>Tuy Diệp Phi không nói quá rõ ràng, nhưng Đông Phương Nhược Lan cũng hiểu ý hắn. Có lẽ cao trào lần này làm nàng đột nhiên thông suốt điều gì đó, nàng nhẹ nhàng gật đầu: "Ừ, nhưng a di là lần đầu, ngươi phải nhẹ nhàng thôi đấy."</p>
+    <p>Diệp Phi không khỏi mừng rỡ. Hắn vốn chỉ muốn thử thái độ của nàng, dù hôm nay không được như nguyện thì cũng muốn cho nàng một ấn tượng trực tiếp nhất về "con cặc" của mình để sau này tiếp tục công kích tâm lý phòng tuyến của nàng. Không ngờ Đông Phương Nhược Lan lại đồng ý dễ dàng như vậy. Hắn không biết rằng, tất cả đều là công lao của lần cao trào này, bởi vì Đông Phương Nhược Lan vốn đã thầm yêu hắn từ lâu. Cảm giác khoái cảm mạnh mẽ vừa rồi khiến nàng đưa ra quyết định: tuân theo tâm tư của lòng mình. Dù sao đời này nàng cũng không thể yêu ai khác nữa, dứt khoát cho chàng trai khiến nàng yêu từ khi còn bé, đến khi lớn lên lại khiến nàng động tâm này được rồi. Hơn nữa, nàng cũng không đòi hỏi gì nhiều, chỉ cần hắn có thời gian đến ở bên mình là tốt rồi.</p>
+    <p>Không thể chờ đợi thêm, Diệp Phi tách đôi chân đẹp của Đông Phương Nhược Lan ra, quỳ giữa hai chân nàng, dùng dương vật nhẹ nhàng đỉnh vào khe thịt nhỏ đang còn co rút vì cao trào.</p>
+    <p>Đây là lần đầu tiên Diệp Phi nhìn thấy "lồn" của Đông Phương Nhược Lan. Không ngờ cũng giống như núm vú của nàng, "lồn" nàng cũng vô cùng khéo léo, chẳng những xa xa không thể so với sự đầy đặn của mẹ hắn, mà diện tích tổng thể cũng không bằng Tiểu Muội. Hơn nữa màu sắc cũng cực kỳ nhạt, tuy hiện tại đã động tình cực độ nhưng vẫn chỉ là một màu hồng phấn nhạt.</p>
+    <p>Quy đầu thô ráp ma sát với "lồn" khiến Đông Phương Nhược Lan – người chưa thỏa mãn sau cao trào vừa rồi – không khỏi trở nên dâm đãng, nhẹ nhàng ưỡn mông, để tiểu dâm huyệt đỉnh lên đầu cặc hắn rồi nói: "Đến đây đi, a di chuẩn bị xong rồi."</p>
+    <p>"Ừ." Diệp Phi không chần chừ nữa, dùng ngón cái của hai tay nhẹ nhàng đẩy hai mảnh mép lồn cực mỏng của nàng ra, lộ ra miệng lồn nhỏ nhắn bên trong, rồi đỉnh vòng eo, để dương vật từ từ chui vào.</p>
+    <p>"Hí!" Chỉ mới tiến vào một cái quy đầu, Diệp Phi đã sướng đến hít một hơi lạnh. Bởi vì "lồn" của Đông Phương Nhược Lan không chỉ nhìn nhỏ mà âm đạo còn kỳ diệu đến mức, trông nàng trưởng thành đầy đặn như mẹ mình, vậy mà "lồn" lại còn chặt hơn cả Tiểu Muội hay lúc Lâm Linh phá trinh lần đầu cho hắn.</p>
+    <p>Tình huống như vậy khiến Diệp Phi có chút không dám tiếp tục cắm xuống, hắn sợ "con cự vật" của mình sẽ làm hỏng "lồn" siêu nhỏ của Đông Phương Nhược Lan. Nhưng Đông Phương Nhược Lan lại cười nói: "Đến đây đi, a di không sao đâu, đứa trẻ ngoan, nhanh cắm 'con cặc' ngươi vào lồn a di đi."</p>
+    <p>Thấy Đông Phương Nhược Lan vì cổ vũ mình mà ngay cả những từ ngữ khiến nàng đỏ mặt cũng nói ra, hơn nữa biết nàng là bậc thầy y thuật chắc chắn cảm thấy ổn, Diệp Phi yên tâm, cắn răng, mông mạnh mẽ lao về phía trước. "Con cự vật" phá tan một lớp màng mỏng, cắm vào trong lồn Đông Phương Nhược Lan hơn phân nửa căn. Tuy nhiên, khiến Diệp Phi kinh ngạc là "lồn" của Đông Phương Nhược Lan dường như chỉ chặt chứ không hề nông, cặc của hắn đã vào hơn phân nửa mà vẫn chưa chạm được tới hoa tâm của nàng.</p>
+    <p>Đau đớn kịch liệt khiến Đông Phương Nhược Lan nhăn đôi mày thanh tú, nhưng nàng hiểu đây là nỗi thống khổ mà người đàn bà nào cũng không tránh khỏi trong đêm đầu tiên, nên thấy Diệp Phi dừng lại cũng không nói gì. Đợi một hồi, cảm thấy mình đã thích ứng được, nàng mới nói: "A di ổn rồi, ngươi tiếp tục đi."</p>
+    <p>Nhìn khuôn mặt tuyệt mỹ đã phục hồi sắc máu của Đông Phương Nhược Lan, Diệp Phi biết nàng không phải đang an ủi mình, liền gật đầu, đỉnh vòng eo để dương vật tiếp tục đào sâu vào trong, cho đến khi cắm vào toàn bộ "con cự vật", Diệp Phi mới cảm giác được đầu cặc chạm vào một đoàn thịt mềm mỹ diệu, biết đó chính là hoa tâm của nàng.</p>
+    <p>Đến khi giâm rễ nhập, Diệp Phi mới thực sự cảm nhận được "lồn" của Đông Phương Nhược Lan chặt đến mức nào. Lúc này cảm giác như "con cặc" của mình đã mọc dính liền với làn da thịt mềm mại trong lồn nàng, chỉ cần muốn động một chút cũng khó khăn. Nhưng cảm giác như vậy càng khiến hắn sướng đến mức suýt chút nữa là bắn ra.</p>
+    <p>"Có sướng không?" Thấy vẻ mặt sảng khoái của Diệp Phi, Đông Phương Nhược Lan không khỏi tự hào vì sự khác biệt của mình.</p>
+    <p>"Sướng chứ, a di, 'lồn' ngươi không những chặt mà còn sâu, nếu không phải 'dương vật' ta không nhỏ, chắc chắn không thể chạm tới hoa tâm của ngươi rồi." Diệp Phi từ đáy lòng khen ngợi.</p>
+    <p>"Đâu chỉ không nhỏ, ngươi đã có thể xem là cực phẩm trong cánh đàn ông rồi." Đông Phương Nhược Lan thả lỏng tâm tình, cười lả lơi: "Muốn biết không, 'lồn' a di chính là 'ruột dê' trong danh khí, không những chặt mà còn sâu. Nếu không phải dương vật lớn và bền bỉ hơn người như ngươi, căn bản không thể khiến ta thỏa mãn được. Bây giờ xem ra, cặc ngươi khá lớn, không biết bền bỉ thế nào đây."</p>
+    <p>"Vậy hãy để ngươi biết sự bền bỉ của ta!" Diệp Phi nói xong, hai tay nâng cặp mông lớn của Đông Phương Nhược Lan, từ chậm đến nhanh bắt đầu đút vào.</p>
+    <p>Diệp Phi vừa động, Đông Phương Nhược Lan mới biết được, so với hiện tại, khoái cảm khi được hắn vuốt ve bầu vú lúc nãy chỉ là "gặp sư phụ". Lúc này nàng cảm giác linh hồn mình như muốn bị "con cự vật" của hắn đỉnh ra ngoài. Khoái cảm cực hạn khiến nàng không biết sống chết mà nhô mông, phối hợp với lực đút vào ngày càng mạnh mẽ của Diệp Phi, hơn nữa sau khi cao trào vẫn không muốn dừng lại, cứ quấn quýt lấy Diệp Phi muốn thêm. Đến cuối cùng, nàng thậm chí không còn sức nhấc một ngón tay, sau một lần cao trào cuối cùng liền trực tiếp chìm vào giấc mộng ngọt ngào.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0191.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0193.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

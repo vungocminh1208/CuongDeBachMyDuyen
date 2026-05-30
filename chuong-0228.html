@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 228 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 228</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 228</small>
+    Chương 228: Trở về tình mẫu tử
+  </h1>
+  <div class="chapter-body">
+    <p>Bước vào cửa, Diệp Phi phát hiện, giống như đêm trước ngày mình xuất phát đến kinh thành, Liễu Diệc Như vẫn mặc bộ đồ ngủ, ngồi trong phòng khách chờ mình. Trong lòng vừa vui mừng lại có chút thất vọng. Dù rất hy vọng có thể tiếp tục mối quan hệ như vậy với nàng, nhưng Diệp Phi càng mong nàng có thể dùng thân phận thật sự và tâm thế đúng mực để đối xử với mình, thay vì kiểu tình nhân nửa vời này.</p>
+    <p>"Sao giờ này con mới về?"</p>
+    <p>Nhìn thấy Diệp Phi, trong mắt Liễu Diệc Như thoáng hiện tia vui sướng, nhưng lập tức biến mất, nàng nhàn nhạt hỏi một câu. Chính nàng cũng không biết tại sao, rõ ràng đã quyết định chấm dứt mối quan hệ không nên có này với hắn, nhưng vẫn không kìm lòng được mà đợi hắn trở về. Nàng thậm chí cố ý để Diệp Tư Kỳ tiếp tục ở lại công ty, cảm giác đó giống như người vợ chờ chồng về nhà. Nàng biết mình không nên có tâm tính như thế, nhưng lại chẳng thể khống chế nổi bản thân. Nằm trên giường trằn trọc hồi lâu không thể ngủ, tâm trí càng thêm rối bời, trong lúc vô tình, nàng đã chạy ra phòng khách.</p>
+    <p>"Không về đây thì con đi đâu được?"</p>
+    <p>Diệp Phi thay dép ở cửa, đi đến bên cạnh Liễu Diệc Như ngồi xuống, cười nói: "Đây là nhà của con, quan trọng hơn là vì có mẹ đang đợi con, nên đương nhiên con phải về."</p>
+    <p>Một câu nói bình thường lại khiến lòng Liễu Diệc Như xao động. Vì mình đợi hắn nên hắn mới về nhà, đây là hạnh phúc giản đơn biết bao, dù nàng biết mình vốn không thể có được. Mỗi khi nghĩ đến đó, lòng nàng lại đau như cắt.</p>
+    <p>Thu lại tâm tư, Liễu Diệc Như cố gắng nở một nụ cười đúng mực của người mẹ: "Chẳng phải con nên ở chỗ thẩm thẩm, chăm sóc hai mẹ con họ sao?"</p>
+    <p>"Thẩm thẩm họ rất tốt, hơn nữa còn có Khinh Khinh ở đó, chắc chắn sẽ không sao đâu."</p>
+    <p>Diệp Phi cười nói: "Không nói chuyện đó nữa, Như nhi tốt của con, lâu rồi không gặp, có nhớ con không?"</p>
+    <p>Nói xong, Diệp Phi định đưa tay ôm lấy vai Liễu Diệc Như.</p>
+    <p>"Đừng làm vậy."</p>
+    <p>Liễu Diệc Như gạt cánh tay Diệp Phi ra, nhàn nhạt nói: "Từ nay về sau đừng gọi ta là Như nhi nữa. Ta là mẹ con, hiện tại chúng ta đã về nhà rồi, không thể giả vờ làm tình nhân được nữa."</p>
+    <p>"Tại sao?"</p>
+    <p>Diệp Phi thầm mừng rỡ, mẹ cuối cùng đã quay về tâm thế ban đầu, nhưng trên mặt lại lộ vẻ thất vọng và đau khổ: "Ngày đó chẳng phải mẹ nói chúng ta có thể tiếp tục sao?"</p>
+    <p>Thấy vẻ đau khổ trong mắt Diệp Phi, Liễu Diệc Như không khỏi đau lòng, nhưng vẫn cố nén nói: "Ngày đó mới trở về, ta còn chưa nghĩ thông suốt. Mấy ngày nay ta đã nghĩ kỹ rồi, chúng ta làm như vậy là không đúng."</p>
+    <p>"Tại sao?"</p>
+    <p>Diệp Phi không chịu bỏ cuộc, gặng hỏi.</p>
+    <p>"Tại sao ư? Bởi vì ta là mẹ con, là thân sinh mẫu thân của con, chúng ta vĩnh viễn không thể thực sự ở bên nhau!"</p>
+    <p>Liễu Diệc Như đột nhiên kích động. Diệp Phi đau lòng, nhưng lòng nàng còn đau hơn, bởi nàng hiểu rõ, thứ tình cảm tuyệt đối không nên có dành cho con trai này đã bén rễ trong lòng, cả đời này khó mà buông bỏ. Nhưng Diệp Phi thì khác, hắn còn trẻ, tâm tư chưa đủ chín chắn, đợi sau này hắn kết hôn cùng Lâm Linh, tình cảm dành cho nàng sẽ dần phai nhạt, đến lúc đó, nàng chỉ có thể lặng lẽ đứng sau lưng chúc phúc cho hắn.</p>
+    <p>Càng nghĩ đến những điều này, Liễu Diệc Như càng thêm đau lòng, cuối cùng không nhịn được mà nước mắt tuôn rơi.</p>
+    <p>Thấy vậy, Diệp Phi hoảng hốt, cực kỳ xót xa ôm lấy cơ thể mềm mại của mẹ, dịu dàng nói: "Mẹ, mẹ đừng khóc, con nghe lời mẹ là được chứ gì? Mẹ nói thế nào thì con nghe thế đó."</p>
+    <p>Liễu Diệc Như tựa vào lồng ngực ấm áp quen thuộc của con trai, đẫm lệ nhìn khuôn mặt anh tuấn ấy, nói: "Vậy con hứa với mẹ, từ nay về sau đừng ép mẹ nữa, chúng ta hãy làm lại tình mẫu tử, được không?"</p>
+    <p>Diệp Phi nhẹ nhàng gật đầu: "Vâng, con đều nghe mẹ."</p>
+    <p>"Vậy thì tốt rồi."</p>
+    <p>Liễu Diệc Như khẽ thở phào, nhưng trong lòng lại càng thêm đau đớn và không đành lòng. Hắn cuối cùng cũng muốn buông bỏ rồi sao? Vốn đây là kết quả nàng mong muốn nhất, nhưng tại sao lòng nàng lại đau đến thế?</p>
+    <p>"Mẹ, cũng khuya rồi, mẹ đi nghỉ đi."</p>
+    <p>Nhìn vệt nước mắt trên mặt mẹ, lòng Diệp Phi co thắt đau đớn. Hắn đột nhiên hối hận về quyết định của mình, nhưng cũng hiểu rằng dù giờ có dừng tay cũng đã muộn. Bởi vì phần tình cảm không nên có mà mẹ dành cho mình đã hoàn toàn bộc phát, nếu mình buông tay chỉ khiến nàng thêm thống khổ. Vì vậy, hắn chỉ có thể kiên trì tiếp tục, chỉ cần nhẫn qua cơn bối rối này, hắn có thể mang lại cho mẹ hạnh phúc vĩnh viễn!</p>
+    <p>"Ừ."</p>
+    <p>Liễu Diệc Như gật đầu, lưu luyến rời khỏi vòng tay con trai rồi vào phòng ngủ.</p>
+    <p>Nằm trên giường, những hình ảnh khi cô và hắn cùng đến Trường Bạch sơn cứ hiện lên trong tâm trí Liễu Diệc Như. Cảnh bên con suối nhỏ, sự cuồng nhiệt trong suối nước nóng, sự ấm áp khi ôm nhau ngủ, mỗi khoảnh khắc đều khiến người ta mê đắm. Nhưng hiện tại, tất cả dường như càng ngày càng xa vời, mà khoảng cách đó lại chính do tay nàng tạo nên.</p>
+    <p>Liễu Diệc Như hiểu rằng, chỉ cần mình gật đầu, tất cả sẽ lập tức trở về bên mình, cho mình ôn lại hạnh phúc vô tận ấy. Nhưng nàng biết mình không thể, vì nàng là mẹ đẻ của hắn, tuyệt đối không thể tiếp tục như vậy, nếu không chẳng những hại mình mà còn hại cả hắn.</p>
+    <p>Trong khoảnh khắc này, Liễu Diệc Như lại một lần nữa hận thân phận của mình, hận vì sao lại là mẹ của hắn. Tuy nhiên, nàng cũng không hối hận vì đã sinh ra Diệp Phi. Tâm tình mâu thuẫn này khiến lòng nàng càng đau đớn, đau đến mức dù cố gắng hết sức cũng không thể chợp mắt.</p>
+    <p>Trằn trọc gần hai tiếng, Liễu Diệc Như vẫn không chút buồn ngủ. Tâm trí càng lúc càng rối loạn, nàng đột ngột ngồi dậy. Giờ phút này, nàng chợt muốn nhìn thấy Diệp Phi, chỉ cần được nhìn thấy hắn, dù không làm gì cả, nàng cũng thấy hạnh phúc.</p>
+    <p>Lặng lẽ ra khỏi phòng, Liễu Diệc Như đi đến cửa phòng ngủ của Diệp Phi, nhẹ nhàng đẩy cửa, thấy cửa không khóa.</p>
+    <p>Trong phòng dù không bật đèn, nhưng mọi thứ vẫn không thể che giấu được tầm mắt của Liễu Diệc Như. Lúc này, Diệp Phi đang nằm ngửa trên giường, đôi mắt mở to, nhìn chằm chằm lên trần nhà, không biết đang suy nghĩ điều gì.</p>
+    <p>Lòng Liễu Diệc Như lại đau xót, nàng cố nặn ra một nụ cười, bước qua ngồi bên giường con trai, dịu dàng hỏi: "Sao vẫn chưa ngủ?"</p>
+    <p>"Không buồn ngủ, con đang nghĩ lại chuyện cũ thôi."</p>
+    <p>Diệp Phi cũng mỉm cười với mẹ, nhưng nụ cười ấy còn khó coi hơn cả khóc.</p>
+    <p>Giây phút này, Liễu Diệc Như đột nhiên thấy hối hận với quyết định của mình. Sao phải nghĩ nhiều như vậy? Giống như trước kia chẳng phải rất tốt sao? Giờ đây khiến cả mình và con trai đều đau khổ thế này, chỉ cần hai người không nói ra, thì có sao đâu?</p>
+    <p>Dưới nụ cười đau khổ ấy của Diệp Phi, lòng Liễu Diệc Như lại một lần nữa dao động. Ý chí của người phụ nữ lăn lộn trên thương trường nhiều năm như nàng vốn cực kỳ kiên định, nhưng con trai lại là tử huyệt duy nhất.</p>
+    <p>"Ngủ ngon đi, ngày mai còn có việc đấy."</p>
+    <p>Liễu Diệc Như dịu dàng vuốt tóc con trai rồi đứng dậy chuẩn bị rời đi.</p>
+    <p>Nhưng Diệp Phi lại giữ chặt bàn tay nhỏ nhắn của nàng, giọng cầu khẩn: "Mẹ, nằm cùng con được không? Con không quen cảm giác thiếu mẹ bên cạnh."</p>
+    <p>Liễu Diệc Như khẽ thở dài, nằm xuống bên cạnh con trai. Nàng nhận ra, dù có cố gắng hết sức, nàng cũng chẳng thể từ chối hắn.</p>
+    <p>Ôm cơ thể mềm mại quyến rũ của mẹ, ngửi mùi hương nhàn nhạt trên người nàng, Diệp Phi được đằng chân lân đằng đầu nói: "Mẹ, lâu rồi không được ở gần mẹ, mẹ giúp con nhé?"</p>
+    <p>"Không được!"</p>
+    <p>Liễu Diệc Như quả quyết từ chối. Vì nàng hiểu rất rõ, lòng mình tuy vẫn đang giằng xé, ít nhiều còn giữ được chút lý trí, nhưng cơ thể đã hoàn toàn bị hắn chinh phục, căn bản không thể kháng cự. Nếu tiếp tục như vậy, sợ rằng cả sự kiên trì trong lòng cũng không giữ nổi, từ đó gây ra những chuyện thế tục không thể chấp nhận được.</p>
+    <p>"Nhưng, con thật sự khó chịu lắm."</p>
+    <p>Diệp Phi không buông tha, tiếp tục năn nỉ: "Hơn nữa mấy ngày nay con cảm thấy thực lực mình giảm sút, nếu cứ tiếp tục thế này, sợ chẳng bao lâu nữa con sẽ lại hôn mê."</p>
+    <p>"Con có thể tìm Linh Nhi mà. Dù các con còn nhỏ, nhưng trường hợp đặc biệt phải có cách xử lý đặc biệt, tin rằng mẹ Tiêu của con cũng sẽ không trách con đâu."</p>
+    <p>Liễu Diệc Như cố nén đau lòng nói ra những lời này. Đây là điều nàng đã nghĩ kỹ từ trước, chỉ là lúc quyết định, nàng cảm thấy lòng mình như bị khoét đi, như thể sắp mất đi cả thế giới. Nhưng vì tốt cho Diệp Phi, nàng vẫn quyết định nói ra. Vốn tưởng rằng bản thân đã chuẩn bị tâm lý tốt, nhưng lúc này nói ra, nàng vẫn thấy đau đến tái mặt.</p>
+    <p>Diệp Phi buồn bã nói: "Nhưng Linh Nhi nói, ít nhất phải đến mười tám tuổi mới cho con đụng vào người."</p>
+    <p>"Cái gì, trước kia con đã từng đề cập chuyện này với Linh Nhi rồi sao?"</p>
+    <p>Lòng Liễu Diệc Như đau nhói, có chút tức giận hỏi.</p>
+    <p>Diệp Phi không những không sợ vì mẹ tức giận, ngược lại cười nói: "Sao thế, mẹ ghen à?"</p>
+    <p>Khuôn mặt Liễu Diệc Như ửng hồng, lúc này mới phát hiện mình đã thất thố. Họ vốn là hôn phu thê, nói chuyện này cũng là bình thường, mình quả thực không nên phản ứng thái quá như vậy. Để che giấu sự xấu hổ, Liễu Diệc Như gõ nhẹ vào đầu con trai, gắt: "Nói nhăng nói cuội gì đấy? Ta chỉ cảm thấy người ta còn nhỏ, con không thể như vậy thôi."</p>
+    <p>"Phải không? Nhưng vừa rồi rõ ràng mẹ bảo con tìm cô ấy mà."</p>
+    <p>Diệp Phi cười nói, thấy khuôn mặt tuyệt mỹ của mẹ đỏ hơn lúc nãy, hắn vội nói: "Yên tâm đi, chúng con chỉ vô tình nhắc đến khi nói chuyện phiếm thôi. Bởi vì có nhiều bạn cùng lớp đã sống chung rồi, nên mới nhắc tới, lúc ấy Khinh Khinh cũng có ở đó."</p>
+    <p>Nghe con trai giải thích, lòng Liễu Diệc Như thấy nhẹ nhõm, nhưng lập tức âm thầm khinh bỉ bản thân, rồi nói tiếp: "Ta biết rồi. Nhưng giờ con có thể nói tình hình của mình cho nó, tin rằng nó chắc chắn nguyện ý giúp con."</p>
+    <p>"Nhưng con chỉ thích mẹ giúp thôi, người khác con không thích!"</p>
+    <p>Diệp Phi hơi tùy hứng nói.</p>
+    <p>Lòng Liễu Diệc Như dâng lên chút ngọt ngào, nhưng vẫn khuyên nhủ: "Các con rồi sẽ kết hôn, chuyện đó sớm muộn gì cũng xảy ra, sao con lại không thích?"</p>
+    <p>"Dù là vậy, thì con biết nói với cô ấy thế nào đây?"</p>
+    <p>Diệp Phi hỏi: "Nếu cô ấy hỏi con làm sao biết cách này, rồi trước đây ai giúp con, thì con biết làm sao?"</p>
+    <p>"Cái này..."</p>
+    <p>Liễu Diệc Như do dự. Trước đây nàng thực sự chưa từng nghĩ đến vấn đề này, giờ mới thấy mình đã quá đơn giản. Trong lòng nàng có chút hối hận vì đã không để Lâm Linh đến, nhưng nghĩ lại cảm giác hạnh phúc những ngày qua, nàng lại thấy mừng vì mình đã không làm vậy.</p>
+    <p>Thấy mẹ lâm vào trầm tư, Diệp Phi đắc ý nói: "Cho nên á, sau này vẫn phải nhờ mẹ giúp con, hơn nữa con cũng có thể giúp mẹ mà."</p>
+    <p>"Ta không cần con giúp!"</p>
+    <p>Khuôn mặt Liễu Diệc Như lại ửng hồng, vội vàng từ chối. Tuy nhiên, trong lòng nàng đã đưa ra quyết định: khi chưa có giải pháp nào khác, vẫn đành để mình giúp con trai vậy. Sau khi đưa ra quyết định này, nàng đột nhiên nhận thấy tâm tình mình tốt lên rất nhiều. Điều này khiến nàng thấy cảnh giác, sợ rằng mình lại lún sâu vào, đồng thời cũng buồn phiền vì đã cố gắng bao lâu vẫn không thể thoát khỏi những chuyện ấy với hắn. Hơn nữa, vì từ nay về sau phải đóng vai người mẹ để giúp hắn, nghĩ đến điều này, nàng thậm chí còn có một cảm giác kích động khó tả.</p>
+    <p>"Vậy là mẹ đồng ý giúp con rồi? Mẹ thật tốt!"</p>
+    <p>Diệp Phi hưng phấn cười.</p>
+    <p>Nhìn nụ cười của con trai, Liễu Diệc Như vừa vui vẻ lại vừa rối bời. Chẳng lẽ hắn chỉ mê luyến cơ thể của mình thôi sao? Bằng không tại sao vừa rồi còn đau khổ thế, mà nghe mình đồng ý giúp lại vui mừng như vậy?</p>
+    <p>"Sao giờ lại không khóc nữa? Lúc nãy còn ra vẻ đau khổ lắm cơ mà."</p>
+    <p>Liễu Diệc Như hơi ủy khuất, hờn dỗi nói. Nàng thực sự thấy khổ sở, mình thương hắn như vậy, mà hắn lại chỉ mê đắm cơ thể của nàng thôi.</p>
+    <p>"Vì con nghĩ thông rồi."</p>
+    <p>Diệp Phi cười nói: "Vừa rồi cảm giác như thất tình, nhưng giờ nghĩ lại, mẹ là mẹ của con, cả đời này không thể rời xa con, chỉ cần được ở bên mẹ, có phải tình nhân hay không thì có quan hệ gì đâu?"</p>
+    <p>"Hừ, vừa khóc vừa cười, đúng là một đứa trẻ!"</p>
+    <p>Liễu Diệc Như hờn dỗi, nhưng những ấm ức trong lòng đã tan thành mây khói.</p>
+    <p>Diệp Phi ôm chặt cơ thể mềm mại của mẹ, đầu tựa vào bộ ngực cao ngất của nàng, cười nói: "Con vốn là con của mẹ mà, mẹ tốt của con, giờ giúp con một chút được không?"</p>
+    <p>Nói xong, hắn kéo bàn tay nhỏ bé của Liễu Diệc Như, đặt lên nơi đã sớm có phản ứng của mình.</p>
+    <p>Liễu Diệc Như đã sớm quen thuộc với vật này, khi vừa chạm vào, theo bản năng nàng nắm chặt lấy. Nhưng ngay lập tức, như bị điện giật, nàng rút tay lại, nói: "Giờ không được, ta hơi mệt."</p>
+    <p>Dù trong lòng đã quyết định, hơn nữa trước kia cũng đã quen, nhưng Liễu Diệc Như nhất thời vẫn không thể chấp nhận được, bởi vì lúc này, nàng không còn là "Như nhi" của hắn nữa.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0227.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0229.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

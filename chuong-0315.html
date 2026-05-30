@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 315 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 315</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 315</small>
+    Chương 315
+  </h1>
+  <div class="chapter-body">
+    <p>============================================================ Chương 315: Thủy Nguyệt kinh biến</p>
+    <p>Trong lúc Diệp Phi cùng Thủy Dĩnh đang vô cùng triền miên, Thủy Nguyệt cung lại xảy ra một đại sự. Thủy Nhu sau khi đuổi vị trưởng lão kia rời đi, trong lòng vô cùng mâu thuẫn. Nàng vừa muốn dứt khoát thả sư tỷ ra, sau đó tùy ý nàng xử trí; nhưng về mặt khác lại sợ sư tỷ trách cứ mình. Thực ra, nàng sợ không phải sự trách cứ, mà là sợ đối mặt với Thủy Dĩnh. Nàng bây giờ giống như một đứa trẻ làm sai chuyện, biết rõ mình sai rồi nhưng lại không dám đối mặt với gia trưởng, dù cho có mắc thêm lỗi lầm nữa, cũng chỉ muốn kéo dài thêm được ngày nào hay ngày đó.</p>
+    <p>Đột nhiên, một hồi tiếng ồn ào huyên náo cắt đứt sự trầm tư của Thủy Nhu, khiến nàng hơi nhíu mày. Công pháp của Thủy Nguyệt cung vốn lấy sự lạnh nhạt tĩnh nhã làm chủ, thêm vào đó đệ tử trong cung đều là nữ giới, ngày thường vô cùng yên tĩnh. Thủy Nhu đã quen với sự tĩnh lặng ấy, cho nên tiếng ồn ào này làm nàng vốn đã buồn bực lại càng thêm khó chịu. Nàng đang định gọi đệ tử trực ban vào hỏi xem rốt cuộc xảy ra chuyện gì, thì thấy vị trưởng lão vừa rời đi lúc nãy vội vàng chạy vào, gấp giọng nói: "Cung chủ, không ổn rồi, có một đám người xông vào."</p>
+    <p>"Kẻ nào to gan như vậy? Ngươi theo ta ra ngoài xem sao!" Thủy Nhu tuy xử lý chuyện của Thủy Dĩnh như một tiểu cô nương, nhưng đó là do quá quan tâm đến sư tỷ mới do dự. Còn nàng làm một cung chi chủ suốt mười tám năm nay tuyệt đối không phải hữu danh vô thực. Sau khi nghe tin, nàng lập tức bình tĩnh lại, vừa dẫn theo vị trưởng lão kia đi ra ngoài vừa hỏi: "Rốt cuộc là chuyện gì xảy ra!"</p>
+    <p>"Ta cũng không rõ ràng lắm. Vừa rồi sau khi rời khỏi chỗ Cung chủ, ta nhận được đệ tử bẩm báo, nói có hơn mười kẻ xông vào và đã đả thương rất nhiều đệ tử của chúng ta." Vị trưởng lão trả lời.</p>
+    <p>Trong lòng Thủy Nhu không khỏi chấn động, thầm lo lắng. Chỉ hơn mười người mà dám xông vào Thủy Nguyệt cung giương oai, đối phương chắc hẳn đã có sự chuẩn bị. Xem ra nàng không thể không cẩn trọng hành sự.</p>
+    <p>Hai người nhanh chóng đi đến tiền viện. Cảnh tượng trước mắt khiến Thủy Nhu không khỏi kinh ngạc. Chỉ thấy trên mặt đất nằm ngổn ngang không dưới bốn mươi, năm mươi nữ đệ tử mặc trang phục Thủy Nguyệt cung, mà bên cạnh họ là hơn mười gã nam nhân đang nở nụ cười ngả ngớn.</p>
+    <p>Là một môn phái ẩn thế, Thủy Nguyệt cung tuy không phải là tồn tại đỉnh cao nhưng võ công cũng tuyệt đối không hề kém cạnh. Thế mà giờ đây, đệ tử trong cung gần như đã mất hết khả năng chiến đấu, trong khi đối phương lại không một ai bị thương. Chênh lệch quá lớn khiến Thủy Nhu không tài nào hiểu nổi, rốt cuộc chúng là thế lực nào.</p>
+    <p>"Dừng tay!" Mắt thấy nữ đệ tử cuối cùng của Thủy Nguyệt cung cũng bị đánh ngã, mà kẻ đánh bại nàng ta lại định giở trò đồi bại, Thủy Nhu không thể nén nhịn thêm được nữa. Sau khi khẽ quát một tiếng, nàng lao ra ngăn trước mặt tên kia.</p>
+    <p>"Ồ, chủ chính cuối cùng cũng tới." Gã ẩn ẩn là kẻ cầm đầu đám người cười hắc hắc nói: "Lão Lục, đã Thủy cung chủ có hứng thú với ngươi, ngươi cứ chơi đùa với nàng ta đi!"</p>
+    <p>Gã "Lão Lục" chính là kẻ vừa định thực hiện hành vi sàm sỡ nữ đệ tử, nghe thủ lĩnh nói vậy liền gật đầu, lao thẳng tới tấn công Thủy Nhu.</p>
+    <p>Thủy Nhu không dám chậm trễ, vội vàng ra tay chống đỡ. Vừa giao thủ, lòng Thủy Nhu không khỏi trầm xuống. Nàng phát hiện, mình đối kháng với "Lão Lục" này tuy miễn cưỡng chiếm được chút thượng phong, nhưng muốn đánh bại hắn thì không thể trong chốc lát. Đây chỉ mới là một tên tay sai của đối phương, mà trong Thủy Nguyệt cung, ngoại trừ Thủy Dĩnh đang bị nhốt trong địa lao, võ công của nàng là mạnh nhất rồi. Những người khác căn bản không thể nào là đối thủ của bọn chúng.</p>
+    <p>Đấu đến hơn ba trăm chiêu, Thủy Nhu mới tìm được một cơ hội điểm huyệt khiến "Lão Lục" ngã xuống đất. Bất quá, nàng không hề động sát chiêu, vì lúc này vẫn chưa biết rõ mục đích của đối phương. Nếu quá xúc động, sợ rằng sẽ khiến Thủy Nguyệt cung gặp họa diệt môn.</p>
+    <p>"Không hổ là cung chủ, quả nhiên có chút thủ đoạn." Gã thủ lĩnh không chút bận tâm đến tên thuộc hạ đang nằm dưới đất, vỗ tay cười nói: "Bất quá thủ hạ ta còn hơn mười huynh đệ, võ công bọn họ cũng gần như vậy, không biết Thủy cung chủ đối phó được mấy người?"</p>
+    <p>Lúc này Thủy Nhu mới có thời gian quan sát kỹ kẻ đang nói chuyện. Hắn chỉ có một cánh tay trái, tướng mạo tuy không khó nhìn, nhưng một vết bớt màu đỏ bao trùm gần như toàn bộ nửa bên mặt trái khiến hắn trông cực kỳ quái dị.</p>
+    <p>Tướng mạo kỳ lạ này khiến Thủy Nhu nhớ tới một kẻ đã mất tích gần hai mươi năm, nàng không khỏi thất thanh kêu lên: "Ngươi là Huyết Ma Nhậm Thanh Thiên?"</p>
+    <p>"Không ngờ Thủy cung chủ vẫn nhớ rõ Nhậm mỗ, thật sự không tệ nha." Huyết Ma không hề che giấu thân phận, cười hắc hắc nói.</p>
+    <p>Thủy Nhu thấy hắn thừa nhận, trong lòng thầm sốt ruột. Người này năm đó đã nổi danh xú uế, thủ đoạn vô cùng tàn nhẫn. Nhưng nhờ có vị Minh chủ Võ Minh thần bí uy hiếp, hắn không dám ra thế tục gây sự, nếu không sớm đã gây nên vô số phong ba mưa máu. Dù vậy, hắn cũng không ít lần làm mưa làm gió trong các môn phái ẩn thế. Vì tên này cực kỳ giảo hoạt, không bao giờ trêu chọc những nhân vật lợi hại, nên mới có thể hoành hành lâu như vậy.</p>
+    <p>Mười tám năm trước, không hiểu vì sao kẻ xú danh chiêu liệt này đột nhiên mai danh ẩn tích. Lúc đó mọi người đều suy đoán đủ kiểu, không ai ngờ được mười tám năm sau hắn lại xuất hiện ở đây, còn mất đi một cánh tay.</p>
+    <p>"Nhậm Thanh Thiên, Thủy Nguyệt cung ta với ngươi không thù không oán, hôm nay tại sao lại tới đây gây sự?" Dù biết đây là kẻ không nói lý lẽ, nhưng vì toàn bộ Thủy Nguyệt cung, Thủy Nhu vẫn quyết định thử giảng đạo lý, hy vọng trải qua mười tám năm, tính cách hắn đã có chút thay đổi, nếu không lần này Thủy Nguyệt cung e là đại nạn khó tránh.</p>
+    <p>"Không thù không oán?" Nhậm Thanh Thiên lộ ra vẻ mặt dữ tợn, dùng bàn tay trái duy nhất chỉ vào cánh tay phải trống rỗng nói: "Vậy cánh tay phải này của lão tử mất đi như thế nào? Mau gọi tiện nhân Thủy Dĩnh kia ra đây!"</p>
+    <p>Nghe Nhậm Thanh Thiên nhắc đến Thủy Dĩnh, lòng Thủy Nhu giật thót. Trách không được năm đó sư tỷ trở về lại có vẻ không được tinh thần, hóa ra là thuận đường thu thập tên này. Nhưng hiện tại xem ra, Huyết Ma chỉ sợ đã lợi hại hơn mười tám năm trước rất nhiều. Ngay cả khi nàng thả sư tỷ ra, e cũng không phải đối thủ của hắn. Vì cảm thấy có lỗi, nàng quyết định thay sư tỷ gánh vác món nợ này, bèn lạnh nhạt nói: "Sư tỷ ta đã hơn mười năm không trở về rồi. Nếu nàng ở đây, há lại cho ngươi càn rỡ như vậy, sớm đã chặt nốt cánh tay còn lại của ngươi rồi!"</p>
+    <p>"Ha ha ha ha!" Nhậm Thanh Thiên đột nhiên cười lớn: "Thật không biết trời cao đất dày là gì. Ngươi tưởng lão tử mười tám năm qua trốn đi hưởng thanh nhàn sao? Ta nói lại lần nữa, mau gọi tiện nhân Thủy Dĩnh kia ra đây, bằng không lão tử không những san bằng Thủy Nguyệt cung của các ngươi, mà còn muốn biến tất cả đại tiểu mỹ nhân nơi đây thành đồ chơi. Hắc hắc, không ngờ võ công Thủy Nguyệt cung không ra sao, mà đệ tử thu nhận vào lại người nào cũng thủy linh thế này!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0314.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0316.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

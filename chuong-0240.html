@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 240 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 240</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 240</small>
+    Chương 240: Hai nữ thí nghiệm
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi cười nói: "Đương nhiên không phải rồi, chỉ là ta so với ai khác hiểu rõ bản thân, biết năng lực mình không đủ, cho nên mới phải đem mọi việc giao cho những người có kinh nghiệm như các ngươi làm." "Năng lực gì mà không đủ? Rõ ràng chính là kiếm cớ để lười biếng!" Diệp Phi có thể nói là người cơ trí nhất mà Diệp Tuyền từng gặp trong đời, lúc này hắn vậy mà nói bản thân năng lực không đủ, điều này khiến Diệp Tuyền cực kỳ khinh bỉ, không nhịn được mà liếc mắt nhìn hắn, nhưng lại không nhận ra được, cái liếc mắt này của mình thậm chí còn có chút ý làm nũng ở trong đó. Hành động trợn mắt như vậy gần như cô gái nào cũng biết làm, nhưng khi xuất hiện trên người một Diệp Tuyền luôn mạnh mẽ thì lại là lần đầu. Trong khi Diệp Phi vì cái nhìn đầy điện lực này mà hơi tim đập rộn lên, thì những nòng cốt cũ của Phi Long bang cũng không khỏi mở to mắt. Làm việc với Diệp Tuyền lâu như vậy, hôm nay là lần đầu tiên họ thấy nàng ở khía cạnh nữ tính này, trước kia dù là đối diện với chồng mình, nàng cũng chưa từng như thế. Nhìn ánh mắt kinh ngạc của thủ hạ, Diệp Tuyền đột nhiên ý thức được điều gì đó, khuôn mặt tuyệt mỹ ửng đỏ, có chút bối rối nói: "Các ngươi tiếp tục đi, ta phải đi xem Thiến Thiến đây!" Nói xong cũng không đợi Diệp Phi đồng ý, nàng bước nhanh chạy ra khỏi phòng họp. Trải qua vài chuyện trong hai ngày qua, những nòng cốt cũ của Phi Long bang đã hoàn toàn công nhận Diệp Phi. Mà những người lăn lộn trên đường phố như họ, ngoại trừ khi có việc quan trọng, còn lại đều không quá nhiều quy củ. Lúc này, họ không khỏi cười hì hì nói với Diệp Phi: "Bang chủ, chúc mừng nhé!" Diệp Phi không khỏi sững sờ, hỏi: "Chúc mừng cái gì?" "Chúng ta quen biết Tuyền tỷ cũng hơn mười năm rồi, đây là lần đầu tiên thấy nàng làm nũng đấy, ngay cả cố lão bang chủ cũng chưa từng được hưởng đãi ngộ này đâu." Người nòng cốt vừa rồi đứng lên chống đối Diệp Phi cười nói. Hắn là một người thẳng tính, sau chuyện vừa rồi, hắn cũng như những người khác hoàn toàn công nhận Diệp Phi, lúc này liền đưa cho hắn một ánh mắt mập mờ: "Cho nên, ngươi hiểu mà." Diệp Phi không khỏi cười khổ, cũng không trách cứ những người này không biết lớn nhỏ, vì hắn biết người trên đường là như thế, bình thường những nòng cốt của Lăng Vân Hội ở trước mặt hắn cũng chẳng có chút nghiêm chỉnh nào. Lúc này hắn chỉ đang nghĩ, chẳng lẽ Tuyền tỷ thực sự coi trọng mình? Ân, rất có thể, xem ra vóc người đẹp trai quả nhiên lợi hại! Diệp Phi vuốt cằm, có chút tự luyến nghĩ thầm, nhưng hắn không biết, điều khiến Diệp Tuyền rung động thực sự không phải là vẻ ngoài xuất sắc kia. Cuối cùng cũng xử lý xong việc bang hội, thân nhẹ nhõm, Diệp Phi vốn định dẫn tiểu nha đầu Phương Ngọc Thiến đi xem cá vàng, không ngờ nha đầu kia lại muốn xem phim. Thế là Diệp Phi vốn không thích xem phim đành một mình chạy ra ngoài. Về phần Tiêu Phỉ, hắn cũng không đi tìm. Đã nha đầu kia bướng bỉnh như thế, vậy thì cứ nhốt nàng hai ngày đã. Diệp Phi đã dặn dò, mấy ngày nay chỉ cho phép đưa ăn uống, tuyệt đối không cho bất kỳ ai nói chuyện với nàng, hừ hừ, không tin là không trị được nàng! Ra khỏi tổng bộ Lăng Vân Hội, Diệp Phi nhớ tới mình còn một chuyện chưa giải quyết, đó là chuyện của tiểu dì Diệp Ngưng Băng. Tuy hiện tại đã lợi dụng tiểu ma nữ Vân Sơ Tình để tách nàng ra khỏi Vân Tĩnh, nhưng đó không phải kế lâu dài. Vạn nhất Vân Tĩnh không nhịn được mà tìm đến vào ban ngày, với tính cách ôn nhu của Diệp Ngưng Băng thì nhất định sẽ không cự tuyệt. Cho nên quan trọng nhất vẫn là phải phá vỡ tình cảm của họ. Phương pháp Diệp Phi đã nghĩ kỹ, đó là sắp xếp một người phụ nữ đến bên cạnh Vân Tĩnh để quyến rũ hắn. Việc sắp xếp người đương nhiên giao cho Trương Lâm Tâm. Với chức vụ phó thị trưởng của ông ta, sắp xếp một người vào một căn phòng nhỏ chẳng có vấn đề gì cả. Hiện tại nan đề lớn nhất là tìm người phụ nữ này ở đâu. Để Trương Nhất Đức đi tìm rõ ràng là không thực tế, ông ta là thuộc hạ cũ của gia gia, nhìn Diệp Ngưng Băng lớn lên từ nhỏ, để ông ta đi làm việc phá hoại tình cảm vợ chồng của Diệp Ngưng Băng thì thật không thích hợp. Còn bọn Trọc đầu thì đang ở xa tận Lâm Hải, cho nên hiện tại chỉ có thể nghĩ cách từ chỗ thuộc hạ của Diệp Tuyền thôi. Nghĩ đến ba vị dì có phong tư tuyệt thế của mình, Diệp Phi trong lòng vừa lửa nóng lại vừa cảm thấy gia gia đặt tên cho họ sai rồi. Đại dì rõ ràng nhiệt tình như lửa vậy mà lại gọi là Ngưng Sương, còn tính cách lạnh nhạt của nhị dì và ôn nhu như nước của tiểu dì thì tên đáng lẽ phải đổi ngược lại mới đúng. Nhị dì gọi Ngưng Băng, tiểu dì gọi cái tên nhu hòa hơn là Ngưng Tuyết mới phải chứ. Trong lòng miên man suy nghĩ, Diệp Phi lặng lẽ quay lại câu lạc bộ đêm, vừa vặn nhìn thấy một nòng cốt của phân bộ Lăng Vân Hội gần biển, vốn là người của Phi Long bang cũ, vội vàng vẫy tay gọi người đó lại. "Bang chủ?" Người nọ hơi sững sờ, nơi này chẳng phải là địa bàn của Diệp Phi sao? Sao hắn lại lén lút như đang trốn tránh gì vậy? Không khỏi hỏi: "Ngài sao thế?" "Đừng nói nữa." Diệp Phi xua tay, than thở với thủ hạ: "Còn không phải tại tiểu nha đầu Thiến Thiến kia, cứ quấn lấy đòi ta đưa đi xem phim, ngươi nói xem phim có gì hay? Cho nên ta mới vụng trộm chạy ra ngoài."</p>
+    <p>Không thể nào? Người nọ không khỏi trừng lớn mắt, chẳng phải Diệp Tuyền thích hắn sao? Sao lại thành con gái của Diệp Tuyền rồi? Chẳng lẽ mị lực của vị tiểu bang chủ này lớn đến mức mê hoặc cả hai mẹ con nhà người ta? Nhưng nhìn vẻ ngoài phong thần tuấn lãng của Diệp Phi, hắn cảm thấy điều này cũng rất có khả năng. Đối với Diệp Tuyền, bọn họ luôn kính trọng, tự biết không xứng với nàng nên những năm qua luôn hy vọng nàng tìm được hạnh phúc của mình, vì thế họ rất ủng hộ việc nàng thích Diệp Phi. Còn về việc tiểu nha đầu có thích hắn hay không, đó không phải việc họ quản được, cùng lắm thì để Diệp Phi "ăn cả mẹ lẫn con", chỉ cần hai mẹ con Diệp Tuyền không có ý kiến, bọn họ đương nhiên cũng sẽ không xen vào. "Không nói chuyện này nữa." Diệp Phi lại xua tay: "Các ngươi lúc trước ở gần biển có kiểm soát vài nơi vui chơi không? Ví dụ như câu lạc bộ đêm chẳng hạn." "Đương nhiên là có, nhưng tiểu thư chỗ chúng ta đều là tự nguyện, chuyện ép buộc làm kỹ nữ chúng ta chưa bao giờ làm, hơn nữa Diệp Tuyền cũng nghiêm cấm điều đó." Người nọ cứ tưởng Diệp Phi muốn tìm hiểu về công việc kinh doanh của Phi Long bang cũ, sợ nói không khéo sẽ tạo ấn tượng xấu nên vội giải thích. Diệp Phi cười nói: "Ta không hỏi chuyện này, ta muốn nhờ ngươi giúp tìm một người phụ nữ bên đó." Người nọ sững sờ, chẳng lẽ Diệp Phi lại thích kiểu này? Nhưng còn người phụ nữ nào hơn được Diệp Tuyền chứ? Trong lòng thầm than vị tiểu bang chủ này khẩu vị thật lạ, hắn hỏi: "Có yêu cầu gì không ạ?" "Yêu cầu à, không được quá xấu, hơn nữa phải có chút văn hóa." Diệp Phi suy nghĩ rồi nói: "Phải biết cách lấy lòng đàn ông, đương nhiên, quan trọng nhất là phải nằm trong sự kiểm soát của chúng ta, có vấn đề gì không?" Nghe câu cuối của Diệp Phi, người nọ hiểu rằng mình đã nghĩ nhiều rồi, Diệp Phi rõ ràng là muốn người phụ nữ này làm việc gì đó, vì thế hắn vỗ ngực nói: "Không vấn đề gì, chuyện này cứ giao cho ta, ta đi sắp xếp ngay, người chắc chắn ngày mai sẽ đến!" "Rất tốt!" Diệp Phi vỗ vai hắn, nói: "Chuyện này phải giữ bí mật, tốt nhất chỉ có hai người chúng ta biết." Người nọ không khỏi rất phấn khích, Diệp Phi nói như vậy chứng tỏ hắn tin tưởng mình, nhưng vì trung thành với Diệp Tuyền, hắn vẫn hỏi: "Nhưng về phía Tuyền tỷ..." Hiện tại Diệp Tuyền đã không phải bang chủ, nên mọi người đều theo Diệp Phi gọi nàng là Tuyền tỷ. "Việc ta làm không liên quan đến bang hội, nên cũng không cần cho nàng biết." Diệp Phi nói, dù sao việc mình cần làm nói ra hơi khó nghe, nên biết càng ít người càng tốt. Sắp xếp xong xuôi, Diệp Phi lại lén lút chuồn khỏi nơi này. Hắn hiện đã biết, tiểu nha đầu Phương Ngọc Thiến không những là một tiểu ma nữ mà còn là cái "cục nợ" bám người. Nếu không phải vừa rồi mình mượn cớ đi vệ sinh, sợ rằng giờ này vẫn còn bị nàng quấn lấy không buông. Lần này Diệp Phi không dừng lại nữa, trực tiếp lái xe đến trường học, nhìn vật phẩm cực kỳ giống thật mà mình đã để trong không gian, vô cùng mong chờ đến buổi tối. Dù đã sắp đến giờ vào lớp chiều, nhưng Diệp Phi chẳng bận tâm. Chưa ăn cơm, hắn dứt khoát ghé vào tiệm cơm nhỏ bên ngoài ăn chút gì đó rồi mới vào trường. Khi hắn đến, tiết học đầu tiên của buổi chiều đã bắt đầu rồi. Vào lớp, Diệp Phi theo thói quen đi về chỗ ngồi của mình, nào ngờ chỗ đó đã có người ngồi, còn chỗ bên cạnh cũng không phải Diệp Vân Khinh và Lâm Linh. Điều này khiến hắn thấy lạ, nhìn quanh một vòng mới phát hiện hai nha đầu kia không biết từ bao giờ đã chuyển xuống cuối lớp, còn ngồi trong góc, nơi vốn là cửa sau nhưng đã bị Diệp Vân Khinh chặn lại. Bước đến chỗ hai người, Diệp Phi ngồi vào giữa, Diệp Vân Khinh đang ngồi bên trong hỏi: "Ca, Tiêu Phỉ thế nào rồi?" "Ta nhốt nàng lại rồi, chờ lúc ngươi gặp lại nàng, chắc chắn nàng sẽ ngoan ngoãn thôi." Diệp Phi cười nói. Chuyện Tiêu Phỉ dùng video uy hiếp hai người, Lâm Linh cũng đã biết từ miệng Diệp Vân Khinh, trong lòng cũng rất bất mãn với Tiêu Phỉ, nhưng nghe tin Diệp Phi tự ý giam giữ nàng vẫn có chút kinh ngạc: "Ngươi tùy tiện giam người, không sợ phiền phức sao?" "Yên tâm đi, mẹ nàng cũng sẽ không nói gì đâu, người khác đương nhiên càng không dám quản." Diệp Phi khẳng định cười nói. "Ca!" Lúc này Diệp Vân Khinh ngồi bên trong đột nhiên gọi một tiếng đầy kiều mỵ, đôi mắt to trở nên long lanh nước. Diệp Phi trong lòng cười thầm, hắn biết ngay nha đầu này ngồi xuống cuối lớp là có ý đồ gì, vì thế sủng nịch cười với nàng, khẽ gật đầu. Thấy ca ca không từ chối, Diệp Vân Khinh mừng thầm, đầu tiên lén nhìn lên bục giảng xem nữ giáo viên có đang chăm chú giảng bài không, rồi nói với Lâm Linh: "Chị dâu, giúp chúng ta che chắn một chút nhé." Sau đó nàng nằm xuống dưới gầm bàn. Thuần thục cởi khóa quần ca ca, Diệp Vân Khinh lấy "thứ đó" của hắn ra, nắm trong tay nhỏ nhẹ nhàng khuấy động vài cái, rồi ngậm vào cái miệng nhỏ, mút mát đầy sung sướng. Dưới sự mút mát từ cái miệng nhỏ mềm mại của muội muội, dương vật Diệp Phi nhanh chóng cứng ngắc, khiến Diệp Vân Khinh mút càng nhiệt tình hơn. Một bên tiếp tục liếm láp, một bên nàng kéo đại thủ của ca ca đặt vào trong váy mình. Diệp Phi kinh ngạc phát hiện, tiểu sắc nữ này không biết từ lúc nào đã kéo quần lót xuống đầu gối, bàn tay to của hắn tiếp xúc trực tiếp với cái tiểu huyệt dâm đãng vốn đã bị hắn địt nhiều lần nhưng vẫn kiều nộn như thời xử nữ. Hắn không khỏi cử động ngón tay, đùa nghịch trên lồn muội muội. Lâm Linh nhìn lén một màn này, khuôn mặt không khỏi đỏ bừng, nhưng trong lòng cũng khao khát không thôi. Nàng đã lâu không thân mật với Diệp Phi, tự nhiên cũng muốn đến phát điên. Có lẽ nhận ra sự ghen tị của Lâm Linh, Diệp Vân Khinh nhả cái đầu cặc lớn đang được mình mút đến sáng bóng ra, cười với Lâm Linh: "Chị dâu, chị cũng tới đi, yên tâm, tiết sau chúng ta đổi chỗ, để chị cũng được nếm thử con cặc lớn của ca em." Nói rồi nàng kéo lấy tay phải của Lâm Linh. "Chị không cần!" Lâm Linh ngượng ngùng từ chối, nhưng bàn tay nhỏ bị Diệp Vân Khinh kéo đi cũng đã không thể chờ đợi được mà cùng nàng nắm lấy dương vật Diệp Phi, hơn nữa còn nhẹ nhàng khuấy động. Dương vật Diệp Phi thực sự quá lớn, dù bị hai người nắm mỗi người một tay vẫn lộ ra một đoạn dài. Diệp Phi vừa đùa nghịch cái tiểu huyệt ướt át của muội muội, vừa nhìn hai người cùng nhau khuấy động "cái đó" của mình, trong lòng sướng không tả nổi. Một người là em gái ruột, một người là vợ tương lai, họ vậy mà có thể không chút khúc mắc mà cùng giúp mình thỏa mãn, cảm giác thành tựu này đủ để Diệp Phi tự hào. Đột nhiên, Diệp Phi trong lòng vừa động, thứ "dương vật giả" mình chế tạo tuy nhìn rất hoàn mỹ, nhưng không biết hiệu quả thế nào, chi bằng để họ thử nghiệm một chút. Vì vậy hắn lấy ra đặt trước mặt hai nữ, cười nói: "Các ngươi xem đây là gì?" "Nha?" Hai người đều giật mình, sao Diệp Phi lại có thêm một cây dương vật nữa? Nhưng rất nhanh họ đã nhận ra, vì vật giả này dù giống hệt Diệp Phi nhưng phía sau không phải là cơ thể hắn mà là một cái tay cầm. Diệp Vân Khinh vô cùng thông minh, lập tức hiểu dụng ý của ca ca, trong lòng không khỏi thầm khen hắn lắm mưu mẹo, đồng thời cũng có chút khao khát. Dù nàng muốn ca ca dùng "cái thật" cắm vào cái tiểu huyệt đang ngứa ngáy khó nhịn của mình hơn, nhưng cũng hiểu việc đó khó thực hiện trong hoàn cảnh này, vì giáo viên đang đứng trên bục là một nữ giáo viên trung niên mắt sắc. Hơn nữa, món đồ này trông có vẻ mới, vừa vặn mình dùng thử xem sao, đừng để đến lúc dùng không tốt lại khiến ca ca mất hứng, vì vậy nũng nịu nói: "Ca, người ta muốn thử một chút." "Được." Diệp Phi gật đầu đồng ý, tay phải cầm tay cầm, đưa "dương vật giả" đến dưới háng muội muội, đầu tiên dùng quy đầu ma sát vài cái lên tiểu huyệt, sau khi để nó dính đầy dâm thủy, hắn nhẹ nhàng đâm vào. Tuy thứ này dù về phương diện nào cũng gần như không có gì khác biệt với cái thật, nhưng có lẽ do tác động tâm lý, Diệp Vân Khinh cảm thấy vẫn chưa sướng bằng được ca ca trực tiếp địt, nhưng trong hoàn cảnh này thì chỉ có thể chấp nhận. Vì thế, một bên nàng tiếp tục mút mát dương vật thật của ca ca, một bên hưởng thụ hắn dùng "đồ giả" đâm rút cho mình. Suốt một tiết học, Diệp Vân Khinh dưới sự đùa nghịch của Diệp Phi đã cao trào hai lần, nhưng nàng biết, nếu thật sự để ca ca địt, số lần cao trào của nàng ít nhất cũng phải gấp bội. Đúng lúc chuông tan học vang lên, Diệp Phi thân thể chấn động, bùng phát ngay trong cái miệng nhỏ của muội muội. Diệp Vân Khinh cũng không né tránh, đợi đến khi ca ca xuất hết, mới nhả ra, nuốt lấy đầy miệng tinh dịch với vẻ thỏa mãn. Thấy một màn này, Lâm Linh mới biết Diệp Phi không hề lừa mình, lòng hiếu thắng nổi lên, đến tiết thứ hai sau khi đổi chỗ với Diệp Vân Khinh, nàng cũng được Diệp Phi dùng "dương vật giả" khiến cho cao trào liên miên, đồng thời cũng lần đầu tiên ăn tinh dịch của Diệp Phi. Có lẽ vì tâm lý, nàng không thấy khó ăn mà ngược lại còn thấy vẫn chưa thỏa mãn. Sau khi hai nữ thỏa mãn, Diệp Phi cũng nhàn rỗi, dứt khoát tận dụng hai tiết cuối để làm thêm hai cái nữa. Một cái bị Lâm Linh xin mất, vì nàng biết Diệp Phi trong thời gian tới có lẽ không có thời gian đến nhà nàng, nên nàng muốn dùng nó để tạm thời an ủi nỗi nhớ nhung của mẹ. Trong tâm trạng đầy mong chờ của Diệp Phi, những tiết học chiều cuối cùng cũng kết thúc, nhưng khi hắn muốn về thì bị muội muội kéo lại. "Ca, hôm qua anh bảo muốn dạy em lái xe đấy, đừng nói là nói mà không giữ lời nhé?" Diệp Vân Khinh kéo tay Diệp Phi nũng nịu. Diệp Phi lúc này mới nhớ ra đúng là có chuyện đó, nhìn sắc trời vẫn còn sớm, dù có về nhà cũng vô dụng vì mẹ có thể chưa về, nên hắn gật đầu: "Được rồi, chúng ta đi tập lái." Trong tiếng reo hò phấn khích của Diệp Vân Khinh, huynh muội hai người chia tay Lâm Linh đang đầy lưu luyến, Diệp Phi lái xe đến con đường lớn không xa biệt thự nhà họ Liễu, bắt đầu để Diệp Vân Khinh học tập. Vì đây là vùng ngoại ô, dân cư thưa thớt, xe cộ ít, nên đây đúng là chỗ tập lái tốt. Diệp Vân Khinh quả không hổ danh, dưới sự chỉ dẫn của ca ca, nàng nhanh chóng nắm vững các kỹ năng, hưng phấn lái xe chở Diệp Phi chạy loạn trên con đường vắng, cho đến khi trời tối hẳn mới chịu kết thúc hành trình tập lái theo lời khuyên của Diệp Phi. Lái xe đưa Diệp Phi đến cửa biệt thự, Diệp Vân Khinh không xuống xe, mới học được lái xe khiến nàng vô cùng hứng thú, quyết định hôm nay muốn lái xe đến nhà thẩm thẩm luôn. Diệp Phi cũng không để ý, vì với thực lực của tiểu muội, dù có lái vào đâu đụng phải cái gì cũng không làm nàng bị thương. "Ca." Đúng lúc Diệp Phi chuẩn bị đi vào, Diệp Vân Khinh bỗng thò đầu nhỏ ra từ cửa sổ xe nói: "Sau khi dùng xong cho mẹ, đừng có rửa nhé, người ta muốn dùng luôn!" Nói xong nàng phóng xe chạy mất hút. Nhìn theo hướng tiểu muội biến mất, Diệp Phi không khỏi lắc đầu. Nha đầu kia, hiện tại không biết đang nghĩ gì nữa, sao lại có vẻ hơi biến thái thế nhỉ? Nhưng kiểu biến thái này lại khiến Diệp Phi vô cùng phấn khích. Vừa vào phòng khách, Diệp Phi đã thấy Liễu Diệc Như đang mặc đồ ở nhà, ngồi bên bàn ăn đợi mình. Bàn ăn trước mặt nàng đã bày đầy bữa tối phong phú, trông cực giống một người vợ nhỏ đang đợi chồng về nhà, một màn này thật khiến người ta động lòng. "Thơm quá!" Diệp Phi hít hà, nhìn người mẹ vô luận mặc trang phục gì cũng vẫn gợi cảm mê người, cũng không biết là đang khen đồ ăn thơm hay khen người thơm nữa. Liễu Diệc Như nở một nụ cười sủng nịch xen lẫn sự lưu luyến, ôn nhu nói: "Mau đi rửa tay đi, chuẩn bị ăn cơm thôi, sao hôm nay về muộn thế?" "Vừa đi dạy Khinh Khinh lái xe." Diệp Phi thuận miệng trả lời, bước nhanh vào toilet, vội vàng rửa mặt rồi chạy ra. Về chuyện hôm qua, hắn không nói rõ ràng với mẹ, chỉ bảo mình đi xử lý việc của Lăng Vân Hội, vì hắn không muốn người mẹ như nữ thần của mình tiếp xúc với những mặt đen tối đó. Biết con trai đau lòng mình, Liễu Diệc Như cũng không hỏi thêm, chỉ khẽ cười: "Chắc đói lắm rồi đúng không? Mau ăn đi, không phải vừa nói thơm lắm sao?" "Được!" Diệp Phi đi qua ngồi xuống cạnh mẹ, nhưng không động đến đồ ăn trên bàn mà chui tọt vào lòng mẹ, xuyên qua bộ đồ mặc ở nhà rộng rãi, cắn nhẹ vào bầu ngực đầy đặn mê người của nàng. "Nha..." Cơ thể Liễu Diệc Như hiện tại đã bị con trai khai phá đến mức mẫn cảm vô cùng, căn bản không chống cự nổi sự xâm phạm của hắn, không khỏi thốt lên một tiếng yêu kiều, rồi dùng lực đẩy hắn chôn vào ngực mình, khuôn mặt ửng đỏ mắng: "Đồ hư hỏng, con làm gì đấy?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0239.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0241.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

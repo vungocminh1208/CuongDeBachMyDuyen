@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 255 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 255</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 255</small>
+    Chương 255: Tam tỷ ngược lại
+  </h1>
+  <div class="chapter-body">
+    <p>Một đường chạy như bay, thêm nữa nhà ga vốn nằm chếch về phía bắc Vọng Hải, nên hơn hai mươi phút sau, Diệp Phi đã lái xe vào nhà ga. Tại khu vực xuất trạm, cậu nhìn quanh một lượt, rất nhanh đã tìm thấy một vài bóng dáng quen thuộc đang trang điểm xinh đẹp. Thế nhưng, điều khiến Diệp Phi kinh ngạc là, cô gái này thật sự là tam tỷ của mình sao? Tuy tướng mạo không sai, vóc dáng mà cậu từng nhìn thấy vài lần cũng không sai, nhưng sao một thời gian không gặp, nàng lại đen thế này? Lúc này, khuôn mặt vốn trắng nõn của Diệp Vân Anh đã chuyển sang màu lúa mì. Hai cánh tay ngọc lộ ra dưới chiếc áo thun ngắn tay cũng vậy, dù mất đi vẻ trắng nõn vốn có nhưng lại toát lên một phong tình khác, khiến nàng tràn đầy vẻ đẹp dã tính, càng thêm phù hợp với tính cách của nàng. Chứng kiến dáng vẻ này của tam tỷ, Diệp Phi cảm thấy khá thú vị. Cậu bước xuống xe, phất tay về phía nàng rồi lớn tiếng gọi: "Này, cô nàng da đen, ta ở đây!" Vì quá quen thuộc với giọng nói của Diệp Phi, Diệp Vân Anh nhận ra đệ đệ ngay lập tức dù cậu gọi không đúng tên mình. Nàng quay đầu nhìn lại, trong mắt ánh lên vẻ mừng rỡ. Gặp tam tỷ đã chú ý tới mình, Diệp Phi cười gọi tiếp: "Cô nàng da đen, đã lâu không gặp." Diệp Vân Anh đang chạy về phía Diệp Phi, nghe đệ đệ gọi biệt danh này lại liên tưởng đến làn da rám nắng của mình, biết ngay cậu đang gọi mình, không khỏi tức giận nói: "Thằng nhóc thối, dám gọi ta như vậy!" Nói xong, nàng chạy đến trước mặt Diệp Phi, nhảy lên khoác lấy cổ cậu, dùng sức kẹp dưới nách, miệng thì thầm: "Một lát nữa không được nói là đệ đệ của ta!" Diệp Phi lúc này chẳng hề để ý tam tỷ nói gì, bởi vì nàng đè đầu cậu xuống, khiến cả khuôn mặt cậu dán chặt vào bộ ngực đầy đặn mềm mại. Cảm giác mỹ diệu ấy khiến Diệp Phi vô cùng sướng khoái. Nếu nơi này không có quá nhiều người, cậu thật muốn nhẹ nhàng cắn một cái. Tuy nhiên, trong lòng cậu lại thấy chút kỳ lạ: từ lần xấu hổ trước, tam tỷ đã trở nên ngượng ngùng hơn trước mặt cậu, sao lần này đi xa về lại biến thành thế này? Vì muốn trả thù việc Diệp Phi đặt biệt danh cho mình, Diệp Vân Anh giữ nguyên tư thế kẹp cổ một lúc lâu, cho đến khi mấy cô bạn đứng cạnh nàng chạy tới mới buông cậu ra, rồi thuận thế khoác lấy cánh tay cậu. "Oa! Quả nhiên rất đẹp trai nha, Tiểu Anh không hề lừa chúng ta!" Một cô gái trong nhóm trầm trồ, sau đó đổi giọng: "Chỉ là, trông cậu ấy có vẻ nhỏ tuổi hơn Tiểu Anh nhỉ?" "Người ta là chị em yêu nhau mà, cậu không thấy Tiểu Anh vừa gặp mặt đã cho cậu ấy bú sữa mẹ sao?" Một cô gái khác ranh mãnh cười nói: "Này, anh chàng đẹp trai, Tiểu Anh của chúng ta có ngon không?" Diệp Phi lúc này mới biết mình bị tỷ tỷ lấy ra làm trò cười trước mặt bạn bè. Chẳng trách nàng bắt cậu gọi là tỷ tỷ. Nhìn cách các nàng trêu chọc, quan hệ của họ chắc chắn rất tốt. Chỉ là mấy cô gái này tuy cũng xinh đẹp nhưng so với Diệp Vân Anh thì chênh lệch quá xa, nên Diệp Phi không hề hứng thú, chỉ nhạt nhẽo cười cười. Diệp Vân Anh không hổ là cô nàng bưu hãn, bị trêu như vậy mà chẳng chút ngượng ngùng, ngược lại còn cười đắc ý: "Ăn ngon hay không thì không biết, dù sao cậu ấy chỉ ăn của một mình ta thôi, các người nghĩ cũng đừng nghĩ!" Nói xong, nàng nắm chặt tay Diệp Phi, tuyên bố chủ quyền. "Vậy cũng không chắc đâu, đôi khi đổi vị cũng tốt mà." Một cô gái có bộ ngực lớn ưỡn ngực, chớp mắt với Diệp Phi: "Anh chàng đẹp trai, tỷ tỷ đây còn lớn hơn Tiểu Anh đấy, có muốn nếm thử không?" Diệp Phi thầm đổ mồ hôi, đúng là bạn của tỷ tỷ, cô nào cũng bưu hãn. Nhưng dù cô có lớn đến đâu thì sao so được với mấy vị cực phẩm mỹ phụ của mình? Cậu không có hứng thú, nên chỉ cười nhạt. Nhìn các cô bạn trêu chọc Diệp Phi, dù biết chỉ là đùa nhưng Diệp Vân Anh vẫn thấy không thoải mái, kéo tay Diệp Phi nói: "Đừng để ý mấy cô nàng sắc nữ đó, chúng ta về nhà thân mật thôi!" Nói xong, nàng lên xe trước. "À, Tiểu Anh ghen kìa!" Mấy cô gái cười lớn: "Nhưng cậu phải giữ lời đấy, đừng để ngày mai bọn này gặp lại mà Tiểu Anh vẫn chưa 'ăn' được cậu ấy nhé!" Nghe đám bạn nói, trong mắt Diệp Vân Anh hiện lên tia sáng lạ, nhưng Diệp Phi đang khởi động xe nên không thấy. Suốt dọc đường không ai nói gì, hai chị em nhanh chóng về đến nhà. Vừa vào cửa, Diệp Vân Anh liền cởi áo thun và quần đùi ném sang một bên, không chút kiêng dè đệ đệ đang ở bên cạnh. Nàng không đi dép, cứ thế đi chân trần, chỉ mặc mỗi bộ đồ lót nhỏ đến trước tủ lạnh lấy một lon nước, sau đó tùy tiện ngồi xuống ghế sofa, uống một hơi cạn sạch rồi thở phào: "Đoạn đường này thật là khó chịu chết đi được!" Lúc này, Diệp Vân Anh trông chẳng khác gì đàn ông, ngồi xoãi người trên sofa, còn gác chân chữ ngũ. Diệp Phi thậm chí có thể thấy rõ giữa cặp đùi ngọc thon dài của nàng, vài sợi lông nhỏ lộ ra ở mép quần lót. Nhưng thứ Diệp Phi chú ý lúc này không phải là điều đó, mà là việc nàng cũng trở nên rám nắng, cậu không khỏi hỏi: "Tỷ, da nàng sao lại thế này? Sao lại đen đi vậy?" "Phơi nắng đó!" Diệp Vân Anh thản nhiên đáp: "Sao? Có phải trông khỏe khoắn hơn trước không?" "Nàng đi biển phơi nắng à?" Diệp Phi hơi yên tâm. Nhưng câu tiếp theo của Diệp Vân Anh lại khiến cậu căng thẳng: "Không phải, bọn ta đi đến một cái thung lũng, trong đó có một hồ nước rất đẹp, bọn ta ngày nào cũng bơi lội trong đó, dĩ nhiên là phơi nắng thành thế này." "Bơi lội? Cởi hết à?" Diệp Phi cảm thấy trong lòng như có ngọn lửa đang đốt, vô cùng khó chịu. "Đâu có, bọn ta có mặc đồ bơi." Diệp Vân Anh cuối cùng cũng nhận ra sắc mặt đệ đệ không ổn, hỏi: "Sao vậy?" "Đồ bơi loại nào?" Tuy mặc đồ bơi ở nơi công cộng chẳng phải chuyện hiếm, nhưng Diệp Phi tuyệt đối không cho phép người phụ nữ của mình làm vậy. Hơn nữa, nhìn diện tích da rám nắng của Diệp Vân Anh, cậu sợ rằng đồ bơi của nàng cũng chẳng che đậy được bao nhiêu. Chỉ cần nghĩ tới cảnh nàng mặc như thế trước mặt đàn ông khác, lòng Diệp Phi lại có cảm giác muốn nổ tung. "Ừm?" Diệp Vân Anh hơi sững sờ, đột nhiên nghĩ tới điều gì đó, mắt ánh lên vẻ ranh mãnh, cười hỏi: "Ngươi ghen à?" Dù bị nói trúng tim đen khiến Diệp Phi xấu hổ, nhưng cậu chẳng muốn quan tâm, chỉ nhìn chằm chằm Diệp Vân Anh: "Đừng đánh trống lảng, sao nàng có thể ở bên ngoài mặc như vậy?" Diệp Vân Anh không màng đến vẻ mặt âm trầm của Diệp Phi, tiện tay ném vỏ lon vào thùng rác, rồi bước tới bên cạnh cậu, nằm sát vào vai, khoảng cách hai khuôn mặt không đầy một xăng-ti-mét. Nàng nhìn thẳng vào mắt cậu, cười nói: "Ngươi chính là ghen, hi hi, dáng vẻ ghen tuông của ngươi thật đáng yêu, hơn nữa cuối cùng cũng có người biết ghen vì ta, ta thật vui vẻ nha!" "Hừ! Bình thường kẻ tranh giành tình nhân với nàng còn thiếu sao? Nàng quan tâm mấy chuyện đó à?" Diệp Phi nổi giận. "Những người đó sao có thể so với ngươi? Ta mới không quan tâm họ nghĩ thế nào." Diệp Vân Anh chớp chớp đôi mắt to tròn, làn môi mỏng thổi vào mặt cậu một luồng hơi thở thơm ngát, khiến lòng cậu xao động. "Vậy sao nàng còn để họ nhìn thấy dáng vẻ này của nàng?" Vì muốn dạy cho cô tỷ tỷ bưu hãn này một bài học, Diệp Phi vẫn giữ mặt lạnh. "Còn nói không ghen?" Diệp Vân Anh cười đắc ý hơn: "Hơn nữa, họ nào có tư cách nhìn? Ai bảo ngươi là trường học tổ chức hoạt động thì nhất định phải nam nữ hỗn hợp?" "Ý gì?" Diệp Phi hỏi, trong lòng cảm thấy mình có lẽ hơi lo xa. "Đồ ngốc, lần này bọn ta đi xa, dù là học sinh hay giáo viên đều là nữ! Biết chưa hả?" Diệp Vân Anh dùng tay gõ nhẹ lên đầu Diệp Phi. "À? Thì ra là vậy, thế thì... ta chỉ sợ nàng bị thiệt thôi, hắc hắc." Diệp Phi đỏ mặt gãi đầu, nhưng trong lòng lập tức thấy nhẹ nhõm. "Vậy cả đời này, tỷ tỷ chỉ cho một mình ngươi xem thôi, được không?" Diệp Vân Anh đột nhiên nói bên tai Diệp Phi, trên gương mặt tuyệt mỹ thoáng ửng hồng. Vẻ quyến rũ chưa từng thấy này khiến Diệp Phi ngẩn ngơ. Tuy nhiên, sự quyến rũ đó chỉ thoáng qua rồi biến mất, nàng lập tức khôi phục vẻ bưu hãn thường ngày, đứng dậy nói: "Ta có chuyện muốn nhờ ngươi giúp, vốn còn hơi xấu hổ, nhưng giờ xem ra không cần nữa." "Chuyện gì?" Diệp Phi hỏi, không hiểu nàng cần giúp gì. "Một lát nữa ngươi sẽ biết." Diệp Vân Anh không trả lời ngay, vừa đi về phía phòng tắm vừa nói: "Ngồi xe cả ngày mệt quá, ta đi tắm trước, ngươi vào phòng chờ ta đi, lát nữa tìm ngươi giúp." Diệp Phi nghi hoặc nhìn đồng hồ, mới ba giờ chiều, vào phòng làm gì? Chẳng lẽ nàng muốn... Diệp Phi lắc đầu, gạt bỏ suy nghĩ không thực tế đó. Điều này sao có thể? Thời gian trôi qua, Diệp Vân Anh từ phòng tắm bước ra, không mặc một mảnh vải, tay cầm khăn tắm nhưng chỉ dùng để lau mái tóc ngắn còn ướt. Diệp Phi phát hiện mình không hề đoán sai. Khi bơi ở thung lũng, nàng mặc đồ bơi rất nhỏ, vì vậy những chỗ khác đã rám nắng thành màu lúa mì, còn ba chỗ nhạy cảm lại vẫn trắng nõn như trước. Sự tương phản màu sắc đó tạo nên một sức gợi cảm cực độ. Cùng với hành động giơ hai tay lên lau tóc, vùng ngực vốn đầy đặn của nàng lại càng lộ rõ sự căng tròn, mỗi cử động lại rung rinh khiến Diệp Phi lập tức có phản ứng. "Sao còn đứng đó? Vào phòng nhanh, ta có việc cần giúp." Diệp Vân Anh vẫn không chút bận tâm bị đệ đệ nhìn thấy, thản nhiên nói. "Ừ." Diệp Phi đáp, từ từ đứng dậy, nhưng không dám đứng thẳng người vì bên dưới đã ở trong trạng thái chiến đấu. Tuy Diệp Phi cố khom người, nhưng sự cường đại ấy vẫn khiến Diệp Vân Anh nhận ra chỗ nhô lên trên quần cậu. Trong mắt nàng thoáng nét xấu hổ, nhưng ngay lập tức trở nên kiên định. Nàng bước vào phòng ngủ, Diệp Phi cũng vội vã đi theo. Để che giấu sự xấu hổ, Diệp Phi vừa vào cửa đã ngồi xuống giường, mắt cố né tránh cơ thể gợi cảm của Diệp Vân Anh, miệng hỏi: "Chuyện gì mà phải vào phòng mới nói?" Diệp Vân Anh ngồi xuống cạnh Diệp Phi, đột nhiên dùng ngón tay điểm vào huyệt đạo bên hông cậu. Diệp Phi vốn cường tráng nhưng đối với tỷ tỷ lại không chút đề phòng, bị điểm trúng liền mềm nhũn ngã xuống giường. Biến cố đột ngột khiến Diệp Phi kinh ngạc, nhìn Diệp Vân Anh mặt đỏ bừng hỏi: "Tỷ, nàng làm gì vậy?" "Đám sắc nữ đó dám chê cười ta, nói ta 20 tuổi rồi vẫn còn là xử nữ, tức chết ta. Nhưng đàn ông khác thì thật chán ghét, không còn cách nào, đành phải nhờ ngươi giúp vậy." Diệp Vân Anh nói ra câu khiến Diệp Phi dở khóc dở cười. Diệp Phi không ngờ tới, tam tỷ – người cậu và tiểu muội phân tích là khó thu phục nhất – nay lại muốn ngược lại mình. Chuyện tốt như vậy cậu đương nhiên không từ chối, nhưng vẫn nói: "Vậy nàng cũng đâu cần phải điểm huyệt ta?" "Ta sợ ngươi biết rồi sẽ chạy chứ!" Diệp Vân Anh hơi thẹn thùng nói: "Ngươi yên tâm, chỉ một lát thôi. Hơn nữa ta nghe bọn họ nói rất sướng." Nói xong, bàn tay nhỏ bé vươn về phía quần Diệp Phi. Cởi thắt lưng Diệp Phi, nàng nhẹ nhàng kéo ra, vật nhỏ đã sớm cứng ngắc của cậu lập tức lộ ra. "Oa, sao lại to hơn trước vậy?" Diệp Vân Anh kinh hô, nàng nhớ lần trước thấy nó đã rất lớn rồi, sao nay lại càng khủng khiếp hơn. Nàng hơi chần chừ, liệu cái huyệt nhỏ của mình có chịu nổi không? Lúc này Diệp Phi đã bị vẻ gợi cảm của tỷ tỷ đốt cháy dục hỏa, tự nhiên không muốn bỏ qua cơ hội này, cố ý nói: "Đúng vậy, to thế này cắm vào sẽ rất đau đấy, nàng chắc chắn không chịu nổi đâu." Diệp Phi không nói thì không sao, vừa nói vậy càng khơi dậy lòng háo thắng của Diệp Vân Anh. Nàng hừ một tiếng: "Ta không sợ!" Nói xong liền giật phăng quần và quần lót của Diệp Phi, leo lên giường, vắt hai chân lên người đệ đệ, từ từ ngồi xuống. Theo cử động của tỷ tỷ, Diệp Phi thấy rõ "tiểu hoa huyệt" tuyệt đẹp của nàng. Dù nhỏ hơn đại tỷ bốn tuổi và tính cách trái ngược hoàn toàn, nhưng Diệp Phi kinh ngạc thấy tiểu huyệt của tam tỷ lại tương tự đại tỷ đến kinh ngạc. Tuy không đầy đặn bằng mụ mụ hay dì, nhưng lại xinh đẹp vô cùng. Dưới lớp lông mềm mại, cánh hoa màu hồng phấn ửng lên, trong suốt như được tạc từ đá quý màu đỏ nhạt. Hiện chỉ còn nhị tỷ là cậu chưa được nhìn. Diệp Phi dâm đãng nghĩ, nếu nhị tỷ cũng như vậy, sau này cậu có thể chơi trò "đoán hoa huyệt" với ba chị em nàng không nhỉ? Đang lúc Diệp Phi miên man suy nghĩ, Diệp Vân Anh đã ngồi xuống, tay cầm vật đó của đệ đệ, nhắm chuẩn tiểu huyệt của mình, chần chừ một chút rồi cắn răng ngồi xuống. Khi quy đầu nóng hổi tiếp xúc với huyệt nhỏ kiều nộn, cả hai cùng hít một hơi sảng khoái. Đối với Diệp Phi là cảm giác tâm lý, còn với Diệp Vân Anh, nàng trước kia chỉ tự làm, nhưng nay mới thấy chỉ cần để đệ đệ cắm vào một chút đã sướng hơn ngàn lần. Dưới sự kích thích đó, Diệp Vân Anh càng thêm khao khát. Dù đã tiết ra chút nước nhờn nhưng vì Diệp Phi quá to lớn còn nàng lại là xử nữ, nên loay hoay mãi mới chỉ tiến vào được một nửa quy đầu. Dù chỉ thế thôi cũng đủ khiến Diệp Vân Anh sung sướng vô cùng. Tính tình vốn nóng nảy, nàng muốn theo đuổi khoái cảm lớn hơn, cũng muốn thoát kiếp xử nữ, nên mạnh bạo dập mạnh xuống, muốn nuốt trọn vật to lớn của đệ đệ. Diệp Phi vội vã đưa tay đỡ lấy mông lớn của tỷ tỷ: "Không được, như vậy nàng sẽ đau chết đấy!" Với thực lực hiện tại, dù Diệp Vân Anh điểm trúng huyệt đạo cậu lúc bất ngờ, nhưng cậu đã sớm có thể cử động, nên kịp thời ngăn cản hành vi liều lĩnh của nàng. "Vậy giờ phải làm sao?" Diệp Phi không quan tâm việc tại sao mình cử động được, lo lắng hỏi. Nàng đã quyết tâm phá trinh, nếu bỏ dở giữa chừng, chẳng phải về nhà lại bị chị em cười nhạo sao? Nhưng điều quan trọng nhất là, cảm giác này quá tuyệt vời, nàng thực sự muốn thử cảm giác được cậu cắm vào hoàn toàn. "Đừng vội, từ từ sẽ đến." Diệp Phi dịu dàng vuốt ve cặp mông đầy đặn co dãn của tỷ tỷ, đồng thời dạy bảo: "Chúng ta trước tiên có thể dạo đầu một chút, đợi nước nhờn của nàng ra nhiều hơn, khiến tiểu dâm huyệt ướt đẫm là được." "Phi!" Diệp Vân Anh dù bạo dạn nhưng vẫn đỏ mặt gắt: "Dâm thủy gì chứ, ta làm gì có thứ đó!" "Không có sao? Vậy cái này là gì?" Diệp Phi cười, sờ một cái vào tiểu huyệt ướt át của tỷ tỷ rồi đưa ngón tay dính dịch cho nàng xem: "Dâm thủy, danh như ý nghĩa, là thứ chảy ra khi nàng dâm đãng. Giờ nàng có, chứng tỏ nàng đã dâm đãng rồi." "Ngươi mới dâm đãng, ta không có!" "Nàng đã muốn 'ngược lại' thân đệ đệ mình rồi, còn không dâm đãng sao?" Diệp Phi vừa vuốt ve tiểu huyệt càng ngày càng ướt át của nàng, vừa cười nói: "Đối mặt với vật của đệ đệ mà chảy nước nhiều thế này, không phải dâm huyệt thì là gì?" Diệp Vân Anh bị đệ đệ nói đến không chịu nổi, dứt khoát cầm lấy vật to lớn của cậu, hỏi ngược lại: "Đối mặt với chị ruột mình mà ngươi cứng đến mức này, thì ngươi là gì?" "Được rồi, ta thừa nhận ta cũng dâm đãng. Ta là dâm đệ đệ, nàng là dâm tỷ tỷ, chúng ta là trời sinh một đôi." Diệp Phi cười lớn, dùng quy đầu cọ xát nhẹ nhàng vào cửa huyệt: "Dâm tỷ tỷ, huyệt nàng đủ ướt rồi, có thể tiếp tục." "Ừm." Diệp Vân Anh chẳng còn tâm trí đấu khẩu, cúi đầu chăm chú nắm lấy vật của đệ đệ, một tay nhẹ nhàng tách tiểu huyệt, từ từ ngồi xuống. Diệp Phi nhìn quy đầu to lớn từ từ chống mở tiểu huyệt xử nữ của tỷ tỷ, cảm giác được bao bọc chặt chẽ và sự thỏa mãn trong lòng khiến cậu sướng khoái vô cùng. Cậu muốn đặt tỷ tỷ xuống mà địt mạnh, nhưng vì không muốn để nàng phải tiếc nuối, cậu vẫn quyết định để nàng chủ động. Cuối cùng, khi quy đầu đã lọt vào hoàn toàn, Diệp Phi cảm thấy đỉnh vật của mình chạm vào một màng mỏng đầy co dãn. Tỷ tỷ dừng lại, vẻ mặt đau đớn bất lực hỏi: "Đau quá, làm sao bây giờ?" Tranh thủ lúc tỷ tỷ mất tập trung, Diệp Phi đột nhiên dùng tay nhấn mạnh mông nàng xuống, hông cậu cũng phối hợp đẩy mạnh lên. Với một tiếng "tách" nhỏ, vật to lớn trong nháy mắt xuyên qua màng xử nữ, đâm sâu vào tử cung kiều nộn của nàng. "Á..." Đau đớn kịch liệt khiến Diệp Vân Anh hét lên, hai mắt rưng rưng nhìn đệ đệ: "Ngươi làm gì vậy?" Nói xong nàng muốn đứng dậy. Nàng cảm thấy rất ủy khuất, vốn dĩ muốn nhờ đệ đệ phá trinh không chỉ vì sợ bị chị em cười, mà còn vì tình cảm đặc biệt dành cho cậu, không ngờ cậu lại không biết thương hoa tiếc ngọc, dập mạnh làm nàng đau đến thế. Diệp Phi vội giữ lấy mông nàng: "Đừng cử động, giờ cử động sẽ càng đau hơn." Nhìn ánh mắt đau lòng của đệ đệ, Diệp Vân Anh thấy thoải mái hơn, nhưng vẫn bất mãn: "Sao ngươi lại đột ngột như vậy? Không biết đau sao?" Diệp Phi kéo tỷ tỷ nằm sấp trên người mình, dịu dàng ôm nàng, để cặp ngực không thua kém phụ nữ trưởng thành của nàng cọ xát trên ngực mình, khẽ nói bên tai: "Đồ ngốc, nàng không biết 'đau dài không bằng đau ngắn' à? Cứ chậm rãi như vậy mới là khiến nàng chịu đau nhiều hơn." Trong khi giải thích, Diệp Phi cũng cực kỳ sướng khoái, vì đau đớn nên cơ thịt bên trong tiểu huyệt của tỷ tỷ thắt chặt lấy cậu, nhất là đóa hoa tâm kia, như một cái miệng nhỏ đang mút lấy cậu. Nếu không phải sức chịu đựng siêu cường, chỉ sợ cậu đã bắn ra từ lâu. Lúc này cậu mới biết, cô tỷ tỷ bưu hãn như con trai này lại sở hữu một tiểu huyệt cực phẩm như thế, không biết đại tỷ và nhị tỷ có giống vậy không. Nghe lời giải thích, Diệp Vân Anh hoàn toàn nhẹ lòng, rồi đột nhiên hỏi: "Sao ngươi có kinh nghiệm thế, có phải đã làm với cô gái nào rồi?" Diệp Phi không ngờ tỷ tỷ mình lúc này vẫn còn nghĩ đến điều đó, cười khổ: "Đúng vậy, nàng không phải bây giờ mới nhớ đến ghen đấy chứ?" "Ai ghen?" Diệp Vân Anh phủ nhận: "Ngươi có kinh nghiệm thì càng tốt, lát nữa ta mới sướng được." "Nàng không phải nói chỉ cần một lần thôi sao? Giờ đã không phải xử nữ rồi, coi như xong nhé." Diệp Phi cố ý trêu chọc. "Nghĩ hay nhỉ! Ta đã đau thế này rồi, nhất định phải sướng lại mới được!" Diệp Vân Anh nói xong, cảm thấy bên trong không còn đau đớn mấy, bèn nhẹ nhàng lắc mông, để vật của đệ đệ ma sát bên trong. Vừa cử động, Diệp Vân Anh mới hiểu vì sao mấy cô bạn lại cười nhạo mình, cảm giác này quá tuyệt vời, nàng thật sự đã lãng phí quá nhiều thời gian rồi. Cảm nhận được khoái cảm, Diệp Vân Anh không màng đau đớn nữa, chống người lên, hai tay đặt trên lồng ngực rắn chắc của cậu, mông lớn bắt đầu dập mạnh xuống. Vật to lớn ra vào kịch liệt trong tiểu huyệt mới được khai phá, những cú dập khiến cặp mông kiều diễm đập vào đùi Diệp Phi phát ra âm thanh "bành bạch" giòn giã, như tiếng trống trận cổ vũ cho cuộc loạn luân này. Diệp Phi kinh ngạc trước sự điên cuồng của tỷ tỷ, tay cũng không rảnh rỗi, nắm lấy cặp ngực đẹp đẽ đang rung rinh của nàng mà vuốt ve, thỉnh thoảng lại búng nhẹ vào núm vú đang sung huyết. Vì thế, Diệp Vân Anh càng thêm sảng khoái, tốc độ dập càng nhanh. Nhưng dù sao cũng là lần đầu, nơi đó sao chịu nổi vật cứng rắn của đệ đệ? Chỉ chưa đầy ba phút, nàng đã kêu lên một tiếng kiều mị, thân thể cứng đờ rồi mềm nhũn nằm gục trên người Diệp Phi. Theo cao trào của tỷ tỷ, Diệp Phi cũng sướng khoái vô cùng. Tiểu huyệt của nàng như đang sống, co thắt chặt lấy cậu, đóa hoa tâm nở rộng mút lấy cậu, khiến tinh quan cậu muốn buông lỏng. Nhưng dù tiểu huyệt của tỷ tỷ rất diệu, vẫn chưa bằng mụ mụ, thêm nữa Diệp Phi muốn nàng tận hưởng thêm nên cố nhịn chưa bắn. Nghỉ ngơi một lúc, Diệp Vân Anh khôi phục thể lực, xoay người xuống khỏi người Diệp Phi, không ngờ chạm vào chỗ bị thương, đau điếng liền tát một cái vào lưng cậu: "Đau chết mất, tên bại hoại này, sao lại lớn đến thế hả?" Diệp Phi cười khổ: "Cái này đâu phải lỗi của ta?" "Tại ngươi hết!" Diệp Vân Anh bĩu môi: "Ta giờ chẳng đi nổi nữa rồi, mau nghĩ cách đi!" "Được rồi." Diệp Phi cười khổ lấy trong quần áo ra một viên khôi phục hoàn đưa nàng: "Ăn cái này vào là được." Diệp Vân Anh cảnh giác nhìn viên thuốc nhỏ: "Cái gì đây? Không phải thuốc làm người ta mất sức chứ? Có phải ngươi thấy vừa rồi ta ở trên ngươi bị thiệt nên muốn ám toán ta không?" "Không ăn thì thôi!" Diệp Phi thật sự chịu thua logic của nàng. "Ai bảo không ăn?" Diệp Vân Anh cười khanh khách, nuốt chửng viên thuốc. Một luồng nhiệt khí lập tức dâng lên từ bụng, thể lực nàng phục hồi nhanh chóng, chỗ đau bên dưới cũng hết hẳn. "Ơ, thứ này đúng là tốt thật, vừa hết đau vừa phục hồi thể lực. Hắc hắc, lần này ta không sợ ngươi nữa, nhất định phải đánh bại ngươi!" Nói xong, Diệp Vân Anh lại lật người đè lên Diệp Phi. Nhưng lần này Diệp Phi không định để nàng chủ động nữa. Khi tỷ tỷ lại một lần nữa ngồi lên, đưa vật của cậu vào tiểu huyệt, cậu đột nhiên xoay người đè nàng xuống, bắt đầu đâm mạnh như sóng trào. Diệp Vân Anh cũng không tranh giành vị trí nữa, bởi nàng thấy để mặc đệ đệ địt như vậy lại càng dễ tập trung vào khoái cảm cực hạn. Đâm rút một hồi, Diệp Phi thấy thiếu thiếu điều gì, đột nhiên dừng lại. Diệp Vân Anh đang cao hứng lập tức bất mãn: "Sao lại dừng?" "Không dừng thì sao?" Diệp Phi giả vờ cau mày: "Ta vất vả nửa ngày mà nàng chẳng có cảm giác gì, làm tiếp có ý nghĩa gì?" "Ai không có cảm giác? Ta sướng muốn chết!" Diệp Vân Anh vội vã: "Ngươi mau tiếp tục đi!" "Vậy nàng sướng ở đâu?" Diệp Phi cười dâm đãng. Diệp Vân Anh dù biết đệ đệ cố ý trêu chọc mình nhưng chẳng hề sợ hãi, bạo dạn nói: "Tỷ tỷ sướng ở trong lồn, ngươi mau tiếp tục địt ta đi!" Diệp Phi hài lòng, tiếp tục hành sự. Diệp Vân Anh đã nói ra lời đó rồi thì chẳng còn kiêng dè gì nữa, nàng cũng cảm thấy như vậy mình mới càng sướng. Thế là, theo nhịp địt của đệ đệ, nàng rên rỉ lớn tiếng: "Đệ đệ tốt... Đệ đệ ngoan... Đâm mạnh đi... Á... Mạnh nữa... Á... Á... Thân yêu... Nhanh... Dâm huyệt sướng quá... Á... Á... Đệ đệ... Tỷ tỷ sướng chết mất... Ta yêu... Đệ đệ tốt... Á... Lồn của tỷ tỷ... Thật sướng... Á... Á... Sướng quá... Đệ đệ... Ta yêu ngươi... Nhanh... Mạnh... Á... Tỷ sắp ra rồi... Nhanh lên... Á... Ta không chịu nổi nữa... Á..." Sau một tiếng thét lên, Diệp Vân Anh tiết ra đợt âm tinh thứ hai. Cùng lúc đó, Diệp Phi cũng bị tiểu dâm huyệt tự động co thắt của nàng đưa đến cực hạn, gầm nhẹ một tiếng: "Tỷ, chờ ta, chúng ta cùng đi!" Nói xong, cậu dập mạnh.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0254.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0256.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>
