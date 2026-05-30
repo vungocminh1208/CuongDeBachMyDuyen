@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 381 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 381</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 381</small>
+    Chương 381: Nhảy nhót thằng hề
+  </h1>
+  <div class="chapter-body">
+    <p>Trở ra cửa, còn chưa kịp xuống lầu, Diệp Phi chợt nghe tiếng ồn ào truyền đến từ tầng một. Trong lòng hắn không khỏi buồn cười, đám người này thật biết náo nhiệt, từ tối hôm qua đến tận bây giờ vẫn chưa chịu rời đi. Bất quá hắn cũng chẳng để tâm, cẩn thận đỡ Liễu Diệc Như đi xuống lầu. Kỳ thật với thực lực của Liễu Diệc Như, hiện tại dù có ra tay cũng chẳng động đến thai khí, nhưng vì sự hưng phấn và quan tâm trong lòng, Diệp Phi vẫn làm ra hành động như vậy. Liễu Diệc Như cũng giống thế, nên đối với kiểu hành xử có chút quá mức khẩn trương này của Diệp Phi, nàng đều thụ chi như di. Đi đến tầng một, Diệp Phi thấy vị lão bản rõ ràng cả đêm không ngủ, trên mặt đầy vẻ sầu khổ, không khỏi thấy kỳ quái. Lẽ ra làm được một số đại sinh ý như vậy, ông ta phải vui vẻ mới đúng, sao hiện tại lại trông có vẻ rất phiền muộn? Chẳng lẽ là đụng phải phiền toái gì? Tuy trong lòng kỳ quái, nhưng Diệp Phi không muốn quản nhàn sự. Dù sao thiên hạ này người có khó khăn nhiều vô kể, mà hắn lại không phải cứu thế chủ, đối với những việc không liên quan đến mình thì muốn quản cũng chẳng quản nổi. Vì vậy, hắn đi đến bên cạnh lão bản, khẽ cười nói: "Lão bản, chúng tôi muốn đi, bây giờ kết sổ giúp tôi nhé." Lão bản kia giật mình, lúc này mới chú ý tới hai người, vội vàng đứng dậy, kéo Diệp Phi vội vã đi ra phía sau, đồng thời còn nơm nớp lo sợ nhìn về hướng đại sảnh. Đối với dáng vẻ thần thần bí bí của lão bản, Diệp Phi và Liễu Diệc Như đều khó hiểu. Sau khi theo ông ta vào hành lang, Diệp Phi hỏi: "Lão bản, làm sao vậy? Tính tiền chẳng lẽ phải chạy vào tận đây sao?" Lão bản kia thở dài, dáng vẻ muốn nói lại thôi, cuối cùng vẫn không nói gì, chỉ lấy ra quyển sổ, nói: "Diệp tiên sinh, nhị vị tiêu phí tại bổn điếm trừ bỏ số lẻ tổng cộng là bảy trăm tám mươi hai vạn. Lại trừ đi tấm chi phiếu ngài đưa hôm qua, ngài chỉ cần trả tiểu điếm bảy trăm vạn là được, những thứ khác coi như xong." Nghe con số lão bản báo ra, Diệp Phi và Liễu Diệc Như đều trừng lớn mắt. Tuy họ đã chuẩn bị tâm lý bị "chém" và cũng chẳng bận tâm, coi như tiền mừng cho lão bản, nhưng họ đâu phải người ngu, làm sao có thể chấp nhận con số thái quá này? Hơn bảy trăm vạn, ở cái nơi này, đủ để mua hai nhà hàng quy mô như vậy rồi. Diệp Phi trong lòng giận dữ, trầm giọng hỏi: "Lão bản, ông có phải xem chúng tôi là người ngoài nên dễ bắt nạt không?" "Sao có thể chứ?" Lão bản kia cười khổ nói: "Chúng tôi là nơi làm ăn đàng hoàng, sao có thể làm ra chuyện mổ gà lấy trứng như vậy? Nói thật với ngài, bảy trăm vạn này đều là tôi tính theo giá gốc của nguyên liệu. Nếu tính theo giá niêm yết của tiểu điếm, chỉ sợ một ngàn vạn cũng chưa chắc đủ." Diệp Phi trừng mắt định nói thêm gì đó thì bị Liễu Diệc Như kéo lại. Sau đó nàng hỏi lão bản: "Lão bản, ở đây có xảy ra biến cố gì phải không? Chẳng lẽ những vị khách tối hôm qua đều đòi những thứ gì quá đắt đỏ sao?" "Không sai, nhưng không phải những người khách tối hôm qua. Họ đều là thật tâm chúc phúc nhị vị, sau khi uống xong rượu mừng liền rời đi. Chỉ là sau đó lại có một đám người tới, nghe nói ở đây có người mời khách, liền không chịu đi, hơn nữa toàn gọi những thứ quý giá mà quán không có." Lão bản bất đắc dĩ nói. Kỳ thật đám người kia gọi đồ vượt xa bảy trăm vạn, chỉ là ông không đành lòng để đôi Kim Đồng Ngọc Nữ này chịu tổn thất quá lớn, nên đành bỏ tiền túi ra mua. Lần này ông chẳng những không kiếm được mà còn bù vào mấy chục vạn, vì thế phải nói, vị lão bản này làm người rất phúc hậu. Nếu đám người kia là khách tối hôm qua tiêu dùng, Diệp Phi tuy sẽ coi thường họ nhưng cũng chẳng nói gì, vì số tiền đó với hắn chẳng là bao. Chỉ có những lời chúc phúc chân thành của khách tối qua mới là vô giá. Nhưng sau khi nghe lão bản nói, trong lòng hắn không khỏi bùng lên lửa giận, Liễu Diệc Như cũng không nhịn được mà động khí. Tuy nhiên, Diệp Phi cũng nhìn ra vị lão bản này là người tốt, nên không muốn làm khó ông, nhưng với đám người kia thì hắn nhất định phải dạy cho một bài học. "Này lão bản, món canh pín cọp của ngạo gia sao vẫn chưa mang lên? Những cái khác không có thì thôi, món canh pín cọp này là thứ ngạo gia bắt buộc phải uống, ông..." Ngay khi Diệp Phi chuẩn bị đi ra ngoài, một đại hán mặc âu phục đen từ trong tiếng chửi bới đi tới, nhưng chưa nói hết câu đã khựng lại. Hai mắt hắn trố ra, dán chặt vào Liễu Diệc Như đứng cạnh Diệp Phi, ngây người đến mức một câu cũng không thốt nên lời. Một lúc lâu sau, đại hán kia mới hồi thần từ dung nhan khuynh quốc khuynh thành của Liễu Diệc Như. Hắn khó khăn dời mắt sang Diệp Phi, nói: "Hai vị này chắc là tân lang tân nương tối qua nhỉ? Ngạo gia của chúng ta đang định cảm ơn các người đây, bây giờ hai người đi gặp ngài ấy cùng ta đi." Mặc dù cũng thèm thuồng mỹ nhân chưa từng thấy này, nhưng hắn hiểu rõ, có chủ tử ở đó thì chưa tới lượt hắn, nên muốn dùng việc này để tranh công. Nghe lời đại hán, lão bản kia kinh hãi. Đám người này ông đã từng nghe qua, từ khi đến thành phố Ô một tháng trước, chúng hoành hành ngang ngược, lại chẳng ai dám quản. Tên cầm đầu còn vô pháp vô thiên, tự xưng là truyền nhân duy nhất của "Mạc Bắc Song Sát". Nếu để chúng thấy tân nương đẹp như tiên này, e rằng lại gây ra ác sự, nên ông vội nói: "Vị đại ca này, canh đang nấu, lập tức mang lên cho ngạo gia ngay, xin hãy kiên nhẫn." Nói xong, ông không ngừng nháy mắt ra hiệu cho Diệp Phi và Liễu Diệc Như mau rời khỏi đây. Dù hiểu ý lão bản, nhưng Diệp Phi không định rời đi. Qua thái độ của đám người kia, hắn biết rõ chúng chẳng phải hạng người thiện lương gì. Diệp Phi tuy không có tinh thần hiệp nghĩa bồng bột như Minh Nguyệt Tâm, nhưng cũng không muốn một người tốt vì mình mà gặp họa, nên hắn cười gật đầu với lão bản, rồi nắm bàn tay nhỏ bé của Liễu Diệc Như đi về hướng đại sảnh. Thấy hành động của họ, lão bản thở dài một tiếng, vội vàng đi theo, hy vọng có thể giảng hòa để đôi vợ chồng này không bị tổn thương. Thấy Diệp Phi "hợp tác", tên đại hán âu phục đen vội chạy về đại sảnh báo tin trước để lấy công. Vì vậy khi Diệp Phi và Liễu Diệc Như vào đại sảnh, mọi ánh mắt đều đổ dồn về phía họ. Khi nhìn thấy Liễu Diệc Như phong hoa tuyệt đại, tất cả đều ngẩn người giống như tên đại hán lúc nãy, và tên cầm đầu ngồi giữa thậm chí đã kích động đứng dậy.</p>
+    <p>Vì tên đó đứng lên, Diệp Phi cũng chú ý tới hắn, suýt nữa thì bật cười. Tên này trông hơn hai mươi tuổi, mặt mũi tái nhợt, lại mặc một bộ trường bào trắng, thắt lưng ngân quang lấp lánh, trong tay còn cầm một chiếc quạt giấy, ra dáng một công tử phong lưu, chỉ tiếc cái vẻ mặt đó đã phá hỏng cả bộ đồ. Nhưng khi thấy ánh mắt dâm dục không chút che giấu của hắn ta, Diệp Phi không còn cười nổi nữa. Bất kể hắn là ai, chỉ riêng việc dám nhìn Liễu Diệc Như bằng ánh mắt đó, Diệp Phi đã không thể để hắn sống rời khỏi đây. "Tiểu tử, mỹ nhân để lại, ngươi có thể cút rồi!" Không đợi Diệp Phi ra tay, tên thanh niên hai mắt sáng rực kia đã bắt đầu kêu gào. Diệp Phi nheo mắt, nhìn thẳng tên đó, trầm giọng hỏi: "Các người là người trong hắc đạo?" Diệp Phi hỏi vậy không phải để nói nhảm với kẻ đã chết trong mắt hắn, mà là muốn biết lai lịch để diệt tận gốc. Không phải Diệp Phi tàn nhẫn, mà hắn không muốn để lại hậu họa, hơn nữa loại người như hắn chắc chắn gia đình cũng chẳng ra gì. "Hắc đạo cái gì? Ngạo gia của chúng ta sao coi mấy thứ đó vào mắt?" Tên thanh niên chưa nói, đại hán âu phục đen đã cướp lời: "Ngạo gia của chúng ta là truyền nhân duy nhất của Mạc Bắc Song Sát, làm sao đám hắc đạo đại ca có thể so sánh?" "Không sai, nếu ngạo gia của chúng ta cũng lăn lộn hắc đạo, thì sao tên Diệp Phi ở Đông Nam kia lại có thể nổi danh đến thế?" Một tên khác phụ họa. Những lời nịnh hót của thủ hạ khiến tên thanh niên lộ vẻ đắc ý, còn Diệp Phi thì chấn động trong lòng, không ngờ danh tiếng của mình đã truyền tới tận Mạc Bắc. Phát hiện này không khiến Diệp Phi vui vẻ, ngược lại còn lo lắng. Ở nơi này, danh tiếng quá lớn chưa chắc đã là chuyện tốt, chỉ dễ khiến tầng lớp cao cấp nghi kỵ thêm. Bây giờ nếu có thể không trở mặt với đám người này thì tốt nhất không nên, vì họ dù sao cũng đại diện cho cả Trung Quốc. Nếu thực sự đánh nhau, mình tuy thắng chắc nhưng kẻ chịu thiệt lại là những binh lính vô tội. Diệp Phi không đành lòng, bởi qua những lần tiếp xúc với các thành viên đặc chiến đội, hắn rất có cảm tình với những nam nhi nhiệt huyết một lòng bảo vệ quốc gia này. Thấy vẻ lo lắng lộ ra trên mặt Diệp Phi, tên thanh niên được gọi là "Ngạo gia" tưởng hắn sợ hãi, càng đắc ý cười nói: "Tiểu tử, đã biết danh tiếng của Ngạo gia rồi, còn không cút đi?" Diệp Phi lạnh lùng cười nói: "Ngươi hình như vẫn chưa hỏi tên tuổi của ta đấy?" "Tiểu tử, đừng rượu mời không uống lại muốn uống rượu phạt!" Sắc mặt tên thanh niên trầm xuống: "Nếu không phải sợ đổ máu làm mất hứng thú với mỹ nhân, ngươi nghĩ ngươi còn mạng để đứng đây sao?" Nói xong, hắn quay sang nhìn Liễu Diệc Như, ánh mắt lại lộ vẻ si mê. Hắn được cha và chú che chở, hoành hành nhiều năm, mỹ nhân gặp không ít, nhưng chưa từng thấy ai đẹp đến mức này. Diệp Phi không nói nhảm nữa, khẽ vươn tay, cách mười mét đã hút tên thanh niên vào tay, bóp cổ hắn rồi nói: "Xuống dưới Diêm Vương gia, đừng quên nói với hắn, người giết ngươi tên là Diệp Phi!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0380.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0382.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

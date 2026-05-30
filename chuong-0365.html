@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 365 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 365</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 365</small>
+    Chương 365
+  </h1>
+  <div class="chapter-body">
+    <p>"Ta cùng ca ca quan hệ các ngươi nhất định đều đã nhìn ra a? Vậy các ngươi đều cùng hắn từng có loại quan hệ này sao?" Diệp Vân Khinh hỏi tiếp, giọng điệu nghiễm nhiên thành bốn chị em đại tỷ, có phần làm cho người ta không nói được lời nào. "Ta!" Diệp Vân Anh lại là người thứ nhất nhấc tay: "Hắc hắc, ngươi cũng biết." Diệp Tư Dao khuôn mặt trướng đến đỏ bừng, bất quá cũng không có phủ nhận, nhẹ nhẹ gật gật đầu, thấp giọng nói: "Ta... Ta cũng là." Diệp Tư Kỳ không khỏi bị bọn muội muội nói đến ngây người, nghĩ thầm trách không được Dao Dao so với trước kia càng thêm ôn nhu, mà tiểu anh cũng như thay đổi thành người khác, lại nghĩ đến mình, trong lòng không khỏi càng thêm thất lạc, vì cái gì đệ đệ cùng các nàng đều như vậy, hết lần này tới lần khác bỏ qua mình, chẳng lẽ là hắn không thích mình sao? Diệp Vân Khinh tự nhiên nhìn ra được đại tỷ thất lạc, vì vậy nói: "Đại tỷ, ngươi đừng vội, ngươi trước có phải là một mực tại trốn tránh ca ca?" "Cái gì?" Diệp Tư Kỳ sững sờ, không hiểu rõ lắm ý tứ tiểu muội. Diệp Vân Khinh nói: "Ca ca đã nói với ta, chúng ta mỗi người, đều là bảo bối mà hắn yêu mến, có thể đúng là bởi vì như vậy, hắn mới không nghĩ miễn cưỡng chúng ta bất kỳ ai, ta nghĩ, Nhị tỷ cùng tam tỷ cũng hẳn là tại hoàn cảnh nào đó mới phát sinh a?" "Không sai." Diệp Tư Dao gật đầu nói, như đã nói ra, vì đại tỷ nàng cũng không định che giấu, vì vậy đem chuyện mình vì cùng với hắn mà cố ý uống rượu bị người hạ độc, sau đó khi phát huy dược hiệu thì thuận lý thành chương mà thành chuyện tốt, thuật lại một lần, cuối cùng nói: "Ta nghĩ, nếu không phải là ta hạ quyết tâm, chỉ sợ đến bây giờ còn phải cùng đại tỷ giống nhau, cùng đệ đệ lẫn nhau chịu đựng nỗi khổ tương tư." Diệp Tư Kỳ không khỏi thầm than nhị muội lớn mật, trong lòng rất muốn cùng các nàng học một ít, vì vậy lại nhìn về phía Diệp Vân Anh hỏi: "Tiểu anh, ngươi thì sao?" "Hắc hắc, ta và các ngươi không giống, không phải hắn giữ lấy ta, mà là ta giữ lấy hắn!" Diệp Vân Anh cười đắc ý nói, nàng thực tự hào vì mình là nữ nhân duy nhất trong số các nàng dám dùng sức mạnh với hắn, vì vậy rất đắc ý đem "quang vinh sử" của mình kể lại một lần. Nghe xong lời Diệp Vân Anh, ba nữ cũng không khỏi có chút dở khóc dở cười, nha đầu kia cũng quá điên cuồng, chuyện này cũng có thể hồ đồ, bất quá các nàng cũng biết, chỉ có đối mặt Diệp Phi thì Diệp Vân Anh mới như vậy, bởi vì trong lòng nàng sớm đã có đệ đệ, nếu như đổi lại người khác, đánh chết nàng cũng sẽ không làm thế. Nghe xong lời kể của hai vị muội muội, Diệp Tư Kỳ không khỏi nhớ tới ngày đó trong thang máy, hắn vốn muốn hôn mình, chính là mình lại chạy thoát, điều này làm cho trong lòng nàng vô cùng hối hận, nếu như lúc trước không trốn tránh, mình khẳng định phải hạnh phúc hơn bây giờ nhiều lắm a? Chứng kiến biểu cảm hối hận trên mặt đại tỷ, ba nữ đều hiểu nàng đang suy nghĩ gì, Diệp Tư Dao giữ chặt tay Diệp Tư Kỳ, ôn nhu nói: "Đại tỷ, ngươi cũng không cần khổ sở nữa, chờ hắn trở về, ngươi sẽ không còn tiếc nuối, thật không được, chúng ta giúp ngươi nói." "Ân." Diệp Tư Kỳ kiên định gật đầu: "Ta sẽ không trốn tránh nữa!" "Không được!" Diệp Vân Khinh lại phản đối: "Như vậy quá tiện nghi cái tên xú gia hỏa kia rồi, vậy mà tuyệt không chủ động, làm hại đại tỷ thương tâm, chúng ta phải hảo hảo thu thập hắn một chút mới được!" "Tốt, thu thập thế nào?" Diệp Vân Anh hai mắt sáng ngời, hưng phấn hỏi, cả người nàng chính là của hắn, mà người bị sửa chữa lại là người yêu dấu nhất của mình, kiểu vui đùa này nàng rất thích. Diệp Vân Khinh lại khổ nổi khuôn mặt nhỏ nhắn: "Ta còn chưa nghĩ ra." "Ta lại nghĩ ra một cái." Diệp Tư Dao nói xong, khuôn mặt hơi đỏ lên, bất quá vẫn tiếp tục nói: "Nhưng trước còn phải nghiệm chứng một chuyện, đại tỷ, tam muội, các ngươi theo ta vào toilet một chút." Nói xong đi vào trước. Diệp Tư Kỳ cùng Diệp Vân Anh tuy không rõ Diệp Tư Dao muốn làm gì, nhưng vẫn đi theo vào, chỉ để lại Diệp Vân Khinh vẻ mặt hiếu kỳ. Một lát sau, ba tỷ muội từ trong toilet đi ra, Diệp Tư Kỳ cùng Diệp Tư Dao đều là khuôn mặt đỏ bừng, mà Diệp Vân Anh lại vẻ mặt hưng phấn, thấy Diệp Vân Khinh hiếu kỳ nhìn ba người mình, vì vậy chạy tới thì thầm một câu bên tai nàng.</p>
+    <p>"Thật vậy chăng? Vậy ta phải xem xem!" Diệp Vân Khinh hai mắt sáng lên, nói xong liền bắt lấy làn váy đồ ngủ của Diệp Tư Dao muốn kéo lên. Diệp Tư Dao không khỏi xấu hổ, vội vàng ngăn nàng lại: "Cái này không vội, để sau rồi nhìn, ta vẫn là nói trước kế hoạch của mình đi." Nói xong, nàng kể lại kế hoạch của mình một lần. Nghe xong kế hoạch của Nhị tỷ, Diệp Vân Anh không khỏi hưng phấn đến hai mắt tỏa sáng, Diệp Vân Khinh càng cười nói: "Đúng, cứ làm như thế, nếu như cái tên xú gia hỏa kia phân biệt không được, chúng ta sẽ không cho hắn lên giường nữa!" Mà Diệp Tư Kỳ lại mắc cỡ đỏ bừng cả khuôn mặt, để cho mình đem chỗ đó phơi bày ra cho người xem, còn có chuyện gì khó xử hơn sao? Bất quá nghĩ đến người xem là đệ đệ mình yêu mến nhất, lại cảm thấy không đến nỗi khó chấp nhận, trong lòng ngược lại còn có chút chờ mong: Buổi sáng hôm đó hắn cũng đã vô tình gặp qua một lần rồi, lần nữa chứng kiến, hắn có thể phân biệt nó với hai vị muội muội không? Lúc này Diệp Phi còn không biết mình đã bị Nhị tỷ tính kế, chờ mình trở về sẽ có một màn kịch hay siêu cấp lên sân khấu, lúc này, hắn đã cùng mẹ lên chuyến bay đến ô thành phố. Bởi vì lúc này đã bắt đầu mùa đông, trừ khi có việc rất gấp, nếu không căn bản không có ai chạy đến đại Tây Bắc đi chịu tội, cho nên sau khi máy bay cất cánh, Diệp Phi cùng Liễu Diệc Như ngạc nhiên phát hiện khoang hạng nhất rộng lớn vậy mà chỉ có hai mẫu tử bọn họ. Bất quá kinh ngạc thì kinh ngạc, bọn họ vẫn rất thích hoàn cảnh như vậy, điều này nói rõ bọn họ lại có thể hưởng thụ vài giờ thế giới hai người. Ngồi xuống trên chiếc ghế dựa rộng rãi thoải mái, Diệp Phi đưa tay ôm lấy vòng eo mảnh khảnh của mẹ, đột nhiên hỏi: "Mẹ, từ chỗ chúng ta đến ô thành phố có xa lắm không ạ?" "Cái này mà con cũng không biết?" Liễu Diệc Như không khỏi có chút kỳ quái, bất quá vẫn đáp: "Rất xa, có tận mấy ngàn km đấy." "Nha." Diệp Phi gật đầu, lại hỏi: "Có một thành ngữ, hình dung một người hoặc sự tình tại phương diện nào đó tiến triển cực nhanh, được gọi là gì ạ?" "Là tiến triển cực nhanh nha, ngay cả điều này cũng không biết sao?" Liễu Diệc Như kỳ quái nhìn Diệp Phi: "Con không phải là biến đần rồi chứ?" "Con không có biến đần, chỉ là cảm thấy cái thành ngữ này còn có một tầng ý nghĩa khác." Diệp Phi cười nói. "Có ý nghĩa gì nha?" Liễu Diệc Như nhất thời không hiểu rõ lắm. "Có phải ý nghĩa đó hay không con cũng không rõ lắm, thôi mẹ ạ, không bằng chúng ta hiện tại nghiệm chứng một chút đi." Diệp Phi cười hắc hắc nói: "Bất quá con thấy, dùng sức chiến đấu của con, tiến triển cực nhanh chỉ là chút lòng thành, vài ngàn dặm cũng không thành vấn đề ạ!" "Sức chiến đấu? Một ngày..." Liễu Diệc Như đột nhiên hiểu ra, khuôn mặt thoáng cái đỏ bừng, nắm tay nhỏ không ngừng gõ lên lồng ngực con trai, gắt giọng: "Tiểu bại hoại, bảo con trêu chọc mẹ!" "Con làm sao cam lòng trêu chọc mẹ? Con chỉ là thấy hoàn cảnh nơi này không sai." Diệp Phi cười nói: "Thôi mẹ, chúng ta thử một chút được không?" "Không tốt!" Liễu Diệc Như đỏ mặt cự tuyệt, bất quá trong lòng nàng nhưng cũng có chút ý động, bởi vì trong hoàn cảnh như vậy, xác thực rất kích thích, cho nên một lát sau, nói thêm: "Nơi này tuy chỉ có hai mẹ con mình, nhưng tổng sẽ có tiếp viên hàng không tới a, để người khác trông thấy thì làm sao bây giờ nha?" "Cái này dễ thôi, dùng nó đắp lên chẳng phải không sao cả sao?" Diệp Phi cười cầm áo khoác ngoài mà Liễu Diệc Như vì trong buồng phi cơ ấm áp mà cởi ra, che lên người hai người, bởi vì cái áo khoác này là loại toàn thân, cho nên quấn lên người sau ở bên ngoài căn bản không nhìn được gì. "Tiểu bại hoại, chút thông minh này của con có thể dùng vào việc đứng đắn không hả? Cả ngày cứ nghĩ đến chuyện bắt nạt người ta!" Liễu Diệc Như bĩu cái miệng nhỏ nhắn nói, nhưng hai tay đã vươn về phía đai lưng Diệp Phi. Diệp Phi khẽ động thân thể, giúp nàng giải đai lưng thuận lợi hơn, đồng thời cười nói: "Đây là chuẩn bị để cho con bắt nạt rồi?" "Mới không phải đâu, hôm nay người ta muốn bắt nạt lại con!" Liễu Diệc Như rất thuần thục kéo đồ vật của Diệp Phi ra ngoài, nắm trong tay nhẹ nhàng động đậy: "Hôm nay không cho con phát triển mạnh mẽ không được!" Nói xong, thấy bốn bề vắng lặng, Liễu Diệc Như đứng lên, kéo quần mình xuống đến đầu gối, nắm lấy con chim lớn của con trai nhắm ngay tiểu dâm huyệt đang khát vọng không thôi của mình, dùng sức ngồi xuống. Trong hoàn cảnh đặc thù như vậy, cảm giác tận gốc mà vào lại khiến hai mẹ con không khỏi sướng đến hừ một tiếng, Liễu Diệc Như kéo áo khoác che kín hai thân người, sau đó vận nội lực, khiến cho tiểu dâm huyệt nóng bỏng của mình kẹp chặt con chim lớn cứng rắn của con trai, không ngừng co rút mút vào. "Hít..." Tiểu dâm huyệt nóng bỏng kia của mẹ vốn là thứ Diệp Phi không chịu nổi nhất, lúc này lại bị nàng dùng sức khẽ hấp như vậy, càng làm cho hắn sướng đến thiếu chút nữa phun ra tại chỗ, vội vàng hít sâu một hơi, lúc này mới không bị mẹ kẹp cho một phát ra hết, không khỏi kỳ quái hỏi: "Mẹ, sao mẹ lại học được chiêu này?" "Học cùng Khinh Khinh đấy!" Liễu Diệc Như vừa tiếp tục vận công co rút lại da thịt mềm mại trong lồn, vừa cười đắc ý nói: "Thế nào, có phải là không chịu nổi nữa không?" Diệp Phi vừa rồi chỉ vì thình lình mẹ biết chiêu này mới có xúc động muốn bắn, nhưng so với kích thích từ chất lỏng lạnh lẽo khi nàng cao trào thì vẫn còn kém xa, cho nên Diệp Phi căn bản không sợ, lúc này cũng vận khởi năng lực của mình, để con chim lớn tự chủ đại lực ra vào trong dâm huyệt mẹ, hai tay đưa vào trong áo nàng, đều nắm lấy một bên ngực mẹ dùng sức vuốt ve, trong miệng thấp giọng nói: "Dâm huyệt của mẹ, vậy mà vụng trộm học chiêu này, có phải rất muốn để con trai càng thêm mê luyến tiểu dâm huyệt của mẹ, không nỡ rút ra không hả?" "Chính là muốn kẹp chết tên con trai bại hoại là con, xem con từ nay về sau còn dám đem thân nương của mình địt đến toàn thân không còn chút sức lực nào nữa không." Liễu Diệc Như thấp giọng cười dâm đãng, theo sự đút vào của con trai mà càng dùng sức co rút tiểu dâm huyệt của mình, bất quá không làm khó gì con trai, mình ngược lại bị hắn địt đến dần dần tiếp cận cao trào. Diệp Phi trong lòng đột nhiên vì dục hỏa mãnh liệt mà sinh ra một cỗ bạo ngược, mạnh mẽ vận khí khiến dương vật trong dâm huyệt mỹ diệu của mẹ như giếng khoan hung hăng thăm dò, đồng thời nói bên tai mẹ: "Dâm huyệt của mẹ, địt chết mẹ!" Cái này đúng là lấy mạng Liễu Diệc Như, chỉ cảm thấy dương vật con trai như một con đại xà linh hoạt trong lồn mình phiên giang đảo hải, khiến nàng không còn sức lực để co rút lồn nữa, chỉ biết bị động hưởng thụ khoái cảm siêu cường mà con trai mang lại, rất nhanh liền dưới sự điên cuồng của hắn mà cuồng tiết ra. Mà Diệp Phi bị âm tinh lạnh như băng của mẹ kích thích, cũng phun đại lượng tinh dịch vào tiểu dâm huyệt của nàng, bất quá cỗ bạo ngược trong lòng cũng không tiêu tan hết. Vì yêu thương mẹ, Diệp Phi cố nén cỗ bạo ngược khí này, chờ một lát, để mẹ lấy lại sức, mới tiếp tục đút vào trong tiểu dâm huyệt đang không ngừng co rút của nàng, một mực địt đến khi nàng liên tục cao trào ba lượt, lần cuối cùng thậm chí làm nàng phun ra lần nữa, may mắn Diệp Phi sớm có chuẩn bị, kịp thời thu chất lỏng mẹ phun ra vào không gian của mình, mới không khiến quần áo của hai người hoàn toàn ướt sũng.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0364.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0366.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

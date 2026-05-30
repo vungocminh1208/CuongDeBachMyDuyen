@@ -6,280 +6,75 @@
 <title>CuongDeBachMyDuyen</title>
 <style>
 
-/* ── Google Fonts ─────────────────────────────────────────────── */
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
-
-/* ── CSS Variables ────────────────────────────────────────────── */
 :root {
-  --bg:          #0f0e17;
-  --bg2:         #1a1826;
-  --bg3:         #252336;
-  --surface:     #1e1c2e;
-  --border:      #2e2b45;
-  --accent:      #e8c547;
-  --accent2:     #c97d4e;
-  --text:        #e2dff0;
-  --text-muted:  #8b87a8;
-  --text-dim:    #5a5674;
-  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
-  --mono:        'Space Mono', monospace;
-  --radius:      10px;
-  --shadow:      0 8px 32px rgba(0,0,0,.45);
-  --transition:  .22s cubic-bezier(.4,0,.2,1);
-  /* reader overrides (JS-controlled) */
-  --reader-font-size: 1.15rem;
-  --reader-line-height: 1.9;
-  --reader-max-width: 720px;
+  --bg:#0f0e17;--bg2:#1a1826;--bg3:#252336;--surface:#1e1c2e;--border:#2e2b45;
+  --accent:#e8c547;--accent2:#c97d4e;--text:#e2dff0;--text-muted:#8b87a8;--text-dim:#5a5674;
+  --serif:'Lora','Crimson Pro',Georgia,serif;--mono:'Space Mono',monospace;
+  --radius:10px;--shadow:0 8px 32px rgba(0,0,0,.45);--transition:.22s cubic-bezier(.4,0,.2,1);
 }
-[data-theme="light"] {
-  --bg:         #faf8f2;
-  --bg2:        #f0ede3;
-  --bg3:        #e8e3d5;
-  --surface:    #ffffff;
-  --border:     #d6d0c0;
-  --accent:     #b5860d;
-  --accent2:    #a0522d;
-  --text:       #1c1a14;
-  --text-muted: #6b6555;
-  --text-dim:   #9e9580;
-}
-[data-theme="sepia"] {
-  --bg:         #f4efe6;
-  --bg2:        #ece5d8;
-  --bg3:        #e2d9c8;
-  --surface:    #fdf6ec;
-  --border:     #c9bfa8;
-  --accent:     #8b6914;
-  --accent2:    #7a4010;
-  --text:       #2c2416;
-  --text-muted: #6e5c3e;
-  --text-dim:   #a8987c;
-}
+[data-theme="light"]{--bg:#faf8f2;--bg2:#f0ede3;--bg3:#e8e3d5;--surface:#ffffff;--border:#d6d0c0;--accent:#b5860d;--accent2:#a0522d;--text:#1c1a14;--text-muted:#6b6555;--text-dim:#9e9580;}
+[data-theme="sepia"]{--bg:#f4efe6;--bg2:#ece5d8;--bg3:#e2d9c8;--surface:#fdf6ec;--border:#c9bfa8;--accent:#8b6914;--accent2:#7a4010;--text:#2c2416;--text-muted:#6e5c3e;--text-dim:#a8987c;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--serif);background:var(--bg);color:var(--text);min-height:100vh;transition:background var(--transition),color var(--transition);line-height:1.6;}
+a{color:var(--accent);text-decoration:none;transition:opacity var(--transition);}
+a:hover{opacity:.75;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg2);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:99px;}
+.topbar{position:sticky;top:0;z-index:100;background:var(--bg2);border-bottom:1px solid var(--border);padding:.65rem 1.5rem;display:flex;align-items:center;gap:1rem;backdrop-filter:blur(12px);}
+.topbar-title{font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted);flex:1;}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.45rem .9rem;border-radius:var(--radius);border:1px solid var(--border);background:var(--bg3);color:var(--text);font-family:var(--mono);font-size:.7rem;letter-spacing:.06em;cursor:pointer;transition:background var(--transition),border-color var(--transition),color var(--transition);}
+.btn:hover{background:var(--surface);border-color:var(--accent);color:var(--accent);opacity:1;}
+.theme-row{display:flex;gap:.4rem;}
 
-/* ── Reset & Base ─────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--serif);
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  transition: background var(--transition), color var(--transition);
-  line-height: 1.6;
-}
-a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
-a:hover { opacity: .75; }
-
-/* ── Scrollbar ────────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg2); }
-::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
-::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
-
-/* ── Top bar ──────────────────────────────────────────────────── */
-.topbar {
-  position: sticky; top: 0; z-index: 100;
-  background: var(--bg2);
-  border-bottom: 1px solid var(--border);
-  padding: .65rem 1.5rem;
-  display: flex; align-items: center; gap: 1rem;
-  backdrop-filter: blur(12px);
-}
-.topbar-title {
-  font-family: var(--mono);
-  font-size: .72rem;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.topbar-title a { color: var(--text-muted); }
-.topbar-title a:hover { color: var(--accent); opacity: 1; }
-
-/* ── Buttons ──────────────────────────────────────────────────── */
-.btn {
-  display: inline-flex; align-items: center; gap: .4rem;
-  padding: .45rem .9rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--bg3);
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: .7rem;
-  letter-spacing: .06em;
-  cursor: pointer;
-  transition: background var(--transition), border-color var(--transition), color var(--transition);
-}
-.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
-.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
-.btn-icon { padding: .45rem .6rem; }
-
-
-/* ── Index-specific ──────────────────────────────────────────── */
-.hero {
-  text-align: center;
-  padding: 5rem 1.5rem 3rem;
-  position: relative;
-}
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(232,197,71,.08), transparent);
-  pointer-events: none;
-}
-.hero-eyebrow {
-  font-family: var(--mono);
-  font-size: .68rem;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-.hero h1 {
-  font-family: 'Crimson Pro', var(--serif);
-  font-weight: 300;
-  font-size: clamp(2.2rem, 6vw, 4rem);
-  letter-spacing: -.01em;
-  line-height: 1.15;
-  color: var(--text);
-  margin-bottom: 1.5rem;
-}
-.hero-meta {
-  font-family: var(--mono);
-  font-size: .75rem;
-  color: var(--text-muted);
-  letter-spacing: .08em;
-}
-
-/* ── Toolbar ─────────────────────────────────────────────────── */
-.toolbar {
-  max-width: 860px;
-  margin: 0 auto 1.2rem;
-  padding: 0 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: .6rem;
-  flex-wrap: wrap;
-}
-.search-wrap {
-  flex: 1;
-  min-width: 160px;
-  position: relative;
-}
-.search-wrap input {
-  width: 100%;
-  padding: .5rem .9rem .5rem 2.2rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--bg3);
-  color: var(--text);
-  font-family: var(--mono);
-  font-size: .75rem;
-  outline: none;
-  transition: border-color var(--transition);
-}
-.search-wrap input:focus { border-color: var(--accent); }
-.search-wrap::before {
-  content: '🔍';
-  position: absolute;
-  left: .65rem;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: .75rem;
-  opacity: .5;
-  pointer-events: none;
-}
-
-/* ── Chapter grid ────────────────────────────────────────────── */
-.grid-wrap {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 1.5rem 5rem;
-}
-.chapter-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: .55rem;
-}
-.chapter-card {
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  padding: .7rem 1rem;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--surface);
-  color: var(--text);
-  font-family: var(--serif);
-  font-size: .92rem;
-  transition: border-color var(--transition), background var(--transition), transform var(--transition);
-  cursor: pointer;
-}
-.chapter-card:hover {
-  border-color: var(--accent);
-  background: var(--bg3);
-  transform: translateY(-2px);
-  opacity: 1;
-}
-.chapter-num {
-  font-family: var(--mono);
-  font-size: .68rem;
-  color: var(--accent);
-  min-width: 2.4rem;
-  letter-spacing: .05em;
-}
-.chapter-name {
-  flex: 1;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: var(--text-muted);
-  font-size: .85rem;
-}
-.hidden { display: none !important; }
-
-/* ── Theme toggle ────────────────────────────────────────────── */
-.theme-row {
-  display: flex;
-  gap: .4rem;
-}
+.hero{text-align:center;padding:5rem 1.5rem 3rem;position:relative;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 0%,rgba(232,197,71,.08),transparent);pointer-events:none;}
+.hero-eyebrow{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:1rem;}
+.hero h1{font-family:'Crimson Pro',var(--serif);font-weight:300;font-size:clamp(2.2rem,6vw,4rem);letter-spacing:-.01em;line-height:1.15;color:var(--text);margin-bottom:1.5rem;}
+.hero-meta{font-family:var(--mono);font-size:.75rem;color:var(--text-muted);letter-spacing:.08em;}
+.toolbar{max-width:860px;margin:0 auto 1.2rem;padding:0 1.5rem;display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;}
+.search-wrap{flex:1;min-width:160px;position:relative;}
+.search-wrap input{width:100%;padding:.5rem .9rem .5rem 2.2rem;border-radius:var(--radius);border:1px solid var(--border);background:var(--bg3);color:var(--text);font-family:var(--mono);font-size:.75rem;outline:none;transition:border-color var(--transition);}
+.search-wrap input:focus{border-color:var(--accent);}
+.search-wrap::before{content:'🔍';position:absolute;left:.65rem;top:50%;transform:translateY(-50%);font-size:.75rem;opacity:.5;pointer-events:none;}
+.grid-wrap{max-width:860px;margin:0 auto;padding:0 1.5rem 5rem;}
+.chapter-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:.55rem;}
+.chapter-card{display:flex;align-items:center;gap:.75rem;padding:.7rem 1rem;border-radius:var(--radius);border:1px solid var(--border);background:var(--surface);color:var(--text);font-family:var(--serif);font-size:.92rem;transition:border-color var(--transition),background var(--transition),transform var(--transition);cursor:pointer;}
+.chapter-card:hover{border-color:var(--accent);background:var(--bg3);transform:translateY(-2px);opacity:1;}
+.chapter-num{font-family:var(--mono);font-size:.68rem;color:var(--accent);min-width:2.4rem;letter-spacing:.05em;}
+.chapter-name{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text-muted);font-size:.85rem;}
+.hidden{display:none!important;}
 </style>
 </head>
 <body>
 <div class="topbar">
   <span class="topbar-title">CuongDeBachMyDuyen</span>
   <div class="theme-row">
-    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
-    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
-    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+    <button class="btn" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn" onclick="setTheme('light')" title="Light">☀️</button>
   </div>
 </div>
-
 <div class="hero">
   <div class="hero-eyebrow">✦ Đọc Truyện Online ✦</div>
   <h1>CuongDeBachMyDuyen</h1>
-  <p class="hero-meta">229 chương</p>
+  <p class="hero-meta">258 chương</p>
 </div>
-
 <div class="toolbar">
   <div class="search-wrap">
     <input type="text" id="search" placeholder="Tìm chương..." oninput="filterChapters()">
   </div>
-  <button class="btn" onclick="sortAsc()" id="btn-asc">↑ Cũ nhất</button>
-  <button class="btn" onclick="sortDesc()" id="btn-desc">↓ Mới nhất</button>
+  <button class="btn" onclick="sortAsc()">↑ Cũ nhất</button>
+  <button class="btn" onclick="sortDesc()">↓ Mới nhất</button>
 </div>
-
 <div class="grid-wrap">
   <div class="chapter-grid" id="grid">
     <a class="chapter-card" href="chuong-0134.html" data-num="134" data-search="chương 134 chương 134: lập uy linh đường trước">
       <span class="chapter-num">#0134</span>
       <span class="chapter-name">Chương 134: Lập uy linh đường trước</span>
     </a>
-    <a class="chapter-card" href="chuong-0135.html" data-num="135" data-search="chương 135 ">
+    <a class="chapter-card" href="chuong-0135.html" data-num="135" data-search="chương 135 chương 135">
       <span class="chapter-num">#0135</span>
       <span class="chapter-name">Chương 135</span>
     </a>
@@ -323,7 +118,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0145</span>
       <span class="chapter-name">Chương 145: Rượu là chất xúc tác của sắc dục</span>
     </a>
-    <a class="chapter-card" href="chuong-0146.html" data-num="146" data-search="chương 146 ">
+    <a class="chapter-card" href="chuong-0146.html" data-num="146" data-search="chương 146 chương 146">
       <span class="chapter-num">#0146</span>
       <span class="chapter-name">Chương 146</span>
     </a>
@@ -363,7 +158,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0155</span>
       <span class="chapter-name">Chương 155: Đột nhiên tập kích</span>
     </a>
-    <a class="chapter-card" href="chuong-0156.html" data-num="156" data-search="chương 156 ">
+    <a class="chapter-card" href="chuong-0156.html" data-num="156" data-search="chương 156 chương 156">
       <span class="chapter-num">#0156</span>
       <span class="chapter-name">Chương 156</span>
     </a>
@@ -443,7 +238,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0175</span>
       <span class="chapter-name">Chương 175: Địch nhân sào huyệt (hạ)</span>
     </a>
-    <a class="chapter-card" href="chuong-0176.html" data-num="176" data-search="chương 176 ">
+    <a class="chapter-card" href="chuong-0176.html" data-num="176" data-search="chương 176 chương 176">
       <span class="chapter-num">#0176</span>
       <span class="chapter-name">Chương 176</span>
     </a>
@@ -491,7 +286,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0187</span>
       <span class="chapter-name">Chương 187: Đường Nhu tưởng niệm</span>
     </a>
-    <a class="chapter-card" href="chuong-0188.html" data-num="188" data-search="chương 188 ">
+    <a class="chapter-card" href="chuong-0188.html" data-num="188" data-search="chương 188 chương 188">
       <span class="chapter-num">#0188</span>
       <span class="chapter-name">Chương 188</span>
     </a>
@@ -519,7 +314,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0194</span>
       <span class="chapter-name">Chương 194: Ghen tuông</span>
     </a>
-    <a class="chapter-card" href="chuong-0195.html" data-num="195" data-search="chương 195 ">
+    <a class="chapter-card" href="chuong-0195.html" data-num="195" data-search="chương 195 chương 195">
       <span class="chapter-num">#0195</span>
       <span class="chapter-name">Chương 195</span>
     </a>
@@ -599,7 +394,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0214</span>
       <span class="chapter-name">Chương 214: Hương diễm trừng phạt</span>
     </a>
-    <a class="chapter-card" href="chuong-0215.html" data-num="215" data-search="chương 215 ">
+    <a class="chapter-card" href="chuong-0215.html" data-num="215" data-search="chương 215 chương 215">
       <span class="chapter-num">#0215</span>
       <span class="chapter-name">Chương 215</span>
     </a>
@@ -635,7 +430,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0223</span>
       <span class="chapter-name">Chương 223: Tình cảm tỷ tỷ</span>
     </a>
-    <a class="chapter-card" href="chuong-0224.html" data-num="224" data-search="chương 224 ">
+    <a class="chapter-card" href="chuong-0224.html" data-num="224" data-search="chương 224 chương 224">
       <span class="chapter-num">#0224</span>
       <span class="chapter-name">Chương 224</span>
     </a>
@@ -655,7 +450,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0228</span>
       <span class="chapter-name">Chương 228: Trở về tình mẫu tử</span>
     </a>
-    <a class="chapter-card" href="chuong-0229.html" data-num="229" data-search="chương 229 ">
+    <a class="chapter-card" href="chuong-0229.html" data-num="229" data-search="chương 229 chương 229">
       <span class="chapter-num">#0229</span>
       <span class="chapter-name">Chương 229</span>
     </a>
@@ -663,7 +458,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0230</span>
       <span class="chapter-name">Chương 230: Thiếu một chút nữa là hôn được</span>
     </a>
-    <a class="chapter-card" href="chuong-0231.html" data-num="231" data-search="chương 231 ">
+    <a class="chapter-card" href="chuong-0231.html" data-num="231" data-search="chương 231 chương 231">
       <span class="chapter-num">#0231</span>
       <span class="chapter-name">Chương 231</span>
     </a>
@@ -711,7 +506,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0242</span>
       <span class="chapter-name">Chương 242: Nhị tỷ ôn nhu</span>
     </a>
-    <a class="chapter-card" href="chuong-0243.html" data-num="243" data-search="chương 243 ">
+    <a class="chapter-card" href="chuong-0243.html" data-num="243" data-search="chương 243 chương 243">
       <span class="chapter-num">#0243</span>
       <span class="chapter-name">Chương 243</span>
     </a>
@@ -763,7 +558,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0255</span>
       <span class="chapter-name">Chương 255: Tam tỷ ngược lại</span>
     </a>
-    <a class="chapter-card" href="chuong-0256.html" data-num="256" data-search="chương 256 ">
+    <a class="chapter-card" href="chuong-0256.html" data-num="256" data-search="chương 256 chương 256">
       <span class="chapter-num">#0256</span>
       <span class="chapter-name">Chương 256</span>
     </a>
@@ -811,11 +606,11 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0267</span>
       <span class="chapter-name">Chương 267: Vi Nhi tâm tư</span>
     </a>
-    <a class="chapter-card" href="chuong-0268.html" data-num="268" data-search="chương 268 ">
+    <a class="chapter-card" href="chuong-0268.html" data-num="268" data-search="chương 268 chương 268">
       <span class="chapter-num">#0268</span>
       <span class="chapter-name">Chương 268</span>
     </a>
-    <a class="chapter-card" href="chuong-0269.html" data-num="269" data-search="chương 269 ">
+    <a class="chapter-card" href="chuong-0269.html" data-num="269" data-search="chương 269 chương 269">
       <span class="chapter-num">#0269</span>
       <span class="chapter-name">Chương 269</span>
     </a>
@@ -839,7 +634,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0274</span>
       <span class="chapter-name">Chương 274: Đối thoại của tỷ muội</span>
     </a>
-    <a class="chapter-card" href="chuong-0275.html" data-num="275" data-search="chương 275 ">
+    <a class="chapter-card" href="chuong-0275.html" data-num="275" data-search="chương 275 chương 275">
       <span class="chapter-num">#0275</span>
       <span class="chapter-name">Chương 275</span>
     </a>
@@ -855,7 +650,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0278</span>
       <span class="chapter-name">Chương 278: Hai tiểu nhân tranh phong</span>
     </a>
-    <a class="chapter-card" href="chuong-0279.html" data-num="279" data-search="chương 279 ">
+    <a class="chapter-card" href="chuong-0279.html" data-num="279" data-search="chương 279 chương 279">
       <span class="chapter-num">#0279</span>
       <span class="chapter-name">Chương 279</span>
     </a>
@@ -879,7 +674,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0284</span>
       <span class="chapter-name">I cannot fulfill this request.</span>
     </a>
-    <a class="chapter-card" href="chuong-0285.html" data-num="285" data-search="chương 285 ">
+    <a class="chapter-card" href="chuong-0285.html" data-num="285" data-search="chương 285 chương 285">
       <span class="chapter-num">#0285</span>
       <span class="chapter-name">Chương 285</span>
     </a>
@@ -887,7 +682,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0286</span>
       <span class="chapter-name">Chương 286: âm mưu nổi lên</span>
     </a>
-    <a class="chapter-card" href="chuong-0287.html" data-num="287" data-search="chương 287 ">
+    <a class="chapter-card" href="chuong-0287.html" data-num="287" data-search="chương 287 chương 287">
       <span class="chapter-num">#0287</span>
       <span class="chapter-name">Chương 287</span>
     </a>
@@ -999,7 +794,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0314</span>
       <span class="chapter-name">Chương 314: Thiên ý trùng hợp</span>
     </a>
-    <a class="chapter-card" href="chuong-0315.html" data-num="315" data-search="chương 315 ">
+    <a class="chapter-card" href="chuong-0315.html" data-num="315" data-search="chương 315 chương 315">
       <span class="chapter-num">#0315</span>
       <span class="chapter-name">Chương 315</span>
     </a>
@@ -1071,7 +866,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0332</span>
       <span class="chapter-name">Chương 332: Phụ thân thế thân</span>
     </a>
-    <a class="chapter-card" href="chuong-0333.html" data-num="333" data-search="chương 333 ">
+    <a class="chapter-card" href="chuong-0333.html" data-num="333" data-search="chương 333 chương 333">
       <span class="chapter-num">#0333</span>
       <span class="chapter-name">Chương 333</span>
     </a>
@@ -1087,7 +882,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0336</span>
       <span class="chapter-name">Chương 336: Kinh hỉ và quấn quýt</span>
     </a>
-    <a class="chapter-card" href="chuong-0337.html" data-num="337" data-search="chương 337 ">
+    <a class="chapter-card" href="chuong-0337.html" data-num="337" data-search="chương 337 chương 337">
       <span class="chapter-num">#0337</span>
       <span class="chapter-name">Chương 337</span>
     </a>
@@ -1107,7 +902,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0341</span>
       <span class="chapter-name">Chương 341: Hai mẹ chung dạy con</span>
     </a>
-    <a class="chapter-card" href="chuong-0342.html" data-num="342" data-search="chương 342 ">
+    <a class="chapter-card" href="chuong-0342.html" data-num="342" data-search="chương 342 chương 342">
       <span class="chapter-num">#0342</span>
       <span class="chapter-name">Chương 342</span>
     </a>
@@ -1115,7 +910,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0343</span>
       <span class="chapter-name">Chương 343: Tinh xảo thế cục</span>
     </a>
-    <a class="chapter-card" href="chuong-0344.html" data-num="344" data-search="chương 344 ">
+    <a class="chapter-card" href="chuong-0344.html" data-num="344" data-search="chương 344 chương 344">
       <span class="chapter-num">#0344</span>
       <span class="chapter-name">Chương 344</span>
     </a>
@@ -1135,15 +930,15 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0348</span>
       <span class="chapter-name">Chương 348: Động tình mẹ con</span>
     </a>
-    <a class="chapter-card" href="chuong-0349.html" data-num="349" data-search="chương 349 ">
+    <a class="chapter-card" href="chuong-0349.html" data-num="349" data-search="chương 349 chương 349">
       <span class="chapter-num">#0349</span>
       <span class="chapter-name">Chương 349</span>
     </a>
-    <a class="chapter-card" href="chuong-0350.html" data-num="350" data-search="chương 350 ">
+    <a class="chapter-card" href="chuong-0350.html" data-num="350" data-search="chương 350 chương 350">
       <span class="chapter-num">#0350</span>
       <span class="chapter-name">Chương 350</span>
     </a>
-    <a class="chapter-card" href="chuong-0351.html" data-num="351" data-search="chương 351 ">
+    <a class="chapter-card" href="chuong-0351.html" data-num="351" data-search="chương 351 chương 351">
       <span class="chapter-num">#0351</span>
       <span class="chapter-name">Chương 351</span>
     </a>
@@ -1163,7 +958,7 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0355</span>
       <span class="chapter-name">Chương 355: Tiểu di trở về</span>
     </a>
-    <a class="chapter-card" href="chuong-0356.html" data-num="356" data-search="chương 356 ">
+    <a class="chapter-card" href="chuong-0356.html" data-num="356" data-search="chương 356 chương 356">
       <span class="chapter-num">#0356</span>
       <span class="chapter-name">Chương 356</span>
     </a>
@@ -1191,36 +986,133 @@ a:hover { opacity: .75; }
       <span class="chapter-num">#0362</span>
       <span class="chapter-name">Chương 362: Tiểu di cùng tiểu muội</span>
     </a>
+    <a class="chapter-card" href="chuong-0363.html" data-num="363" data-search="chương 363 chương 363: hành trình hoàn toàn mới">
+      <span class="chapter-num">#0363</span>
+      <span class="chapter-name">Chương 363: Hành trình hoàn toàn mới</span>
+    </a>
+    <a class="chapter-card" href="chuong-0364.html" data-num="364" data-search="chương 364 chương 364">
+      <span class="chapter-num">#0364</span>
+      <span class="chapter-name">Chương 364</span>
+    </a>
+    <a class="chapter-card" href="chuong-0365.html" data-num="365" data-search="chương 365 chương 365">
+      <span class="chapter-num">#0365</span>
+      <span class="chapter-name">Chương 365</span>
+    </a>
+    <a class="chapter-card" href="chuong-0366.html" data-num="366" data-search="chương 366 chương 366: chủ động tiếp viên hàng không">
+      <span class="chapter-num">#0366</span>
+      <span class="chapter-name">Chương 366: Chủ động tiếp viên hàng không</span>
+    </a>
+    <a class="chapter-card" href="chuong-0367.html" data-num="367" data-search="chương 367 chương 367: lần đầu gặp bạch u nhi">
+      <span class="chapter-num">#0367</span>
+      <span class="chapter-name">Chương 367: lần đầu gặp Bạch U Nhi</span>
+    </a>
+    <a class="chapter-card" href="chuong-0368.html" data-num="368" data-search="chương 368 chương 368: không hiểu xung đột">
+      <span class="chapter-num">#0368</span>
+      <span class="chapter-name">Chương 368: Không hiểu xung đột</span>
+    </a>
+    <a class="chapter-card" href="chuong-0369.html" data-num="369" data-search="chương 369 i cannot fulfill this request.">
+      <span class="chapter-num">#0369</span>
+      <span class="chapter-name">I cannot fulfill this request.</span>
+    </a>
+    <a class="chapter-card" href="chuong-0370.html" data-num="370" data-search="chương 370 chương 370: kiều diễm sư nương">
+      <span class="chapter-num">#0370</span>
+      <span class="chapter-name">Chương 370: Kiều diễm sư nương</span>
+    </a>
+    <a class="chapter-card" href="chuong-0371.html" data-num="371" data-search="chương 371 chương 371: ma môn bí mật">
+      <span class="chapter-num">#0371</span>
+      <span class="chapter-name">Chương 371: Ma Môn bí mật</span>
+    </a>
+    <a class="chapter-card" href="chuong-0372.html" data-num="372" data-search="chương 372 chương 372">
+      <span class="chapter-num">#0372</span>
+      <span class="chapter-name">Chương 372</span>
+    </a>
+    <a class="chapter-card" href="chuong-0373.html" data-num="373" data-search="chương 373 chương 373: chính thức song tu (hạ)">
+      <span class="chapter-num">#0373</span>
+      <span class="chapter-name">Chương 373: Chính thức song tu (hạ)</span>
+    </a>
+    <a class="chapter-card" href="chuong-0374.html" data-num="374" data-search="chương 374 chương 374: lập uy duyệt lai sạn">
+      <span class="chapter-num">#0374</span>
+      <span class="chapter-name">Chương 374: Lập uy Duyệt Lai sạn</span>
+    </a>
+    <a class="chapter-card" href="chuong-0375.html" data-num="375" data-search="chương 375 chương 375">
+      <span class="chapter-num">#0375</span>
+      <span class="chapter-name">Chương 375</span>
+    </a>
+    <a class="chapter-card" href="chuong-0376.html" data-num="376" data-search="chương 376 chương 376: năng lực khôi phục">
+      <span class="chapter-num">#0376</span>
+      <span class="chapter-name">Chương 376: Năng lực khôi phục</span>
+    </a>
+    <a class="chapter-card" href="chuong-0377.html" data-num="377" data-search="chương 377 chương 377: xấu hổ hân hoan">
+      <span class="chapter-num">#0377</span>
+      <span class="chapter-name">Chương 377: Xấu hổ hân hoan</span>
+    </a>
+    <a class="chapter-card" href="chuong-0378.html" data-num="378" data-search="chương 378 chương 378: làm tân nương của ngươi">
+      <span class="chapter-num">#0378</span>
+      <span class="chapter-name">Chương 378: Làm tân nương của ngươi</span>
+    </a>
+    <a class="chapter-card" href="chuong-0379.html" data-num="379" data-search="chương 379 chương 379: sung sướng hân hoan yến">
+      <span class="chapter-num">#0379</span>
+      <span class="chapter-name">Chương 379: Sung sướng hân hoan yến</span>
+    </a>
+    <a class="chapter-card" href="chuong-0380.html" data-num="380" data-search="chương 380 chương 380: tạo người tiến hành lúc">
+      <span class="chapter-num">#0380</span>
+      <span class="chapter-name">Chương 380: Tạo người tiến hành lúc</span>
+    </a>
+    <a class="chapter-card" href="chuong-0381.html" data-num="381" data-search="chương 381 chương 381: nhảy nhót thằng hề">
+      <span class="chapter-num">#0381</span>
+      <span class="chapter-name">Chương 381: Nhảy nhót thằng hề</span>
+    </a>
+    <a class="chapter-card" href="chuong-0382.html" data-num="382" data-search="chương 382 chương 382: tất nhiên gặp gỡ">
+      <span class="chapter-num">#0382</span>
+      <span class="chapter-name">Chương 382: Tất nhiên gặp gỡ</span>
+    </a>
+    <a class="chapter-card" href="chuong-0383.html" data-num="383" data-search="chương 383 chương 383: thiện lương đường ngọc">
+      <span class="chapter-num">#0383</span>
+      <span class="chapter-name">Chương 383: Thiện lương Đường Ngọc</span>
+    </a>
+    <a class="chapter-card" href="chuong-0384.html" data-num="384" data-search="chương 384 chương 384: lưng ngựa kích tình">
+      <span class="chapter-num">#0384</span>
+      <span class="chapter-name">Chương 384: Lưng ngựa kích tình</span>
+    </a>
+    <a class="chapter-card" href="chuong-0385.html" data-num="385" data-search="chương 385 chương 385: đường môn đại tiểu thư">
+      <span class="chapter-num">#0385</span>
+      <span class="chapter-name">Chương 385: Đường Môn đại tiểu thư</span>
+    </a>
+    <a class="chapter-card" href="chuong-0386.html" data-num="386" data-search="chương 386 chương 386: siêu cấp hung khí">
+      <span class="chapter-num">#0386</span>
+      <span class="chapter-name">Chương 386: Siêu cấp hung khí</span>
+    </a>
+    <a class="chapter-card" href="chuong-0387.html" data-num="387" data-search="chương 387 chương 387: cùng cũng như song tu">
+      <span class="chapter-num">#0387</span>
+      <span class="chapter-name">Chương 387: Cùng cũng như song tu</span>
+    </a>
+    <a class="chapter-card" href="chuong-0388.html" data-num="388" data-search="chương 388 chương 388: nụ hôn đầu của tiểu ngọc">
+      <span class="chapter-num">#0388</span>
+      <span class="chapter-name">Chương 388: Nụ hôn đầu của Tiểu Ngọc</span>
+    </a>
+    <a class="chapter-card" href="chuong-0389.html" data-num="389" data-search="chương 389 chương 388: nụ hôn đầu của tiểu ngọc">
+      <span class="chapter-num">#0389</span>
+      <span class="chapter-name">Chương 388: Nụ hôn đầu của Tiểu Ngọc</span>
+    </a>
+    <a class="chapter-card" href="chuong-0390.html" data-num="390" data-search="chương 390 chương 388: nụ hôn đầu của tiểu ngọc">
+      <span class="chapter-num">#0390</span>
+      <span class="chapter-name">Chương 388: Nụ hôn đầu của Tiểu Ngọc</span>
+    </a>
+    <a class="chapter-card" href="chuong-0391.html" data-num="391" data-search="chương 391 chương 391">
+      <span class="chapter-num">#0391</span>
+      <span class="chapter-name">Chương 391</span>
+    </a>
 
   </div>
   <p id="no-result" class="hidden" style="text-align:center;color:var(--text-dim);padding:3rem;font-family:var(--mono);font-size:.8rem;">Không tìm thấy chương nào.</p>
 </div>
-
 <script>
-const cards = Array.from(document.querySelectorAll('.chapter-card'));
-
-function filterChapters() {
-  const q = document.getElementById('search').value.toLowerCase();
-  let found = 0;
-  cards.forEach(c => {
-    const match = c.dataset.search.includes(q);
-    c.classList.toggle('hidden', !match);
-    if (match) found++;
-  });
-  document.getElementById('no-result').classList.toggle('hidden', found > 0);
-}
-
-function sortAsc() {
-  const g = document.getElementById('grid');
-  cards.sort((a,b) => +a.dataset.num - +b.dataset.num).forEach(c => g.appendChild(c));
-}
-function sortDesc() {
-  const g = document.getElementById('grid');
-  cards.sort((a,b) => +b.dataset.num - +a.dataset.num).forEach(c => g.appendChild(c));
-}
-
-function setTheme(t) { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
-(function() { const t = localStorage.getItem('theme') || 'dark'; document.documentElement.setAttribute('data-theme', t); })();
+const cards=Array.from(document.querySelectorAll('.chapter-card'));
+function filterChapters(){const q=document.getElementById('search').value.toLowerCase();let f=0;cards.forEach(c=>{const m=c.dataset.search.includes(q);c.classList.toggle('hidden',!m);if(m)f++;});document.getElementById('no-result').classList.toggle('hidden',f>0);}
+function sortAsc(){const g=document.getElementById('grid');cards.sort((a,b)=>+a.dataset.num-+b.dataset.num).forEach(c=>g.appendChild(c));}
+function sortDesc(){const g=document.getElementById('grid');cards.sort((a,b)=>+b.dataset.num-+a.dataset.num).forEach(c=>g.appendChild(c));}
+function setTheme(t){document.documentElement.setAttribute('data-theme',t);localStorage.setItem('theme',t);}
+(function(){const t=localStorage.getItem('theme')||'dark';document.documentElement.setAttribute('data-theme',t);})();
 </script>
 </body>
 </html>

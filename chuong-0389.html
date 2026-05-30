@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 389 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 389</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 389</small>
+    Chương 388: Nụ hôn đầu của Tiểu Ngọc
+  </h1>
+  <div class="chapter-body">
+    <p>Kỳ thực Đường Tâm người này bản tính cũng không xấu, bằng không cũng sẽ không nghe nói dư ngạo rồi chạy tới muốn vì dân trừ hại, cho nên khi thấy Diệp Phi vẻ mặt khó chịu từ trong lều đi ra, trong lòng vẫn có chút áy náy, chỉ là Diệp Phi một tiếng quát lớn kia đã khơi dậy ngạo khí đại tiểu thư của nàng, mà Diệp Phi cũng bởi vì ngay từ đầu ấn tượng với nàng không tốt, cũng không suy nghĩ sâu xa, kết quả là càng nói càng cương, hoàn toàn trái ngược với mục đích ban đầu của nàng.</p>
+    <p>Gặp Đường Tâm không nói, Diệp Phi cũng lười để ý đến nàng, quay sang Đường Ngọc khẽ cười nói: "Tiểu Ngọc, có muốn vào trong ngồi một lát không?"</p>
+    <p>Đường Ngọc tiến lên một bước giữ chặt tay Đường Tâm, có chút lo lắng nói: "Tiểu thư, Diệp đại ca, các người đều đừng nóng giận mà, Diệp đại ca, kỳ thực hôm nay chúng ta đến là vì..."</p>
+    <p>"Muốn ngươi lắm miệng à!?" Đường Tâm đang lúc nổi nóng, trong lòng hận không thể hung hăng đánh Diệp Phi một trận, đâu chịu thừa nhận mình vốn tìm đến hắn là để tỏ lòng cảm tạ thay cho những người dân kia, bởi vậy vội vàng cắt ngang lời Đường Ngọc, đồng thời bàn tay nhỏ bé vung lên, thoáng cái đẩy Đường Ngọc ra ngoài.</p>
+    <p>Đường Ngọc tuy cũng có võ công trong người, nhưng so với Đường Tâm thì kém hơn rất nhiều, hơn nữa nàng cũng không ngờ tiểu thư từ nhỏ đã coi mình như thân muội muội lại đẩy mình, thêm vào đó Đường Tâm đang lúc tức giận nên ra tay không biết nặng nhẹ, nên Đường Ngọc bất ngờ bị ngã xuống đất.</p>
+    <p>Diệp Phi vốn đối với Đường Tâm chỉ là lười để ý tới, nhưng thấy cảnh này lại khác, Đường Ngọc lớn lên đáng yêu, tính cách lại cực kỳ nhu nhược, vốn rất dễ khiến người khác nảy sinh ý muốn che chở, cộng thêm Diệp Phi vốn có hảo cảm lớn với nàng, tự nhiên không thể nhìn nàng chịu chút ủy khuất nào. Lúc này thấy Đường Tâm đẩy nàng ngã sấp xuống, trong lòng giận dữ nên chẳng còn quan tâm đối phương là nữ hài xinh đẹp, lập tức tiến lên một bước, một cái tát giáng lên mặt Đường Tâm, phát ra tiếng "Pộp" giòn giã.</p>
+    <p>"Ngươi, ngươi dám đánh ta?!" Đường Tâm thấy Đường Ngọc bị mình đẩy ngã, trong lòng cũng vô cùng áy náy, vốn định qua đỡ nàng dậy, không ngờ còn chưa kịp động thì đã bị Diệp Phi tát cho một cái. Mà sau khi bị ăn tát, biểu cảm của nàng không phải tức giận, cũng không phải ủy khuất, mà là ôm lấy khuôn mặt với vẻ không dám tin nhìn Diệp Phi. Từ nhỏ đến lớn, nàng đều được người nhà cưng chiều như bảo bối, đừng nói là bị đánh, đến lời nặng lời nhẹ cũng chưa từng nghe qua, người ngoài cũng đều kính nàng là Đường Môn đại tiểu thư, đối đãi cung kính, nàng tuyệt đối không ngờ tới, lần đầu tiên trong đời bị đánh lại là dưới tình huống như thế này.</p>
+    <p>Diệp Phi căn bản không thèm để ý đến Đường Tâm, sau khi đánh nàng xong, trực tiếp đi qua đỡ Đường Ngọc đứng dậy, ôn nhu hỏi: "Tiểu Ngọc, nàng không sao chứ?"</p>
+    <p>"Ta không sao, Diệp đại ca, sao huynh lại đánh tiểu thư của chúng ta chứ?" Đường Ngọc có chút sốt ruột hỏi, kỳ thực nàng rất đau, bởi vì cú đẩy vừa rồi của Đường Tâm dùng không ít sức lực, khiến cho mông nàng đau nhức, nhưng điều nàng lo lắng nhất vẫn là Đường Tâm. Diệp Phi không biết, nhưng nàng thì biết, Đường Tâm từ nhỏ đến lớn chưa từng chịu đòn, cũng không biết nàng có chịu được không.</p>
+    <p>Lại một lần nữa bị Diệp Phi không đếm xỉa, cộng thêm một cái tát vừa rồi đã khiến lửa giận của Đường Tâm lên tới đỉnh điểm, nàng lập tức giấu một miếng lá liễu tiêu trong tay. Nàng rất tự tin, chỉ cần mình phóng tiêu ra, tuyệt đối có thể khiến tên hỗn đản dám đánh mình này mất mạng ngay lập tức. Thế nhưng không biết vì sao, sau khi cài tiêu vào tay, nàng lại chần chừ, cuối cùng vẫn không thể phóng miếng phi tiêu đó đi.</p>
+    <p>Lúc này, Liễu Diệc Như vẫn luôn ở trong lều cũng bị âm thanh bên ngoài kinh động, vén mành lều đi ra, hỏi: "Có chuyện gì vậy?"</p>
+    <p>"Tiểu Ngọc bị ngã rồi." Diệp Phi quay đầu nói với mẹ.</p>
+    <p>Liễu Diệc Như đối với Đường Ngọc cũng cực kỳ hảo cảm, nghe nói nàng bị ngã, vội vàng đi đến bên cạnh Diệp Phi, nhìn Đường Ngọc đang được hắn dìu, quan tâm hỏi: "Tiểu Ngọc, con không sao chứ? Ngã có đau không?"</p>
+    <p>"Con không sao, cảm ơn Liễu tỷ... Liễu a di." Đường Ngọc nhỏ giọng nói, sau khi biết Liễu Diệc Như thực chất là mẹ của Diệp Phi, tiếng "tỷ tỷ" kia liền không kêu nổi nữa, đổi thành a di.</p>
+    <p>Đường Tâm bên cạnh thấy mẹ con Diệp Phi đều đi quan tâm Đường Ngọc, mà mình bị đánh lại không ai đoái hoài, điều này khiến nàng - người từ nhỏ đã là tiêu điểm của mọi người - làm sao chịu nổi? Vì vậy, trong lòng sinh ra cảm giác chênh lệch to lớn, nàng hừ một tiếng, cũng không thèm xen vào chuyện của Đường Ngọc nữa, một mình hậm hực bước nhanh rời đi.</p>
+    <p>"Tiểu thư." Đường Ngọc kêu một tiếng, cất bước muốn đuổi theo Đường Tâm, không ngờ mới đi được một bước, cơn đau ở mông khiến nàng kêu khẽ một tiếng.</p>
+    <p>Liễu Diệc Như tiến lên một bước, đỡ lấy Đường Ngọc đang cố chịu đau, nói: "Tiểu Ngọc, con bị thương rồi, đừng chạy loạn nữa."</p>
+    <p>"Nhưng mà, tiểu thư nhà chúng con..." Đường Ngọc có chút sốt ruột nói.</p>
+    <p>Liễu Diệc Như khẽ mỉm cười nói: "Không sao đâu, con bé đang lúc nổi nóng, con cứ đợi nó tiêu giận rồi hãy về, bằng không dù có gặp cũng nó cũng sẽ không để ý đến con đâu."</p>
+    <p>Đường Ngọc liếc nhìn Diệp Phi bên cạnh một cái, nhẹ nhàng gật đầu nói: "Vậy cũng được." Nàng vốn là một cô gái không có bao nhiêu chủ kiến, hơn nữa ở đây còn có người khiến nàng không muốn rời đi sớm, cho nên thuận thế đáp ứng.</p>
+    <p>Ánh mắt mịt mờ kia của Đường Ngọc không giấu được Liễu Diệc Như, khiến bà thầm cười trong lòng, nói: "Tiểu Mãn, con dìu Tiểu Ngọc vào nghỉ ngơi một chút, tiện thể giúp con bé trị liệu vết thương, mẹ đi tìm Trần a di của con nhờ chút việc."</p>
+    <p>Diệp Phi biết mẹ đây là muốn làm bà mối cho mình, hơn nữa cũng là tạo cơ hội cho hắn và Đường Ngọc ở riêng, hắn tự nhiên sẽ không phụ lòng tốt của mẹ, vì vậy nhận lấy Đường Ngọc từ tay bà, cẩn thận dìu thân hình nhỏ nhắn xinh xắn của nàng vào trong lều.</p>
+    <p>"Diệp đại ca, nơi này sao lại có mùi lạ vậy?" Vừa vào lều, Đường Ngọc đã ngửi thấy một mùi kỳ quái, mùi này hơi tanh, lại mang theo một chút khí tức nồng nàn, nhưng tuyệt đối không khó ngửi, ngược lại còn cho người ta một loại cảm giác hương thơm lạ lẫm.</p>
+    <p>Bị Đường Ngọc nhắc nhở, Diệp Phi cũng chú ý tới luồng hơi thở này, trong lòng không khỏi có chút xấu hổ. Đây căn bản là mùi thứ chảy ra lúc hắn và mẹ thoải mái nhất đêm qua. Nghĩ tới đây, hắn vội nhìn về phía giường, phát hiện ga giường bị mẹ làm ướt đã được bà thu dọn đi, lúc này mới thở phào một hơi, thuận miệng nói bậy: "Đó là một loại đồ uống ta và mẹ tự nghiên cứu, có phải mùi hơi kỳ quái không?"</p>
+    <p>"Vậy sao?" Đường Ngọc hỏi một câu, bất quá trong lòng không hề nghi ngờ lời Diệp Phi, tuy rất lạ là loại đồ uống nào lại có mùi nhàn nhạt như vậy, nhưng loại hương thơm kỳ lạ này lại làm nàng có chút tâm động, liền hỏi: "Diệp đại ca, đồ uống đó của các huynh còn không?"</p>
+    <p>"Hiện tại hết rồi, nhưng sau này có cơ hội sẽ mời nàng uống." Diệp Phi trong lòng cười xấu xa, phảng phất đã thấy cảnh Đường Ngọc thuần khiết đáng yêu đưa cái miệng nhỏ nhắn tới chỗ mẹ uống "đồ uống" của bà, trong lòng không khỏi có chút nóng rực lên.</p>
+    <p>Đường Ngọc cũng không phải loại nữ hài tham ăn, vừa rồi chỉ là tò mò về loại đồ uống đặc biệt kia thôi, nên nghe Diệp Phi nói vậy liền không truy vấn nữa, dưới sự nâng đỡ của hắn chậm rãi ngồi xuống nệm mềm.</p>
+    <p>Tuy nệm rất êm, nhưng chỗ bị thương của Đường Ngọc vốn là mông, lúc này ngồi xuống vẫn còn chút đau đớn, khiến nàng nhịn không được khẽ nhíu mày. Diệp Phi thấy vậy liền hỏi: "Tiểu Ngọc, vẫn còn đau lắm à? Có muốn Diệp đại ca giúp nàng xoa bóp một chút không?"</p>
+    <p>"Không được!" Đường Ngọc vội vàng cự tuyệt, khuôn mặt nhỏ nhắn đã đỏ bừng. Nàng tuy chưa trải sự đời, nhưng lớn lên trong đại gia tộc nên rất hiểu chuyện nam nữ. Tuy trong lòng có hảo cảm với chàng trai vừa ôn nhu vừa bá đạo này, nhưng chỗ đó của mình làm sao có thể để hắn chạm vào.</p>
+    <p>Diệp Phi cũng không cưỡng cầu, chỉ ngồi xuống bên cạnh Đường Ngọc, có chút oán hận nói: "Đại tiểu thư của các nàng thật là, sao nỡ ra tay với nàng như vậy."</p>
+    <p>Đường Ngọc vốn định nói chuyện của Đường Tâm với Diệp Phi, chỉ là sau khi vào đây đã bị mùi lạ kia phân tán sự chú ý, giờ bị hắn nhắc lại, lập tức nhớ ra, nói: "Diệp đại ca, huynh hiểu lầm rồi, tiểu thư nhà chúng con bình thường đối với ta rất tốt, vừa rồi chỉ là quá tức giận nên không chú ý chừng mực thôi."</p>
+    <p>Diệp Phi không ngờ Đường Ngọc vào lúc này còn nói đỡ cho Đường Tâm, không khỏi hỏi: "Chẳng lẽ nàng không tức giận chút nào sao? Nàng đẩy nàng mạnh như vậy cơ mà."</p>
+    <p>"Không tức giận mà, đại tiểu thư luôn coi ta như muội muội, tỷ muội đùa giỡn chút thì có gì mà tức?" Đường Ngọc đương nhiên nói: "Hơn nữa, hôm nay chúng ta tới đây không phải muốn cãi nhau với huynh, mà là..." Tiếp đó, Đường Ngọc nói ra mục đích ban đầu của các nàng khi tới đây.</p>
+    <p>Diệp Phi hơi sững sờ, không ngờ lại có chuyện như vậy. Xem ra Đường đại tiểu thư kia cũng không phải là người xấu, vì vậy mặc dù không dám khen ngợi tính cách đại tiểu thư của nàng, nhưng cũng không còn căm thù đến tận xương tủy như vừa rồi nữa.</p>
+    <p>"Cho nên, Diệp đại ca, sau này huynh đừng nóng giận với tiểu thư nhà ta nữa được không? Mọi người làm bạn với nhau thật tốt mà." Đường Ngọc nói xong, vẻ mặt chờ mong nhìn Diệp Phi.</p>
+    <p>Diệp Phi nhìn vẻ mặt có chút khẩn trương cùng chờ mong của Đường Ngọc, càng nhìn càng thấy đáng yêu, cuối cùng nhịn không được ghé đầu sang hôn lên khuôn mặt đáng yêu như quả táo của nàng một cái.</p>
+    <p>"Á!" Đường Ngọc kêu lên một tiếng kinh hãi, như chú thỏ nhỏ bị chấn kinh mà lùi lại thật xa, khuôn mặt nhỏ nhắn đỏ bừng, sợ hãi nhìn Diệp Phi, phảng phất như hắn là một tên đại ác nhân vậy.</p>
+    <p>Diệp Phi cũng bị phản ứng kịch liệt của Đường Ngọc làm cho giật mình, vội hỏi: "Tiểu Ngọc, nàng làm sao vậy?"</p>
+    <p>Khuôn mặt Đường Ngọc càng thêm đỏ, dùng âm thanh nhỏ hơn bình thường rất nhiều, yếu ớt nói: "Diệp đại ca, sao huynh lại đột nhiên hôn ta."</p>
+    <p>Diệp Phi không khỏi buồn cười, nói: "Nàng nghĩ sai rồi, đó không gọi là hôn, chỉ là thơm thôi, hôn là phải miệng chạm miệng." Nói xong, hắn lách mình đến bên cạnh Đường Ngọc, trong lúc nàng chưa kịp phản ứng, lập tức hôn lên cái miệng nhỏ nhắn của nàng.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0388.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0390.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

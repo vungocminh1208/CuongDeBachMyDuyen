@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 386 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 386</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 386</small>
+    Chương 386: Siêu cấp hung khí
+  </h1>
+  <div class="chapter-body">
+    <p>Nghe được có người gọi tên mình, Liễu Diệc Như dời sự chú ý vốn đang đặt trên người con trai đi một chút, lập tức nhận ra người phụ nữ kia, mừng rỡ nói: "Dung tỷ, thật là chị!" Nói xong bước nhanh tới ôm lấy người phụ nữ kia. Mà Diệp Phi lúc này cũng hơi đờ người ra, trong hai người phụ nữ đang đi tới, một người ăn mặc cực kỳ quý giá, tướng mạo tuy bình thường nhưng lại mang theo vẻ cao ngạo, người như vậy đương nhiên không lọt vào mắt xanh của Diệp Phi. Người hấp dẫn sự chú ý của hắn chính là vị mỹ phụ đang ôm ấp, cười nói vui vẻ với mẹ mình. Vị mỹ phụ quen thân với mẹ này có chiều cao tương đương, mái tóc dài uốn xoăn, dung mạo tuyệt đối không thua kém bất kỳ người phụ nữ nào bên cạnh hắn (trước khi song tu). Điều hấp dẫn ánh nhìn của Diệp Phi nhất lại là cặp tuyết lê khổng lồ trước ngực nàng. Diệp Phi thích nhất là mẫu mỹ nhân đẫy đà nóng bỏng, may mắn thay, mẹ và các nàng đều thuộc kiểu này (có lẽ vì mẹ là hình mẫu đó nên Diệp Phi mới có sự thiên vị đặc biệt với dáng người này), thân hình nóng bỏng của họ luôn khiến hắn mê mẩn không rời tay. Thế nhưng khi nhìn thấy vị mỹ phụ trước mắt, hắn mới biết thế nào là "khủng" thực sự, người phụ nữ này cứ như đang nhét hai quả bóng đá vào trong ngực vậy! Thật ra trong lòng Diệp Phi, số đo của mẹ là hoàn mỹ nhất, nếu lớn hơn nữa sẽ có vẻ mất cân đối. Thế nhưng người bạn của mẹ trước mắt lại là một ngoại lệ tuyệt đối. Trong tiết trời lạnh giá này, nàng mặc không dày, chỉ có một chiếc áo khoác bên ngoài chiếc áo bố mỏng manh, hơn nữa cúc áo khoác còn không cài, khiến chiếc áo bố rộng thùng thình bị đẩy lên một độ cong vô cùng khoa trương. Với thị lực của Diệp Phi, hắn thậm chí có thể nhận ra nàng hoàn toàn không mặc nội y. Thật không hiểu đôi gò bồng đảo lớn như vậy mà nàng làm thế nào để giữ cho chúng không bị chảy xệ. Trước đây trên internet, Diệp Phi không phải chưa từng thấy những người có vòng một quá khổ như vậy, nhưng những người đó nhìn chẳng có chút khẩu vị nào, vừa to vừa vướng víu, lại còn chảy xệ nghiêm trọng. Trong khi đó, vị mỹ phụ này lại to một cách vô cùng hài hòa, mang lại cảm giác vô hạn gợi cảm chứ không hề vướng víu. Điều này khiến Diệp Phi thầm nuốt nước miếng, nghĩ thầm đúng là một cặp siêu cấp hung khí! Ngay cả hắn cũng hận không thể cắn một cái. Sau khi thân mật với bạn tốt, Liễu Diệc Như nắm tay nàng định giới thiệu với con trai, không ngờ người phụ nữ vẻ mặt ngạo khí bên cạnh đột nhiên hừ một tiếng: "Chỉ là Liễu gia mà cũng đại diện cho Võ Minh được sao, lại còn là một dâm phụ, kẻ yếu. Ta thấy Thôi gia chúng ta nên rút khỏi Võ Minh cho rồi, đỡ phải đi theo mất mặt xấu hổ!" Nói xong không cho Diệp Phi và mọi người cơ hội phản kích, xoay người bỏ đi không quay đầu lại. Vẻ ảm đạm thoáng hiện trên gương mặt xinh đẹp của vị mỹ phụ quen biết Liễu Diệc Như, nhưng lập tức được che giấu kỹ lưỡng. Nàng lại tươi cười nói với Liễu Diệc Như: "Đó là đại diện của Thôi gia, tính tình điên khùng, cậu đừng chấp nàng." "Yên tâm đi Dung tỷ, em sẽ không chấp loại người đó đâu." Liễu Diệc Như cười nhạt, sau đó nói: "Để em giới thiệu với chị, đây là con trai em, Diệp Phi, Tiểu Mãn à, đây là dì Trần Du Dung, bạn tốt của mẹ thời trẻ." "Hóa ra là Tiểu Mãn, còn nhớ dì không? Hồi bé dì còn bế cháu đấy." Trần Du Dung chuyển ánh mắt sang Diệp Phi, mỉm cười ngọt ngào, nụ cười tràn đầy vẻ kiều mỵ khó tả. "Cháu chào dì Trần!" Diệp Phi chào Trần Du Dung một tiếng, sau đó nói với mẹ: "Mẹ ơi, sao bạn thời trẻ của mẹ ai cũng xinh đẹp thế ạ? Còn ai cháu không biết không, hay mẹ nói hết cho cháu nghe đi." "Miệng thằng bé này ngọt thật đấy!" Liễu Diệc Như chưa kịp nói gì, Trần Du Dung đã cười khúc khích. Theo nhịp rung động của cơ thể, cặp siêu cấp hung khí kia cũng nhảy nhót theo, mang sức hấp dẫn vô hạn khiến Diệp Phi không kìm được nuốt nước miếng, mà không hề nhận ra trong mắt mẹ thoáng qua một tia bi ai. Phát hiện ánh mắt của Diệp Phi, Trần Du Dung chẳng những không thu liễm mà còn cố tình ưỡn ngực, cười khúc khích: "Tiểu tử này, nhìn cái gì đấy?" "Nhìn dì Trần, cộng thêm tên của dì, làm cháu bất giác nhớ đến một thành ngữ." Diệp Phi cười nói. Trần Du Dung hào hứng hỏi: "Ồ, thành ngữ gì thế?" "Hải Nạp Bách Xuyên..." Diệp Phi nói nửa câu rồi ngừng lại. "Hải Nạp Bách Xuyên? Tiếp theo phải là 'có dung mới là đại' chứ nhỉ." Trần Du Dung vừa nói xong liền hiểu ngay ý Diệp Phi, trong mắt thoáng vẻ thất vọng rồi lập tức cười khúc khích: "Dung vú bự, thằng bé này, đến dì mà cũng dám trêu chọc à?" Diệp Phi cười hắc hắc, trong mắt lóe lên tia tinh quang. Hắn nói vậy là để thăm dò xem vị dì Trần này rốt cuộc là hạng người gì. Kể từ sau khi song tu với sư nương, Diệp Phi phát hiện mình có một năng lực đặc biệt là cảm nhận được khí tức của mỗi người phụ nữ. Năng lực này giúp hắn biết được đời tư của họ ra sao. Ví dụ như Đường Ngọc và Đường Tâm, hắn cảm nhận được khí tức rất tinh khiết trên người họ, chứng tỏ họ vẫn là xử nữ. Còn trên người người phụ nữ ngạo mạn kia, khí tức lại hỗn loạn không chịu nổi, rõ ràng là ngoài mặt làm màu nhưng đời sống cá nhân cực kỳ hỗn loạn. Về phần mẹ, ngoài sự tinh khiết như Đường Ngọc, trên người mẹ còn tỏa ra sự hấp dẫn đối với hắn. Năng lực mới phát hiện này hiện tại Diệp Phi đã bắt đầu nắm vững, đó là phụ nữ càng thuần khiết thì khí tức càng tinh khiết. Điều khiến hắn ngạc nhiên là trên người Trần Du Dung, hắn cảm thấy khí tức cũng rất tinh khiết, nhưng hành vi của nàng lại vô cùng phóng đãng. Vì thế hắn mới cố tình trêu chọc để xem phản ứng. Ánh mắt thất vọng thoáng qua của nàng không hề thoát khỏi mắt hắn, nên Diệp Phi đã cơ bản đoán được sự tình. Diệp Phi biết nhưng Liễu Diệc Như thì không. Nhìn người chị em tốt của mình biến thành như vậy, bà không khỏi đau lòng. Liếc mắt cảnh cáo Diệp Phi không được đùa giỡn Trần Du Dung nữa, bà nhanh chóng chuyển đề tài: "Dung tỷ, trời sắp tối rồi, các môn phái chủ trì đại hội có chuẩn bị chỗ ở cho chúng ta không ạ?" "Không có, những ẩn thế môn phái kia đã tham gia không chỉ một lần, từ vài đời trước họ đã đào sẵn hang động ở xung quanh để ở rồi. Còn Võ Minh chúng ta là lần đầu tham gia, căn bản không có chỗ dung thân, chỉ có thể tạm thời ở lều thôi." Trần Du Dung lắc đầu, giọng điệu hơi phẫn hận, nhưng lập tức lại cười nói: "Bất quá như vậy cũng tốt, sơn cốc rộng lớn thế này chỉ có ba nhà chúng ta ở, cũng khá thoáng đãng."</p>
+    <p>"Vậy ạ." Liễu Diệc Như khẽ gật đầu, tâm trạng nặng nề khiến bà không còn hứng thú trò chuyện tiếp với Trần Du Dung: "Vậy chúng em xin phép không tiếp chị nữa, trời sắp tối rồi, bọn em phải đi tìm chỗ dựng lều đây." "Được rồi, dù sao chị cũng ra ngoài nửa ngày rồi, người nhà chị chắc cũng đang sốt ruột chờ, vậy mai gặp nhé." Trần Du Dung không lộ vẻ gì khó chịu, nói xong liền rời đi trước, hướng về phía cái lều dưới gốc cây đại thụ xa xa. Nhân lúc không ai chú ý, Diệp Phi nhanh chóng lấy một cái lều ra khỏi không gian, tìm một chỗ có tầm nhìn thoáng đãng để dựng lên. Đây là chiếc lều họ mua trong lần đến Trường Bạch sơn, vì trong đó chứa đựng kỷ niệm ngọt ngào với mẹ nên Diệp Phi không nỡ vứt đi, cất trong không gian, không ngờ hôm nay lại dùng tới. Đến tận khi vào lều ngồi xuống, sắc mặt Liễu Diệc Như vẫn không tốt, thỉnh thoảng lại than nhẹ, điều này khiến Diệp Phi thấy xót xa. Hắn ngồi xuống bên cạnh, vòng tay ôm lấy vai bà, hỏi: "Mẹ, mẹ sao thế?" "Không có gì, chỉ là đang nghĩ một chuyện." Liễu Diệc Như nở nụ cười gượng gạo với con trai. Diệp Phi lùi lại một chút để cơ thể mẹ tựa thoải mái vào lòng mình, hỏi: "Có phải mẹ đang nghĩ về dì Trần không?" Liễu Diệc Như vốn không có bất kỳ bí mật nào với Diệp Phi, tất nhiên sẽ không ngại chia sẻ tâm sự, liền nhẹ nhàng gật đầu nói: "Đúng vậy, những năm này cứ nghe tin đồn về chị ấy, vốn dĩ mẹ không tin, vì thời trẻ chị ấy là người cao ngạo và thuần khiết đến nhường nào. Thế mà hôm nay gặp lại, chị ấy lại biến thành bộ dạng này." Nói đoạn, bà khẽ thở dài, thực sự tiếc cho người bạn tốt ngày xưa. "Mẹ, mẹ có bao giờ nghĩ rằng, chị ấy căn bản không hề thay đổi không?" Diệp Phi lên tiếng. Liễu Diệc Như sửng sốt: "Ý con là sao?" "Trên người dì ấy, con cảm nhận được khí tức rất tinh khiết. Điều này chứng tỏ ít nhất đã nhiều năm rồi dì ấy không hề tiếp xúc với đàn ông, mà đã như vậy thì làm sao có thể là người như chúng ta nhìn thấy..." Diệp Phi đem những gì mình phát hiện và suy đoán kể lại cho mẹ nghe không sót một chữ. Nghe Diệp Phi nói, đôi mắt đẹp của Liễu Diệc Như không khỏi sáng lên, gật đầu: "Đúng rồi, nhất định là chị ấy giả vờ! Khổng gia là một trong hai gia tộc hộ pháp của Võ Minh, những năm gần đây đã dần sa sút, nhất là sau khi Khổng lão gia tử qua đời. Người chồng phá gia chi tử của Dung tỷ căn bản không có khả năng chèo lái gia tộc này, nên chị ấy chỉ có thể tự mình đứng ra. Chị ấy làm thế e là vì muốn giao thiệp dễ dàng hơn với mọi người, để Khổng gia không đến mức sụp đổ hoàn toàn. Ai, thật khổ cho chị ấy." "Không sai." Diệp Phi gật đầu: "Hơn nữa, đây cũng hẳn là cách chị ấy tự bảo vệ mình." "Ý con là sao?" Liễu Diệc Như khó hiểu hỏi.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0385.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0387.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>
