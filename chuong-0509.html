@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 509 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 509</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 509</small>
+    Chương 509: Tâm tư phức tạp
+  </h1>
+  <div class="chapter-body">
+    <p>"Được rồi, được rồi!" Diệp Phi lập tức làm bộ đầu hàng, sau đó nói: "Bất quá, trước khi ngươi giết ta, có phải nên để ta làm chút gì đó cho ngươi không, nói thí dụ như, đưa ngươi trở về." "Không cần ngươi!" Lệ Nhược Nam khẽ hừ một tiếng, nhấc chân lên xe, nhưng không ngờ vì động tác đó, làn váy dài bay bổng lên, khiến Diệp Phi được một phen "rửa mắt", tuy vừa rồi đã nhìn chằm chằm vào chỗ đó rất lâu, thậm chí còn đưa một bộ phận cơ thể mình vào, nhưng giờ phút này nhìn cảnh nửa che nửa đậy lại có một vẻ mỹ diệu khác. "Này, ngươi sẽ không định ném ta ở lại đây mặc kệ chứ?" Nhìn Lệ Nhược Nam khởi động xe, Diệp Phi vội vàng kêu lên, sau đó không đợi nàng đồng ý, đã lại lần nữa ngồi xuống phía sau nàng. Lệ Nhược Nam cũng không phản đối, đương nhiên, cũng chẳng thèm để ý đến hắn, cứ như thể không có người này mà khởi động xe, lập tức lại hơi rung lên. Lệ Nhược Nam hiện tại đang mặc Xuân Thu trang mà Diệp Phi đã sớm chuẩn bị, lúc này đã là mùa đông, mà một thân nội lực thâm hậu của nàng vừa rồi đã tiêu hao sạch sẽ dưới sự "thảo phạt" của Diệp Phi, dù đã uống khôi phục hoàn nên cũng hồi phục một ít, nhưng vẫn không thể chống đỡ được cái rét căm căm của ngày đông. Diệp Phi tự nhiên cũng chú ý tới điểm này, vội cởi áo ngoài của mình khoác lên người Lệ Nhược Nam, khi nàng chưa kịp từ chối đã nói: "Muốn tìm ta báo thù là chuyện sau này, nếu ngươi bị đông cứng chết rồi, thì còn báo thù thế nào được?" Lệ Nhược Nam lặng lẽ tiếp nhận áo ngoài của Diệp Phi, khoác lên người, cảm thấy thân thể ấm áp hơn nhiều, mà đồng thời được sưởi ấm còn có trái tim lạnh giá của nàng. Nàng cũng nghĩ tới một vấn đề: Sao Diệp Phi lại mang theo quần áo nữ, mà còn vừa vặn với thân hình của nàng như vậy? Chẳng lẽ hắn đã sớm chuẩn bị để ép buộc mình? Nhưng nàng lập tức xua đi ý nghĩ buồn cười đó, hôm nay mới là lần đầu gặp mặt, đối phương sao có thể có dự mưu trước được? Đợi Lệ Nhược Nam khởi động xe lần nữa, Diệp Phi thuận lý thành chương ghé vào lưng ngọc của nàng, bàn tay lớn đầy bất hảo chui vào chiếc áo ngoài, lần mò lên trước ngực nàng. Bởi vì lúc này nàng mặc quần vải, xúc cảm khi sờ soạng tốt hơn trước nhiều lắm. Lệ Nhược Nam cũng không biết là do "vò đã mẻ lại sứt" hay là mặc kệ hắn, cứ tùy ý hắn vuốt ve rồi bắt đầu đường về. Bởi vì mặc ít, trong cơ thể lại không có nội lực chống đỡ, Lệ Nhược Nam không dám chạy quá nhanh, điều này càng cho Diệp Phi nhiều thời gian hơn để mân mê hai thứ mỹ diệu kia của nàng. Hơn nữa, khi đi qua đoạn mặt đường gập ghềnh, "gã" đang trỗi dậy của Diệp Phi lại chui vào, không ngừng va chạm tại nơi tuyệt vời đã từ thiếu nữ biến thành thiếu phụ của nàng. Lúc này, tâm trạng Lệ Nhược Nam đã khác xa so với lúc đi. Khi đó, cảm giác đối với Diệp Phi chỉ là phẫn nộ, nhưng giờ đây đã trở nên phức tạp, có chút tức giận, có chút hận ý, có chút tâm động mà chính nàng không muốn thừa nhận. Và khi bị hắn làm cho trào ra loại chất lỏng kia, lại còn làm ướt sũng ghế xe, trong lòng nàng lại có thêm đôi chút thẹn thùng. Trở lại tửu điếm, Lệ Nhược Nam không để ý tới ai, bỏ mặc Diệp Phi và đám tỷ muội đang bận rộn, bước nhanh lên lầu. Dù thân thể đã không còn đáng ngại nhờ tác dụng của khôi phục hoàn, nhưng nơi nhạy cảm bị Diệp Phi làm cho bừa bãi khiến nàng rất khó chịu, nên muốn mau chóng đi rửa sạch. Nằm trong bồn tắm đầy nước ấm, tâm tư hỗn loạn của Lệ Nhược Nam cuối cùng cũng bình ổn đôi chút, nhưng lại không nhịn được nhớ tới người đàn ông xấu xa vừa chiếm lấy lần đầu của mình. Lúc này, cảm giác của nàng đối với Diệp Phi cực kỳ phức tạp. Khi hận ý dâng trào, nàng rất muốn giết hắn, nhưng khi sát ý đậm đặc nhất, loại khoái cảm tuyệt đỉnh gần như bay bổng mà hắn mang lại cùng sự dịu dàng sau đó lại bất giác hiện lên, khiến nàng không nỡ xuống tay. Qua một hồi lâu, Lệ Nhược Nam mới tìm cho Diệp Phi một lý do hợp lý nhất: Hắn lúc đó đã điên cuồng, căn bản không khống chế nổi mình, nên không thể trách hắn! Nghĩ vậy, nàng cuối cùng cũng quyết định không giết hắn nữa. Nhưng chuyện hôm nay không thể cứ thế bỏ qua, có cơ hội nhất định phải dạy dỗ hắn một trận, còn dạy dỗ thế nào thì đó là chuyện sau này. Sau khi quyết định xong, Lệ Nhược Nam cảm thấy nhẹ nhõm hơn nhiều. Thoải mái nằm trong bồn tắm, ánh mắt nàng vô tình nhìn thấy chiếc áo ngoài của Diệp Phi chưa kịp trả lại, tình cảm ấm áp trong lòng lại tăng thêm một phần. Trong chốc lát, nàng quên sạch cả việc hắn vừa cưỡng ép mình. Lệ Nhược Nam trên lầu suy nghĩ miên man, dưới lầu lúc này cũng náo nhiệt hẳn lên. Nơi này tuy không cung cấp dịch vụ đặc thù, nhưng các dịch vụ khác lại có chất lượng cực tốt, nên mỗi khi đến giờ cơm, đại sảnh và các phòng đều kín chỗ. Lúc tranh thủ lúc rảnh rỗi, vài nữ nhân viên tụm lại với nhau, nhỏ giọng thì thầm: "Thật kỳ quái, đại tỷ hôm nay sao lại mặc váy? Điều này căn bản không giống nàng chút nào." Một nữ nhân viên có chút bát quái nói.</p>
+    <p>"Đúng vậy, hơn nữa các ngươi có nhìn thấy chiếc áo đại tỷ mặc không? Hình như là của tiểu từ sư phụ đấy." Người khác cũng phụ họa. Cuối cùng có người chốt lại: "Đại tỷ không phải là muốn đào góc tường của tiểu từ đấy chứ? Vừa rồi bọn họ... hì hì..." Nói xong, đám nữ nhân đều nhìn về phía Diệp Phi đang ngồi trên ghế nghỉ ngơi mà không mặc áo ngoài. Âm thanh của mấy người phụ nữ không hề nhỏ, Tống Từ không biết đi đâu cũng vừa vặn trở về, nghe thấy mấy câu đó, lập tức đi đến bên cạnh Diệp Phi, bĩu cái miệng nhỏ nhắn nhìn hắn, hỏi: "Sư phụ, các nàng nói có phải là thật không?" Trong đôi mắt to tròn đó đầy vẻ u oán khiến người ta động lòng. Diệp Phi là ai? Đây chính là kẻ làm tặc cũng tuyệt đối không chột dạ. Nghe vậy, hắn gõ nhẹ vào đầu Tống Từ, tức giận nói: "Ngươi nghe các nàng nói bậy đấy, ngươi cũng biết sư phụ đang làm gì mà, hiện tại có cơ hội tự nhiên phải liên hệ với thế lực dưới mặt đất ở kinh thành, nên đại tỷ ngươi mới dẫn ta đi gặp một số thế lực của nàng. Hơn nữa, dù ta có là loại người đó, đại tỷ ngươi cũng đâu có dễ bị bắt nạt?" "Cũng đúng." Tống Từ hiển nhiên bị câu cuối cùng của Diệp Phi thuyết phục, gương mặt lại khôi phục nụ cười vui vẻ, khiến Diệp Phi buồn bực không thôi. Chẳng lẽ mình trong lòng nha đầu này không hề đáng tin sao? Bất quá, xem ra đúng là như vậy, bởi vì khi đối mặt với những mỹ nữ cực phẩm kia, ngay cả bản thân hắn đôi khi cũng chẳng tin nổi mình. Cứ lấy Tống Huyên mà nói, lần đầu gặp nàng, hắn còn rất xác định mình sẽ không dễ dàng động tâm, thế mà chẳng đầy hai ngày đã trêu chọc được nàng rồi. Diệp Phi có chút xấu hổ nghĩ ngợi, đang định tìm lý do để chứng minh mình là người đứng đắn, ví dụ như giải cứu mỹ nữ, mang lại hạnh phúc cho các nàng chẳng hạn, thì điện thoại lại đột nhiên vang lên tiếng tin nhắn.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0508.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0510.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

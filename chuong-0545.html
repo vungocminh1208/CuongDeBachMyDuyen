@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 545 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 545</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 545</small>
+    Chương 545: Tuyệt thế thiên tài
+  </h1>
+  <div class="chapter-body">
+    <p>"Phá toái hư không? Là thế này phải không?" Diệp Phi nói xong, giơ tay tìm kiếm trong không khí trước mặt. Theo động tác của hắn, một đạo khe không gian màu đen xuất hiện ở đó, hơn nữa còn tuôn ra lượng lớn linh khí cực kỳ tinh thuần, mãi đến vài giây sau mới biến mất. Mà cũng chỉ trong vài giây ngắn ngủi đó, đã khiến độ dày thiên địa linh khí trong phòng khách không nhỏ này đạt đến gấp trăm ngàn lần trước đó, làm cho Lệ Thương Hải cùng ba người chấn động tinh thần. Lệ Thương Hải không dám tin nhìn Diệp Phi, miệng lẩm bẩm: "Ngươi vậy mà có thể làm được, ngươi vậy mà có thể làm được!" "Cái này hình như cũng không có gì khó khăn." Diệp Phi nhún vai, hắn cũng chỉ là nhất thời hứng khởi thử một chút, không ngờ lại phát hiện chuyện này căn bản không khó khăn như trong truyền thuyết. Lệ Thương Hải không nghĩ như vậy, vẫn kích động nhìn Diệp Phi, nói: "Thật tốt quá, ngươi còn mạnh hơn ta tưởng tượng. Giao hai đứa nó cho ngươi, ta cũng yên tâm hơn nhiều." Diệp Phi biến sắc, rất không khách khí nói: "Lão nhân, ông không phải là muốn đem Nhược Nam cùng Kính Văn giao cho ta chăm sóc, rồi tự mình chạy tới Tu Chân giới báo thù, định chơi trò 'không thành công thì thành nhân' đó chứ?" "Ách..." Lệ Thương Hải khựng lại, không phải vì Diệp Phi nói chuyện không khách khí, mà là không ngờ mình vì quá kích động nên lỡ lời, không ngờ lại để hắn đoán được ý đồ của mình. Diệp Phi vừa nói như vậy, hai nữ cũng phản ứng lại, không khỏi lo lắng nhìn Lệ Thương Hải. Lệ Nhược Nam tự nhiên không cần phải nói, mà Cổ Kính Văn trong lòng cũng lo lắng không kém, nàng vất vả khổ cực suốt hai mươi hai năm, giờ mới khó khăn lắm mới tìm được hai người thân, nàng không muốn lập tức lại mất đi một người. "Ách cái gì mà ách? Nói cho ông biết, chuyện này ông đừng hòng nghĩ tới. Bản thân ông không sợ chết, nhưng ta còn sợ vợ ta đau lòng khổ sở." Diệp Phi vẫn rất không khách khí nói. Lần này Lệ Nhược Nam không trách Diệp Phi bất kính với cha mình, ngược lại vô cùng cảm kích. Nếu không nhờ hắn phát hiện ý đồ của cha, có lẽ chẳng bao lâu nữa, mình sẽ mất đi cha rồi. Lệ Thương Hải thở dài: "Chỉ là mối thù này, không báo sao được? Trước kia ta không manh động là vì Nhược Nam, nhưng giờ con bé đã lớn, hơn nữa bên người còn có ngươi, ta cũng coi như không còn vướng bận gì nữa." "Báo thù vội làm gì, dù sao ông cũng đợi hơn hai mươi năm rồi, chẳng lẽ không đợi thêm được vài năm sao?" Diệp Phi nói: "Đến lúc đó, ta đi giúp ông xử lý tên kia là được chứ gì." "Ngươi?" Lệ Thương Hải chần chờ một chút, tuy không nói gì đả kích Diệp Phi, nhưng rõ ràng là rất không tin tưởng hắn. "Sao, không phục à?" Diệp Phi khẽ nhướng mày: "Không phục thì ra ngoài luyện một chút, xem chúng ta ai lợi hại hơn!" Lệ Thương Hải xua tay, cười khổ: "Thôi được rồi, ta thừa nhận không phải đối thủ của ngươi. Nhưng Tu Chân giới không dễ xông vào như vậy đâu, chưa nói đến những cái khác, chỉ riêng Vô Cực Môn đã có hai cao thủ Đại Thừa kỳ trấn thủ, đó là còn chưa kể đến toàn bộ Tu Chân giới." "Chúng ta cũng đâu cần đối đầu với cả Tu Chân giới, chỉ cần lôi tên kia ra, vạch trần tội ác của hắn là được rồi mà." Diệp Phi ngạo nghễ nói: "Hơn nữa, con rể ông đây chỉ dùng mấy tháng đã đạt tới cảnh giới này, cho ta thêm vài năm nữa, ta không tin mình không trị nổi vài tên Đại Thừa kỳ. Vậy nên chuyện báo thù cứ giao cho ta là được!" Đến lúc này Lệ Thương Hải đã ngây dại, ông bỏ qua những lời khác của Diệp Phi, trong đầu chỉ còn một suy nghĩ: Mấy tháng, thật sự chỉ mới mấy tháng! Từ khi Diệp Phi thành danh, ông cũng từng phái người nghe ngóng tin tức về đối phương, vốn tưởng rằng hắn cố ý giả yếu rồi sau đó mới bộc phát, không ngờ hắn thật sự chỉ mới có được thực lực trong mấy tháng này. Giờ khắc này, Lệ Thương Hải có cảm giác người so với người thật muốn chết. Ông ở Tu Chân giới cũng được coi là thiên tài, nhưng căn bản không thể so sánh với Diệp Phi. Mà đừng nói là ông, ngay cả người được xưng là thiên tài lớn nhất lịch sử Tu Chân giới, trăm tuổi đã đặt chân lên cảnh giới Đại Thừa - Hoa Sen Tiên Tử, cũng không thể so với thiếu niên này. Bởi vì nàng đạt tới cảnh giới hiện tại của Diệp Phi cũng phải mất trọn vẹn mười năm. Mười năm và mấy tháng, cái này làm sao so sánh được? Lệ Nhược Nam và Cổ Kính Văn cũng bị lời nói của Diệp Phi làm cho kinh ngạc, nhưng so với sự khiếp sợ đơn thuần của Lệ Thương Hải, trong lòng họ tràn đầy tự hào, tự hào về người đàn ông của mình. Đúng là lòng dạ đàn bà, kim đáy biển, lời này quả không sai. Chỉ mới hai tiếng trước, Cổ Kính Văn vì chuyện bị Diệp Phi khinh nhờn mà hận không thể giết hắn, vậy mà trong hai tiếng ngắn ngủi này, tâm tư nàng đã xảy ra thay đổi nghiêng trời lệch đất, giờ đây cũng giống như Lệ Nhược Nam, coi Diệp Phi là người đàn ông của mình, hơn nữa còn bắt đầu lấy hắn làm vinh quang. Sau khi biết được sự thần kỳ của Diệp Phi, Lệ Thương Hải cũng không còn nghĩ tới việc tự mình đi Tu Chân giới nữa. Trước đó vì cảm thấy báo thù vô vọng nên mới muốn cầu cái chết cho xong chuyện, nhưng giờ đã có hy vọng, ông đương nhiên không muốn làm chuyện hy sinh vô nghĩa đó nữa.</p>
+    <p>Vì bầu không khí trở nên tốt đẹp, vài người cũng thoải mái hơn, cùng nhau ăn một bữa trưa đoàn viên hiếm có đối với Cổ Kính Văn. Ăn được một nửa, Cổ Kính Văn đột nhiên nhớ ra điều gì đó, hỏi Lệ Thương Hải: "Lệ thúc thúc, sáng nay Nhược Nam vì con mà phế bỏ Tư Thiên Nhai đó, chuyện này có ảnh hưởng gì tới người không ạ?" Lệ Thương Hải cười ha ha nói: "Yên tâm, chỉ là một thằng cháu nội không ra gì của lão Tư thôi, ông ta không đến mức vì cái thứ vô dụng đó mà trở mặt với ta đâu. Thực ra các con đừng nhìn mấy lão già kia đứa nào cũng uy phong bát diện, lá gan của bọn họ còn không bằng người thường đâu. Ức hiếp người thường thì được, còn với ta, bọn họ không dám dễ dàng đắc tội." Lệ Thương Hải vừa nói vậy, Cổ Kính Văn hoàn toàn yên tâm, tiếp tục vui vẻ ăn xong bữa trưa, còn thỉnh thoảng gắp rau cho Diệp Phi. Thái độ đó thậm chí còn ân cần hơn cả bạn gái đã xác định quan hệ là Lệ Nhược Nam, khiến cả hai mẹ con đều có chút cạn lời. Tuy nhiên họ cũng không tức giận, Lệ Nhược Nam đã hiểu ra, còn Lệ Thương Hải thì coi Cổ Kính Văn như con gái thứ hai của mình, thấy nàng sau hơn hai mươi năm khổ cực đã tìm được bến đỗ, ông cũng rất vui mừng. Sau khi dùng cơm xong, Diệp Phi không dừng lại ở đây vì hắn còn một việc phải làm, đó là giải quyết vấn đề tâm lý của cô đồ đệ mới thu - Lỵ Lệ Nhã. Ngay lập tức hắn sẽ dạy nàng nội công tâm pháp, nếu không nhanh chóng loại bỏ bóng ma tâm lý này, sau này sẽ làm nàng sinh ra tâm ma ảnh hưởng tới việc tu luyện. Quyết định này, Diệp Phi không giấu giếm ba người bọn họ, dù sao đây cũng chẳng phải chuyện gì không thể cho ai biết. Không ngờ sau khi nghe xong, Lệ Nhược Nam và Cổ Kính Văn đều muốn gặp cô đồ đệ thứ hai của hắn. Hơn nữa người kia lại đang ở chỗ Tống Từ, họ cũng không xa lạ gì, nên nhất trí yêu cầu đi cùng hắn qua đó.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0544.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0546.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

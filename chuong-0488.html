@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 488 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 488</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 488</small>
+    Chương 488: Tiểu cô cùng biểu muội
+  </h1>
+  <div class="chapter-body">
+    <p>"Bang chủ, ngài tìm ta?" Đi tới căn phòng thuê chung này, Địa Long vừa cung kính hỏi, vừa âm thầm suy đoán, vì sao bang chủ không gặp mình tại tổng bộ mà lại chọn một nơi như thế này, chẳng lẽ hắn lại có nhiệm vụ ngầm nào muốn giao cho mình? Nghĩ đến khả năng này, Địa Long không khỏi kích động. Hiện tại Diệp Phi đã là thần của toàn bộ Lăng Vân Hội, có thể được hắn ưu ái làm việc riêng, cho dù không có lợi lộc gì, mỗi một bang chúng trung thành với Lăng Vân Hội đều sẽ cảm thấy vô cùng vinh hạnh, huống chi, được gần gũi với bang chủ thì làm sao có thể không có lợi? Diệp Phi gật đầu không tỏ thái độ gì, sắc mặt không đổi, chỉ nhàn nhạt hỏi: "Chuyện lần trước giao cho ngươi, đã làm thỏa đáng chưa?" Địa Long gật đầu nói: "Bang chủ yên tâm, đã xử lý thỏa đáng." "Xử lý thỏa đáng sao?" Sắc mặt Diệp Phi lạnh đi, nghiêm nghị quát: "Còn nhớ rõ lúc ấy ta đã nói với ngươi như thế nào không?" Địa Long toàn thân chấn động, không hiểu vì sao bang chủ đột nhiên nổi giận như vậy, trong lòng không khỏi sợ hãi. Tuy nhiên, hắn cảm thấy mình không làm sai việc gì, bèn gắng gượng nói: "Nhớ rõ, bang chủ ngài nói qua, sau khi việc thành công, muốn nàng vĩnh viễn rời khỏi Vọng Hải, đi càng xa càng tốt, đồng thời phải đối xử tử tế với người nhà của nàng. Thuộc hạ đúng là đã làm theo ý ngài, tiền cũng đã đưa cho người nhà của nàng, còn nữ nhân kia, cũng sẽ không bao giờ xuất hiện nữa." "Ngươi hình như thiếu mất hai chữ, lúc đầu ta nói là, cho ngươi đối xử tử tế nàng cùng người nhà của nàng." Diệp Phi lạnh lùng nói: "Hơn nữa ý của ta là, khiến nàng rời khỏi Vọng Hải, từ nay về sau không trở về nữa, tại sao ngươi lại muốn giết người diệt khẩu?" "A?" Địa Long không khỏi ngẩn người, diệt khẩu loại chuyện này, hình như là quy củ trên giang hồ mà? Nhưng bang chủ lúc ấy hình như đúng là nói như vậy, mình quả thực đã bỏ sót hai chữ. Do đó hắn không dám ngụy biện, thân hình chùng xuống quỳ trên mặt đất, nghiêm nghị nói: "Thuộc hạ đáng chết, xin bang chủ dùng bang quy xử phạt!" Diệp Phi thở dài, xua tay nói: "Được rồi, việc này không trách ngươi được, đều tại ta nói không rõ ràng, ngươi đi đi." Địa Long vốn tưởng rằng mình lần này dù không chết thì cũng không xong, không ngờ Diệp Phi lại nhận lỗi về phía mình, trong lòng đối với vị thiếu niên bang chủ này không khỏi rất cảm kích, cung kính hành lễ xong mới rời khỏi phòng thuê chung. "Hai người các ngươi xuất hiện đi." Địa Long rời đi, Diệp Phi mới kêu Diệp Ngưng Băng cùng nữ nhân kia đang trốn phía sau ra, sau đó nói với nữ nhân kia: "Thực xin lỗi, đều tại ta lúc ấy không nói rõ ràng, thiếu chút nữa hại tánh mạng của cô. Đây là tiền đền bù, cầm lấy đi tìm người nhà của mình đi. Nếu có thể, hãy làm ăn đàng hoàng, đừng lăn lộn trong cái hội này nữa." Nói xong, Diệp Phi lấy từ trong túi (thực ra là trong không gian) ra một tờ chi phiếu, điền vài chữ rồi đưa cho nữ nhân kia. Diệp Phi không giết nàng, ngược lại còn giải thích, đã khiến nữ nhân kia ngoài ý muốn không thôi. Lúc này, đâu dám nhận chi phiếu của Diệp Phi? Cuối cùng vẫn là Diệp Ngưng Băng cầm lấy, khuyên bảo hồi lâu nàng mới nhận. Nhìn thoáng qua tờ chi phiếu, nữ nhân kia phát hiện con số lại là một ngàn vạn, cộng thêm số tiền trước đó, đủ để gia đình nàng sống vô ưu vô lự rồi. Thật ra nếu có cách, ai lại muốn làm mấy việc đó? Hiện tại rốt cục có vốn để làm ăn chân chính, nữ nhân kia tuy suýt chút nữa mất mạng và đã trải qua tra tấn lớn, nhưng đối với Diệp Phi chỉ còn lại sự cảm kích. Đợi nữ nhân kia cuối cùng cũng nhận chi phiếu, Diệp Ngưng Băng ngược lại nói với Diệp Phi: "Tiểu Mãn, thân phận hiện tại của em đã khác, từ nay về sau nói chuyện nhất định phải chú ý, bằng không rất dễ dàng làm hại người ta cửa nát nhà tan đấy." "Tuân mệnh, hôn nhẹ Băng Nhi của em!" Diệp Phi cười hì hì ôm lấy Diệp Ngưng Băng, cúi đầu hôn một cái lên miệng nhỏ của nàng. Diệp Ngưng Băng không khỏi cả kinh, khuôn mặt đỏ bừng đẩy hắn ra, gắt giọng: "Hồ đồ cái gì vậy? Cũng không sợ người khác chê cười!" Diệp Phi lại cười hắc hắc. Nữ nhân kia lại sợ ngây người, nàng rốt cục hiểu rõ tại sao Diệp Phi lại tính toán Vân Tĩnh rồi. Tuy cảm thấy có chút hoang đường, nhưng sự việc của Diệp Phi sao là thứ nàng có thể bình luận? Hơn nữa ngẫm lại Diệp Ngưng Băng, vô luận tướng mạo, dáng người hay tính cách đều gần như hoàn mỹ, nếu mình là nam nhân, chỉ sợ cũng phải tìm mọi cách có được nàng a? Đưa người phụ nữ đáng thương kia lên máy bay xong, có lẽ vì chuyện của họ chưa được giải quyết triệt để nên nàng có chút xấu hổ khi gặp hai vị tỷ tỷ của mình, Diệp Ngưng Băng không đến công ty, đương nhiên cũng không về nhà, mà để Diệp Phi cùng nàng đi dạo thương trường. Vì khúc mắc đã được cởi bỏ hoàn toàn, hôm nay Diệp Ngưng Băng như một cô gái nhỏ hoạt bát, thấy gì cũng tò mò, kết quả đi dạo cả một ngày, đủ loại đồ nhỏ mua một đống lớn, trong xe đều sắp không chứa nổi rồi. Sau khi đón tiểu ma nữ, ba người về tới tiểu biệt thự. Vân Sơ Tình có chút kỳ quái nhìn Diệp Ngưng Băng nói: "Mụ mụ, hôm nay người có vẻ không giống như trước nha, có phải là bởi vì người nào đó đến đây không?" Diệp Ngưng Băng khuôn mặt đỏ lên, sau khi đoán được quan hệ giữa con gái và Diệp Phi, nàng đã nghĩ đến việc ngày đó mình âm thầm làm chuyện đó với Diệp Phi trên bàn cơm, chỉ sợ căn bản không giấu được mắt của tiểu nha đầu này. Điều này làm nàng vừa thẹn vừa quẫn, đồng thời còn có chút hưng phấn khó hiểu, giả vờ vỗ nhẹ vào mông con gái, khẽ kêu: "Nói bậy bạ gì đó? Còn không mau đi làm bài tập đi!" Bữa tối qua đi, hai mẹ con đều nhìn Diệp Phi với ánh mắt vô cùng khát vọng, hiển nhiên đều rất muốn lập tức nhào vào trong ngực hắn mặc hắn khinh bạc. Diệp Phi vừa vui vẻ, cũng vừa có chút khó xử. Hiện tại Diệp Ngưng Băng hẳn là vẫn chưa biết chuyện giữa mình và tiểu ma nữ, tự nhiên không thể cùng một chỗ chăm sóc, xem ra chỉ đành trước ủy khuất tiểu ma nữ một chút vậy. Nhận được ánh mắt của Diệp Phi, Vân Sơ Tình trong lòng tuy có chút tủi thân nhưng vẫn nhu thuận về phòng trước. Đợi nàng đóng cửa phòng lại, Diệp Phi lập tức ôm lấy Diệp Ngưng Băng, dùng tốc độ nhanh nhất về tới phòng ngủ của nàng, còn chưa kịp buông nàng xuống đã cúi đầu muốn hôn miệng nhỏ của nàng. Không ngờ Diệp Ngưng Băng lại đưa tay ngăn hắn lại, nũng nịu nói: "Không được vội vã như vậy nha, người ta một mình chịu không nổi anh đâu." Diệp Phi không nghĩ tới nàng lại nói như vậy, vì vậy hỏi theo ý nàng: "Vậy làm sao bây giờ?" "Anh sẽ không gọi cả Tình Tình tới sao?" Diệp Ngưng Băng mặt đỏ bừng nói, tuy ban ngày đã làm tốt quyết định, nhưng nghĩ tới chuyện sắp xảy ra vẫn khiến nàng ngượng ngùng không thôi. "A?" Diệp Phi không khỏi cả kinh, chẳng lẽ nàng cũng đã đoán ra từ nụ hôn sáng nay của mình? Đúng là một người đàn bà thông minh. "A cái gì mà a? Anh còn muốn gạt em tới khi nào? Hừ, tiểu bại hoại, tiện nghi cho anh đó, em hiện tại đi tắm rửa, anh mau mang Tình Tình tới đi!" Diệp Ngưng Băng đánh bạo nói. Diệp Phi mừng rỡ, hô một tiếng "Tuân mệnh!", sau đó lao xuống lầu rất nhanh, đi tới căn phòng của tiểu ma nữ. Trước mắt một màn khiến Diệp Phi có chút ngẩn người, chỉ thấy tiểu ma nữ lúc này đã trút bỏ không mảnh vải che thân, khuôn mặt nhỏ nhắn ửng đỏ nửa nằm trên giường, hai bàn tay nhỏ bé một cái đặt ở trước ngực, không ngừng vuốt ve đôi bầu vú đơn giản của nàng, bàn tay nhỏ bé còn lại càng là đặt ở dưới háng, hiển nhiên là đang tự an ủi cái tiểu dâm huyệt còn có chút non nớt của mình. "A? Ca ca?" Nhìn thấy Diệp Phi bước vào, tiểu ma nữ dừng động tác trên tay, hỏi: "Sao anh không ở bên mụ mụ trước nha?" "Mụ mụ em đang tắm." Diệp Phi không giải thích nhiều, ngồi xuống bên giường, đưa tay thay thế bàn tay nhỏ bé của nàng ở trước ngực, nhẹ nhàng xoa nắn núm vú đã hơi nhô lên của nàng, nói: "Tình Tình, sao em lại học được cách tự sướng? Thói quen này không tốt lắm đâu." Tiểu ma nữ khuôn mặt ửng đỏ, cãi lại: "Người ta nào có? Bình thường người ta đều là nhịn đấy, nhưng là hôm nay ca ca tới đây, người ta nghĩ sớm chuẩn bị sẵn sàng, đỡ phải lát nữa chậm trễ thời gian." Nói xong, nàng còn dang rộng đôi chân ngọc mảnh khảnh của mình, cho Diệp Phi xem cái lồn nhỏ lấp lánh nước của mình. "Đồ tiểu sắc nữ này." Diệp Phi cười đưa tay qua, đâm một ngón tay vào cái lồn mềm đã từng bị cặc lớn của mình khai phá, ân, vẫn còn chặt như vậy! "A... Ca ca..." Tiểu ma nữ kiều mỵ rên rỉ, đôi mắt to trở nên ngập nước, đầy khát vọng nhìn Diệp Phi. Cảm giác ngón tay ca ca cùng bàn tay nhỏ bé của chính mình cắm vào trong lồn rất khác biệt, khiến nàng càng thêm khát khao cặc lớn của ca ca. Tuy nhiên, nàng vẫn nhịn lại khát vọng nói: "Ca ca, anh hay là trước đi với mụ mụ đi, Tình Tình chờ một lát không sao đâu." Diệp Phi cảm động trước sự hiếu thuận của tiểu nha đầu này, đến cả chuyện này cũng muốn nhường cho mụ mụ mình trước, trong lòng đối với nàng càng thêm yêu thích, cười nói: "Không, hôm nay ca ca chính là muốn trước địt em, ngoan muội muội, có nhớ nó không?" Nói xong, Diệp Phi nhanh chóng cởi hết quần áo, đem dương vật cứng rắn của mình hướng về phía tiểu biểu muội. Vừa rồi từ chối đã dùng đi tất cả nghị lực của Vân Sơ Tình, giờ phút này nhìn thấy thứ đáng yêu nhất trên người ca ca, rốt cuộc không khống chế nổi, duỗi bàn tay nhỏ bé cầm thật chặt lấy nó, miệng nói mê sảng: "Nhớ, Tình Tình mỗi tối đều nhớ nó." "Vậy em chỗ đó muốn nhất nó đâu?" Diệp Phi lại hỏi, đồng thời đỉnh động vòng eo, để dương vật cứng rắn nhẹ nhàng trượt trong tay tiểu biểu muội. "Nơi này, người ta mỗi tối nằm mộng cũng muốn để cặc lớn của ca ca cắm vào trong đó!" Tiểu biểu muội một tay vuốt ve dương vật Diệp Phi, một bên tách rộng đôi chân ngọc mảnh khảnh, chỉ vào cái lồn mềm ngập nước của mình, dường như muốn chứng minh lời nói của mình, ngay khi nàng chỉ vào, cái tiểu dâm huyệt non nớt không có mấy sợi lông kia đột nhiên đóng mở một chút, nhổ ra một tia chất lỏng trong suốt. "Đồ tiểu dâm huyệt này!" Diệp Phi nhịn không được sờ soạng lồn mềm của tiểu biểu muội một cái, sau đó cười nói: "Vậy em còn chờ cái gì?" Vân Sơ Tình lập tức phản ứng lại, vội vàng chuyển thân thể nhỏ bé đến bên giường, hai chân tách thật to, bàn tay nhỏ bé lôi kéo cặc lớn của Diệp Phi đỉnh tại cái lồn mềm dâm thủy róc rách của mình, mông nhỏ hướng lên trên một cái, nuốt quy đầu của ca ca vào, sau đó nói: "Ca ca, mau địt Tình Tình đi!" "Được!" Diệp Phi đáp ứng, vòng eo dùng sức trầm xuống, đem dương vật tráng kiện tận gốc cắm vào cái lồn mềm của cô bé mười ba tuổi này. "Nha..." Tiểu ma nữ bị địt đến mức yêu kiều một tiếng thật dài, sau đó nói: "Ca ca, tiểu dâm huyệt của Tình Tình được cặc lớn của anh địt thật thoải mái nha! Tốt ca ca, mau động đi, để Tình Tình càng thoải mái!" Diệp Phi không lập tức địt tiếp, mà duỗi hai tay ôm lấy tấm lưng ngọc của tiểu biểu muội, bế nàng lên, để tứ chi nàng quấn chặt lấy người mình, sau đó mới đỉnh động vòng eo, để cặc lớn của mình đút vào trong cái lồn mềm của cô bé mười ba tuổi này. Thân thể tiểu la lỵ nhỏ nhắn xinh xắn, tuy xa không bằng mụ mụ nàng cùng các nữ nhân thành thục khác gợi cảm, nhưng ôm cơ thể nhỏ bé này trong ngực mà địt, lại mang cho nam nhân một cảm giác thỏa mãn cực đại. Diệp Phi cũng vậy, sự hấp dẫn đặc biệt đó khiến hắn không thèm để ý tiểu biểu muội có chịu được hay không, hai tay nâng mông nhỏ của nàng, chính là một hồi địt điên cuồng. Cũng may trải qua Huyễn Dương Quyết tôi thể, khả năng chịu đựng của tiểu ma nữ mạnh hơn nhiều, nên mới không bị hắn địt chết, nhưng cũng bị địt đến mức có chút mơ hồ, thân thể nhỏ nhắn yêu kiều ghé vào ngực Diệp Phi, chỉ biết theo nhịp điệu của hắn mà thở gấp. "Tình Tình, ca ca mang em đi một chỗ tốt được không?" Diệp Phi nhân cơ hội nói bên tai tiểu biểu muội, tiểu la lỵ lúc này đã không còn khả năng suy nghĩ, chỉ biết bản năng đáp ứng. Khóe miệng Diệp Phi lộ ra một nụ cười, cứ thế nâng mông tiểu biểu muội rời khỏi phòng của nàng, chậm rãi đi lên lầu. Mỗi một bước đi, cặc lớn cắm sâu trong lồn tiểu ma nữ đều hung hăng đụng một cái, địt đến mức cô bé đáng yêu này căn bản không có thời gian thanh tỉnh. Hai người cứ như vậy địt nhau đi tới phòng của tiểu bác. Vừa mới vào cửa, thân thể yêu kiều của tiểu ma nữ không chịu nổi sự va chạm nữa đột nhiên co rút, tiểu dâm huyệt càng hút chặt dương vật của Diệp Phi, vậy mà đã bị địt đến cao trào. Diệp Phi để dương vật sâu bên trong lồn tiểu ma nữ, một bên hưởng thụ cảm giác khoái cảm khi tiểu dâm huyệt bao bọc lấy mình lúc nàng cao trào, một bên ôm nàng đi đến bên giường, đặt nàng nằm lên đó, mình đứng bên cạnh, dương vật khoảnh khắc cũng không rời khỏi tiểu dâm huyệt chặt chẽ của nàng. Sau cao trào, tiểu ma nữ rốt cục khôi phục một ít thanh tỉnh, lập tức ý thức được nơi này là phòng của mụ mụ. Tuy nhiên, một người thông minh như nàng đã đoán được chuyện gì, nên cũng không kinh ngạc, ngược lại vì cái tính "ăn" lớn di truyền từ mụ mụ phát huy tác dụng, hai chân quấn chặt lấy lưng Diệp Phi, kêu lên: "Ca ca, tiếp tục nha!" Diệp Phi sớm đã đoán trước kết quả này, lập tức cũng không hề khách khí, kéo hai chân ngọc của tiểu la lỵ vác lên vai, cặc lớn lần nữa nhanh chóng ra vào tiểu dâm huyệt của nàng. Ngay lúc hai người đang làm đến lúc lửa nóng nhất, Diệp Ngưng Băng đã tắm rửa xong. Nghĩ đến lập tức có thể hưởng dụng cặc lớn của cháu trai, nàng cũng không mặc đồ lót gì, trực tiếp lau khô người, quấn một chiếc khăn tắm nhỏ rồi đi ra. Vừa ra khỏi phòng tắm, liền thấy một màn khiến nàng khiếp sợ. Chỉ thấy thân thể nhỏ bé của con gái nằm trên giường, hai chân vắt trên vai Diệp Phi đang đứng bên giường, mông nhỏ nhổng lên thật cao, cái tiểu dâm huyệt trong mắt nàng vẫn còn non nớt vô cùng kia đang đón nhận cỗ địt điên cuồng nhất của cháu trai. Tuy trong lòng đã chấp nhận sự thật mẹ con cùng chung một người đàn ông này, thậm chí cũng đoán được con gái đã thất thân với cháu trai, nhưng thấy một màn như vậy vẫn khiến Diệp Ngưng Băng tâm kinh nhục khiêu. Sự địt mãnh liệt như vậy, chỉ sợ chính mình cũng không chịu nổi a? Huống chi là con gái chỉ mới mười ba tuổi? Dưới sự kinh hãi, Diệp Ngưng Băng cũng không màng đến sự ngượng ngùng khi thấy cháu trai và con gái ân ái, bước nhanh đến bên giường, giữ chặt lấy Diệp Phi đang nghiến răng nghiến lợi điên cuồng địt con gái mình, có chút tức giận nói: "Tiểu Mãn, sao em có thể như vậy? Tình Tình còn nhỏ, em như vậy sẽ làm chết con bé mất!" Diệp Phi trong lòng cười thầm, nhưng vẫn dừng lại động tác, tuy không rút dương vật ra khỏi lồn mềm của biểu muội, nhưng nhìn bác như đang đợi chỉ thị tiếp theo của nàng. Thấy Diệp Phi dừng lại, Diệp Ngưng Băng thở phào một hơi, lại chuyển hướng sang con gái, ân cần hỏi: "Tình Tình, con không sao chứ?" "Có việc gì đâu, người ta đang thoải mái mà, mụ mụ người làm gì lại để ca ca dừng lại?" Vân Sơ Tình bĩu môi, có chút bất mãn nói. Vừa rồi chỉ kém một chút là nàng được ca ca địt cho bay lên lần nữa, cho nên dù người gọi dừng là mụ mụ yêu nhất, nàng cũng không nhịn được có chút tức giận nho nhỏ. "Ách?" Diệp Ngưng Băng sững sờ, tình cảm là mình hiểu lầm? Vốn là lo lắng con gái không chịu nổi cặc lớn của cháu trai, kết quả lại là một cú ô long lớn, không khỏi vừa thẹn vừa quẫn, dứt khoát vứt bỏ đôi dép lê, nhảy lên giường, nằm sấp xuống, đem khuôn mặt đỏ nóng vùi vào hai tay, rốt cuộc xấu hổ không dám nhìn nữa. Rất nhanh, trong phòng lại vang lên âm thanh "chít chít" rất nhỏ. Diệp Ngưng Băng biết, đó là tiếng dâm thủy bị cặc lớn của cháu trai ra vào trong lồn con gái mang ra. Trong đầu nàng không khỏi hiện lên cảnh tượng dương vật Diệp Phi điên cuồng ra vào trong lồn con gái, trong tai lại nghe tiếng rên rỉ thở gấp từ thấp đến cao của con gái, Diệp Ngưng Băng cảm thấy dưới háng nóng lên, một dòng chất lỏng từ trong dâm huyệt vốn trưởng thành hơn con gái rất nhiều của mình trào ra. Tiểu ma nữ vốn đã ở vào biên giới cao trào, tuy bị mụ mụ cắt ngang, nhưng dương vật của Diệp Phi hạng nào lợi hại, chỉ một lát ngắn, nàng liền tìm lại cảm giác lúc nãy, miệng kêu lên: "Ca ca, ca ca, Tình Tình muốn tới rồi, anh đừng dừng, dùng sức địt Tình Tình nha!" Nói xong, mông nhỏ xoay chuyển cấp tốc, tiểu dâm huyệt non nớt lần nữa cắn chặt lấy cặc lớn của Diệp Phi. "Tình Tình, ca ca cũng muốn tới rồi!" Diệp Phi cũng là một tiếng gầm nhẹ, chuẩn bị đem tinh dịch lửa nóng của mình bắn cho tiểu biểu muội. Không ngờ tiểu ma nữ lại ngăn hắn lại: "Ca ca, không được bắn vào trong lồn, Tình Tình hứa với anh, đều muốn ăn hết." Diệp Phi lập tức nhớ tới lời tiểu biểu muội đã nói khi cầu mình cứu tiểu bác lúc trước, trong lòng cũng là một hồi kích động. Trước kia tiểu ma nữ cơ bản không bao giờ ăn đi, coi như có ăn cũng là rất miễn cưỡng, đây là lần đầu tiên nàng chủ động yêu cầu, Diệp Phi tự nhiên sẽ không từ chối, nhanh chóng rút dương vật ra khỏi lồn mềm của nàng, ngồi sang một bên, còn tiểu ma nữ thì nhịn sự mềm yếu sau khi tiết thân, bò dậy, bàn tay nhỏ bé cầm lấy dương vật, mở miệng nhỏ ngậm lấy. Nghe được tiếng động sau lưng, Diệp Ngưng Băng cảm thấy kích thích, con gái lại muốn ăn thứ đó của hắn, ý nghĩ này còn chưa dứt, liền nghe Diệp Phi gầm nhẹ một tiếng, tiếp theo chính là âm thanh nuốt chửng của con gái, khiến trong lòng nàng càng thêm kích động, rất muốn lén nhìn một cái cảnh tượng con gái ăn thứ đó, nhưng lại có chút xấu hổ. Không đợi Diệp Ngưng Băng quyết định, tiếng nuốt phía sau đã biến thành tiếng mút, hiển nhiên con gái đã uống xong, bắt đầu mút dương vật Diệp Phi rồi. Một lát sau, Diệp Phi rút dương vật vừa mút xong đã cứng trở lại từ miệng tiểu biểu muội, cười hỏi: "Lại làm sao?" "Thôi ạ." Tiểu ma nữ lắc đầu: "Em nghỉ ngơi một chút, anh trước địt mụ mụ đi." "Được." Diệp Phi đáp ứng, cách lớp khăn tắm ôm lấy thân thể yêu kiều gợi cảm của tiểu bác từ phía sau, nói bên tai nàng: "Tiểu bác, người cũng muốn chứ? Người xem Tình Tình hiếu thuận với người như thế nào, chúng ta không được lãng phí thời gian." "Hừ." Diệp Ngưng Băng khẽ hừ một tiếng, không trả lời. Thật ra nàng đương nhiên là rất muốn, đặc biệt là cảm giác cặc lớn của cháu trai từ phía sau thúc vào cặp mông mình, rất muốn lập tức nắm lấy nhét vào trong lồn mình. Bất quá chuyện vừa rồi thật sự là có chút ngượng ngùng, nàng nhất thời thực sự xấu hổ không dám đáp ứng. Thấy mụ mụ không đồng ý, Vân Sơ Tình ở bên cạnh nói: "Tốt mụ mụ, người đừng giận Tình Tình nha, vừa rồi người ta chỉ là cảm giác trong lồn quá mức thôi, mới nói lời không qua não đấy, thực xin lỗi nha!" Thật ra Diệp Ngưng Băng nào có giận? Chỉ là chút xấu hổ vì lần lượt bị địt trước mặt con gái mà thôi, chỉ là loại chuyện này không dễ giải thích. Diệp Phi sao có thể không biết ý nghĩ của tiểu bác, nhưng trước mặt Vân Sơ Tình lại không tiện ép buộc nàng, vì vậy đành phải lấy ra bảo bối trấn sơn của mình, tiến đến bên tai tiểu bác nói: "Bác, nói cho bác tin tốt, cháu hiện tại đã khôi phục khả năng sinh con." Vốn dĩ hắn đã quyết định, trước mắt chỉ làm cho mụ mụ và dì, nhưng tâm tình tiểu bác hiện tại ít nhiều còn chút không ổn định, cho nàng một đứa bé có lẽ là một biện pháp không tệ. "Cái gì?" Vượt quá dự kiến của Diệp Phi, tiểu bác tuy xoay người lại ngay lập tức, nhưng không có sự kinh hỉ như hắn tưởng tượng, ngược lại tràn đầy khiếp sợ. Không nghĩ tới chiêu này không dùng được, Diệp Phi đành phải nói: "Cháu là nói, cháu đã có khả năng sinh con, đương nhiên, nếu như bác không muốn..." "Bác muốn, bác muốn mà!" Diệp Phi lời còn chưa nói hết, Diệp Ngưng Băng đã cướp lời, kéo khăn tắm trên người ra, đôi chân ngọc thon dài nâng lên đặt lên hông Diệp Phi, bàn tay nhỏ cầm lấy cặc lớn của hắn, mông lớn hướng về phía trước một cái, liền nuốt nó vào trong tiểu dâm huyệt ướt át của mình, sau đó nhanh chóng đỉnh động, kêu lên: "Cháu trai tốt, bác muốn sinh cho cháu một đứa bé, mau cho bác đi!" Đối với tâm tư của nữ nhân, Diệp Phi vẫn có chút không hiểu. Lần trước là đại dì, lần này là tiểu bác, đều kích động như vậy. Thật ra hắn không biết rằng, những nữ nhân này vì đã yêu hắn đến sâu đậm, nên mới nghĩ có một đứa con của hắn, điều này sẽ khiến họ càng thêm an tâm, càng thêm vững tin mình thuộc về hắn. Không quản có hiểu hay không, Diệp Phi đều rất ưa thích sự chủ động của tiểu bác, lập tức cũng gắng sức đứng lên, thân tay ôm lấy mông lớn đầy đặn của nàng, đỉnh động vòng eo, rất nhanh đã làm đến nơi đến chốn. Theo một hồi tiếng va chạm cơ thể lửa nóng, Diệp Phi dần dần chiếm thượng phong, chậm rãi đè bác dưới thân, dùng cặc lớn điên cuồng đảo trong dâm huyệt thành thục của nàng, đồng thời miệng còn nói: "Dâm huyệt bác, người không phải không cho cháu địt sao? Hiện tại sao lại chủ động rồi? Đồ đại dâm huyệt này, cháu trai muốn địt chết người!" Diệp Ngưng Băng cũng theo nhịp điệu của cháu trai mà điên cuồng lắc mông, phối hợp với hắn, cảm giác mình bị địt ngày càng thoải mái, cũng không để ý con gái đang ở bên cạnh nhìn nữa, lớn tiếng rên rỉ: "Đó... Tiểu sắc lang... Ta quá sung sướng... Tốt, thật thoải mái... Lồn nhỏ chịu không được rồi... Cháu trai tốt... cháu thật dũng mãnh... A... Ân... A... A... Thật tuyệt... Cháu trai tốt... cháu lại... Lại dùng lực chút nữa..." Nghe tiếng rên rỉ dâm đãng của bác, Diệp Phi làm càng ra sức, cặc lớn phảng phất muốn chọc phá dâm huyệt của tiểu bác như điên cuồng đảo loạn. "Đó... Thân... Cháu ruột nhi... Bác... Bị cháu địt... Thật thoải mái... Đó... Đó... Thân... Cháu ruột nhi... Sướng chết ta... Dùng sức chọc vào... A... Hừ... Thật tuyệt... Ân... Hừ..." Tiểu bác mị đôi mắt tình nồng, kích động đem chiếc cổ tuyết trắng ngửa ra sau, liên tiếp từ miệng nhỏ phát ra tiếng rên rỉ ngọt ngào mê người. Bên cạnh Vân Sơ Tình quả thực sợ ngây người. Nàng không phải chưa từng lén nhìn mụ mụ và ca ca ân ái, nhưng trong ấn tượng mụ mụ chưa từng điên cuồng như vậy, chẳng lẽ là vì có mình ở đây? Tiểu nha đầu có chút tự kỷ nghĩ đến. Mà Diệp Phi cũng càng địt càng hăng, vòng eo như được lắp lò xo, không chút mệt mỏi nhanh chóng đỉnh động, cặc lớn thực hiện những động tác pít-tông cường liệt nhất trong tiểu dâm huyệt ngày càng thông thuận của bác. "Ôi... Cháu trai tốt... Cháu trai cưng... Thật thoải mái... Hừ... Thật bổng a... Bác đã lâu... Không có sảng khoái như vậy... Tùy cháu... Chọc thế nào cũng được... Đó... Người của ta... Lòng của ta... Đó đó... Sướng chết a... Thoải mái... Thật thoải mái... Ta muốn ném... Bị mất... Đều cho cháu a... Đó... Sướng chết ta a... Ngoan cháu trai... cháu cũng... Cùng đi a... Bắn cho bác... Để bác... Mang thai... Hài tử của cháu..." Theo một hồi rên rỉ điên cuồng, mông lớn của tiểu bác xoay chuyển cấp tốc, tiết ra luồng âm tinh thứ nhất của đêm nay. Theo bác tiết thân, Diệp Phi cũng gầm nhẹ một tiếng, cặc lớn dùng sức đỉnh về phía trước, đem hơn phân nửa quy đầu đâm vào tử cung tiểu bác, một đợt tinh dịch mang theo hơi thở sinh mệnh bắn thẳng hướng đất ấm có thể dựng dục chúng. Sau khi nghỉ ngơi một chút, Diệp Ngưng Băng để Diệp Phi xuống khỏi người mình, sau đó quỳ sấp xuống, đem mông lớn đầy đặn cao cao nhổng lên, nhẹ lắc lư trước sự hấp dẫn của cháu trai, kiều mỵ nói: "Cháu trai tốt, bác còn muốn, lại đến nha!" Diệp Phi không nói gì, chỉ đi đến phía sau bác quỳ xuống, hai tay nâng mông nàng, dương vật nhắm ngay dâm huyệt, dùng sức một cái, lần nữa đâm vào, khoảnh khắc không ngừng tiếp tục địt làm. Tiểu ma nữ vốn tưởng rằng mụ mụ cao trào xong sẽ đến phiên mình, không ngờ mụ mụ và ca ca lại thêm một lần nữa, không khỏi có chút thất vọng bĩu môi, lầm bầm: "Ca ca chỉ thích mụ mụ, không thích nhân gia." Âm thanh tiểu ma nữ tuy nhỏ, nhưng sao có thể giấu được tai Diệp Phi. Chứng kiến bộ dạng chưa thỏa mãn dục vọng của tiểu nha đầu, trong lòng có chút buồn cười, nhãn châu xoay động, nghĩ ra một biện pháp tốt, nói với tiểu ma nữ: "Tình Tình, sao còn không mau giúp mụ mụ em một tay!" Tiểu ma nữ đầu tiên sững sờ, lập tức hiểu ý, đi tới trước mặt mụ mụ đang nằm sấp trên giường, ngồi xuống, tách đôi chân ngọc, hai tay chống trên giường, đem mông nhỏ nhổng lên thật nhanh, tiểu lồn mềm đưa đến bên miệng mụ mụ, nũng nịu nói: "Mụ mụ tốt, Tình Tình cũng ngứa rồi, mụ mụ giúp người ta nha." Diệp Ngưng Băng đang bị Diệp Phi địt đến sướng, nghe con gái nói mới mở mắt ra, vừa nhìn thấy tiểu lồn mềm ngập nước của con gái, tuy muốn từ chối, nhưng nhìn thấy dâm huyệt tươi mới cực kỳ kia, lại ma xui quỷ khiến cúi đầu, một ngụm hôn lên tiểu lồn mềm do chính mình sinh ra đó. Dâm huyệt phía dưới bị cặc của cháu trai địt, miệng nhỏ phía trên đang hôn lên lồn của con gái ruột, giờ khắc này Diệp Ngưng Băng hoài nghi mình có phải đã điên rồi hay không. Nhưng sự khoái cảm cực đại mang đến do kích thích đặc thù này lại khiến nàng căn bản không thể dừng lại, một bên vặn vẹo thân thể yêu kiều gợi cảm đón ý cháu trai, một bên mỹ sướng liếm láp tiểu lồn mềm của con gái. Dưới sự kích thích như vậy, Diệp Ngưng Băng rất nhanh tiết ra lần thứ hai, mà tiểu ma nữ vừa rồi còn hưởng thụ sự phục vụ của nàng lập tức thay thế vị trí, đem cặc Diệp Phi vừa rút ra khỏi lồn nàng nuốt vào lồn mềm của chính mình, vừa chủ động vặn vẹo, vừa nói: "Ca ca, anh có phải lại để mụ mụ mang thai cục cưng rồi không? Tình Tình cũng muốn!" Diệp Phi chậm rãi đút vào lồn mềm tiểu biểu muội, cười nói: "Không được, em còn nhỏ, vài năm nữa rồi tính." Tiểu ma nữ không chịu thua, cuối cùng Diệp Phi đành phải đồng ý, bất quá lúc bắn cho nàng, lại thả chân khí bao bọc kinh mạch, để hạt giống bắn cho nàng không có sức sống, dù sao nàng thật sự quá nhỏ rồi.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0487.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0489.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 443 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 443</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 443</small>
+    Chương 443: Ly biệt tới gần
+  </h1>
+  <div class="chapter-body">
+    <p>Đường Minh Hạo sở dĩ đáp ứng, không chỉ là vì bản thân ông cũng có tâm tính ham vui như người trẻ tuổi, mà là xuất phát từ sự tin tưởng đối với Đường Ngọc, thêm vào việc Diệp Phi hứa sẽ không nói chuyện quan hệ này ra ngoài. Quan trọng hơn cả, việc để con gái trải nghiệm cuộc sống khác biệt cũng là một điều tốt đối với cô.</p>
+    <p>Còn một điểm nữa, Đường Minh Hạo thật tâm hy vọng con gái mình và Diệp Phi có thể trở thành tình nhân. Giờ đây nhìn bộ dạng họ đấu khẩu với nhau, trong lòng ông không những không lo lắng mà còn thấy vui mừng. Bởi vì từng trải qua thời trẻ, ông hiểu rõ đôi khi người trẻ tuổi đấu khẩu không phải chuyện xấu, ngược lại còn giúp tăng tiến tình cảm. Như Đường Tâm và Diệp Phi lúc này, dường như không phải thực sự đấu khí mà giống một đôi oan gia vui vẻ hơn.</p>
+    <p>"Ba ba, người..." Đường Tâm không ngờ phụ thân mình lại thực sự đáp ứng, trong lòng không khỏi khẩn trương. Nghĩ rằng lần này coi như đã thua Diệp Phi, cô càng cảm thấy không phục, hung hăng lườm Diệp Phi một cái đầy đắc ý.</p>
+    <p>Bên cạnh, Đường Ngọc lộ ra một nụ cười hiểu ý. Nhìn thần sắc của hai nữ, Đường Minh Hạo càng khẳng định suy đoán của mình, trong lòng hoàn toàn yên tâm. Ông mỉm cười nói: "Vậy cứ quyết định như thế. Tâm nhi, từ nay về sau con phải ngoan một chút biết không? Không được giữ cái tính đại tiểu thư ấy nữa."</p>
+    <p>"Con..." Đường Tâm ngạc nhiên, đối với kết quả này, trong lòng cô vậy mà không bài xích, chỉ là thấy mất mặt nên định phản đối thêm vài câu.</p>
+    <p>Diệp Phi lại cắt ngang lời Đường Tâm, cười nói: "Sao thế, cô định nói lời không giữ lấy lời à?"</p>
+    <p>"Bản tiểu thư từ trước đến nay nhất ngôn cửu đỉnh, sao có thể nuốt lời?" Đường Tâm hừ một tiếng: "Nha hoàn thì nha hoàn, ai chẳng biết làm!"</p>
+    <p>"Nói cũng đúng, chỉ cần nhìn xem ngày thường Tiểu Ngọc làm thế nào, học theo là được." Diệp Phi cười nói.</p>
+    <p>Đường Tâm hừ một tiếng, bĩu môi không nói gì thêm, dáng vẻ im lặng kia trông thật sự có vài phần giống nha hoàn.</p>
+    <p>Chứng kiến dáng vẻ chật vật của con gái, Đường Minh Hạo cũng không để ý, vì ông tin rằng chút khổ cực này rất có lợi cho sự trưởng thành của cô. Hơn nữa, ông tin Diệp Phi sẽ không thực sự bắt nạt con gái mình, thậm chí sau này rất có thể sẽ yêu thương cô như yêu thương Đường Ngọc vậy.</p>
+    <p>Vì trong lòng đã coi Diệp Phi là con rể tương lai, Đường Minh Hạo không còn lo lắng nhiều, ông tiến lại gần Diệp Phi, nhỏ giọng hỏi: "Hiền chất, có thể nói cho bá phụ biết, chuyện Trắng Oánh Thơ nói rốt cuộc có phải là thật không? Nàng ta không phải đối thủ của cháu?" Câu hỏi này đã đè nặng trong lòng ông mấy ngày nay. Giống như mọi người, Đường Minh Hạo cũng bán tín bán nghi. Dù việc Trắng Oánh Thơ nói vậy có thể chỉ là khách sáo, nhưng ông vẫn cảm thấy nàng ta tự tổn uy danh chắc chắn không phải không có lý do.</p>
+    <p>Nghe Đường Minh Hạo hỏi vậy, Đường Tâm và Đường Ngọc cũng đều dỏng tai lên nghe. Các nàng đương nhiên cũng rất muốn biết đáp án.</p>
+    <p>Diệp Phi cười cười đáp: "Đó là nàng ấy nói quá lên thôi. Luận về võ học tu vi, cháu còn kém hơn nàng ấy một bậc, bất quá nội lực thì mạnh hơn một chút, nên khi thực chiến thì tám lạng nửa cân thôi." Những lời này, Diệp Phi nói thực có giả có, hơn nữa cũng không nói rõ cái gọi là "tám lạng nửa cân" này là ở trong Thiên Sơn. Không phải hắn không tin ba người Đường Môn, mà là sợ nói sự thật ra sẽ khiến người ta khiếp sợ. Hơn nữa, trong tiềm thức của hắn luôn có một giọng nói nhắc nhở, tốt nhất đừng để quá nhiều người biết thực lực thật sự của mình.</p>
+    <p>Nhưng dù vậy, câu trả lời đó cũng đủ khiến ba người kinh ngạc không thôi. Trắng Oánh Thơ là ai chứ? Đó là võ lâm đệ nhất cao thủ, Diệp Phi tuổi còn trẻ mà đã có thể sánh ngang với nàng ta, đợi thêm thời gian nữa, chẳng phải sẽ vượt qua sao? Nghĩ tới điểm này, Đường Minh Hạo vui mừng khôn xiết, biết quyết định lần này của mình quá đỗi đúng đắn. Còn Đường Ngọc và Đường Tâm lại dâng lên một cảm giác cực kỳ tự hào. Đường Ngọc có cảm giác này vì nàng đã là người của Diệp Phi, còn về phần Đường Tâm, chính cô cũng không rõ lý do.</p>
+    <p>Giải quyết xong chuyện của Đường Tâm, Diệp Phi cáo biệt Đường Minh Hạo, dẫn hai nữ đi về phía trung tâm. Bởi vì hơn một ngàn người đại diện cho mấy trăm môn phái lớn nhỏ đều muốn để lại phương thức liên lạc cho Diệp Chỉ Lâm, nên Liễu Diệc Như và những người khác vẫn đang bận rộn. Nhìn các nàng trò chuyện với những võ giả kia, dù trong lòng Diệp Phi có chút không thoải mái, nhưng thấy các nàng đều vui vẻ, hơn nữa những võ giả kia vì nể mặt Diệp Chỉ Lâm nên cũng rất cung kính, hắn cũng an tâm, không vào hỗ trợ nữa mà đứng một bên nhàn rỗi.</p>
+    <p>Qua một hồi lâu, đa số môn phái đã đăng ký xong. Hiện tại ngoài Liễu Diệc Như đang giúp Diệp Chỉ Lâm thu dọn, những người khác đều đã rảnh rỗi. Chúc Ngọc Nghiên dẫn Trầm Tuệ Nhã và Giang Uyển Quân đến trước mặt Diệp Phi, nói: "Việc bên này đã xong, chúng ta cũng nên về trước đây. Về bên đó sắp xếp một chút, sẽ sớm đến Vọng Hải hội họp với các người."</p>
+    <p>"À? Đi nhanh thế sao?" Diệp Phi sửng sốt, trong lòng rất không nỡ, nhìn sắc trời sắp tối nói: "Trời sắp tối rồi, các người không bằng nghỉ ngơi tại đây một đêm, ngày mai cùng đi không tốt sao?"</p>
+    <p>"Thôi vậy, giờ người đông thế này, ở lại thêm một đêm cũng chẳng có ý nghĩa gì, mọi việc đợi đến Vọng Hải rồi nói sau." Trầm Tuệ Nhã cười kiều mị, nói xong nháy mắt với Diệp Phi.</p>
+    <p>Diệp Phi không khỏi bị vẻ kiều mị của sư nương làm cho tâm trí xao động, không ngờ nàng bây giờ đã bắt đầu trêu chọc mình. Bất quá lúc này chỉ có thể nhìn mà thèm, như nàng nói, ở đây quá đông người, có vài việc rất không tiện làm.</p>
+    <p>"Đúng vậy, mọi chuyện cứ đợi đến Vọng Hải rồi tính." Chúc Ngọc Nghiên cũng nói theo. Ý của Trầm Tuệ Nhã nàng há lại không rõ? Kỳ thực so với Diệp Phi, nàng còn không muốn chia lìa với hắn dù chỉ một chút. Nhưng nàng hiện tại dù sao vẫn là nhất môn chi chủ, có vài việc buộc phải làm, nên nàng cũng tán thành việc trở về sớm, để có thể sớm đến Vọng Hải gặp Diệp Phi, sau đó không cần phải tách rời nữa.</p>
+    <p>Chỉ có Giang Uyển Quân hơi không hiểu ý các nàng, thắc mắc hỏi: "Mẹ, Nhã di, đến Vọng Hải là sao ạ? Từ nay về sau chúng ta muốn đến Vọng Hải ạ?"</p>
+    <p>"Đúng vậy." Chúc Ngọc Nghiên cười nói: "Mẹ và Nhã di đã quyết định chuyển tổng bộ Thiên Ma giáo đến Vọng Hải. Đó là nơi đóng quân của tổng bộ Lăng Vân Hội của sư đệ con, sau này mọi người ở gần nhau cũng có thể chiếu ứng lẫn nhau, con thấy thế nào?"</p>
+    <p>"Ra là vậy ạ?" Giang Uyển Quân gật đầu, vô thức nhìn về phía Diệp Phi.</p>
+    <p>Diệp Phi cười hỏi: "Sao, sư tỷ không muốn ạ? Nếu thế thì không chuyển cũng không sao, từ nay về sau em sẽ thường xuyên đến thăm các chị."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0442.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0444.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

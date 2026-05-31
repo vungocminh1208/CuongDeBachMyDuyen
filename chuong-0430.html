@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 430 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 430</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 430</small>
+    Chương 430: Nhanh nhẹn tiên tư
+  </h1>
+  <div class="chapter-body">
+    <p>Bạch Oánh Thi? Võ lâm đệ nhất mỹ nhân? Giờ khắc này, Diệp Phi chợt hiểu ra tại sao Giang Uyển Quân trước kia lại biểu hiện ra cừu hận lớn như vậy đối với người thủ hộ Thiên Sơn này. Hóa ra vị người thủ hộ Thiên Sơn này chính là Bạch Oánh Thi mà sư nương từng nhắc tới, còn vị sư phụ tiện nghi kia của hắn, năm đó chính là vì nàng mà bỏ vợ bỏ con.</p>
+    <p>"Tiểu Quân, không nên vọng động, chuyện này không trách nàng được." Chúc Ngọc Nghiên thấy con gái như muốn lao ra, vội vàng đưa tay giữ lại. Ban đầu trong lòng bà đối với Bạch Oánh Thi, người đã khiến tỷ muội và con gái mình mất đi Giang Hải Thần, cũng vô cùng căm ghét. Thế nhưng sau khi đem tất cả tình cảm dành cho Giang Hải Thần đặt lên người Diệp Phi, bà đã có thể nhìn nhận chuyện này một cách khách quan hơn, từ đó cũng hiểu rằng năm đó căn bản không thể trách người khác, bởi vì Giang Hải Thần là chủ động theo đuổi, sau khi không có kết quả thì nản lòng thoái chí mà mất tích.</p>
+    <p>Tuy nhiên, Giang Uyển Quân rất khó thoát khỏi nỗi đau mất cha từ khi mới chào đời, oán hận nói: "Sao lại không trách nàng? Nếu không phải tại nàng, ba ba sao lại rời bỏ chúng ta?"</p>
+    <p>Chúc Ngọc Nghiên thở dài nói: "Đó là ba ba con chủ động theo đuổi người ta, muốn trách thì chỉ có thể trách chính ông ấy quá tham lam mà thôi."</p>
+    <p>"Đúng vậy, trước kia chúng ta chỉ đứng trên lập trường của mình mà nghĩ, kỳ thật ngẫm lại, chuyện này căn bản không phải lỗi của Bạch Oánh Thi." Trầm Tuệ Nhã cũng ở bên cạnh khuyên bảo. Giống như Chúc Ngọc Nghiên, bà cũng đã thông suốt đạo lý đơn giản này.</p>
+    <p>"Nhưng mà..." Giang Uyển Quân muốn phản bác, nhưng lại thấy mẹ và dì nói không sai, nhất thời trầm mặc, tuy trong lòng vẫn chưa hoàn toàn nguôi ngoai.</p>
+    <p>Chúc Ngọc Nghiên và Trầm Tuệ Nhã đều khẽ thở dài, nút thắt trong lòng Giang Uyển Quân cuối cùng vẫn cần chính nó tự tháo gỡ.</p>
+    <p>Trong lúc ba người đang thảo luận, vị người thủ hộ Thiên Sơn, võ lâm đệ nhất mỹ nữ Bạch Oánh Thi cuối cùng đã hạ xuống lôi đài, và Diệp Phi cũng lần đầu tiên nhìn rõ diện mạo thật của nàng.</p>
+    <p>Giống như Bạch U Nhi, Bạch Oánh Thi cũng mặc một thân y phục trắng muốt, ngoài ra không có nửa điểm trang sức, mái tóc dài mềm mại tùy ý xõa sau lưng. Thế nhưng chỉ với khuôn mặt mộc này, vẻ đẹp của nàng đã sắp vượt qua Liễu Diệc Như hiện tại, lại còn mang theo một loại khí chất thánh khiết cực kỳ, khiến người ta không dám nhìn gần. Nếu không phải Huyễn Dương Quyết có công hiệu làm đẹp cho phụ nữ, thì Bạch Oánh Thi này tuyệt đối là người phụ nữ đẹp nhất mà Diệp Phi từng gặp. Danh hiệu võ lâm đệ nhất mỹ nhân này thật sự là danh bất hư truyền.</p>
+    <p>Mà điều khiến Diệp Phi tâm động hơn cả là, vị mỹ nhân nhìn cực kỳ thánh khiết này lại sở hữu dáng người nóng bỏng không thua kém gì các mẹ của hắn. Thật không biết người chưa bao giờ được nam nhân chạm vào như nàng, sao lại có thể có dáng người mê người đến thế.</p>
+    <p>Sau khi rơi xuống lôi đài, Bạch Oánh Thi cũng không đoái hoài đến những người khác, chỉ hỏi đồ nhi của mình: "Chuyện gì xảy ra?" Thanh âm ấy, vậy mà trong trẻo ngọt ngào như thiếu nữ, khiến người ta chỉ nghe thôi cũng cảm giác như có một dòng suối mát chảy qua trái tim.</p>
+    <p>"Sư phụ, là Lô Nhất Phong phóng túng đấy." Bạch U Nhi đương nhiên không chịu đứng về phía Lô Nhất Phong, trực tiếp vạch trần.</p>
+    <p>"Hửm?" Bạch Oánh Thi quay đầu nhìn về phía Lô Nhất Phong. Đối với đứa con của cố nhân này, trong lòng nàng vốn không có chút cảm tình nào, thậm chí là có chút chán ghét. Thằng nhóc này chẳng những hoàn khố cực kỳ, mà đôi khi ánh mắt nhìn nàng còn tràn đầy dâm tà. Nếu không phải nể mặt hảo tỷ muội chỉ có mỗi đứa con trai này, sợ rằng nàng đã sớm ra tay giáo huấn hắn rồi.</p>
+    <p>"Bạch dì, chính là nàng vu oan người thủ hộ của chúng ta!" Lô Nhất Phong chỉ vào Diệp Chỉ Lâm lớn tiếng nói.</p>
+    <p>Bạch Oánh Thi lại chẳng hề nể mặt hắn, nói thẳng: "Ta biết rõ, những lời trước đó đều là ngươi bịa đặt ra. Ta sở dĩ quản ngươi là hoàn toàn nể mặt mẹ ngươi. Hiện tại ngươi chỉ cần nói cho ta biết, là ai đánh ngươi, những thứ khác không cần nhiều lời!"</p>
+    <p>"Là ta đánh đấy, mỹ nữ có ý kiến gì không?" Diệp Phi đột nhiên đứng dậy, cười hì hì nói. Kể từ khi biết Bạch Oánh Thi chính là bóng lưng mình nhìn thấy hôm qua, Diệp Phi đã biết Diệp Chỉ Lâm tuyệt đối không phải đối thủ của nàng, sợ nàng không biết trời cao đất dày mà đắc tội với Bạch Oánh Thi, nên hắn mới đứng dậy.</p>
+    <p>"Là ngươi?!" Bạch Oánh Thi chưa kịp nói gì, Bạch U Nhi đã lớn tiếng kêu lên. Nàng không thể ngờ rằng, người mà Lô Nhất Phong nhờ mình giáo huấn lại chính là tên đại phôi đản đã cướp mất Diệp Chỉ Lâm bên cạnh mình. Lúc này nhìn thấy hắn, đúng là cừu nhân gặp mặt, hết sức đỏ mắt.</p>
+    <p>Lô Nhất Phong không ngờ Bạch U Nhi cũng có thù với Diệp Phi, trong lòng không khỏi vui mừng quá đỗi, vội nói: "Bạch dì, trước kia chính là hắn không coi người thủ hộ ra gì, còn đánh cả con."</p>
+    <p>"Là hắn? Vậy thì ta không thể giúp được rồi, hơn nữa hắn quả thực có tư cách không coi người thủ hộ ra gì." Bạch Oánh Thi nói ra những lời gây chấn động: "Bởi vì ngay cả ta cũng không phải đối thủ của hắn!"</p>
+    <p>Những lời này của Bạch Oánh Thi khiến trong sơn cốc hoàn toàn chấn động, bởi vì rất nhiều người đều biết, Bạch Oánh Thi không chỉ là võ lâm đệ nhất mỹ nhân, mà còn gần như là võ lâm đệ nhất cao thủ. Bằng không với sắc đẹp của nàng, sợ rằng đã sớm rước họa vào thân. Nghe nói hôm trước, Ma giáo Giáo chủ Giang Hải thần - một vị Đại Thừa cao thủ - cũng từng bị nàng đánh bại không chút tốn sức. Đó chỉ là thực lực bản thân nàng, nếu cộng thêm Thiên Sơn linh khí làm hậu thuẫn, thực lực ấy càng cao đến mức không thể tưởng tượng nổi.</p>
+    <p>Thế nhưng giờ phút này, ngay tại Thiên Sơn, nàng lại nói mình không phải đối thủ của thiếu niên kia, điều này khiến tất cả mọi người nhìn Diệp Phi với ánh mắt như nhìn quái vật.</p>
+    <p>"Ngươi gạt người, tại Thiên Sơn này, còn ai là đối thủ của ngươi?" Lô Nhất Phong đột nhiên hét lớn: "Rõ ràng là ngươi không muốn giúp ta nên mới bịa ra lời nói dối như vậy!"</p>
+    <p>Mọi người nghe vậy cũng không khỏi lộ ra vẻ bừng tỉnh đại ngộ. Xem ra Lô Nhất Phong nói có lý, dù sao nếu Bạch Oánh Thi thực sự không phải đối thủ của thiếu niên này thì quả là quá mức đáng sợ.</p>
+    <p>Bạch Oánh Thi cũng không giải thích gì, chỉ nhàn nhạt cười: "Tùy ngươi nghĩ thế nào cũng được. U Nhi, chúng ta đi thôi, để hắn ở lại đây chịu chút giáo huấn cũng tốt, tránh việc mẹ hắn sau này phải hối hận vì quá nuông chiều hắn." Nói xong, Bạch Oánh Thi nắm lấy tay Bạch U Nhi, phiêu nhiên rời đi với tốc độ cực nhanh.</p>
+    <p>Bạch Oánh Thi phiêu nhiên đến, lại phiêu nhiên đi, tuy không nói chuyện với ai nhưng gần như đã mang theo tâm trí của tất cả nam nhân ở đây. Tuy nhiên, họ cũng chỉ dám nghĩ trong lòng chứ không ai có lá gan như Giang Hải thần năm xưa mà theo đuổi nàng.</p>
+    <p>Tất nhiên, đó chỉ là suy nghĩ của người thường. Trong số những nam nhân này, có một người nảy sinh suy nghĩ giống hệt Giang Hải thần, người đó chính là Diệp Phi. Mỹ nhân như vậy, Diệp Phi hắn sao có thể bỏ qua? Chỉ là điều khiến hắn hơi khó hiểu là, rõ ràng các mẹ của hắn còn xinh đẹp hơn Bạch Oánh Thi, tại sao những người này lại tỏ ra si mê nàng đến vậy?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0429.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0431.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 538 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 538</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 538</small>
+    Chương 538: Mỹ nữ ẩn nhẫn
+  </h1>
+  <div class="chapter-body">
+    <p>"Đương nhiên, mà còn rất lợi hại." Diệp Phi cười nói: "Cao thủ Tiên Thiên đỉnh phong, khoảng cách với cảnh giới của ba nàng cũng chỉ còn một bước ngắn."</p>
+    <p>Lệ Nhược Nam càng thêm kinh ngạc, sững sờ nói: "Nàng ta sao lại đến cả Tư Thiên Nhai loại nhân vật này cũng không có lực chống cự vậy? Ngày đó nếu không phải ta đụng mặt, nàng có lẽ sẽ gặp nguy hiểm."</p>
+    <p>"Cho nên ta hoài nghi nàng tiếp cận nàng là có mục đích." Diệp Phi nói: "Bằng không một cao thủ như thế tại sao phải ẩn nhẫn đến mức đó?"</p>
+    <p>"Phải không?" Sắc mặt Lệ Nhược Nam có chút khó coi, không phải vì thực lực của Cổ Kính Văn cao hơn nàng, mà là vì trong lòng không thoải mái. Nơi này từng cô gái nàng đều coi như thân tỷ muội, Cổ Kính Văn tất nhiên cũng không ngoại lệ. Chính là không ngờ tới nàng lại có mục đích, điều này khiến Lệ Nhược Nam làm sao thoải mái cho được?</p>
+    <p>Hai người ở phía trên nói chuyện, trong hậu viện những người kia cũng ồn ào lên. Đầu tiên chính là Tư Thiên Nhai, tuy đã bị gãy hai chân bây giờ vẫn còn rất đau, nhưng trên mặt lại hiện nét cười đắc ý: "Cổ đại mỹ nhân, lo lắng thế nào?" Dáng vẻ đó, muốn bao nhiêu đáng ăn đòn thì có bấy nhiêu đáng ăn đòn.</p>
+    <p>Cổ Kính Văn cắn cắn môi, không nói gì, ngược lại một cô gái bên cạnh nhảy dựng lên, chỉ vào mũi Tư Thiên Nhai nói: "Họ Tư kia, ngươi còn dám đến đây nháo sự, không sợ lại phải trả giá cái gì sao?"</p>
+    <p>Nhớ tới chuyện ngày đó, sắc mặt Tư Thiên Nhai hơi đổi. Bị người mà mình mời đến cắt đứt hai chân, đối với hắn mà nói tuyệt đối là một sự sỉ nhục rất lớn. Bất quá ngày đó người tên Lý thúc kia sau khi đưa hắn về thì phiêu nhiên rời đi, căn bản không dặn dò gì. Mà Tư gia cũng không coi chuyện này là chuyện quá lớn. Trong mắt những kẻ quen thói hoành hành nhờ thế lực cường đại gần đây, Lý thúc kia cũng chỉ là thân thủ khá hơn một chút mà thôi, căn bản không cách nào chống lại đại gia tộc như bọn họ. Còn việc ngày đó Lý thúc bị Tống Từ dọa lùi, trong mắt bọn họ cũng chỉ là vì thế lực Tống gia mà thôi, cho nên bọn họ cũng không cảm thấy chỗ của Lệ Nhược Nam có gì lợi hại. Điều này không thể không nói bọn họ thật sự là kẻ điếc không sợ súng.</p>
+    <p>"Tiểu tiện nhân, nơi này không đến lượt ngươi lên tiếng, cút sang một bên!" Tư Thiên Nhai hung hăng trừng mắt nhìn cô gái kia, sau đó lại ném ánh mắt về phía Cổ Kính Văn, trong mắt toàn là dục vọng tham lam.</p>
+    <p>Cổ Kính Văn lúc này rốt cuộc có động tác, bất quá cũng không phải là bộc phát, mà là kéo cô gái vì mình xuất đầu kia ra đằng sau, sau đó ăn nói khép nép nói: "Tư thiếu gia, van cầu ngươi buông tha ta được không? Trong kinh thành này mỹ nữ còn nhiều, rất nhiều, người mạnh hơn ta cũng có rất nhiều, với gia thế của Tư thiếu, tuyệt đối không thiếu người phụ nữ ngưỡng mộ ngài."</p>
+    <p>"Nói cũng đúng, người ngưỡng mộ Tư Thiên Nhai ta nhiều vô kể." Tư Thiên Nhai đầu tiên là cười to đắc ý, sau đó lại nói: "Bất quá, có một câu ngươi nói không đúng. Trong kinh thành này mỹ nữ tuy không ít, nhưng người có thể so sánh được với ngươi lại không có mấy ai, Tư thiếu ta đã chấm ngươi rồi!"</p>
+    <p>Cổ Kính Văn thở dài nói: "Cho dù ngươi có được người của ta, cũng sẽ không có được lòng của ta, Tư thiếu, ngươi lại cần gì chứ?"</p>
+    <p>"Ta thích, thì sao nào?" Trên mặt Tư Thiên Nhai lộ ra vẻ bạo ngược: "Lão tử vì ngươi mà gãy mất hai chân, không đem ngươi đến tay, để ngươi mỗi ngày hầu hạ lão tử, lão tử sao cam tâm được?"</p>
+    <p>Trong mắt Cổ Kính Văn hiện lên một tia tinh quang, bất quá rất nhanh lại ẩn đi, quyết tuyệt nói: "Cho dù chết, ta cũng sẽ không khiến ngươi đạt được mục đích!"</p>
+    <p>"Chết? Tốt, để cho ta xem ngươi chết như thế nào! Bất quá, cho dù ngươi chết, ta cũng sẽ không bỏ qua cho ngươi. Còn cả đám tiểu tiện nhân ở đây nữa, cũng đều phải chôn cùng với ngươi!" Tư Thiên Nhai cười ha ha nói: "Đừng nghĩ rằng các ngươi thật sự có hậu trường gì. Nói cho các ngươi biết, Tống gia hiện tại cũng đã sắp xong đời rồi, mà Lệ Thương Hải cũng sẽ không vì mấy người phụ nữ không có quan hệ gì với hắn mà trở mặt với Tư gia chúng ta đâu!"</p>
+    <p>Sắc mặt chúng nữ không khỏi biến đổi. Tư Thiên Nhai nói đúng, không thân không thích, mình cho dù có quan hệ tốt với Lệ Nhược Nam đến đâu, chỉ sợ cha nàng cũng sẽ không vì các nàng mà trở mặt với đỉnh tiêm gia tộc như Tư gia. Bởi vậy trong lúc nhất thời, tất cả đều trở nên kinh hoảng.</p>
+    <p>Thấy chúng nữ sợ hãi, Tư Thiên Nhai vô cùng đắc ý, vung tay với đám hộ vệ của mình: "Đi, bắt hết bọn họ lại cho ta, tùy ý các ngươi xử trí!"</p>
+    <p>"Dừng tay!" Cổ Kính Văn thấy đám hộ vệ kia vậy mà thật sự xông tới, vội vàng lớn tiếng kêu lên. Bất quá điều khiến Diệp Phi thất vọng chính là, nàng lúc này vẫn không hề bộc phát, mà là nói với Tư Thiên Nhai: "Đừng làm tổn thương các nàng, ta đi cùng ngươi!"</p>
+    <p>Tư Thiên Nhai cười ha ha: "Như thế mới đúng chứ, các huynh đệ, dừng tay, đừng để Cổ đại mỹ nhân của ta khổ sở."</p>
+    <p>"Kính Văn tỷ!" Chúng nữ hài tránh được một kiếp đều bị Cổ Kính Văn cảm động, đều kêu lên. Thế nhưng đối mặt với ác nhân như Tư Thiên Nhai, các nàng lại không có cách nào, chỉ có thể cầu nguyện người tâm phúc của các nàng là Lệ Nhược Nam mau chóng chạy đến.</p>
+    <p>Mà lúc này trên mái nhà, Lệ Nhược Nam cũng có chút không nhịn được. Tuy nàng tin lời Diệp Phi và cũng biết Cổ Kính Văn chắc chắn có mục đích không thể cho ai biết, nhưng nàng dù sao cũng là tỷ muội đã cùng chung sống nhiều tháng, làm sao có thể mắt thấy nàng rơi vào hang cọp? Tuy Cổ Kính Văn thực lực cao cường, nhưng ai dám đảm bảo trong tay Tư gia không có biện pháp đối phó võ giả? Dù sao ngay cả một Ám Phượng nhỏ bé cũng có được độc dược như Tán Công Tán.</p>
+    <p>Bất quá ngay khi Lệ Nhược Nam chuẩn bị nhảy xuống, Diệp Phi lại giữ nàng lại, nói nhỏ vài câu vào tai nàng. Sau khi nghe xong, Lệ Nhược Nam chần chờ một chút, cuối cùng vẫn gật đầu đáp ứng. Mắt thấy Cổ Kính Văn sắp bị người của Tư Thiên Nhai đưa lên xe, nàng vội vàng khẽ nói một tiếng: "Chờ chút!" Đồng thời, trực tiếp từ trên mái nhà nhảy vào hậu viện.</p>
+    <p>Lệ Nhược Nam cũng là cao thủ Tiên Thiên, tuy trực tiếp nhảy lên lầu có chút khó khăn, nhưng nhảy xuống thì không thành vấn đề. Sự xuất hiện lần này cũng triệt để làm cho đám hộ vệ của Tư Thiên Nhai chấn kinh.</p>
+    <p>"Đại tỷ, ngươi tới rồi!" Thấy Lệ Nhược Nam xuất hiện, chúng nữ hài lập tức vui mừng. Ở nơi này, người lớn tuổi nhất tự nhiên là Cổ Kính Văn, ngoài nàng ra cũng có không ít người lớn tuổi hơn Lệ Nhược Nam, nhưng nàng lại là đại tỷ xứng đáng của chúng nữ, càng là người tâm phúc của họ. Sự xuất hiện của nàng vào lúc chúng nữ bất lực nhất, tự nhiên mang đến cho họ sự tự tin rất lớn.</p>
+    <p>Đầu tiên mỉm cười với các tỷ muội một chút, Lệ Nhược Nam mới lạnh lùng nhìn về phía Tư Thiên Nhai, trầm giọng nói: "Tư Thiên Nhai, ngươi còn dám đến đây nháo sự?"</p>
+    <p>Tư Thiên Nhai đối với Lệ Nhược Nam vẫn có chút sợ hãi, vì cô gái này động thủ căn bản không quản ngươi có bối cảnh gì. Bất quá đối phương hết lần này tới lần khác làm hỏng chuyện tốt của hắn, sớm đã khiến hắn không kiên nhẫn. Đặc biệt sau sự kiện gãy chân lần trước, mọi việc liên quan đến Cổ Kính Văn đã trở thành ma chướng trong lòng hắn. Nếu không thể có được vị mỹ nhân này, hắn chết cũng sẽ không cam lòng. Cho nên lúc này cũng không màng tới sợ hãi Lệ Nhược Nam nữa, nghiêm nghị nói: "Lệ Nhược Nam, ngươi đừng có khinh người quá đáng!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0537.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0539.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

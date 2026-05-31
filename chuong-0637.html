@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 637 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 637</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 637</small>
+    Chương 637: Đại Yêu Tinh Diệp Tuyền
+  </h1>
+  <div class="chapter-body">
+    <p>Ngồi mãi thế này cũng không phải cách, Diệp Phi nghĩ thầm, chi bằng cứ tâm sự với Ôn Nhu về bộ cực băng tâm pháp kia cho xong, nhưng lời còn chưa kịp nói, mắt đã trợn trừng. Chỉ thấy Diệp Tuyền vừa nói đi thay quần áo giờ chậm rãi từ trong phòng bước ra, trên người chỉ quấn độc một chiếc khăn tắm màu trắng, loại ngắn nhất, chỉ che ngang qua đầu vú, khiến đôi gò bồng đào trắng như tuyết gần như lộ ra một nửa bên ngoài. Rãnh ngực sâu thẳm ấy khiến dục hỏa của Diệp Phi lập tức bốc lên ngùn ngụt, phía dưới lại càng chỉ miễn cưỡng che đi bộ vị bí ẩn nhất, hai đôi chân ngọc thon dài thẳng tắp như muốn phô bày sự kiêu hãnh của mình. Thậm chí khi nàng bước đi, Diệp Phi còn có thể thấy tiểu huyệt kiều nhỏ của nàng bị lớp lông mu dày đặc che phủ. Trải qua sự tàn phá liên miên của hắn từ tối qua đến sáng nay, tiểu huyệt của Diệp Tuyền chẳng những không chút biến dạng, ngược lại càng thêm mềm mại, khiến Diệp Phi không sao dời mắt nổi, hận không thể lập tức đâm dương vật đã cương cứng đến cực điểm của mình vào đó mà thỏa sức chiếm đoạt.</p>
+    <p>Lúc này, không chỉ Diệp Phi nhìn đến ngây người mà cả Ôn Nhu bên cạnh cũng vậy. Trong ánh mắt cô gái nhỏ tràn đầy kinh ngạc và khó hiểu, chỉ tiếc là Diệp Phi lúc này chỉ bận dùng ánh mắt cưỡng bức "Đại Yêu tinh" của mình, còn bản thân Diệp Tuyền lại chỉ lo quyến rũ nam nhân của mình, nên chẳng ai phát hiện ra sự khác lạ trong ánh mắt của Ôn Nhu. Nếu không, họ sẽ lập tức nhận ra rằng sự lạnh lùng của cô bé này thực chất chỉ là khí chất mà thôi, còn nội tâm nàng không hề lạnh lẽo, chỉ là đã quen với vẻ thờ ơ.</p>
+    <p>Mãi cho đến khi Diệp Tuyền dán sát vào người Diệp Phi rồi ngồi xuống, sóng gió trong mắt Ôn Nhu mới biến mất, nàng cất tiếng hỏi: "Tuyền tỷ tỷ, sao chị lại có thể ăn mặc thế này trước mặt người ngoài?" Vừa nãy trên xe, Diệp Tuyền đã nói cho nàng biết tên của mình.</p>
+    <p>Diệp Tuyền ngạc nhiên nói: "Sao thế? Em cũng là con gái mà, chẳng lẽ chị còn sợ em nhìn à?"</p>
+    <p>"Nhưng mà..." Ôn Nhu chưa nói hết câu, nhưng khi nói lại liếc nhìn Diệp Phi, ý tứ rõ ràng không cần nói cũng hiểu.</p>
+    <p>"Giới thiệu chính thức với em một chút, Tuyền tỷ là vợ của anh!" Diệp Phi cười nói, trong lòng lại cảm thấy hơi kỳ lạ. Với tính cách của Ôn Nhu, đáng lẽ nàng không nên để ý đến chuyện của người khác mới phải, huống chi vừa nãy trong phòng nghị sự, cảnh hắn sờ soạng Diệp Tuyền nàng cũng đã chứng kiến, chuyện đó còn nghiêm trọng hơn việc Diệp Tuyền mặc thế này nhiều, vậy mà lúc đó Ôn Nhu lại chẳng biểu hiện gì.</p>
+    <p>Chẳng lẽ nha đầu này "yêu từ cái nhìn đầu tiên" với mình, nên thấy Diệp Tuyền ăn mặc như vậy quyến rũ mình nên ghen? Diệp Phi thầm tự mãn trong lòng, nhưng ngay lập tức lại cảm thấy điều này thật vô lý. Dù hắn rất tự tin vào sức hút của bản thân, nhưng cũng không đến mức tự đại đến thế.</p>
+    <p>"Lão bà?" Ôn Nhu hiển nhiên không hiểu từ này nghĩa là gì, nhìn Diệp Phi chớp chớp đôi mắt to xinh đẹp, trong khoảnh khắc khiến Diệp Phi nhận ra cô bé này không chỉ đẹp đến mức tận cùng mà còn có mặt đáng yêu như vậy.</p>
+    <p>"Chính là vợ đấy." Diệp Tuyền thuận miệng giải thích, tay lại bất ngờ làm ra một động tác khiến Diệp Phi kinh ngạc không thôi: nàng tháo thắt lưng của hắn ra, sau đó nhanh chóng kéo quần cùng quần lót của hắn xuống.</p>
+    <p>Theo lớp quần áo rời khỏi thân, dương vật đã sớm cứng như thiết bổng của Diệp Phi bật ra ngoài, như đang thị uy mà nhúc nhích trước mắt hai nữ nhân.</p>
+    <p>Nhìn thấy "thứ vũ khí" mang lại cho mình khoái lạc vô biên này, Diệp Tuyền trong phút chốc quên cả quyết định của mình, đôi mắt đẹp mê ly nhìn chằm chằm vào nó, bàn tay ngọc thon dài không tự chủ được mà vươn ra, nhẹ nhàng vuốt ve.</p>
+    <p>Diệp Tuyền chưa bắt đầu tu luyện vũ công, Diệp Phi muốn ngăn cản nàng cũng chẳng khó gì, nhưng hắn không làm thế, trái lại còn nhìn về phía Ôn Nhu ngay lập tức. Không hiểu sao, hắn luôn hy vọng có thể nhìn thấy một vẻ mặt khác ngoài vẻ thờ ơ của vị "Băng tiên tử" này.</p>
+    <p>Nhìn một cái, Diệp Phi không khỏi thất vọng, bởi vì đôi mắt đẹp của Ôn Nhu tuy cũng nhìn về thứ đang đột ngột xuất hiện trước mắt mình kia, nhưng vẻ mặt trên mặt nàng chẳng chút biến chuyển, cứ như thể nàng đang nhìn tay chân hắn chứ không phải là dương vật.</p>
+    <p>Tuy nhiên, sức quan sát của Diệp Phi không phải người thường có thể so sánh, hắn vẫn thấy được một tia cảm xúc trong mắt nàng, đó là một loại cảm giác tương tự như chán ghét. Ngay lúc Diệp Phi đang khó hiểu vì sao nàng lại như vậy, thì nghe nàng lên tiếng hỏi: "Người anh yêu nhất không phải là Liễu Diệc Như sao?"</p>
+    <p>"Đúng vậy, nhưng anh cũng yêu Tuyền tỷ mà." Diệp Phi mỉm cười đáp, không hề phủ nhận lời Ôn Nhu, bởi Diệp Tuyền giờ đã là người của hắn, có những chuyện không nên lừa dối nữa. Thứ hai cũng vì sư phụ của Ôn Nhu qua đời khi đã hai trăm tuổi, chắc hẳn tư tưởng của nàng vẫn giữ lối cũ, và lớn lên hầu như chỉ tiếp xúc với một mình sư phụ, Ôn Nhu khẳng định cũng tuân theo truyền thống đó, nên không cần lo lắng nàng sẽ có phản ứng quá khác lạ.</p>
+    <p>Quả nhiên, sau khi nghe Diệp Phi nói, ánh mắt Ôn Nhu lóe lên một tia thấu hiểu rồi lại khôi phục vẻ không màng thế sự, nhưng bàn tay ngọc đang nắm lấy dương vật Diệp Phi của Diệp Tuyền lại siết chặt lại.</p>
+    <p>Giây phút này, nàng cuối cùng đã hiểu vì sao nhân vật mình đóng vai buổi sáng lại thất bại, không phải vì nam nhân mình âu yếm khác với những thiếu niên khác, mà là vì hắn đã sớm chiếm được mẹ đẻ của mình, sao có thể vì màn kịch của nàng mà kích động được?</p>
+    <p>Từ lúc Diệp Phi mất tích, Diệp Tuyền từng có dịp tiếp xúc gần gũi với Liễu Diệc Như. Đối với vẻ đẹp tựa như không thuộc về nhân gian của vị "mẹ chồng" này, dù là Diệp Tuyền cũng không khỏi tâm phục khẩu phục, đồng thời trong lòng không ít lần cảm thấy tiếc nuối cho nét đẹp đơn độc tỏa sáng ấy. Bởi nàng nghĩ mãi, người duy nhất trên đời này xứng đôi với Liễu Diệc Như chỉ có thể là người đàn ông nàng yêu, nhưng người đàn ông này lại chính là con trai ruột của bà. Vì thế, trong lòng Diệp Tuyền từng nảy sinh cảm giác khó chịu không sao tả xiết, tựa như viên ngọc quý nhất thế gian bị mai một. Cho nên lúc này, khi biết được mối quan hệ không thể để người đời biết giữa Diệp Phi và mẹ mình, nàng chẳng những không có suy nghĩ xấu xa nào, mà trái lại còn thở phào nhẹ nhõm, thậm chí cảm thấy mọi chuyện lẽ ra nên là như vậy.</p>
+    <p>Còn về cách nói "người yêu nhất là Liễu Diệc Như" của Diệp Phi, Diệp Tuyền cũng không hề ghen tuông, bởi người phụ nữ tựa tiên nữ như Liễu Diệc Như quả thực đáng để bất kỳ người đàn ông nào điên cuồng, huống chi người đàn ông này còn là chính con trai ruột do bà dứt ruột đẻ ra và nuôi dưỡng.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0636.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="#" class="nav-btn disabled">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

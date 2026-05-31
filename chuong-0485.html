@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 485 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 485</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 485</small>
+    Chương 485: Vô tận thâm tình
+  </h1>
+  <div class="chapter-body">
+    <p>"Ân." Chiếm được đáp án mình cần, tiểu ma nữ vui vẻ lên tiếng, đem thân thể nhỏ nhắn yêu kiều dựa sát vào lòng Diệp Phi, có chút đau lòng nhìn gương mặt tái nhợt của mụ mụ, cùng ca ca yêu quý chờ nàng tỉnh lại. Khôi phục hoàn tuy có tác dụng cực kỳ mạnh mẽ, nhưng Diệp Ngưng Băng lần này mất máu thực sự quá nhiều, cho nên mãi đến hừng đông vẫn không tỉnh lại, bất quá sắc mặt đã khôi phục hồng nhuận. Tiểu ma nữ ghé vào ngực Diệp Phi đã sớm ngủ thiếp đi, trong cái miệng nhỏ nhắn thỉnh thoảng lại nói ra mấy lời mớ khiến Diệp Phi vừa buồn cười vừa cảm động: "Mụ mụ, ngươi ngàn vạn không được có chuyện gì, Tình Tình còn chưa cùng ngươi hầu hạ ca ca đâu." "Ca ca, ngươi nhất định phải cứu mụ mụ, Tình Tình sẽ hảo hảo báo đáp ngươi, Tình Tình sẽ cho ngươi ăn, ăn thật nhiều thật nhiều!" Những chuyện đại loại như vậy, gần như cả đêm không ngừng. Nhẹ nhàng ôm lấy tiểu ma nữ đang ngủ say, đặt nàng bên cạnh Diệp Ngưng Băng, Diệp Phi đang chuẩn bị đi làm chút bữa sáng cho các nàng, lại nghe thấy ngoài cổng lớn truyền đến động tĩnh. Ý niệm quét qua, phát hiện người bước vào là hai người hắn căn bản không ngờ tới —— đại bác Diệp Ngưng Sương cùng nhị cô mẹ Diệp Ngưng Tuyết. Các nàng cùng Diệp Ngưng Băng tuy ở không quá xa, nhưng vì trong công ty mỗi ngày đều gặp mặt, sau khi về nhà lại rất ít đến nhà đối phương, hôm nay sao lại sáng sớm đã tới đây? Mang theo chút nghi hoặc, Diệp Phi đón xuống dưới, vừa vặn gặp các nàng tại đại sảnh lầu một, ngọt ngào gọi một tiếng: "Đại bác, nhị cô mẹ." Chứng kiến Diệp Phi xuất hiện tại đây, hai nữ đều rất kinh ngạc. Mà Diệp Ngưng Sương ngoài kinh ngạc ra, trong ánh mắt còn có nỗi nhớ nhung nồng đậm, tuy Diệp Phi thường xuyên gọi điện thoại cho nàng, nhưng hai người đã rất lâu không gặp mặt. "Tiểu Mãn, sao con lại ở đây, tiểu bác con không sao chứ?" Diệp Ngưng Tuyết lên tiếng hỏi, trên trán hiện lên một chút lo lắng. "Tại sao lại hỏi vậy ạ?" Diệp Phi càng thêm kỳ quái, chuyện của tiểu bác hiện tại chỉ có hắn và tiểu ma nữ biết, cũng chưa thông báo cho các nàng, sao các nàng lại biết được? Diệp Ngưng Sương cười cười nói: "Tối hôm qua ta làm một giấc mộng rất kỳ lạ, mơ thấy tiểu Băng đã xảy ra chuyện, mà sáng nay gọi điện thoại cho nó lại không thông, gọi cho Tiểu Tuyết, nó vậy mà cũng mơ thấy giấc mộng giống hệt. Chúng ta càng lo lắng, hiện tại xem ra, là chúng ta quá đa nghi rồi." Ra là vậy? Diệp Phi thầm nghĩ, xem ra các nàng tỷ muội giữa chừng cũng có tâm linh cảm ứng, chỉ là không mạnh bằng mình và tiểu muội thôi. Chuyện này e là không giấu được các nàng nữa, vì vậy hắn cười khổ nói: "Hai người không có mơ sai, tiểu bác tối hôm qua quả thực đã xảy ra chuyện, bất quá bây giờ đã không sao rồi." "Thực sự xảy ra chuyện? Tiểu Băng rốt cuộc làm sao vậy?" Lời nói của Diệp Phi khiến sắc mặt Diệp Ngưng Sương cùng Diệp Ngưng Tuyết đều biến đổi, trăm miệng một lời hỏi, giọng điệu giống hệt nhau, làm Diệp Phi thầm than các nàng không hổ là tỷ muội. Chỉ không biết mụ mụ và hai vị dì có lúc nào cũng ăn ý như vậy không, có cơ hội nhất định phải thử xem. "Không có gì, chỉ là không cẩn thận cắt trúng cổ tay thôi, tối hôm qua đã ổn rồi." Diệp Phi không muốn làm các nàng lo lắng, vì vậy giảm bớt sự thật. Bất quá Diệp Ngưng Sương cùng Diệp Ngưng Tuyết không tin, nếu chỉ là như vậy, sao các nàng lại mơ thấy giấc mộng đó? Vì vậy trực tiếp kéo Diệp Phi lên lầu, đi vào phòng ngủ của Diệp Ngưng Băng, sau khi nhìn thấy nàng đang ngủ an ổn, mới nhẹ nhàng thở phào.</p>
+    <p>Có lẽ tiếng mở cửa kinh động đến Diệp Ngưng Băng, nàng ngủ say cả đêm chậm rãi mở mắt, đầu tiên là hơi mơ màng nhìn quanh, đợi sau khi nhìn thấy Diệp Phi, hai mắt đột nhiên lộ ra một loại hào quang vô cùng kích động. Nàng chẳng màng bản thân trên người không có lấy một mảnh vải, mạnh mẽ ngồi bật dậy, nhào vào lòng Diệp Phi, hai tay ôm chặt cổ hắn, có chút sợ hãi nói: "Tiểu Mãn, không được rời xa ta!" Diệp Phi vô thức ôm lấy vòng eo mảnh khảnh của Diệp Ngưng Băng, khi hai tay tiếp xúc với làn da non mịn nơi hông nàng, tim hắn chợt đập mạnh. Buổi sáng là thời điểm nam nhân dễ xúc động nhất, lúc này trong lòng ôm lấy một tuyệt thế mỹ nhân có nhan sắc cùng dáng người đều vạn người không được một, cảm thụ sự co dãn tuyệt vời trước ngực, Diệp Phi rất nhanh đã có phản ứng. Nếu bên người chỉ có Diệp Ngưng Sương, Diệp Phi tự nhiên sẽ làm chút gì đó, nhưng lại có thêm Diệp Ngưng Tuyết nên không thể, đành ôm thân thể yêu kiều gợi cảm của Diệp Ngưng Băng đi đến bên giường, đặt nàng nằm xuống lại. Nhưng Diệp Ngưng Băng lại gắt gao ôm chặt lấy hắn, căn bản không chịu buông tay. Dù đã thấy hai người tỷ tỷ ở đó, nàng vẫn không chút buông lỏng. Người đã từng trải qua cái chết, nàng càng thêm trân trọng hạnh phúc khó có được này, cộng thêm tâm tình còn chưa ổn định, lúc này trong đầu chỉ có một ý nghĩ, đó là nắm chặt hạnh phúc của mình. Dù các tỷ tỷ có thể không lý giải, thậm chí chửi bới nàng, nàng cũng sẽ không buông tay. Thấy cảnh này, vẻ mặt Diệp Ngưng Tuyết trở nên kỳ quái, đang muốn hỏi gì đó thì bị Diệp Ngưng Sương ngăn lại, hơn nữa còn kéo nàng đi ra ngoài. "Ngoan, nói cho ta biết, rốt cuộc là làm sao vậy, tại sao con lại làm chuyện dại dột?" Thấy hai vị bác đi ra ngoài, Diệp Phi không còn kiêng dè gì nữa, bàn tay to nhẹ nhàng vuốt ve khuôn mặt trơn bóng của Diệp Ngưng Băng, ôn nhu hỏi. Vòng tay ấm áp cùng sự vỗ về dịu dàng của Diệp Phi khiến Diệp Ngưng Băng rất nhanh bình tĩnh trở lại, nghe hắn hỏi chuyện hôm qua, nàng có chút xấu hổ nói: "Đó là ta hiểu lầm con, hôm qua người phụ nữ đi cùng Vân Tĩnh tìm ta, còn nói con muốn giết ả." Tuy Diệp Ngưng Băng không nói quá rõ ràng, nhưng Diệp Phi đã hiểu chuyện gì xảy ra. Khó trách nàng lại làm như vậy, hiển nhiên là cảm thấy bị hắn lừa dối, nhất thời nghĩ quẩn. Diệp Phi đang chuẩn bị giải thích một lần, Diệp Ngưng Băng lại giành nói trước: "Lúc ấy, ta cảm giác con lừa ta, cảm thấy vô cùng đau khổ, muốn chết để trốn tránh sự đau khổ khi bị người yêu nhất lừa dối. Nhưng lúc ta sắp mất ý thức, lại nghĩ thông suốt rồi, con dùng thủ đoạn như vậy là vì con cũng yêu ta, cho nên lại không muốn chết nữa, nhưng lúc đó đã không còn chút sức lực nào." Nói đến đây, Diệp Ngưng Băng ngừng một chút, ngẩng đầu từ trong lòng Diệp Phi, thâm tình nhìn hắn: "Con có biết không, khoảnh khắc đó, ta thật hối hận, cũng thật sợ hãi, ta không sợ chết, chỉ là sợ mình chết rồi từ nay về sau, sẽ không còn được gặp lại con nữa." Ta không sợ chết, chỉ là sợ mình chết rồi từ nay về sau, sẽ không còn được gặp lại con nữa! Đây là thâm tình nhường nào! Diệp Phi trong nháy mắt bị cảm động đến rối tinh rối mù, dùng sức ôm chặt thân thể yêu kiều gợi cảm của Diệp Ngưng Băng, trong lòng không còn chút dục vọng nào, chỉ có vô tận thâm tình, đồng thời nói: "Từ nay về sau ngàn vạn lần không được nghĩ quẩn nữa, biết không? Nếu con thực sự xảy ra chuyện, ta sẽ đau lòng cả đời!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0484.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0486.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

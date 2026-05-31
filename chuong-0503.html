@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 503 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 503</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 503</small>
+    Chương 503: Tống Từ ghen tuông
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi đã hiểu, nhưng hắn cũng không vạch trần, chỉ nghiêm túc hỏi lại: "Đừng nói chuyện đó nữa, mau trả lời ta!" Trong lòng hắn lúc này có chút thận trọng, bởi vì trên người người phụ nữ tên Kính Văn kia, hắn phát hiện có chân khí lưu chuyển, hơn nữa tu vi cực cao, đã đạt đến Tiên Thiên hậu kỳ, cách Đại Thừa cũng không còn xa. Một người phụ nữ tu vi cao thâm như vậy, ngay cả ở giới ẩn thế cũng đủ để được gọi là "cao thủ", dường như không cần phải tìm kiếm sự che chở của một bang phái chỉ mang tính chất vui chơi này? Tuy bình thường hay đùa giỡn với Diệp Phi, thậm chí có lúc còn khinh bỉ hắn hạ lưu, nhưng khi Diệp Phi nghiêm túc, Tống Từ vẫn có chút sợ. Không biết là vì thân phận sư phụ của hắn, vì mối quan hệ với Tống Huyên, hay vì lý do nào khác, nên cô rất thành thật nói: "Kính Văn đại tỷ gia nhập không lâu sau khi con rời đi. Khi đó chị ấy đang bị một tên công tử bột nổi tiếng dây dưa, vừa lúc bị Nhược Nam đại tỷ bắt gặp. Sư phụ, người đừng tưởng Thiếu Nữ Bang chỉ thu nhận thiếu nữ nhé, tôn chỉ của chúng ta là giải cứu tất cả những người phụ nữ đau khổ ở kinh thành." Nói đến đoạn sau, Tống Từ vốn đang thành thật lại bắt đầu hăng hái hẳn lên. Xem ra Tống Từ cũng không biết rõ lai lịch người phụ nữ này. Diệp Phi thầm nghĩ trong lòng, cũng nhanh chóng bỏ qua. Vô luận nàng gia nhập bang phái này có mục đích gì, dù sao cũng không liên quan nhiều đến hắn, vì vậy hắn cũng không để trong lòng, chỉ cười hỏi: "Không biết vị đại tỷ này họ gì?" "Họ Cổ ạ." Tống Từ thuận miệng đáp. "Phốc... Cổ Tĩnh Văn?" Diệp Phi kinh hô một tiếng. "Là từ 'kính' trong tôn kính ạ." Tống Từ lườm Diệp Phi một cái. Diệp Phi gật đầu: "Ta đã nói mà, vị Kính Văn đại tỷ này xinh đẹp hơn nhiều." "Khích lệ người ta như vậy, còn nói mình không có ý đồ khác?" Mắt Tống Từ lập tức nheo lại. Diệp Phi cười khổ: "Đại tỷ, ta chỉ nói sự thật thôi, nàng đến cả cái này cũng ghen sao?" Tống Từ hừ một tiếng, đang định nói gì đó thì nghe bên ngoài truyền đến tiếng phanh xe chói tai. Không lâu sau, một nam nhân tầm hai mươi tuổi đi nhanh vào, miệng kêu lớn đầy kiêu ngạo: "Mau gọi Cổ quản lý của các người ra đây!" Theo sau hắn là một người đàn ông trung niên vóc dáng cao gầy. Đám người ở đây, kể cả Tống Từ, hiển nhiên đều biết gã này, trên mặt ai nấy đều lộ vẻ khinh thường, đồng thời lại có chút lo lắng. Bởi vì kẻ này không giống những công tử bột tầm thường, sau lưng hắn là một gia thế khổng lồ, không thua kém gì bang chủ Lệ Nhược Nam của bọn họ. Tống Từ vốn chẳng hề sợ hắn, hừ lạnh: "Họ Tư kia, anh có biết xấu hổ không? Kính Văn tỷ đã sớm nói không thích anh, anh còn như con ruồi bọ bám lấy không buông, có ý nghĩa gì sao?" Giọng Tống Từ không quá lớn, nhưng kẻ họ Tư kia vẫn nghe thấy. Điều khiến Tống Từ khó hiểu là hắn chỉ hừ một tiếng, không giống như trước kia, thấy cô hay Lệ Nhược Nam liền bỏ đi, mà lại tìm một chỗ trong đại sảnh ngồi xuống. Nói về vị Tư thiếu gia này, mọi người trong Thiếu Nữ Bang không ai xa lạ. Lúc trước, sau khi tình cờ gặp được Kính Văn đại tỷ – người có tên giống với một mỹ nữ ở Bảo Đảo nhưng xinh đẹp hơn nhiều – hắn liền điên cuồng theo đuổi. Đương nhiên, trong mắt hắn là theo đuổi, thực chất là muốn cưỡng ép. Chẳng biết vì sao, mỗi lần sắp đạt được mục đích thì nàng đều trốn thoát, sau đó nàng còn gia nhập Thiếu Nữ Bang của Lệ Nhược Nam, khiến hắn vô cùng khó chịu. Trước đây hắn chẳng có cách nào vì hậu trường của hắn và Lệ Nhược Nam ngang ngửa nhau, mà hắn thì trói gà không chặt, còn Lệ Nhược Nam thân thủ lại rất khá. Cho nên dù biết mỹ nhân khiến mình ngứa ngáy trong lòng đang ở đây, hắn cũng đành chịu. Nhưng hôm nay thì khác, vì hắn đã mời được một cao thủ thực thụ, chính là cường giả có thể chưởng toái cự thạch, chân dẫm nát hòn non bộ. Lần này hắn rất tự tin sẽ đoạt lại được mỹ nhân. Về phần Lệ Nhược Nam, hắn không cho rằng đối phương sẽ vì một người phụ nữ bèo nước gặp nhau mà gây sự với mình. Dù sao ở kinh thành, mâu thuẫn giữa đám tiểu bối là chuyện nhỏ, nhưng nếu liên lụy đến gia tộc sau lưng thì lại là chuyện khác. Dù tự tin nhưng tên họ Tư này không lên lầu tìm người ngay, vì hôm nay hắn chỉ mang theo cao thủ kia, nhân thủ không đủ. Nếu mỹ nhân nhân lúc hắn lên lầu mà bỏ trốn theo đường khác thì hỏng bét, dù sao tửu điếm này cũng chỉ có một cửa ra, hắn không ngại đợi thêm một lát. Thấy đối phương chơi bài vô lại, Tống Từ không khỏi tức giận. Thêm việc hiện tại bản thân đã là cao thủ có nội lực, cô định tiến lên giáo huấn gã đáng ghét này. Không ngờ Diệp Phi lại giữ cô lại, lắc đầu nói: "Đừng đi, người đi cùng hắn là cao thủ, em không đánh lại đâu." Trong lòng hắn thầm cảm thán, kinh thành này đúng là ngọa hổ tàng long, mới đây thôi mà đã xuất hiện một Tiên Thiên cao thủ. Tuy chỉ là Tiên Thiên sơ kỳ nhưng ở chốn đô thị này cũng đã rất hiếm có. Tống Từ tuy tính cách bưu hãn nhưng không phải kẻ lỗ mãng, nghe vậy liền dừng lại, mắt đảo một vòng rồi hỏi Diệp Phi: "Sư phụ, vậy người có đánh thắng được hắn không?" Diệp Phi thấy hơi bất đắc dĩ, đồ đệ này của hắn dường như lúc nào cũng không tin tưởng hắn, cái loại tạp chủng nào cũng đem ra so sánh với hắn. Hắn hừ một tiếng không đáp, nhưng ánh mắt khinh miệt đã nói lên tất cả. Nhận được đáp án, Tống Từ hưng phấn cổ vũ: "Sư phụ, hay là người đi đánh tên kia đi, cho bọn họ biết sư phụ của con lợi hại thế nào." Diệp Phi đảo mắt, hắn còn muốn xem trò hay, chẳng dại gì tham gia vào cuộc tranh đấu vô nghĩa này. Hơn nữa tên Tiên Thiên sơ kỳ đó chẳng đáng để hắn ra tay, nên hắn tức giận nói: "Không đi!" Đoạn hắn bồi thêm một câu: "Cũng chẳng phải đến tìm em, ta mới không rảnh lo chuyện bao đồng." Nếu không có câu sau, Tống Từ có lẽ đã rất giận Diệp Phi. Nhưng câu nói đó khiến cô bất giác vui vẻ. Theo ý hắn, Tống Từ hiểu rằng trong lòng Diệp Phi, vị trí của cô quan trọng hơn nhiều so với mỹ nhân Kính Văn kia. Điều này làm nảy sinh một chút ngọt ngào trong lòng cô, và trong trạng thái đắm chìm đó, cô cũng quên mất việc ép sư phụ đi gây phiền phức cho gã mình chướng mắt kia. Cục diện giằng co kéo dài mãi, cho đến khi bên ngoài đột nhiên truyền đến tiếng máy xe gầm rú, tinh thần chúng nữ mới phấn chấn hẳn lên.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0502.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0504.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

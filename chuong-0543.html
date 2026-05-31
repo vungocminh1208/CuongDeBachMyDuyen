@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 543 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 543</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 543</small>
+    Chương 543: Lần đầu nghe thấy Tu Chân giới
+  </h1>
+  <div class="chapter-body">
+    <p>Lệ Nhược Nam không hiểu cái gì là thần ngữ, thấy Diệp Phi và Cổ Kính Văn chỉ há miệng mà không phát ra tiếng, không khỏi hiếu kỳ hỏi: "Các ngươi đang làm gì đó?" "Vừa cùng Kính Văn tỷ học một tay truyền âm nhập mật." Diệp Phi cười nói, không hề giấu giếm Lệ Nhược Nam, bất quá về nội dung câu chuyện thì tất nhiên không thể nói cho nàng biết, vì vậy tiếp tục: "Nàng nói muốn đến nhà bái phỏng ba ba của ngươi." Lệ Nhược Nam trong lòng biết đây là Diệp Phi đã thành công, bất quá lại giả vờ khó hiểu hỏi: "Kính Văn tỷ, ngươi tìm ba ba ta có chuyện gì vậy?" Nàng không phải thật sự muốn gạt Cổ Kính Văn, bất quá đôi khi lời nói dối thiện ý mang lại hiệu quả tốt hơn, dù sao nếu Cổ Kính Văn biết Lệ Nhược Nam đã sớm biết chuyện của mình, chắc chắn sẽ rất xấu hổ. Quả nhiên, Cổ Kính Văn thấy Lệ Nhược Nam thật sự không biết gì, trong lòng cũng thoải mái hơn nhiều, chỉ là cảm thấy có chút có lỗi với nàng, âm thầm thề từ nay về sau phải coi nàng như thân muội muội mà đối đãi để đền bù lần lừa gạt này, ngoài miệng nói: "Ta gần đây mới biết được, phụ thân ngươi là cố nhân của người nhà ta, cho nên ta muốn đến bái phỏng một chút, thuận tiện hỏi ông ấy vài chuyện cũ năm xưa." "Vậy sao, tốt, chúng ta đi ngay bây giờ đi." Lệ Nhược Nam nhanh chóng đáp ứng. Bởi vì thêm một người, Lệ Nhược Nam không đi chiếc xe máy của mình nữa, mà lấy từ trong tửu điếm ra một chiếc xe bình thường. Đây là xe nàng mua cho các nhân viên, tức là các thiếu nữ giúp đỡ, có hơn mười chiếc để mọi người tiện đi lại. Lên xe, Diệp Phi cầm lái, hai nữ ngồi ghế sau, sau đó hướng biệt thự Lệ gia mà đi. Bình thường Lệ Thương Hải không ở tổng bộ mà thường ở nhà, đến địa vị của ông, có vài việc không cần đích thân xuất mã. Trên đường đi, hai nữ tùy tiện trò chuyện chuyện con gái, Diệp Phi không nghe, rất nhanh đã đưa các nàng đến biệt thự Lệ gia. Bảo vệ ở đây hiển nhiên nhận ra xe, cho nên Diệp Phi trực tiếp lái thẳng vào sân. Lúc này, Lệ Thương Hải đang ở trong sân luyện một bộ quyền cước, nhìn thấy bọn họ trở về thì sửng sốt một chút, nhưng khi nhìn thấy Cổ Kính Văn bước xuống xe, ông kinh ngạc mở to hai mắt. Cổ Kính Văn cũng tương tự như vậy, nhìn người thúc thúc mà mình hận hơn hai mươi năm, vẻ ngoài đã già nua hơn nhiều so với trong ký ức, qua một hồi lâu, nàng mới run giọng gọi: "Lệ thúc thúc." Nghe được xưng hô này, Lệ Thương Hải lập tức kích động, bước nhanh đến trước mặt Cổ Kính Văn, bình tĩnh nhìn nàng, trong mắt hiện lên tia hổ thẹn, đôi mắt già nua rưng rưng nói: "Văn Văn, ngươi thật sự là Văn Văn? Tốt quá rồi, ta còn tưởng rằng..." Nói đến đây, Lệ Thương Hải nghẹn lời, vị nam tử thép này cũng cuối cùng đã chảy nước mắt. Chứng kiến bộ dạng kích động của Lệ Thương Hải, trong lòng Cổ Kính Văn tia nghi ngờ cuối cùng cũng tan biến, nhớ lại chuyện ngày bé, nàng cũng không khỏi chảy nước mắt theo. Lệ Nhược Nam có chút kỳ quái hỏi: "Cha, đây là lần đầu tiên cha gặp Kính Văn tỷ sao? Sao trông như là người quen vậy?" "Cái gì mà lần đầu gặp mặt, trước khi con sinh ra, ta vẫn luôn coi Văn Văn như con gái mình." Lệ Thương Hải xoa mắt nói: "Tuy hai mươi năm qua chúng ta không gặp lại, nhưng Văn Văn lớn lên quá giống mẹ nó." Nghe Lệ Thương Hải nhắc đến mẹ mình, mối hận thù đọng lại trong lòng Cổ Kính Văn lại bùng lên, cũng chẳng bận tâm chuyện hàn huyên với người thúc thúc đã lâu không gặp nữa, hỏi thẳng: "Lệ thúc thúc, người có biết ai đã giết cả nhà con không?" Lệ Thương Hải toàn thân chấn động, trong mắt lần nữa hiện lên vẻ hổ thẹn, đồng thời còn có sự thống hận sâu sắc, nhưng cuối cùng lại nói: "Chuyện này con đừng hỏi nữa, chuyện cũ hãy để nó qua đi." "Gia cừu đại hận, sao con có thể không hỏi?" Cổ Kính Văn kích động: "Lệ thúc thúc, cầu xin người nói cho con biết được không?" Lệ Thương Hải vẫn không nói, Lệ Nhược Nam hình như nhìn ra điều gì đó, liền hỏi: "Cha, kẻ thù của Kính Văn tỷ có phải rất lợi hại không?" "Lệ thúc thúc, mời người nói cho con biết được không?" Cổ Kính Văn lại nói: "Cho dù kẻ thù thực sự rất lợi hại, con không báo được thù, nhưng con vẫn có quyền được biết chứ?" Lệ Thương Hải thở dài thật dài, cuối cùng gật đầu: "Không sai, người đó rất lợi hại, chúng ta muốn báo thù rất khó."</p>
+    <p>"Có phải chúng ta nên vào trong nhà, rồi bá phụ từ từ kể lại không?" Diệp Phi lúc này lên tiếng. Lệ Thương Hải gật đầu đồng ý, dẫn ba người cùng vào phòng khách biệt thự. "Nói đi cũng phải nói lại, chuyện này là vì ta mà ra." Sau khi ngồi xuống, Lệ Thương Hải ngừng hồi lâu mới nói một câu như vậy. Ba người Diệp Phi đều không ngắt lời, chỉ lặng lẽ đợi ông nói tiếp. Lệ Thương Hải hít một hơi thật sâu, phảng phất như chìm vào hồi ức, chậm rãi nói: "Hơn hai mươi năm trước, ta là một đệ tử trong Vô Cực Môn của Tu Chân giới, còn Cổ đại ca, chính là phụ thân của Văn Văn, là Chưởng môn của một môn phái khác. Thiên phú tu luyện của chúng ta đều rất tốt, ta hơn hai mươi tuổi đã tiến vào Kim Đan kỳ, còn Cổ đại ca ba mươi tuổi đã tiến vào Nguyên Anh kỳ, điều này ở trong Tu Chân giới, tuyệt đối là trăm năm khó gặp." Nói đến đây, Lệ Thương Hải lộ ra vẻ ngạo nghễ, có vẻ rất tự hào. Ba người Diệp Phi lại có chút không tiêu hóa nổi, Tu Chân giới? Trên đời này thật sự có những người như Tu Chân giả sao? Nhìn ra sự kinh ngạc của ba người Diệp Phi, Lệ Thương Hải giải thích: "Tu Chân giới không phải thế giới chúng ta đang ở, mà là một không gian ngang hàng với thế giới này. Người ở đó hầu như ai cũng tu chân, còn về khoa học kỹ thuật thì không bằng thế giới này." Trong lòng Diệp Phi không khỏi chấn động, một cảm giác nguy cơ dâng lên. Vốn tưởng rằng với thực lực của mình có thể hoành hành thiên hạ, nào ngờ ngoài thế giới này ra còn có một Tu Chân giới, hơn nữa nhìn từ kinh nghiệm của Lệ Thương Hải, hai thế giới này vẫn thông với nhau. Lệ Thương Hải không phát hiện ra sự khác thường của Diệp Phi, tiếp tục nói: "Kẻ thù của Văn Văn cũng là người của Vô Cực Môn, đó là một vị sư huynh của ta. Thực lực lúc đó của hắn cũng như phụ thân của Văn Văn, đều là Nguyên Anh kỳ. Hắn tu luyện tám mươi năm đã đạt thành tựu đó, có thể coi là kỳ tài. Vốn dĩ khi ta chưa nhập môn, hắn là người thừa kế Chưởng môn sáng giá nhất, nhưng từ khi thiên phú tu luyện của ta bộc lộ, địa vị của hắn bị uy hiếp. Vì thế, hắn luôn muốn trừ khử ta, nhưng môn quy Vô Cực Môn cấm nghiêm ngặt việc đồng môn tương tàn, hắn không dám ra tay. Sau đó không biết thế nào, hắn kết bạn với Cổ đại ca, mà Cổ đại ca biết hắn là sư huynh của ta nên hoàn toàn không phòng bị, kết quả dẫn đến bi kịch này."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0542.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0544.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

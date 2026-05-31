@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 455 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 455</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 455</small>
+    Chương 455: Phiền toái của Từ Chỉ Vân
+  </h1>
+  <div class="chapter-body">
+    <p>Trời còn chưa sáng hẳn, Diệp Phi đã bị tiếng chuông điện thoại đánh thức. Cậu mơ màng bắt máy, một giọng nói vui sướng như tiếng chuông bạc truyền tới: "Lão công, em đến Ô Thành phố rồi, các anh đang ở đâu ạ?"</p>
+    <p>"Sớm vậy sao?" Diệp Phi không khỏi kinh ngạc. Đúng vậy, người gọi tới chính là Từ Chỉ Vân, cô gái nhỏ tinh khiết tới cực điểm và lớn hơn cậu vài tuổi. Vốn dĩ họ đã biết lịch trình Từ Chỉ Vân định tới từ hôm qua, nhưng do bị đại tuyết làm chậm trễ, không ngờ sáng sớm cô đã vội vã chạy tới nơi.</p>
+    <p>"Em nhớ anh quá, nên đã đổi ca với người khác, tối qua bay tới luôn." Giọng nói trong trẻo của Từ Chỉ Vân tràn đầy sự nhung nhớ, cô lại hỏi thêm lần nữa: "Các anh ở đâu? Em qua ngay đây."</p>
+    <p>Sự nhớ nhung không chút che giấu ấy khiến nội tâm Diệp Phi vô cùng cảm động, cậu dịu dàng nói: "Không cần đâu, chúng ta lập tức qua đó, chắc khoảng một tiếng nữa là tới, em cứ về ký túc xá đợi một chút đi."</p>
+    <p>"Vâng, vậy các anh mau tới nhé!" Từ Chỉ Vân nhu thuận đáp lời rồi cúp điện thoại. Để mau chóng nhìn thấy người đàn ông mình yêu, cô chẳng muốn lãng phí dù chỉ một giây.</p>
+    <p>Nhìn đồng hồ, Diệp Phi phát hiện mới chỉ sáu giờ sáng, nghĩa là cậu và mọi người mới ngủ chưa đầy bốn tiếng. Tuy nhiên, với công lực của họ thì việc không ngủ cũng chẳng phải vấn đề gì.</p>
+    <p>Diệp Phi lên tiếng gọi các cô gái dậy. Khi biết có người đang đợi ở sân bay, họ cũng không còn muốn ngủ nướng nữa. Tuy nhiên, lúc rời giường, ba đại mỹ nhân Liễu Diệc Như, Thủy Dĩnh và Trần Du Dung – những người nhận được sự yêu chiều nhiều nhất tối qua – đều đỏ bừng mặt, xấu hổ không thôi. Dù sau khi mặn nồng họ đã thay quần áo, nhưng những dấu vết ái ân trên chăn đệm là không cách nào che giấu, chỉ cần vén chăn lên là mùi hương sung sướng kia sẽ lộ ra ngay.</p>
+    <p>Liễu Diệc Như ngủ chung ổ chăn với Diệp Phi nên không sao, Trần Du Dung cũng chẳng vấn đề gì, dù sao Diệu Thiền ở cùng cô cũng là người của Diệp Phi. Chỉ có Thủy Dĩnh là xấu hổ nhất, vì người nằm chung ổ chăn với cô chính là sư muội Thủy Nhu. Nếu để cô bé phát hiện ra điều gì thì Thủy Dĩnh đúng là không còn mặt mũi nào nữa.</p>
+    <p>May mắn là sự mập mờ từ tối hôm qua khiến Thủy Nhu cũng có chút chột dạ trước mặt sư tỷ, còn ánh mắt dịu dàng pha chút trêu chọc của Diệp Phi khi nhìn về phía cô bé lại khiến cô bé bối rối không thôi, nên không ai để ý tới mùi hương lạ kia.</p>
+    <p>Vì đều mặc đồ ngủ, lại thêm việc các cô gái đều đã ngầm dành tình cảm cho Diệp Phi, nên cũng không có gì quá ngại ngùng. Họ nhanh chóng đứng dậy, Diệp Phi cũng thu toàn bộ chăn đệm vào không gian của mình. Dù sao trên đó có dấu vết yêu thương của các cô, cậu tất nhiên không muốn để người khác có cơ hội tiếp xúc.</p>
+    <p>Đối với năng lực như làm ảo thuật của Diệp Phi, các cô gái dù có biết chân tướng hay không đều đã thấy thành quen, chẳng ai hỏi thêm câu nào. Thu dọn xong xuôi, họ rời khỏi nơi chỉ mới ở lại một đêm nhưng đã khiến các cô tim đập không ngừng này.</p>
+    <p>Lúc này tuyết đọng tuy chưa tan hết, nhưng các tuyến đường chính đã được dọn sạch từ đêm, nên sau khi đi bộ một đoạn, Diệp Phi và mọi người đã bắt được mấy chiếc taxi, hướng thẳng tới sân bay.</p>
+    <p>Trong lúc Diệp Phi đang trên đường tới sân bay, Từ Chỉ Vân đang đợi ở đó lại gặp phải phiền toái. Mặc dù Diệp Phi đã nói thời gian đến, nhưng vì quá nhớ nhung, muốn nhìn thấy người yêu sớm nhất có thể nên cô không về ký túc xá mà đứng đợi ngay cửa ra vào sân bay.</p>
+    <p>Do võ lâm đại hội đã kết thúc, những du khách và võ giả bị mắc kẹt bởi trận bão tuyết đều đã bắt đầu lên đường về, nên dù thời gian còn sớm, sân bay vẫn có rất nhiều người qua lại.</p>
+    <p>Từ Chỉ Vân vốn là một tiểu mỹ nhân vạn người có một, sau khi được Diệp Phi "khai phá" lại càng kiều diễm vô cùng. Đương nhiên, điều quan trọng nhất chính là khí chất thanh thuần phảng phất như không thuộc về thế gian này của cô. Thêm vào đó là bộ đồng phục tiếp viên hàng không chỉn chu, cô đứng đó chẳng khác nào một phong cảnh đẹp nhất sân bay, khiến bất kể nam nữ qua đường đều không khỏi liếc nhìn đầy kinh ngạc.</p>
+    <p>Những ánh nhìn đó khiến Từ Chỉ Vân hơi không tự nhiên, nhưng vì muốn thấy Diệp Phi đầu tiên nên cô chọn cách mặc kệ. Thế nhưng, cô có thể không quan tâm người khác, nhưng không có nghĩa là người khác không làm phiền cô. Dù đa số mọi người chỉ liếc nhìn rồi đi qua, thì ở đâu cũng có loại người mặt dày.</p>
+    <p>Liên Thành Bích là thiếu chủ của Liên Gia Bảo ở Giang Nam, lần này đi theo cha tham gia võ lâm đại hội, sau khi kết thúc cũng không rời đi cùng cha mà ở lại Ô Thành phố.</p>
+    <p>Phải nói là cha hắn rất có tư duy, đặt cho hắn một cái tên rất kêu, mà Liên Thành Bích cũng không phụ lòng cha. Trong tiểu thuyết, Liên Thành Bích là một ngụy quân tử, còn kẻ này thì đúng là một tiểu nhân chính hiệu, thậm chí có thể coi là một tên ác bá.</p>
+    <p>Vốn dĩ hắn ở lại Ô Thành phố là muốn ỷ vào thân phận võ giả để thể hiện, dù sao bình thường võ giả không được phép xuất thế, nhưng ở Ô Thành phố vào thời điểm này thì lại hoàn toàn mở cửa cho võ giả.</p>
+    <p>Thế nhưng sau khi ở lại, Liên Thành Bích mới nhận ra mình chẳng làm được gì. Bởi vì nơi này không phải cái thị trấn nhỏ mà Liên Gia Bảo tọa lạc, ngoài hắn ra còn có rất nhiều võ giả khác. Là một thiếu chủ Liên Gia Bảo nhỏ bé, hắn chẳng thể làm mưa làm gió được, nên mới muốn rời đi, không ngờ lại bị trận tuyết lớn chặn lại.</p>
+    <p>Vốn tâm trạng đang cực kỳ khó chịu, nhưng khi nhìn thấy Từ Chỉ Vân thanh thuần như nước, hai mắt Liên Thành Bích lập tức sáng rực lên. Là một tên công tử bột có thân phận võ giả, Liên Thành Bích không phải chưa từng gặp mỹ nữ, nhưng đẹp tới mức như Từ Chỉ Vân thì cực kỳ hiếm thấy, đặc biệt là khí chất tinh khiết kia càng khiến hắn động tâm.</p>
+    <p>Khi thấy Từ Chỉ Vân mặc bộ đồng phục tiếp viên hàng không, Liên Thành Bích hoàn toàn yên tâm. Trong suy nghĩ của hắn, một nữ tiếp viên hàng không nhỏ bé thì không thể có chống lưng gì to tát, mà các võ giả khác cũng chẳng vì một mỹ nữ thế tục mà trở mặt với Liên Gia Bảo của hắn, vì thế lá gan hắn lớn hẳn lên.</p>
+    <p>"Tiểu thư xinh đẹp, chào cô, tại hạ là Liên Thành Bích, không biết có may mắn được mời cô dùng bữa sáng không?" Bất chấp ánh mắt khinh bỉ của những người xung quanh, Liên Thành Bích bước tới trước mặt Từ Chỉ Vân, bày ra tư thế mà hắn cho là tiêu sái, lên tiếng đầy vẻ nho nhã.</p>
+    <p>Từ Chỉ Vân thản nhiên liếc nhìn Liên Thành Bích một cái, chẳng buồn đáp lại, chỉ lùi lại phía sau vài bước, tránh xa tên nam nhân đáng ghét này ra một chút.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0454.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0456.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

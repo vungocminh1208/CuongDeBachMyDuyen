@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 501 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 501</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 501</small>
+    Chương 501
+  </h1>
+  <div class="chapter-body">
+    <p>"Ngọc tỷ, trong nhà có phải đã xảy ra chuyện gì rồi không?" Nhan Như Ngọc vừa ngồi vào chỗ của mình, Tống Huyên đã không thể chờ đợi được mà hỏi ngay. Nàng và Nhan Như Ngọc không hề khách sáo, bởi tình cảm giữa hai người vô cùng thân thiết. Trong cả Tống gia, ngoại trừ một đôi con cái của Nhan Như Ngọc ra, thì chỉ có Tống Huyên là thật lòng đối xử tốt với nàng. Những người khác, nam nhân thì không có ý tốt, nữ nhân thì đố kỵ ghen ghét. Ngược lại, khi Tống Huyên bị ép gả vào nơi mà nàng không hề mong muốn, thì chỉ có Nhan Như Ngọc cùng một đôi con của nàng đứng về phía Tống Huyên. "Ta chưa nghe nói qua, ngươi cũng biết, ta vốn không bao giờ tham dự vào những chuyện này." Nhan Như Ngọc nói xong, đôi mi thanh tú hơi nhíu lại. Chính cái cử chỉ lơ đãng này lại khiến Diệp Phi đang nhìn bên cạnh nảy sinh cảm giác đau lòng mãnh liệt. Hắn thầm thán phục trong lòng, không hổ là trời sinh nhu mì, so với những người dùng tu luyện mị công để thay đổi khí chất thì nàng càng có thể lay động tâm thần người khác hơn. Tống Huyên hiểu rất rõ tính cách của Nhan Như Ngọc, vì vậy vốn cũng không ôm quá nhiều hy vọng, lúc này tự nhiên cũng không cảm thấy thất vọng. Nàng quay đầu nói với Diệp Phi: "Xem ra chỉ có thể dựa vào người của ngươi thôi." Diệp Phi khẽ mỉm cười: "Yên tâm đi, năng lực làm việc của bọn họ vẫn khá ổn, tin rằng chẳng bao lâu nữa sẽ có tin tức truyền đến." Hai người đối đáp rất bình thường, nhưng Nhan Như Ngọc trong lòng lại chấn động. Khi con gái giới thiệu chàng trai này, chỉ nói là một vị cao nhân mà nó gặp được ở Vọng Hải, chứ không hề nói cho nàng biết mối quan hệ giữa Diệp Phi và Tống Huyên. Vì thế, Nhan Như Ngọc cho rằng đây chỉ là suy nghĩ nhất thời của cô con gái nghịch ngợm, đơn giản là thấy đối phương có chút công phu trong người nên sinh ra cảm giác ngưỡng mộ giống như fan cuồng theo đuổi thần tượng. Do đó, sau khi đến đây, nàng cũng không mấy để tâm đến Diệp Phi. Lúc này nghe họ đối thoại, nàng không khỏi cẩn thận đánh giá chàng trai ngoại trừ vẻ ngoài cực kỳ tuấn tú ra thì mọi thứ đều rất bình thường này. Cái nhìn này lại khiến tim nàng đập nhanh hơn một chút. Giống như vẻ đẹp trời sinh của Nhan Như Ngọc có sức hấp dẫn trí mạng đối với nam giới, Diệp Phi tu luyện Huyễn Dương Quyết chí dương cũng có sức hút gần như bản năng đối với nữ giới. Đặc biệt đối với người có thể chất chí âm trời sinh như nàng, lực hấp dẫn này lại càng mạnh mẽ hơn nhiều. Cũng giống như việc Diệp Phi vừa nhìn chằm chằm Nhan Như Ngọc, lúc này Nhan Như Ngọc nhìn hắn cũng không thể dời mắt, hơn nữa càng nhìn tim càng đập nhanh. Một trái tim thiếu nữ đã bình lặng hàng chục năm bỗng có một sự rung động đặc biệt. Sự rung động này chỉ xuất hiện từ thời thiếu nữ khi mới bị cha của Tống Từ lừa gạt mà thích ông ta, sau khi nhìn thấu bản chất của những nam nhân thế gia này và dứt khoát sống riêng, nàng đã không còn cảm giác đó nữa. Không ngờ hôm nay, khi đối mặt với một chàng trai trẻ bằng tuổi con gái mình, nó lại xuất hiện. Cảm giác hoảng hốt này khiến Nhan Như Ngọc có chút sợ hãi, vội vàng quay đầu đi không dám nhìn nữa. Thế nhưng, hình bóng kia lại như đã in sâu vào tận cùng linh hồn nàng, đuổi thế nào cũng không đi. Diệp Phi không hề hay biết Huyễn Dương Quyết của mình lại có công hiệu mạnh mẽ đến vậy, nên cũng không phát hiện ra ánh mắt kỳ lạ của Nhan Như Ngọc khi nhìn về phía mình. Thấy cả ba người đều im lặng, hắn cười nói: "Ta vẫn chưa được dạo quanh kinh thành bao giờ, hay là các ngươi đi cùng ta xem sao?" "Ta không đi đâu, các ngươi đi đi." Nhan Như Ngọc lên tiếng từ chối trước. Không chỉ vì sự rung động khiến nàng có chút sợ hãi, mà còn vì kinh nghiệm những lần xuất môn trước đây. Mỗi lần ra ngoài, dù có che chắn kín mít, đeo mũ, kính râm, khẩu trang đầy đủ không để lộ tướng mạo, nàng vẫn thu hút mọi ánh nhìn của nam giới, mà nàng lại vô cùng chán ghét kiểu ánh mắt này. Tống Huyên khẽ cười: "Vậy ta cũng không đi, ở đây trò chuyện với Ngọc tỷ, để Tiểu Từ đi cùng ngươi vậy, con bé trước giờ vẫn hay la cà bên ngoài, biết nhiều nơi hay lắm." "Đó là tất nhiên, con đi qua nhiều nơi lắm, đi cả tháng cũng không hết đâu!" Tống Từ chẳng những không thấy buồn vì mẹ nói mình như vậy, ngược lại còn tỏ ra rất tự hào. "Vậy thì đi thôi." Diệp Phi cười nói. Hắn muốn ra ngoài không phải vì quá thích dạo phố, mà vì hiện tại mọi người ngồi cùng một chỗ, ánh mắt hắn cứ bị Nhan Như Ngọc thu hút. Tuy ngắm nhìn nàng là một sự hưởng thụ, nhưng dù sao hắn cũng vừa xác định quan hệ với Tống Huyên, lại đang ở trước mặt Tống Từ, cứ nhìn chằm chằm mẹ người ta thì chẳng ra làm sao. Nhan Như Ngọc lái xe tới, Diệp Phi và Tống Từ không cần phải bắt taxi nữa. Bước vào chiếc xe có tạo hình rất tinh tế này, Diệp Phi đã ngửi thấy một mùi hương lạ, chưa từng nghe thấy bao giờ. Mùi hương này khiến người ta rất dễ chịu, đồng thời lại có một cảm giác khác lạ len lỏi trong lòng, khiến người ta rạo rực, đứng ngồi không yên. "Đây là mùi thơm cơ thể của mẹ ta đấy, thế nào, chưa từng nghe thấy bao giờ đúng không?" Tống Từ đắc ý nói: "Đây là mùi hương độc nhất vô nhị trên thế gian này đấy." Diệp Phi thật ra đã đoán được từ lâu, thầm nghĩ không hổ là nữ nhân trời sinh quyến rũ, ngay cả mùi hương cơ thể cũng có tác dụng như thế. Nhưng thấy vẻ đắc ý của Tống Từ, Diệp Phi muốn trêu chọc nàng một chút, liền hỏi: "Ngươi thật sự là con gái ruột của mẹ ngươi à?" "Đương nhiên rồi." Tống Từ hơi khó hiểu tại sao Diệp Phi lại đột nhiên hỏi như vậy. "Không đúng nha." Khóe miệng Diệp Phi lộ một nụ cười xấu xa: "Ngươi xem dáng người của mẹ ngươi kìa, gọi là cực phẩm, sao có thể sinh ra một cô con gái không nhìn đầu cũng không phân biệt được trước sau như ngươi cơ chứ?" Lời này tuy tối qua đã dùng một lần, nhưng nghe lại lần nữa Tống Từ vẫn không nhịn được nổi giận, đôi mắt to nheo lại, nghiến răng nghiến lợi nói: "Ta thấy ngươi không muốn sống nữa rồi, phải cho ngươi 'tận người vong' mới được!" Nói xong, nàng thò bàn tay nhỏ vào trong quần Diệp Phi, giống như tối hôm qua, dùng sức nắm lấy một chỗ trên người hắn. "Ơ, sao lại cứng thế này?" Vừa cầm lấy, Tống Từ đã thấy không ổn, đôi mắt nheo lại hẹp hơn, tràn đầy sát khí nhìn chằm chằm Diệp Phi: "Tại sao vừa nhắc đến mẹ ta nó lại cứng lên? Có phải ngươi có ý đồ xấu gì với bà ấy không?" "Làm gì có!" Diệp Phi vội vàng phủ nhận, giải thích thêm: "Loại hương thơm này trong xe có tác dụng rất lớn đối với nam nhân, chẳng lẽ ngươi không biết sao?" Không biết lời giải thích của Diệp Phi có tác dụng hay không, sát khí trong mắt Tống Từ thoáng chốc tiêu tan, đôi mắt to cũng mở trở lại, trong đó lộ ra ánh nhìn có chút phức tạp. Nàng khẽ thở dài: "Thật ra, chỉ cần ngươi đủ mạnh mẽ, ta không phản đối việc ngươi có ý đồ với bà ấy." "Hả?" Diệp Phi không khỏi bối rối, chuyện gì thế này? Cô nhóc này tại sao lại có suy nghĩ đó, chẳng lẽ cha nàng không còn tại thế sao? "Từ chỗ Phỉ tỷ và Lâm Linh, ta biết ngươi là người rất cưng chiều nữ nhân của mình, hơn nữa hai ngày này ta cũng thấy được thực lực mạnh mẽ của ngươi." Tống Từ lại nhẹ nhàng thở dài, thủ thỉ: "Mẹ ta những năm qua sống quá khổ sở, ngay cả ta và anh trai đều không có năng lực bảo vệ bà ấy. Nếu có một người đàn ông đủ thực lực để bảo vệ, lại có thể thật lòng yêu thương bà ấy, ta và anh trai sẽ không phản đối đâu." Diệp Phi động tâm, không ngờ cô nàng thần kinh thô kệch, bưu hãn này lại có mặt đa sầu đa cảm như vậy. Hắn muốn cho nàng một lời cam đoan, nhưng lại cảm thấy xấu hổ, chỉ có thể quyết định trong lòng, còn ngoài mặt vẫn tỏ ra bất động. "Này, ngươi có nên buông tay ra không?" Thấy Tống Từ lúc này thật sự có chút thương cảm, Diệp Phi vội đổi chủ đề. Tống Từ cũng không hổ là kiểu người thần kinh thô, rất nhanh đã quẳng phần thương cảm ấy đi, hàng lông mày đẹp khẽ nhướng lên: "Sao, ăn xong chùi mép định quỵt nợ à? Tối hôm qua sao ngươi không bảo ta buông ra?" Nói xong, nàng còn thị uy bóp mạnh một cái giống như tối hôm qua. "Đừng quậy, ta còn đang lái xe đấy!" Diệp Phi một tay giữ vô lăng, tay kia kéo bàn tay nhỏ bé của Tống Từ từ trong quần áo mình ra, đồng thời nói: "Ăn xong chùi mép cái gì? Ngươi hình như còn chưa cho ta hôn một cái đâu đấy." "Hôn môi là chuyện của người yêu, ta và ngươi chỉ là thầy trò, hiểu chưa?" Tống Từ lẽ thẳng khí hùng nói. "Vậy mà ngươi còn..." Diệp Phi nhìn xuống chỗ nhô lên trên người mình, rồi lại nhìn hai tay và cái miệng nhỏ nhắn của Tống Từ. Tống Từ trợn mắt: "Đó là lão nương đang đùa bỡn ngươi, đừng có mà tự mình đa tình nhé!" Trong tình thế cấp bách, cái từ xưng hô đó lại trở lại trên miệng cô nhóc. "Vậy tối hôm qua ta giúp ngươi, có được tính là đùa bỡn không?" Diệp Phi cười xấu xa nói. Nhớ tới cảm giác tối hôm qua, khuôn mặt Tống Từ cuối cùng cũng đỏ lên, nhưng vẫn bưu hãn nói: "Vậy thì cứ coi là lẫn nhau đùa bỡn đi, dù sao lão nương cả đời cũng không tính chuyện tìm kiếm nam nhân gì cả, thỉnh thoảng có một sư phụ để chơi đùa một chút cũng không sai." "Được rồi." Diệp Phi cuối cùng cũng bại trận, một lần nữa chuyển đề tài: "Trạm đầu tiên chúng ta đi đâu?" Thấy Diệp Phi lại một lần nữa bại dưới tay mình, Tống Từ trong lòng đắc ý vô cùng, hì hì cười một hồi lâu rồi mới tuyên bố: "Đương nhiên là Kinh thành thiếu nữ bang!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0500.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0502.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

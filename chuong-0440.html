@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 440 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 440</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 440</small>
+    Chương 440: Ngoài ý muốn được tuyển
+  </h1>
+  <div class="chapter-body">
+    <p>Nhìn thấy Đường Minh Hạo chần chờ, Diệp Chỉ Lâm có chút không vui đứng lên, hơi nhăn đôi mi thanh tú, nói: "Thế nào, Đường đại hiệp cảm thấy Diệp Phi không đủ tư cách sao?"</p>
+    <p>Đường Minh Hạo trong lòng rùng mình, tính cách cường thế của Diệp Chỉ Lâm hắn cũng đã thấy rồi. Tuy hiện tại con gái mình cùng Đường Ngọc quan hệ với nàng không tệ, nhưng ai có thể đảm bảo nàng sẽ không trở mặt đâu? Vì vậy vội vàng nói: "Không phải, Diệp thiếu hiệp tuổi trẻ tài cao, tự nhiên là đủ tư cách. Bất quá, hắn dù sao còn quá trẻ, chỉ sợ sẽ có người không phục." Cáo già này, câu đầu tiên đã đem trách nhiệm hoàn toàn đổ lên đầu người dưới đài.</p>
+    <p>Dưới đài, Diệp Phi không khỏi khẽ cười nói: "Vị Đường đại hiệp này cũng thật thông minh, vừa nói như vậy, chẳng những không cần đắc tội tiểu cô nãi nãi, mà còn có thể thành công ngăn cản ta thượng vị. Tâm cơ này, thật sự không kém vị Gia Cát đại hiệp trước kia chút nào."</p>
+    <p>Tuy lời nói của Diệp Phi rất có ý châm chọc, nhưng lần này Đường Tâm lại kỳ lạ không hề phản bác hắn, bởi vì nàng cũng cảm thấy phụ thân mình thật sự có chút mất mặt. Cho dù là thật sự phản đối Diệp Phi, cũng có thể nói thẳng ra nha, Diệp Phi cũng đâu phải loại người lòng dạ hẹp hòi, không chấp nhận được người khác phản đối.</p>
+    <p>Trong lúc thầm thấy đỏ mặt vì hành vi của phụ thân, Đường Tâm cũng không phát hiện, lòng mình không biết từ lúc nào đã bắt đầu hướng về phía Diệp Phi – cái người mà mình cứ gặp mặt là muốn cãi nhau này.</p>
+    <p>"Diệp đại ca, huynh đừng nói vậy, lão gia cả đời hiệp nghĩa, tuyệt đối không thể nào là loại người như Gia Cát Khổng Phương." Đường Tâm không nói gì, Đường Ngọc lại giải thích một câu. Sau khi chính thức ở bên Diệp Phi, nàng tuy vẫn hướng nội ngượng ngùng như trước, nhưng đôi khi cũng biết bày tỏ suy nghĩ của mình.</p>
+    <p>Diệp Phi cười nói: "Ta hiểu mà, kỳ thật cái này cũng không trách được hắn. Dù sao hắn đối với Lâm Lâm cũng chưa quen thuộc, sợ đắc tội nàng cũng là việc nên làm. Hơn nữa thân là nhất gia chi chủ, tự nhiên không thể tùy tiện hành sự, cho nên nếu đổi là ta, chỉ sợ cũng phải nói như vậy. Hơn nữa trong mắt người ngoài, ta xác thực không đủ tư cách. Dưới áp lực của tiểu cô nãi nãi, Đường đại hiệp có thể kiên trì nguyên tắc, điểm này vẫn rất đáng khâm phục."</p>
+    <p>"Cảm ơn huynh, Diệp đại ca!" Đường Ngọc vui vẻ nói. Đường Minh Hạo vẫn là người nàng rất tôn kính, thậm chí có thể nói, từ nhỏ lớn lên tại Đường Môn, vì quan hệ với Đường Tâm, trong lòng nàng đã sớm xem Đường Minh Hạo như phụ thân mình rồi.</p>
+    <p>Mà nghe được Diệp Phi giải vây cho phụ thân, trong lòng Đường Tâm cũng không lý do mà thấy ngòn ngọt, không nhịn được quay đầu nhìn về phía Diệp Phi, đột nhiên cảm thấy tên này không đáng ghét như trước nữa.</p>
+    <p>Bên này hai nữ tử Đường gia đều rất vui vẻ, nhưng trên đài Diệp Chỉ Lâm lại rất mất hứng. Nàng sở dĩ tranh vị trí minh chủ này cho Diệp Phi không đơn thuần là tinh nghịch hồ đồ, mà là nàng cảm giác Diệp Phi thật sự đủ tư cách này. Võ công trước bất luận, chỉ riêng năng lực lãnh đạo, nàng đã biết không ít từ chỗ Liễu Diệc Như. Hắn có thể quản lý tốt Lăng Vân Hội với số người lên tới hơn mười vạn, chưa kể đến tổng số ẩn thế võ giả hiện tại cũng chưa tới hai vạn.</p>
+    <p>"Chẳng lẽ ngươi chưa từng nghe câu có chí không tại lớn tuổi sao?" Vì không vui, Diệp Chỉ Lâm không khỏi trầm mặt xuống, đôi mắt đẹp nhìn chằm chằm vào Đường Minh Hạo.</p>
+    <p>Bị ánh mắt có chút bất thiện của Diệp Chỉ Lâm nhìn đến mức sợ hãi trong lòng, Đường Minh Hạo không khỏi cười khổ. Hắn không ngờ người khó đắc tội nhất lại chính là tiểu cô nãi nãi tính cách khó nắm bắt này. Vì thế, vừa rồi tuy muốn kiên trì nguyên tắc, nhưng lại đem vấn đề khó khăn này đẩy cho mọi người, không ngờ cuối cùng vẫn đắc tội nàng. Lúc này chỉ đành bất đắc dĩ nói: "Lời này Đường mỗ tự nhiên là biết, chỉ là Diệp thiếu hiệp dù sao cũng vừa mới bộc lộ tài năng trên giang hồ, trước kia không có danh tiếng gì, nếu để hắn đảm đương Minh chủ, chỉ sợ không thể phục chúng."</p>
+    <p>Đường Minh Hạo vốn đánh bạo nói ra lời trong lòng, thậm chí đã chuẩn bị tinh thần bị Diệp Chỉ Lâm làm khó dễ, không ngờ Diệp Chỉ Lâm nghe xong cũng không tức giận, ngược lại hướng về phía dưới đài nói: "Các ngươi cũng cho là như vậy sao? Nếu là như vậy, ta liền thấy bi ai thay cho các ngươi, bởi vì các ngươi cũng giống như những kẻ phàm tục kia, làm cái gì cũng chỉ chú ý lý lịch, mà không nhìn năng lực của một người. Diệp Phi thân là bang chủ Lăng Vân Hội, một bang phái gần mười vạn người đều có thể quản lý ngay ngắn rõ ràng, sao lại không thể đảm đương trách nhiệm của Minh chủ? Về phần các ngươi nói việc xử sự công bằng, khoan dung rộng lượng, thử hỏi nếu hắn không làm được, sao có thể khiến mười vạn bang chúng của Lăng Vân Hội chân thành thần phục một thiếu niên chưa tới hai mươi tuổi như hắn?"</p>
+    <p>Bài phát biểu này của Diệp Chỉ Lâm làm Diệp Phi và mọi người ngẩn ngơ. Họ không ngờ một người vẫn luôn thích tinh nghịch hồ đồ, thậm chí có chút điên khùng như nàng lại có thể ăn nói lý lẽ rõ ràng, phong thái đại tướng như vậy trong dịp quan trọng này. Nếu không phải Diệp Phi cùng Liễu Diệc Như tận mắt nhìn thấy Diệp Chỉ Lâm là được Diệp Phi cứu tỉnh, chỉ sợ còn tưởng nàng là nhân tài được huấn luyện đặc biệt từ nhỏ. Giải thích duy nhất bây giờ, chính là nàng trời sinh có năng lực này, chỉ là trước giờ chưa được phát hiện mà thôi.</p>
+    <p>Diệp Phi thầm nghĩ, để vị tiểu cô nãi nãi này làm Minh chủ cũng là một lựa chọn tốt. Bởi vì chuyện hắn cần làm thật sự quá nhiều, coi như thành Minh chủ, chỉ sợ chuyện võ giả giới cũng phải tìm người chia sẻ. Để Diệp Chỉ Lâm làm cũng không khác gì hắn nắm giữ. Từ nay về sau, nàng và tiểu di lần lượt nắm giữ đặc chiến đội và võ giả - hai thế lực có chiến lực mạnh mẽ nhất Trung Quốc mà hắn kiểm soát. Như vậy dù không có những người kia tạo nên cao thủ, hắn cũng đủ sức so tài với bất cứ ai.</p>
+    <p>Mà trong số người ở trường, người có suy nghĩ Diệp Chỉ Lâm đủ đảm đương chức Minh chủ không chỉ có Diệp Phi, mà đại đa số mọi người đều cho rằng như vậy. So với một Diệp Phi không biết sâu cạn, trong lòng họ càng kính ngưỡng vị siêu cấp cao thủ từng ra tay như Diệp Chỉ Lâm hơn. Bởi vậy, từ trong góc, đột nhiên vang lên một giọng nói: "Diệp cô nương, không bằng cô làm Minh chủ đi!"</p>
+    <p>Tiếng nói còn chưa dứt, khi mọi người còn chưa kịp phản ứng, những người ở góc kia đều hô lớn theo: "Diệp cô nương làm Minh chủ!" Do có hơn mười người đồng loạt hô to, thanh thế cũng không hề nhỏ.</p>
+    <p>Tuy những người ở góc này không phải cao thủ đức cao vọng trọng gì, nhưng đôi khi mọi người cũng khó tránh khỏi bị tình huống như vậy dẫn dắt tâm trạng. Hơn nữa Diệp Chỉ Lâm chẳng những võ công cao cường, trước đó còn dạy dỗ Lô Nhất Phong ngang ngược, giúp mọi người trút được một ngụm ác khí, khiến trong lòng mọi người âm thầm cảm kích nàng. Cho nên lúc này bị người khác khơi mào, mọi người đều hô theo. Trong chốc lát, hơn một ngàn người trong sơn cốc có tới hơn chín trăm người ủng hộ Diệp Chỉ Lâm, khiến nàng ngay lập tức trở thành tiêu điểm hướng tới của mọi người.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0439.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0441.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

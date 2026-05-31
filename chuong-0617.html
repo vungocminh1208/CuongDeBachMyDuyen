@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 617 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 617</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 617</small>
+    Chương 617: Dâm lưỡi kịch tươi đẹp mẫu
+  </h1>
+  <div class="chapter-body">
+    <p>Nếu như là ở mấy tháng trước, khi nhi tử làm ra những hành động này lúc hắn đã hiểu chuyện, Liễu Diệc Như tuyệt đối chỉ có thể cảm thấy ấm áp. Thế nhưng hiện tại thì không như thế, nàng lúc này đã đem cả người triệt để giao cho nhi tử, ngay cả phía dưới nơi mà chính mình vốn tưởng rằng sẽ phong bế cả đời, cũng đã bị nhi tử - người do chính mình sinh ra - dùng đại dương vật đâm vào trộn lẫn không biết bao nhiêu lần. Bởi vậy, tình mẹ con giữa hai người từ lâu không còn thuần túy. Cho nên khi nhi tử nhào vào trong lòng mình, Liễu Diệc Như trong lòng ngoại trừ cảm giác ấm áp lâu ngày không gặp ra, còn có một loại cảm giác quái dị.</p>
+    <p>Cơ hồ là bản năng, Liễu Diệc Như khẽ vỗ về đỉnh đầu Diệp Phi, ôn nhu nói: "Tiểu Mãn ngoan, mẹ thương con."</p>
+    <p>Lời gọi từ sâu trong ký ức này khiến Diệp Phi không khỏi nhớ lại thời thơ ấu của mình, nơi mà bản thân còn xa mới kiên cường như lúc trưởng thành. Mỗi lần bị ủy khuất, cậu cũng sẽ nằm trong lòng mẹ để tìm kiếm sự an ủi. Hiện tại lại nghe được âm thanh lâu ngày không gặp ấy, trong lòng cậu không khỏi thầm cảm khái, câu "Phụ nữ thật khó lường" quả thực không sai chút nào, ngay cả nữ thần là mẹ mình cũng không ngoại lệ. Nghĩ đến lúc nàng làm việc thì lãnh diễm cao quý, đối diện với mình và chị em thì ôn nhu từ ái, riêng tư hoan hảo cùng mình thì dâm đãng phóng túng, khi ở bên hai dì thì ngượng ngùng uyển ước, lại thêm lúc này đây, kiểu khí chất chỉ dành riêng cho mình, thật sự là tuyệt nhiên khác biệt. Thế nhưng mỗi một loại lại đều mê người đến nhường này, khiến cậu yêu nàng mãi đến tận thiên hoang địa lão cũng còn thấy không đủ.</p>
+    <p>Động tình như sóng trào, Diệp Phi càng muốn dùng bản lĩnh vừa học được để mẹ thư thái, chỉ khổ nỗi cách lớp quần áo, không thể trực tiếp tiếp xúc với làn da hoàn mỹ của mẹ. Cậu đành một bên há miệng ngậm lấy một bên núm vú nhỏ nhắn qua lớp vải, một bên hàm hồ nói: "Mẹ, con muốn bú sữa!"</p>
+    <p>Từ khi thực sự cùng nhi tử dây dưa, Liễu Diệc Như đã càng ngày càng không nhìn hắn như một đứa con trai nữa. Tuy rằng mỗi lần bị hắn đâm rút đều sẽ gọi "mẹ con" không ngừng, nhưng đó đều chỉ là vì tăng thêm tình thú, còn trong lòng nàng thì đã triệt để coi hắn là người đàn ông của mình. Dẫu cho ở Thiên Sơn lần đó, nàng tìm về một chút cảm giác mẹ con, nhưng nhiều hơn vẫn là tâm ý hầu hạ người đàn ông của mình.</p>
+    <p>Có điều lần này lại khác, hành động vô tình của Diệp Phi đã hoàn toàn khơi dậy tình mẫu tử sâu đậm của Liễu Diệc Như, làm cho nàng lần đầu tiên tỉnh táo nhận ra, đứa bé đang nằm trong lòng mình làm nũng đòi bú sữa này chính là con trai ruột của mình.</p>
+    <p>Bị cảnh tượng từ sâu trong ký ức khơi dậy tình mẹ, Liễu Diệc Như chẳng những không ngăn lại nhi tử, trái lại còn bị loại kích thích loạn luân cùng con trai ruột làm cho muốn điên lên. Hơn nữa, loại công pháp mà họ tu luyện vốn có khả năng hút lấy nhau, tuy rằng lúc này nhi tử chỉ mới hôn môi bầu vú qua lớp quần áo, cũng đã khiến dục hỏa của nàng dâng lên đến mức có thể so với lúc được hắn thỏa mãn nhất. Tiểu dâm huyệt vốn chỉ vì nhi tử tiếp xúc mà rỉ ra vài tia dâm thủy, nay trong nháy mắt như vỡ đê, mãnh liệt trào ra, chỉ hận không thể lập tức để đại dương vật của nhi tử cắm vào mà giày xéo mình một phen.</p>
+    <p>"Con trai ngoan, mau lại đây đi." Liễu Diệc Như rên rỉ nói, đồng thời thầm vận nội lực, chấn động chiếc áo ngủ trên người thành mảnh vụn, trong nháy mắt khiến thân thể gợi cảm trắng mịn hoàn toàn bại lộ trước mắt nhi tử, đại đại tách đôi chân ngọc thon dài, quấn chặt lấy hông hắn.</p>
+    <p>Tâm linh tương thông khiến Diệp Phi ngay lập tức nghe được dục hỏa như dung nham bao hàm trong thanh âm ôn nhu kia của mẹ. Có điều, vì muốn khoe khoang, cậu không lập tức thỏa mãn mẹ mà dùng sức đâm vào, mà dùng miệng lưỡi lưu luyến trên bầu vú mẹ, đồng thời đem một bên đùi tráng kiện đè lên dưới háng mẹ, dùng lớp vải thô ráp của quần jean mạnh mẽ ma sát tiểu dâm huyệt đang dương lên cực điểm của nàng.</p>
+    <p>Há miệng, Diệp Phi vận dụng năng lực vừa học được, đem bầu vú mà trước đây mình chỉ có thể ngậm được non nửa nay thu trọn vào miệng. Đầu lưỡi linh xảo như một con rắn nhỏ quấn quýt trên bầu nhũ thịt mềm mại đến cực điểm, khi thì liếm láp đầu vú, khi thì nhẹ nhàng quấn lấy nó.</p>
+    <p>Hoàn toàn đắm chìm trong niềm vui loạn luân vô tận, Liễu Diệc Như không hề chú ý đến việc kỹ năng miệng lưỡi của nhi tử đã tiến bộ rất xa khi hầu hạ mình, chỉ nhắm nghiền đôi mắt đẹp, thỏa thích hưởng thụ, đồng thời phát ra từ cổ họng một loại âm thanh mà trước đây nàng chưa từng phát ra.</p>
+    <p>Loại âm thanh này càng cổ vũ dục hỏa đã nồng đậm đến cực điểm của hai mẹ con. Không ai trong hai người biết rằng, Liễu Diệc Như khi động tình đến cực hạn lại có thể phát ra âm thanh kiều mị như vậy. Diệp Phi có thể khẳng định, loại âm thanh này cho dù không phải phát ra từ người mẹ yêu quý nhất của mình, mà là một người phụ nữ xa lạ, cậu nghe thấy cũng sẽ không nhịn được mà cứng lên.</p>
+    <p>Chỉ bằng âm thanh này, sự mê hoặc đối với đàn ông đã không thấp hơn loại Mị cốt thiên bẩm như Nhan Như Ngọc. Hơn nữa chủ nhân của âm thanh này lại là người mẹ mà mình yêu nhất và cũng quyến rũ nhất, dục hỏa vốn đã phồng trướng đến cực điểm của Diệp Phi trong giây lát lại tăng thêm mấy trăm phần trăm, chỉ cảm thấy dương vật của mình như muốn nổ tung.</p>
+    <p>Dùng hết tất cả nghị lực, Diệp Phi mới cố nén kích động muốn lập tức đem dương vật mạnh mẽ đâm vào đường nối tươi đẹp đã đưa mình tới nhân thế kia của mẹ, thế nhưng cậu cũng không còn thỏa mãn với việc chỉ lưu luyến ở trước ngực nàng. Cậu nhả bầu vú đã bị mình hút đến đỏ ửng, dọc theo bụng phẳng lì hôn xuống, cuối cùng đi tới nơi no đủ hấp dẫn nhất giữa hai chân nàng.</p>
+    <p>Cẩn thận từng li từng tí, Diệp Phi phảng phất như đang đối mặt với một tác phẩm nghệ thuật trân quý nhất, duỗi dài đầu lưỡi, nhẹ nhàng liếm qua đám lông âm hộ dày đặc, đôi môi lớn no đủ, đôi môi nhỏ mềm mại, cuối cùng mới dùng sức hôn lên cái dâm huyệt thế gian tươi đẹp nhất, phảng phất như trái đào mật nứt ra kia, dùng đầu lưỡi đỉnh mở miệng lồn vẫn còn chặt khít như xử nữ dù đã bị đại dương vật như Siêu Thần khí của cậu chọc vào vô số lần, mút lấy mật ngọt bên trong.</p>
+    <p>Để con trai ruột liếm lồn, chuyện này đối với mỗi người mẹ trên đời đều là chuyện hết sức hoang đường, thế nhưng Liễu Diệc Như lại sớm đã thành thói quen. Trong lúc bị nhi tử làm cho càng ngày càng thoải mái, nàng nhẹ nhàng gác một chân ngọc thon dài lên vai nhi tử, chân còn lại giẫm trên đất, cái mông lớn hơi nhếch lên, để tiểu dâm huyệt no đủ càng thêm lồi ra, thuận tiện cho con trai liếm láp. Đồng thời nàng cúi đầu, ôn nhu nhìn người con trai vừa là con ruột, lại vừa là chàng trai mình yêu say đắm. Chỉ vì cảm xúc vừa rồi, lúc này nhìn vào mắt hắn, ngoại trừ dục vọng nồng đậm cùng nhu tình sâu sắc, còn có thêm rất nhiều tình mẫu tử vĩ đại vốn đã suýt chút nữa biến mất trong ánh mắt nàng.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0616.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0618.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

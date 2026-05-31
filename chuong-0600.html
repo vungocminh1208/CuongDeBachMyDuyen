@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 600 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 600</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 600</small>
+    Chương 600: Chị gái cưỡi lấy vị
+  </h1>
+  <div class="chapter-body">
+    <p>Bởi vì biết viên thuốc này ngoài việc khiến nữ nhân dục hỏa tăng lên điên cuồng thì căn bản không có một chút tác dụng phụ nào, Diệp Phi chẳng những không ngăn cản, trái lại đang mong đợi hiệu quả một lúc sau: Tỷ tỷ vốn dĩ đã vô cùng cuồng dã, dưới sự trợ hứng của nó sẽ mê người đến mức nào đây?</p>
+    <p>Viên thuốc vào nước liền tan, Diệp Vân Anh không chút nào nghi ngờ, nhận lấy rồi phóng khoáng uống một hơi cạn sạch, còn quay sang Hứa soái giơ đáy chén lên.</p>
+    <p>Hứa soái trong lòng mừng rỡ, vội vàng cáo từ rồi đi ra ngoài. Viên thuốc này phát huy tác dụng rất nhanh, hắn muốn tranh thủ ra ngoài bố trí một chút. Còn về người bạn trai kia của Diệp Vân Anh, hắn căn bản không để vào mắt, nhìn dáng vẻ mặt trắng nhỏ kia thì làm sao có thể là đối thủ của một phó xã trưởng Tiệt Quyền Đạo như hắn?</p>
+    <p>Sau khi Hứa soái rời đi, Diệp Phi vừa tiếp tục trò chuyện với tỷ tỷ, vừa thả ý niệm theo Hứa soái xuống phòng khách dưới lầu. Hắn thấy Hứa soái cho thị giả một khoản tiền boa rất hậu hĩnh rồi dặn dò vài câu, người thị giả kia sau đó liền lên lầu, đứng ngoài bao sương của Diệp Phi.</p>
+    <p>Nhìn thấy động tác của đối phương, Diệp Phi hơi sững sờ, lập tức lại thấy buồn cười. Xem ra mình thật sự đã xem thường tên Hứa soái này, tâm tư đủ cẩn mật! Hắn biết Diệp Vân Anh dù cho dược tính phát tác cũng không thể chạy vào nhà vệ sinh hay những nơi tương tự để giải quyết, chắc chắn phải mở một phòng khác, nên liền an bài một thị giả có thể khống chế để nắm bắt hành tung của Diệp Vân Anh bất cứ lúc nào.</p>
+    <p>Tuy nhiên, Diệp Phi cũng chỉ cảm khái một chút, bởi vì kể từ giây phút bỏ thuốc vào chén của Diệp Vân Anh, vận mệnh của Hứa soái đã bị định đoạt. Đối với một kẻ sắp chết, Diệp Phi không hề bận tâm.</p>
+    <p>Vào lúc này, Diệp Vân Anh bắt đầu có phản ứng. Nàng chỉ cảm thấy trên người càng ngày càng nóng, trong lòng dâng lên dục vọng khó nói, nhưng nàng cũng không để ý lắm. Bởi vì trước khi gã đáng ghét kia bước vào, nàng nhìn đệ đệ âu yếm của mình cũng đã có chút ngứa ngáy, lúc này chỉ cho rằng cảm giác bị cắt đứt vừa rồi lại quay trở lại.</p>
+    <p>Nhưng theo thời gian trôi qua, dục hỏa của Diệp Vân Anh chẳng những không giảm mà càng thêm mãnh liệt. Nàng thậm chí có thể cảm nhận được khe suối róc rách của mình đã làm ướt sũng lớp quần mỏng, dính vào ghế salon dưới thân.</p>
+    <p>Không tự chủ được, Diệp Vân Anh chậm rãi đưa tay trái xuống dưới, cách lớp quần ấn mạnh vào tiểu dâm huyệt đang ngứa ngáy khó chịu, đôi mắt đẹp vốn sáng ngời lúc này tràn đầy vẻ mê ly. Nàng chỉ si ngốc nhìn đệ đệ âu yếm bên cạnh, nếu ba người bên cạnh không phải là Lệ Lệ và các bạn, mà là đại tỷ, nhị tỷ hay tiểu muội của nàng, nàng nhất định sẽ dùng tốc độ nhanh nhất xé toạc quần áo của mình và đệ đệ, nuốt trọn đại dương vật mê người kia vào tiểu dâm huyệt trống vắng khó nhịn, để hắn hung hăng địt mình một trận.</p>
+    <p>Diệp Vân Anh tuy rằng cực kỳ táo bạo, nhưng dù sao cũng là cô gái dâm đãng kín đáo, nên căn bản không làm được chuyện tuyên dâm trước mặt chị em, chỉ có thể dựa vào tay mình. Cho đến khi thật sự không chịu nổi nữa, nàng mới đứng lên, vội vã nói một câu: "Ta đi ra ngoài một chút."</p>
+    <p>Không đợi người khác hỏi, nàng liền bước nhanh ra ngoài.</p>
+    <p>"Tiểu Anh làm sao vậy?" Linh Linh kỳ quái hỏi.</p>
+    <p>"Có lẽ là đi nhà vệ sinh." Diệp Phi cười nói, cũng không lập tức đi theo mà đầy hứng thú dùng ý niệm chú ý bên ngoài. Làm vậy không phải vì hắn không thương tỷ tỷ, không muốn mau chóng giúp nàng giải ngứa, mà là vì muốn cho nàng một bài học nhỏ, để sau này nàng có thể đề cao cảnh giác, tránh việc rượu của ai cũng dám uống.</p>
+    <p>Thấy Diệp Phi nói vậy, ba cô gái cũng không xoắn xuýt vấn đề này, thừa dịp Diệp Vân Anh không có ở đây, vội vàng hỏi Diệp Phi về "lịch sử yêu đương" của hai người.</p>
+    <p>Lại nói Diệp Vân Anh, sau khi ra đến phòng khách, đúng như dự đoán của Diệp Phi, nàng không vào nhà vệ sinh mà muốn mở một phòng khác. Xảo hợp thay, lúc này có một phục vụ đứng ngoài cửa, nàng thuận lợi mở được phòng khách sát vách rồi vội vã đi vào. Nàng không hề hay biết rằng, ngay sau khi nàng bước vào, người phục vụ kia liền lấy điện thoại ra nhấn nút gửi tin nhắn.</p>
+    <p>Không lâu sau, Hứa soái từ dưới lầu đi lên, không nói một lời với người phục vụ, chỉ kín đáo nhét cho hắn một xấp tiền rồi nhận lấy chùm chìa khóa.</p>
+    <p>Làm xong giao dịch này, Hứa soái định đẩy cửa bao sương đi vào, người phục vụ cũng định rời đi. Nhưng đúng lúc đó, hai bóng người đột ngột vô thanh vô tức xuất hiện bên cạnh họ, ra tay đánh ngất bọn họ trước khi kịp phản ứng, sau đó xách họ lên như xách gà con rồi rời đi. Toàn bộ quá trình vô cùng trôi chảy, không hề kinh động đến bất kỳ nhân viên phục vụ nào khác.</p>
+    <p>Hai người kia chính là hộ vệ Diệp Phi an bài cho tỷ tỷ. Thấy họ làm việc gọn gàng, Diệp Phi âm thầm gật đầu, lại cùng ba cô gái tán gẫu một phen về "lịch sử yêu đương" của mình và tỷ tỷ, mới lấy cớ đi nhà vệ sinh để rời khỏi phòng.</p>
+    <p>Lúc này, Diệp Vân Anh trong phòng khách đã cởi bỏ hết trang bị trên hạ thân, ngồi trên chiếc ghế salon rộng lớn, đôi chân ngọc thon dài mở rộng, tay phải đặt ở dưới háng, ngón giữa thon dài đâm vào tiểu dâm huyệt màu mỡ nhanh chóng đánh cắm, tay trái đặt trên ngực, không ngừng xoa bóp đôi ngực to lớn qua lớp quần áo. Mặt nàng lộ vẻ dâm đãng, miệng nhỏ khẽ nhếch, lẩm bẩm, nếu nghe kỹ sẽ thấy nàng không ngừng gọi hai chữ "đệ đệ".</p>
+    <p>Thấy cảnh này, Diệp Phi biết tỷ tỷ đã bị hành hạ đến thảm, liền đưa tay đặt lên cửa phòng khách, dùng nội lực chấn mở khóa rồi nhanh chân bước vào, sau đó khóa trái cửa lại.</p>
+    <p>Diệp Vân Anh tuy đang chìm trong dục hỏa nhưng vẫn còn chút lý trí, nghe tiếng cửa động không khỏi cả kinh. Tuy nhiên, khi nhìn thấy người bước vào đúng là đệ đệ mà mình khao khát nhất, nàng lập tức thanh tỉnh trở lại, hai chân óng ánh lại mở ra, ngón tay trong lồn khuấy động tốc độ càng nhanh hơn.</p>
+    <p>"Hảo đệ đệ, ngươi đã tới, tỷ tỷ khổ sở quá, mau tới giúp tỷ tỷ một chút!"</p>
+    <p>Nói rồi, Diệp Vân Anh còn nâng mông lên, trưng ra tiểu dâm huyệt đang giàn giụa dâm thủy cho hắn xem.</p>
+    <p>"Tốt."</p>
+    <p>Diệp Phi đáp một tiếng, đi tới bên cạnh tỷ tỷ, nhưng không lập tức rút dương vật ra cắm vào lồn nhỏ giải ngứa như nàng mong muốn. Hắn đứng bên cạnh, đưa tay cởi bộ quần áo đã nhăn nhúm của nàng, giải phóng đôi ngọc nhũ mê người, hai tay nhẹ nhàng thưởng thức rồi cười nói: "Bất quá ta muốn thử một chút chúng nó."</p>
+    <p>Đệ đệ xoa nắn khiến dục hỏa của Diệp Vân Anh càng thêm dồi dào, ngón tay đâm vào tiểu dâm huyệt kêu lên chít chít. Nàng dùng chút lý trí còn sót lại cầu khẩn: "Hảo đệ đệ, thân đệ đệ, ngươi muốn làm sao cũng được, nhưng đợi lát nữa có được không? Lồn tỷ tỷ ngứa quá, van cầu ngươi nhanh chóng dùng đại dương vật địt tỷ tỷ đi!!"</p>
+    <p>Diệp Phi cười xấu xa: "Giờ biết lồn ngứa rồi à? Ai bảo rượu của ai cũng dám uống, cứ ngứa thêm lát nữa đi."</p>
+    <p>"Đó chẳng phải vì có ngươi ở bên cạnh sao? Bình thường nhân gia rất cẩn thận mà." Diệp Vân Anh oan ức nói, đồng thời vươn tay trái ra cởi thắt lưng của đệ đệ, nhưng vì quá gấp gáp nên nhất thời không cởi nổi.</p>
+    <p>Diệp Phi không ngờ tỷ tỷ vốn đại đại liệt liệt của mình còn có mặt "thô trong có tế" như vậy. Xem ra mình thật sự trách oan nàng. Đã vậy, "trừng phạt" cũng không cần thiết nữa, hắn giúp nàng cởi quần mình, thả ra đại dương vật đã cứng như sắt từ lâu, cười nói: "Vậy thì cho ngươi đấy."</p>
+    <p>Nhìn thấy đại dương vật khả ái nhất của đệ đệ yêu quý nhất ngay lúc đang khao khát nhất, Diệp Vân Anh vui sướng không nhịn được ngẩng đầu lên, hôn mấy lần vào đầu quy đầu, rồi lôi kéo đệ đệ đứng vào giữa hai chân mình, dẫn dắt đại dương vật đứng vững nơi tiểu dâm huyệt trơn trợt, mông to dùng sức ưởng lên, nuốt trọn dương vật tận gốc.</p>
+    <p>"Gào..."</p>
+    <p>Sự đầy đặn to lớn khiến Diệp Vân Anh thoải mái lãng kêu một tiếng, lập tức không chút ngần ngại dùng hai tay chống sô pha, mông to nhanh chóng dập động, để tiểu dâm huyệt phun nuốt đại dương vật của đệ đệ, miệng không ngừng lãng kêu: "Hảo đệ đệ... thân đệ đệ... dương vật của ngươi... địt tỷ tỷ... thoải mái quá... đại dương vật của đệ đệ, Lão Công... ngươi cũng động đi... tỷ tỷ cho ngươi... địt tỷ tỷ... tiểu dâm huyệt..."</p>
+    <p>Thấy tỷ tỷ thật sự lãng đến không chịu nổi, Diệp Phi nằm đè lên ngực nàng, như đứa trẻ tham ăn liên tục thay phiên mút lấy hai đầu vú đang sung huyết đứng thẳng, hai tay nâng đỡ mông to của nàng, dập động vòng eo, hít một hơi rồi bắt đầu một vòng địt làm điên cuồng nhất, thẳng khiến Diệp Vân Anh thoải mái đến mức dục hỏa do xuân dược gây nên đều chuyển hóa thành khoái cảm vô tận.</p>
+    <p>Tỷ đệ hai người điên cuồng giao hợp, nhưng lại không biết rằng, mặc dù bao sương của quán rượu cách âm rất tốt, nhưng vạn sự đều có ngoại lệ. Ngoại lệ đó là bức tường giữa căn phòng này và căn phòng vừa rồi đã từng bị người ta phá hoại, không chỉ cách âm kém xa mà còn để lại một khe hở đủ để nhìn thấy toàn bộ bao sương của nhau.</p>
+    <p>Lại nói ba cô gái sát vách, sau khi Diệp Phi đi ra không lâu, liền mơ hồ nghe được tiếng ân ái nam nữ truyền đến từ phòng bên cạnh. Là những cô gái thời đại mới, các nàng đã từng lén lút xem qua không ít bộ phim đảo quốc nên đối với âm thanh này tuyệt đối không xa lạ, nhất thời không khỏi đỏ mặt tía tai. Để xóa tan lúng túng, các nàng đành cố ý nói chuyện to tiếng hơn.</p>
+    <p>Nhưng qua một hồi lâu, động tĩnh sát vách chẳng những không đình chỉ mà âm thanh càng lúc càng lớn, truyền vào tai các nàng càng lúc càng rõ, khiến các nàng không chỉ lúng túng hơn mà trên người cũng không tránh khỏi khô nóng. Thậm chí các nàng ngượng ngùng phát hiện, nơi nào đó mà mình từng lén lút đụng chạm cũng đã mơ hồ có chút ướt át.</p>
+    <p>"Đây là ai vậy, không có lòng công đức chút nào, không sợ ảnh hưởng người khác sao?" Lệ Lệ bất mãn lẩm bẩm.</p>
+    <p>Dung dung lại hơi nhíu mày, nói: "Âm thanh này, sao ta nghe giống Tiểu Anh thế nhỉ."</p>
+    <p>Bị Dung Dung nhắc nhở, hai nữ cũng đều nhận ra. Nhất là Lệ Lệ mê bát quái không nhịn được cười nói: "Nghe tới đúng là giống thật! Chẳng lẽ bọn họ không nhịn được nên vào phòng bên cạnh làm? Không được, ta phải nghe kỹ chút mới được!"</p>
+    <p>Nói đoạn, nàng đi tới sát vách, nằm bò ra đó cẩn thận lắng nghe. Hai cô gái kia cũng đi theo qua đó. Âm thanh kiểu này nếu là người lạ, các nàng nghe xong sẽ thấy ngượng ngùng, thậm chí buồn nôn, nhưng nếu là tỷ muội tốt của mình, thì lại là chuyện khác.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0599.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0601.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

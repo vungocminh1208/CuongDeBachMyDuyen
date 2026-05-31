@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 490 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 490</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 490</small>
+    Chương 490: chức vụ của tiểu di
+  </h1>
+  <div class="chapter-body">
+    <p>Một hơi thuấn di hai mươi lần, lại chỉ mất vài giây, nói cách khác, trong vài giây ngắn ngủi này, hắn vậy mà vượt qua quãng đường hơn trăm km, đây là loại năng lực cường đại cỡ nào! Bất quá, sau hai mươi lần thuấn di, Diệp Phi vẫn chưa đã ghiền nhưng lại không thể không dừng lại, bởi vì thứ này tuy dùng tốt nhưng tiêu hao nội lực thật sự quá lớn. Cho dù với tu vi nội công có thể nói là có một không hai thiên hạ của hắn lúc này, hai mươi lần thuấn di xuống cũng đã tiêu hao sạch sẽ toàn bộ nội lực, tốc độ khôi phục căn bản không kịp bù đắp. Tuyệt kỹ nghịch thiên như vậy, quả nhiên không thể tùy tiện dùng. Bất quá dù vậy, Diệp Phi cũng đã rất vui vẻ rồi. Hiện tại trong phạm vi phương viên hai trăm dặm, không còn bất cứ vật gì có thể cản trở hắn, chỉ cần nằm trong phạm vi này, hắn có thể xuất hiện tại bất cứ nơi đâu bất cứ lúc nào. Hơn nữa, theo thực lực tăng lên, phạm vi này còn có thể tiếp tục mở rộng. Quan trọng nhất là, dù đến nơi rồi mà nội lực tiêu hao hết, hắn cũng không hề sợ hãi, bởi vì ngoài nội lực ra, hắn còn có sức mạnh thể chất cường đại không hề thua kém nội kình. "Ong ong ong..." Tiếng cánh quạt vang lên cắt ngang dòng suy nghĩ của Diệp Phi đang cười ngây ngô. Ngẩng đầu nhìn lại, chỉ thấy trên bầu trời có hơn hai mươi chiếc trực thăng quân dụng đang từ các hướng bay về phía nơi hắn đang đứng. Dựa vào, chẳng lẽ là radar phát hiện ra mình, coi mình là vật thể bay không xác định rồi? Diệp Phi hơi tự kỷ nghĩ thầm, nhìn quanh một vòng mới phát hiện là mình đa tình rồi. Hóa ra hắn lung tung thuấn di một trận, vậy mà lại đi tới gần quân khu Vọng Hải, mà mục tiêu của đám máy bay kia đều là sân bay quân dụng trong quân khu. Xảy ra chuyện gì mà bày ra trận thế lớn như vậy? Diệp Phi không hề đỏ mặt vì đoán sai, mà là nảy sinh hứng thú với mấy chiếc máy bay rõ ràng không cùng đến từ một nơi này, vì thế bước nhanh về phía cổng quân khu cách đó không xa. Hiện tại quân khu Vọng Hải đối với Diệp Phi mà nói gần như là hậu viện nhà mình, bởi vì vài lần ghé thăm trước đó, cả lính gác cổng lớn lẫn đại viện đặc chiến đội đều đã biết mặt hắn. "Đại ca, hôm nay có chuyện gì vậy?" Đi tới cổng lớn, Diệp Phi không đi vào ngay mà hỏi người lính gác đang trực. Người lính gác kia tuy không kính nể Diệp Phi như người trong đặc chiến đội, nhưng cũng biết hắn là cháu trai của vị tướng quân mới được đề bạt, vì vậy vẫn rất khách khí. Tuy nhiên sau khi nghe câu hỏi của hắn, anh ta lại kinh ngạc mở to mắt hỏi: "Anh không biết là chuyện gì à?" "Tôi vô tình đi ngang qua đây thôi." Diệp Phi cười cười nói: "Chẳng lẽ chuyện này còn liên quan đến tôi sao?" "Đương nhiên là có liên quan." Người lính gác kia cũng cười: "Hôm nay là ngày đặc chiến đội Liễu trung tướng nhận chức vụ mới, nghe nói đặc chiến đội cả nước đều đã đến đây, cô ấy không báo trước với anh sao?" "À, đoạn thời gian trước tôi đi nơi khác, vừa mới trở về." Diệp Phi cười lảng sang chuyện khác, nhưng trong lòng cũng đã đoán được đại khái. Tiểu di không nói trước với mình, sợ là muốn cho mình một bất ngờ. Mà có thể làm cho cô ấy như vậy, hẳn là chức vụ lần này rất hợp ý cô ấy. Cáo biệt người lính gác, Diệp Phi thản nhiên đi vào quân khu, nhân lúc không ai chú ý lại dùng chút nội lực vừa hồi phục để thuấn di một lần nữa, trực tiếp xuất hiện bên ngoài đại viện đặc chiến đội. Hắn phát hiện nơi này cực kỳ náo nhiệt, hơn nữa người đang gác ở cửa lại chính là hai vị đội phó Trương Cường và Lý Vân. "Trương thúc, Lý thúc, hai người không phải là phạm lỗi gì rồi chứ? Sao lại bị hạ xuống canh cổng thế này?" Diệp Phi bước lên trước, trêu chọc hai người. Nhìn thấy Diệp Phi, trong mắt hai người lóe lên vẻ mừng rỡ. Trương Cường cười lớn nói: "Cậu tiểu tử này thật lâu không tới rồi, vừa rồi Trương thúc đây còn đang nghĩ, hôm nay cậu nhất định sẽ tới." Đối mặt với những quân nhân dũng mãnh thẳng thắn này, tâm trạng Diệp Phi cũng rất tốt, cười nói: "Đến thì đến rồi, chỉ là chưa biết có chuyện gì. Vừa rồi nghe lính gác ở cổng nói, là tiểu di của cháu có mệnh lệnh mới, đúng không ạ?" "Không sai, bằng không sao mà nhiều đại nhân vật đến thế chứ." Lý Vân nói xong chỉ tay vào trong sân. Diệp Phi nhìn theo, quả nhiên trong đó có rất nhiều người, chỉ riêng hàm đại tá đã có hơn hai mươi người, bản thân hắn cũng thấy vài gương mặt quen thuộc. Ngoài ra, lão đại quân khu là Từ lão gia tử cũng ở trong đó. "Vậy hai chú có biết chức vụ mới của tiểu di cháu là gì không?" Diệp Phi bát quái hỏi. Tuy một lát nữa mọi người sẽ biết hết, nhưng hắn vẫn không nhịn được muốn biết trước một chút. Trương, Lý hai người lắc đầu. Lý Vân nói ra: "Chính thức thụ hàm trung tướng là điều chắc chắn rồi, còn là chức vụ gì thì vẫn đang giữ bí mật, một lát nữa mới công bố." "Ra là vậy." Diệp Phi gật đầu, nghĩ thầm bộ đội làm việc cũng rề rà thật. Rõ ràng đã định xong từ lâu, tiểu di thậm chí còn thay cả quân hàm, không ngờ buổi lễ trao quân hàm chính thức lại phải đợi tới bây giờ. Hắn nào biết đâu rằng, nếu là quân hàm nhỏ thì dễ nói, chứ trung tướng là cấp bậc đã bước vào hàng ngũ cao tầng chính thức của quân đội, cả nước Trung Quốc cũng không có bao nhiêu người, đương nhiên phải thận trọng hơn nhiều. "Bất quá đại khái cũng có thể đoán được một hai." Vì Diệp Phi không phải người ngoài, Trương Cường lúc này mới nói ra suy đoán của mình: "Hẳn là Trung đoàn trưởng đặc chiến đội toàn quốc, bằng không đám đại đội trưởng kia sao lại đều chạy tới?" Lý Vân cũng gật đầu tán thành, nghĩ là tám chín phần mười rồi. Nhưng so với vẻ mừng rỡ của hai người, Diệp Phi lại âm thầm nhíu mày. Nếu là trước lần hành động kia, tiểu di có được chức vụ này thì rất đáng mừng. Nhưng hiện tại đã khác, trải qua lần hợp tác vừa rồi, tất cả các đội đặc chiến đều coi hắn và tiểu di là thần tượng. Cho dù không có chức vụ này, tiểu di cũng đã ẩn ẩn trở thành tổng chỉ huy của tất cả các đội đặc chiến rồi. Cho nên đối với cô ấy lúc này, đây căn bản chỉ là một cái hư danh, hoặc nói là một cái danh phận đường hoàng cho hợp thời thế, còn không bằng làm tư lệnh quân khu Vọng Hải thì thiết thực hơn. Tuy có suy nghĩ như vậy nhưng Diệp Phi không nói cho hai người Trương, Lý đang rất vui mừng kia biết. Hơn nữa, ngẫm lại thì việc có thể chân chính nắm giữ chi quân đội tinh nhuệ nhất toàn Trung Quốc này cũng là chuyện tốt với tiểu di. Thêm nữa, với tính cách của cô ấy, nếu bắt cô ấy quản lý toàn bộ quân khu thì chưa nói đến việc có đảm nhiệm nổi không, chỉ sợ chính cô ấy cũng không vui vẻ gì. Bởi vì không giống với những quân nhân chân chính trong đặc chiến đội, trong quân khu vẫn có nhiều phe phái tranh đấu và các loại tin đồn thất thiệt. Với những thứ này, tiểu di không những không thạo mà còn không thích.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0489.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0491.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

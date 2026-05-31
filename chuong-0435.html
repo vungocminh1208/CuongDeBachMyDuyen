@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 435 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 435</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 435</small>
+    Chương 435: Tái chiến mỹ sư nương
+  </h1>
+  <div class="chapter-body">
+    <p>"Hiện tại trời cũng đã không còn sớm, ta nghĩ chúng ta cũng nên cáo từ." Diệp Phi hướng về phía Bạch Oánh Thơ cùng đồ đệ thi lễ, sau đó nắm chặt bàn tay nhỏ nhắn của vị sư nương xinh đẹp Chúc Ngọc Nghiên, xoay người đi về phía ngoài sơn động.</p>
+    <p>Quả nhiên, thấy Diệp Phi nói đi là đi, Bạch Oánh Thơ tuy xấu hổ không nói nên lời, nhưng trong lòng lại dâng lên một nỗi luyến tiếc khó tả, thậm chí nàng còn nghĩ, dù hắn chỉ quay đầu nhìn mình một cái cũng tốt.</p>
+    <p>Phảng phất như nghe được suy nghĩ trong lòng Bạch Oánh Thơ, Diệp Phi vẫn chưa ra khỏi sơn động bỗng nhiên quay người lại, từ trong áo lấy ra một món đồ hình tròn nho nhỏ như đồng xu, đưa về phía Bạch Oánh Thơ nói: "Bạch tỷ tỷ, chúng ta vừa gặp đã hợp ý, tiểu đệ cũng không có vật gì tốt trên người, đây là món đồ nhỏ ta tự tay làm, chỉ cần nhấn vào nút ở giữa, dù ở nơi nào, ta cũng có thể biết được vị trí của tỷ. Nếu có chuyện gì tìm ta, cứ dùng nó là được, ta sẽ lập tức tới ngay."</p>
+    <p>Bạch Oánh Thơ tuy tuổi tác có thể làm mẹ Diệp Phi, nhưng về phương diện tình cảm lại thuần khiết như tờ giấy trắng. Hôm nay Diệp Phi dùng thực lực chân chính đánh bại nàng lúc đang thi triển Thiên Sơn linh khí, vốn đã khiến nàng ngưỡng mộ, lại thêm câu nói thấu tận tâm can, càng làm nàng nảy sinh cảm giác tri kỷ. Trong lúc vô tình, nàng đã nảy sinh thiện cảm to lớn với cậu thiếu niên nhỏ hơn mình nhiều tuổi này. Lần đầu tiên trong đời nảy sinh tình cảm với người khác phái, nàng thậm chí còn bối rối hơn cả một thiếu nữ mới biết yêu, đến mức khi nhận lấy thiết bị phát tín hiệu tinh xảo kia, cũng không biết nên nói gì cho phải, chỉ biết xỏ một sợi dây mảnh trước mặt Diệp Phi, treo nó lên chiếc cổ trắng ngần non mịn của mình, rồi nhẹ nhàng vạch cổ áo, đặt món đồ mà nàng coi là vật trân quý nhất vào nơi sâu thẳm trước ngực, khiến Diệp Phi nhìn mà không khỏi thầm ghen tị với món quà mình vừa trao đi.</p>
+    <p>Màn trao nhận này cũng khiến Chúc Ngọc Nghiên và Bạch U Nhi bên cạnh có những tâm trạng khác nhau. Chúc Ngọc Nghiên thì bất đắc dĩ xen lẫn chút bất an, còn Bạch U Nhi, nàng yêu thích khí chất tinh khiết trên người Diệp Phi, từ nhỏ sống trong núi cùng sư phụ nên nàng cũng vô cùng đơn thuần, tuy không đến mức không phân biệt được nam nữ như Diệu Thiền, nhưng đối với tình cảm nam nữ cũng hoàn toàn mù tịt, nên không hiểu rõ tâm trạng sư phụ lúc này là thế nào.</p>
+    <p>Sau khi trao vật đó đi, Diệp Phi mới chính thức dẫn Chúc Ngọc Nghiên rời khỏi nơi ở của thầy trò Bạch Oánh Thơ, dưới ánh mắt lưu luyến của người này và vẻ khó hiểu của người kia, nhanh chóng đi xa.</p>
+    <p>Lần này Diệp Phi không còn cùng Chúc Ngọc Nghiên chạy vội mà đi với tốc độ nhanh hơn người thường một chút. Trên đường đi, Chúc Ngọc Nghiên vô cùng trầm mặc, ngay cả khi Diệp Phi trò chuyện, nàng dường như cũng không nghe thấy.</p>
+    <p>Mãi đến khi đi ra rất xa, Chúc Ngọc Nghiên mới đột nhiên dừng bước, sâu kín nói: "Ngươi đối với Bạch Oánh Thơ tốt thật đấy, lần đầu gặp mặt đã đem vật đính ước tặng cho người ta rồi." Lúc này, dù nàng đã đặt hết tình cảm dành cho Giang Hải Thần lên người Diệp Phi, cũng đã cởi bỏ khúc mắc với Bạch Oánh Thơ, nhưng những cảm xúc tích tụ suốt hai mươi năm không dễ gì buông bỏ ngay được. Nàng không ghen với các cô gái khác bên cạnh Diệp Phi, chỉ riêng đối với Bạch Oánh Thơ là tạm thời chưa thể nguôi ngoai. Đây có lẽ là tâm ma của nàng, luôn vô thức cho rằng Bạch Oánh Thơ sẽ lại cướp đi người đàn ông mình yêu thương.</p>
+    <p>"Đó đâu phải vật đính ước, chỉ là món đồ để liên lạc lúc khẩn cấp mà thôi." Diệp Phi giải thích, dù trong lòng hắn thực sự coi món đồ đó là một dạng vật đính ước đặc biệt. Dẫu sao với thực lực của Bạch Oánh Thơ, gần như không thể gặp phải rắc rối gì không giải quyết được. Hắn không hề biết rằng, chẳng bao lâu sau, chính mình sẽ vô cùng mừng rỡ vì đã tặng món đồ đó, vật này không những giúp hắn tránh được một nỗi tiếc nuối có thể khiến hắn đau khổ cả đời, mà còn giúp hắn và Bạch Oánh Thơ nên duyên, đó là chuyện sau này.</p>
+    <p>Chúc Ngọc Nghiên đột nhiên quay người, đôi mắt đẹp bình tĩnh nhìn Diệp Phi, trong ánh mắt đầy vẻ bất lực và sợ hãi: "Diệp Phi, hứa với ta, từ nay về sau đừng rời bỏ ta."</p>
+    <p>Nhìn vẻ điềm đạm đáng yêu của vị sư nương vốn lãnh diễm cao quý lúc này, lòng Diệp Phi dâng lên sự thương xót, nhẹ nhàng ôm thân thể yêu kiều của nàng vào lòng, ôn nhu nói: "Yên tâm đi, cho dù nàng không cần ta, ta cũng sẽ không để nàng rời khỏi ta đâu!"</p>
+    <p>"Ân." Chúc Ngọc Nghiên ôn nhu đáp lời, nhưng trong giọng nói vẫn còn chút bất định, bởi vì nỗi bất lực và oán hận suốt hai mươi năm qua đã ăn sâu vào tâm trí nàng quá mức!</p>
+    <p>Diệp Phi hiểu rõ tâm tư của sư nương, biết rằng những trầm tích trong lòng nàng cần được giải tỏa thì mới nhanh chóng thoát khỏi tâm ma này. Mà cách giải tỏa tốt nhất chính là vận động kịch liệt, nhưng đối với người phụ nữ mình yêu, hắn làm sao nỡ làm nàng bị thương, vì vậy hắn chỉ có thể cùng nàng bước vào một cuộc chiến đầy hoan lạc.</p>
+    <p>Cúi đầu, Diệp Phi hôn lên đôi môi ngọt ngào của sư nương, đôi tay vốn ôm eo nàng bắt đầu di chuyển trên tấm lưng ngọc, một lúc sau liền đặt lên cặp mông đầy đặn, nhẹ nhàng vuốt ve.</p>
+    <p>Từ lần chia tay trước, Chúc Ngọc Nghiên tuy trong lòng rất giằng xé, nhưng mỗi đêm mộng mị đều không nhịn được nhớ tới khoái cảm tột cùng khi ở bên hắn. Nơi đó đã từng được hắn thâm nhập giờ đây trở nên ướt át. Lúc này, nàng đã hoàn toàn cởi bỏ tâm kết, thể xác và tinh thần đều mở lòng với hắn, loại khát vọng đó càng mãnh liệt hơn. Thêm vào đó, vì cả hai đều đã động tình, công pháp trong cơ thể không tự chủ mà vận chuyển, khiến nàng không thể kìm nén, cũng mặc kệ đây là nơi thâm sơn cùng cốc. Nàng chủ động vòng tay ôm cổ hắn, đáp lại nụ hôn nồng cháy, hai tay hoạt động trên người hắn rồi luồn vào trong quần.</p>
+    <p>Dương vật cứng nóng bị bàn tay mềm mại, hơi lạnh của sư nương nắm lấy, Diệp Phi không khỏi sướng đến rùng mình. Dù trước đây đã cùng sư nương mặn nồng hai lần, nhưng đó đều là do đặc tính của công pháp, còn đây là lần đầu tiên sư nương chủ động nắm lấy "cậu nhỏ" của hắn.</p>
+    <p>Nhẹ nhàng đẩy hông, Diệp Phi để dương vật của mình cọ xát trong bàn tay nhỏ bé của sư nương. Chúc Ngọc Nghiên tuy là người từng trải, lại tu luyện Huyền Âm quyết, nhưng kinh nghiệm về phương diện này rõ ràng không nhiều, chỉ biết bản năng nhẹ nhàng vuốt ve.</p>
+    <p>Chỉ như vậy thôi cũng đã khiến Diệp Phi sướng vô cùng, hắn lập tức vén váy dài của sư nương, xé toạc tất chân liền quần, chẳng màn dạo đầu, dùng hông đẩy mạnh, đưa thẳng dương vật vào trong dâm huyệt của nàng. Tất nhiên, lúc này sư nương đã dâm thủy giàn giụa, căn bản không cần dạo đầu nữa.</p>
+    <p>"Nha..." Chúc Ngọc Nghiên bị Diệp Phi đâm mạnh mà thốt lên: "Ngoan đồ nhi, sư nương nhớ ngươi lắm, nhanh, nhanh lên, dùng sức, dùng sức đâm sư nương đi, sư nương muốn con cặc lớn của ngươi!"</p>
+    <p>Được sư nương cổ vũ, Diệp Phi đâu còn khách khí? Một tay nhấc chân nàng, một tay ấn mông, dương vật điên cuồng ra vào trong tiểu dâm huyệt thành thục ấy. Hắn biết, kể từ lần trước được mình khai phá dục hỏa, vị sư nương xinh đẹp gợi cảm này đã nhẫn nhịn quá khổ sở rồi, chỉ có sự nguyên thủy và kịch liệt này mới có thể khiến nàng thỏa mãn.</p>
+    <p>Quả nhiên, theo từng cú đâm mạnh mẽ của Diệp Phi, Chúc Ngọc Nghiên sướng đến toàn thân run rẩy, miệng không ngừng rên rỉ: "Ngoan đồ nhi... ngươi thật lợi hại... Sư nương yêu ngươi lắm... Cũng yêu con cặc lớn của ngươi lắm... Ngọc Nghiên... muốn làm nữ nhân của ngươi... làm người mỗi ngày đều cho ngươi đâm... Dùng sức... Nha... Con cặc lớn của ngươi... khiến Ngọc Nghiên sướng quá... Lão công ơi... Ngọc Nghiên sướng quá... ngươi đâm chết Ngọc Nghiên đi..."</p>
+    <p>Nghe tiếng rên rỉ đầy xuân tình của sư nương, Diệp Phi càng đâm mạnh hơn, dứt khoát nhấc nốt chân còn lại của nàng lên, khiến toàn bộ thân thể nàng treo trên người mình, dương vật điên cuồng đâm mạnh vào tiểu dâm huyệt như muốn khảm cả người vào trong cơ thể sư nương.</p>
+    <p>Chúc Ngọc Nghiên càng thêm điên cuồng, tiếng rên rỉ ngày một lớn: "Lão công tốt... Ngọc Nghiên là của lão công... nhanh lên... Ngọc Nghiên sắp tới rồi... Nhanh dùng con cặc lớn... đâm tiếp đi... đâm dâm huyệt sư nương lên tận trời xanh đi... Ah... Sắp tới rồi... Ngoan đồ nhi... Sư nương tới rồi... muốn tiết cho lão công rồi... Ah..." Theo một hồi run rẩy kịch liệt, dâm huyệt Chúc Ngọc Nghiên co rút lại, đại cổ âm tinh tưới đẫm lên đỉnh dương vật của Diệp Phi.</p>
+    <p>Diệp Phi không buông tha mà tiếp tục ép nàng, đặt thân thể mềm nhũn của nàng xuống bãi cỏ, mình đè lên, đưa dương vật vào tiểu huyệt vẫn đang co rút vì cao trào, bắt đầu một vòng đâm rút mới, Chúc Ngọc Nghiên cũng không chút mệt mỏi mà phối hợp cuồng nhiệt.</p>
+    <p>Theo sự đâm rút của Diệp Phi, hai loại tâm pháp tự động vận hành trong cơ thể hai người, khiến sức chiến đấu của cặp thầy trò loạn luân này càng thêm mạnh mẽ. Cứ thế giữ nguyên tư thế ác liệt suốt gần hai giờ, Chúc Ngọc Nghiên mới hoàn toàn bại trận. Lúc này, tiểu dâm huyệt kiều diễm của nàng đã sưng tấy lên vì bị Diệp Phi hành hạ.</p>
+    <p>Vội vàng dọn dẹp, Diệp Phi đỡ thân thể mềm nhũn của sư nương đứng dậy, khẽ cười hỏi: "Bây giờ còn sợ ta sẽ không nhớ nàng sao?"</p>
+    <p>"Hiện tại càng sợ hơn, nếu từ nay về sau không thể ở bên ngươi, ta không biết mình còn sống nổi không nữa!" Chúc Ngọc Nghiên mềm nhũn dựa vào lòng Diệp Phi, ôn nhu nói. Lúc này nàng đã hoàn toàn thoát khỏi sự lo được lo mất, bởi qua những cú đẩy mạnh mẽ của Diệp Phi, nàng đã cảm nhận sâu sắc thứ tình cảm vĩnh viễn không bao giờ thay đổi của hắn dành cho mình.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0434.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0436.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 565 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 565</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 565</small>
+    Chương 565: Liều mình cứu giúp
+  </h1>
+  <div class="chapter-body">
+    <p>Nhìn thấy hành động của Lý Tuyết Nhi, cô bé kia khẳng định hơi thở sợ hãi đã tiêu tan, hơn nữa hiện tại nàng đã thành công chuyển hóa tình cảm đó thành sự sùng bái, cho nên cũng không cảm thấy thất lạc, trái lại rất chân thành chúc phúc cho Lý Tuyết Nhi: "Lý tổng thực sự có phúc lớn nha."</p>
+    <p>Lý Tuyết Nhi khẽ mỉm cười, cũng không phản đối lời cô gái, còn Diệp Phi thì cười nói: "Là ta có phúc lớn mới đúng, chúng ta còn có chút việc, hẹn gặp lại."</p>
+    <p>Nói xong, hắn dẫn theo Lý Tuyết Nhi cùng đi ra ngoài.</p>
+    <p>Diệp Phi bọn họ vừa rời đi, một vệt bóng hình xinh xắn liền từ đại sảnh bên cạnh đi vào, chính là Tiểu Oánh. Thấy tỷ muội tốt của mình đứng đó đờ người ra, nàng không nhịn được hỏi: "Sao vậy?"</p>
+    <p>Cô bé kia lúc này vẫn chưa thoát khỏi sự kích động khi được Diệp Phi nói lời tạm biệt, rất hưng phấn nói: "Ta cũng được nói chuyện với Diệp Phi, hắn còn ký tên cho ta nữa!"</p>
+    <p>Nói rồi, nàng giơ tờ giấy trong tay lên, sau đó cất đi đầy cẩn thận.</p>
+    <p>Sắc mặt Tiểu Oánh liền biến đổi, vội hỏi: "Hắn đi rồi sao? Đang ở đâu?"</p>
+    <p>Lúc này trong lòng nàng vô cùng hối hận, bản thân đã đợi lâu như vậy, chính là muốn nói với Diệp Phi một tiếng cảm ơn, không ngờ chỉ vì đi nhà vệ sinh mà bỏ lỡ đối phương.</p>
+    <p>Cô bé kia chỉ ra ngoài: "Mới ra đi thôi, ngươi sẽ không định..."</p>
+    <p>Lời còn chưa nói hết, liền thấy Tiểu Oánh bước nhanh chạy ra ngoài.</p>
+    <p>Lúc này Diệp Phi và Lý Tuyết Nhi đã đến cửa bãi đậu xe dưới tầng hầm. Để Lý Tuyết Nhi đợi ở đó, Diệp Phi chuẩn bị đi lấy xe, nhưng chưa đi được mấy bước, hắn đã cảm nhận được một luồng sát khí nhàn nhạt.</p>
+    <p>Thả ý niệm ra quét nhìn, khóe miệng Diệp Phi không khỏi lộ ra một vệt ý cười lạnh lẽo. Không ngờ Lý Kiến vẫn còn gan như vậy, nhìn ánh mắt hung quang lộ rõ cùng chiêu thức của hắn, chẳng lẽ là muốn lái xe đâm thẳng vào mình?</p>
+    <p>Quả nhiên, đúng như Diệp Phi dự đoán, Lý Kiến nhanh chóng khởi động xe, lao về phía Diệp Phi trong tiếng động cơ gầm rú. Cùng lúc đó, một bóng hình xinh xắn đi tới gần chỗ Diệp Phi. Diệp Phi không hề tránh né, hắn đang lo không có lý do để giết tên khốn kiếp này. Còn về người hắn vừa nhận ra là cô gái tiếp đãi mình lúc nãy, hắn cũng không mấy để tâm; mục tiêu của Lý Kiến là hắn, căn bản không thể làm bị thương người đứng cách mấy mét như nàng.</p>
+    <p>Không ngờ lúc này, Tiểu Oánh nhìn thấy Diệp Phi gặp nguy hiểm liền đột ngột lao tới phía hắn. Khi chiếc xe sắp đụng vào người Diệp Phi, nàng dùng sức đẩy hắn sang một bên. Tiếp đó, theo một tiếng động lớn, thân thể nhỏ nhắn của nàng bị va chạm văng ra ngoài.</p>
+    <p>Khoảnh khắc này, Diệp Phi không khỏi sững sờ. Hắn không thể ngờ được, cô gái chỉ mới gặp mặt một lần này vì sao lại đột nhiên liều mình cứu giúp. Đây cũng là nguyên nhân khiến hắn nhất thời không kịp phản ứng, nếu không thì dù tốc độ xe của Lý Kiến có cao đến đâu, cũng không thể làm bị thương được bọn họ.</p>
+    <p>Biết bây giờ không phải lúc nghĩ ngợi, Diệp Phi thậm chí không để ý đến Lý Kiến đang lái xe bỏ chạy, bước nhanh chạy tới bên cạnh cô bé kia, thấy nàng đã sắp tắt thở.</p>
+    <p>Vội vàng ngồi xổm xuống ôm lấy cô bé, Diệp Phi nhanh chóng nhét mấy viên hồi phục hoàn vào miệng nàng, nhưng lúc này cô bé đã mất khả năng nuốt. Bất đắc dĩ, Diệp Phi đành phải bỏ thêm mấy viên vào miệng mình, sau đó ghé sát miệng nữ hài, truyền thuốc qua cho nàng.</p>
+    <p>Mãi đến khi xác định thuốc đã tan và đi vào bụng nữ hài, Diệp Phi mới yên tâm. Tuy rằng sự hy sinh của cô bé này có thể nói là hoàn toàn vô nghĩa, nhưng Diệp Phi vẫn vô cùng cảm động. Đợi thương thế của nàng hơi ổn định, hắn bế nàng lên, chậm rãi bước về phía xe của mình.</p>
+    <p>Vẫn chưa đi khỏi thạch lâm được bao xa, nghe thấy tiếng động bên trong, Lý Tuyết Nhi lo lắng liền đuổi theo xem thử.</p>
+    <p>Lý Tuyết Nhi từ trước đến giờ là một cô gái dễ thỏa mãn, tuy nhìn thấy Diệp Phi ôm một cô gái khác nhưng nàng cũng không ghen tuông, đặc biệt là khi thấy cô bé kia máu me đầy người, càng thêm lo lắng hỏi: "Nàng làm sao vậy?"</p>
+    <p>"Lý Kiến vừa định lái xe đâm ta, bị nàng chặn lại rồi."</p>
+    <p>Diệp Phi kể lại tình huống vừa rồi.</p>
+    <p>Lần này, dù có thiện lương đến đâu, Lý Tuyết Nhi cũng không muốn buông tha Lý Kiến, oán hận nói: "Diệp Phi, ngươi nhất định phải đòi lại công đạo này!"</p>
+    <p>"Đương nhiên, ngươi không nói ta cũng sẽ không bỏ qua cho hắn!"</p>
+    <p>Khóe miệng Diệp Phi lộ ra một nụ cười tàn nhẫn. Hắn hiện tại không định giết Lý Kiến, bởi vì loại người này nếu chết quá dễ dàng thì thật là quá tiện nghi cho hắn. Diệp Phi muốn hắn mất tất cả, sau đó chỉ có thể sống như một con chó.</p>
+    <p>Thấy Diệp Phi chỉ đặt Tiểu Oánh nằm ở ghế sau xe chứ không đưa đến bệnh viện, Lý Tuyết Nhi không nhịn được nói: "Nàng không sao chứ? Hay là chúng ta đưa nàng đến bệnh viện đi."</p>
+    <p>"Không cần, hiện tại nàng không thích hợp di chuyển, hơn nữa sau khi uống hồi phục hoàn của ta, một lát nữa là sẽ ổn thôi."</p>
+    <p>Diệp Phi giải thích công hiệu của hồi phục hoàn cho Lý Tuyết Nhi nghe, đồng thời cũng không giấu giếm nguồn gốc của thứ này.</p>
+    <p>Lý Tuyết Nhi không hề kinh ngạc, trái lại trong lòng tràn đầy nhu tình, cảm thấy hài lòng vì sự thần kỳ của người đàn ông của mình.</p>
+    <p>Quả nhiên, không lâu sau, Tiểu Oánh chậm rãi mở mắt ra. Nhìn thấy Diệp Phi và Lý Tuyết Nhi, nàng biến sắc, hỏi một câu rất buồn cười: "Các ngươi cũng chết rồi sao?"</p>
+    <p>"Chúng ta không chết, ngươi cũng không chết."</p>
+    <p>Diệp Phi không cười, chỉ ôn nhu nói: "Vừa nãy thật sự cảm ơn ngươi."</p>
+    <p>Nghe lời Diệp Phi, Tiểu Oánh mới bắt đầu cảm thấy đau đớn trên người. Nàng nhíu mày, có chút ngượng ngùng nói: "Ta vốn là muốn nói với ngươi một tiếng cảm ơn."</p>
+    <p>"Cảm ơn ta cái gì?"</p>
+    <p>Diệp Phi thắc mắc hỏi, vừa nãy hắn vẫn không hiểu tại sao cô bé này lại liều mạng cứu mình.</p>
+    <p>Tiểu Oánh không hề kể công, vô cùng cảm kích nói: "Cảm ơn ngươi lần trước đã giúp mẹ ta."</p>
+    <p>Diệp Phi khẽ động tâm. Hắn tuy đã thay đổi toàn bộ bầu không khí ở Vọng Hải, nhưng tự mình ra tay giúp đỡ người khác thì không nhiều, thậm chí có thể nói là gần như không có, vì thế hắn nhanh chóng nghĩ ra điều gì đó: "Ngươi là con gái của người dì bị tai nạn xe cộ kia?"</p>
+    <p>Nhưng trong lòng hắn lại thấy hơi lạ, bởi vì cô gái này nhìn thế nào cũng chỉ chừng hai mươi tuổi, mà người dì ngày đó đã hơn sáu mươi, khoảng cách tuổi tác này quá lớn.</p>
+    <p>"Ừm, đúng vậy, cảm ơn ngươi."</p>
+    <p>Nữ hài nói lời cảm ơn lần nữa, sau đó tự giới thiệu: "Ta tên Hàn Tiểu Oánh."</p>
+    <p>Hàn Tiểu Oánh? Diệp Phi hơi lúng túng, cô bé này sao lại trùng tên với một trong những nữ nhân vật dịu dàng nhất trong Xạ Điêu? Chẳng lẽ cha mẹ nàng là người mê tiểu thuyết võ hiệp? Tất nhiên hắn sẽ không hỏi câu hỏi này, chỉ khẽ mỉm cười nói: "Ta tên Diệp Phi, nàng là Lý Tuyết Nhi, tin rằng ngươi chắc đã sớm biết rồi. Hiện tại ngươi đã gần như khỏi hẳn, chờ ta bức tụ huyết trong cơ thể ngươi ra là có thể hoàn toàn bình phục."</p>
+    <p>Diệp Phi được sự đồng ý của nữ hài liền nắm lấy bàn tay nhỏ bé của nàng, truyền một luồng nội lực vào cơ thể, sắc mặt bỗng chốc biến đổi.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0564.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0566.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

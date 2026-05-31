@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 512 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 512</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 512</small>
+    Chương 512: Nếm thử vị Tống thị trưởng
+  </h1>
+  <div class="chapter-body">
+    <p>Nhưng bây giờ đã không giống như trước nữa. Tại Trung Quốc, tiền tuy gần như vạn năng, nhưng cũng chỉ là "gần như" mà thôi. Một khi sự việc liên quan đến Tống lão gia tử, tiền bạc chẳng còn đóng vai trò then chốt nào nữa. Hiện tại, nếu xét về tài chính hay thế lực ngầm, Diệp Phi ở Trung Quốc, thậm chí trên toàn thế giới cũng không có người thứ hai sánh bằng. Thế nhưng, riêng về đường chính trị thì hắn vẫn chưa có nhiều thành tựu. Vì vậy, muốn thực sự giúp đỡ Tống gia, hắn phải suy nghĩ kỹ lưỡng để tìm ra biện pháp vẹn toàn. Dù sao, bất kể thực lực ẩn giấu của hắn có mạnh đến đâu, thủ hạ cao thủ có nhiều đến mấy thì cũng không thể hành động liều lĩnh được.</p>
+    <p>Hít sâu một hơi, Diệp Phi quyết định từ nay về sau sẽ bồi dưỡng phe cánh của mình trong giới chính trị. Điều này không chỉ có lợi cho bản thân hắn mà còn cho cả Trung Quốc, bởi vì hắn rất tự tin rằng những người mình đào tạo ra tuyệt đối sẽ không phải là loại ngồi không ăn bám. Hơn nữa, với sự hậu thuẫn khổng lồ từ Phong Thu tập đoàn, những người đó được hắn nuôi dưỡng đầy đủ, lại thêm sự giám sát chặt chẽ, chắc chắn sẽ không còn muốn làm những việc thiên vị, tham ô trái pháp luật.</p>
+    <p>Thời gian trong lúc Diệp Phi trầm tư dần trôi qua. Chờ đến khi hắn vạch ra được khung kế hoạch đại khái cho tương lai thì trời đã tối đen, ba người phụ nữ cũng từ trong phòng đi ra.</p>
+    <p>Dù hiện tại Tống Huyên mới là bạn gái chính thức của Diệp Phi, nhưng ánh mắt hắn vẫn vô thức nhìn về phía Nhan Như Ngọc đầu tiên. Có lẽ vì chuyện lúc giữa trưa, nên dù đang ở trong căn phòng có bật hệ thống sưởi, Nhan Như Ngọc vẫn mặc chiếc áo khoác lúc nàng tới, che kín dáng người gợi cảm đến cực điểm. Mặc dù điều này không làm giảm đi khí chất vũ mị mê người của nàng là bao, nhưng ít nhiều cũng tiết chế bớt mị lực mạnh mẽ đến cùng cực kia. Cộng thêm định lực cường đại của Diệp Phi, hắn đã có thể thong dong đối mặt với nàng.</p>
+    <p>Ngược lại là Nhan Như Ngọc, từ khi ra khỏi phòng, trên khuôn mặt tuyệt mỹ luôn treo một vệt ửng hồng, bởi vì đối với nàng, lực hấp dẫn của Diệp Phi cũng đủ mạnh mẽ.</p>
+    <p>Tống Huyên nhìn thấu tất cả nhưng không nói gì thêm, chỉ gọi điện thoại đặt cơm. Hiện tại mỗi người đều có tâm sự riêng, lại thêm một Nhan Như Ngọc đi đến đâu cũng trở thành tâm điểm của sự chú ý, họ đành từ bỏ ý định ra ngoài ăn.</p>
+    <p>Sau đó, vài người trò chuyện phiếm, bất quá không ai nhắc lại chuyện Tống gia, chỉ nói vài chuyện nhà, bầu không khí khá thoải mái. Ngay cả Nhan Như Ngọc cũng nói vài câu, chỉ có Tống Từ – người gần đây hay nói – thì lại im lặng, chỉ đưa ánh mắt tinh quái liếc nhìn Diệp Phi và Nhan Như Ngọc qua lại, không biết đang tính toán mưu đồ gì.</p>
+    <p>Sau khi ăn cơm xong, Diệp Phi trở về phòng, gột rửa bụi bặm trong ngày cùng mùi hương của Lệ Nhược Nam. Sau đó, hắn không mặc gì cả, chỉ quấn một chiếc chăn mỏng ngang hông, nửa nằm trên giường, đang chuẩn bị gọi điện thoại cho các cô thì nghe thấy tiếng gõ cửa. Tiếp theo đó, một thân hình yểu điệu, khêu gợi xuất hiện trong phòng hắn.</p>
+    <p>Người tới chính là Tống Huyên. Nàng lúc này trên người cũng không mặc quần áo, chỉ quấn một chiếc khăn tắm nhỏ bao lấy thân thể yêu kiều. Chiếc khăn quá ngắn, chỉ miễn cưỡng che khuất những bộ phận quan trọng, thậm chí nửa bầu ngực trắng nõn cũng lộ ra ngoài. Liếc nhìn qua, nơi khe rãnh sâu hoắm giữa hai tòa cao phong kia khiến Diệp Phi phải nuốt nước miếng ừng ực. Phía dưới, chiếc khăn chỉ che vừa đủ mông ngọc, để lộ đôi chân thon dài thẳng tắp, đường cong hoàn hảo trắng như ngà voi kia thật sự quyến rũ đến cực điểm.</p>
+    <p>Thực ra dù về nhan sắc hay vóc dáng, Tống Huyên không hề kém cạnh Nhan Như Ngọc, điểm khác biệt duy nhất chính là sự quyến rũ trời sinh kia. Lúc này, nàng xuất hiện trước mặt Diệp Phi với trang phục như vậy khiến chiếc chăn đắp ngang hông hắn trong nháy mắt nổi lên một gò đất rất rõ ràng.</p>
+    <p>Dù đã xác định quan hệ với Diệp Phi, nhưng hai người dù sao vẫn chưa thực sự thân mật. Đối mặt với Diệp Phi như thế, lại nhìn thấy "cái lều" to lớn kia, khuôn mặt Tống Huyên vốn đang lấy hết can đảm mới dám vào bỗng chốc đỏ bừng. Tuy vậy, nàng không hề trốn đi mà chậm rãi bước tới bên giường, nằm xuống cạnh Diệp Phi, gối đầu lên ngực hắn, không nói lời nào, cứ thế lặng lẽ dựa vào hắn.</p>
+    <p>Diệp Phi đưa tay nhẹ nhàng ôm lấy bờ vai mượt mà lộ ra ngoài của Tống Huyên, hỏi: "Các em thương lượng thế nào rồi?"</p>
+    <p>Tống Huyên thấy lòng ấm áp. Diệp Phi vào lúc này ưu tiên nghĩ đến chuyện gia đình nàng chứ không phải nghĩ đến chuyện thân mật, khiến nàng cảm động vô cùng. Qua một hồi lâu, nàng mới lên tiếng: "Đó dù sao cũng là nơi sinh ra và nuôi dưỡng em, nếu có thể, em vẫn hy vọng nó có thể tiếp tục tồn tại."</p>
+    <p>"Ừ, anh biết mình nên làm gì rồi."</p>
+    <p>Diệp Phi gật đầu, cũng không kể cho nàng nghe tin tức vừa nhận được buổi chiều, bởi vì có nói ra cũng vô ích, chỉ làm nàng thêm lo lắng.</p>
+    <p>"Diệp Phi, cảm ơn anh!"</p>
+    <p>Tống Huyên ngẩng đầu lên, thâm tình nhìn Diệp Phi, nói ra từ đáy lòng.</p>
+    <p>Diệp Phi đưa bàn tay to lớn, khẽ vuốt ve khuôn mặt mịn màng đang thẹn thùng của Tống Huyên, cười nói: "Đồ ngốc, với anh còn khách sáo làm gì?"</p>
+    <p>"Đúng là không cần khách sáo."</p>
+    <p>Tống Huyên đột nhiên lộ ra nụ cười tinh quái, lật người, gác một đôi chân ngọc lên người Diệp Phi, lại may mắn thế nào, vừa vặn đặt ngay lên vật đang cứng ngắc nóng bỏng kia. Da thịt chạm nhau khiến cả hai thân thể đều khẽ run lên, nhưng Tống Huyên như thể không phát hiện ra, tiếp tục nói: "Ít nhất, giá phải trả là hai người phụ nữ đổi lấy ra tay, cũng không tính là lỗ."</p>
+    <p>"Cái gì mà hai người? Chẳng phải chỉ có mình em sao?"</p>
+    <p>Diệp Phi vô thức thốt lên, nhưng tâm trí lại đặt cả vào phía dưới. Da thịt Tống Huyên trơn mềm như da em bé, lúc này ép chặt lên vật đó, cảm giác sướng đến cực điểm khiến hắn tận hưởng không thôi.</p>
+    <p>"Đương nhiên là Ngọc tỷ rồi, đừng bảo anh không muốn có được chị ấy."</p>
+    <p>Tống Huyên cười hì hì, không hề tỏ ra bất mãn vì đoán được tâm tư của Diệp Phi đối với Nhan Như Ngọc.</p>
+    <p>Nhan Như Ngọc! Được Tống Huyên nhắc tới, trong lòng Diệp Phi không khỏi hiện lên phong thái tuyệt thế của người phụ nữ trời sinh mị cốt này. Vật đang bị đùi ngọc của Tống Huyên đè nặng cũng không khống chế được mà nhảy lên một cái. Tống Huyên tự nhiên cảm nhận được, vì vậy nhìn vào mắt hắn với vẻ cười như không cười.</p>
+    <p>Diệp Phi cười xấu hổ, đành phải đem lời của Tống Từ ra làm cái cớ: "Phản ứng tự nhiên thôi mà, trước kia với em anh cũng từng thế, em không nhớ sao?"</p>
+    <p>Tống Huyên tự nhiên không quên cảnh tượng trong thang máy lúc trước. Cảm giác có chút chán ghét khi đó lại trở thành hồi ức đáng giá nhất trong đời nàng, vì đó là lần đầu tiên nàng có tiếp xúc thân mật với người đàn ông mình yêu.</p>
+    <p>"Lúc đó không phải anh rất to gan sao? Hôm nay sao lại thành thật thế này?"</p>
+    <p>Tống Huyên mị hoặc cười nói, đồng thời còn cố ý cử động, ép chặt đôi chân ngọc lên người hắn.</p>
+    <p>Bị làn da ôn nhu lướt qua, dương vật Diệp Phi nặng nề nhảy lên, hắn xoay người ôm lấy thân hình khêu gợi của Tống Huyên, cười nói: "Vậy em muốn anh không thành thật thế nào?"</p>
+    <p>"Ân..."</p>
+    <p>Tống Huyên phát ra một tiếng yêu kiều trong mũi, sau đó nói: "Đừng nhanh quá."</p>
+    <p>Hóa ra, Tống Huyên khi đến đây với ý định hiến thân đã không mặc quần lót. Động tác nghiêng người này của Diệp Phi khiến dương vật nóng bỏng của hắn chĩa thẳng vào cánh hoa kiều diễm nhất của mỹ nhân. Dù như vậy rất thoải mái, nhưng Tống Huyên vẫn không muốn nhanh như vậy, ít nhất cũng phải có chút dạo đầu chứ.</p>
+    <p>Diệp Phi sớm không còn là cậu nhóc mới tập tễnh yêu đương, tự nhiên sẽ không vội vàng như khỉ. Nhưng đã tiến tới bước này, hắn cũng không muốn dừng lại. Một bên dùng quy đầu nóng bỏng ma sát nhẹ nhàng nơi lồn mềm chưa từng nếm trải mùi đời suốt hai mươi tám năm của Tống Huyên, một bên vùi đầu vào khe ngực sâu thẳm trong chiếc khăn tắm của nàng, hít một hơi thật sâu, khen: "Thơm quá!"</p>
+    <p>Dù đã chuẩn bị tâm lý, nhưng bị đàn ông trêu chọc như vậy vẫn khiến người phụ nữ trưởng thành như Tống Huyên đỏ bừng mặt. Nàng không ngăn cản Diệp Phi mà nhắm mắt lại hưởng thụ.</p>
+    <p>Diệp Phi hôn vài cái lên bầu ngực trắng nõn lộ ra ngoài khăn tắm của Tống Huyên, lúc này mới kéo chiếc khăn ra, để đôi vú đầy đặn chưa bao giờ phô bày trước người ngoài kia hiện ra trước mắt.</p>
+    <p>To thật, đẹp quá! Diệp Phi thầm khen trong lòng, lại phát hiện bầu ngực Tống Huyên rất giống Lệ Nhược Nam, đều to tròn, đỉnh vú nhỏ nhắn. Thật ra không chỉ Lệ Nhược Nam, các cô gái khác của hắn trừ Diệp Vân Khinh có vài phần nhỏ nhắn hơn, những người khác đều tương tự, nhưng mỗi người lại có nét quyến rũ riêng.</p>
+    <p>Có lẽ vì nghĩ đến Lệ Nhược Nam, nghĩ đến việc mình thô bạo gây tổn thương cho nàng ban ngày, lúc này Diệp Phi đối xử với Tống Huyên càng dịu dàng hơn. Hắn hôn hít đôi bầu vú to thật lâu, mới chậm rãi ngậm lấy núm vú nhỏ đã sung huyết vào miệng, mút mát như đang bú sữa, thỉnh thoảng lại dùng đầu lưỡi khẽ lướt qua.</p>
+    <p>"Ân... Ah..."</p>
+    <p>Tống Huyên rên rỉ nhẹ nhàng, hai tay ôm lấy đầu Diệp Phi, lặng lẽ tận hưởng sự yêu chiều của hắn. Dưới sự kích thích từ cả hai phía, thân thể yêu kiều của nàng run rẩy nhẹ, dục vọng dần được khai phá nhưng không quá mãnh liệt, chỉ là một cảm giác lâng lâng vô cùng mỹ diệu.</p>
+    <p>Cho đến khi hai núm vú nhỏ của Tống Huyên đã ướt đẫm nước miếng, từ màu hồng phấn chuyển sang đỏ tươi, Diệp Phi mới buông tha chúng. Hắn đè thân thể lên người mỹ nhân, thâm tình hôn lên đôi môi nhỏ nhắn, còn vật to lớn phía dưới tuy vẫn thúc vào nơi ấy nhưng không cử động nữa.</p>
+    <p>Nhưng lúc này dục hỏa của Tống Huyên đã bị khơi gợi, nên khi Diệp Phi hôn nàng, thân thể nàng không ngừng giãy dụa, dùng bầu vú to lớn cọ sát vào ngực hắn, mông lớn cũng lay động, tiếp tục tận hưởng khoái cảm từ vật kia mang lại.</p>
+    <p>Mãi một hồi lâu sau, hai người mới tách môi, Diệp Phi nhìn Tống Huyên bằng ánh mắt thâm tình, ôn nhu nói: "Huyên nhi, anh vào đây."</p>
+    <p>Bởi vì hắn đã cảm nhận được mỹ nhân đã ướt át không chịu nổi, đang chờ đợi sự tiến quân thần tốc của mình.</p>
+    <p>"Ân."</p>
+    <p>Tống Huyên đáp một tiếng, sau đó thẹn thùng đỏ mặt nói: "Đừng như vậy, em muốn nhìn xem anh vào như thế nào."</p>
+    <p>Diệp Phi không ngờ vị thị trưởng mỹ nhân hào phóng văn tĩnh lại có ý nghĩ như vậy, nhưng hắn không từ chối. Hắn chậm rãi quỳ giữa hai chân nàng, nâng đôi chân thon dài mượt mà của nàng đặt lên vai mình, cúi đầu nhìn nơi huyệt mềm đã được nàng bảo lưu suốt hai mươi tám năm cho mình.</p>
+    <p>Lồn của Tống Huyên rất đẹp, không giống sự đầy đặn của người mẹ, nàng thuộc loại khéo léo, nhỏ nhắn. Dù thân thể đã chín mọng, nhưng khe lồn phấn nộn vẫn khít khao, lông mao không nhiều, mọc rất gọn gàng trên mu lồn.</p>
+    <p>Dùng tay nhẹ nhàng tách hai mép lồn lớn đang khép chặt, mở rộng khe hở tinh tế kiều nộn kia ra, Diệp Phi ghé người sát lại, đặt quy đầu vào huyệt động đang rỉ ra những giọt sương nhỏ li ti. Hắn không vội vàng cắm vào mà ngước lên nhìn Tống Huyên, trong mắt lộ vẻ hỏi thăm.</p>
+    <p>Bị người đàn ông mình yêu đặt quy đầu lên miệng lồn, Tống Huyên vừa ngượng ngùng vừa khẩn trương, nhưng vẫn kiên định gật đầu.</p>
+    <p>Diệp Phi nhẹ nhàng dùng sức, đưa quy đầu chậm rãi tiến vào nơi mềm mại chặt chẽ của Tống Huyên. Nhưng vừa mới vào được nửa phần thì lại rút ra, vì hắn phát hiện thân thể đã trưởng thành nhưng Tống Huyên vẫn vô cùng khẩn trương lúc sắp thất thân. Nếu cứ thế tiến vào, sẽ làm nàng đau đớn, nên hắn đành nhẹ nhàng ra vào, dùng khoái cảm để làm dịu đi sự căng thẳng của mỹ nhân.</p>
+    <p>Quả nhiên, một lát sau, Tống Huyên không còn chịu nổi kiểu ra vào nông cạn này nữa, mông lớn nhẹ nhàng thúc lên mấy cái, thân thể cũng bớt căng thẳng.</p>
+    <p>Nhân cơ hội này, Diệp Phi mạnh mẽ dùng lực, vật to lớn xuyên qua tầng màng mỏng, đưa hơn nửa thân thể vào trong.</p>
+    <p>Cảm giác đau đớn khiến đôi lông mày thanh tú của Tống Huyên khẽ nhíu lại, khóe mắt chảy ra hai dòng lệ. Không phải vì quá đau, mà vì hạnh phúc. Ở tuổi hai mươi tám, nàng rốt cuộc đã tìm thấy chân ái, lại được tận mắt nhìn thấy người mình yêu tiến vào cơ thể. Dù tình cảm này đến hơi nhanh, nhưng so với những mối tình truy truy trốn trốn, nàng thích cảm giác hòa làm một với người mình yêu hơn.</p>
+    <p>Sau khi đã cắm vào, Diệp Phi dừng lại, một bên vuốt ve thân thể yêu kiều của Tống Huyên, một bên thủ thỉ những lời tình tự ngọt ngào khiến mỹ nhân say đắm, cho đến khi nàng hoàn toàn thích ứng với kích thước khổng lồ của mình, lúc này mới bắt đầu nhịp nhàng ra vào.</p>
+    <p>Từ đầu đến cuối, Diệp Phi không hề dùng tốc độ quá mãnh liệt đối với vị thị trưởng chín muồi này, nên phải gần 30 phút, Tống Huyên mới đạt đến đỉnh cao đầu tiên trong đời dưới thân người yêu.</p>
+    <p>Đợi Tống Huyên đã thỏa mãn, Diệp Phi định ôm nàng đi ngủ, không ngờ Tống Huyên lại vô cùng chủ động, cầm lấy vật đang vẫn cứng ngắc của hắn đưa trở lại vào trong lồn mình, nũng nịu nói: "Lão công, người ta còn muốn!"</p>
+    <p>Diệp Phi lúc này mới nhận ra mình đã quá cẩn thận. Tống Huyên – người phụ nữ đã hoàn toàn chín muồi – làm sao có thể so sánh với những cô gái kiều nộn khác? Đã đến tuổi hổ lang, nhu cầu tự nhiên cũng lớn hơn một chút. Vì vậy, một trận đại chiến kịch liệt hơn gấp bội lại bắt đầu, trong phòng ngay lập tức vang lên tiếng da thịt va chạm bành bạch cùng tiếng thở dốc, rên rỉ lãng mạn của vị thị trưởng xinh đẹp. Cuộc mây mưa kéo dài mãi, mãi cho đến khi vị phó thị trưởng đại nhân không còn sức hầu hạ nữa, lúc này mới chịu dừng lại...</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0511.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0513.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

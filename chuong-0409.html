@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 409 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 409</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 409</small>
+    Chương 409: Lần đầu giao phong
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi quay đầu nhìn lại, đã thấy một người trung niên chừng bốn mươi, năm mươi tuổi đang mỉm cười gật đầu chào hỏi mọi người. Người trung niên này trông nho nhã, lịch thiệp, hoàn toàn không giống người trong võ lâm. Dù chỉ mặc bộ áo Tôn Trung Sơn màu xám rất giản dị, nhưng khí chất của ông ta lại toát ra vẻ phong phạm nho sĩ thời cổ đại. Đặc biệt là nụ cười thân thiết trên mặt, khiến người khác rất dễ nảy sinh cảm giác gần gũi.</p>
+    <p>Tên này e là vị Khổng Phương tiên sinh kia, Diệp Phi thầm nghĩ rồi quay sang nhìn Cố Thi Thi, quả nhiên thấy trong mắt nàng lộ ra vẻ vô cùng phức tạp.</p>
+    <p>Gia Cát Khổng Phương này năm xưa là bạn chí cốt của cha nàng, nên Cố Thi Thi rất hiểu rõ ông ta. Nửa năm trước, sau khi trốn khỏi nhà, Cố Thi Thi vốn định đi tìm ông. Nhưng lúc đó, nàng cảm thấy đám người diệt trừ gia tộc mình có thực lực quá cường đại, mà Khổng Phương tiên sinh lại xưa nay độc lai độc vãng, Cố Thi Thi sợ liên lụy đến vị bá bá này. Hơn nữa, dù vẻ ngoài dịu dàng nhưng nàng lại mang trong mình khí phách kiên cường không thua kém nam nhi, không muốn nợ ân tình của ai. Về phần sau này tìm đến Diệp Phi, đó là vì nàng không còn khả năng tự báo thù, hơn nữa sự giúp đỡ của Diệp Phi cũng là do nàng đánh đổi mới có được, nên nàng không cảm thấy thiếu nợ hắn điều gì.</p>
+    <p>Nhưng giờ phút này, khi gặp lại vị bá bá của mình, nàng lại chần chừ. Tuy lý trí không cho rằng những phân tích của Diệp Phi là chính xác, nhưng về mặt tình cảm, nàng lại không tự chủ được mà thiên hướng về phía chàng trai ngay từ đầu chỉ là giao dịch với mình, nhưng lại đối xử với mình vô cùng tốt này. Nàng vô thức bắt đầu cho rằng Khổng Phương tiên sinh, người đã nhìn mình lớn lên, có vấn đề.</p>
+    <p>Thế nhưng, Cố Thi Thi dù không có ý định chào hỏi Gia Cát Khổng Phương, thì ông ta đang chào hỏi mọi người cũng đã lơ đãng nhìn về phía này. Trong mắt ông ta lập tức lộ ra vẻ mừng rỡ, bước nhanh đến nói: "Thi Thi, hóa ra con không sao, thật tốt quá!"</p>
+    <p>Thấy Gia Cát Khổng Phương bước tới, trong lòng Cố Thi Thi vô thức dâng lên cảm giác sợ hãi. Nhưng khi nhìn thấy tấm lưng rộng lớn của người trước mặt, nỗi lo âu trong lòng nàng liền tan biến. Nàng mỉm cười với Gia Cát Khổng Phương đang đi tới: "Gia Cát bá bá."</p>
+    <p>"Con bé này, sao lại khách khí như vậy?" Gia Cát Khổng Phương thu lại vẻ mặt, sau đó dùng giọng điệu tràn đầy thương yêu nói: "Thi Thi, con thật là, lúc trước đã thoát hiểm, sao không đến tìm bá bá? Làm hại bá bá cứ nghĩ con đã gặp bất trắc, còn đau lòng suốt bấy lâu."</p>
+    <p>"Cháu..." Lời của Gia Cát Khổng Phương khiến Cố Thi Thi không khỏi nhớ lại những chuyện trước kia, trong lòng chua xót, suýt chút nữa rơi lệ.</p>
+    <p>"Khổng Phương tiên sinh quả nhiên có nhãn lực tốt thật, chúng ta ngồi ở nơi hẻo lánh thế này, giữa hơn ngàn người mà ngài vẫn liếc mắt một cái là thấy ngay Thi Thi, còn có thể nhận ra cô ấy sau nửa năm có bao thay đổi, thật khiến người ta bội phục." Diệp Phi đột nhiên chen lời. Trong lòng hắn thầm mắng: Cáo già, Thi Thi rõ ràng đã dần quên đi chuyện cũ, ngươi lại khơi dậy khiến nàng đau lòng. Đừng nói là hiện tại ta đã nắm chắc chín phần ngươi chính là kẻ diệt môn nhà nàng, cho dù không phải, lão tử cũng sẽ không dễ dàng tha cho ngươi!</p>
+    <p>Gia Cát Khổng Phương không lập tức tiếp lời Diệp Phi, mà hỏi Cố Thi Thi: "Vị này là?"</p>
+    <p>"Anh ấy là Diệp Phi, là bạn tốt của... cháu. Những ngày qua nhờ có anh ấy chăm sóc, cháu mới có cơ hội đến dự võ lâm đại hội này." Cố Thi Thi không biết vì sao, vô thức che giấu quan hệ thực sự và thực lực của Diệp Phi, mà bịa ra một thân phận rất mập mờ.</p>
+    <p>"Nguyên lai là Diệp huynh đệ, đa tạ đã chăm sóc Thi Thi." Gia Cát Khổng Phương lập tức nhiệt tình bắt chuyện với Diệp Phi rồi nói: "Diệp huynh đệ không biết đấy thôi, ta Gia Cát Khổng Phương xuất thân là dân nghèo, tuy hiện tại trên giang hồ có chút danh tiếng, nhưng không bao giờ dám quên gốc rễ. Cho nên mỗi khi đến đâu, ta đều chú ý tới những góc khuất ít người để ý này, bởi chính ta cũng bước ra từ vị thế đó."</p>
+    <p>Diệp Phi dùng khóe mắt quét qua một góc hẻo lánh khác tương tự, khóe miệng lộ ra ý cười không ai phát giác: "Khổng Phương tiên sinh thật là người hữu tâm, nếu trên giang hồ có thêm vài người như tiên sinh, ha ha..." Nói đến đây, Diệp Phi dừng lại, thấy Gia Cát Khổng Phương lộ vẻ tò mò mới tiếp tục: "Chắc là sẽ thiên hạ đại loạn mất."</p>
+    <p>Trong mắt Gia Cát Khổng Phương lóe lên tia tức giận khó nhận ra, nhưng trên mặt vẫn giữ nụ cười bất biến, hỏi: "Ý của Diệp huynh đệ là sao?"</p>
+    <p>"Ngài nghĩ xem, tiên sinh chú ý tới chúng ta những kẻ thấp cổ bé họng này trước tiên, thậm chí bỏ mặc cả những đại nhân vật. Hiện tại chỉ có một mình ngài thì còn đỡ, nhưng nếu có thêm vài người như ngài, đám người các đại môn phái kia chẳng phải sẽ vô cùng ghen ghét, rồi trút giận lên những kẻ tiểu nhân vật như chúng ta sao? Chẳng phải là muốn thiên hạ đại loạn hay sao?" Diệp Phi cười giải thích.</p>
+    <p>Mấy câu nói của Diệp Phi tuy mang ý trêu chọc nhưng lại đầy ẩn ý, khiến chúng nữ cùng lúc bật cười khúc khích.</p>
+    <p>"Diệp huynh đệ nói đùa, Gia Cát Khổng Phương đối xử với tất cả đồng đạo võ lâm đều như nhau. Hơn nữa, các vị đồng đạo đều là người có tu dưỡng, làm sao xảy ra chuyện như huynh đệ lo lắng được?" Gia Cát Khổng Phương phảng phất như không nhìn thấy đám mỹ nhân tuyệt sắc này, chỉ cười với Diệp Phi vài câu rồi nói: "Diệp huynh đệ, một lần nữa cảm ơn cậu đã chăm sóc Thi Thi. Ta vốn định tâm sự thêm với cậu, nhưng đã sắp đến giờ rồi, ta còn phải đi cùng hai vị tiền bối Thiếu Lâm, Võ Đang chủ trì đại hội. Chúng ta lát nữa hãy đàm đạo tiếp."</p>
+    <p>"Cứ tự nhiên." Diệp Phi mỉm cười gật đầu, nhưng hoàn toàn không có ý định đứng dậy.</p>
+    <p>Gia Cát Khổng Phương cũng không để tâm, quay sang nói với Cố Thi Thi: "Thi Thi, con yên tâm, hôm nay có nhiều đồng đạo võ lâm ở đây, mọi người nhất định sẽ đòi lại công đạo cho con." Nói xong, ông ta không quay đầu lại, rời đi hướng vào trong thung lũng, có vẻ như muốn hội họp với hai vị cao thủ Thiếu Lâm, Võ Đang.</p>
+    <p>"Thế nào, nhìn ra điều gì chưa?" Khi Gia Cát Khổng Phương đi xa, Liễu Diệc Như mới nhỏ giọng hỏi con trai. Với sự thể hiện ngày càng khiến người ta kinh ngạc của Diệp Phi, bà đã lười động não trong những tình huống bình thường, có chuyện gì đều trực tiếp hỏi hắn. Tất nhiên, trong những lúc Diệp Phi không thể đưa ra quyết định chính xác, bà vẫn sẽ làm tròn vai trò người mẹ.</p>
+    <p>Diệp Phi cười nói: "Không sai biệt lắm rồi. Nếu nói lúc đầu chỉ nắm chắc chín phần, thì bây giờ là chín phần chín. Những gì con nghĩ ban đầu không hề sai, lòng dạ người này thật sự đáng sợ."</p>
+    <p>"Nói sao?" Cố Thi Thi có chút khó hiểu hỏi: "Cháu thấy Gia Cát bá bá vẫn như xưa mà, hơn nữa đối với cháu dường như cũng rất quan tâm."</p>
+    <p>"Đây chính là điểm đáng ngờ nhất của ông ta." Diệp Phi cười đáp: "Ông ta đã quan tâm con như thế, vậy tại sao trước kia không phái nhiều người đi tìm con? Với nhân mạch của ông ta, tin rằng tìm được con không phải là việc khó. Hơn nữa, cho dù trước kia con che giấu kỹ, ông ta không tìm thấy, nhưng sau này con đâu còn che giấu nữa, làm sao ông ta lại không nghe ngóng được? Cho nên, việc đến bây giờ ông ta mới gặp con, chính là biểu hiện của kẻ chột dạ."</p>
+    <p>"Nhưng có thể trước đó ông ấy không biết cháu đã thoát hiểm mà." Cố Thi Thi nói.</p>
+    <p>Diệp Phi lắc đầu: "Đây lại là một điểm nghi vấn khác. Con nói ông ta và cha con thâm giao tâm đầu ý hợp, vậy sau khi gia đình con xảy ra chuyện, ông ta có thể không qua xem xét sao? Mà người quen thuộc với các con như vậy, làm sao lại không phát hiện ra con không nằm trong số người tử vong?"</p>
+    <p>Cố Thi Thi không còn lời nào để nói, càng nghĩ càng thấy Diệp Phi nói rất đúng, sự nghi ngờ của nàng đối với Gia Cát Khổng Phương càng lúc càng lớn.</p>
+    <p>Liễu Diệc Như cười nói: "Còn nói người khác lòng dạ thâm sâu, mẹ thấy hắn còn thâm hơn con nhiều!" Trần Du Dung, người thấu hiểu sâu sắc, cũng đồng cảm gật đầu.</p>
+    <p>"Con không bằng ông ta đâu." Diệp Phi cười: "Vừa rồi đối diện với đám đại mỹ nhân như các nàng, tin rằng nam nhân nào cũng không nhịn được mà nhìn thêm vài lần. Thế mà ông ta chỉ nhìn qua lúc mới đến, sau đó không thèm liếc lại lần nào. Tình huống này chỉ có hai khả năng: một là ông ta không phải nam nhân, hai là ông ta là nam nhân nhưng lại thích nam nhân. Con đã âm thầm quan sát, cơ thể ông ta hoàn toàn bình thường, nên điều này thật sự không bình thường chút nào."</p>
+    <p>"Vậy ông ta có thể là loại thứ hai không?" Liễu Diệc Như hỏi, trong lòng có chút ghê tởm, vị Khổng Phương tiên sinh danh tiếng lẫy lừng này chẳng lẽ lại có sở thích đó?</p>
+    <p>"Đương nhiên là không, vì khi đối mặt với đại soái ca là con đây, ông ta cũng chẳng có ánh mắt kỳ lạ nào cả." Diệp Phi tự phụ cười nói.</p>
+    <p>"Làm bộ!" Chúng nữ lại bị hắn chọc cười, nhưng trong lòng không thể không thừa nhận, những gì hắn nói dường như không sai. Trên đời này muốn tìm ra một người đàn ông đẹp trai hơn hắn thật là chuyện khó khăn.</p>
+    <p>"Dù không phải hai loại đó, người ta cũng không nhất định phải nhìn chúng ta chứ? Con nghĩ ai cũng háo sắc như con sao?" Thủy Dĩnh cười nói. Khi mọi người ngày càng thân thiết, nàng không ngại liếc mắt đưa tình với Diệp Phi trước mặt mọi người. Dù sao người biết thì đã biết, còn người không biết như Thủy Nhu cũng sẽ không suy diễn lung tung. Dù sao, với tư cách là mẹ, việc trêu chọc "con trai" mình cũng là chuyện rất bình thường.</p>
+    <p>Diệp Phi không phản bác việc mình háo sắc, chỉ cười nói: "Chính là, chỉ cần là một người đàn ông bình thường, đối với quyền, tiền, sắc, danh lợi đều sẽ có ham muốn, chỉ là nặng nhẹ khác nhau thôi. Ví dụ như con, mẹ Thủy nói đúng, con coi trọng sắc đẹp, nhưng đối với mấy thứ kia cũng sẽ động tâm. Đó là chuyện bình thường. Nhưng khi một người đàn ông hoàn toàn từ bỏ một hoặc vài thứ trong đó, điều đó chứng tỏ anh ta không còn bình thường nữa, vì dục vọng của anh ta về phương diện nào đó đã đạt đến đỉnh điểm, không còn chỗ cho những thứ khác."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0408.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0410.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

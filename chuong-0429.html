@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 429 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 429</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 429</small>
+    Chương 429: Võ lâm đệ nhất mỹ
+  </h1>
+  <div class="chapter-body">
+    <p>Kỳ thực từ lúc mới bắt đầu, Bạch U Nhi chỉ biết Lô Nhất Phong cái gọi là có người vu oan người thủ hộ, cùng với những lời hắn học được kia tuyệt đối là phóng đại suy đoán. Chính là hắn bị người tìm trên địa bàn của mình, trở ngại tình giao tình giữa sư phụ và mẫu thân nên nàng không thể không trông nom, vì vậy đành phải nói: "Những chuyện này trước tiên có thể không nói, nhưng các ngươi đánh người, tổng phải cho chúng ta một câu trả lời thỏa đáng chứ?" "Vậy ngươi muốn loại giao đãi thế nào?" Diệp Chỉ Lâm thấy cô gái xinh đẹp giống mình này so với Lô Nhất Phong giảng đạo lý hơn nhiều, trong lòng không khỏi nảy sinh hảo cảm với nàng. Bạch U Nhi cũng không muốn sinh thêm sự cố, nghĩ nghĩ nói: "Ta thấy thế này đi, ngươi xin lỗi Lô Nhất Phong, chuyện này cứ vậy bỏ qua." Diệp Chỉ Lâm nghe vậy bước nhỏ âm thầm liếc nhìn Diệp Phi, thấy hắn khẽ cười với mình, nhẹ nhàng gật đầu, biết hắn muốn mình cứ như vậy cho qua, vì vậy nói: "Được rồi, ta nể mặt ngươi!" Sau đó nàng nói với Lô Nhất Phong: "Xin lỗi nhé, lúc nãy có chút mạo phạm!" "Không được, các ngươi đánh ta trước, một câu xin lỗi là xong sao?" Lô Nhất Phong kia lại không chịu buông tha, nói. Bạch U Nhi trong lòng không khỏi thấy chán ngán, người ta rõ ràng là nể mặt mình mới xin lỗi hắn, vậy mà hắn lại tưởng mình là nhân vật quan trọng gì, liền hỏi: "Vậy ngươi còn muốn thế nào?" "Ta muốn để thằng nhãi đánh ta kia lên đây dập đầu xin lỗi!" Lô Nhất Phong hung hăng nói, từ nhỏ đến lớn hắn chưa từng chịu cái tát nào, mối thù này hắn nhất định phải báo. Lần này Diệp Chỉ Lâm căn bản không đợi Bạch U Nhi mở miệng lần nữa, đột nhiên tung một cước đá thẳng Lô Nhất Phong từ trên bàn đá xuống, hừ lạnh một tiếng: "Muốn Tiểu Phi tử của ta dập đầu cho ngươi? Chán sống à?" Bạch U Nhi không ngờ Diệp Chỉ Lâm lại đột nhiên ra chân, muốn ngăn cản cũng không kịp, trong lòng không khỏi thắc mắc Tiểu Phi tử của nàng rốt cuộc là ai, mà khiến nàng thà đắc tội mình cũng muốn giáo huấn Lô Nhất Phong. Chỉ là người dưới đài quá đông, Bạch U Nhi nhất thời không thể tìm ra trong đám đông ai mới là Tiểu Phi tử của Diệp Chỉ Lâm. Cười khổ một tiếng, Bạch U Nhi nói: "Vị cô nương này, ngươi không nên đánh hắn, có chuyện gì đều có thể thương lượng mà." "Thương lượng cái gì?" Diệp Chỉ Lâm hừ một tiếng: "Chẳng lẽ thực sự muốn Tiểu Phi tử của ta dập đầu xin lỗi hắn sao?" Thấy Diệp Chỉ Lâm không nể mặt như vậy, Bạch U Nhi cũng không nhịn được có chút động khí, sắc mặt trầm xuống, nói: "Đã như vậy, tiểu muội muốn lĩnh giáo cao chiêu của cô nương một chút!" "Đến thì đến, sợ ngươi chắc?" Diệp Chỉ Lâm cũng không chút nhượng bộ. Vốn dĩ nàng còn có chút hảo cảm với bạch y mỹ nhân này, nhưng thấy nàng hết lần này tới lần khác giúp kẻ đáng ghét kia, cũng không nhịn được tức giận. Không nói thêm lời, hai nữ nhanh chóng ra tay. Diệp Phi phát hiện, người thủ hộ này quả nhiên có chút môn đạo. Nguyên bản võ công của Bạch U Nhi căn bản không thể so với Diệp Chỉ Lâm, nhưng lúc này lại đấu ngang ngửa với nàng. Tuy nhiên, hắn không lo lắng, bởi vì coi như có mượn nhờ Thiên Sơn linh khí, Bạch U Nhi vẫn chưa đạt tới trình độ của Diệp Chỉ Lâm, cho nên tiếp tục đánh xuống, người thua chắc chắn là nàng. Diệp Phi nhìn ra được, bản thân người trong cuộc là Bạch U Nhi đương nhiên cũng cảm thấy, trong lòng không khỏi hoảng sợ: đây là từ đâu ra một thiếu nữ, lại có thực lực như thế? Vốn tưởng rằng nam hài đáng ghét mình gặp lúc trước đã là cao thủ khó gặp, hiện tại xem ra, cô gái này dường như cũng không yếu hơn hắn. Mà mọi người dưới đài lúc này lại hào hứng trở lại, bởi vì hiện tại đang động thủ là hai siêu cấp mỹ nhân, hơn nữa một trong số đó còn là người thủ hộ trong truyền thuyết. Điều này làm cho họ vừa được thỏa mãn nhãn quan, vừa ẩn ẩn hưng phấn, bởi vì người thủ hộ cùng cao thủ Đại Thừa đều là những nhân vật khó gặp, hôm nay được chứng kiến họ tỷ thí, chuyến này quả thực không uổng phí. Hai nữ tuy trong lòng đều có chút tức giận, nhưng giữa họ không có ác ý gì, ngược lại sau khi đánh lại có cảm giác kỳ phùng địch thủ, bởi vậy càng đánh về sau càng nhẹ nhàng, đấu đến vài trăm chiêu, hoàn toàn biến thành luận bàn. Qua thêm trăm chiêu nữa, Bạch U Nhi tuy có Thiên Sơn linh khí làm hậu thuẫn, nhưng vẫn bị nội lực thâm hậu dường như vô cùng vô tận của Diệp Chỉ Lâm khiến cho dần lép vế. Vì vậy sau một lần đối chưởng, nàng lảo đảo lùi lại mấy bước, rồi nói: "Thực lực cô nương bất phàm, tiểu muội cam bái hạ phong!" Diệp Chỉ Lâm cũng dừng tay, hỏi: "Vậy ngươi còn muốn đứng ra cho kẻ đáng ghét kia không?" Bạch U Nhi khẽ mỉm cười nói: "Ta tài nghệ không bằng người, còn ra mặt cái gì nữa, ta thấy chuyện này cứ quyết định như vậy đi."</p>
+    <p>"Không được!" Không ngờ Lô Nhất Phong không đợi Diệp Chỉ Lâm mở miệng, đã lớn tiếng hét lên: "Mau gọi Bạch a di tới, hôm nay chuyện này không thể bỏ qua như vậy được!" Bạch U Nhi vốn đã xem Lô Nhất Phong rất không vừa mắt, lúc này thấy hắn vẫn không chịu buông tha, trong lòng càng chán ghét, nhíu đôi mày thanh tú: "Muốn gọi ngươi tự gọi, ta sẽ không làm phiền sư phụ!" Lô Nhất Phong nhìn Bạch U Nhi đầy oán độc, hung ác nói: "Đừng tưởng ngươi không giúp ta thì ta không có cách nào!" Nói xong, hắn móc từ bên người ra một thứ giống như pháo hoa, lúc Bạch U Nhi còn chưa kịp ngăn cản, đã mạnh mẽ kéo kíp nổ. Theo một tiếng vang nhỏ, một quả hỏa đạn từ trong ống phóng trên tay Lô Nhất Phong bắn thẳng lên không trung, bay cao vài trăm mét mới nổ tung, tạo thành một hình ảnh Tuyết Liên trắng muốt. "Ngươi, ngươi vậy mà dùng khẩn cấp truyền tấn!" Bạch U Nhi trong lòng tức giận cực kỳ. Loại vật này vốn là sư phụ chuẩn bị cho nàng, vì thực lực của nàng chưa đạt tới mức ngạo thị thiên hạ, nên để tránh có sự việc không thể dự đoán phát sinh, sư phụ mới chế tác cho nàng để dùng trong lúc sinh tử tồn vong. Không ngờ trong tay tên này cũng có một cái, hơn nữa ở chỗ này đã đem ra dùng. "Ngươi không giúp ta, ta không tin Bạch a di cũng không giúp!" Lô Nhất Phong cười lạnh nói. Bạch U Nhi hừ lạnh một tiếng, không thèm để ý đến hắn nữa, cũng không nhắc nhở Diệp Chỉ Lâm điều gì, bởi nàng tin rằng sư phụ dù có niệm tình cảm với mẫu thân Lô Nhất Phong, cũng tuyệt đối sẽ không giúp hắn làm càn. "Đến rồi, đến rồi!" Pháo hoa vừa mới bắn không lâu, đã có người chỉ vào phía trên sơn cốc kích động kêu lên. Diệp Phi nhìn theo ánh mắt của mọi người, trong lòng không khỏi khẽ động, bởi vì hắn chỉ nhìn thoáng qua đã nhận ra thân ảnh màu trắng đang chậm rãi hạ xuống từ đỉnh núi chính là người mình đã thấy hôm qua, chỉ là không ngờ đó là một nữ nhân, hơn nữa còn là một tuyệt đỉnh mỹ nhân. "Bạch Oánh Thi!" Nhìn thấy người phụ nữ còn chưa rơi xuống sơn cốc, Giang Uyển Quân ngồi bên cạnh Diệp Phi đột nhiên kích động, mạnh mẽ đứng dậy, miệng oán hận nói.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0428.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0430.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

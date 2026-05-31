@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 462 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 462</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 462</small>
+    Chương 462: Rõ ràng nhìn lén
+  </h1>
+  <div class="chapter-body">
+    <p>Đóng cửa phòng nghỉ lại, Chu Minh Minh có chút vô lực tựa vào cánh cửa, bàn tay nhỏ bé nhẹ vỗ về bộ ngực cao ngất của mình, hít sâu vài lần, cố gắng bắt bản thân phải tỉnh táo lại. Thế nhưng rất nhanh, Chu Minh Minh liền phát hiện mình làm vậy căn bản không có tác dụng, bởi vì chuyện hôm nay đối với nàng đả kích thật sự quá lớn. Từ trước đến nay, Liễu Phượng Nghi luôn là thần tượng của Chu Minh Minh, nàng không chỉ có khí chất cao quý trang nhã, làm quan thanh chính, mà ngay cả sinh hoạt cá nhân cũng cực kỳ đứng đắn, tất cả những điều này khiến Chu Minh Minh khâm phục thậm chí sùng bái. Nhưng cảnh tượng hôm nay lại đập tan hết thảy. Người mà nàng kính trọng như mẹ như Liễu Phượng Nghi không những làm loại chuyện này trong phòng làm việc, mà đối phương lại còn là Diệp Phi, đó là cháu trai ruột của nàng! Hai luồng tín niệm mãnh liệt va chạm khiến Chu Minh Minh cảm thấy mình như sắp sụp đổ. Thế nhưng ngay lúc đó, một hồi âm thanh yêu kiều đứt quãng xuyên qua cánh cửa truyền vào tai nàng, khiến tim nàng đập không ngừng. Là phòng nghỉ của thị trưởng đại nhân, tuy cửa cách âm không giống bên ngoài, tiếng nổ mạnh cũng không truyền ra ngoài được, nhưng độ cách âm vẫn rất tốt. Vậy mà giờ phút này nàng vẫn có thể nghe thấy, có thể thấy được Liễu Phượng Nghi gọi lớn tiếng đến mức nào. Điều này khiến Chu Minh Minh vừa bực bội trong lòng, đồng thời cũng nảy sinh một nỗi tò mò mãnh liệt: Loại chuyện này thực sự thư thái như vậy sao? Bằng không tại sao Phượng di lại gọi lớn tiếng như vậy? Không thể không nói, lòng hiếu kỳ là bệnh chung của hầu hết phụ nữ, Chu Minh Minh tự nhiên cũng không ngoại lệ. Bởi vậy, dù biết rất không nên, nàng vẫn không nhịn được lặng lẽ mở hé một khe nhỏ, trong tiếng yêu kiều khiến lòng nàng đập thình thịch, nàng vụng trộm nhìn ra ngoài. Và cái nhìn này, khiến nàng không thể nào rời mắt được nữa. Lúc này Liễu Phượng Nghi vẫn quay lưng về phía Diệp Phi, chỉ có điều không còn ở tư thế hai chân chống đất vểnh mông lên như lúc nãy nữa, mà là gác một bên chân thon dài bọc tất chân trong suốt lên mặt bàn. Nàng không nằm sấp xuống mà vì được địt quá sướng nên cố sức đứng lên, cặp vú to vốn đã cực đại càng thêm lồi ra, tựa hồ muốn làm rách chiếc áo sơ mi mỏng manh. Chiếc cổ trắng ngọc thon dài ưu nhã như thiên nga ngửa ra sau, đôi môi nhỏ nhắn khêu gợi không ngừng đóng mở, thốt ra những tiếng dâm đãng khiến người đứng xem như Chu Minh Minh cũng đỏ mặt không thôi: "Cháu trai ngoan... Cu em lớn của cháu... Dì thoải mái quá... Rất thích... Cho cháu địt dì đấy... Tiểu dâm huyệt... Tiểu tâm can... Con cặc lớn của cháu... Làm dì sướng quá... Dâm huyệt... Địt thật thích... Hảo hài tử... Dùng lực chút nữa... Dâm huyệt của dì... Ngứa quá... Nhanh dùng con cặc lớn của cháu... Cho dì... Dừng lại... Ngứa quá... Thật thoải mái... Dì nhớ quá... Để con cặc lớn của cháu... Cắm mãi trong lồn dì... Vĩnh viễn... Không xa rời nhau..." Dù bị sự dâm đãng khác hẳn vẻ đoan trang ngày thường của Liễu Phượng Nghi làm cho trong lòng thấy lạ lùng, nhưng Chu Minh Minh vẫn không cam lòng bỏ lỡ màn trình diễn trước mắt. Nàng dời ánh mắt xuống, nhìn thẳng vào nơi hai người giao hợp. Đầu tiên đập vào mắt chính là hai bên mông to đầy đặn như trăng rằm của Liễu Phượng Nghi. Cái mông đầy đặn, cao vút, kiều diễm ấy, cộng thêm những đợt gợn sóng sinh ra khi bị Diệp Phi va chạm, khiến dù là phụ nữ như Chu Minh Minh cũng phải thừa nhận, cặp mông đẹp của thị trưởng thật sự quá hoàn mỹ. Có chút hâm mộ nhìn chằm chằm vào cặp mông ngọc khêu gợi của Liễu Phượng Nghi một hồi lâu, Chu Minh Minh mới dời ánh mắt đến nơi giao hợp thực sự. Lúc này Diệp Phi và Liễu Phượng Nghi đã chiến đấu đến giai đoạn gay cấn, dương vật thô to điên cuồng ra vào trong tiểu dâm huyệt của dì, thậm chí mỗi lần rút ra đều kéo theo lớp thịt non mềm của Liễu Phượng Nghi lộn ra ngoài, lúc cắm vào lại mang theo vào trong. Hơn nữa không biết là cố ý hay thế nào, nơi hạ thể của họ vừa vặn đối diện với cửa phòng nghỉ, khiến Chu Minh Minh được nhìn một cách trực diện nhất. Con cặc của anh ta thật lớn! Thật không biết lồn của Phượng di làm sao chịu nổi, nếu là ta, khẳng định không chứa nổi nó. Có lẽ do bị âm thanh rên rỉ của Liễu Phượng Nghi ảnh hưởng, trong đầu Chu Minh Minh đột nhiên nảy ra một ý niệm như vậy. Những thứ bình thường chỉ nghe thôi đã khiến nàng đỏ mặt nay lại hiện lên trong đầu rất tùy ý. Tuy nhiên suy nghĩ xong, nàng không nhịn được hơi đỏ mặt, sao nghĩ đi nghĩ lại lại tự thế chỗ mình vào? Tuy những động tác ân ái trước mắt không có gì đẹp mắt, chỉ đơn giản là việc dương vật ra vào trong lồn thực hiện những chuyển động piston đơn điệu, nhưng Chu Minh Minh không thể dời mắt đi. Là một cô gái đã 25 tuổi, dù chưa trải qua chuyện này, nàng cũng từng lén xem vài lần những bộ phim từ quốc gia kia, nhưng khi xem những thứ đó, nàng căn bản không có cảm giác gì lớn, tối đa chỉ thấy hưng phấn một chút rồi tự an ủi mà thôi. Nhưng cảnh tượng trước mắt lại mang đến cho nàng một loại mỹ cảm đặc biệt, hơn nữa trong lòng có một cảm giác khác thường, cơ thể cũng trở nên nóng bỏng. Tuy chưa từng thử qua, nhưng Chu Minh Minh có thể khẳng định, sự nóng bỏng trên người mình lúc này tuyệt đối không phải tự an ủi là có thể giải quyết được. Đột nhiên, Liễu Phượng Nghi không ngừng rên rỉ rồi phát ra một tiếng hét dài, cặp mông to cũng rung lên dữ dội. Gần như cùng lúc đó, Diệp Phi gầm nhẹ một tiếng, con cặc lớn hung hăng đâm mạnh vào trong tiểu dâm huyệt của Liễu Phượng Nghi rồi không rút ra nữa. Rõ ràng, hai người đã đồng thời đạt đến đỉnh cao khoái cảm. Quả nhiên, sau khi run rẩy một lúc, Liễu Phượng Nghi đứng không vững nữa, cơ thể yêu kiều khêu gợi mềm nhũn, toàn bộ đổ ập xuống bàn làm việc, còn Diệp Phi cũng từ phía sau đổ ập lên người nàng, hai người đồng thời thở dốc một cách thô trọng. Thấy cảnh này, Chu Minh Minh thở dài một hơi dài, đang định đóng cửa lại để thả lỏng cơ thể, không ngờ một câu nũng nịu của Liễu Phượng Nghi lại khiến nàng đình chỉ mọi động tác: "Hảo hài tử, dì còn muốn!" Còn muốn? Chu Minh Minh không khỏi sững sờ, loại chuyện này chẳng lẽ còn có thể liên tục sao? Nhớ lại mỗi lần mình tự an ủi, đều chỉ một lần là đủ, thậm chí sau đó chẳng còn chút sức lực nào, sao Phượng di có thể làm tiếp được? Hơn nữa cho dù nàng có thể, thân là nam nhân như Diệp Phi sao có thể lập tức cứng trở lại? Ngay khi Chu Minh Minh còn đang nghi hoặc, Diệp Phi đã cử động. Anh dùng tay nâng eo nhỏ của Liễu Phượng Nghi lên, ôm nàng rời khỏi mặt bàn, sau đó lấy dương vật đang cắm sâu trong lồn dì làm trục, xoay mạnh cơ thể yêu kiều của dì lại, khiến hai người chuyển sang tư thế mặt đối mặt, rồi đặt nàng lên mặt bàn. Dáng người Liễu Phượng Nghi thon dài đầy đặn, tuyệt đối hơn trăm cân, thế nhưng trong tay Diệp Phi lại như một đứa trẻ nhỏ không có trọng lượng, có thể tùy ý thao túng. Tất nhiên, đây không phải điều khiến Chu Minh Minh ngạc nhiên nhất. Điều khó hiểu nhất với nàng là, sau khi Diệp Phi đặt Liễu Phượng Nghi xong, liền lập tức gác đôi chân thon dài của nàng lên vai mình, bắt đầu một vòng đâm rút mới. Nhìn con dương vật vẫn cứng rắn như lúc nãy đang cắm vào rút ra trong lồn Liễu Phượng Nghi, nàng thực sự ngỡ ngàng. Chẳng lẽ lúc nãy anh ta căn bản chưa bắn, hay là sau khi bắn xong lại nhanh chóng cứng trở lại? Dù là trường hợp nào, Chu Minh Minh đều phải thừa nhận, chỉ riêng ở phương diện này, anh ta cũng đủ khiến tất cả phụ nữ phải trả giá hết thảy. Ngay cả khi nàng chỉ là một tiểu xử nữ chưa từng nếm trải tư vị đàn ông, nàng cũng có thể khẳng định điểm này. Đột nhiên, trên gương mặt xinh đẹp của Chu Minh Minh ửng lên một vệt đỏ, vì nàng phát hiện ra một vấn đề rất nghiêm trọng. Vốn dĩ với tư thế hiện tại, trong phòng nghỉ nàng chỉ có thể thấy bờ mông không ngừng nhấp nhô của Diệp Phi, nhưng Diệp Phi khi đâm rút lại hơi nghiêng người, khiến nàng có thể nhìn thấy rõ tình hình con cặc của anh ta đang ra vào trong lồn dì mình. Chẳng lẽ anh ta phát hiện mình đang nhìn lén? Chu Minh Minh bối rối nghĩ, thế nhưng dù vậy, nàng vẫn không từ bỏ trận xuân cung trước mắt, ngược lại càng nhìn càng say sưa.</p>
+    <p>Vì tư thế thuận tiện hơn lúc nãy rất nhiều, lúc này Diệp Phi địt càng hăng hái hơn. Hai tay anh rời khỏi ngực Liễu Phượng Nghi, cởi bỏ mấy cúc áo sơ mi mỏng manh của nàng, giải phóng cặp vú to mỹ miều để vuốt ve, thỉnh thoảng lại cúi đầu mút lấy hai đầu núm vú đã bị anh đùa giỡn đến đứng thẳng. Bị giáp công tứ phía, Liễu Phượng Nghi so với lúc nãy càng thêm điên cuồng. Sắp sửa bay lên trời, nàng mãnh liệt nhấp nhô cặp mông kiều diễm, đón ý hùa theo sự đâm rút của cháu trai. Theo nhịp độ đó, mái tóc dài mềm mại bị vung vẩy mất trật tự, trong miệng lại thốt ra những tiếng rên rỉ dâm đãng còn hơn cả kỹ nữ. Trong căn phòng làm việc tượng trưng cho quyền lực cao nhất Vọng Hải, thị trưởng Vọng Hải, dì của Diệp Phi, bị Diệp Phi địt đến như si như say, còn thư ký thị trưởng Chu Minh Minh đang lén nhìn cũng như si như say. Về phần Diệp Phi đang địt dì ruột của mình có như si như say hay không, thì không ai biết được. Cùng một tư thế, cùng một tốc độ, Diệp Phi vậy mà địt dì tận hơn nửa canh giờ. Trong lúc này, cơ thể yêu kiều của Liễu Phượng Nghi co thắt mãnh liệt nhiều lần, Diệp Phi cũng run rẩy theo, khiến Chu Minh Minh đang theo dõi phải thán phục không thôi. Về sau, Liễu Phượng Nghi đã bị cháu trai địt đến không còn chút sức lực nào để đón ý hùa theo, thậm chí giọng nói cũng đã khàn đi, chỉ bị động đón nhận sự đâm rút từ thân cháu trai – người mà nàng nhìn lớn lên, vốn dĩ yêu thương vô cùng, nay lại trở thành bạn lữ cả đời. Sau hơn một ngàn lần đâm rút, Liễu Phượng Nghi toàn thân vô lực phảng phất như hồi quang phản chiếu lại co thắt một lần nữa, miệng rên rỉ như mất mạng: "Chồng ngoan... Chết mất... Dì muốn chết rồi... Lại muốn tiết cho cháu... Con cặc lớn của cháu... Cháu trai ngoan..." "Dì ngoan, cháu cũng sắp rồi!" Cảm nhận được sự co thắt trong lồn dì, Diệp Phi cũng nói theo. Không ngờ Liễu Phượng Nghi lại ngăn anh lại, vội vàng nói: "Không được, lần này không được bắn vào trong lồn nữa, dì muốn uống!" "Không phải dì nói muốn củng cố sao?" Diệp Phi cười hỏi, nhưng anh vẫn rất nghe lời mà không bắn ra, mà đâm dương vật mạnh vào nơi sâu nhất trong tiểu dâm huyệt của dì, nghiền nát hoa tâm kiều nộn. Rất nhanh, anh cảm thấy một luồng chất lỏng mát lạnh xối lên trên đầu khấc của mình. Tiết ra lớp âm tinh cuối cùng, Liễu Phượng Nghi giọng nói đã hữu khí vô lực: "Cháu đã rót đầy người ta rồi, cũng không kém lần này đâu." "Được rồi." Diệp Phi đáp ứng, chậm rãi rút dương vật ra khỏi tiểu dâm huyệt vốn đã sưng lên vì bị anh địt đến no đủ. Theo sự rút ra đó, tiểu dâm huyệt của Liễu Phượng Nghi giống như một cái miệng nhỏ khẽ trương khẽ hợp co thắt, mỗi lần co thắt lại nhổ ra một luồng chất lỏng trắng đục. Hiển nhiên lời nàng nói không sai, Diệp Phi thực sự đã rót đầy nàng. Lặng lẽ nhìn cái miệng lồn nhỏ bé vẫn đang không ngừng co thắt nhưng mãi không thể khép lại, Chu Minh Minh trong lòng vô cùng rung động. Bị địt đến mức ngay cả sức co thắt cũng không còn, Phượng di đã sướng đến mức nào chứ? Ý nghĩ này thoáng qua trong đầu Chu Minh Minh, lực chú ý rất nhanh bị thu hút. Lúc này Diệp Phi đã nhảy lên bàn làm việc, ngồi xổm phía trên Liễu Phượng Nghi, con cặc dữ tợn trong mắt Chu Minh Minh nhưng lại mang vài phần đáng yêu đặt ngay trước gương mặt Liễu Phượng Nghi. Liễu Phượng Nghi nhìn cháu trai yêu mến bằng ánh mắt kiều mị vô cùng, đưa tay nhỏ nắm lấy con cặc dính đầy dâm thủy của mình, nhanh chóng tuốt lộng, cái miệng nhỏ há to, chiếc lưỡi non nớt vươn ra, đặt dưới đầu khấc, tựa hồ muốn đón lấy thứ gì đó. Diệp Phi không kìm nén nữa, theo sự tuốt lộng của dì, anh buông lỏng quan ải tinh quan, không lâu sau, bắt đầu phun ra dữ dội trong một tiếng gầm nhẹ. Nhìn từng luồng chất lỏng màu trắng liên tục bắn ra từ đầu khấc của Diệp Phi, phun một giọt không sót vào miệng nhỏ hồng nhuận của Liễu Phượng Nghi, người sau còn lộ ra nụ cười thỏa mãn, Chu Minh Minh không khỏi trừng lớn đôi mắt đẹp. Tuy theo lời nói của Liễu Phượng Nghi lúc trước nàng đã đoán được đại khái, nhưng dù sao cũng chỉ là tưởng tượng. Giờ phút này tận mắt chứng kiến vị thị trưởng lãnh diễm cao quý mà mình vốn kính trọng lại thực sự đang sung sướng ăn tinh dịch của cháu trai, sự kinh ngạc mãnh liệt khiến nàng không nhịn được nuốt nước bọt, người ngoài nhìn vào còn tưởng rằng nàng đang thèm khát chỗ lộc ăn đó của Liễu Phượng Nghi. Đợi đến khi Diệp Phi bắn xong, Liễu Phượng Nghi mới vẻ mặt thỏa mãn nuốt trọn gần nửa miệng tinh dịch, sau đó hơi nâng trán, há miệng ngậm lấy quy đầu còn đang rỉ ra từng sợi tinh dịch của cháu trai, nhẹ nhàng mút vào. Diệp Phi hưởng thụ chiếc miệng nhỏ mềm mại của dì, cúi đầu nhìn nàng một cách ôn nhu, khóe miệng đột nhiên lộ ra một nụ cười nghiền ngẫm, khiến Chu Minh Minh đang ngây ngốc quan sát không hiểu sao máy động trong lòng. Dù từ đầu đến cuối Diệp Phi không nhìn về phía nàng, nhưng không biết tại sao, nàng cảm giác nụ cười này là dành cho mình. Bị kinh động, Chu Minh Minh vội vàng đóng cửa lại, nhẹ vỗ bộ ngực đang phập phồng, sau đó mới nhận ra mình đã đứng ở tư thế nửa ngồi này gần một giờ. Bình thường luyện công buộc ngựa lâu như vậy đã không chịu nổi, có thể thấy vừa rồi nàng đã nhập tâm đến mức nào. Hơn nữa điều khiến nàng xấu hổ hơn là khi đứng dậy, nàng rõ ràng cảm nhận được nơi đó của mình cũng đã trở nên trơn ướt một mảnh. Tuy trong phòng ngoài Chu Minh Minh ra không có người khác, nhưng sự thay đổi của cơ thể vẫn khiến nàng xấu hổ vô cùng. Thừa dịp Liễu Phượng Nghi chưa vào, nàng vội vàng thay quần áo, giấu chiếc quần lót đã ướt đẫm vào trong túi xách nhỏ, thầm mừng mình còn chưa kịp về nhà thay đồ. Không lâu sau, Liễu Phượng Nghi bước đi với dáng vẻ có chút vô lực, gương mặt tuyệt mỹ vì dâng lên vệt đỏ động lòng người mà khiến ngay cả phụ nữ như Chu Minh Minh cũng thấy kinh diễm. Nhìn Chu Minh Minh cười khẽ, Liễu Phượng Nghi nói: "Rõ ràng, con ra bên ngoài thu xếp một chút, lát nữa dì có chuyện muốn nói với con." "Dạ." Thói quen bao năm khiến Chu Minh Minh thống khoái đáp ứng. Nàng dìu cơ thể yêu kiều vô lực của Liễu Phượng Nghi nằm xuống giường nhỏ, sau đó đi ra phòng nghỉ, lại phát hiện Diệp Phi đã biến mất, điều này khiến nàng thở phào một hơi dài, bởi vì nàng thực sự không biết phải đối mặt với anh như thế nào. Đi đến trước bàn làm việc, Chu Minh Minh thu dọn chiếc bàn bị hai người làm cho tán loạn, đột nhiên phát hiện trên chiếc bàn làm việc rộng lớn kia có một vũng nước lớn. Quan sát kỹ hơn, nàng phát hiện trên mặt đất cạnh bàn và trên chiếc ghế salon bên kia cũng có một bãi. Là một cô gái đã 25 tuổi, Chu Minh Minh tuy chưa trải qua chuyện nam nữ, nhưng đôi khi cũng có tự sờ soạng, khi hưng phấn nhất nàng cũng từng tiết ra loại chất lỏng như vậy, nên tất nhiên hiểu đó là gì. Thế nhưng cái này có phải quá nhiều rồi không? So với chút ít của mình, quả thực là chênh lệch giữa sông nhỏ và biển lớn. Tạo thành tình huống này chỉ có hai khả năng: một là Liễu Phượng Nghi trời sinh nước nhiều, hai là nàng đã sướng đến tột cùng. Trực giác của Chu Minh Minh cho rằng là khả năng thứ hai. Cái này đã sướng đến mức nào chứ? Mình chỉ ra một chút như vậy đã cảm thấy như đang bay, Phượng di rõ ràng ra nhiều như vậy, có thể thấy nàng đã thoải mái đến mức nào, trách không được vừa rồi ngay cả sức đi bộ cũng gần như không có. Chu Minh Minh vừa lau sạch những chất lỏng khó xử này, vừa đỏ mặt nghĩ, trong đầu không khỏi lại hiện lên cảnh Diệp Phi tiến vào người Phượng di. Phi! Mình đang nghĩ gì thế này! Chu Minh Minh tự mắng mình một câu, vội vàng lắc đầu xua đi hình ảnh không nên xuất hiện kia, gương mặt lại càng thêm đỏ. Thu dọn sạch sẽ rất nhanh, Chu Minh Minh mở cửa sổ ra để không khí khó xử trong văn phòng tản bớt, sau đó quay lại phòng nghỉ. Khi nhìn thấy Liễu Phượng Nghi đang nằm đó với vẻ mặt thỏa mãn, nàng lại không nhịn được nhớ tới cảnh tượng lúc nãy. "Rõ ràng, tới đây ngồi." Thấy Chu Minh Minh bước vào, Liễu Phượng Nghi ôn nhu cười với nàng. Đợi nàng ngồi vào bên cạnh mình, lại nói: "Con có phải cảm thấy Phượng di rất... cái đó không?" "Không có, không có ạ." Chu Minh Minh vội vàng phủ nhận. Kỳ thật lúc đầu nàng đúng là nghĩ vậy, nhưng về sau nàng tự tìm cho Liễu Phượng Nghi một cái cớ, đó là phụ nữ đến tuổi này, nhu cầu quả thực rất lớn, mà nàng lại không muốn tạo phiền toái cho mình nên mới tìm cháu trai ruột. Tuy điều này không đúng, nhưng cũng là chuyện có nguyên nhân. "Dì cũng biết như vậy là không đúng." Liễu Phượng Nghi tự giễu cười một cái: "Nhưng khi tình cảm tới rồi, căn bản không phải lý trí có thể khống chế được." "Ý dì là, dì đã yêu anh ấy?" Chu Minh Minh không khỏi kinh ngạc mở to mắt, chẳng lẽ Phượng di không chỉ vì giải quyết nhu cầu cơ thể, mà là thực sự yêu Diệp Phi? "Có phải cảm thấy rất hoang đường không?" Liễu Phượng Nghi khẽ cười nói: "Đó là vì con chưa từng trải qua tình yêu, căn bản không biết, khi nó tới, dù có hoang đường thế nào cũng không ngăn nổi những tình cảm ấy. Rõ ràng, dứt bỏ chuyện hôm nay, con có thể nói cho dì biết ấn tượng của con về Tiểu Mãn không?" "Anh ấy..." Chu Minh Minh do dự một chút rồi nói: "Nói thật, anh ấy quả thực rất tuyệt. Trước kia đã rất khiến người ta yêu mến, mà thành tựu mấy tháng này lại càng khiến người ta chỉ có thể ngước nhìn. Ít nhất, trong những người đàn ông con từng thấy, không ai ưu tú hơn anh ấy." Khóe miệng Liễu Phượng Nghi lộ ra một nụ cười vui vẻ: "Nói như vậy, con đối với nó cũng có chút tâm động rồi?" "Không có, con mới không có!" Chu Minh Minh vội vàng phủ nhận. Thế nhưng nàng không thừa nhận cũng không được, những lời vừa nói quả thực xuất phát từ thật lòng. Hơn nữa nàng còn phát hiện, khi mình nhắc đến Diệp Phi, luôn nghĩ tới cảnh tượng lúc nãy, đặc biệt là thân hình cường tráng và thứ đồ vật khó xử kia.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0461.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0463.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

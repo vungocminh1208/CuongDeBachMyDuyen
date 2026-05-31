@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 531 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 531</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 531</small>
+    Chương 531: Nhược Nam mâu thuẫn
+  </h1>
+  <div class="chapter-body">
+    <p>"Thình thịch..." Ngay khi Lệ Thương Hải chuẩn bị ra tay, một tiếng động cơ rung trời truyền đến từ phía cổng lớn. Ở kinh thành, người lái chiếc xe kiêu ngạo như vậy có lẽ không chỉ mình Lệ Nhược Nam, nhưng người có thể lái xe đến tận đây thì chỉ có nàng.</p>
+    <p>So với việc bản thân đột phá, Lệ Thương Hải càng quan tâm đến hạnh phúc của con gái hơn, vì thế ông cũng chẳng buồn động thủ nữa, quay sang nói với Diệp Phi: "Là con bé nhà ta về rồi, Diệp Phi, cậu vào phòng khách uống chén trà trước đi, ta ra đón nó vào."</p>
+    <p>Diệp Phi đáp lời, nhưng trong lòng lại âm thầm kêu khổ. Bản thân còn chưa nghĩ ra cách gì đối phó, Lệ Nhược Nam đã về rồi. Vạn nhất nàng nói lộ chuyện gì trước mặt Lệ Thương Hải, thì mình chỉ có nước đợi chịu cơn thịnh nộ của ông thôi! Tuy ông không đánh lại mình, nhưng dù sao mình cũng không thể đánh cha vợ tương lai chứ?</p>
+    <p>Vẻ mặt sầu não trở lại phòng khách, chén trà còn chưa uống hết, Diệp Phi đã thở dài vài tiếng. Nhưng hắn chẳng có cách nào khác, chỉ đành cầu nguyện rằng phản ứng của Lệ Nhược Nam khi nhìn thấy hắn sẽ không quá kịch liệt.</p>
+    <p>Trong lúc Diệp Phi đang than ngắn thở dài, Lệ Thương Hải vừa ra đến cửa lớn đã ngẩn người. Đây... đây thực sự là con gái mình sao?</p>
+    <p>Trong ấn tượng của Lệ Thương Hải, con gái từ lúc biết nhận thức đã luôn mặc đồ như con trai. Tuy khi lớn lên, vì dáng người quá đẹp nên dù mặc gì cũng không che giấu được nét nữ tính, nhưng nàng vẫn giữ phong cách cực kỳ cuồng dã: áo da, quần da, bốt cao cổ, dáng vẻ vô cùng nữ vương. Vậy mà hôm nay, nàng lại mặc một chiếc váy đầm có màu sắc diễm lệ, trông rất ra dáng phụ nữ.</p>
+    <p>Chứng kiến ánh mắt kinh ngạc như thấy quỷ của cha, Lệ Nhược Nam – người vốn luôn hào phóng, sáng sủa, thậm chí có phần dã tính – đột nhiên cảm thấy lúng túng. Nàng cũng không biết tại sao mình lại giữ bộ váy này, hơn nữa hai ngày nay cứ mặc mãi trên người. Trước đó, ánh mắt khác lạ của các tỷ muội đã khiến nàng rất khó xử, thế nhưng nàng cứ không nỡ cởi ra. Mỗi lần nhìn thấy bộ y phục này, nàng lại không nhịn được nhớ tới cái tên đáng ghét kia. Nghĩ đến hắn, trong lòng dâng lên nỗi hận vô biên, nhưng mỗi khi hận hắn, trong đầu lại hiện lên vài nét dịu dàng của hắn, thân thể cũng vô thức dư vị lại cảm giác thăng hoa đêm đó. Mọi hận ý tức khắc tan biến, thay vào đó là một loại cảm giác ấm áp đầy ngượng ngùng.</p>
+    <p>Lúc này, đối mặt với ánh mắt của cha, cảm giác ấy lại ùa về, khiến gương mặt Lệ Nhược Nam đỏ bừng, ánh mắt lưu chuyển, lần đầu tiên nàng cảm thấy thẹn thùng trước mặt phụ thân.</p>
+    <p>Nhìn con gái hoàn toàn khác lạ so với mọi khi, mắt Lệ Thương Hải càng trợn càng to. Nếu không phải chính tay ông nuôi nấng nàng khôn lớn, chắc chắn ông đã không nhận ra. Ông thậm chí còn suýt tưởng có người giả mạo.</p>
+    <p>"Nhược Nam, con... con không sao chứ?" Lệ Thương Hải cẩn thận hỏi. Sự thay đổi của con gái quá lớn, đến mức một cao thủ Đại Thừa như ông cũng thấy bất an.</p>
+    <p>"Con không sao ạ." Lệ Nhược Nam lập tức tỉnh táo lại, cố nén vẻ ngượng ngùng trong lòng, hỏi: "Cha, gọi con về có chuyện gì vậy?"</p>
+    <p>Lệ Thương Hải lại kinh ngạc, vì giọng điệu dịu dàng này của con gái ông chưa từng nghe qua bao giờ. Tuy nhiên, sau cú sốc đó là niềm vui từ tận đáy lòng. Vốn ông còn sợ cá tính cuồng dã của con sẽ làm Diệp Phi sợ chạy mất, giờ thấy con gái trở nên dịu dàng, lại còn đáng yêu hơn trước nhiều, ông tin dù tiểu tử kia có kén chọn đến đâu cũng không thể không động tâm.</p>
+    <p>"Cũng không có gì lớn, chỉ là cha vừa quen một người trẻ tuổi, rất ưu tú, muốn giới thiệu cho con làm quen một chút." Lệ Thương Hải cười ha hả nói.</p>
+    <p>"Cái gì?" Lệ Nhược Nam vốn đang đi vào cùng cha, đột nhiên dừng bước. Gương mặt vừa mới còn vẻ ngượng ngùng, dịu dàng trong nháy mắt lạnh xuống. Nàng quay người định bỏ đi, đồng thời nói: "Con đi đây!"</p>
+    <p>Lệ Thương Hải bị phản ứng của con gái làm cho sững sờ. Thấy nàng thực sự muốn rời đi, ông không khỏi tức giận, quát lớn: "Con đứng lại đó cho ta!"</p>
+    <p>Lệ Nhược Nam khựng lại, quay người nhìn cha với ánh mắt đầy quật cường. Nàng không thể ngờ rằng cha gọi mình về lại là để sắp đặt xem mắt. Điều này khiến nàng vô cùng khó chịu, luôn có cảm giác như đang phản bội người kia.</p>
+    <p>Đúng vậy, chính là phản bội. Lệ Nhược Nam trong lòng nghĩ như thế. Nàng vốn không phải kiểu con gái có tư tưởng "một đời một người", thậm chí từng nghĩ cả đời này sẽ không bao giờ yêu hay dựa dẫm vào người đàn ông nào. Nhưng từ sau sự kiện lần đó, suy nghĩ của nàng đã thay đổi. Nàng luôn âm thầm nhắc nhở bản thân, dù không tình nguyện, nhưng mình đã là người của hắn rồi. Một cô gái tốt nên biết giữ gìn, dù không thích cũng phải như thế. Có lẽ chỉ có vậy, nàng mới có thể tự an ủi bản thân: vì sao sau khi chịu nhục nhã như vậy, đáng lẽ phải hận hắn, nhưng lại không nhịn được mà nhớ về hắn, thậm chí đêm nằm mơ cũng là cảm giác về hắn.</p>
+    <p>Thấy con gái cuối cùng cũng chịu dừng bước, Lệ Thương Hải mới thở phào nhẹ nhõm. Tuy ông hoàn toàn có thể cưỡng ép nàng ở lại, nhưng nếu không đến bước đường cùng, ông không muốn làm vậy. Vì vợ mất sớm, tình thương ông dành cho con gái đã đạt đến giới hạn, từ trước đến nay chưa bao giờ miễn cưỡng nàng điều gì. Nhưng chuyện hôm nay thì khác, vì nó liên quan đến hạnh phúc cả đời của nàng.</p>
+    <p>Bước vài bước đến bên cạnh Lệ Nhược Nam, Lệ Thương Hải nói: "Được rồi, con gái ngoan, đừng làm mình làm mẩy nữa, mau vào cùng cha đi. Để người ta đợi lâu không hay, hơn nữa người trẻ tuổi này thực sự rất ưu tú, cha tin con chắc chắn sẽ thích."</p>
+    <p>Nghe người cha vốn kiêu ngạo nay lại ra sức nói tốt cho người kia, Lệ Nhược Nam không những không vui mà càng thêm mâu thuẫn. Ưu tú cái gì? Dù có ưu tú thế nào thì có sánh được với hắn không? Còn thề thốt chắc chắn mình sẽ thích, làm sao có thể chứ? Mình còn có khả năng thích người khác sao?</p>
+    <p>Trước đó không có sự so sánh, dù nàng không nhịn được nhớ tới gã đàn ông xấu xa kia, nàng vẫn có thể duy trì ít nhiều hận ý với hắn. Nhưng giờ với sự xuất hiện của một người trẻ tuổi chưa rõ mặt mũi này, hình bóng gã đàn ông xấu xa kia lại đột ngột hiện lên trong tâm trí nàng, không chút lưu tình mà đánh bại người trẻ tuổi "ưu tú" trong miệng cha nàng thành kẻ thua cuộc.</p>
+    <p>Thấy con gái vẫn giữ bộ dạng khinh khỉnh, Lệ Thương Hải càng thêm bất lực. Ông không hiểu tại sao con gái chưa nhìn thấy đối phương đã bài xích như vậy. Nhưng giờ "tên đã trên dây", nếu để Diệp Phi biết con gái đã về mà lại bỏ đi, e rằng mối quan hệ này thật sự không cứu vãn được nữa. Vì thế, ông đành hạ giọng cầu xin: "Con gái ngoan, con cứ nể mặt cha một lần, cha đã hứa với người ta rồi, không thể nuốt lời được!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0530.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0532.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

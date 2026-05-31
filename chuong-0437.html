@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 437 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 437</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 437</small>
+    Chương 437: Nghẹn tạc Diệp Phi
+  </h1>
+  <div class="chapter-body">
+    <p>Tuy vừa mới đạt được sự thỏa mãn triệt để, nhưng cơ thể Chúc Ngọc Nghiên sau khi được Diệp Phi dùng đại thủ bao hàm chân khí Huyễn Dương Quyết vuốt ve, chẳng mấy chốc đã thở dốc dồn dập. Nàng không khỏi vỗ nhẹ vào vai Diệp Phi, hờn dỗi nói: "Đồ bại hoại, đừng nghịch nữa, vừa rồi còn chưa lăn lộn người ta đủ sao?"</p>
+    <p>Diệp Phi ha ha cười, đại thủ xấu xa tiến vào khe giữa hai bên đầy đặn của vị sư nương xinh đẹp, nhẹ nhàng ấn lên đó nói: "Sao mà đủ được, ta muốn lăn lộn nàng cả đời!" Thế nhưng hắn cũng biết, sư nương tuy có Huyền Âm Quyết, nhưng cơ thể mình lại quá cường hãn, nàng thực sự không chịu nổi nữa, nên sau khi xoa nắn một lúc cũng đành thành thật buông tay.</p>
+    <p>Chưa ra khỏi thạch lâm được bao xa, Diệp Phi lại nói: "Sư nương, nếu có cơ hội, hãy dạy Huyền Âm Quyết cho sư tỷ đi, võ công của nàng hiện tại thật sự không tốt lắm."</p>
+    <p>"Hừ, võ công gì mà không tốt lắm? Ta thấy ngươi rõ ràng là muốn đánh chủ ý lên nữ nhi của ta thì có, nếu tu luyện Huyền Âm Quyết, chẳng phải là tiện nghi cho tiểu bại hoại nhà ngươi sao?" Chúc Ngọc Nghiên lại đánh vào người Diệp Phi một cái, một câu nói toạc ra dụng tâm "hiểm ác" của hắn.</p>
+    <p>Dù sư nương chỉ dùng giọng điệu trách móc, nhưng qua ngữ điệu hơi vui vẻ, Diệp Phi vẫn nghe ra nàng căn bản không phản đối. Vì vậy hắn cười hắc hắc, bàn tay hư hỏng lại đặt lên vị trí mỹ diệu kia của sư nương, nói: "Nếu nàng có thể gánh vác phần đó giúp nàng, ta liền không đánh chủ ý đến nàng nữa."</p>
+    <p>"Được rồi, vì không để ngươi lăn lộn chết, người ta đành phải đem nữ nhi bán cho ngươi." Chúc Ngọc Nghiên "bất đắc dĩ" thỏa hiệp, trong lòng lại vô cùng vui vẻ.</p>
+    <p>Từ lần trước rời đi, trong lòng nàng vừa giằng xé nhưng cũng phải thừa nhận, Diệp Phi tuyệt đối là rồng phượng giữa loài người. Là một người mẹ, đương nhiên nàng muốn dành cho con gái hạnh phúc lớn nhất, nên khi đó nàng đã có tâm tư muốn tác hợp cho nữ nhi và Diệp Phi. Nay dù đã dâng hiến cả bản thân, tâm tư này vẫn không hề thay đổi. Cách nghĩ này nói ra tuy có chút hoang đường, nhưng ngẫm lại cũng chẳng có gì sai; trong giới võ giả vốn không có khái niệm một chồng một vợ. Về phần tư tưởng mẹ con cùng hầu một chồng, tuy có chút táo bạo, nhưng chỉ cần Giang Uyển Quân đồng ý thì không thành vấn đề. Hơn nữa, Chúc Ngọc Nghiên rất tin tưởng rằng nữ nhi cũng yêu mình như cách nàng yêu con bé, vậy nên nhất định sẽ tiếp nhận sự thật này.</p>
+    <p>Điều duy nhất khiến Chúc Ngọc Nghiên đôi chút không yên tâm là nữ nhi tuy tướng mạo dáng người đều hạng nhất, nhưng tính cách lại quá mức hào sảng, đầy nam tính. Nàng lo Diệp Phi sẽ không thích kiểu tính cách này, lúc này nghe hắn nói như vậy, tự nhiên đã hoàn toàn yên tâm.</p>
+    <p>Diệp Phi cõng vị sư nương yêu dấu, trên đường đi tình ý nồng nàn, vì vậy tốc độ không nhanh. Người mang Huyền Âm Quyết như Chúc Ngọc Nghiên cũng khôi phục thể lực nhanh hơn phụ nữ bình thường, nên khi trở lại ngoài sơn cốc, nàng đã hồi phục hoàn toàn. Kỳ thực từ nửa giờ trước, nàng đã chẳng còn vấn đề gì, sở dĩ vẫn để Diệp Phi cõng đến tận đây chỉ là muốn nũng nịu trên người hắn, đối với việc này, Diệp Phi đương nhiên vô cùng cam tâm tình nguyện.</p>
+    <p>Mắt thấy sắp vào sơn cốc, Chúc Ngọc Nghiên mới lưu luyến không rời trèo xuống khỏi lưng Diệp Phi, sóng vai cùng hắn đi vào. Chưa đi được hai bước khỏi thạch lâm, Giang Uyển Quân đã rảo bước đón chào, theo sau là Trầm Tuệ Nhã và Liễu Diệc Như cùng các nữ nhân khác.</p>
+    <p>"Mẹ, người không sao chứ? Bạch Oánh Thơ có làm khó người không?" Tuy khí sắc Chúc Ngọc Nghiên trông rất tốt, nhưng Giang Uyển Quân vẫn không nhịn được hỏi.</p>
+    <p>Trải qua trận đại chiến vừa rồi, biết rõ Diệp Phi không thể nào vì bất cứ chuyện gì mà bỏ rơi mình, tâm tư đối với Bạch Oánh Thơ của Chúc Ngọc Nghiên cuối cùng cũng được cởi bỏ, thậm chí đã chuẩn bị sẵn tâm lý làm tỷ muội với đối phương. Lúc này nghe con gái hỏi, nàng mỉm cười nói: "Nàng làm sao làm khó ta? Lần này gọi ta qua chỉ là để giải thích chuyện hai mươi năm trước, Tiểu Quân, chuyện đó vốn không trách nàng, giờ nàng đã chân thành xin lỗi chúng ta, con cũng đừng trách nàng nữa nhé."</p>
+    <p>"Vâng ạ!" Giang Uyển Quân vốn là một cô gái hào sảng, sau khi suy nghĩ cũng đã thông suốt, lúc này nghe mẹ nói vậy liền trút bỏ hết thành kiến với Bạch Oánh Thơ.</p>
+    <p>Thấy Giang Uyển Quân đã nghĩ thông, các nữ nhân đều mừng cho nàng, Liễu Diệc Như cười nói: "Tốt lắm, trời cũng không còn sớm, chúng ta mau về nghỉ ngơi thôi."</p>
+    <p>Đề nghị này của Liễu Diệc Như, Diệp Phi vô cùng tán thành. Vừa rồi trên người sư nương dù đã tạm thời được thỏa mãn, nhưng sau khi được nàng mát-xa đặc biệt trên đường về, ngọn lửa trong lòng lại trỗi dậy, hắn rất muốn được đại chiến mấy vạn hiệp cùng các nàng.</p>
+    <p>Tuy nhiên sau khi trở về, Diệp Phi thất vọng phát hiện lều của Chúc Ngọc Nghiên không biết đã chuyển sang bên cạnh lều Liễu Diệc Như từ lúc nào, thậm chí còn dựng thêm một cái khác, giờ đến cả Thủy Nhu cũng chuyển tới. Như vậy, vì người quá đông, chẳng ai còn dám lén lút tìm hắn nữa.</p>
+    <p>Mang theo nỗi buồn bực vô hạn, Diệp Phi trở về lều mình, thầm quyết định phải đẩy nhanh thế công, nếu thu phục được tất cả bọn họ thì đã không rơi vào cảnh đơn độc gối chiếc như hiện tại.</p>
+    <p>Ý tưởng thì hay, nhưng không phải chuyện một sớm một chiều, nên ngày thứ hai, sau khi xem một ngày đánh nhau nhàm chán, Diệp Phi nằm ngủ một mình mà càng thêm chán ghét cái Võ lâm đại hội chết tiệt này, đồng thời cũng biết người khởi xướng việc để mọi người ở cùng một chỗ chính là Diệp Chỉ Lâm ham vui.</p>
+    <p>Ngày thứ ba, lại là một ngày đấu võ nhạt nhẽo, Diệp Phi cảm giác mình sắp sụp đổ. Hắn không hiểu nổi tại sao những võ giả này lại có nhiều mâu thuẫn nhỏ nhặt đến vậy, thực lực lại ngang nhau, thường đánh nhau nửa ngày trời, khiến hắn chỉ muốn phi thân lên đài, mỗi người một cước đá bay tất cả xuống dưới.</p>
+    <p>Liên tiếp ba ngày nhẫn nhịn, khiến một kẻ vốn gần như đêm nào cũng "có thịt ăn" như Diệp Phi cảm thấy nghẹn tạc. Hơn nữa, không chỉ các nàng không thể tới chỗ hắn, mà thầy trò Bạch Oánh Thơ cũng không lộ diện, khiến hắn càng thêm khó chịu.</p>
+    <p>Cuối cùng, sau buổi sáng ngày thứ tư, những mâu thuẫn giữa đám võ giả này cũng được giải quyết, Võ lâm đại hội bước vào khâu quan trọng nhất: đề cử "Võ lâm minh chủ".</p>
+    <p>Sau bữa trưa, mọi người đều mang tâm trạng kích động đi tới trung tâm sơn cốc. Chuyện đề cử Võ lâm minh chủ này là tràng diện vốn chỉ thấy trong tiểu thuyết, phim ảnh, nên ngay cả những người không có tư cách tranh đoạt cũng cảm thấy vô cùng phấn khích.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0436.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0438.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

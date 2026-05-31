@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 508 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 508</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 508</small>
+    Chương 508: Cưỡng chế chinh phục
+  </h1>
+  <div class="chapter-body">
+    <p>"Hôm nay để ta giáo huấn ngươi một chút, kẻ sau khi thất bại còn dám kêu gào là phải chịu trừng phạt!" Diệp Phi hung hăng nói, bàn tay lớn vốn đang bao phủ trên khe mông nở nang của nàng càng thêm quá phận chui vào chính giữa, nhẹ nhàng điểm một cái lên bộ vị nhạy cảm nhất. Thân thể yêu kiều của Lệ Nhược Nam không khỏi run lên. Vừa rồi trên xe, Diệp Phi tuy luôn đẩy nàng, nhưng cũng chỉ là ép vào vị trí lỗ nhỏ mà thôi. Hiện tại, nơi trọng yếu nhất mỗi lần bị đụng chạm khiến nàng có cảm giác toàn thân như bị điện giật, tê dại. Loại tư vị chưa từng nếm trải, không rõ là thoải mái hay khó chịu, làm nàng vô thức kẹp chặt hai chân, nhưng ngay lập tức lại nhận ra làm vậy sẽ kẹp lấy bàn tay Diệp Phi, thế là vội vàng tách ra. Nàng tách ra là một chuyện, nhưng bàn tay đáng giận của Diệp Phi không hề rời đi, ngược lại còn cong ngón tay nhẹ nhàng quấy phá. Dù cách lớp quần áo không dày, sự cọ xát đó vẫn mang lại cho Lệ Nhược Nam kích thích không nhỏ. Chất lỏng rỉ ra trên xe lúc nãy theo ngón tay hắn khẽ động lại trào ra thêm rất nhiều. Điều này làm Lệ Nhược Nam vừa thẹn vừa giận, muốn giãy giụa lại hoàn toàn vô dụng. Vì lúc này đang bị Diệp Phi ôm, cũng không biết hắn dùng cách gì, Lệ Nhược Nam chỉ cảm thấy toàn thân không còn chút sức lực, chỉ có thể nằm trong lòng hắn mặc hắn khinh bạc. Sự khinh bạc của Diệp Phi cùng phản ứng không kiểm soát được của cơ thể khiến Lệ Nhược Nam vừa phẫn nộ vừa tủi thân, vành mắt không khỏi đỏ lên. Thấy cảnh này, Diệp Phi cũng có chút mềm lòng, đang định buông dã tính mỹ nhân trong lòng ra thì nàng bất ngờ nói một câu: "Diệp Phi, ta sẽ không bỏ qua cho ngươi, dù có không đánh lại ngươi, ta không tin người nhà của ngươi cũng lợi hại như ngươi!" "Ngươi nói cái gì?" Nghe Lệ Nhược Nam dùng người nhà uy hiếp mình, sự khinh mạn trong lòng Diệp Phi lập tức biến mất, trong mắt lóe lên tia sát khí. Vốn dĩ đây chỉ là lời nói nhảm của Lệ Nhược Nam, nếu Diệp Phi buông nàng ra thì cũng không có chuyện gì, nhưng thái độ thay đổi đột ngột của Diệp Phi lại khơi dậy tính quật cường của nàng. Nàng trừng mắt nhìn Diệp Phi nói: "Ta muốn trả thù người nhà của ngươi! Ngươi tốt nhất nên giết ta bây giờ, chỉ cần ta hôm nay không chết, cả nhà ngươi cũng đừng hòng sống yên ổn!" Lại nghe Lệ Nhược Nam nói như vậy, ngọn lửa giận trong lòng Diệp Phi cuối cùng bị kích động triệt để. Một cảm xúc bạo ngược cực độ trào dâng, hắn gầm lên với đôi mắt đỏ ngầu: "Muốn tổn thương người nhà của ta? Vậy thì ngươi hãy để ta tổn thương trước đi!" Nói xong, hắn ôm lấy Lệ Nhược Nam, bước đến trước chiếc xe mô tô của nàng, đặt thân thể yêu kiều gợi cảm của nàng lên đó. Thực ra, cảm xúc bạo ngược này đã từng xuất hiện trên người Diệp Phi một lần, chính là khi chiếm đoạt cô giáo Đường Nhu, cho nên hắn cũng coi như có kinh nghiệm. Nếu có thể bình tĩnh một chút, hắn sẽ dễ dàng nhận ra lời của Lệ Nhược Nam chẳng qua là lời nói lẫy của cô gái nhỏ trong lúc quá phẫn nộ. Nhưng Lệ Nhược Nam sai ở chỗ nàng lại chạm vào nghịch lân của Diệp Phi, khiến kẻ đang nộ tới cực điểm như hắn không còn chút lý trí, thậm chí trong cơn giận dữ, ánh mắt cũng đã đỏ rực. Dáng vẻ của Diệp Phi khiến Lệ Nhược Nam cuối cùng cũng sợ hãi, run giọng nói: "Diệp Phi, ngươi đừng manh động, ta nói đùa thôi!" Nhưng lúc này Diệp Phi nào còn nghe lọt tai? Sau khi đặt nàng lên xe, bàn tay lớn luồn vào cổ áo nàng, túm chặt cả áo lẫn nội y rồi mạnh mẽ xé toạc. Chất vải quần áo của Lệ Nhược Nam tuy rất tốt, nhưng làm sao chịu nổi sức kéo của Diệp Phi? Trong nháy mắt, nó biến thành vải rách trong tay hắn và bị vứt sang một bên. Theo đó, đôi vú đầy đặn như muốn thị uy với Diệp Phi mà nhảy ra, rung động khẽ khàng trước mắt hắn. Lệ Nhược Nam tuy cử chỉ tràn đầy dã tính, nhưng làn da lại trắng nõn cực kỳ. Đặc biệt là đôi bầu ngực trước ngực, chẳng thua kém gì phu nhân trưởng thành, tựa như được tạo hình từ bạch ngọc thượng hạng, phía trên thậm chí không thấy dấu vết mạch máu. Quầng vú trắng nhạt chỉ lớn bằng đồng xu, đầu vú nhỏ nhắn như hạt lạc lại càng tương phản rõ rệt với đôi gò bồng đảo to lớn kia. Một đôi mỹ diệu như thế, tuyệt đối là báu vật của đàn ông. Nhưng Diệp Phi lúc này không có một chút thương hoa tiếc ngọc, chỉ bị sự hoàn mỹ của đôi bầu ngực làm cho khao khát, hắn cúi đầu ngậm lấy một bên đầu vú. Trước kia khi mút bầu vú của các mẹ, hắn chỉ dùng miệng lưỡi kích thích, dù có dùng răng cũng rất nhẹ nhàng, nhưng lúc này hắn lại dùng sức cắn lên đầu vú Lệ Nhược Nam, tay kia cũng mạnh mẽ xoa nắn bầu vú còn lại. Theo động tác của Diệp Phi, Lệ Nhược Nam cảm thấy cơn đau mãnh liệt truyền từ ngực đến, nhưng trong cơn đau ấy lại đan xen một loại khoái cảm chưa từng có. Khoái cảm này thậm chí còn mãnh liệt hơn cả nỗi đau, khiến thân thể nàng run rẩy, bên dưới cũng tuôn ra một dòng dâm thủy lớn. Cho đến khi đôi bầu ngực của Lệ Nhược Nam đều hằn đầy dấu răng và dấu tay, Diệp Phi mới buông tha, ngẩng đầu lên, dùng đôi mắt đỏ ngầu nhìn Lệ Nhược Nam đang vẻ mặt quật cường, gầm nhẹ như dã thú: "Đồ đàn bà dâm đãng, dám nhắm vào người nhà ta, hôm nay ta tuyệt không tha cho ngươi!" "Ngươi mới là đồ đàn bà dâm đãng!" Lệ Nhược Nam không nhịn được phản bác. Cách xưng hô này khiến nàng cảm thấy còn khó chịu hơn cả bị cưỡng bức. Tuy nàng lăn lộn trong hắc đạo, nhưng vẫn giữ thân như ngọc, cho đến hôm nay bị kẻ xấu xa này chạm vào thân thể, trong lòng nàng vô cùng căm hận. Nói xong câu đó vẫn chưa hết giận, nàng bồi thêm một câu: "Cả nhà ngươi mới là đồ đàn bà dâm đãng!" Tuy các mẹ, các chị của mình quả thực cũng đủ dâm đãng, nhưng Diệp Phi chưa bao giờ cho rằng họ là "đàn bà dâm đãng", chỉ đơn giản là vì họ yêu hắn quá sâu đậm, không nỡ từ chối mọi yêu cầu mà thôi. Bởi vậy, nghe câu này, lòng hắn giận dữ khôn cùng, tia lý trí cuối cùng cũng bị sự tà ác thay thế. Hắn không nói lời nào, chỉ một tay xé nát quần của Lệ Nhược Nam, lộ ra đôi chân dài mịn màng, càng thêm gợi cảm dưới lớp giày ống đen. Vì chiều cao, đôi chân ngọc của Lệ Nhược Nam còn thon dài gợi cảm hơn các người phụ nữ khác của Diệp Phi. Nếu là bình thường, hắn chắc chắn sẽ vuốt ve thưởng thức, nhưng lúc này hắn chẳng còn tâm trí ấy, thô bạo tách đôi chân mỹ nhân ra, sờ vào nơi nữ tính phấn nộn, cười tà: "Còn nói không dâm đãng? Đã ướt đến mức này rồi!" Sự cười nhạo của Diệp Phi cùng phản ứng không tự chủ được của cơ thể làm Lệ Nhược Nam vừa thẹn vừa vội. Nàng muốn kẹp chặt chân, nhưng kẻ bị khống chế như nàng làm sao địch lại sức lực của Diệp Phi, chỉ có thể nằm trên chiếc xe yêu quý, hai chân dang rộng, đối mặt với hắn trong tư thế cực kỳ dâm đãng. Diệp Phi dường như vẫn chưa thỏa mãn, hắn túm lấy mái tóc dài của nàng, cột vào khuỷu chân. Tóc của Lệ Nhược Nam nếu tập trung nội lực thì có thể dùng làm vũ khí, nhưng lúc này nội lực đã bị Diệp Phi giam cầm, mái tóc tự nhiên cũng giống như người thường. Để không bị đau hay đứt tóc, nàng chỉ có thể cố tách chân rộng ra để giảm áp lực lên đầu. Như vậy, dù Diệp Phi có buông nàng ra, nàng cũng chỉ có thể duy trì tư thế dạng chân này. Diệp Phi lúc này mới thỏa mãn, nhanh chóng cởi quần, đứng trước người Lệ Nhược Nam, tay cầm lấy dương vật to dài, dùng nó quất mạnh vào nơi tư mật của mỹ nhân, đồng thời cười hỏi: "Có phải rất muốn nó không? Nhìn xem tiểu dâm huyệt của ngươi đã thèm đến chảy nước miếng rồi kìa, muốn thì nói cho ta biết, ta sẽ cho ngươi ngay." Lệ Nhược Nam cắn chặt môi, đôi mắt to xinh đẹp trừng trừng nhìn Diệp Phi. Nàng rất muốn bảo hắn đừng phí công, nhưng lúc này lại chẳng thể kiểm soát cơ thể. Dương vật nóng bỏng cứng rắn của Diệp Phi quất từng nhịp vào hoa huyệt, ngoại trừ chút đau đớn, còn lại là khoái cảm vô tận, khiến dâm thủy trong huyệt trào ra ngày càng nhiều dù nàng có cố gắng kìm nén đến đâu. Dâm thủy trào ra bị dương vật của Diệp Phi đánh cho văng tung tóe, chẳng mấy chốc đã làm ướt sũng lông và đùi của cả hai. Diệp Phi lúc này mới dừng lại, nhưng vẫn chưa cắm vào, chỉ dùng quy đầu thô ráp cọ xát qua lại nơi khe hở hồng nhạt của Lệ Nhược Nam, tiếp tục hỏi: "Muốn không? Muốn thì nói một tiếng, ta sẽ cho ngươi sung sướng!" "Ngươi giết ta đi!" Lệ Nhược Nam muốn cắn nát môi mình, nghiến răng thốt ra mấy chữ. Người nàng hận nhất lúc này không phải Diệp Phi, mà là chính mình, hay đúng hơn là thân thể của nàng. Nàng không hiểu nổi, vì sao mình bị nhục nhã như vậy, cơ thể lại còn sinh ra ham muốn mãnh liệt. "Ngươi đương nhiên phải chết, nhưng ta sẽ không giết ngươi, mà là muốn... chơi chết ngươi!" Theo tiếng gầm cuối cùng, Diệp Phi dồn dương vật đang đỉnh tại cửa huyệt, mạnh mẽ cắm vào nơi chưa từng được khai phá, tiến sâu vào hơn phân nửa. "Ah..." Chốn xử nữ bị dương vật to lớn cắm vào bất ngờ như vậy, dù là người mạnh mẽ như Lệ Nhược Nam cũng không nhịn được kêu thảm một tiếng. Nơi tư mật lần đầu bị xâm nhập co thắt chặt chẽ, như muốn cắn đứt dương vật Diệp Phi. Diệp Phi cũng khựng lại một chút, không phải vì thương tiếc, mà là vì nơi tư mật quá đặc biệt của Lệ Nhược Nam. Cho đến khi cắm vào hắn mới phát hiện, dã tính mỹ nhân này không giống những phụ nữ khác, bên trong không chỉ có các đường vân, mà khi cắn chặt lấy dương vật còn sinh ra một loại co bóp, tạo ra lực hút khiến Diệp Phi không cần tốn sức, nửa phần còn lại cũng bị nàng hút trọn, cho đến khi quy đầu chạm vào tử cung kiều nộn mới dừng lại. "Còn nói không phải dâm huyệt? Bây giờ đang cắn chặt lấy con cặc của ta không tha đấy thôi." Diệp Phi cười đắc ý nói. Lệ Nhược Nam không đáp, nàng lúc này cả thể xác lẫn tinh thần đều đau đớn tột cùng. Tấm thân xử nữ giữ gìn hai mươi năm cứ thế bị đoạt mất, điều này khiến Lệ Nhược Nam không cách nào chấp nhận. Hai nỗi đau này khiến nàng căm hận tột độ kẻ đang thi bạo với mình. Diệp Phi không đợi Lệ Nhược Nam trả lời, cũng không vì nàng là lần đầu mà thương xót. Sau khi nói xong câu đó, hắn bắt đầu đâm rút nhanh chóng. Hoa huyệt của dã tính mỹ nhân không chỉ có sự chặt chẽ của xử nữ mà còn có lực hút tự động, khiến hắn cảm thấy vô cùng thoải mái. Đâm đi, đâm đi! Ngươi càng đâm ta càng đau, ta càng phải ghi nhớ nỗi nhục hôm nay, ngày sau nhất định phải khiến ngươi sống không bằng chết! Lệ Nhược Nam âm thầm thề độc trong lòng. Nhưng chưa kịp ý thức rõ ràng, suy nghĩ này đã phai nhạt, vì sau nỗi đau ban đầu, nàng bắt đầu cảm nhận được sự khoái lạc khi bị làm tình. Cảm giác khoái cảm mãnh liệt đến mê muội trào dâng trong huyệt, trong nháy mắt đã xóa tan hận ý, khiến nàng vô tri vô giác hưởng thụ, thậm chí khi Diệp Phi cởi bỏ mái tóc buộc chân, phản ứng đầu tiên của nàng không phải là đá văng hắn ra, mà là vô thức quấn đôi chân thon dài gợi cảm lên thắt lưng hắn. Theo sự sung sướng tiến triển, đôi tay Diệp Phi cũng bắt đầu du tẩu trên thân thể mềm mại của dã tính mỹ nhân, nhưng không phải là vuốt ve ôn nhu mà là chà đạp mạnh bạo. Đầu tiên là đôi bầu ngực đủ khiến đại đa số phụ nữ ghen tị nhanh chóng bị Diệp Phi vê đến hằn đầy dấu tay, sau đó là khắp làn da kiều nộn trên thân thể. Nỗi đau trên thân thể không làm Lệ Nhược Nam đang đắm chìm trong khoái lạc tỉnh lại, trái lại nàng còn hưởng thụ hơn, cả mông cũng không nhịn được vặn vẹo. Nỗi đau này khiến nơi tư mật đang bị đâm rút không ngừng càng thêm nhạy cảm, nhờ đó mà bị hắn đâm càng sảng khoái. Sau khi Diệp Phi liên tục đâm rút không ngừng hơn một ngàn hạ, đỉnh cao đầu tiên trong đời Lệ Nhược Nam cuối cùng cũng đến. Đôi chân thon dài quấn chặt lấy lưng Diệp Phi, mông to cũng ra sức nâng lên, để dương vật Diệp Phi đi sâu vào tận cùng nơi tư mật vừa được khai phá. Sau đó, theo một tiếng kêu kiều rung trời, nơi tư mật bắt đầu co rút mạnh mẽ nhất, khiến Diệp Phi có cảm giác dương vật mình như muốn bị nàng hút mất. Một lúc lâu sau, nơi tư mật của Lệ Nhược Nam mới nới lỏng một chút, đồng thời tuôn ra một dòng chất lỏng sền sệt, cả người nàng cũng mềm nhũn ra. Diệp Phi không cho Lệ Nhược Nam nhiều thời gian nghỉ ngơi, sau khi nơi tư mật nới lỏng, hắn lại bắt đầu một vòng đâm rút mới, làm nàng còn chưa kịp tỉnh táo đã rơi vào vòng xoáy khoái lạc mới. Một lần... hai lần... Thân thể gợi cảm của Lệ Nhược Nam lần lượt bị căng cứng rồi buông lỏng, liên tiếp bốn lần. Đến lần thứ tư, Diệp Phi không hề nương tay, không đợi Lệ Nhược Nam ngừng co rút đã tiếp tục đâm rút, khiến nàng chưa kết thúc cao trào lần thứ tư đã đón nhận lần thứ năm. Lần này nơi tư mật của Lệ Nhược Nam co thắt chặt hơn, lực hút cũng lớn hơn, khiến Diệp Phi không thể khống chế được nữa, đem tinh dịch nóng hổi từng đợt từng đợt bắn sâu vào nơi chưa từng trải sự đời kia. Lúc này đây, Lệ Nhược Nam đã cạn sạch sức lực. Diệp Phi về sau mỗi lần nhớ lại cũng cảm thấy sợ hãi, nếu không phải do thiên chất của Lệ Nhược Nam tự động hút lấy, chỉ sợ nàng đã bị sự tà ác của hắn làm cho "chơi chết" thật rồi. Theo sự bùng nổ, khí bạo ngược trong lòng Diệp Phi cũng dần tiêu tan. Nhìn Lệ Nhược Nam đôi mắt đờ đẫn bên dưới, cùng thân thể yêu kiều vốn trắng nõn không tì vết nay đầy vết tích do mình tạo ra, đặc biệt là đôi bạch ngọc cầu cực kỳ mê người nay hằn đầy dấu móng tay, trong lòng hắn dâng lên nỗi ân hận vô tận. Hơn nữa hắn cũng đã suy nghĩ thông suốt, lời vừa rồi của Lệ Nhược Nam căn bản chỉ là lời nói nhảm, mà mình lại tổn thương nàng đến mức này. Diệp Phi, vốn cũng có chút yêu thích nàng, càng cảm thấy đau lòng khôn xiết, vội vàng nhẹ nhàng rút ra khỏi nơi đã bị mình làm cho sưng đỏ, duỗi tay che lên, dùng chân khí giúp nàng trị liệu, sau đó mới dùng ánh mắt ôn nhu nhìn khuôn mặt tái nhợt của nàng nói: "Thực xin lỗi." Chỉ là một câu xin lỗi, nhưng lại như có uy lực lớn, khiến Lệ Nhược Nam vốn không khóc trong lúc hiểu lầm nhất cũng bất chợt rơi lệ. Diệp Phi cũng nhẹ nhõm thở phào, hắn thực sự sợ một tuyệt sắc dã tính phẩm mỹ nhân như vậy sẽ bị mình làm cho mất đi động lực sống. Bây giờ thấy nàng còn khóc được thì tốt hơn nhiều, dù nàng cực kỳ hận mình, cũng vẫn tốt hơn là cứ nằm bất động như vậy. Thấy quần áo Lệ Nhược Nam đã bị mình xé nát, Diệp Phi đành lấy từ trong không gian ra một bộ váy mặc cho nàng. May là vì đau lòng phụ nữ của mình, Diệp Phi không ít lần chuẩn bị quần áo cho họ, thậm chí cả Diệp Tuyền chưa chính thức đến với hắn cũng có, nếu không với dáng người của Lệ Nhược Nam, thực sự khó tìm được bộ đồ vừa vặn. "Ta nhất định sẽ giết ngươi!" Vừa mặc kệ Diệp Phi mặc quần áo cho mình, Lệ Nhược Nam vừa hung ác nói. Nàng bây giờ cũng chỉ có thể ngoài miệng phát độc, bởi dù Diệp Phi đã giải cấm chế, nhưng năm lần cao trào liên tiếp vừa rồi đã vắt kiệt mọi sức lực của nàng. Sau khi mặc quần áo chỉnh tề cho Lệ Nhược Nam, Diệp Phi lấy ra một viên khôi phục hoàn đưa đến bên miệng nàng: "Nào, ăn cái này đi, cơ thể ngươi sẽ đỡ hơn." Không ngờ Lệ Nhược Nam mím chặt miệng nhỏ, quyết không ăn đồ của hắn. Bất đắc dĩ, Diệp Phi đành nói: "Dù ngươi muốn giết ta, thì cũng phải khôi phục sức lực đã chứ? Nào, ngoan ngoãn ăn đi, rồi ta sẽ để mặc cho ngươi giết!" Có lẽ những lời này có tác dụng, Lệ Nhược Nam không kiên trì nữa, mở miệng cho Diệp Phi đút dược hoàn vào. Theo dược hoàn tan trong bụng, nàng cảm thấy một dòng nhiệt khí thoải mái vận hành trong người. Nơi đi qua, nỗi đau trên thân thể lập tức biến mất, ngay cả nơi bị hắn đâm rút đau nhói lúc đầu, sau đó rất thoải mái, xong việc lại đau lên kia cũng hoàn toàn lành lặn. Điều này làm nàng rất kinh ngạc, không thể hiểu trên đời sao lại có loại thuốc tốt như thế. "Đỡ hơn chút nào không?" Dù biết Lệ Nhược Nam ăn khôi phục hoàn xong sẽ không sao, nhưng Diệp Phi vẫn quan tâm hỏi một câu. "Ừ." Lệ Nhược Nam vô thức gật đầu, nhưng ngay lập tức lại nhận ra mình không nên ôn hòa với hắn, thế là lại lạnh mặt, từng chữ một nói: "Tuy ngươi cho ta thuốc, nhưng sẽ có một ngày, ta vẫn sẽ giết ngươi!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0507.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0509.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>
