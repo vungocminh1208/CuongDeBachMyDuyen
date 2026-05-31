@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 404 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 404</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 404</small>
+    Chương 404: Bá đạo lão ni
+  </h1>
+  <div class="chapter-body">
+    <p>"Tốt quá, ta đã sớm muốn đi xem một chút thế giới bên ngoài rồi!" Diệp Chỉ Lâm hưng phấn nhảy dựng lên, lại lần nữa tác động đến vết thương trên mặt, cơn đau dữ dội khiến nàng nhịn không được duyên dáng kêu lên một tiếng. Thế nhưng vì vậy mà nàng lại nhớ tới cảm giác thoải mái lúc được chọc, trong lòng vừa muốn lại sợ đau, mâu thuẫn khôn cùng, vì vậy nhịn không được trừng mắt nhìn thủ phạm Diệp Phi.</p>
+    <p>Để tránh Diệp Chỉ Lâm lưu lại tâm lý oán hận, Liễu Diệc Như cố nén cười, đưa tay ngọc ra trước mặt Diệp Phi. Diệp Phi tự nhiên hiểu rõ mẹ muốn cái gì, lấy ra một viên khôi phục hoàn đưa cho bà.</p>
+    <p>"Đến, Lâm Lâm, ăn cái này vào, lập tức sẽ không đau nữa." Liễu Diệc Như cười đưa khôi phục hoàn cho Diệp Chỉ Lâm.</p>
+    <p>Tuy thời gian ở chung rất ngắn, nhưng Diệp Chỉ Lâm đối với Liễu Diệc Như lại vô cùng tin tưởng. Sau khi nhận lấy khôi phục hoàn, nàng chẳng thèm nhìn một cái đã nuốt chửng. Một lát sau, nàng kinh hỉ nói: "Thật đúng là không đau nữa này!" Nói xong, như muốn xác nhận lại, nàng đặt bàn tay nhỏ bé lên chỗ đó ấn ấn, khiến ba người Liễu Diệc Như không khỏi đổ mồ hôi. Diệp Phi càng thầm cười khổ, xem ra phải để mẹ dạy nàng một ít chuyện đối nhân xử thế, bằng không nếu ra ngoài mà cũng làm thế này, mình chẳng phải là chịu thiệt lớn?</p>
+    <p>Kỳ thật đây cũng là Diệp Phi quá lo lắng. Diệp Chỉ Lâm căn bản không hề ngốc, nàng làm hành động như vậy là vì cảm thấy Liễu Diệc Như cũng là nữ nhân giống mình, còn Diệp Phi tuy là nam nhân nhưng dù sao cũng là Tiểu Tôn Tôn của nàng, hơn nữa trước đó hắn cũng dùng đồ vật đút mình, nên bây giờ căn bản không có gì cả.</p>
+    <p>Tuy nhiên, Diệp Phi không biết rằng, Diệp Chỉ Lâm đã âm thầm nhắm tới chỗ khôi phục hoàn trong tay hắn. Nàng nghĩ bụng, nếu hắn có nhiều thứ này, mình nhất định phải bắt hắn cho thêm ít nữa. Đến lúc đó lại để cho hắn chọc chọc, sau khi thoải mái xong xuôi, ăn một viên là sẽ không đau nữa.</p>
+    <p>Mấy người vừa nói chuyện vừa đi ra khỏi gian phòng. Đến bên ngoài, nhìn thấy cái cửa đá bị cắt ra một lỗ hổng lớn, Diệp Chỉ Lâm sau khi biết được nó xấu xí ra sao thì không khỏi trách móc Diệp Phi vài câu. Thế nhưng nghĩ đến việc sắp rời khỏi nơi này, nàng cũng không quá để ý, hơn nữa sau khi Diệp Phi hứa trước khi đi sẽ sửa lại chỗ này, sau này có cơ hội sẽ mang nàng đi xem tiếp, nàng lại vui vẻ trở lại.</p>
+    <p>"Oa, đã lâu rồi không tắm ở đây, ta muốn ngâm mình thật thoải mái." Đi đến ngoài suối nước nóng trong sơn động, Diệp Chỉ Lâm vui vẻ nói. Nàng trước kia thích nhất là lúc không có việc gì thì ngâm mình trong nước, giờ ngủ hơn tám trăm năm, tự nhiên muốn ôn lại cảm giác đó một chút.</p>
+    <p>Thế nhưng khi đang chuẩn bị cởi y phục xuống nước, Diệp Chỉ Lâm lại nói với Diệp Phi: "Tiểu Phi tử, chúng ta phải tắm rửa, ngươi nhanh ra ngoài đi." Nàng tuy không rành rẽ về chuyện nam nữ, nhưng cũng biết không thể tắm cùng nam nhân. Đây có thể nói là thói quen của nàng, vì khi gia đình còn sống ở đây, nàng đều tắm một mình hoặc cùng mẹ, chưa bao giờ tắm cùng cha hay anh trai.</p>
+    <p>Diệp Phi không khỏi cười khổ, vị tiểu cô nãi nãi này thật đúng là khó hầu hạ. Vừa rồi rõ ràng chính nàng trước mặt mọi người ấn vào chỗ đó, một chút cũng không cố kỵ mình là nam nhân, vậy mà giờ lại sợ mình nhìn thấy.</p>
+    <p>Tuy nhiên Diệp Phi không nói gì thêm, rất ngoan ngoãn rời khỏi nơi đó. Hắn cũng không dừng lại bên ngoài động mà đi thẳng về lều trong sơn cốc để ngủ, bởi vì hiện tại mẹ đã gần như không có địch thủ, lại thêm một Diệp Chỉ Lâm lợi hại hơn không biết bao nhiêu lần, tuyệt đối sẽ không xảy ra chuyện gì.</p>
+    <p>Vì đến rạng sáng mới ngủ, lại không có việc gì làm, Diệp Phi ngủ một mạch đến gần trưa mới tỉnh. Hơn nữa, hắn không phải tự nhiên tỉnh mà là do nghe thấy một âm thanh: "Vị nữ hiệp ngày hôm qua, kính xin hiện thân gặp mặt!"</p>
+    <p>Âm thanh này tuy ngôn từ có vẻ khách khí, nhưng giọng điệu lại vô cùng kiêu ngạo. Hơn nữa, Diệp Phi có thể nghe ra chủ nhân giọng nói này chính là tên Xúc Động đạo trưởng bị mẹ dùng một chưởng dọa chạy hôm qua. Trong lòng hắn không khỏi thấy kỳ lạ, sao lão đạo này còn dám vác mặt đến? Mà lại dám dùng giọng điệu này nói chuyện, chẳng lẽ hắn tìm được chỗ dựa gì rồi sao?</p>
+    <p>Nhanh chóng mặc quần áo, Diệp Phi đứng dậy bước ra khỏi lều, thấy lão đạo kia đang đứng bên ngoài lều của mẹ, vẻ mặt đầy giận dữ. Nghĩ là do hôm qua bị mọi người đuổi đi, nên hắn đinh ninh Thủy Nhu và những người khác vẫn còn ở đây.</p>
+    <p>Bên cạnh lão đạo không phải là đệ tử của hắn, mà là một lão ni cô nhìn chừng năm sáu mươi tuổi, tướng mạo khá xấu xí. Nghĩ đến đây chắc là chỗ dựa của lão đạo.</p>
+    <p>Lười biếng đi tới, Diệp Phi cười nói: "Ta nói này lão đạo, hôm qua chơi chưa đủ sao? Hôm nay còn muốn tiếp tục trò cướp cô dâu này à?"</p>
+    <p>Xúc Động đạo trưởng lúc này mới chú ý tới Diệp Phi đi tới gần. Nhìn thấy hắn, trong mắt lão không khỏi phun ra lửa giận. Người lão hận nhất lúc này không nghi ngờ gì chính là Diệp Phi. Nếu không phải tại hắn hôm qua miệng lưỡi trơn tru, mình đã không xúc động chủ động ra tay, để rồi thua dưới chưởng của mẹ hắn, khiến một đời anh danh hủy hoại trong chốc lát.</p>
+    <p>"Tiểu bối, xem bây giờ ai còn cho ngươi chỗ dựa!" Lúc này, thấy người nữ nhân có võ công cao đến mức khiến đạo sĩ tu hành nhiều năm như hắn cũng phải hoa mắt kia không có ở đây, Xúc Động đạo trưởng làm sao chịu bỏ qua cơ hội này? Sau khi quát to một tiếng, lão vung chưởng đánh về phía Diệp Phi.</p>
+    <p>"Đạo trưởng chậm đã." Lão ni cô kia đưa tay kéo Xúc Động đạo trưởng lại. Nàng tuy có chút kinh ngạc vì Diệp Phi có thể đến gần mà nàng không phát hiện, nhưng cũng không nghĩ nhiều, chỉ cho rằng mình vì quá chú ý phản ứng bên trong lều nên mới sơ suất, vì vậy cũng không để thiếu niên này vào mắt. Nàng chỉ nói với Xúc Động đạo trưởng: "Đạo trưởng cần gì phải chấp nhặt với thằng nhóc miệng còn hôi sữa này. Lần này mục đích chính của chúng ta là việc vui, chớ để việc vui biến thành tang sự thì không tốt."</p>
+    <p>Vốn thấy lão ni cô ngăn cản tên mũi trâu kia, Diệp Phi còn thấy bà ta không tệ, nhưng câu nói sau đó lại khiến Diệp Phi chán ghét. Lão ni cô này dường như còn nham hiểm hơn lão đạo kia, ngoài mặt thì không muốn chấp nhặt với tiểu bối, tỏ ra giữ thể diện cho họ, nhưng lời nói lại ngầm ý đe dọa mình.</p>
+    <p>"Ai nha? Ai mà sáng sớm đã quấy rầy giấc mộng vậy?" Có lẽ vì nghe thấy tiếng con trai, Liễu Diệc Như cuối cùng cũng từ trong lều đi ra, bên cạnh là Diệp Chỉ Lâm đang mỉm cười. Còn Thủy Dĩnh và Trần Du Dung thì không ra.</p>
+    <p>Nhìn thấy Liễu Diệc Như, Xúc Động đạo trưởng vốn đang đứng trước mặt lão ni cô vô thức lùi lại hai bước, cho đến khi đứng sóng vai với lão ni cô mới thở phào nhẹ nhõm. Diệp Chỉ Lâm lại bị hành động đó chọc cười khúc khích: "Cũng Như tỷ tỷ, lão đạo này hình như rất sợ ngươi nha."</p>
+    <p>Liễu Diệc Như mỉm cười hỏi: "Đạo trưởng, không biết còn có gì chỉ giáo?" Nhưng trong lòng bà thầm than, sao trên đời này lại nhiều kẻ không biết chết sống thế nhỉ? Vì không muốn con trai tạo thêm sát nghiệp, hôm qua bà đã ra tay dọa lão đạo này chạy mất, không ngờ hôm nay hắn còn dám đến.</p>
+    <p>"Không biết Thủy Nhu Cung chủ cùng Giang Di Đồng ở đâu?" Xúc Động đạo trưởng trầm giọng hỏi. Hôm nay lão tới đây vẫn là vì đệ tử tục gia của mình, vì vậy tuy tin chắc lão ni cô bên cạnh sẽ không thua Liễu Diệc Như, nhưng vẫn không muốn thấy hai bên xung đột vũ trang. Về phần tại sao vừa rồi lại gọi Liễu Diệc Như trước, đó là vì trong lòng lão đã coi Liễu Diệc Như là hậu trường của Thủy Nguyệt cung rồi.</p>
+    <p>"Các nàng ấy à..." Đôi mắt đẹp của Liễu Diệc Như chuyển động, đột nhiên chỉ về phía sau lưng lão đạo, nói: "Đó chẳng phải tới rồi sao?"</p>
+    <p>Xúc Động đạo trưởng và lão ni cô vội vàng quay đầu lại, quả nhiên thấy Thủy Nhu dẫn theo Giang Di Đồng cùng Cố Thi Thi đang bước nhanh tới.</p>
+    <p>Vì Xúc Động đạo trưởng và lão ni cô không ngăn cản, ba người Thủy Nhu nhanh chóng đi tới bên cạnh Liễu Diệc Như và Diệp Phi. Thủy Nhu ôm quyền chào Xúc Động đạo trưởng: "Đạo trưởng, mời." Tuy thái độ lão đạo này hôm qua có chút hùng hổ dọa người, nhưng dù sao cũng là Thủy Nguyệt cung của nàng hối hôn trước, nên Thủy Nhu khi đối mặt với lão vẫn có chút hổ thẹn.</p>
+    <p>Thấy thái độ của Thủy Nhu, Xúc Động đạo trưởng có vẻ khá thỏa mãn, chỉ vào lão ni cô bên cạnh nói: "Vị này chính là Diệt Âm thần ni của Từ Hàng Tĩnh Trai, chắc các vị hẳn là nghe danh rồi chứ?" Thần sắc đó rất có dáng vẻ cáo mượn oai hùm.</p>
+    <p>Nghe đến danh hiệu của lão ni cô này, sắc mặt Thủy Nhu không khỏi hơi đổi, vội vàng khom mình hành lễ: "Vãn bối Thủy Nhu, bái kiến thần ni."</p>
+    <p>"Ni cô này là sư tỷ Chưởng môn đương nhiệm của Từ Hàng Tĩnh Trai, uy vọng trên giang hồ không hề kém cạnh Khổng Phương tiên sinh, là thế ngoại cao nhân thành danh đã lâu." Thấy Diệp Phi có vẻ khó hiểu, Cố Thi Thi nhỏ giọng ghé vào tai hắn giải thích.</p>
+    <p>Diệp Phi thầm nghĩ trong lòng, xem ra lão ni cô này quả thực không đơn giản, bằng không không thể khiến ngay cả người ít khi ra ngoài như Cố Thi Thi cũng biết đến.</p>
+    <p>Chỉ thấy lão ni cô đối mặt với cái cúi chào của Thủy Nhu thì chỉ khẽ gật đầu coi như đáp lễ, sau đó rất trực tiếp hỏi: "Nghe nói, Thủy Nguyệt cung các ngươi và Võ Đang phái từng lập thành một mối hôn sự, đúng hay không?"</p>
+    <p>"Không sai, đúng là tiểu đồ và cao đồ của Xúc Động đạo trưởng." Thủy Nhu nói xong chỉ chỉ Giang Di Đồng bên cạnh, rồi lại nói: "Tuy nhiên, lúc ấy chỉ nói là cho ở chung một chút xem sao, hiện tại tiểu đồ không đồng ý mối hôn sự này, nên chỉ có thể thôi vậy. Sau chuyện này, Thủy Nhu sẽ tự mình đến Võ Đang nhận lỗi."</p>
+    <p>"Ta xem nhận lỗi thì không cần nữa, hãy để bọn họ hoàn thành hôn sự đi." Lão ni cô nhàn nhạt nói: "Người trong võ lâm chúng ta, coi trọng nhất chính là lời hứa, Thủy Cung chủ há có thể lật lọng?"</p>
+    <p>"Thần ni chuyện này quản có chút quá rộng rồi đấy?" Sắc mặt Thủy Nhu không khỏi trầm xuống. Tuy danh tiếng của lão ni cô này khiến nàng kiêng dè, nhưng làm sao nàng có thể vì vậy mà để học trò cưng của mình chịu ủy khuất?</p>
+    <p>Lão ni cô không ngờ Thủy Nhu lại dám chất vấn mình như vậy, sắc mặt cũng không mấy tốt đẹp, nói: "Tôn chỉ của Từ Hàng Tĩnh Trai chúng ta vốn là vì giữ gìn võ lâm chính nghĩa, đối với kẻ bội bạc như vậy, tự nhiên là không thể không quản."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0403.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0405.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

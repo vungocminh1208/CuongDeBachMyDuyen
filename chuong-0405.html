@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 405 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 405</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 405</small>
+    Chương 405: Diệp Phi thần uy
+  </h1>
+  <div class="chapter-body">
+    <p>"Oa, nàng ta thật bá đạo!" Diệp Chỉ Lâm đột nhiên kinh hô một tiếng, sau đó hỏi Diệp Phi: "Tiểu Phi tử, nàng ta là ai vậy? Có phải do triều đình phái tới không?" Diệp Phi khẽ cười nói: "Không phải, vị thần ni này là người xuất gia, sao có thể là tay sai của triều đình chứ." "Người xuất gia là gì vậy?" Diệp Chỉ Lâm hỏi. Nàng thực lòng không biết, cũng không phải muốn mỉa mai hai người kia, nhưng lời này truyền vào tai xúc động lão đạo cùng diệt âm thì lại có chút khác lạ. Diệp Phi cười giải thích: "Người xuất gia, ý nói là buông bỏ tất cả. Đặc biệt như thần ni là người trong Phật môn, càng chú trọng tứ đại giai không, không hỏi thế sự; còn vị đạo trưởng kia là người đạo gia, chú trọng thanh tịnh vô vi. Đạo lý trong này thâm sâu lắm, ta không phải người xuất gia nên nhất thời cũng nói không rõ ràng." "Nhưng họ đâu có thanh tịnh vô vi, không hỏi thế sự như ngươi nói? Chẳng lẽ họ không phải người xuất gia chân chính?" Diệp Chỉ Lâm hiếu kỳ hỏi. Hai người kẻ xướng người họa, suýt nữa làm xúc động lão đạo cùng diệt âm lão ni tức điên. Họ đâu biết rằng, thực ra chỉ có Diệp Phi là đang mỉa mai, còn Diệp Chỉ Lâm hoàn toàn không hiểu, chỉ là hỏi ra nỗi nghi hoặc trong lòng. Thế nhưng dưới sự dẫn dắt của Diệp Phi, câu hỏi ấy lại vô tình giáng cho hai vị "người xuất gia" này một cái tát đau điếng. "Câm miệng, hai tiểu bối, ta thấy các ngươi chán sống rồi!" Diệt âm lão ni không áp chế được nữa. Tính tình bà ta vốn nóng nảy, nếu không đã chẳng thể gây dựng được tên tuổi lớn như vậy trên giang hồ. Lúc này, làm sao có thể dung thứ cho hai kẻ trẻ tuổi châm chọc khiêu khích? Xúc động lão đạo bên cạnh cũng đầy vẻ giận dữ, nhưng trong lòng lại thầm vui mừng. Hôm nay Thủy Nhu lại một lần nữa dứt khoát từ chối ông ta, khiến ông ta nảy sinh ý định trừ khử những người này. Trong mắt ông ta, đám người này chỉ có Liễu Diệc Như là cao thủ, nhưng chưa chắc đã là đối thủ của diệt âm lão ni, còn những người khác thì ông ta dư sức đối phó. Vì vậy, ông ta rất hy vọng trận xung đột này có thể làm lớn chuyện. Diệp Phi dường như nhìn thấu tâm tư của xúc động lão đạo, tiếp tục đổ thêm dầu vào lửa: "Chậc chậc! Tính tình hai vị thật sự không hợp làm người xuất gia đâu. Ta thấy hai người nên hoàn tục cho rồi, đến sang năm lúc này, nói không chừng con cái đã đầy tháng." "Tiểu bối, muốn chết!" Dưới cơn thịnh nộ, diệt âm lão ni thốt ra câu nói giống hệt xúc động lão đạo ngày hôm qua, lao về phía Diệp Phi. Giờ khắc này, bà ta chẳng còn bận tâm đến chuyện giữ hình tượng cao nhân, chỉ tập trung tinh thần muốn tiêu diệt tên thiếu niên dám không ngừng mỉa mai mình. "Lão thái bà, ngươi thật sự không hợp làm người xuất gia, ta quả nhiên nhìn không lầm." Diệp Phi khẽ mỉm cười, động cũng không động, tựa như không nhìn thấy thế công sắc bén của diệt âm lão ni. Liễu Diệc Như không ngăn trước mặt con trai như ngày hôm qua, bởi sự dây dưa không dứt của lão đạo làm bà vô cùng tức giận, còn lão ni kia lại càng không nói lý lẽ, nên bà quyết định để con trai dạy dỗ họ một trận. Đúng lúc một chưởng của diệt âm lão ni sắp đánh vào ngực Diệp Phi, một bàn tay thon dài trắng nõn từ bên cạnh đưa ra, hời hợt hóa giải thế công của bà ta. Chủ nhân của bàn tay nhỏ nhắn quay sang Diệp Phi cười nói: "Tiểu Phi tử, ta còn chưa chính thức đấu với ai bao giờ, trận này nhường cho ta được không?" Diệp Chỉ Lâm vốn chưa từng động thủ với người ngoài ngoài cha mẹ và ca ca, giờ đã thấy ngứa nghề. Qua chiêu vừa rồi, Diệp Phi đã nhìn rõ thực lực của diệt âm, tuy không tệ nhưng vẫn kém mẹ mình một bậc, chưa nói đến Diệp Chỉ Lâm. Dù Diệp Chỉ Lâm đứng đó mặc cho bà ta đánh cũng chẳng sao, nên hắn không sợ nàng thiếu kinh nghiệm mà chịu thiệt, gật đầu cười nói: "Được, tiểu cô nãi nãi, nhờ cả vào người!" "Được, lão ni cô kia, muốn đánh Tiểu Phi tử của ta, xem ta thu thập ngươi thế nào!" Nói đoạn, Diệp Chỉ Lâm tung ra một bộ chưởng pháp phiêu dật, đấu cùng diệt âm lão ni. Chỉ là nàng không nhận ra mình là một "tiểu cô nãi nãi" khá kỳ lạ, trước khi ra tay còn phải hỏi ý kiến "tiểu tôn tôn". Đây có lẽ là phản ứng vô thức; thời cổ có "ba theo", giờ cha và ca ca nàng đã qua đời, bản thân chưa gả cho ai, lại gặp hậu đại của ca ca, nên coi như con cháu trong nhà. Nghe Diệp Chỉ Lâm nói, Diệp Phi cảm thấy bất đắc dĩ. Mình sao lại thành của nàng ta rồi? Trải qua chuyện đêm qua, nói mình là người của nàng ta cũng chẳng sai! Nhưng bất kể là ai, dù sao cũng là người một nhà. Hiện tại Diệp Phi quan tâm hơn cả là trận đấu này. Dù có lòng tin tuyệt đối vào thực lực của Diệp Chỉ Lâm, nhưng ai dám chắc lão ni kia không có đòn hiểm? Diệp Chỉ Lâm lại thiếu kinh nghiệm nên hắn phải canh chừng cẩn thận. Thế nhưng, sau khi quan sát, Diệp Phi hoàn toàn yên tâm. Diệp Chỉ Lâm tuy động thủ còn hơi vụng về, nhưng thân pháp và chưởng pháp vô cùng xảo diệu. Lão ni kia căn bản không chạm nổi vào góc áo nàng, đương nhiên, nàng cũng chưa đánh trúng lão ni trong hai ba mươi chiêu vừa qua. Trận đấu kéo dài, tâm trạng hai người trong sân hoàn toàn trái ngược. Diệp Chỉ Lâm càng đánh càng vui, ban đầu vì chưa từng giao đấu thực sự nên có chút khẩn trương, giờ đã hoàn toàn coi lão ni như bạn tập, thậm chí bỏ qua nhiều cơ hội có thể chế phục đối phương trong chớp mắt. Ngược lại, diệt âm lão ni càng đánh càng kinh hãi. Bà không thể ngờ thiếu nữ nhìn chưa đầy đôi mươi này lại có thân pháp xảo diệu đến thế. Bà dốc hết sức bình sinh mà không chạm được vào người nàng chút nào. Điều đáng sợ hơn chính là nội lực của nàng. Dù chưa đánh trúng bà, nhưng đôi tay ngọc tựa hồ điệp xuyên hoa nhẹ nhàng múa lượn, trong lúc lơ đãng lại mang theo chưởng phong sắc bén khiến bà đứng không vững. Chuyện này là sao? Sau khi hiểm hóc tránh được ngọc chưởng của Diệp Chỉ Lâm một lần nữa, diệt âm lão ni thầm nghĩ: Xem tuổi tác này, dù có tu luyện từ trong bụng mẹ cũng không thể có nội lực thâm hậu như vậy chứ? Chẳng lẽ nàng là một tiền bối võ lâm chưa từng lộ diện? Càng nghĩ, diệt âm càng thấy khả năng này rất lớn, bởi đôi khi vẻ ngoài không đại diện cho tuổi tác. Trong Từ Hàng Tĩnh Trai chẳng phải có vị tổ sư tiền bối đó sao, trông chỉ mới hai mươi, nhưng tuổi thật đã hơn trăm. Người thiếu nữ trước mặt này chỉ sợ cũng vậy, bằng không sao tên thiếu niên kia lại gọi là "cô nãi nãi"? Vì phân tâm, chiêu thức của diệt âm lão ni không còn sắc bén như ban đầu, khiến Diệp Chỉ Lâm rất bất mãn, kêu lên: "Này, ngươi tập trung chút được không? Ta còn chưa đánh đã ghiền đâu!" Diệt âm đột nhiên tung chiêu giả, nhảy lùi ra xa, chắp tay làm lễ: "Tiền bối chẳng những có thuật trú nhan, nội lực càng thâm sâu khó lường, vãn bối cam bái hạ phong." Bà nhận thua nhưng vẫn không quên gọi Diệp Chỉ Lâm là "tiền bối", còn cố ý nhắc đến "thuật trú nhan", đủ thấy lòng không cam tâm. Diệp Chỉ Lâm lại chẳng nghĩ nhiều, cười nói: "Được rồi, đã nhận thua thì ta không đánh ngươi nữa. Nhưng ngươi gọi 'tiền bối' không đúng rồi, ta chỉ là tiền bối của Tiểu Phi tử thôi. Với người khác, ta ngủ hai năm, tính ra mới hai mươi mốt tuổi, sao ngươi dám gọi ta là tiền bối?" "Ngươi..." Diệt âm lão ni phẫn hận vô cùng. Bà vốn đã thua không cam lòng, giờ lại bị Diệp Chỉ Lâm nói vậy, thật sự mất hết mặt mũi. Lão ni này vốn không quá độc ác, chỉ là thích làm mình thành nhân vật quan trọng, thích phô trương, hay nói cách khác là "làm màu". Dựa vào danh tiếng Từ Hàng Tĩnh Trai cùng võ công cao cường, ở đâu cũng được người khác nể mặt, lâu dần hình thành tính cách bá đạo. Nhưng hôm nay, không những không làm màu được mà còn bị Diệp Phi và Diệp Chỉ Lâm chế nhạo, rồi bại trận trong tay thiếu nữ mới hai mươi tuổi, bà sao có thể nuốt trôi cục tức này? Sau vài phen giãy dụa nội tâm, cuối cùng bà đưa ra quyết định khiến mình hối hận cả đời —— đột nhiên đưa tay về phía Diệp Chỉ Lâm. Không biết làm động tác gì, theo tiếng cơ quan vang lên, mấy cây cương châm rất nhỏ từ trong ống tay áo bắn thẳng tới mặt Diệp Chỉ Lâm. Diệp Phi kinh hãi. Diệp Chỉ Lâm không có hộ thể công phu như hắn, nên vội vàng chạy tới đẩy nàng ra. Tuy nhiên, hắn phát hiện ra sau khi Diệp Chỉ Lâm tránh thoát, mấy cây cương châm đó lại nhắm về phía Cố Thi Thi đang đứng cạnh. Cố Thi Thi là tiểu thị nữ đáng thương, ôn nhu thuận phục, Diệp Phi không nỡ để nàng gặp nạn. Hắn vội vã lao ngược trở lại, trước khi mấy cây cương châm bắn trúng Cố Thi Thi, hắn đã dùng tay không bắt lấy chúng. Sau đó, mặt hắn biến sắc, nghiêm nghị quát lão ni: "Tặc ni cô, ngươi quá độc ác!" Hắn phát hiện ra mấy cây cương châm này chẳng những lực đạo cực lớn mà còn bôi kịch độc. Nếu không phải thể chất hắn đặc thù, thì dù có nội lực áp chế, cơ thể cũng khó mà trụ nổi. Chuyện vừa xảy ra nhanh như chớp, khiến tất cả mọi người tại đó sửng sốt. Ngay cả Liễu Diệc Như cũng không ngoại lệ, bà không ngờ con trai mình giờ đây lại lợi hại đến mức ngay cả bà cũng không nhìn rõ thân hình hắn lúc nãy. Người kinh hãi nhất đương nhiên là lão ni cô. Chỉ bà mới rõ uy lực của ám khí này nhất, đó là thứ bà phải tốn bao công sức giết một tên ác nhân hoành hành giang hồ mới đoạt được, mà chính bà cũng đã nhiều lần suýt chết vì nó.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0404.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0406.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

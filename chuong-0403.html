@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 403 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 403</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 403</small>
+    Chương 403: Tiên gia bảo vật
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Chỉ Lâm tuy không có chút kinh nghiệm giang hồ nào, nhưng nàng cũng không ngốc, trái lại còn vô cùng thông minh, nên rất nhanh đã hiểu ý của ca ca. Hắn nhất định là sợ tin tức về trọng bảo này một khi tiết lộ ra ngoài, mình dù sống hay chết cũng sẽ không được yên bình. Nghĩ đến việc ca ca vì mình mà suy tính như vậy, mà giờ đây hắn khẳng định cũng đã mất, lòng Diệp Chỉ Lâm không khỏi ảm đạm.</p>
+    <p>Bất quá, vốn là người không hay để tâm sự nặng nề, thấy Diệp Phi, biết ca ca có hậu nhân, nàng cũng thầm vui mừng thay cho hắn. Hơn nữa, vì muốn biết rốt cuộc hắn là hậu nhân đời thứ bao nhiêu của mình, nàng liền hỏi: "Ta đã ngủ bao lâu rồi?"</p>
+    <p>Diệp Phi không khỏi bị lối tư duy nhảy vọt của vị lão tổ tông không biết bao nhiêu đời này làm cho choáng váng. Không phải vừa rồi còn nói về kiện bảo vật kia sao, sao lại chuyển sang chuyện này rồi? Bất quá hắn vẫn đáp: "Hơn tám trăm năm rồi!"</p>
+    <p>"Lâu như vậy sao?" Diệp Chỉ Lâm thè lưỡi nói: "Cũng may các người đã tới, nếu như qua thêm mấy trăm năm nữa, ta sợ là thật sự đã chết rồi."</p>
+    <p>Nhìn dáng vẻ dí dỏm đáng yêu của Diệp Chỉ Lâm, Diệp Phi thật sự khó lòng coi nàng là tiền bối của mình. Hơn nữa, vừa rồi hắn lại đối xử với nàng như vậy, mối quan hệ này càng trở nên quái dị. Nhưng hắn nhất thời vẫn chưa hết bàng hoàng, bởi vì thân phận của nàng thực sự khiến hắn không biết phải đối mặt ra sao.</p>
+    <p>Diệp Phi tuy tạm thời chưa muốn nhận Diệp Chỉ Lâm, nhưng nàng lại giống như không muốn buông tha hắn. Nàng cười hì hì nhìn hắn hỏi: "Này, Tiểu Tôn Tôn, tính từ chỗ ca ca ta truyền đến bây giờ, đã là bao nhiêu đời rồi?"</p>
+    <p>Tiểu Tôn Tôn? Diệp Phi không khỏi cười khổ: "Đã qua mấy chục đời rồi, bất quá, nàng đừng gọi ta là Tiểu Tôn Tôn nữa, cảm giác cứ lạ thế nào ấy."</p>
+    <p>Thấy Diệp Phi bị nghẹn lời, ba người Liễu Diệc Như không khỏi khanh khách cười rộ lên. Diệp Chỉ Lâm cũng cười theo, nói: "Được rồi, xưng hô thế này để ta cũng thấy lạ. Bất quá, ngươi tên là gì?"</p>
+    <p>"Ta gọi là Diệp Phi." Diệp Phi thành thật đáp.</p>
+    <p>"Tốt lắm, từ nay về sau ta gọi ngươi là Tiểu Phi tử vậy. Ngươi nha, miễn cưỡng gọi ta là cô nãi nãi đi, tiện nghi cho tiểu tử ngươi rồi." Diệp Chỉ Lâm cười chốt hạ: "Tiểu Phi tử, gọi một tiếng nghe thử xem."</p>
+    <p>"Được rồi, tiểu cô nãi nãi!" Diệp Phi hơi bất đắc dĩ gọi, trong lòng thầm nghĩ, tốt thật, vị tiểu cô nãi nãi này vừa mở miệng đã gọi mình thành thái giám. Cũng không biết là ai vừa mới đánh thức nàng, nếu ta là thái giám thì làm sao nàng tỉnh lại được chứ?</p>
+    <p>"Ngoan nào!" Diệp Chỉ Lâm khanh khách cười, từ trên giường nhảy xuống, nhưng không ngờ lại tác động vào chỗ bị thương, đau đến mức nàng kêu lên một tiếng rồi lại ngồi trở lại giường.</p>
+    <p>Bởi vì từ nhỏ đã sống ở trong núi hoang này, cha mẹ chưa từng nói với nàng về phương diện đó, nên Diệp Chỉ Lâm hoàn toàn không biết chuyện nam nữ. Bởi vậy, nàng không chút cố kỵ mà hỏi: "Vừa rồi là ai cứu ta tỉnh lại? Cũng không biết nhẹ tay một chút, dùng cái gậy lớn chọc mạnh vào chỗ đó của ta, bây giờ vẫn còn đau chết đi được!"</p>
+    <p>Liễu Diệc Như các nàng không khỏi cười trộm, ba ngón tay ngọc đồng loạt chỉ về phía Diệp Phi.</p>
+    <p>"Nguyên lai là Tiểu Phi tử ngươi à." Diệp Chỉ Lâm vẻ mặt bất mãn: "Nói, có phải ngươi cố ý hay không?"</p>
+    <p>Diệp Phi không ngờ lúc đó nàng đã có tri giác, hơi đổ mồ hôi hỏi: "Trước đó nàng đã có cảm giác rồi sao?"</p>
+    <p>"Đương nhiên, chỉ là không thể tỉnh lại mà thôi." Diệp Chỉ Lâm hơi tiếc nuối nói. Lúc bị chọc, cảm giác đó thực sự rất thoải mái, khiến nàng rất dư vị, trong lòng có chút thôi thúc muốn hắn chọc thêm lần nữa. Nhưng nghĩ đến cơn đau sau đó, nàng lại hơi chùn bước, nên không hỏi thêm chuyện này nữa mà quay lại chủ đề về cái gọi là "Thiên địa đảo ngược", nói: "Thôi, không nói chuyện đó nữa. Ngươi không phải hỏi Thiên địa đảo ngược là gì sao? Ngươi đã là hậu nhân của ca ca ta, thứ này vốn nên truyền lại cho ngươi, ta sẽ nói cho ngươi biết. Đó là một kiện tiên gia bảo vật."</p>
+    <p>"Tiên gia bảo vật?" Diệp Phi sững sờ, chẳng lẽ trên đời này thực sự có tiên nhân hay sao? Liền hỏi: "Nàng đã từng gặp tiên nhân sao?"</p>
+    <p>"Không có, tiên nhân chỉ là truyền thuyết, ai cũng chưa từng gặp qua. Bất quá, cái Thiên địa đảo ngược này lại thật sự là tiên gia bảo vật." Nói xong, bàn tay nhỏ bé của nàng nhẹ nhàng vung lên, năm hạt châu ngũ sắc từ năm phương vị khác nhau trong phòng bay ra, đều nhảy vào lòng bàn tay nàng.</p>
+    <p>Nhận lấy năm hạt châu, Diệp Chỉ Lâm không giải thích tác dụng của chúng ngay mà chỉ ngạc nhiên nhìn tay mình, nói: "Ủa, công lực của ta sao đột nhiên lại tăng cường nhiều thế này?"</p>
+    <p>Diệp Phi thầm nghĩ trong lòng: Ngươi hấp thu hơn tám trăm năm âm khí, nay lại bị thuần dương chi khí của ta dung hợp, không tăng mới là lạ. Hơn nữa, Diệp Phi tin rằng, nếu không phải mình dùng khổng lồ âm khí của nàng luyện hóa gần một phần mười dương khí trong kinh mạch, công lực của Diệp Chỉ Lâm giờ đây tuyệt đối đã vượt qua hắn. Bất quá Diệp Phi cũng thầm kinh ngạc, tám trăm năm âm khí mà chỉ mới luyện hóa được chưa đầy một phần mười, nếu để mình triệt để luyện hóa hết, chẳng phải sẽ thành vạn năm lão yêu sao?</p>
+    <p>"Đó là vì ngươi đã hấp thu âm khí ở đây, nên mới lợi hại như vậy." Diệp Phi tự nhiên sẽ không nói cho Diệp Chỉ Lâm sự thật, nên thuận miệng qua loa cho qua chuyện.</p>
+    <p>Diệp Chỉ Lâm không chút nghi ngờ lời hắn, bởi vì nàng biết tác dụng của âm khí nơi này, nếu không đã chẳng dùng nơi này làm giường. Vì vậy, nàng không hỏi thêm nữa mà nói tiếp về năm hạt châu kia: "Đây chính là Thiên địa đảo ngược. Bất quá tên gọi này là do chúng ta tùy tiện đặt cho nó, bởi vì nó có thể bố trí một trận pháp, trận pháp này tương thông với thiên địa."</p>
+    <p>"Có ý gì?" Vì Diệp Chỉ Lâm nói không rõ ràng, Diệp Phi không thể hiểu hết ý nàng.</p>
+    <p>"Sao ngươi đần thế nhỉ?" Diệp Chỉ Lâm khinh bỉ nhìn Diệp Phi một cái, sau đó nói: "Chẳng phải người ta vẫn nói 'trên trời một ngày, dưới đất một năm' sao? Trận pháp này có công hiệu như vậy. Nói cách khác, ở trong trận pháp một ngày thì bên ngoài đã qua một năm. Các người nói xem, ta ngủ ở đây hơn tám trăm năm, kỳ thật chỉ tương đương với hơn tám trăm ngày, tức là hơn hai năm mà thôi, nếu không ta đã sớm thành yêu quái rồi!" Nói xong, nàng nhe hàm răng trắng đều như bắp ra với Diệp Phi, chẳng những không đáng sợ mà còn vô cùng đáng yêu.</p>
+    <p>"Lợi hại như vậy sao?" Bốn người Diệp Phi không khỏi sững sờ. Xem ra Diệp Chỉ Lâm nói không sai, vật như vậy chỉ có tiên nhân mới có được. Trong lòng họ lại dấy lên nghi vấn ban nãy: Chẳng lẽ trên đời này thực sự có tiên nhân sao?</p>
+    <p>"Thứ này các người lấy ở đâu ra?" So với ba người Liễu Diệc Như, Diệp Phi suy nghĩ nhiều hơn. Nếu thực sự có tiên nhân, hắn rất muốn tìm hiểu để cầu đạo Trường Sinh, giúp hắn và những người phụ nữ mình yêu có thể vĩnh viễn ở bên nhau. Dù công pháp hiện tại hắn tu luyện dường như có khả năng đó, nhưng hắn vẫn chưa thể khẳng định chắc chắn.</p>
+    <p>Bất quá, câu trả lời của Diệp Chỉ Lâm làm Diệp Phi hơi thất vọng: "Đây là cha mẹ ta vô tình nhặt được trong núi này, nghiên cứu rất lâu mới phát hiện ra công hiệu thực sự của nó."</p>
+    <p>Diệp Phi thầm động tâm, tuy không thể tìm thấy thông tin về tiên nhân từ vật này, nhưng nó lại gợi cho hắn một khả năng khác. Hắn vội hỏi: "Đã nó có thể khiến thời gian bên trong nhanh hơn bên ngoài, vậy có thể khiến nó chậm hơn bên ngoài không? Ví dụ như, trong đó trôi qua một năm, bên ngoài mới chỉ một ngày?"</p>
+    <p>"Đương nhiên là được rồi, nếu không sao gọi là Thiên địa đảo ngược?" Diệp Chỉ Lâm khinh bỉ nhìn Diệp Phi: "Tiểu Phi tử, ngươi thật sự là quá ngốc!"</p>
+    <p>Sau khi nhận được câu trả lời khẳng định của Diệp Chỉ Lâm, Diệp Phi không khỏi kích động, cũng chẳng buồn bận tâm việc bị nàng chê ngốc, trực tiếp mở miệng: "Vậy có thể cho ta mượn dùng thứ này không?"</p>
+    <p>"Cho ngươi cũng không vấn đề gì, ngươi là hậu nhân của ca ca ta mà. Bất quá..." Diệp Chỉ Lâm nói xong, trên mặt lộ ra nụ cười giảo hoạt: "Ngươi phải gọi cho ngọt vào, hơn nữa từ nay về sau đều phải gọi như vậy!"</p>
+    <p>"Được rồi, tiểu cô nãi nãi!" Diệp Phi cười khổ gọi, bất quá trong lòng cũng không bài xích, dù sao với bối phận của nàng, gọi cô nãi nãi cũng là phải đạo.</p>
+    <p>"Cái gì tiểu cô nãi nãi? Ta cũng đâu có nhỏ, tối thiểu cũng lớn hơn ngươi vài tuổi đó?" Diệp Chỉ Lâm có chút bất mãn.</p>
+    <p>Diệp Phi đưa mắt dừng lại ở ngực nàng một chút, rồi lại nhìn về phía Liễu Diệc Như các nàng, cười nói: "Nàng không nhỏ sao?"</p>
+    <p>Diệp Chỉ Lâm nhìn theo ánh mắt Diệp Phi về phía ba vị mỹ phụ quyến rũ, những "núi non" đồ sộ kia khiến nàng bản năng có chút hâm mộ, đặc biệt là cặp của Trần Du Dung càng làm nàng tự thấy hổ thẹn. Vì vậy, nàng hơi thất lạc nói: "Được rồi, tiểu cô nãi nãi thì tiểu cô nãi nãi. Cầm lấy đi." Nói xong, nàng đưa năm hạt châu cho Diệp Phi, rồi hướng dẫn cách sử dụng cho hắn một lần.</p>
+    <p>Diệp Phi mừng rỡ trong lòng, quyết định sau khi trở về sẽ bố trí chúng trong phòng mình, từ đó về sau không còn lo thời gian không đủ dùng nữa. Hơn nữa, hắn còn có một ý tưởng táo bạo: đợi sau khi con gái chào đời, sẽ cho con bé ở trong phòng, còn mình thì ra ngoài dạo chơi một vòng, lúc trở về kiểm tra thì con gái đã lớn khôn rồi, ha ha...</p>
+    <p>Thỏa mãn thu hồi năm hạt châu, Diệp Phi giới thiệu với Diệp Chỉ Lâm: "Tiểu cô nãi nãi, giới thiệu chính thức với nàng, vị này là mẹ ta, đây là Thủy mụ mụ của ta, còn vị này là vú lớn... Ách, không, là Du Dung a di."</p>
+    <p>"Ba vị tỷ tỷ tốt." Diệp Chỉ Lâm thay đổi thái độ ngang ngược lúc nãy, rất nhu thuận chào hỏi.</p>
+    <p>"Này, gọi sai bối phận rồi!" Diệp Phi nghiêm mặt nói. Vừa rồi khi bị Diệp Chỉ Lâm làm cho nghẹn lời, các nàng lại cười trộm khiến hắn hơi "ghi thù trong lòng", nên muốn để các nàng cũng phải gọi mình là "tiểu cô nãi nãi".</p>
+    <p>Không ngờ Diệp Chỉ Lâm lại nói: "Sai bối phận gì chứ? Các nàng đâu có họ Diệp. Ba vị tỷ tỷ, có đúng không nào?"</p>
+    <p>"Đúng vậy, vẫn là Lâm Lâm thông minh!" Liễu Diệc Như cười nói. Lúc Diệp Phi "đánh thức" Diệp Chỉ Lâm, bà đã coi Diệp Chỉ Lâm như tỷ muội của mình rồi, còn chuyện tổ tiên gì đó căn bản không cần bận tâm. Nếu xét về quan hệ, bà vẫn là mẹ ruột của hắn kia mà!</p>
+    <p>Thủy Dĩnh cũng ở bên cạnh cười nói: "Lâm Lâm, mấy ngày nữa chúng ta muốn đi rồi, nàng cùng đi với chúng ta được không?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0402.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0404.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

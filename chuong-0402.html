@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 402 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 402</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 402</small>
+    Chương 402: Chọc tỉnh tổ tiên
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi cười khổ một cái, nhìn gương mặt tuyệt mỹ của cô gái kia cùng thân thể yêu kiều mê người không kém Liễu Diệc Như các nàng, nếu nói không động tâm là giả, thế nhưng vừa nghĩ tới thân phận của nàng, hắn lại cảm thấy vô cùng vớ vẩn.</p>
+    <p>Bất quá bây giờ biện pháp duy nhất để cứu nàng chỉ có cách này, nên Diệp Phi cuối cùng cũng hạ quyết tâm, vươn tay bế cô gái kia lên, muốn rời khỏi căn phòng này.</p>
+    <p>Trần Du Dung không khỏi cười nói: "Sao vậy? Còn sợ chúng ta nhìn sao?"</p>
+    <p>Diệp Phi lắc đầu cười: "Tự nhiên không phải, nhưng giường trong căn phòng này thông thẳng xuống nơi chứa âm khí, thứ đó mặc dù là vật tốt, nhưng nàng đã hấp thụ quá nhiều, ở lại đây không có lợi cho việc cứu nàng, ngược lại các nàng có thể ở trên đó tu luyện nội lực một chút, sẽ có trợ giúp rất lớn."</p>
+    <p>"Không được, chúng ta muốn xem ngươi trị liệu!" Thủy Dĩnh hì hì cười nói, sau đó hỏi Liễu Diệc Như và hai nữ kia: "Các ngươi nói có đúng không?"</p>
+    <p>Liễu Diệc Như cùng Trần Du Dung cũng gật đầu không thôi, khiến Diệp Phi không khỏi vô cùng bất đắc dĩ, mình là đang cứu người mà? Hơn nữa một lát nữa thiếu nữ này sẽ sống lại, sao có thể coi là trị liệu?</p>
+    <p>Tuy bất đắc dĩ, Diệp Phi cũng không nói thêm gì, chỉ cười bảo: "Vậy thì đến đây đi, lát nữa nói không chừng còn cần các nàng hỗ trợ đấy."</p>
+    <p>Ôm cô gái kia, Diệp Phi không đi đến phòng khác mà đi thẳng ra ngoài ôn tuyền, trước tiên rửa sạch thân thể yêu kiều không vướng chút bụi trần của nàng, sau đó bắt đầu hành động.</p>
+    <p>Mang theo tâm trạng có chút quái dị, Diệp Phi đưa tay rời khỏi trước ngực thiếu nữ, nhẹ nhàng cầm lấy bộ ngực vừa vặn trong lòng bàn tay, cảm nhận sự mềm mại và đàn hồi không kém gì các cô gái bình thường, trong lòng không khỏi thở dài một hơi. Dù sao cho dù biết rõ nàng lát nữa sẽ tỉnh lại, nhưng nếu nàng lúc này thô ráp, trong lòng Diệp Phi vẫn sẽ thấy chút không thoải mái.</p>
+    <p>Như đã trút bỏ được lo lắng, Diệp Phi không chần chừ nữa, hai tay đồng thời cầm lấy bầu ngực nàng, nhẹ nhàng vuốt ve, hơn nữa không ngừng khuấy động đầu vú nhỏ nhắn, thế nhưng làm đã lâu cũng không thấy nàng có phản ứng gì.</p>
+    <p>Rơi vào đường cùng, Diệp Phi đành buông tay phía trên, ngược lại đưa tay dò vào giữa hai chân thiếu nữ, bắt đầu vuốt ve nơi u cốc cỏ thơm thê thê, ngón tay nhẹ nhàng lướt qua khe lồn kiều nộn, vẫn không khiến nàng có chút phản ứng nào.</p>
+    <p>Có chút không cam lòng, Diệp Phi dứt khoát tách rộng đôi chân đẹp của thiếu nữ, vùi đầu vào dưới háng, há miệng ngậm lấy đóa lồn nhỏ trong suốt như hồng ngọc, dùng hết khả năng vừa liếm vừa mút, vậy mà suy nghĩ cả nửa ngày, nơi đó ngoại trừ nước miếng của mình ra thì chẳng có gì cả.</p>
+    <p>Trong lòng biết nàng trước khi tỉnh lại không thể nào có phản ứng gì, Diệp Phi rốt cục hết hy vọng. Tuy nhiên như vậy xâm nhập nàng cũng có thể, nhưng nàng sau khi tỉnh lại nhất định sẽ rất đau đớn, vì thế hắn cười khổ nhìn về phía ba vị mỹ phụ: "Hai vị mẹ, vú bự dì, các người ai cho mượn chút nước để dùng một chút?"</p>
+    <p>Tam nữ đều nhìn ra sự quẫn bách của Diệp Phi, trong lòng thầm cười trộm. Nghe Diệp Phi nói vậy, Liễu Diệc Như và Trần Du Dung không chút do dự bán đứng Thủy Dĩnh, đồng thời chỉ về phía nàng: "Đương nhiên là nước của nương nương rồi, nước của nàng là nhiều nhất!"</p>
+    <p>"Các ngươi cũng thiếu gì, vừa rồi chẳng phải cũng bị hắn làm cho dâm thủy loạn phun sao?" Thủy Dĩnh kiều mỵ lườm hai nữ một cái, bất quá cũng rất nhanh bỏ váy cùng quần lót, để lộ tiểu dâm huyệt vẫn còn hơi sưng đỏ trước mắt Diệp Phi.</p>
+    <p>Diệp Phi cũng không khách khí, trực tiếp há miệng hôn lên lồn Thủy Dĩnh, nhẹ nhàng mút mát liếm láp.</p>
+    <p>Thủy Dĩnh vừa rồi tuy đã triệt để thỏa mãn, nhưng lúc này bị Diệp Phi làm như vậy, không khỏi lại dâm đãng lên, hai tay đặt lên đầu Diệp Phi, mông lớn từng đợt hướng về phía trước nâng lên, nghênh hợp với phục vụ của hắn.</p>
+    <p>Không hổ là mẹ nước, vừa rồi đã chảy nhiều như vậy, Thủy Dĩnh dưới sự đùa bỡn của Diệp Phi, trong lồn rất nhanh lại tuôn ra lượng lớn dâm thủy, bị Diệp Phi tiếp nhận không sót chút nào vào miệng.</p>
+    <p>Cho đến khi liếm cho Thủy Dĩnh đạt tới một lần cao trào, Diệp Phi mới buông tiểu dâm huyệt của nàng ra, sau đó ép người xuống, hôn lên lồn cô gái kia, đem đầy miệng dâm thủy nhả vào lồn mềm nhỏ hẹp của nàng.</p>
+    <p>Có dâm thủy của Thủy Dĩnh bôi trơn, lần này Diệp Phi rất thuận lợi cắm dương vật vào lồn mềm thiếu nữ, hắn không hề do dự, trực tiếp đỉnh phá màng mỏng tượng trưng cho thuần khiết, sau đó thúc đẩy trong lồn mềm mại không khác gì thiếu nữ bình thường của nàng.</p>
+    <p>Theo từng nhịp ra vào, Diệp Phi cảm giác có một luồng khí tức tinh thuần cực kỳ từ trong lồn thiếu nữ dũng mãnh tràn vào cơ thể qua con cặc của mình. Luồng khí này có vẻ phi thường lợi hại, sau khi tiến vào kinh mạch, vậy mà lại khiến thuần dương chi khí rất khó luyện hóa kia có sự buông lỏng rất lớn.</p>
+    <p>Có phát hiện này, Diệp Phi làm càng thêm hăng say, một bên điên cuồng cắm rút lồn nhỏ chật khít của tuyệt mỹ thiếu nữ, một bên dùng âm khí tinh thuần của nàng luyện hóa thuần dương chỗ của mình, hơn nữa đem một bộ phận sau khi luyện hóa thẳng thắn thông qua dương vật đang cắm sâu trong lồn mà đưa vào cơ thể nàng.</p>
+    <p>Theo thời gian trôi qua, thiếu nữ đang bị Diệp Phi cắm liên tục rốt cục có động tĩnh, da thịt mềm mại trong lồn nhẹ nhàng nhúc nhích, hơn nữa cũng bắt đầu tự hành tuôn ra dâm thủy.</p>
+    <p>Có biến hóa như vậy, Diệp Phi trong lòng đại định, vội vàng tăng nhanh tốc độ, đồng thời càng nhanh chóng hấp thu âm khí trong cơ thể nàng.</p>
+    <p>Rốt cục, luồng âm khí khổng lồ trong cơ thể thiếu nữ bị Diệp Phi hấp thu luyện hóa hết, mà lồn nhỏ của nàng cũng co rút càng thêm mãnh liệt. Diệp Phi biết vấn đề đã cơ bản giải quyết, bất quá hắn không rút ra mà ngược lại càng dùng sức xâm nhập nàng.</p>
+    <p>Bởi vì âm khí đã hoàn toàn được giải quyết, phản ứng của cô gái kia cũng mạnh lên. Tuy các bộ phận khác trên thân thể vẫn chưa có động tĩnh, nhưng lực co rút trong lồn lại tăng mạnh rất nhiều.</p>
+    <p>Sau vài ngàn lần ra vào, lồn nhỏ của thiếu nữ rốt cục co rút đại lực, tiếp theo một đại cổ âm tinh mát lạnh từ sâu trong lồn nàng trào ra, mà Diệp Phi cũng nhân cơ hội bắn tinh, đem lượng lớn tinh dịch bắn vào lồn thiếu nữ, triệt để đánh lên ký hiệu của mình.</p>
+    <p>Rút ra khỏi cơ thể nữ hài, Diệp Phi nói với Liễu Diệc Như và ba nữ: "Nàng sắp tỉnh rồi, các ngươi đưa nàng vào trong đi, không được nói cho nàng biết đã cứu nàng như thế nào. Nếu nàng hỏi, cứ nói chúng ta cho nàng ăn khôi phục hoàn là được."</p>
+    <p>Liễu Diệc Như các nàng không khỏi có chút kỳ quái, theo tính cách của Diệp Phi, nữ hài xinh đẹp như vậy hắn hẳn là rất động tâm mới đúng chứ, nếu để nàng biết chân tướng, cơ hội tuyệt đối sẽ còn lớn hơn nữa.</p>
+    <p>Nhàn nhạt cười cười, Diệp Phi nói: "Đừng nghĩ lung tung nữa, mau đưa nàng vào đi, lát nữa các ngươi sẽ biết tại sao lại như vậy."</p>
+    <p>Gặp Diệp Phi nói thế, tam nữ không hỏi nhiều, sau khi mặc quần áo chỉnh tề, Liễu Diệc Như ôm cô bé kia cùng đưa vào căn phòng cũ, cũng giúp nàng mặc quần áo tử tế, còn Diệp Phi thì ngồi bên cạnh ôn tuyền luyện hóa luồng âm khí khổng lồ cực kỳ vừa lấy được từ cơ thể nữ hài.</p>
+    <p>Không lâu sau, theo một tiếng nói mê như yêu kiều, nữ hài nằm trên giường chậm rãi ngồi dậy, mơ mơ màng màng mở mắt ra, nhìn thấy Liễu Diệc Như và ba nữ thì hơi kinh hãi, hỏi: "Các ngươi là ai nha?" Thanh âm cực kỳ dễ nghe, giọng nói tuy là Quan thoại truyền từ đời xưa ở phương bắc, nhưng qua miệng nàng lại đầy vẻ ngọt ngào của vùng Giang Nam.</p>
+    <p>"Chúng ta là ngẫu nhiên phát hiện nơi này." Liễu Diệc Như khẽ cười nói: "Tiểu muội muội, ngươi tên là gì, sao lại ngủ ở nơi này?"</p>
+    <p>"Đúng vậy, sao ta lại ngủ ở nơi này?" Thiếu nữ vừa tỉnh lại, hiển nhiên đầu óc còn chút mơ hồ, sau khi suy nghĩ một chút, trên mặt bỗng lộ vẻ cảnh giác, hỏi: "Các ngươi là đến đoạt thiên địa đảo ngược nhà chúng ta đúng không?"</p>
+    <p>Tam nữ không khỏi buồn cười, thiếu nữ này rõ ràng không có kinh nghiệm giang hồ, vậy mà nói ra những lời như vậy. Nếu mấy người họ nổi lòng tham, dù ban đầu không định đoạt, bây giờ nói không chừng cũng muốn cướp của nàng một chút.</p>
+    <p>Liễu Diệc Như cười nói: "Tiểu muội muội, chúng ta không muốn đoạt đồ của ngươi, có thể nói cho tỷ tỷ biết, vì sao ngươi phải ngủ ở nơi này không?"</p>
+    <p>"Nơi này là nhà của ta nha." Thiếu nữ nói xong, tựa hồ nhớ lại chuyện cũ, vội hỏi: "Các ngươi vào bằng cách nào? Có phải là cha mẹ ta cùng ca ca cho các ngươi tới không?"</p>
+    <p>Tam nữ đều sững sờ, cha mẹ ca ca gì chứ? Chẳng lẽ thiếu nữ bị nhốt trong núi này còn có thân nhân sao?</p>
+    <p>Đúng lúc này, Diệp Phi chậm rãi từ bên ngoài đi vào. Nhìn thấy hắn, cô gái kia kỳ quái nói: "Ngươi là ai nha? Ngươi mặc quần áo thật kỳ quái." Liễu Diệc Như và ba nữ đều mặc váy đầm, kiểu dáng tuy khác thời cổ đại rất lớn, nhưng nhìn qua thực sự không chênh lệch quá nhiều, nhưng bộ đồ nghỉ ngơi của Diệp Phi lại khiến nàng cực kỳ kinh ngạc.</p>
+    <p>Diệp Phi không trả lời câu hỏi của nàng mà ngồi xuống một bên, hỏi: "Có thể cho chúng ta biết cha mẹ và ca ca của ngươi rốt cuộc đi đâu không? Yên tâm, chúng ta sẽ không đoạt đồ của ngươi, hơn nữa ngươi vì ngủ quá lâu đã đến tình trạng rất nguy hiểm, là chúng ta đã cứu ngươi tỉnh lại đấy."</p>
+    <p>Thiếu nữ trong lòng cũng có chút kỳ quái vì sao mình đột nhiên tỉnh lại. Nàng chỉ nhớ rõ lúc mới có ý thức, trong thân thể phía dưới giống như có vật gì đó đang động, hơn nữa động đến làm nàng thật thoải mái, nhưng hiện tại chỗ đó lại có chút ẩn ẩn đau. Bây giờ mới biết được, cảm giác đó rất có thể chính là một trong số họ gây ra, bất quá vì chỗ đó, nàng có chút xấu hổ không dám hỏi. Nhưng trong lòng nàng hiện tại đã xác định một điều, đó chính là bốn người này căn bản không phải đến đoạt đồ của mình.</p>
+    <p>Sau khi buông xuống cảnh giác, nữ hài đối với bốn người tướng mạo bất phàm lại đem mình tỉnh lại từ cơn ngủ say này không khỏi nảy sinh hảo cảm, vì vậy cũng không giấu giếm, kể lại: "Ngày đó, phụ mẫu ta được Quách đại hiệp mời đi giúp ông ấy thủ hộ thành Tương Dương. Họ vì võ công ta không được, sợ ta gặp nguy hiểm nên đã để lại ta trong nhà giữ nhà. Về sau họ mãi không trở về, mà ngọn núi này lại vì một trận địa chấn mà đổ sụp, thông đạo bị chặn đứng, ta muốn ra ngoài tìm họ cũng không được, cho nên ta liền khởi động thiên địa đảo ngược, sau đó ngủ một giấc cho tới bây giờ. Đúng rồi, có phải các người từ nơi đó tới không? Có thể nói cho ta biết, Tương Dương có giữ được không? Các ngươi có nghe nói qua tin tức của cha mẹ ta và ca ca không?"</p>
+    <p>Liễu Diệc Như và ba nữ không khỏi sững sờ, thủ Tương Dương? Quách đại hiệp? Chẳng lẽ mình đã xuyên việt đến thời đại kia rồi?</p>
+    <p>Diệp Phi cũng không cảm thấy kinh ngạc, vì hắn sớm đã nghĩ tới, chỉ là hiện tại được xác nhận thêm một bước mà thôi. Bất quá để xác nhận, hắn hỏi tiếp: "Ca ca của ngươi có phải tên là Diệp Thế Hào, ngươi có phải tên là Diệp Chỉ Lâm?"</p>
+    <p>"Di? Sao ngươi biết?" Thiếu nữ đầu tiên kinh ngạc, lập tức cuồng hỉ nói: "Đúng rồi, ngươi nhất định nhận thức ca ca ta, hơn nữa còn là bạn tốt, bằng không sẽ không đến tên của ta cũng biết, đúng hay không?"</p>
+    <p>Diệp Phi gật đầu, sau đó lại lắc đầu nói: "Không sai, ta biết ca ca của ngươi, bất quá cũng không nhận ra hắn, càng không có phúc phận làm bạn với hắn, bởi vì hắn là tổ tiên của ta."</p>
+    <p>Diệp Phi nhớ rõ, vào năm hắn tám tuổi, thúc thúc Diệp Lăng Thiên từng lấy ra một cuốn đồ cho hắn xem, hơn nữa bắt buộc phải nhớ kỹ. Lúc đó, người vốn dĩ càng thêm yêu thương hắn là Diệp Lăng Thiên lại phi thường nghiêm túc, khiến hắn thập phần sợ hãi. Mà khi đó đã hơn mười tuổi Diệp Vũ lại tỏ ra phi thường hâm mộ. Về sau hắn mới biết được, bản đồ vật đó là gia phả nhà họ Diệp, ghi lại sự tích lịch đại tổ tiên, chỉ có người thừa kế nhà họ Diệp mới có tư cách xem.</p>
+    <p>Ở chương thứ nhất của cuốn sách đó, ghi lại chính là sự tích của Diệp Thế Hào. Trên đó nói hắn và cha mẹ cùng hiệp thủ Tương Dương, tại thành phá sau, cha mẹ bị quân Mông Cổ giết chết, mà hắn may mắn thoát được một kiếp, một mình chạy trốn tới trấn nhỏ Vọng Hải lúc đó còn chưa ai biết tới. Mà trong chương đó, còn có một đoạn văn tự do Diệp Thế Hào để lại: Hắn tại Vọng Hải mai danh ẩn tích vài năm, cho đến khi người Mông Cổ triệt để chiếm được thiên hạ, thế cục an định lại về sau, hắn mới quay trở lại nơi cũ, muốn tiếp muội muội đi ra. Không ngờ tới nơi đó lại nghe được một tin dữ —— ngôi nhà cả gia đình họ từng ở vậy mà vì một trận địa chấn mà đổ sụp rồi, trong dãy núi mênh mông này, hắn căn bản tìm không thấy vị trí sơn động cũ, điều này khiến hắn cực kỳ tự trách. Nếu không phải chính mình sợ bị người truy tra, sớm vài năm qua tìm muội muội, nàng nhất định sẽ không bị chôn trong ngọn núi này. Vì vậy, hắn đã để lại một câu trong tổ huấn nhà họ Diệp từ sau khi hắn qua đời, chính là để hậu đại dốc hết sức lực đi vào núi tìm kiếm muội muội của hắn, bởi vì hắn biết rõ, với chỗ nối thẳng âm khí trong nhà, muội muội nhất định sẽ không dễ dàng chết như vậy.</p>
+    <p>Sau đó, người nhà họ Diệp cũng xác thực một mực tìm kiếm trong ngọn núi này suốt lâu dài, cho đến tam đại về sau, cảm giác muội muội của Diệp Thế Hào thế nào cũng không thể sống sót được nữa mới từ bỏ, lại không nghĩ rằng tại cách vô số đời về sau, Diệp Phi lại dưới cơ duyên xảo hợp tìm được và cứu sống nàng, chỉ là phương pháp cứu nàng có chút vượt ra khỏi quan hệ của bọn hắn.</p>
+    <p>Diệp Phi lâm vào trầm tư, chúng nữ đã sớm sững sờ, đặc biệt là Diệp Chỉ Lâm, nàng thế nào cũng không cách nào lý giải, ca ca của mình sao lại thành tổ tiên người khác? Xem tướng mạo Diệp Phi, hẳn là không kém ca ca của nàng bao nhiêu tuổi nhỉ? Chẳng lẽ mình đã ngủ lâu đến thế sao? Vì vậy nhịn không được mở miệng hỏi: "Đây rốt cuộc là chuyện gì xảy ra nha?"</p>
+    <p>Mà Liễu Diệc Như các nàng mặc dù không hỏi, nhưng vẻ mặt tò mò trên mặt lại giống y như Diệp Chỉ Lâm.</p>
+    <p>Diệp Phi không giấu diếm, trực tiếp kể lại sự tích gia phổ của mình một lần. Sau khi nghe xong, Liễu Diệc Như ba người không khỏi nhìn nhau, trong lòng cảm giác có chút cổ quái, cô gái bị Diệp Phi "chọc" tỉnh này, thế mà lại là tổ tiên của hắn.</p>
+    <p>Mà Diệp Chỉ Lâm cũng rốt cuộc biết mình vậy mà ngủ say trọn vẹn hơn tám trăm năm, không khỏi nhẹ nhàng thở dài nói: "Không ngờ đã lâu như vậy, nếu không có thiên địa đảo ngược, chỉ sợ ta đã chết đi rồi."</p>
+    <p>"Thiên địa đảo ngược này rốt cuộc là thứ gì vậy?" Diệp Phi không khỏi hỏi, nghe khẩu khí của Diệp Chỉ Lâm, nó tuyệt đối là vật tốt, thế mà Diệp Thế Hào trong gia phả cũng không hề nhắc đến.</p>
+    <p>Đối mặt với huyền tôn không biết bao nhiêu đời của ca ca mình, Diệp Chỉ Lâm cảm giác có chút kỳ diệu, bất quá trong lòng căn bản không sinh ra nổi một tia cảm giác đối mặt với hậu bối, bởi vì bàn về tuổi thật, nàng cũng chỉ hơn hắn vài tuổi. Hiện tại thấy hắn hỏi, không khỏi ngạc nhiên nói: "Ca ca ta không ghi lại trong gia phả sao?"</p>
+    <p>"Không có!" Diệp Phi lắc đầu vô cùng khẳng định, tuy khoảng cách từ lúc hắn xem gia phả đã qua rất lâu, khiến hắn vừa rồi không nhớ lại ngay, nhưng một khi đã nhớ tới, với trí nhớ của hắn thì sẽ không thể nào sai sót.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0401.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0403.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>
