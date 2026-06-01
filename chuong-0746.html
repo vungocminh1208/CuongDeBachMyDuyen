@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 746 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 746</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 746</small>
+    Chương 746: Biến thân sau khi
+  </h1>
+  <div class="chapter-body">
+    <p>Sau khi biến thân, Diệp Phi không khỏi thoải mái đến gầm lên một tiếng. Từ khi có nội lực đến nay, hắn vẫn chưa từng dùng qua hình thái này, vì thế đây có lẽ là lần đầu tiên hắn kết hợp biến thân cùng nội lực lại với nhau. Cảm giác mạnh mẽ đó khiến hắn vô cùng sảng khoái.</p>
+    <p>Kỳ thực Diệp Phi đã sớm nghĩ tới việc sử dụng Barbarians biến thân. Tuy nhiên, sau khi giao chiến với Lôi Thần một thời gian dài, hiếm khi gặp được cao thủ cùng đẳng cấp nên hắn có chút cảm giác trân trọng người tài đối với Lôi Thần. Mà Barbarians lại có một kỹ năng tên là Tự nhiên chống lại, có thể suy yếu các loại sát thương nguyên tố tới 80%. Nếu dùng cách này để đối đầu với Lôi Thần, người sở hữu tinh khiết lôi điện chi lực, thì thực sự quá mức thắng mà không vẻ vang gì.</p>
+    <p>Tuy nhiên, hiện tại Diệp Phi không thể không dùng, bởi vì dù có trân trọng đối thủ đến đâu, hắn cũng không thể lấy tính mạng mình ra để thành toàn cho Lôi Thần. Diệp Phi vẫn chưa ngu ngốc đến mức đó.</p>
+    <p>Nhìn thấy dáng vẻ khổng lồ của Diệp Phi sau khi biến thân, Lôi Thần chẳng những không kinh hoảng mà ngược lại càng trở nên hưng phấn, cười nói: "Nguyên lai trước đó ngươi vẫn chưa lấy ra thực lực chân chính. Đến đây đi, để ta xem rốt cuộc ngươi mạnh đến mức nào!"</p>
+    <p>Sau khi biến thân, Diệp Phi mở cái miệng rộng uy nghiêm đáng sợ nở nụ cười, bỗng nhiên dang rộng hai tay, thân thể như điện xẹt mà cao tốc xoay tròn, thi triển kỹ năng tối thượng của Barbarians: Gió xoáy! Hơn nữa còn là chiêu Gió xoáy siêu cấp tăng mạnh được quán chú nội lực!</p>
+    <p>Trong nháy mắt, toàn bộ tiểu đảo chìm trong thế giới cuồng phong, thậm chí cả nước biển xung quanh tiểu đảo cũng bị lốc xoáy do một mình Diệp Phi tạo ra hút lên không trung mấy chục mét.</p>
+    <p>Nếu từ lúc bắt đầu, Lôi Thần dùng lôi điện chi lực để Thuấn Di rời xa hòn đảo này thì cơn lốc xoáy đó tự nhiên không cách nào làm hại hắn. Chỉ tiếc là hắn đã không làm vậy, thế nên ở giây tiếp theo, thân hình cao lớn của hắn không hề có chút sức chống trả nào, bị cuốn vào trong, hút tới bên cạnh Diệp Phi, rồi bị thanh cự kiếm kia liên tục chém hơn mười nhát lên người mới bay ra ngoài.</p>
+    <p>Kỹ năng và nội lực kết hợp sau khi có uy lực mạnh mẽ như vậy khiến chính Diệp Phi cũng không ngờ tới. Vì thế, sau khi Lôi Thần bị hút lại, hắn muốn dừng tay cũng đã không kịp. Chỉ có thể đợi đối phương bị chém bay rồi mới ngừng kỹ năng, sau đó xoay người theo chiều ngược lại mấy vòng để không gian khôi phục gió êm sóng lặng. Lúc này hắn mới thu hồi biến thân, đi tới bên cạnh Lôi Thần đang thoi thóp, đỡ hắn lên và hỏi: "Ngươi thế nào rồi?"</p>
+    <p>Lôi Thần mặc dù khi bị chém đã dùng lôi điện chi lực tạo ra một tầng tấm chắn bên ngoài thân, nhưng lực công kích của Diệp Phi thực sự quá mạnh. Lúc này sinh cơ của hắn đã đoạn tuyệt, nhưng ánh mắt lại sáng lạ thường, cứ như tự nhủ: "Ta đã thấy rồi, ta cuối cùng cũng đã thấy, thế nào mới là sức mạnh tối thượng. Diệp Phi, cảm ơn ngươi, có thể chết trong tay ngươi, ta cũng không còn hối tiếc."</p>
+    <p>Nói xong, không đợi Diệp Phi kịp đưa thuốc khôi phục cho hắn, Lôi Thần đã hoàn toàn tắt thở.</p>
+    <p>Đặt thi thể Lôi Thần xuống đất, Diệp Phi thở dài một tiếng. Trận chiến này tuy hắn thắng nhưng lại chẳng thấy vui. Lôi Thần tuy lập trường đối địch với hắn, nhưng không mất đi tư cách của một người anh hùng. Nếu có thể, Diệp Phi thực sự không muốn đối đầu với người như vậy; làm bạn với một người như thế có lẽ sẽ tốt hơn nhiều.</p>
+    <p>Tuy nhiên, Diệp Phi cũng không hề hối hận. Lôi Thần chính là kiểu tính cách này, nếu như mình không có Barbarians biến thân, trừ phi toàn lực bỏ chạy, bằng không cuối cùng nhất định sẽ chết trong tay hắn. Mà khi đó, có lẽ Lôi Thần cũng sẽ cảm thấy thất vọng, mất mát như mình bây giờ, nhưng hắn cũng tuyệt đối sẽ không hạ thủ lưu tình.</p>
+    <p>Cảm thán một hồi, Diệp Phi lấy trong hòm item ra một bộ quần áo thay cho bộ đã bị xé rách lúc biến thân, sau đó vác thi thể Lôi Thần lên. Khi chuẩn bị rời đi, hắn chợt phát hiện tại nơi Lôi Thần vừa nằm có một hạt châu, xung quanh được điện quang vờn quanh. Vật này rõ ràng không phải thứ Lôi Thần mang theo bên người, vì để thuận tiện chiến đấu, Lôi Thần mặc một bộ quần áo bó, căn bản không có chỗ để chứa thứ như vậy.</p>
+    <p>Sửng sốt một chút, Diệp Phi mới nhận ra lúc mình đánh giết Lôi Thần đang ở trạng thái Barbarians, mà dưới trạng thái này, việc tiêu diệt đối thủ sẽ làm rơi vật phẩm.</p>
+    <p>Với sự mạnh mẽ của Lôi Thần, hắn tuyệt đối có thể được tính là một siêu cấp BOSS, vật phẩm rơi ra sau khi chết đương nhiên sẽ không kém. Diệp Phi vội vàng nhặt hạt châu lên, phát hiện quả nhiên nó có thuộc tính, hơn nữa dường như rất tốt: Lôi Điện châu, sau khi trang bị có thể thu được lôi điện chi lực.</p>
+    <p>Vật này phải dùng thế nào? Diệp Phi suy nghĩ một chút nhưng không có manh mối, đành bỏ nó vào trong hòm item. Không ngờ vừa mới bỏ vào, trong đầu hắn bỗng nhiên sinh ra một loại giác ngộ, hiểu rõ cách sử dụng lôi điện chi lực trong nháy mắt.</p>
+    <p>Học theo cách của Lôi Thần, Diệp Phi duỗi một ngón tay, nhắm vào một tảng đá lớn vừa bị cuồng phong thổi lộ ra từ dưới nền đất mà chỉ. Một tia điện trong nháy mắt xuất hiện, đánh tan tảng đá kia ngay lập tức.</p>
+    <p>Quả nhiên là được, hơn nữa uy lực dường như không hề kém cạnh Lôi Thần. Điều này khiến tâm tình Diệp Phi lập tức tốt lên, sau này chính mình không có chuyện gì cũng có thể giả mạo một chút Dị Năng Giả, hơn nữa còn là một siêu cấp cường đại Lôi Điện hệ Dị Năng Giả.</p>
+    <p>Tuy nhiên, điều thực sự khiến Diệp Phi cao hứng không phải là cái này, mà là hắn đột nhiên nghĩ ra một cách sử dụng khác của lôi điện chi lực. Còn có thể hay không thì quay đầu lại thử một chút là biết.</p>
+    <p>Dùng hơn một giờ đồng hồ, Diệp Phi quen thuộc toàn bộ các năng lực thuộc Lôi Điện hệ, mãi đến khi có thể hoàn toàn khống chế loại sức mạnh mới này một cách tự nhiên mới dừng lại.</p>
+    <p>Lúc này trời đã tối đen, Diệp Phi vác thi thể Lôi Thần, đang định triển khai năng lực Thuấn Di trở lại bờ, nhưng suy nghĩ một chút rồi lại dừng lại. Bởi vì hắn hiện tại cũng không biết vị trí cụ thể của nhóm Diệp Chỉ Lâm, thay vì đến bờ rồi lại để họ tới đón, chi bằng trực tiếp bảo họ tới bên này.</p>
+    <p>Gọi điện thoại cho Lưu Vân Nhi, Diệp Phi ngồi xuống bên rìa tiểu đảo, nhìn về phía thành phố đèn đuốc sáng trưng xa xa, có chút xuất thần. Trước đây hắn tuy đã đoán được nước ngoài cũng sẽ có những cao thủ Thủ Hộ Giả như vậy, nhưng cũng cho rằng họ sẽ giống như những người bảo vệ kia, bình thường đều lánh đời không ra, không tiếp xúc với người thường.</p>
+    <p>Thế nhưng sau khi chứng kiến Lôi Thần, Diệp Phi mới biết mình đã nghĩ sai. Nước Mỹ và Trung Quốc không giống nhau, không có bề dày lịch sử lâu đời như Trung Quốc, bởi vậy cũng không hình thành kiểu cách biệt tầng lớp giữa người bình thường và Võ Giả. Cao thủ bên này sẵn sàng tham gia vào tranh chấp của người bình thường.</p>
+    <p>Như vậy, Diệp Phi liền suy nghĩ, liệu mình có nên tạm thời rút lực lượng của Lăng Vân Hội khỏi nước Mỹ hay không? Nếu không, một khi đối đầu gay gắt với các thế lực lớn như Thánh chiến tổ chức, trừ phi mình đích thân ra tay, nếu không Đầu Trọc và những người khác không thể nào ngăn cản được những đỉnh cấp cao thủ như Lôi Thần.</p>
+    <p>Nhưng nếu cứ như vậy rút lui, công sức của Đầu Trọc và người kia suốt mấy tháng qua chẳng phải uổng phí hay sao? Như vậy nên đối xử với họ thế nào đây?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0745.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0747.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

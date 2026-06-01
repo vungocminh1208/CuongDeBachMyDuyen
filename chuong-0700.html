@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 700 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 700</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 700</small>
+    Chương 700: Gieo Tao Cô 9
+  </h1>
+  <div class="chapter-body">
+    <p>Chương 699: Gieo tao Cô 9 2017-10-20 06:05:23 Diệp Ngưng Sương đụng tới đại dương vật của chất nhi, khiến nàng thoải mái đến mức từ lâu không biết mình đang kêu cái gì nữa, nàng bây giờ chỉ muốn đại dương vật của chất nhi càng dùng sức làm dâm huyệt của nàng mà thôi. Nằm dưới thân Diệp Phi, hai chân quấn chặt lấy hông Diệp Phi, trên mặt lộ ra vẻ mặt như dâm phụ, đôi mắt mị hoặc như tơ lộ ra dáng vẻ dâm đãng, trong miệng càng thỉnh thoảng dâm kêu, mặc cho Diệp Phi càng hung ác đâm rút vào cái lồn mọng nước tràn đầy mật ngọt của cô. "Ác... Thật là thoải mái a!... A!... Mẹ nó thân ca ca... Ngươi làm được ta thật thoải mái... A!... Thân ca ca đại dương vật... Làm được ta thoải mái chết đi được... A!... Đúng... Van cầu chất nhi... Nhanh... Lại dùng lực điểm... A!... Đừng có ngừng... Đúng... Ác... Thoải mái chết đi được... A!... Dì thân trượng phu... Hảo ca ca... A!... Ta lại muốn tiết... Thư sướng... A!... A!..." Diệp Ngưng Sương dâm đãng đem chất nhi toàn bộ ôm vào trong lòng, ngực to trên người chất nhi vẫn giày vò, sữa trong nhũ phòng dính nhơm nhớp dính đầy bộ ngực cả hai, nam nữ cuồng hoan để Diệp Ngưng Sương không cần giữ ý tứ gì nữa, vào giờ phút này tất cả đều bị đại dương vật kịch liệt của chất nhi lấp kín, nàng điên cuồng kêu, hai tay càng ôm thật chặt, cảm thụ được sức mạnh tính bùng nổ cùng sự cuồng mãnh xung kích của đại dương vật Diệp Phi, một lần lại một lần hưởng thụ khoái cảm loạn luân cấm kỵ. Mà Diệp Phi đã ở lúc cô đạt đến cao trào thì đem đại dương vật thật chặt chặn lại tử cung của dì, hưởng thụ thịt non trong lồn cô không ngừng ngọ nguậy, như là sợ đại dương vật của Diệp Phi rút ra, không ngừng mà mút lấy khoái cảm cùng thịt non chăm chú bao vây lấy vẻ đẹp. Nhìn thấy dáng vẻ liên tục thở dốc của Diệp Ngưng Sương, Diệp Phi để cô nghỉ ngơi một chút, nhưng nhìn thấy vú đầy đặn cùng nãi hương thơm nức trước ngực cô, Diệp Phi không nhịn được cúi đầu hút lấy đầu vú đỏ tươi lồi lên kia. Không lâu sau, Diệp Ngưng Sương bị động tác hôn cắn của chất nhi làm cho vừa thư thích, lại vừa khổ sở, xuân tình dập dờn, thở gấp liên tục. Hơn nữa ở đáy bụng, ngay trên lồn mềm non nớt, quy đầu của chất nhi đang xoay tròn ma sát, làm cho nàng toàn thân tê dại, gấp đến độ đôi mắt mị hoặc bay ngang, tao lãng thấu xương, dưới thân chất nhi vặn vẹo thân thể mềm mại, trong cái miệng nhỏ càng thỉnh thoảng truyền ra một hai tiếng rên rỉ mị mê người uyển chuyển, đồng thời mỗi khi đại dương vật của chất nhi đẩy đến hoa tâm nhạy cảm trong lồn, tử cung Diệp Ngưng Sương liền hút một cái, mút lấy quy đầu của chất nhi. Diệp Phi không ngừng dùng đại dương vật ma sát lồn của dì, càng thỉnh thoảng trêu chọc lồn dì, để cô càng thêm ngứa ngáy khó nhịn, dâm thủy càng không ngừng chảy ra từ lồn mềm. "Há, dì hảo chất nhi, người chồng tốt, hảo ba ba, thân bé ngoan! Mau mau xuyên, xuyên dâm huyệt của dì đi." Lồn mềm chật hẹp của Diệp Ngưng Sương càng làm đại dương vật của Diệp Phi cả cây bao bọc quá chặt chẽ, Diệp Phi đem hai chân dì cao gác ở trên vai, nhấc đại dương vật lên liền một trận mãnh liệt đâm rút, để cô đang ngứa ngáy khó nhịn cũng theo đó mà vặn vẹo mông, nâng mông lớn của mình lên. "A!... Ta hảo chất nhi... Thân trượng phu... Ác... Lại xuyên sâu một điểm..." Cứ như vậy, tiếng "bốc két, bốc két" vang lên khi đại dương vật Diệp Phi ra ra vào vào hoa tâm trong lồn dì, đồng thời cũng cúi đầu nhìn một chút thịt non nơi miệng lồn mềm của cô theo đại dương vật mà lật vào nhảy ra, sự co rút vào ra này khiến dục hỏa của Diệp Phi càng vượng, tốc độ đâm xuyên cũng theo đó càng nhanh, càng làm cho dâm thủy trong lồn cô cùng đại dương vật phát ra tiếng "bốc két, bốc két" tươi đẹp. "A!... Không chịu nổi... Đẹp quá a!... A!... Thoải mái chết ta rồi... A!... Thực sự là quá sung sướng..." Diệp Phi liên tục nhìn chằm chằm vào dáng vẻ đại dương vật của mình ra ra vào vào bên trong hai mảnh lồn mềm đầy đặn của cô, càng không quên mỗi khi đại dương vật đâm sâu vào hoa tâm trong lồn cô, liền mài mấy lần ở cổ tử cung của nàng, sau đó đột nhiên rút ra hơn một nửa, dùng quy đầu đỏ hồng dính đầy yêu dịch mài mài tại miệng lồn cô, rồi lại hung hăng đâm vào. Chỉ chốc lát sau, Diệp Phi phát hiện chỉ cần đại dương vật mình va chạm vào một chỗ mềm mại đột xuất trong lồn cô, thịt non trong mật lồn của cô sẽ càng chăm chú siết lấy dương vật mình, hơn nữa không chỉ siết chặt mà thôi, còn không ngừng ngọ nguậy, hút đại dương vật của mình sâu vào trong tử cung, khoái cảm mãnh liệt càng làm cho Diệp Phi không ngừng đâm vào. "A!... Dì... Ừ... Ta yêu chết dâm huyệt của người rồi... Dâm huyệt của người kẹp ta thật là thoải mái ác... Ta muốn đụ ngươi... Ừ... Ta muốn mỗi ngày đụ dâm huyệt của ngươi." Diệp Ngưng Sương không ngừng giơ cao mông, để đại dương vật chất nhi càng sâu càng ác hơn cắm vào tử cung hoàn toàn ướt đẫm của nàng, mà âm tinh nóng rực của cô không ngừng tưới vào mã mắt của Diệp Phi, nhìn trên mặt cô lộ ra vẻ biểu cảm tao đến tận xương tủy kia, càng làm cho Diệp Phi cảm thấy vừa hưng phấn, lại kiêu ngạo, đại dương vật cũng là càng hung ác đâm vào bên trong thịt lồn của dì. Diệp Ngưng Sương bị chất nhi làm cho mồ hôi đầm đìa, tiết tấu lắc mông cũng càng lúc càng nhanh, lồn mềm càng chăm chú kẹp lấy đại dương vật của chất nhi không ngừng lắc lư, nơi sâu xa trong tử cung từng luồng âm tinh phun lên trên đại dương vật của Diệp Phi, Diệp Phi ra sức làm. "A!... Cha ruột của ta a!... Ác... Con gái nhanh làm chết đi... A!... Dì lại muốn thư sướng... Ác... Nhanh dùng sức... Dùng sức làm... Ừ... Dì tiểu oan gia... Ác... Con gái lại muốn tiết cho ngươi... A!... Không chịu nổi... Nhanh... Dùng sức... Ác... Nhanh dùng sức xuyên... A!..."</p>
+    <p>Nghe được lời của cô, Diệp Phi như một con ngạ lang đói bụng không chọn thực, dùng hết sức mạnh toàn thân, mà cô cũng hai tay liều mạng ôm cổ Diệp Phi, tiểu mật lồn mê người chật hẹp càng đột xuất đón lấy đại dương vật của Diệp Phi, thân thể mềm mại cũng dồn dập nhún và run rẩy, nơi sâu xa của lồn mềm càng run rẩy mút lấy, liên tục tiết ra từng đợt âm tinh lớn. "A!... A!... Bảo bối của ta chất nhi... Nha... Dì... Bị đại dương vật của ngươi giết chết rồi... Ác... Dì hảo chất nhi... Ngươi làm dì thật là thoải mái... Thật là sung sướng... A!... Không nhịn được... A!... Không xong rồi... Dì lại thư sướng... A!... Dì lại tiết cho ta hảo chất nhi... Ác..." Dưới sự tấn công liên tục của Diệp Phi, lồn mềm của Diệp Ngưng Sương cũng thoải mái liên tục tiết ra dâm dịch, dâm thủy trắng mịn chán từ lồn mềm của nàng theo nhục phùng chảy ra bên ngoài, theo cái mông mỡ màng thấm đầy xuống ga trải giường trắng nõn. Diệp Phi rút đại dương vật chưa bắn tinh ra khỏi lồn mềm sưng đỏ của dì, chỉ thấy từng luồng dâm dịch nửa trong suốt chảy ra từ tiểu lồn mềm của cô, nhìn ngọc thể thịt non của cô khẽ run, đôi mắt mị hoặc híp lại bắn ra ánh mắt mê người, dáng vẻ tao dâm lộ, diêm dúa lẳng lơ mê người đó, đặc biệt là dâm huyệt mập mạp trắng như tuyết của nàng theo sự xuyên làm của mình đung đưa, cặp vú non mềm cao vót trước mắt lung lay, càng là khiến Diệp Phi hồn phi phách tán, dục hỏa nóng rực sốt cao. Vì bù đắp tính khát khao của dì, cũng vì thịt lồn mê người của cô, mỗi ngày cùng cô chơi loại game cấm kỵ này, Diệp Phi đem đại dương vật lần thứ hai cắm vào tiểu lồn mềm phì nộn của cô, dùng sức đâm mạnh, nhanh chóng, điên cuồng trên thịt lồn kiều mị mê người của nàng. Chương 698: Gieo tao Cô ← có thể sử dụng khoảng chừng phím tắt lật trang → Chương 700: Từng người "Nguy cơ"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0699.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0701.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 729 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 729</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 729</small>
+    Chương 729: Mẫu tỷ e thẹn
+  </h1>
+  <div class="chapter-body">
+    <p>"Hừ, ta mới không giống ngươi sắc như vậy!" Diệp Vân Khinh khinh thường hừ một tiếng, bàn tay nhỏ lôi kéo tay lớn của ca ca tiến vào ổ chăn, trực tiếp nhét vào dưới đũng quần của mình...</p>
+    <p>Gần một tiếng sau, Diệp Vân Anh cùng Diệp Vân Khinh – đôi tiểu thư muội vừa được đệ đệ (ca ca) cho ăn no – mới cùng Diệp Phi đi ra khỏi phòng ngủ của hắn. Sau khi đi tới dưới lầu, bọn họ phát hiện hai vị mẹ cùng đại tỷ, nhị tỷ đều đã thức dậy, đang ngồi cùng một chỗ không biết nói gì đó.</p>
+    <p>Tuy nhiên, ba người Diệp Phi có thể nhìn ra, trên mặt hai vị mẹ cùng hai vị tỷ tỷ đều đỏ ửng. Không cần hỏi cũng biết là vì sao, dù sao vừa nãy thanh âm hai người bọn họ gọi cũng không nhỏ. Tuy nhiên, Diệp Vân Anh cùng Diệp Vân Khinh cũng không ngượng ngùng gì, trái lại còn rất đắc ý. Chính vì hai nàng gan dạ, nên ở nhà mới có thể bất cứ lúc nào hưởng thụ "cự vật" của Diệp Phi. Còn hai vị mẹ cùng tỷ tỷ, vì không dám buông bỏ e dè, đôi khi ngứa ngáy cũng chỉ có thể nhịn, cũng như hiện tại vậy.</p>
+    <p>Nhìn thấy ba người đi xuống, Liễu Diệc Như cũng không trách bọn họ, trực tiếp hỏi Diệp Phi: "Tiểu Mãn, con vừa nãy nhắn tin nói phải đến nước Mỹ, là thật sao?"</p>
+    <p>Diệp Phi gật đầu, kể lại sự tình một lần, đồng thời nói ra suy đoán của mình.</p>
+    <p>Nghe Diệp Phi nói có thể sẽ gặp phải đối thủ mạnh mẽ, trên mặt mấy vị chí thân mỹ nhân đều lộ vẻ lo lắng. Nhưng việc này liên quan đến cha mẹ của Lưu Vân Nhi, bọn họ cũng không tiện ngăn cản Diệp Phi không đi.</p>
+    <p>Chỉ có Diệp Vân Anh cùng Diệp Vân Khinh là coi những lời Diệp Phi nói như một phần kế hoạch của hắn, vì thế cũng không lo lắng. Tuy nhiên, trên mặt các nàng lại tỏ ra lo lắng hơn bất cứ ai. Diệp Vân Khinh lôi kéo ống tay áo Diệp Phi nói: "Ca, đã có nguy hiểm thì người đừng đi có được không? Lăng Vân Hội có nhiều người như vậy, để cho bọn họ đi không được sao?"</p>
+    <p>Diệp Phi lắc đầu nói: "Không được, hiện tại ta là Bang chủ Lăng Vân Hội, đương nhiên phải gánh vác trách nhiệm vì mọi người. Hơn nữa, có chuyện liên quan đến nhạc phụ nhạc mẫu, ta không thể không đi."</p>
+    <p>Những người phụ nữ trong nhà sở dĩ yêu Diệp Phi mà không màng thế tục, ngoài tình cảm thân thiết ra, còn bởi khí phách nam nhi đỉnh thiên lập địa của hắn. Vì vậy, họ đều hiểu mình căn bản không ngăn cản được Diệp Phi, hơn nữa đối với thực lực của hắn, họ đều hết sức tự tin. Cuối cùng, Liễu Diệc Như đành nói: "Con muốn đi, chúng ta sẽ không ngăn cản, cũng sẽ không đòi theo làm vướng chân con. Thế nhưng Tiểu Mãn, con nhất định phải hứa với mẹ, vạn sự đều phải cẩn thận. Nếu vì không cẩn thận mà xảy ra chuyện gì, mẹ sẽ không bao giờ tha thứ cho con!"</p>
+    <p>Diệp Phi đi tới ngồi xuống bên cạnh mẹ, nắm lấy bàn tay nhỏ bé của bà nói: "Mẹ, người yên tâm đi. Con trai người hiện tại dù sao cũng là cao thủ hàng đầu thế giới, cho dù gặp phải cao thủ không đánh lại, muốn chạy trốn cũng không có vấn đề gì."</p>
+    <p>Liễu Diệc Như suy nghĩ một chút, cảm thấy nhi tử nói có lý, trong lòng cũng buông lỏng một ít, nhưng vẫn dặn dò: "Vậy con cũng phải cẩn thận, lúc nào cũng không được quên, trong nhà vẫn còn chúng ta đang chờ con đấy."</p>
+    <p>"Đúng rồi, đúng rồi. Nếu ca ca xảy ra chuyện, chúng ta đều trở thành quả phụ cả rồi, vì thế huynh tuyệt đối không được xảy ra chuyện gì. Chỉ cần huynh bình an trở về, yêu cầu gì chúng ta cũng đáp ứng huynh." Diệp Vân Khinh đúng lúc nói vào, dẫn dắt câu chuyện tới chuyện Diệp Phi đã thương lượng với các nàng trước đó.</p>
+    <p>Liễu Diệc Như cùng Thủy Dĩnh cũng vội vàng gật đầu theo. Bởi vì họ biết, nếu muốn Diệp Phi cẩn thận hơn, chỉ có cách tạo ra nhiều sự lo lắng trong lòng hắn mới được. Vì thế, dù mơ hồ đoán được hắn sẽ đưa ra những yêu cầu xấu hổ, họ cũng đành phải đáp ứng.</p>
+    <p>"Thật chứ?" Diệp Phi hỏi, khóe miệng nở nụ cười gian khiến mấy nàng không khỏi thấp thỏm, nhưng vẫn kiên định gật đầu.</p>
+    <p>"Vậy ta nói rồi nhé!" Diệp Phi cười nói: "Yêu cầu của ta là, chờ ta trở lại, các nàng hãy cùng ta trải qua một đêm giao thừa thật đẹp. Chúng ta cùng ăn cơm, cùng uống rượu, cùng xem Xuân vãn."</p>
+    <p>Nghe được yêu cầu này, chúng nữ đều rất ngạc nhiên. Liễu Diệc Như hỏi: "Chỉ đơn giản như vậy thôi sao?"</p>
+    <p>"Chính là đơn giản như vậy." Diệp Phi cười nói: "Tuy nhiên, ta còn có một yêu cầu nữa, đó là khi chúng ta làm những việc này, không ai được phép mặc quần áo, đồ lót cũng không được."</p>
+    <p>"A!!" Hai vị mẹ cùng hai vị tỷ tỷ nghe đến câu này, tất cả đều giật mình, theo sau là khuôn mặt đỏ bừng. Liễu Diệc Như còn đỡ hơn một chút, dù sao nhi tử trước đây cũng từng ám chỉ như vậy, trong lòng bà cũng có chút chuẩn bị. Nhưng Thủy Dĩnh cùng mẹ con Diệp Tư Kỳ, Diệp Tư Dao thì lại khác, tuy họ biết rõ mối quan hệ của nhau với Diệp Phi, nhưng chưa bao giờ làm cùng nhau, chưa kể đến việc còn có cả Liễu Diệc Như, Diệp Vân Anh, Diệp Vân Khinh ở đó.</p>
+    <p>Điều này làm cho mẹ con Thủy Dĩnh đều có chút do dự. Lúc này, tác dụng của Diệp Vân Anh liền phát huy, chỉ nghe nàng nói: "Vậy thì có gì đâu, chỉ cần đệ đệ bình an trở về, đừng nói là không mặc quần áo chơi đùa với huynh, cho dù huynh muốn chúng ta mẹ con cùng phục vụ huynh, tỷ tỷ cũng đồng ý!"</p>
+    <p>Nghe lời khẳng định của Diệp Vân Anh, lòng mấy nàng đều rung động. Tình yêu các nàng dành cho Diệp Phi không hề ít hơn Diệp Vân Anh chút nào, lúc này trong lòng cũng không khỏi lay động. Đúng vậy, chỉ cần hắn bình an trở về, hy sinh thế nào các nàng cũng đồng ý, còn có gì không buông xuống được?</p>
+    <p>Hơn nữa, hai vị mẹ cùng hai vị tỷ tỷ trong lòng đối với lần này cũng có chút mong đợi. Mỗi lần Diệp Phi cùng Diệp Vân Anh, Diệp Vân Khinh ân ái không kiêng dè gì, họ cũng rất muốn gia nhập, chỉ là trong lúc nhất thời chưa thể buông bỏ sự ngượng ngùng mà thôi. Hiện tại nhân cơ hội này, họ cũng vừa hay có lý do để thuyết phục chính mình.</p>
+    <p>Thấy mẹ và các tỷ tỷ không phản đối, Diệp Phi mừng rỡ, vội nói: "Được, cứ quyết định như vậy, các nàng cứ tắm rửa sạch sẽ, chờ ta đại thắng trở về đi!"</p>
+    <p>Khuôn mặt Liễu Diệc Như đỏ bừng, đáp ứng yêu cầu của nhi tử khiến bà xấu hổ đến mức gần như không nói nên lời, nhưng vẫn nói: "Được, chúng ta coi như đã đáp ứng con. Bất quá có điều kiện, đó là con phải tuyệt đối bình an. Nếu sau khi con trở về mà chúng ta phát hiện con có một vết thương nhỏ, thì cả đời cũng đừng hòng chạm vào chúng ta!"</p>
+    <p>"A!? Đây chẳng phải bắt con chết sao?" Diệp Phi kêu rên một tiếng, dụi đầu vào lồng ngực mẹ, bàn tay lớn luồn vào trong bộ đồ mặc ở nhà rộng rãi của bà, vuốt ve đôi "ngực khủng" to lớn, miệng nói: "Được rồi, vì để được tiếp tục hưởng dụng những tiểu dâm phụ chuyên dụng của mình, ta cũng đành tận lực cố gắng không bị thương vậy."</p>
+    <p>Bị nhi tử sờ ngực ngay trước mặt cả nhà, lại còn thốt ra những lời xưng hô đáng xấu hổ như vậy, dù Liễu Diệc Như có phóng khoáng đến đâu cũng không khỏi ngượng ngùng cúi đầu. Còn những người khác thì bật cười khanh khách, đặc biệt là Thủy Dĩnh cùng hai vị tỷ tỷ, tâm trạng lo lắng ngượng ngùng ban đầu cũng buông lỏng không ít.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0728.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0730.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

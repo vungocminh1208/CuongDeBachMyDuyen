@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 706 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 706</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 706</small>
+    Chương 706: Bị Cô "Dụ Dỗ Gian Dâm"
+  </h1>
+  <div class="chapter-body">
+    <p>Chương 705: Bị Cô "Dụ Dỗ Gian Dâm" 2017-10-20 06:05:54</p>
+    <p>Ai từng xào trứng gà đều nên hiểu rõ, việc đánh trứng sống xem ra đơn giản, nhưng lại rất mỏi tay, đặc biệt là khi dùng đôi đũa. Nếu như ở bình thường, Diệp Ngưng Sương nhiều nhất cũng chỉ đánh khoảng vài chục giây là thôi, nhưng hôm nay, bởi vì âm hộ được kiểu đâm chọc phạm vi nhỏ này làm cho vô cùng thư thái, khiến nàng căn bản không dừng lại được, mấy quả trứng gà thế mà được nàng đánh liên tục suốt năm phút, còn hiệu quả hơn cả dụng cụ đánh trứng.</p>
+    <p>Diệp Ngưng Sương thoải mái, Diệp Phi cũng cực kỳ thoải mái. Trước đây khi làm tình với Cô, đều là trải qua trong những cú thúc mạnh mẽ. Thực ra không chỉ riêng với Cô, với đại đa số phụ nữ đều là như vậy, chỉ có với mẹ và số ít người khác, Diệp Phi mới có kinh nghiệm ngâm dương vật trong âm đạo các nàng mà lặng lẽ ở lại. Trong đó, người hưởng thụ đãi ngộ này nhiều nhất đương nhiên là mẹ Liễu Diệc Như.</p>
+    <p>Mà lúc này làm như thế, Diệp Phi lập tức cảm nhận được, âm đạo của Dì mặc dù không nóng rực và co thắt như của mẹ, nhưng lại có một vị đặc biệt. Đặc biệt là những thớ thịt non bên trong âm đạo nàng, dường như có sự sống, có thể tự động nhúc nhích. Tuy rằng năng lực như vậy hiện tại mẹ cũng có, nhưng đó là sau khi tu luyện Huyền Âm Quyết mới có được, còn của Cô thì lại là trời sinh.</p>
+    <p>Bị âm hộ nhỏ của Dì bao bọc, xoa bóp như vậy, dương vật Diệp Phi không khỏi phồng lên càng cứng rắn hơn. Hai tay cũng không còn thỏa mãn với việc chỉ ôm lấy vòng eo nhỏ nhắn của nàng, mà chậm rãi đưa vào trong tạp dề, đi tới trước ngực, một tay nắm chặt lấy một bên bộ ngực to lớn không thể nắm hết, dùng sức xoa nắn.</p>
+    <p>Vừa nãy như vậy tuy rằng cũng rất thoải mái, thế nhưng đã quen ăn sơn hào hải vị, Diệp Ngưng Sương lại càng ngày càng không thấy thỏa mãn, chỉ cảm thấy càng bị dương vật to lớn của cháu trai đâm chọc trong phạm vi nhỏ như thế, âm đạo bên trong lại càng ngứa ngáy khó chịu. Lúc này bị cháu trai trên dưới cùng công kích, Diệp Ngưng Sương cũng chịu không nổi nữa, lại một lần đặt bát xuống, sâu kín nói: "Xem ra ngươi đúng là chê Cô rồi."</p>
+    <p>"Tại sao lại nói như vậy?" Diệp Phi kỳ quái hỏi.</p>
+    <p>Diệp Ngưng Sương thở dài nói: "Đều đã như vậy, ngươi lại vẫn có thể nhịn được không cho Cô thêm vài cái thống khoái, chẳng phải nói rõ ngươi đã không còn hứng thú với thân thể của Dì nữa sao?"</p>
+    <p>Muốn nói về sự khôn khéo của Diệp Phi, mấy chiêu giả vờ u oán nhỏ nhặt này của Diệp Ngưng Sương căn bản không gạt được hắn. Chỉ tiếc hắn thật sự quá yêu Cô, quá quan tâm Cô, vì vậy trong lúc nhất thời lại không thể phát hiện ra. Mà đây có lẽ cũng là nhược điểm duy nhất của Diệp Phi. Cũng may những người có thể khiến hắn bộc lộ nhược điểm này đều là những người phụ nữ rất yêu hắn, và phàm là người phụ nữ hắn yêu tha thiết, họ cũng đều yêu hắn sâu đậm, tuyệt đối không thể hại hắn, cho nên đây cũng không tính là nhược điểm gì lớn.</p>
+    <p>Không nhận ra tiểu âm mưu của Dì, Diệp Phi thầm nghĩ, nếu không thể thỏa mãn Cô một cách tử tế, biết đâu sẽ gây ra thương tổn cho nàng. Huống hồ chỉ có lần này, hơn nữa ngay sau đó sẽ dẫn Cô cùng tu luyện, cũng sẽ không gây ra tổn hại gì cho thân thể nàng, nên hắn cũng không chần chừ nữa.</p>
+    <p>Lần này, Diệp Phi không hề trả lời Cô, mà hít một hơi, cơ thể hơi lùi lại, rút dương vật đại của mình ra khỏi âm đạo Cô một chút, mãi đến khi chỉ còn dư lại quy đầu còn kẹt nơi cửa mình mới dừng lại. Sau đó hắn đột nhiên ưỡn eo về phía trước, dương vật mang theo khí thế mãnh liệt, tầng tầng đâm mạnh vào hoa tâm mềm mại của Cô.</p>
+    <p>"A!..." Chỉ riêng cú này thôi, liền khiến Diệp Ngưng Sương thoải mái đến mức linh hồn suýt chút nữa xuất khiếu, không nhịn được kêu lớn: "Cháu ngoan, chính là như vậy, nhanh, tiếp tục đâm vào, Cô muốn!"</p>
+    <p>Hai tay Diệp Phi liên tục nhào nặn trên bộ ngực to lớn, thẳng đứng của Cô, phía dưới càng dùng thêm lực, bắt đầu thúc mạnh vào âm hộ nhỏ của Dì.</p>
+    <p>"Cháu ngoan... Thân yêu... Dì nhỏ hôn nhẹ... Ngươi quá tốt rồi... Dương vật... Đại dương vật của ngươi... Thật là lợi hại... Đâm chết Cô rồi... Cô... Thật là thoải mái... Làm tiếp đi nha... Cô... Cũng bị ngươi làm cho thoải mái chết mất..." Lần này thật sự khiến Diệp Ngưng Sương thoải mái đến mức hỏng người, vừa theo nhịp thúc của cháu trai vừa lớn tiếng rên rỉ, nơi nào còn chút u oán nào nữa.</p>
+    <p>Cho đến lúc này, Diệp Phi mới ý thức tới, chính mình dường như ngay từ đầu đã rơi vào bẫy của Dì. Đầu tiên là bị sự u oán của nàng làm cho cắm vào âm hộ, lúc này lại bị màn trình diễn xuất sắc của nàng dọa cho đến mức không dám không đâm mạnh vào nàng.</p>
+    <p>Tuy rằng ý thức được điểm này, nhưng Diệp Phi cũng không vì vậy mà tức giận. Cô mê hoặc chính mình như vậy, chính là minh chứng cho tình yêu nàng dành cho hắn. Chỉ là trong lòng có chút buồn cười, bởi vì hắn nhớ lại chuyện buổi trưa, cũng là ở trong bếp, chính mình buổi trưa vừa mới bán cưỡng bức nhạc mẫu, lúc này lại bị chính Dì ruột "dụ dỗ gian dâm", vậy cũng coi như là quả báo hiện tiền đi.</p>
+    <p>Trong lòng suy nghĩ lung tung, nhưng động tác của Diệp Phi thì một chút cũng không dừng lại, dương vật như chiếc piston vĩnh viễn không biết mệt mỏi, đâm thọc vào âm hộ Dì ruột, khiến nàng sướng đến hồn bay phách lạc.</p>
+    <p>Diệp Ngưng Sương bị đâm càng ngày càng thoải mái, vì có thể để dương vật đại của cháu trai tiến sâu hơn vào trong âm hộ, nàng dứt khoát hai tay chống vào kệ bếp, đem cái mông đầy đặn cao cao nhô lên, một bên đón nhận sự thúc đẩy của cháu trai, một bên tiếp tục rên rỉ: "Thật là thống khoái... Thật dễ chịu... Dương vật đại của cháu ngoan... Lại dùng lực chút nữa... Cô... Thật yêu ngươi nha..."</p>
+    <p>Diệp Phi càng làm càng hăng, dứt khoát nhấc một cái chân thon dài của Cô lên, làm cho nàng để trần bàn chân nhỏ đạp trên kệ bếp, hai chân tách ra, sau đó buông bộ ngực to lớn đang cầm nắm cực tốt kia ra, dùng hai tay bóp lấy vòng eo mảnh khảnh còn hơn cả thiếu nữ của nàng, theo nhịp điệu của mình mà kéo mạnh thân thể Dì về phía sau, để dương vật có thể thâm nhập sâu hơn.</p>
+    <p>Tuy rằng từ lâu đã thích ứng với dương vật cực lớn của cháu trai, nhưng sau khi khao khát lâu như vậy lại một lần nữa bị hắn đâm mạnh như vậy, Diệp Ngưng Sương sướng đến mức hồn đều sắp bay mất, trong lúc nhất thời thậm chí ngay cả tiếng kêu cũng không thoát ra được, chỉ dùng sức ngửa chiếc cổ thon dài ra sau, miệng nhỏ há thật to, liều mạng nín thở, toàn bộ tâm tư đều đặt vào việc cảm nhận sự khoái lạc khi dương vật đại của cháu trai ma sát với những thớ thịt non bên trong âm đạo.</p>
+    <p>Mà Diệp Phi lúc này cũng đem toàn bộ tâm thần đặt lên thân thể mềm mại khiêu gợi và âm đạo mỹ diệu của Cô, căn bản không rảnh bận tâm tình huống bên ngoài. Hơn nữa, Cô đã xác định nói rằng vào lúc này trong nhà không thể có người khác, vì thế Diệp Phi càng theo bản năng buông lỏng tất cả cảnh giác, cho tới khi tiếng động cơ ô tô truyền tới từ phía cổng biệt thự, hắn cũng không hề chú ý tới.</p>
+    <p>Lại nói con gái của Diệp Ngưng Sương là Lý Tiểu Uyển, hôm nay đi tới Vọng Hải quân khu. Mấy năm qua này, thực ra vẫn luôn có một vấn đề quấn lấy nàng, đó chính là quan hệ của cha mẹ dường như không tốt lắm. Phụ thân Lý Bân quanh năm suốt tháng ở tại trong quân khu, chỉ khi nào con gái là nàng có việc thì mới chịu về nội thành một chuyến. Lý Tiểu Uyển thậm chí còn có chút đếm không hết đã bao nhiêu cái năm mới phụ thân không ở trong nhà.</p>
+    <p>Chương 704: Cảm xúc mãnh liệt trong nhà bếp ← có thể sử dụng phím tắt để lật trang → Chương 706: Lý Tiểu Uyển kinh ngạc đến ngây người</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0705.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0707.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

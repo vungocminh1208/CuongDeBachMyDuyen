@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 711 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 711</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 711</small>
+    Chương 711
+  </h1>
+  <div class="chapter-body">
+    <p>============================================================ Chương 711: Cho Biểu Tỷ Mở Bao 2</p>
+    <p>"Ta mới không cần thử đây!" Lý Tiểu Uyển theo bản năng phản bác một câu, bỗng nhiên ý thức được ý tứ trong lời mẹ nói, mặt cười không khỏi trở nên trắng bệch, hoảng sợ nhìn mẹ cùng biểu đệ, hỏi: "Các ngươi là nghĩ..." Diệp Ngưng Sương cười hì hì gật đầu nói: "Không sai, chúng ta tới chính là muốn cho Tiểu Mãn khai phá ngươi." "Không muốn a, van cầu các ngươi..." Lý Tiểu Uyển sợ hãi, tuy rằng nàng thầm mến Diệp Phi, thậm chí cũng từng ảo tưởng cùng hắn làm chuyện yêu đương, nhưng đó là xây dựng trong một bầu không khí ngọt ngào, là chuyện tự nhiên xảy ra, chứ không phải như bây giờ. Nàng Lý Tiểu Uyển không muốn bị cưỡng ép, dù cho người cưỡng ép nàng chính là người đàn ông nàng thích. "Cầu chúng ta cũng vô dụng, ai bảo ngươi thấy được chuyện không nên thấy đây!" Diệp Ngưng Sương hung hăng nói, nếu là cưỡng ép, chung quy phải có một người làm kẻ ác, nên nàng chủ động tiếp nhận phần khổ sai này. Lý Tiểu Uyển bận rộn bảo đảm: "Các ngươi yên tâm, chuyện này ta tuyệt đối sẽ không nói ra, với ai cũng không nói. Mẹ, biểu đệ, các ngươi đều là người thân nhất của con, buông tha con có được hay không?" "Nói gì cũng vô dụng, chỉ có để ngươi gia nhập chúng ta, ta mới yên tâm." Diệp Ngưng Sương không chút dao động, nói rồi bắt đầu cởi áo của con gái. Lý Tiểu Uyển hôm nay mặc một chiếc áo khoác dạng nút bấm, bên trong là áo sơ mi, cởi ra vô cùng dễ dàng, điều này làm cho Lý Tiểu Uyển có chút hối hận. Sớm biết vậy đã mặc mấy loại quần áo giữ ấm bên trong, như thế ít nhất mẹ nàng cởi cũng không nhanh như vậy. Thấy mẹ tâm địa sắt đá, Lý Tiểu Uyển không thể làm gì khác hơn là đặt hy vọng lên người Diệp Phi, chuyển sang nói với hắn: "Tiểu Mãn, tỷ tỷ biết ngươi không phải người như vậy, không cần ép buộc tỷ tỷ có được hay không?" Diệp Phi nhún vai, trên mặt lộ ra dáng vẻ bất đắc dĩ. Nếu kẻ ác đã để cô làm, hắn quả đoán giả vờ vô tội. Xem ra biểu đệ cũng bị mẹ ép, Lý Tiểu Uyển thầm nghĩ. Đặc biệt nàng lén liếc mắt nhìn xuống hạ bộ Diệp Phi, phát hiện dương vật của hắn còn mềm, càng tin là như vậy, liền vội vàng nói: "Tỷ tỷ biết ngươi sẽ không làm chuyện cưỡng ép ta. Tiểu Mãn, ngươi bây giờ đều lợi hại như vậy, có thể không nghe lời bà già không biết xấu hổ này mà!" Diệp Phi lần thứ hai làm ra vẻ bất đắc dĩ, không nói gì, bởi vì hắn không biết nên nói cái gì. Dù sao biểu tỷ nói rất đúng, chính mình căn bản không cần nghe dì. "A!" Lý Tiểu Uyển còn muốn tiếp tục khuyên Diệp Phi, nhưng lời chưa kịp ra khỏi miệng đã trở thành một tiếng thét kinh hãi, bởi vì lúc này Diệp Ngưng Sương đã cởi bỏ hết áo của nàng. Theo nịt ngực của biểu tỷ bị kéo xuống, Diệp Phi không khỏi cảm thấy sáng mắt lên. Không thể không nói, Lý Tiểu Uyển hoàn toàn thừa kế nét gợi cảm của mẹ nàng. Một đôi vú tuy rằng vẫn chưa đạt đến quy mô của mẹ nàng, nhưng cũng có tới cỡ C, ở trong độ tuổi này tuyệt đối được xem là cỡ lớn. Hơn nữa, bầu vú trong suốt như ngọc, thậm chí mạch máu cũng không nhìn thấy, hai quả đầu vú nhỏ chỉ bằng hạt đậu, hiện lên màu phấn hồng xinh đẹp nhất, quầng vú cũng chỉ bằng đồng xu một tệ, hơn nữa vô cùng viên mãn. "Chà, không hổ là con gái của Diệp Ngưng Sương ta, đôi vú này thực sự quá đẹp, để ta thấy cũng không nhịn được muốn hôn một cái." Diệp Ngưng Sương nói, dĩ nhiên thật sự cúi người xuống, hé miệng ngậm lấy một bên đầu vú nhỏ nhắn của con gái, nhẹ nhàng mút vài cái. Tuy rằng Lý Tiểu Uyển bị điểm huyệt đạo, nhưng điều này không hề ảnh hưởng cảm giác của cơ thể. Đầu vú bị miệng nhỏ mềm mại của mẹ ngậm hút, làm cho thân thể trắng mịn của nàng không khỏi khẽ run lên, trong miệng lớn tiếng kháng nghị: "Không biết xấu hổ, mau thả ta ra!" "Nha đầu chết tiệt, thật nhỏ mọn, con khi còn bé chẳng phải mỗi ngày ngậm lấy vú mẹ, một ngậm là hơn một năm, hiện tại mẹ ngậm của con một hồi cũng không được sao?" Diệp Ngưng Sương phun đầu vú nhỏ đã bị hút đến hơi cứng lên của con gái, bất mãn lầm bầm một câu, sau đó bắt đầu cởi quần áo hạ thân của con gái. Sao có thể như vậy được? Con khi còn bé là vì bú sữa, mà mẹ bây giờ căn bản là đang đùa giỡn con! Lý Tiểu Uyển tức đến mức muốn phát điên, nhưng có lẽ vì quá tức giận, lúc Diệp Ngưng Sương cởi quần nàng ra, nàng dĩ nhiên không mở miệng phản đối, cũng không tiếp tục cầu cứu Diệp Phi, điều này làm cho Diệp Phi thở phào nhẹ nhõm. Giúp con gái cởi giày trước, Diệp Ngưng Sương tiếp tục cởi quần của con gái. Lý Tiểu Uyển mặc một chiếc quần jean bó sát, thứ này cởi ra không hề dễ dàng như áo. Cũng may nàng bị Diệp Phi điểm huyệt, toàn thân không thể động đậy, chỉ có thể mặc cho mẹ nàng thao túng. Nếu không, chỉ cần vùng vẫy một chút, với sức lực của Diệp Ngưng Sương, sợ rằng rất khó cởi quần nàng ra. Quyết tâm, Diệp Ngưng Sương sau khi mở đai lưng của con gái, rất thẳng thắn nắm lấy quần, quần giữ ấm và quần lót nhỏ bên trong, sau đó dùng lực kéo xuống, lột sạch tất cả. Đến đây, Diệp Ngưng Sương, người làm mẹ, đã lột sạch sành sanh con gái mình ngay trước mặt Diệp Phi. Sau khi cởi sạch quần áo, Diệp Ngưng Sương còn nâng hai chân của con gái lên, đưa tay vỗ vào mông con gái, cười duyên nói: "Ta nói sao quần lại khó cởi thế, không ngờ nha đầu này mông lại lớn như vậy, quả nhiên là loại hình thích hợp nhất để Tiểu Mãn địt." Diệp Phi ở bên cạnh nghe mà không còn lời nào để nói, có ai nói về con gái ruột như vậy không? Nhưng công tâm mà nói, vóc dáng của biểu tỷ thực sự không thể chê, tuy tạm thời còn chưa sánh được với dì, nhưng tuyệt đối được coi là phong nhũ mông to. Ở độ tuổi hai mươi, vú đã tới cỡ C, mông cũng tròn trịa to thẳng, nếu để nàng trưởng thành thêm vài năm, chính mình lại giúp nàng khai phá một chút, tin rằng đến lúc đó về độ gợi cảm, chắc chắn sẽ vượt qua mẹ của nàng. Sau khi vỗ vào mông con gái, Diệp Ngưng Sương hạ hai chân của nàng xuống, nhưng lúc hạ xuống lại tách đôi chân ngọc thon dài gợi cảm giống hệt mình của con gái ra thật rộng, khiến cho hạ bộ của nàng đối diện với hướng của Diệp Phi. Lý Tiểu Uyển lúc này chết tâm cũng có, mẹ nàng làm như vậy, nơi riêng tư nhất của nàng có thể nói là không giữ lại chút nào phơi bày trước mắt biểu đệ. Mà chỗ đó, thậm chí ngay cả bản thân nàng cũng chưa từng nhìn kỹ, hiện tại lại bị một người đàn ông nhìn trọn vẹn, dù đó là người đàn ông nàng thầm mến, nhưng cũng đủ khiến nàng xấu hổ muốn chết. Tuy nhiên, Lý Tiểu Uyển ít nhiều vẫn có chút may mắn. Vừa rồi xem mẹ và biểu đệ đại chiến lâu như vậy, nàng trong lúc tức giận, phía dưới cũng không tự chủ được mà có chút ướt át. Nhưng trải qua một hồi, nước bên trong đều bị quần lót cotton hút đi. Cũng may mẹ nàng cởi hết quần áo phía dưới cùng một lúc, nếu cởi từng món một, chắc chắn sẽ để bọn họ nhìn thấy những vệt nước trên quần lót, nếu như vậy, mẹ nàng không biết sẽ nói ra những lời khiến nàng xấu hổ đến chết nào nữa.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0710.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0712.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

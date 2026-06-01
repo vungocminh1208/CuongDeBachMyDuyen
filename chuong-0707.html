@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 707 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 707</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 707</small>
+    Chương 707: Kinh ngạc đến ngây người Lý Tiểu Uyển
+  </h1>
+  <div class="chapter-body">
+    <p>Đối với lần này, Lý Tiểu Uyển cực kỳ khổ não, nhưng bất kể là hỏi mẹ hay hỏi ba, bọn họ đều nói không có chuyện gì. Hơn nữa vào những lúc họ ngẫu nhiên ở chung, Lý Tiểu Uyển cũng có thể nhìn ra tình cảm của cha mẹ vẫn rất tốt. Có điều, nó lại cho nàng một cảm giác rất kỳ quái, đó chính là cha mẹ hai người không giống phu thê, mà giống một đôi bạn thân hơn. Dù vậy, đây dù sao cũng là chuyện giữa họ, với tư cách là con gái, nàng cũng không tiện nhúng tay quá nhiều, chỉ cần họ không có mâu thuẫn là tốt rồi.</p>
+    <p>Mặc dù trong hai người, Lý Tiểu Uyển tình cảm với mẹ Diệp Ngưng Sương tốt hơn một chút, thậm chí có thể nói người mẹ tung hoành trên thương trường vốn là thần tượng của nàng, bất quá cái tết này Lý Tiểu Uyển lại chuẩn bị đón cùng ba. Bởi vì nàng cảm thấy ngày tết mà không có người thân bên cạnh thì ba quá đáng thương, hơn nữa mấy năm qua nàng đều đón tết với mẹ, hiện tại cũng đã đến lượt ba.</p>
+    <p>Vốn dĩ Lý Tiểu Uyển đến quân khu hôm nay là muốn tạo cho cha một bất ngờ, không ngờ tới nơi mới phát hiện mình quên mang theo món quà tết làm riêng cho ông. Điều này làm Lý Tiểu Uyển thập phần não nề, liền lập tức rời quân khu trở về với tốc độ nhanh nhất.</p>
+    <p>Xe đến cổng biệt thự nhà mình, Lý Tiểu Uyển không khỏi thấy kỳ lạ, bởi vì nàng phát hiện cổng biệt thự vậy mà không đóng. Chuyện này ở quá khứ rất hiếm khi xảy ra, vì mẹ từng nói, mặc dù bây giờ toàn bộ Vọng Hải đều nằm trong sự kiểm soát của hai nhà Liễu Diệp, nhưng sự đời không sợ nhất vạn chỉ sợ vạn nhất, hai mẹ con nàng không có võ công như người nhà họ Liễu, nên bình thường vẫn nên cẩn thận một chút. Không biết hôm nay xảy ra chuyện gì mà mẹ lại không đóng cổng.</p>
+    <p>Mang theo thắc mắc, Lý Tiểu Uyển lái xe thẳng vào sân. Vừa liếc mắt đã thấy chiếc xe con màu đen trông rất bình thường đỗ ở đó, trong lòng không khỏi nảy lên một nhịp, theo sau là cảm giác vô cùng kinh hỉ. Vì nàng nhận ra ngay, chiếc xe đó là một trong số rất nhiều xe của nhà cậu, mà vào lúc này người nhà cậu có thể tới đây e rằng chỉ có biểu đệ Diệp Phi. Dù sao mợ và hai vị biểu tỷ đều rất bận, còn người cùng tuổi với nàng là Diệp Vân Anh và cô bé hơn kém là Diệp Vân Khinh không thể một mình đến nhà nàng được.</p>
+    <p>Nghĩ đến Diệp Phi, trong lòng Lý Tiểu Uyển dâng lên một cảm giác hơi kỳ quái. Muốn nói tình cảm giữa nàng và Diệp Phi thì không chê vào đâu được, từ nhỏ nàng đã hết sức thương yêu cậu biểu đệ nhu nhược này. Thậm chí khi Diệp Vân Anh khá dã tính bắt nạt cậu, Lý Tiểu Uyển với tư cách là biểu tỷ còn ra mặt giúp đỡ. Có điều, đó chỉ là sự yêu thương của chị đối với em mà thôi, không có tình cảm nào khác. Có lẽ vì cha là quân nhân nên Lý Tiểu Uyển từ nhỏ đã sùng bái anh hùng, mà Diệp Phi từ nhỏ yếu ớt nhiều bệnh hiển nhiên không phải kiểu con trai khiến nàng rung động.</p>
+    <p>Nhưng bây giờ đã khác, mấy tháng nay danh tiếng của Diệp Phi có thể nói là truyền khắp Vọng Hải, gần như sắp bị người ta đồn thành thần tiên. Mà nàng, với tư cách là biểu tỷ, tự nhiên rõ ràng hơn bất cứ ai về năng lực cường đại của biểu đệ. Trong phút chốc, kiểu tâm lý sùng bái anh hùng đó đã phát huy tác dụng. Tuy biết rõ không nên, nhưng nàng vẫn không nhịn được mà nảy sinh một thứ tình cảm khác lạ đối với cậu biểu đệ lớn lên từ phía sau mông mình này.</p>
+    <p>Đỗ xe xong, Lý Tiểu Uyển chậm rãi đi vào trong biệt thự, trong lòng hơi kích động. Vốn dĩ đã cực kỳ thân quen, nàng lúc này lại có chút không biết phải đối mặt với Diệp Phi như thế nào, sợ rằng mình không cẩn thận sẽ bộc lộ thứ tình cảm không nên có kia làm cậu sợ hãi, từ đó khiến cậu xa lánh mình.</p>
+    <p>Hít sâu vài hơi thật mạnh, Lý Tiểu Uyển mới ép mình bình tĩnh lại, mỉm cười đi vào như bình thường. Không ngờ khi đến đại sảnh lại không thấy mẹ và Diệp Phi đâu.</p>
+    <p>Họ đi đâu rồi? Lý Tiểu Uyển thắc mắc nghĩ, đang định lên lầu tìm một chút thì trong tai đột nhiên nghe thấy một trận âm thanh cơ thể va chạm "bạch bạch bạch", mà âm thanh đó truyền tới từ phòng bếp.</p>
+    <p>Trời đã tối, đây là lúc nấu cơm, Lý Tiểu Uyển cho rằng mẹ đang làm cơm trong bếp, chỉ là âm thanh đó lại khiến nàng thấy rất kỳ lạ, bởi vì bất luận là thái rau hay xào rau đều không phải âm thanh như thế, thế là nàng quyết định đi xem thử.</p>
+    <p>Năm nay vừa tròn hai mươi tuổi, Lý Tiểu Uyển vẫn còn chút tính cách của cô bé, hiếm khi thấy mẹ tự tay vào bếp làm cơm, nàng chuẩn bị lén lút nhìn trộm, thuận tiện còn có thể dọa mẹ một phen.</p>
+    <p>Nhẹ nhàng bước chân, Lý Tiểu Uyển đi tới trước nhà bếp, phát hiện cửa bếp không khóa mà chỉ khép hờ, điều này càng thuận tiện cho nàng. Hơn nữa càng đến gần, âm thanh "bạch bạch" bên trong càng lớn, điều này làm Lý Tiểu Uyển càng thêm hiếu kỳ. Nàng lặng lẽ đẩy cửa ra một chút, thò đầu vào, đang định quát to một tiếng thì đột nhiên sững sờ tại chỗ, đôi mắt đẹp trợn tròn, hoàn toàn bị cảnh tượng trước mắt làm cho ngây người.</p>
+    <p>Đầu tiên đập vào mắt Lý Tiểu Uyển chính là người mẹ mà nàng ngưỡng mộ nhất. Lúc này mẹ đang đứng trước kệ bếp, nhưng căn bản không phải đang nấu cơm, mà là hai tay chống lên đó. Toàn thân mẹ chỉ có một chiếc tạp dề nhỏ miễn cưỡng che đi phần ngực, những chỗ khác đều để trần, cái mông to tròn trịa dùng sức cong về phía sau, đôi chân dài thon thả như tạc bằng ngà voi, một chân chống đất, một chân giơ cao đặt lên kệ bếp.</p>
+    <p>Mà phía sau mẹ, một người đàn ông thân hình cường tráng đang hai tay ôm chặt eo thon của mẹ, nhanh chóng thúc đẩy cơ thể. Từ vị trí của Lý Tiểu Uyển nhìn lại, vừa vặn có thể nhìn thấy cái thứ to lớn thô như cổ tay kia của người đàn ông đang theo nhịp thúc đẩy mà ra vào liên tục trong vùng kín của mẹ. Mà kẻ đang hùng hục làm tình với mẹ chính là cháu ruột của mẹ, cũng là cậu biểu đệ Diệp Phi mà nàng thầm thích.</p>
+    <p>Giây phút này, Lý Tiểu Uyển cảm giác mình sắp điên rồi. Nàng thế nào cũng không thể ngờ được, người mẹ hoàn mỹ và cao quý nhất trong lòng mình lại vụng trộm với người khác khi mình không ở nhà, mà đối tượng vụng trộm lại chính là cháu ruột của mẹ.</p>
+    <p>Nếu không tận mắt chứng kiến, Lý Tiểu Uyển còn có thể tự an ủi bản thân rằng mẹ bị cưỡng bức. Nhưng lúc này nàng không thể, bởi vì nàng thấy rất rõ, theo cái thứ to lớn của Diệp Phi không ngừng ra vào, vùng kín của mẹ đã bị làm cho ướt đẫm, những chất lỏng óng ánh liên tục trào ra như nước miếng.</p>
+    <p>Lý Tiểu Uyển không phải là cô bé không hiểu chuyện, sinh ra trong thời đại Internet phát triển, lại đã hai mươi tuổi, nàng từng xem qua vài bộ phim nóng, thậm chí còn lén lút tự giải tỏa. Mỗi khi đến cao trào, cơ thể nàng cũng chảy ra loại chất lỏng này, chỉ là lượng nước so với mẹ lúc này, quả thực là khác biệt giữa dòng suối nhỏ và đại dương. Qua đó có thể thấy, mẹ đang được Diệp Phi làm cho thỏa mãn đến nhường nào.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0706.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0708.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

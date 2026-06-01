@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 704 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 704</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 704</small>
+    Chương 704: Không Cho Mặc Quần Áo
+  </h1>
+  <div class="chapter-body">
+    <p>Chương 703: Không cho mặc quần áo 2017-10-20 06:05:44 Diệp Phi lắc đầu nói: "Coi như là mình làm, cũng phải mặc vào một chút chứ, không phải vậy dầu tiên vào trên người rất đau." "Quấn cái tạp dề không được sao." Diệp Ngưng Sương bất mãn bĩu môi: "Ngược lại chính là không cho mặc!" "Vậy cũng tốt." Diệp Phi không thể làm gì khác hơn là gật đầu đồng ý, dù sao trong biệt thự mở điều hòa rất ấm, không mặc quần áo cũng sẽ không lạnh đến cô, hơn nữa hắn hiện tại cũng đã hiểu rõ cô đôi chút, nàng sở dĩ ở trước mặt mình biểu hiện như thế phóng đãng, chủ yếu nhất vẫn là vì hấp dẫn sự chú ý của hắn, bởi vì nàng biết, người hắn yêu nhất không phải nàng, mà là mẹ, mà ngoại trừ mẹ ra, so với những nữ nhân khác cô cũng không có ưu thế quá lớn, cho nên nàng không thể làm gì khác hơn là biểu hiện đặc biệt một chút, để cho hắn đối với nàng ấn tượng càng thêm sâu sắc. Đối với chút tâm kế nhỏ của Dì, Diệp Phi đương nhiên sẽ không có gì phản cảm, trong lòng ngoại trừ cảm động chính là hổ thẹn, thật sự ở bên kia trang viên đã làm gần đủ rồi, đến lúc đó để cô cũng chuyển tới, thì sẽ không để nàng phải chịu lạnh nhạt. Hai cô cháu cứ như vậy trần truồng rời giường, điều này làm cho Diệp Phi trong lòng âm thầm cảm khái, tâm nguyện lớn nhất gần đây của hắn chính là cùng mẹ, tỷ tỷ và những người trong nhà cùng mở đại hội không che, không ngờ mục tiêu này vẫn chưa thực hiện được, liền để cô chủ động tìm đến trạm tiếp theo, tuy rằng chỉ có mình và nàng hai người, nhưng là đủ kích thích. Ngồi dậy, Diệp Ngưng Sương cũng không tự mình đi, mà là đưa hai tay về phía Diệp Phi, làm nũng nói: "Ta muốn ngươi ôm ta xuống." Theo hai tay vươn ra, đôi ngực trắng như tuyết to thẳng trước ngực Diệp Ngưng Sương lập tức rung động trên dưới, nhìn Diệp Phi một trận hoa mắt, thật là muốn đem chúng ngậm trong miệng dùng sức mút lấy! Bất đắc dĩ cười một tiếng, Diệp Phi tiến lên một bước, vừa muốn đem cô ôm ngang, không ngờ nàng không chịu, trực tiếp nhảy lên người Diệp Phi, hai tay ôm cổ hắn, một đôi chân ngọc thon dài quấn ở bên hông, cứ như vậy treo trên người hắn như một chú gấu túi. Diệp Phi không thể làm gì khác hơn là đổi tư thế, hai tay nâng đỡ cặp mông to mềm mại mà to thẳng của cô, cứ như vậy ôm nàng đi ra khỏi phòng. Bởi vì vừa nãy dương vật bị miệng nhỏ của Dì hút đến cứng ngắc, sau đó vẫn không mềm đi, lúc này theo bước đi, dương vật cứng rắn va chạm vào giữa hai chân nàng, rất nhanh liền khiến Diệp Ngưng Sương không chịu nổi. "Cháu ngoan, đem dương vật chen vào trong cho cô có được không?" Diệp Ngưng Sương miệng hỏi, trên tay cũng đã không kịp chờ đợi làm động tác, cánh tay trái tiếp tục ôm cổ Diệp Phi để tránh bản thân ngã xuống, tay phải đưa đến dưới thân, một phát bắt lấy dương vật cứng rắn của Diệp Phi, hai chân dùng sức, nhấc cặp mông to lên, tay nhỏ nắm dương vật tìm đúng vị trí, mông lại ngồi xuống, "Két" một tiếng, liền đem đại dương vật của Diệp Phi nuốt trọn đến tận gốc. "Ngươi nha!" Diệp Phi bất đắc dĩ cúi đầu hôn lên cái miệng nhỏ nhắn của Dì, khiến cho nàng đạt được ý nguyện đắc ý cười khúc khích, thời khắc này, thân phận của hai người tựa hồ đảo lộn một chút, giống như Diệp Phi mới là thúc thúc, mà Diệp Ngưng Sương lại là một tiểu chất nữ nghịch ngợm. Dương vật bị thịt non trong lồn cô kẹp chặt lấy, cảm giác kia tự nhiên là vô cùng thoải mái, vì lẽ đó Diệp Phi cũng không có phản đối hành vi ăn vụng của Dì, ôm nàng tiếp tục rục rịch, mỗi đi một bước, dương vật tráng kiện lại hung hăng chống mạnh vào trong dâm huyệt của nàng. Đi xuống hai mươi mấy bậc cầu thang, Diệp Ngưng Sương đã bị địt đến mị nhãn như tơ, nơi nào còn nhớ được có đói bụng hay không, chủ động lắc cặp mông to, để dương vật của Diệp Phi ra vào trong lồn nàng. Đi tới phòng khách lầu một, Diệp Phi ngồi xuống trên ghế sofa, nhẹ nhàng vỗ vỗ cặp mông to không ngừng giãy dụa của cô, dụ dỗ nói: "Ngoan Sương nhi, trước tiên đừng đùa, chờ cơm nước xong chúng ta lại tiếp tục có được không?" Diệp Ngưng Sương nhưng không nghe theo, tiếp tục giãy dụa cặp mông to để dương vật của Diệp Phi hoạt động trong lồn nàng, đồng thời nói: "Không muốn mà, hảo chất nhi, trong lồn cô thật là ngứa, ngươi địt cô mười... hai mươi... không, ba mươi lần có được không? Chỉ ba mươi lần thôi, cầu xin ngươi." Sợ là ba mươi lần sau lại muốn ba mươi lần, mãi đến tận khi ngươi tiết ra mới thôi chứ? Diệp Phi trong lòng thầm nghĩ, tiếp tục dụ dỗ nàng: "Vẫn là ăn cơm trước đi, không phải vậy không tốt cho cơ thể của ngươi, ta đáp ứng ngươi, chờ ăn xong có sức lực, đừng nói ba mươi lần, chính là ba mươi vạn lần cũng cho ngươi, có được hay không?" "Vậy cũng tốt." Diệp Ngưng Sương cuối cùng cũng coi như miễn cưỡng đáp ứng, dừng lại động tác, rất không nỡ chậm rãi nhấc cặp mông to lên, để dương vật của Diệp Phi một chút xíu rút ra khỏi tiểu dâm huyệt của nàng, cảm giác trống vắng đó làm cho nàng nhiều lần nhịn không được muốn lại dùng sức ngồi xuống, thế nhưng nàng cũng biết, chất nhi đều là muốn tốt cho mình, nếu không có sức mà làm nhiều quá thì thật sự không được, vì lẽ đó hắn dù thế nào cũng không chịu tiếp tục cùng mình làm chuyện đó.</p>
+    <p>Có điều Diệp Phi còn đánh giá thấp trò gian của Dì, sau khi nàng triệt để rút đại dương vật của Diệp Phi ra, cũng không có lập tức thành thật hạ xuống, mà là kinh hô một tiếng nói: "Ai nha, trên lồn toàn là nước, lạnh quá nha, cháu ngoan, nhanh giúp cô làm sạch sẽ, không phải vậy làm đông hỏng lồn của Dì, ngươi sẽ không có cái để chơi." "Tuân mệnh, cô tốt của ta." Diệp Phi bất đắc dĩ đáp một tiếng, ôm lấy cô đặt nằm trên ghế sofa, sau đó tách đôi chân dài thẳng của nàng ra, đem đầu chôn vào giữa hai chân nàng, lè lưỡi, đem dâm thủy bị mình địt ra ngoài trên lồn nàng liếm sạch sành sanh, sau đó lại ngậm lấy tiểu dâm huyệt vừa non vừa trơn của nàng, dùng sức hút mấy lần, hút ra một luồng nước lớn, lúc này mới buông nàng ra, vỗ vỗ vào mông nàng, cười nói: "Lần này hài lòng chưa, nghỉ ngơi một hồi đi, ta đi làm cơm, một chút là xong." "Không được!" Diệp Ngưng Sương nhưng không tiếp thu ý tốt của Diệp Phi, tức khắc từ trên ghế sofa nhảy lên, vung quả đấm nhỏ nói: "Ngày hôm nay ta muốn đích thân xuống bếp, làm cho hảo chất nhi một bữa tối thịnh soạn!" Theo động tác của Dì, ánh mắt Diệp Phi suýt nữa thẳng tắp, hành vi của cô lúc này rất giống một cô bé hoạt bát, nhưng vấn đề là, nàng bây giờ đang trần truồng, hơn nữa còn có một đôi ngực to mà một cô bé không bao giờ có thể có, bởi vậy, không cách nào khiến người ta nhìn thấy nét trẻ thơ trên người nàng, mà là một loại mê hoặc chín chắn, nếu không phải kiêng kỵ thân thể của nàng, Diệp Phi thẳng thắn chỉ hận không thể lập tức kéo nàng qua, hung hăng đem người Dì phong tao này địt đến mức không còn cách nào nhúc nhích. Phí hết sức bình sinh, Diệp Phi mới đem ánh mắt từ thân thể mềm mại khiêu gợi của cô dời đi, ngồi xuống trên ghế sofa, cười nói: "Vậy cũng tốt, ta ở đây nghỉ ngơi một hồi." "Không được!" Không ngờ Diệp Ngưng Sương vẫn không đồng ý, làm nũng nói: "Ta muốn ngươi đi giúp ta một chút." Yêu cầu này của cô không một chút nào quá đáng, thế nhưng Diệp Phi lại biết, với sự quấn quýt si mê của nàng đối với mình, nếu là cùng đi nhà bếp, bất kể là ai động thủ, bữa cơm này cũng không thể làm tốt, liền lắc đầu nói: "Không đi, làm cơm là chuyện của một người, hoặc là ngươi đi, hoặc là ta đi."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0703.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0705.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>
