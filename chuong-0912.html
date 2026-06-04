@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 912 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 912</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 912</small>
+    Chương 912: Nghe Không Hiểu Tiếng Người
+  </h1>
+  <div class="chapter-body">
+    <p>Không sai, chính là dễ bắt nạt. Cái tính cách mềm yếu đến cực điểm của Văn Tố Cầm khiến người ta khi đối diện với nàng vừa nảy sinh nhiều thương tiếc, lại vừa có một loại kích động muốn bắt nạt nàng. Thậm chí ngay cả Diệp Phi lúc này cũng có loại kích động đó. Đương nhiên, coi như có bắt nạt nàng, hắn cũng chắc chắn sẽ không như lão thái bà ghê tởm kia là được rồi.</p>
+    <p>Quỳ Hoa Phái cách Đường gia trấn rất gần, chỉ chưa đầy 100 km. Mà người bên kia vì lão thái bà giục giã nên càng cố gắng nhanh nhất có thể. Bởi vậy, Diệp Phi và các mỹ phụ còn chưa tán gẫu tận hứng thì đã có người đến thông báo, nói ba chị em sinh ba đã đến.</p>
+    <p>Diệp Phi cùng Cốc Tuyết Hạm đương nhiên sẽ không thất lễ. Ngay cả Văn Tố Cầm cũng gắng gượng chống đỡ cơ thể còn lâu mới thích ứng nổi, đi theo bọn họ trở về phòng khách. Những năm gần đây nàng nhẫn nhục chịu đựng, ngoại trừ tính cách gây ra, hoàn toàn chính là vì các con gái. Đối với chuyện của con gái, nàng đương nhiên hết sức căng thẳng.</p>
+    <p>Đến đại sảnh, Diệp Phi liếc mắt liền thấy ba chị em sinh ba đang bị mọi người vây vào giữa như chúng tinh phủng nguyệt, đặc biệt là người của Đường môn, càng là đãi các nàng như thượng tân.</p>
+    <p>Chỉ là, ba tiểu Loli này lại không hề hoạt bát như ngày xưa ở bên cạnh Diệp Phi. Các nàng lặng lẽ ngồi ở chỗ đó, trong đôi mắt to đều lộ ra một tia khiếp ý. Đặc biệt là khi nhìn về phía lão thái bà, càng giống như ba con vật nhỏ đang bị hung ác dã thú nhìn chằm chằm.</p>
+    <p>Thấy cảnh này, Diệp Phi không khỏi vừa đau lòng vừa tự trách. Nếu như lúc trước không phải hắn chắc hẳn phải vậy cho rằng, vì mẹ các nàng là Chưởng Môn nên khi đến Quỳ Hoa Phái các nàng nhất định sẽ sống rất tốt, do đó không phái người trong bóng tối bảo vệ, thì Cốc Tuyết Hạm làm sao bị người bức hôn? Ba tiểu Loli đáng yêu này làm sao bị một lão thái bà làm cho sợ hãi đến mức này?</p>
+    <p>"Tiểu Dong, Tiểu Hân, Tiểu Mai, lâu như vậy không gặp, có nhớ Diệp Tử ca ca không?" Thấy ba tiểu Loli hoảng sợ ngồi ở đó, không phát hiện ra đoàn người mình tới, Diệp Phi là người đầu tiên lên tiếng.</p>
+    <p>"Diệp Tử ca ca?" Ba chị em sinh ba theo bản năng cùng kêu lên lặp lại một lần, đồng thời quay đầu nhìn về phía Diệp Phi.</p>
+    <p>"Diệp Tử ca ca!" Chờ thấy rõ dáng vẻ của Diệp Phi, ba chị em lại gọi một tiếng. So với vẻ nghi hoặc lúc nãy, lần này lại tràn đầy kinh hỉ. Sau đó, các nàng thay đổi vẻ mặt kinh hoảng vừa rồi, đột nhiên nhảy lên, như ba con chim nhỏ tránh thoát lao tù mà vui sướng phi phác tới, cùng nhau tiến vào vòng tay đang dang rộng của Diệp Phi.</p>
+    <p>Diệp Phi hai tay siết chặt, ôm lấy ba tiểu thê tử giống hệt nhau của mình, ôn nhu nói: "Xin lỗi, Diệp Tử ca ca tới chậm."</p>
+    <p>Diệp Phi không nói như vậy thì còn đỡ, giờ vừa nói thế, ba tiểu Loli lập tức nhớ lại nỗi ủy khuất của mình mấy ngày nay. Miệng nhỏ đồng thời bĩu ra, Cốc Tuyết Dung thậm chí còn chỉ vào lão thái bà đang đứng cạnh cười lấy lòng mà nói: "Diệp Tử ca ca, mụ ta bắt nạt chúng ta, còn bắt nạt tỷ tỷ và mẹ, ngươi giúp chúng ta hả giận có được không?"</p>
+    <p>Trong lòng các nàng, Diệp Tử ca ca mãi mãi là lợi hại nhất. Cho dù lão thái bà này đã để lại bóng ma tâm lý rất lớn cho các nàng trong mấy ngày qua, biến thành mụ phù thủy ăn thịt người trong truyện cổ tích, nhưng chỉ cần Diệp Tử ca ca ở đó, các nàng liền không hề sợ hãi chút nào.</p>
+    <p>"Là Diệp Tử ca ca không tốt, để các ngươi chịu khổ. Diệp Tử ca ca sẽ bắt bà ta dập đầu nhận lỗi với các ngươi có được không?" Diệp Phi ôn nhu an ủi ba tiểu Loli.</p>
+    <p>"Được!" Ba tiểu Loli đồng thời cười hì hì gật đầu. Hiển nhiên các nàng cũng không coi lời Diệp Phi là thật. Các nàng cảm thấy tuy Diệp Tử ca ca là lợi hại nhất, nhưng mụ phù thủy này cũng là nhân vật hung ác. Diệp Tử ca ca có thể đánh đuổi bà ta, cứu mình cùng tỷ tỷ, mẹ là kết cục hoàn mỹ nhất rồi. Còn về việc để mụ phù thủy dập đầu, các nàng chưa từng nghĩ tới.</p>
+    <p>Diệp Phi gật đầu, thấy lão thái bà kia vẫn đứng đó, không khỏi lạnh lùng nhìn bà ta một cái, nói: "Không nghe thấy ta nói gì sao?"</p>
+    <p>"Ta... Vâng." Lão thái bà cảm thấy mình sắp điên rồi. Trong lòng bà ta, ba tiểu nữ hài này chỉ là hạng giun dế, tác dụng duy nhất là đem ra uy hiếp Văn Tố Cầm. Hiện tại lại bắt bà ta dập đầu cho ba tiểu gia hỏa này, sự chuyển biến này thật sự quá lớn.</p>
+    <p>Có điều, lão thái bà là người cực kỳ tiếc mạng. Mà sự tàn nhẫn của Diệp Phi bà ta vừa mới trải qua, biết rằng mình dù chỉ do dự một chút cũng có thể dẫn tới họa sát thân. Vì thế, bà ta chỉ chần chờ chưa đầy một giây liền đưa ra quyết định.</p>
+    <p>"Ầm" một tiếng, lão thái bà nặng nề quỳ xuống đất, sau đó hướng về phía ba tiểu Loli dập đầu một cái, miệng nói: "Xin lỗi, ba vị tiểu thư, trước đây đều là ta không tốt, mạo phạm ba vị tiểu thư, mong các ngươi tha thứ!"</p>
+    <p>"A!!" Ba tiểu Loli đồng thời kinh hô một tiếng, Cốc Tuyết Hân và Cốc Tuyết Mai còn trốn ra sau lưng Diệp Phi. Tuy nhiên lần này các nàng chỉ đơn thuần bị kinh ngạc, chứ không còn e ngại lão thái bà này như trước nữa. Chỉ có lá gan lớn nhất là Cốc Tuyết Dung cực kỳ sùng bái nhìn Diệp Phi: "Diệp Tử ca ca, ngươi thực sự lợi hại quá!"</p>
+    <p>"Thế nào, còn thấy bà ta đáng sợ không?" Diệp Phi cười hỏi. Câu này không chỉ hỏi ba tiểu Loli, mà cũng là hỏi Văn Tố Cầm. Tính cách của nàng sở dĩ hình thành như vậy, hoàn toàn là do lão thái bà này từ nhỏ đã áp dụng chính sách cao áp đối với nàng. Vì vậy, Diệp Phi hy vọng có thể thông qua chuyện này để tiêu trừ bóng ma trong lòng nàng. Cho dù không thể thay đổi cá tính mềm yếu đã định hình, ít nhất cũng có thể xóa bỏ ảnh hưởng của lão thái bà đối với nàng.</p>
+    <p>Văn Tố Cầm nghĩ thế nào, Diệp Phi không biết, có điều ba tiểu Loli thì đã không còn sợ lão thái bà này nữa. Trong đó, người ngoan ngoãn hiền lành nhất là Cốc Tuyết Mai trái lại còn nói giúp: "Diệp Tử ca ca, ta hiện tại cảm thấy bà ta thật đáng thương, không cần gọi bà ta dập đầu nữa đâu."</p>
+    <p>"Đúng vậy, đúng vậy, Diệp thiếu hiệp, hiện tại ba vị tiểu thư cũng đã đến rồi, ta có thể..." Lão thái bà cũng vội vàng chớp lấy cơ hội này nói.</p>
+    <p>"Được, ngươi có thể lăn!" Diệp Phi thản nhiên nói, ngay cả nhìn cũng không thèm nhìn lão thái bà lấy một cái.</p>
+    <p>"Cảm tạ Diệp thiếu hiệp, ta đi đây." Lão thái bà như được đại xá, xoay người muốn rời khỏi. Nơi này, bà ta một giây cũng không muốn ở lại thêm nữa, không chỉ mất hết mặt mũi mà còn có một sát thần đáng sợ ở đây, bất cứ lúc nào cũng có thể mất mạng nhỏ.</p>
+    <p>"Đứng lại!" Lão thái bà xoay người, còn chưa đi được hai bước thì đã bị Diệp Phi hét lại.</p>
+    <p>Lão thái bà cả người chấn động, cực kỳ cứng ngắc quay người lại, thận trọng nhìn Diệp Phi hỏi: "Thiếu hiệp còn có gì dặn dò?"</p>
+    <p>"Ta là bảo ngươi lăn, không phải bảo ngươi đi." Diệp Phi thản nhiên nói: "Nghe không hiểu tiếng người sao?"</p>
+    <p>"Vâng, vâng, ta cút đây!" Lão thái bà không nói hai lời, trực tiếp nằm ngang trên đất, hướng về phía cửa lăn đi. Dưới cái nhìn của bà ta, việc dập đầu cho ba tiểu nữ hài lúc nãy so với việc nằm trên đất lăn còn mất mặt hơn nhiều, vì vậy làm cũng không có chút áp lực nào.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0911.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0913.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

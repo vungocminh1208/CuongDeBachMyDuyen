@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 960 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 960</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 960</small>
+    Chương 960: Hậu sản ôn tồn
+  </h1>
+  <div class="chapter-body">
+    <p>Chương 958: Hậu sản ôn tồn 2017-10-20 06:28:28 Rất nhanh, mọi người liền phát hiện, đứa con gái của yêu nghiệt Diệp Phi và Liễu Diệc Như lúc bú sữa hoàn toàn không giống những phương diện yêu nghiệt khác của nàng, chỉ tùy tiện hút vài hơi liền nhả núm vú ra, sau đó ngủ thiếp đi trong lòng Liễu Diệc Như. Chỉ là trên khuôn mặt nhỏ nhắn kia tựa hồ có chút không vui, hơn nữa ngủ không mấy thành thật, cựa quậy liên hồi. "Xảy ra chuyện gì, sao con bé ăn ít vậy?" Thấy con gái như thế, Diệp Phi không nhịn được hỏi. Đối với con gái của chính mình, hắn vẫn vô cùng yêu thương, trước đó là vì quá mức quan tâm mẹ nó nên mới sơ suất con gái. Liễu Diệc Như hiển nhiên cũng không hiểu, nhăn đôi mi thanh tú nói: "Em cũng không biết nữa!" "Không biết có phải sữa của em không ngon nên tiểu Liễu nhi mới ăn ít không?" Lúc này, Liễu Phong Nghi bỗng nhiên ngắt lời nói. "Không thể nào, khoảng thời gian này em đều không ăn thứ gì lạ cả!" Liễu Diệc Như đáp. Nàng biết tỷ tỷ nói cũng có lý, bởi vì sữa mẹ sẽ thay đổi tùy theo chế độ ăn uống, nhưng khẩu phần ăn của các nàng đều do Đông Phương Nhược Lan, vị thần y này, phụ trách phối hợp, tựa hồ không thể xảy ra vấn đề gì. Diệp Vân Khinh cười nói: "Cứ ngồi đoán mò có ích gì? Để ca ca nếm thử không phải là biết ngay sao." "Được, vậy anh nếm thử đi." Liễu Diệc Như thoải mái nói với con trai. Trải qua hơn nửa năm chung sống, chúng nữ càng ngày càng lạc quan, thường xuyên cùng nhau lên trận với Diệp Phi, so với những chuyện đó, hiện tại chỉ là để con trai bú sữa, căn bản không có gì phải xấu hổ. Sữa mẹ có mùi vị gì, Diệp Phi từ lâu không còn nhớ rõ. Vừa nãy nhìn con gái ăn, hắn cũng có chút thèm, lúc này mẹ đã nói thế, hắn nào còn khách khí, trực tiếp vùi đầu vào trước ngực mẹ, ngậm lấy núm vú nhỏ của nàng, tận hưởng hút. Ăn vài miếng, Diệp Phi ngẩng đầu lên khỏi ngực mẹ, chép miệng nói: "Vừa thơm vừa ngọt, ngon thật đấy!" "Thật không? Vậy con cũng nếm thử!" Ánh mắt Diệp Vân Khinh sáng lên, tiến lên chen tách ca ca ra, học theo hắn ngậm lấy đầu vú mẹ, cũng bắt đầu bú sữa. Cũng chỉ ăn vài miếng, Diệp Vân Khinh ngừng lại, cười nói với chúng nữ: "Thật sự rất ngon, mọi người đến nếm thử đi, đừng khách khí!" Nói đoạn, cô vén hẳn áo mẹ lên, để lộ cả bầu ngực còn lại của nàng. Chúng nữ cười vui vẻ, xếp hàng tiến lại gần, mỗi người một ít thưởng thức sữa của Liễu Diệc Như. Đối với việc này, Liễu Diệc Như cũng không ngăn cản. Trước kia khi cùng con trai ân ái, để kích thích hắn, chúng nữ thường xuyên hút sữa, liếm láp lẫn nhau, đó là chuyện bình thường. Hơn nữa, con gái ăn không bao nhiêu, nàng cũng cảm thấy hơi căng tức, chi bằng để chị em tốt chia sẻ một chút. "Các người nha, chẳng lẽ đều là con của ta không bằng." Nhìn chúng nữ từng người mút lấy núm vú mình, thưởng thức sữa tươi, Liễu Diệc Như không nhịn được cười nói. "Chẳng phải chính là như vậy sao, chúng ta đều là vợ của con trai mẹ, mẹ đương nhiên thành mẹ của chúng ta rồi, ăn sữa mẹ chẳng phải rất bình thường sao." Liễu Phong Nghi hì hì cười nói. Nàng không ngờ rằng có một ngày mình lại có thể được nếm sữa của em gái ruột, cảm giác rất mới lạ. "Đúng rồi, đúng rồi!" Chúng nữ dồn dập phụ họa, sau đó lại cười nói: "Chưa ăn đủ, chúng ta còn muốn ăn nữa!" "Này, cho ăn thì ăn, đừng có tranh giành!" Lúc này, Diệp Phi không chịu: "Đây là mẹ ta, sữa của nàng đương nhiên thuộc về ta ăn, cho các ngươi nếm thử là được rồi, phần còn lại đừng tiếp tục giành với ta nữa!" Chúng nữ tự nhiên không nghe, hi hi ha ha cười đùa, tranh giành cho đến khi sữa của Liễu Diệc Như bị hút sạch, không còn gì để ăn mới dừng lại.</p>
+    <p>Đêm đó, để ăn mừng Diệp Phi có đứa con gái đầu lòng, mọi người tổ chức một dạ tiệc thịnh soạn. Quanh đống lửa, chúng nữ vừa múa vừa hát. Tuy rằng ngoài Liễu Diệc Như vừa sinh xong, Diệp Vân Khinh không muốn sinh con và vị bác sĩ chỉ có thể tạm chịu đựng tâm nguyện muốn có con, những người còn lại đều đang mang thai, nhưng dáng vẻ đó của các nàng lại có một nét gợi cảm riêng, khiến Diệp Phi vô cùng thỏa mãn. Đến tận đêm muộn, mọi người mới lần lượt về nghỉ. Diệp Phi tất nhiên phải ở lại bồi mẹ và đứa con gái mới chào đời. Lúc này, tiểu Diệp Liễu Nhi cũng vừa tỉnh dậy, không khóc không quấy. Khi mẹ cho bú, con bé vẫn chỉ ăn một chút rồi lại ngủ, tuy nhiên ngủ rất không yên ổn, cựa quậy liên tục, trông rất bất an. Đối với việc này, Diệp Phi và Liễu Diệc Như đều bó tay, vì ngay cả Đông Phương Nhược Lan cũng không tìm ra nguyên cớ. Cũng may con bé không quấy khóc, hơn nữa qua kiểm tra của Đông Phương Nhược Lan thì hoàn toàn khỏe mạnh, không có vấn đề gì, nên đành để mặc con bé. Quan sát con gái một hồi, thấy con bé tuy không yên phận nhưng cuối cùng cũng ngủ sâu, Diệp Phi liền yên tâm. Sự chú ý của hắn rất nhanh chuyển từ con gái sang người mẹ, ánh mắt dán chặt vào đôi bầu ngực to lớn hơn thường ngày do đang trong thời kỳ cho con bú, cười hắc hắc: "Mẹ, con gái ăn có chút xíu, mẹ chắc là căng lắm phải không?" Nhìn ánh mắt khát vọng của con trai, Liễu Diệc Như sao có thể không hiểu hắn muốn làm gì, lập tức ưỡn ngực, làm cho bộ ngực càng thêm nổi bật, cười nói: "Thật là một tên tiểu bại hoại chưa lớn, đã làm cha rồi mà vẫn còn muốn ăn sữa mẹ, đến đây đi!" "Cảm ơn mẹ yêu." Diệp Phi hoan hô một tiếng, lập tức vùi đầu vào ngực mẹ, há miệng ngậm lấy núm vú, dùng sức hút mạnh. "Ưm... tiểu bại hoại, nhẹ một chút, lúc này không ai giành với con đâu." Liễu Diệc Như vừa cưng chiều vừa hưng phấn rên rỉ. Con trai tuy đang bú sữa, nhưng không giống cách bú thuần túy của con gái, tên tiểu bại hoại này vừa mút, vừa dùng đầu lưỡi không ngừng trêu chọc đầu vú nàng, đôi tay cũng không yên phận vuốt ve đôi gò bồng đảo, làm cho Liễu Diệc Như ngứa ngáy trong lòng. Cho đến khi hút sạch sữa trong hai bầu ngực của mẹ, Diệp Phi mới thỏa mãn dừng lại, vươn mình nằm trên giường. Liễu Diệc Như cởi trần cũng lật người, nép vào lồng ngực con trai, dùng đôi gò bồng đảo cọ xát nhẹ nhàng trên lồng ngực rắn chắc để trần của hắn, nũng nịu gọi: "Con trai, chồng à..." "Hửm?" Ôm người mẹ gợi cảm, nhìn con gái đáng yêu, Diệp Phi đang đắm chìm trong hạnh phúc gia đình thuận miệng đáp một tiếng. "Dương..." Liễu Diệc Như kéo dài giọng, ngữ điệu vừa kiều mị vừa lả lơi. Không thể không nói, Liễu Diệc Như bây giờ càng ngày càng yêu tinh, mỗi cử chỉ, dù chỉ là một tiếng gọi, chỉ cần nàng muốn, đều đủ khiến bất kỳ người đàn ông nào trên đời phải điên cuồng, ngay cả Diệp Phi có ý chí cực kỳ mạnh mẽ cũng không ngoại lệ.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0959.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0961.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

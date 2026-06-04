@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 876 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 876</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 876</small>
+    Chương 876: Trận Pháp Uy Lực
+  </h1>
+  <div class="chapter-body">
+    <p>Ngẫm lại cái cảm giác đáng sợ kia, Chúc Ngọc Nghiên như một cô dâu nhỏ bị ức hiếp, lấy lòng nhìn Diệp Phi, giọng mềm mỏng cầu khẩn: "Đồ nhi ngoan, về sau sư nương giúp ngươi chú ý là được rồi, ngươi tuyệt đối đừng trừng phạt sư nương như vậy nữa mà."</p>
+    <p>"Yên tâm đi, đùa với ngươi thôi, sư nương của ngươi thoải mái như vậy, ta cả đời cũng đục không đủ." Diệp Phi cười kéo thân thể mềm mại gợi cảm của sư nương vào trong lòng, sau đó hỏi: "Nói đi nói lại, ngươi thích để ta đục như vậy sao?"</p>
+    <p>"Đương nhiên thích!" Chúc Ngọc Nghiên không chút do dự gật đầu: "Sư nương hận không thể cả đời này vĩnh viễn cho dương vật của ngươi nhét vào trong lồn đây."</p>
+    <p>Diệp Phi lại nở nụ cười, âm thầm cảm khái sư nương thật là lớn mật, trong tất cả nữ nhân của mình, người có thể thẳng thắn như nàng đúng là không có mấy ai, liền cười mắng: "Ngươi cái con dâm phụ này, để đồ nhi Lão Công làm cho ngươi một cái dương vật giả giống hệt ta, cả ngày nhét trong lồn ngươi luôn cho xong!"</p>
+    <p>"Không muốn đâu, sư nương muốn chính là dương vật thật của ngươi..."</p>
+    <p>Thầy trò hai người lâu ngày không gặp, vừa đấu khẩu, trêu ghẹo, vừa chú ý chiến trường phía dưới.</p>
+    <p>Theo cuộc chiến trở nên gay cấn, người bị thương hai bên càng ngày càng nhiều, khiến thân hữu của những người này càng thêm liều mạng, dần dần tạo thành một vòng lẩn quẩn.</p>
+    <p>Vốn đang hỗ trợ Giang Mạn Quân đối kháng Đạo ni tổ hợp, bản thân vẫn còn dư lực, Thẩm Tuệ Nhã lập tức phát hiện tình hình, vội nói: "Đạo Trưởng, thần ni, tình huống bây giờ tựa hồ có chút vượt ra khỏi sự khống chế của chúng ta, cứ tiếp tục thế này, hai bên khó tránh khỏi sẽ xuất hiện thương vong, không bằng dừng tay thế nào?"</p>
+    <p>Bị Thẩm Tuệ Nhã nhắc nhở, mấy người ở trung tâm chiến trường cũng phát hiện tình huống có chút không ổn, Giang Mạn Quân cùng cặp sinh đôi tuyệt sắc Hoa Vô Ảnh, Hoa Lộng Nguyệt cũng đồng loạt thu chiêu, lùi về bên cạnh Thẩm Tuệ Nhã đứng sóng vai.</p>
+    <p>Mà Đạo ni cũng không truy kích, đôi mắt lão đạo kích động đảo một vòng, đưa mắt nhìn sang Diệt Âm lão ni bên cạnh, nói: "Sư thái thấy sao, bần đạo nghe theo an bài của ngươi."</p>
+    <p>Diệt Âm lão ni tuy tính khí nóng nảy nhưng không phải kẻ ngốc, biết cứ liều mạng tiếp như vậy, hai bên chắc chắn sẽ tử thương quá nửa, liền trầm ngâm một chút nói: "Chỉ cần các vị thí chủ đáp ứng không nhúng tay vào chuyện này, tự nhiên không cần thiết tiếp tục tranh đấu."</p>
+    <p>"Không được!" Diệt Âm lão ni vừa dứt lời, hai tiếng khẽ kêu đồng thời vang lên, một người là Giang Mạn Quân, người kia là Hoa Lộng Nguyệt mặc toàn thân áo đen. Còn Hoa Vô Ảnh và Thẩm Tuệ Nhã, tuy không nói gì, nhưng trên mặt cũng hiện rõ vẻ kiên quyết.</p>
+    <p>Diệt Âm lão ni thở dài: "Các vị, đây chỉ là việc tư giữa Từ Hàng Tĩnh Trai chúng ta và Diệp Phi, các ngươi vốn không có quan hệ gì với hắn, cần gì phải nhúng chàm vào vũng nước đục này? Hơn nữa, chúng ta đến tìm hắn lần này cũng chỉ là muốn đón đệ tử Diệu Thiền của phái ta về, không có ý định gây hấn lớn."</p>
+    <p>"Không muốn gây hấn? Vậy tại sao các ngươi không tới sớm, không tới muộn, lại chọn đúng lúc Diệp minh chủ rời đi mới tới? Còn dẫn theo nhiều người như vậy!" Hoa Lộng Nguyệt cười lạnh một tiếng: "Các ngươi hưng sư động chúng như thế, dự định bắt nạt đệ tử Thiên Ma Giáo chúng ta, chúng ta lẽ nào lại khoanh tay đứng nhìn?"</p>
+    <p>Tuy tiếng trò chuyện của những người này không lớn, hơn nữa xung quanh còn đầy tiếng hò hét của các đệ tử đang giao chiến, nhưng Diệp Phi đứng trên lầu cao mười mấy tầng vẫn nghe được rõ ràng. Trong phút chốc, hắn không khỏi cảm thấy rất cảm động. Thẩm Tuệ Nhã và Giang Mạn Quân cũng thôi đi, dù sao cũng đã gặp mình và đều có hảo cảm, nhưng vị sư nương Hoa Lộng Nguyệt gợi cảm xinh đẹp này lại chưa từng gặp mình bao giờ, vậy mà nàng lại giữ gìn mình như thế. Còn cả Hoa Vô Ảnh sư nương, mặc dù không lên tiếng, nhưng tâm tư chắc chắn cũng giống như em gái sinh đôi của nàng.</p>
+    <p>Bị Hoa Lộng Nguyệt trách móc một trận, Diệt Âm lão ni vốn đã chột dạ nhất thời cảm thấy khó xử, hơn nữa bà ta vốn là người vô cùng coi trọng mặt mũi, liền quát lớn: "Vậy các ngươi muốn thế nào?"</p>
+    <p>"Không muốn thế nào, chỉ là muốn chờ Diệp minh chủ trở về, đến lúc đó mọi người cùng thương lượng cách giải quyết." Lần này người lên tiếng là Hoa Vô Ảnh, chất giọng của nàng gần giống với em gái sinh đôi, nhưng ngữ khí lại dịu dàng hơn nhiều.</p>
+    <p>"Không được! Lần này nói gì chúng ta cũng phải mang Diệu Thiền về!" Diệt Âm lão ni không hề suy nghĩ mà đáp ngay. Lần trước bị Diệp Phi bức bách, không thể không để Diệu Thiền làm con tin đã khiến bà ta rất mất mặt, chỉ là vẫn kiêng kỵ sự hung hãn của Diệp Chỉ Lâm nên không dám đến đòi người. Hiện tại khó khăn lắm mới nhận được tin tức Diệp Chỉ Lâm đã đi tới Kinh Thành cách xa ngàn dặm, bà ta liền vội vã thông báo cho sư phụ của Diệu Thiền chuẩn bị cùng đến đòi người. Trên đường lại đụng phải đám người kích động dẫn theo sư môn tiền bối tới, dũng khí đương nhiên tăng lên mấy phần, nhưng không ngờ lại đụng phải thành viên quan trọng của Thiên Ma Giáo ở đây.</p>
+    <p>"Tỷ, đừng nói nhiều với bà ta!" Thấy Hoa Vô Ảnh còn muốn nói gì đó, Hoa Lộng Nguyệt vội vàng cắt ngang, sau đó trừng mắt nhìn Diệt Âm lão ni, khẽ quát: "Muốn đánh thì đánh, Thiên Ma Giáo chúng ta còn sợ các ngươi sao?"</p>
+    <p>"Được, hôm nay không chết không thôi!" Diệt Âm lão ni cũng quát lớn, vung chưởng tấn công bốn nữ.</p>
+    <p>Ánh mắt lão đạo kích động lóe lên vẻ hưng phấn, nhưng hắn không cùng công kích với Diệt Âm mà đợi mười mấy người trợ giúp kia cùng xông lên, chuẩn bị vây hãm bốn người.</p>
+    <p>Một lời không hợp, chiến đấu lần nữa bùng nổ, mà lần này, so với cuộc giao đấu mang tính chất luận bàn vừa nãy thì quyết liệt hơn nhiều, mỗi người đều tung ra những chiêu thức liều mạng.</p>
+    <p>Sau hơn mười chiêu qua lại, Thẩm Tuệ Nhã và ba người kia dùng ánh mắt trao đổi, rất ăn ý cùng gật đầu. Lập tức bốn người đang hợp lại liền tách ra, chia làm bốn hướng, ngược lại bao vây mười mấy người đối phương vào giữa.</p>
+    <p>Theo lẽ thường, các nàng phân tán ra như vậy rất dễ bị tiêu diệt từng bộ phận, nhưng tình huống hiện tại lại ngược lại. Sau khi tách ra, dù cách khá xa, nhưng khí thế từng người vẫn liên kết chặt chẽ với nhau, giống như giăng ra một tấm lưới lớn, bao lấy mười mấy người này ở giữa, khiến họ chống đỡ vô cùng vất vả.</p>
+    <p>Trên lầu cao, Diệp Phi nhìn cảnh này, không khỏi cảm thán từ đáy lòng: "Sư nương, đây là võ công gì vậy, rõ ràng thực lực Thẩm sư nương các nàng không thay đổi, vậy mà lại ép ngược được đối phương."</p>
+    <p>Chúc Ngọc Nghiên cười quyến rũ: "Đứa nhỏ ngốc, đây không phải võ công gì, mà là một loại Trận Pháp biến hóa từ Tứ Tượng trận mà thôi."</p>
+    <p>"Hóa ra là Trận Pháp, thảo nào lợi hại như vậy." Diệp Phi bỗng nhiên tỉnh ngộ. Cũng khó trách hắn kinh ngạc như vậy, tuy hắn thông minh tuyệt đỉnh, thực lực cao cường đã vượt ra khỏi phạm vi Võ Giả, nhưng tiếp xúc với những thứ này chưa được nửa năm, kiến thức tự nhiên không thể so với những bậc tiền bối dày dạn kinh nghiệm.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0875.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0877.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

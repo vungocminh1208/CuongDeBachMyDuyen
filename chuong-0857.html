@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 857 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 857</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 857</small>
+    Chương 857
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi thấy thẩm thẩm lẳng lơ quá độ, liền vung đại dương vật đã hoàn toàn cương cứng, dùng sức khai khẩn trong động đào nguyên. Đại dương vật bán mạng cắm vào rút ra, nhiều lần đâm trúng hoa tâm thẩm thẩm, chỉ đâm đến Hứa Thư Vân thở gấp liên tục, mị nhãn như tơ, rên rỉ lãng kêu: "Ca ca... Thật thoải mái... A!... Ngươi thật biết... địt lồn... Dương vật của ngươi... thật là dài... lại còn cứng nữa... Nha... Xuyên đến thẩm thẩm... cực kỳ thoải mái... Thật là đẹp... cực kỳ xinh đẹp... A!... Địt... Địt chết... ta rồi... Người tốt... đại dương vật... Ca ca... A! A! A! A! A!... Thoải mái... quá... sướng... Thẩm thẩm yêu... yêu chết... ngươi... Nhanh... nhanh địt đi!... A!... A!..."</p>
+    <p>Tiểu dâm huyệt của Hứa Thư Vân tràn đầy dâm thủy, bị đại dương vật của Diệp Phi đâm chọc làm ra tiếng "phốc két", "phốc két" dâm lãng như bản nhạc.</p>
+    <p>Diệp Phi đè lên thân thể đẫy đà đầy co dãn của Hứa Thư Vân, hai tay hưởng thụ xoa nắn bộ ngực, đại dương vật đâm trong cái lồn ấm áp thấm ướt và chật hẹp, quả là cảm giác thoải mái khó tả, lại thêm mùi thơm cơ thể như hoa lan cứ từng sợi bay vào mũi Diệp Phi, càng khiến tâm trí hắn chao đảo.</p>
+    <p>Hứa Thư Vân chu đôi môi thơm hôn lên Diệp Phi, cắn mút một trận, tách ra sau càng thè cái lưỡi Đinh Hương liếm nhẹ lên đôi môi đỏ mọng, thấp giọng rên: "Ừm... sướng quá... A!... Ca ca... ngươi... địt... thẩm thẩm... thật... cực kỳ thoải mái... thật thoải mái... Ai... ai nha..."</p>
+    <p>Trong mị nhãn tản ra ngọn lửa dâm dục cháy bỏng, Diệp Phi cùng thẩm thẩm dâm huyệt rực lửa xúc cảm mãnh liệt, đôi bên đều cần sự nóng bỏng, thô bạo và điên cuồng làm tình.</p>
+    <p>Hai người bọn họ nhiệt tình như lửa, cuồng liệt lắc lư, vận động.</p>
+    <p>Đại dương vật của Diệp Phi đâm xuyên trong lồn Hứa Thư Vân với tốc độ nhanh dần, Hứa Thư Vân cũng theo từng nhịp đâm của Diệp Phi mà uốn éo cái eo nhỏ, lắc lư cặp mông tròn phối hợp, theo đuổi sự khoan khoái, phát tiết tính dục, và muốn được thỏa mãn.</p>
+    <p>Bị đâm đến nhanh hơn muốn sướng chết, Hứa Thư Vân mồ hôi đẫm người, dâm tiếng gầm gừ kêu lên: "Ta... hảo ca ca... ngươi... thật giỏi... địt... thẩm thẩm... quá tốt rồi... nha... sướng chết rồi... Ừ... ừ... trọng điểm... lại... địt mạnh... một chút... sâu một điểm... A!... Thật là khéo... ác... ai nha... Thẩm thẩm... thoải mái cực kỳ..."</p>
+    <p>Diệp Phi thấy thẩm thẩm vẫn chủ động lắc cái mông lớn phối hợp hành động của mình, liền thúc đại dương vật mỗi lúc một mạnh. Bởi đại dương vật bị âm bích của Hứa Thư Vân thắt chặt, mỗi khi Diệp Phi rút ra, hai mảnh đại âm thần cũng theo lật ra ngoài, như vỏ sò đóng mở hô hấp.</p>
+    <p>Hứa Thư Vân trải qua phen mãnh liệt này, xuân tình vốn đã kích động càng thêm sôi trào, mông lớn nhấc lên càng lúc càng cao, cực lực đón lấy động tác của Diệp Phi, muốn đạt đến cao trào, miệng kêu to: "Tiểu Mãn à!... A!... Đại dương vật... địt... dâm huyệt... sướng chết rồi... A!... Thoải mái... thoải mái chết được... ai nha... Đỉnh... đỉnh chết... thẩm thẩm... Ác... đại dương vật... thật là lợi hại... Nhạc chết mất... Lên nha... Hanh... hanh... thật là thoải mái... thoải mái... A!..."</p>
+    <p>Theo thân thể mềm mại co giật dữ dội, hàng loạt âm tinh từ trong dâm huyệt Hứa Thư Vân trào ra.</p>
+    <p>Diệp Phi thấy thẩm thẩm kích động quá mức, đã sắp hôn mê, liền tạm thời ngừng chiến, dùng tay trái ôm eo nhỏ của thẩm thẩm, tay phải nắm nhẹ cặp ngọc nhũ phì nộn trước ngực mà xoa nắn mềm mại.</p>
+    <p>Hứa Thư Vân mềm nhũn nằm dưới thân Diệp Phi, tiểu dâm huyệt sung sướng vẫn còn ngậm lấy đại dương vật của Diệp Phi, mái tóc rối tung bên gối, mặt cười đỏ ửng chưa lui, hai mắt nhắm chặt, miệng mơ màng "A" vài tiếng, chắc là vẫn còn đắm chìm trong dư vị cao trào vừa rồi.</p>
+    <p>Một lúc sau, Hứa Thư Vân mở mắt hạnh, tay ngọc nhẹ vuốt ve ngực Diệp Phi, gương mặt hồng hào mang theo ý xuân. Diệp Phi thấy dáng vẻ uyển mị này của Hứa Thư Vân, hỏi: "Hảo thẩm thẩm, ta địt người có sướng không?"</p>
+    <p>Hứa Thư Vân như xấu hổ không muốn trả lời, chỉ kêu "A" một tiếng, ngẩng đầu dùng môi anh đào lấp lấy miệng Diệp Phi, khinh đưa đầu lưỡi Đinh Hương, khuấy đảo mút mát, một lúc lâu mới luyến tiếc tách ra.</p>
+    <p>Diệp Phi bẹo nhẹ chóp mũi Hứa Thư Vân, nói: "Này, không ngờ thân thể người lại thành thục mỹ lệ thế này, khiến người ta địt mãi không chán."</p>
+    <p>Hứa Thư Vân thẹn thùng uốn éo dưới thân Diệp Phi, lộ ra vẻ không chịu nổi xấu hổ.</p>
+    <p>Diệp Phi lặng lẽ bóp nhẹ trên cái mông to trắng như tuyết của thẩm thẩm, lại hôn lên cổ trắng cùng khe ngực mềm mại của nàng.</p>
+    <p>Hứa Thư Vân nào chịu nổi sự trêu đùa này, miệng nhỏ kiều rên liên tục, đôi gò má lại ửng đỏ như cánh hoa, mị nhãn nhộn nhạo tất cả phong tình, trên thân thể trắng như ngọc, nàng giãy dụa vì lòng ngứa ngáy khó nhịn. Diệp Phi ngậm lấy núm vú thẩm thẩm như anh nhi bú sữa, mãnh liệt mút không ngớt, khiến nàng từ trong miệng phát ra tiếng rên rỉ lãng mạn mê người.</p>
+    <p>Một lát sau, Diệp Phi nhả ra núm vú đã bị mút đến phồng to, lại triển khai làn sóng tấn công thứ ba, đại dương vật đâm sâu vào bên trong, tê dại, chua xót, ngứa ngáy, thoải mái và sướng đẹp, tiếng rên rỉ lẳng lơ cùng âm thanh va chạm khi làm tình đan dệt thành một bản nhạc tiêu hồn mê người.</p>
+    <p>Diệp Phi dùng hết bản lĩnh, làm đến mức đất trời tối tăm, khiến Hứa Thư Vân bồng bềnh dục tiên, linh hồn nhỏ bé suýt chút nữa là xuất khiếu.</p>
+    <p>Hứa Thư Vân đã sắp đến cảnh giới điên cuồng, không khỏi càng thêm lẳng lơ, uốn éo eo mông, dâm thủy chảy đầm đìa, thở hổn hển, mồ hôi đầm đìa, cả người phát run.</p>
+    <p>Diệp Phi tiếp tục cuồng địt mãnh liệt, càng đâm càng mạnh, càng địt càng nặng, dần dần trong phòng ngủ lại tràn ngập tiếng thở cùng tiếng rên rỉ lẳng lơ mê người của Hứa Thư Vân.</p>
+    <p>Dục hỏa của Hứa Thư Vân lại một lần nữa bị Diệp Phi đốt cháy, nàng uốn éo cái mông lớn chân thành nghênh đón, kêu lên: "Ôi... Tiểu Mãn... ngươi nhanh địt... chết... thẩm thẩm... Hanh... ừ... thẩm thẩm thoải mái... sắp chết rồi... ừ... ừ... thẩm thẩm... lưu... sắp... bất tỉnh rồi... A!... Sướng quá... đụng tới... hoa tâm... Hanh... lại... dùng sức địt... nhanh... địt sâu thêm chút... Ai dục... A!... A!..."</p>
+    <p>Diệp Phi cũng kích động dị thường, mạnh mẽ đâm chọc, đại dương vật không chút lưu tình đè lên người Hứa Thư Vân mà cuồng quất, mỗi nhịp đều đến cùng, nhiều lần thẳng tắp chạm tới nơi sâu nhất của lồn, hoa tâm của Hứa Thư Vân bị đại dương vật Diệp Phi chạm đến run lên, đóng mở liên tục quấn lấy quy đầu.</p>
+    <p>Hứa Thư Vân thoải mái đến rên rỉ không ngừng, mông lớn quăng quật, vòng eo cũng thỉnh thoảng nhấc bổng, thân thể trắng mịn giãy dụa, mang theo đôi ngực to đầy co dãn, run rẩy lắc lư. Đặc biệt là hai hạt núm vú ở đỉnh núi đã bị mút đến đỏ tím, trước mắt Diệp Phi lay động thành hai đạo vòng cung xoay tròn, trông rất đẹp mắt.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0856.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0858.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

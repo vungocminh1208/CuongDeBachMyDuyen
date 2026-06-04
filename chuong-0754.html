@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 754 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 754</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 754</small>
+    Chương 754: Kiều Nhã Trầm Luân 2
+  </h1>
+  <div class="chapter-body">
+    <p>Thế nhưng, vào giờ phút này, mức độ hưng phấn của Diệp Phi cũng chẳng kém là bao so với việc được làm tình với mẹ ruột của chính mình. Nguyên nhân không gì khác, chính là hoàn cảnh gây ra. Trước đây, Diệp Phi từng ở bên cạnh Minh giáo sư mà làm tình với mẹ nuôi Tô Ngọc Nhàn, cũng từng ở cách nhạc phụ Đường Chí Trung không xa mà làm tình với nhạc mẫu Kỷ Thủy Tú. Nhưng vào lúc ấy, người đàn ông của các nàng hoặc là đang ngủ, hoặc là hoàn toàn không biết chuyện. Còn bây giờ, Lưu Thiên Lâm lại đang tỉnh táo. Tuy rằng không đành lòng nhìn thấy vợ mình bị người đàn ông khác làm nhục mà từ lâu đã nhắm hai mắt lại, nhưng âm thanh bên này hắn vẫn có thể nghe rõ ràng. Điều đó khiến Diệp Phi không nhịn được hưng phấn, vì thế, hắn không chỉ muốn tiếp tục làm tình với Kiều Nhã, mà còn phải khiến nàng cao trào đến mức kêu lên thành tiếng mới thôi.</p>
+    <p>Kiều Nhã cao trào kéo dài gần nửa phút mới hoàn toàn kết thúc. Theo sau cơn cao trào, cơ thể mềm mại của nàng gần như bị rút cạn sức lực bởi lần sung sướng mãnh liệt đến cực điểm này, co quắp ngồi thụp xuống, đôi chân đẹp mang tất da chân vốn đang quấn chặt lấy Diệp Phi cũng vô lực buông lỏng ra.</p>
+    <p>Theo dục hỏa tiết ra, Kiều Nhã vốn đã bị dục vọng khống chế hoàn toàn cũng dần khôi phục lý trí. Trong nháy mắt, khuôn mặt tuyệt mỹ đang kiều diễm hồng hào vì dư âm cao trào bỗng chốc trở nên trắng bệch.</p>
+    <p>Vừa nãy mình đã làm cái gì? Hồi tưởng lại sự thể hiện của bản thân, Kiều Nhã cảm thấy ngay cả mình cũng không nhận ra mình nữa. Đây có phải là bản thân mình, người vẫn được xưng tụng là hình mẫu lý tưởng của phụ nữ ở Đường Nhân Nhai hay không? Tại sao lại có thể phóng đãng như thế?</p>
+    <p>Vốn là người bảo thủ, trước đây Kiều Nhã tuyệt đối không dám tưởng tượng rằng mình lại bị làm tình đến mức phải kêu thành tiếng, cho dù là với Lưu Thiên Lâm cũng không, huống chi là người đàn ông khác? Điều này khiến Kiều Nhã căn bản không cách nào tha thứ cho chính mình. Lúc này đây, trong lòng nàng hoàn toàn nảy sinh ý định quyên sinh. Có điều, nàng cũng biết, ở trước mặt Diệp Phi, muốn tự sát cũng không có cơ hội, cho nên nàng chuẩn bị chờ đợi thời cơ.</p>
+    <p>Diệp Phi làm sao biết, vị nhạc mẫu xinh đẹp và quyến rũ này lại vì mình khiến nàng quá thoải mái mà sinh ra ý định tự sát. Tuy rằng hắn muốn tiếp tục làm tình, nhưng một số tư thái vẫn cần phải thể hiện.</p>
+    <p>"Ngươi nói ta đã làm xong, còn không mau lấy bom trong người Kiều a di ra!" Diệp Phi vừa quay đầu nói với Leona, vừa từ từ rút dương vật vẫn đang cương cứng của mình ra khỏi tiểu huyệt của Kiều Nhã. Quá trình này lại một lần nữa khiến Kiều Nhã kích động, phần thịt non trong tiểu huyệt nhỏ nhắn siết chặt lấy dương vật, tựa hồ vô cùng lưu luyến.</p>
+    <p>"Bộp" một tiếng vang nhỏ, dương vật của Diệp Phi rốt cục hoàn toàn rút ra khỏi tiểu huyệt của Kiều Nhã. Không biết là vì đã được thỏa mãn quá lâu hay lý do gì, sau khi dương vật rút ra, tiểu huyệt của Kiều Nhã không lập tức khép lại, mà là hé mở, thỉnh thoảng lại co rút. Mỗi một lần co rút, lại có một tia dâm thủy óng ánh chảy ra, cực kỳ giống như một cái miệng nhỏ đang thèm khát.</p>
+    <p>Nhìn dương vật của Diệp Phi vì dính đầy dâm thủy của Kiều Nhã mà lấp lánh, ánh mắt Leona lóe lên một tia thẹn thùng. Có điều, vì trả thù, nàng cố nén sự ngượng ngùng trong lòng, nhìn dương vật cứng như sắt của Diệp Phi rồi nhẹ nhàng nói: "Ta đã nói rồi, là muốn ngươi bắn một lần bên trong tiểu huyệt của nhạc mẫu ngươi. Hiện tại dương vật của ngươi cứng như thế, rõ ràng vẫn chưa bắn, vì vậy, tiếp tục đi!"</p>
+    <p>Leona, khá lắm, quá phối hợp! Diệp Phi trong lòng hét lên, hận không thể ôm lấy Leona hôn một cái. Có điều, trên mặt hắn lại làm ra vẻ hung tợn, trừng mắt nhìn Leona, nghiến răng nghiến lợi nói: "Coi như ngươi lợi hại!"</p>
+    <p>Nói xong, Diệp Phi không lập tức đâm dương vật vào tiểu huyệt của nhạc mẫu, mà ngồi xổm xuống, hai tay nâng cặp chân dài gợi cảm mang tất da của Kiều Nhã, tách rộng ra, sau đó cúi đầu xuống dưới hạ bộ của nàng. Hắn phát hiện chiếc quần lót vốn bị con gái nàng gạt sang một bên đã che lại tiểu huyệt, liền há miệng dùng răng cắn vào chiếc quần lót đã ướt đẫm, kéo nó sang một bên.</p>
+    <p>Sau đó, Diệp Phi thưởng thức một chút tiểu huyệt đỏ tươi của nhạc mẫu đại nhân, rồi há miệng ngậm lấy toàn bộ, không ngừng mút mát, đồng thời dùng đầu lưỡi liếm láp khe huyệt và âm hộ.</p>
+    <p>Thực ra lúc này tiểu huyệt của Kiều Nhã đã vô cùng ướt át, căn bản không cần màn dạo đầu, nhưng Diệp Phi làm như vậy tất nhiên có ý đồ riêng.</p>
+    <p>Người ta có câu, muốn chinh phục trái tim một người đàn ông thì trước tiên phải chinh phục dạ dày của hắn. Còn Diệp Phi lại có tổng kết của riêng mình, hơn nữa phương pháp này còn khác nhau tùy theo độ tuổi của phụ nữ: muốn chinh phục trái tim một cô thiếu nữ thì phải chinh phục đôi tai, còn muốn chinh phục một người phụ nữ độ tuổi Hổ Lang, thì phải chinh phục tiểu huyệt của nàng.</p>
+    <p>Tuy rằng vì tình cảm vợ chồng của họ rất tốt nên hy vọng Diệp Phi có được Kiều Nhã là không lớn, nhưng hắn vẫn ôm một tia ảo tưởng. Vì vậy ngày hôm nay, hắn không chỉ muốn dùng dương vật đưa Kiều Nhã lên đỉnh cao nhất, mà còn muốn cho nàng thấy sự dịu dàng của mình. Như vậy, cho dù không thể có được nàng, cũng có thể khiến nàng cả đời không thể quên được mình.</p>
+    <p>Sự dịu dàng lần này của Diệp Phi rất khác với màn mưa rào gió bão vừa rồi, hơn nữa đối với Kiều Nhã mà nói, đây là một trải nghiệm hoàn toàn mới. Trước kia, nàng ngay cả khi ân ái bình thường với chồng cũng không dám buông thả, làm sao có trải nghiệm được người khác liếm tiểu huyệt bao giờ?</p>
+    <p>Có lẽ vì đã nảy sinh ý định chết, lúc này Kiều Nhã lại không kháng cự như lúc đầu nữa. Chỉ mới bị Diệp Phi liếm vài cái, nàng liền từ bỏ sự chống cự, nhắm đôi mắt đẹp, tận hưởng sự phục vụ bằng miệng của Diệp Phi. Đến tận lúc này, nàng mới biết tiểu huyệt lại có thể được chơi đùa như vậy, hơn nữa, thật sự rất thoải mái!</p>
+    <p>Thời khắc này, trong lòng Kiều Nhã đột nhiên nảy sinh một ý nghĩ khác, đó là, sau này nếu mỗi ngày đều có thể được hắn chơi đùa như vậy thì tốt biết bao. Hơn nữa, theo việc bị liếm ngày càng thoải mái, ý niệm này của nàng cũng càng ngày càng mãnh liệt.</p>
+    <p>Diệp Phi liếm trọn vẹn năm phút, mãi đến khi tiểu huyệt của Kiều Nhã bắt đầu co rút, sắp sửa cao trào, mới dừng lại. Sau đó, hắn nhấc đôi chân dài mang tất da gợi cảm của nhạc mẫu lên, khoác lên vai, thân thể hơi cúi xuống, áp dương vật từ đầu đến cuối không hề dịu đi của mình vào tiểu huyệt đang ướt át dâm mỹ, nhẹ nhàng đâm vào.</p>
+    <p>Kiều Nhã đang ở trên bờ vực cao trào lại một lần nữa mất đi lý trí, lòng chỉ theo đuổi khoái cảm vô thượng kia. Vì vậy, khi quy đầu của Diệp Phi vừa đâm vào trong tiểu huyệt, đôi mông của nàng đã dùng sức ưỡn lên, "cạch" một tiếng, nuốt trọn lấy toàn bộ dương vật của Diệp Phi.</p>
+    <p>Nhạc mẫu đại nhân kích động như thế, Diệp Phi đương nhiên sẽ không khiến nàng thất vọng. Hắn dùng hai tay nâng mông Kiều Nhã, thân thể nhanh chóng thúc đẩy, dương vật như cột trụ hung hăng đâm mạnh vào tiểu huyệt của nàng.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0753.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0755.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

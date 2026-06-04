@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 824 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 824</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 824</small>
+    Chương 824: Quá Mức Cử Động
+  </h1>
+  <div class="chapter-body">
+    <p>Nghĩ tới đây, tiểu tử này không khỏi kích động, vội vàng ngắt lời nói: "Văn Văn, nếu nàng nghĩ những người bạn tốt của mình như vậy, không bằng qua hết năm chúng ta đi thăm họ đi."</p>
+    <p>Lam Văn lườm hắn một cái, thản nhiên nói: "Ngươi không nghe ta nói sao, mẹ ta không cho ta đến bên kia, chẳng lẽ ngươi muốn ta làm trái ý mẹ?"</p>
+    <p>"A!? Vậy thì sau này hãy nói, sau này hãy nói." Trương Đào lúng túng nói, trong lòng lại mắng thầm: Làm cao cái gì chứ? Chờ Lão Tử đưa được ngươi lên giường, đến lúc đó ngươi cái gì chẳng nghe theo Lão Tử!</p>
+    <p>Trương Đào đang nảy sinh ác ý nào biết rằng, việc Lam Văn từ chối vốn là gián tiếp cứu hắn một mạng. Vừa nãy toàn bộ sự chú ý của Diệp Phi đều đặt trên người Lam Văn nên không nhận ra tâm tư xấu xa của hắn. Nếu như Lam Văn đáp ứng đi thăm Diệp Tư Kỳ và những người khác, rồi lại nói chuyện với hắn, thì chút tâm tư nhỏ nhen kia sao có thể giấu được Diệp Phi. Mà nếu để Diệp Phi biết tiểu tử này dám có ý đồ với người tỷ tỷ hắn yêu mến, dù chỉ là nghĩ bậy một chút, cũng chắc chắn sẽ không cho hắn thấy được mặt trời ngày mai.</p>
+    <p>Đụng phải bức tường ở chỗ Lam Văn, đối với Trương Đào mà nói cũng không phải là không có thu hoạch. Ít nhất hắn nhìn ra Lam Văn là một cô gái rất hiếu thuận, rất nghe lời mẹ, vì thế hắn quyết định phải đi theo con đường lấy lòng cha mẹ vợ.</p>
+    <p>"Hai người các ngươi cứ trò chuyện, ta vào xem bá mẫu có cần giúp gì không." Trương Đào nói một tiếng, rồi đứng dậy đi vào nhà bếp.</p>
+    <p>Nhìn theo Trương Đào rời đi, Diệp Phi bỗng nhiên nhỏ giọng cười nói: "Văn tỷ tỷ, tỷ hình như gặp rắc rối rồi nha!"</p>
+    <p>"Có ý gì?" Lam Văn có chút không hiểu.</p>
+    <p>Diệp Phi hất cằm về phía nhà bếp: "Tên này sau đó e là sẽ bám lấy tỷ không rời đấy!"</p>
+    <p>Lam Văn sững sờ, trên mặt hiện lên một chút hoảng loạn, vội nói: "Đùa gì thế, hắn là bạn trai của ta, sao cần phải bám lấy chứ?"</p>
+    <p>"Bạn trai thực sự thì đương nhiên không cần, nhưng là hàng giả để đối phó thì chưa chắc nha." Diệp Phi cười nói.</p>
+    <p>"A!? Ngươi nhìn ra rồi?" Lam Văn càng thêm hoảng loạn: "Lẽ nào ta đóng kịch tệ như vậy sao?"</p>
+    <p>Diệp Phi cười đáp: "Đương nhiên, nào có người bạn gái nào lại ngay trước mặt bạn trai mình mà trò chuyện hợp ý với một chàng trai khác, lại còn mặc kệ cảm nhận của bạn trai cơ chứ."</p>
+    <p>"Thì ra là vậy!" Mặt Lam Văn lập tức xụ xuống: "Vậy thì phải làm thế nào mới giống thật đây?"</p>
+    <p>"Rất đơn giản, thân mật với hắn một chút là được." Diệp Phi tiếp tục cười nói.</p>
+    <p>"Thiết!" Lam Văn xì khẽ một tiếng: "Vậy ta thà bị mẹ nhìn thấu còn hơn."</p>
+    <p>"Được rồi, lát nữa ta giúp tỷ diễn một màn yểm hộ là được." Diệp Phi quả quyết làm người tốt.</p>
+    <p>"Đúng là hảo đệ đệ!" Lam Văn lập tức vui vẻ, sau đó lại nhìn Diệp Phi từ trên xuống dưới, đồng thời nói: "Hiện tại ta có chút tin vào mấy lời đồn đại kia rồi."</p>
+    <p>"Đồn đại gì?" Diệp Phi không hiểu hỏi.</p>
+    <p>"Liên quan đến ngươi đó." Lam Văn nói: "Hiện tại mọi người đều truyền tai nhau, Diệp Phi của Vọng Hải Lăng Vân Hội lợi hại đến mức nào, quả thực đã đồn thành thần tiên. Ta vốn còn không tin, tưởng mấy lão già kia giúp ngươi tạo thế nên mới cố ý tung ra những lời đồn này."</p>
+    <p>"Tại sao tỷ lại nghĩ như vậy?" Diệp Phi rất hứng thú hỏi. Vốn dĩ thấy Lam Văn tùy tiện với mình như vậy, Diệp Phi còn tưởng nàng không biết gì về mình. Bây giờ xem ra nàng đều biết cả, điều này khiến Diệp Phi không khỏi càng thêm ngưỡng mộ. Đúng là con gái của Trương dì, giống mẹ như đúc, đều là kiểu người không quan tâm đến thân phận, chỉ nói đến tình cảm.</p>
+    <p>Lam Văn cười nói: "Bởi vì ta thực sự không thể tưởng tượng nổi, tên tiểu tử năm đó chỉ một cơn gió thổi là ngã, trong thời gian ngắn vài năm lại trưởng thành đến lợi hại như vậy."</p>
+    <p>Bị xem thường rồi!! Diệp Phi có chút buồn bực, tiếp tục hỏi: "Vậy bây giờ tỷ tin chưa?"</p>
+    <p>"Có chút tin, ít nhất năng lực quan sát của ngươi quả là không tầm thường." Lam Văn trả lời một câu, sau đó rất tò mò hỏi: "Mau kể tỷ nghe, mấy lời đồn về ngươi có phải là thật hết không?"</p>
+    <p>"Đương nhiên là thật!" Diệp Phi vô cùng tự đắc nói: "Ca ca đây bây giờ là nhất đại kiêu hùng, ngay cả người lãnh đạo quốc gia thấy ta cũng phải khách khí!"</p>
+    <p>"Thật sao? Lợi hại như vậy cơ à? Vậy để tỷ xem, vị kiêu hùng này có chỗ nào khác người!" Những lời Diệp Phi nói không những không làm Lam Văn tin, trái lại còn chọc cho nàng cười khúc khích, vươn bàn tay nhỏ nắm lấy mũi Diệp Phi.</p>
+    <p>Diệp Phi vội vàng tránh ra sau, nhưng Lam Văn vẫn đuổi theo không tha. Đợi đến khi nàng như nguyện nhéo được Diệp Phi, Diệp Phi đã gần như nằm trên ghế salon, còn toàn bộ thân thể mềm mại của Lam Văn đều đè lên người hắn.</p>
+    <p>Đúng lúc đó, Trương Đào từ trong bếp đi ra, thấy cảnh này, sắc mặt không khỏi trầm xuống, dùng sức ho khan một tiếng rồi nói: "Chuẩn bị ăn cơm!" Nói xong, hắn đặt hai đĩa thức ăn trong tay lên bàn cái rầm.</p>
+    <p>Mà sau đó, Trương dì đi ra cũng nhìn thấy cảnh này, trong mắt thoáng hiện một nét tiếc nuối. Thực ra, ứng cử viên con rể lý tưởng nhất trong lòng bà vốn là Diệp Phi. Không phải vì gia thế hay năng lực của Diệp Phi, mà vì bà rất hiểu đứa nhỏ mà mình nhìn lớn lên từ nhỏ này. Tuy xuất thân từ nhà giàu, nhưng lại không có một chút khí chất công tử bột nào, ngược lại vô cùng thiện lương và hiểu chuyện.</p>
+    <p>Chỉ tiếc, chênh lệch tuổi tác giữa con gái và Diệp Phi thực sự quá lớn, trọn vẹn tám tuổi, hơn nữa con gái còn lớn hơn Diệp Phi, muốn họ đến với nhau là chuyện không thể nào.</p>
+    <p>Bị người nhắc nhở như vậy, Lam Văn lập tức đứng dậy khỏi người Diệp Phi, mặt không khỏi đỏ bừng. Lúc này nàng cũng ý thức được mình có chút quá trớn, dù sao Diệp Phi cũng không còn là cậu bé sáu năm trước nữa, bây giờ hắn đã cao hơn mình nửa cái đầu.</p>
+    <p>So với Lam Văn, da mặt Diệp Phi dày hơn nhiều. Hắn không hề để tâm, đứng dậy chỉnh lại quần áo bị Lam Văn vò nát, sau đó chạy vào bếp phụ bưng thức ăn ra.</p>
+    <p>Lần này, Trương Đào không vào bếp nữa. Đợi Diệp Phi và Trương dì đều rời đi, hắn không nhịn được hỏi Lam Văn: "Rốt cuộc quan hệ của các ngươi là thế nào? Sao lại nháo như vậy?" Thực ra cũng không trách hắn bực bội, làm đồng nghiệp với Lam Văn đã lâu, lại còn là cô gái hắn vẫn luôn muốn theo đuổi, hắn hiểu rất rõ Lam Văn từ mọi phương diện. Hắn biết bình thường đến cả tay cô cũng chưa từng để nam nhân nào chạm vào, thế mà vừa nãy lại nằm cả người lên người Diệp Phi. Đối với những cô gái bình thường thì không có gì, nhưng với Lam Văn thì lại quá mức.</p>
+    <p>"Hắn là người mẹ ta một tay nuôi dưỡng, cũng như em trai ruột của ta vậy." Lam Văn nói, nhìn như đang giải thích với Trương Đào, nhưng thực ra là đang nói cho chính mình nghe.</p>
+    <p>Đúng như Trương Đào biết, tính cách Lam Văn tuy hào phóng, nhưng dưới sự giáo dục của mẹ, nàng rất coi trọng khoảng cách nam nữ, quả thực như thục nữ thời cổ đại. Ngay cả nắm tay - chuyện rất bình thường trong thời hiện đại - nàng cũng chưa từng làm với bất kỳ người đàn ông nào.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0823.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0825.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

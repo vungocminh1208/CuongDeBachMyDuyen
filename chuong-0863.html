@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 863 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 863</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 863</small>
+    Chương 863: Thiên Ma Giáo giá lâm
+  </h1>
+  <div class="chapter-body">
+    <p>Dù sao, chuyện này nghĩa là trong nửa tháng tiếp theo, Diệp Phi có thể mỗi ngày hưởng thụ những thân thể tuy không giống nhau nhưng đều tươi đẹp quyến rũ của các nàng.</p>
+    <p>Sang năm thì tốt rồi, trang viên không mất nhiều thời gian là có thể hoàn công, đến lúc đó đón các nàng về ở cùng một chỗ, cũng không cần chạy tới chạy lui như bây giờ nữa! Diệp Phi âm thầm tự cổ vũ bản thân trong lòng.</p>
+    <p>Cũng may, hai đồ đệ của Diệp Phi là Tống Từ cùng Lỵ Lệ Nhã, còn có người mẹ đại mỹ nhân mang mị cốt trời sinh của Tống Từ đã sớm về Kinh Thành đón Tết. Đi cùng các nàng còn có cô tiểu cô nãi nãi Diệp Chỉ Lâm cái gì cũng hiếu kỳ, cùng với đôi mẫu nữ hoa tính nô vốn đối địch nhưng đã bị hắn dễ dàng chinh phục. Ngoài ra, còn có một người mà Diệp Phi suýt nữa không nhớ ra: vị tiên tử Ôn Nhu Băng từ Trường Bạch Sơn vẫn luôn tìm hắn đến tận Nam Hải.</p>
+    <p>Lúc đó vừa mang theo Ôn Nhu trở về, liền xảy ra chuyện của Cốc gia tỷ muội, sau đó Diệp Phi liền quên bẵng nàng đi. Nàng cũng không vội tìm Diệp Phi đòi lại đồ của mình, cứ như vậy ở nơi hắn sắp xếp, sau đó lại trở thành bạn thân của Nhan Như Ngọc cùng những người khác ở cùng khách sạn, vì vậy lần này cũng theo các nàng trở về Kinh Thành đón Tết.</p>
+    <p>Đối với các nàng, Diệp Phi đương nhiên sẽ không lo lắng gì. Trước không nói bản thân hắn đã trấn áp những người ở Kinh Thành Tống gia, hơn nữa còn có vị đại thần Lệ Thương Hải tọa trấn Kinh Thành, chỉ riêng có một mình Diệp Chỉ Lâm ở đó, nhóm các nàng đã đủ sức hoành hành khắp nơi.</p>
+    <p>Còn về các nữ tử như Đường Ngọc, Đường Tâm, Diệu Thiền cùng trở về vào dịp đại hội võ lâm, thì bọn họ một đường theo Đường Tâm về Đường gia bảo.</p>
+    <p>Các nàng sở dĩ đến Đường gia, không phải là ở Vọng Hải không có nơi đi, mà là vì các nàng biết, sau Tết, Diệp Phi càng không có thời gian bên cạnh các nàng. Thay vì ở lại đây khiến Diệp Phi cảm thấy hổ thẹn, chi bằng cùng Đường Tâm, Đường Ngọc về nhà đón Tết, như vậy ít nhất còn có cảm giác gia đình. Dù không biết rõ, nhưng hành động này lại khiến Diệp Phi thêm phần áy náy, vì sau khi trở về họ chỉ có thể liên lạc qua điện thoại, căn bản không có cơ hội gặp mặt.</p>
+    <p>Tuy nhiên, chỉ cần vài tháng nữa, tình hình như thế là có thể thay đổi hoàn toàn. Đến lúc đó tất cả mọi người chuyển vào trang viên ở, Diệp Phi đương nhiên có thể ở bên các nàng bất cứ lúc nào.</p>
+    <p>Trong lòng suy nghĩ những chuyện này, thời gian thấm thoát trôi qua hơn nửa canh giờ. Ngay lúc Diệp Phi thầm hối hận vì không nên tới đây sớm như vậy, để dương vật ngâm trong tiểu dâm huyệt tươi đẹp của thẩm thẩm thêm chút nữa, điện thoại trong túi lại đột nhiên vang lên.</p>
+    <p>Chuông điện thoại không chỉ kinh động Diệp Tĩnh đang làm bài tập mà còn làm Diệp Phi sững sờ. Hắn thực sự không nghĩ ra ai lại gọi cho mình vào lúc này. Người trong bang hội thì không, họ đều biết hắn rất bận vào dịp Tết, hơn nữa trong bang còn có Trương Nhất Đức tọa trấn. Còn các nữ nhân của hắn thì càng không, họ hoặc là đang ở xa tương tư, hoặc là lặng lẽ ở nhà chờ đợi hắn tới, tuyệt đối sẽ không ngắt quãng khoảng thời gian vui vẻ của hắn và các tỷ muội.</p>
+    <p>Mang theo đầy nghi hoặc, Diệp Phi lấy điện thoại ra xem, phát hiện là một số lạ, tim đập càng thêm thắc mắc, nhưng vẫn bắt máy.</p>
+    <p>"Tiểu đồ đệ, sao lâu như vậy mới nghe điện thoại thế?" Vừa kết nối, trong điện thoại lập tức truyền đến một giọng nói vui tươi nhưng mang theo bảy phần mê hoặc.</p>
+    <p>Nghe được âm thanh này, trong đầu Diệp Phi không khỏi chấn động, kích động kêu lên: "Sư nương!"</p>
+    <p>Không sai, người gọi điện tới không phải ai khác, chính là Thiên Ma Giáo đương nhiệm giáo chủ, bà vợ cả của vị sư phụ tiện nghi của Diệp Phi - Chúc Ngọc Nghiên. Chỉ nghe nàng cười khúc khích: "Sư nương hiện tại mang theo các tỷ muội cùng toàn bộ cao tầng trong giáo đến nương nhờ ngươi, có hoan nghênh không?"</p>
+    <p>"Hoan nghênh, đương nhiên hoan nghênh! Sư nương, các người đang ở đâu, con lập tức tới đón mọi người!" Diệp Phi vội vàng hỏi.</p>
+    <p>"Không cần ngươi đón, chúng ta đã tới Vọng Hải rồi." Chúc Ngọc Nghiên nói cho một địa chỉ, sau đó lại dặn: "Ngươi tới nơi này là được."</p>
+    <p>Diệp Phi đáp một tiếng, sau khi cúp điện thoại lại có chút khổ não. Vốn dĩ đã hứa hôm nay dành trọn thời gian bồi thẩm thẩm cùng em họ, giờ lại không thể không rời đi, thật không biết nên ăn nói sao với hai mẹ con khiến người ta vừa thương vừa yêu này.</p>
+    <p>"Ca ca, huynh có chuyện phải đi sao?" Chưa đợi Diệp Phi nghĩ kỹ nên nói thế nào, Diệp Tĩnh bên cạnh đã lên tiếng trước.</p>
+    <p>"Đúng vậy, có mấy người bạn từ xa tới, ta phải đi sắp xếp cho họ một chút." Diệp Phi nghiến răng nói thật, ánh mắt nhìn về phía Diệp Tĩnh tràn đầy thương tiếc và áy náy.</p>
+    <p>Nếu là cô bé khác, chưa chắc đã bốc đồng quấn lấy Diệp Phi không cho đi, thế nhưng Diệp Tĩnh lại không như vậy. Tuy trong mắt nàng tràn đầy vẻ không nỡ, nhưng vẫn rất ngoan ngoãn gật đầu: "Vậy huynh đi đi, thế nhưng..."</p>
+    <p>Nói đến đây, tiểu nha đầu dừng một chút, sợ chọc Diệp Phi không vui, dùng đôi mắt to tròn rụt rè đầy khao khát nhìn ca ca mình: "Sau này huynh có thời gian, có thể trở lại bồi Tĩnh Tĩnh không? Thỉnh thoảng thôi cũng được..."</p>
+    <p>Dáng vẻ đáng yêu của em họ khiến lòng Diệp Phi trào dâng niềm thương xót. Hắn kéo nàng vào lòng, hôn lên miệng nhỏ một cái thật mạnh, ôn nhu nói: "Nói gì ngốc thế, thỉnh thoảng sao được? Tĩnh Tĩnh sau này là tiểu thê tử của ca ca, đến lúc đó chuyển tới trang viên, ca ca ngày nào cũng sẽ ở bên cạnh các em!"</p>
+    <p>Một câu "tiểu thê tử" lập tức khiến trái tim đang bàng hoàng của Diệp Tĩnh được lấp đầy bởi sự ngọt ngào và ngượng ngùng. Nàng cố nén thẹn thùng, hôn lên mặt Diệp Phi một cái, rồi mới đỏ bừng mặt nằm trong lòng hắn.</p>
+    <p>Ôm thân hình nhỏ bé của em họ một lúc, Diệp Phi dặn nàng giải thích giúp mình với thẩm thẩm, rồi mới rời khỏi hương thơm êm dịu này. Kỳ thực hắn nên tự mình nói với thẩm thẩm, nhưng vừa rồi thẩm thẩm thật sự quá mệt mỏi, Diệp Phi không nỡ quấy rầy. Hơn nữa tin rằng với sự thấu hiểu của nàng, chắc sẽ không vì vậy mà khó chịu. Điều đáng tiếc duy nhất là đến tận giờ Diệp Phi vẫn chưa biết món quà bất ngờ mà thẩm thẩm nói là gì, chỉ đành đợi lần tới gặp lại sẽ hỏi nàng.</p>
+    <p>Rời khỏi nhà thẩm thẩm, Diệp Phi lái xe hướng về phía nam khu. Địa chỉ sư nương nói hắn biết, đó là một khách sạn bốn sao, nhìn bề ngoài thì thuộc quyền sở hữu của một thương nhân bình thường, nhưng thực chất lại là phân bộ của Thiên Ma Giáo tại Vọng Hải. Tin tức này không phải sư nương nói cho hắn, mà là nhờ hệ thống tình báo của Lăng Vân Hội. Dù sao Vọng Hải là đại bản doanh của Diệp Phi, thế lực nào ở đây đều không thể giấu nổi tai mắt của Lăng Vân Hội.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0862.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0864.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

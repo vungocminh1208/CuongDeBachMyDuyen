@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 787 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 787</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 787</small>
+    Chương 787: Hạn Thì Oẳn Tù Tì 4
+  </h1>
+  <div class="chapter-body">
+    <p>"Mau tới đây, thời gian của ngươi cũng không nhiều." Thấy đệ đệ không nhúc nhích, Diệp Tư Dao mở miệng lần nữa thúc giục. Diệp Phi thế mới biết, tỷ tỷ không phải trở nên háo sắc, mà là đang vì mình suy nghĩ, không khỏi vừa cảm động, vừa hưng phấn vì nhị tỷ thật giống như xưa nay chưa từng chủ động như thế bao giờ. Nhẹ nhàng nhảy lên giường, Diệp Phi trực tiếp nằm úp sấp lên người nhị tỷ, mà nhị tỷ cũng càng thêm chủ động, tự nhiên duỗi tay nhỏ xuống dưới háng hắn, nắm chặt dương vật thô cứng của hắn, đè vào nơi cửa mình ướt át của mình. Diệp Phi chìm eo xuống, một bên ôn nhu cắm dương vật của mình vào trong tiểu huyệt mềm mại chặt chẽ của tỷ tỷ, vừa nói: "Tỷ, tỷ cẩn thận cảm nhận một chút, dương vật của đệ so với trước đây có chỗ nào khác không." Diệp Tư Dao nhắm đôi mắt to, tâm trí dồn hết vào cảm giác dương vật của đệ đệ từng chút một lấp đầy tiểu dâm huyệt trống vắng đang ngứa ngáy của mình, cho đến khi hắn cắm vào tận gốc, mới mở mắt ra, thâm tình nhìn đệ đệ nói: "Cảm giác nó nhỏ đi một chút so với trước đây, nhưng cũng làm cho tỷ càng thoải mái hơn." Nghe nhị tỷ nói như vậy, Diệp Phi có thể triệt để khẳng định, dương vật của mình đúng là đã phát sinh biến hóa, bởi vì so với trước kia, nó chẳng những không nhỏ đi mà ngược lại còn lớn hơn một chút. Chuyện này đã được mẹ xác nhận, tuyệt đối không thể sai. Mà bản thân hắn không hề cố ý làm nó nhỏ đi, tỷ tỷ lại nói cảm giác nó nhỏ đi, vậy đã nói rõ, sự biến hóa này hẳn là có thể tự điều chỉnh, để nó có thể phối hợp hoàn mỹ với bất kỳ tiểu huyệt nào mà nó xâm nhập. Cho tới sự biến hóa này sinh ra như thế nào, Diệp Phi suy đoán, hẳn là do trước đó trên máy bay đã ân ái không ngừng nghỉ hơn mười tiếng đồng hồ với tiểu cô nãi nãi Diệp Chỉ Lâm. Dù sao nàng hiện tại Huyền Âm Quyết đã luyện cao thâm hơn vài vị sư nương, tự nhiên có thể phối hợp với Huyễn Dương Quyết của hắn ở mức độ lớn nhất, khiến thân thể của hắn sản sinh biến hóa có lợi. Bất quá bây giờ không phải lúc nghĩ đến điều này, Diệp Phi rất nhanh tập trung ý chí, chuyên tâm hầu hạ mỹ nhân tỷ tỷ dưới thân. Diệp Tư Dao hai tay ôm cổ đệ đệ, một bên thâm tình hôn hắn, một bên cẩn thận lĩnh hội cảm giác dương vật của hắn chậm rãi đâm thọc, mang đến cho nàng niềm vui sướng vô biên. Chỉ chốc lát sau, Diệp Tư Dao lại tránh khỏi miệng rộng của Diệp Phi, khẽ thở gấp nói: "Hảo đệ đệ, đệ tăng nhanh tốc độ đi, tỷ muốn đệ dùng sức yêu thương tỷ hơn nữa!" Nếu tỷ tỷ đã yêu cầu, Diệp Phi đương nhiên phải thỏa mãn nàng, liền tăng tốc độ đâm thọc càng lúc càng nhanh, hai tay vẫn không quên thưởng thức đôi bầu ngực to như bát ngọc của nàng. Diệp Tư Dao sở dĩ muốn đệ đệ tăng nhanh tốc độ, thứ nhất là vì nàng biết đệ đệ đang phải vượt ải, thời gian không nhiều; thứ hai cũng là vì chuyện ngày hôm nay, trước đó để đệ đệ ân ái ngay trước mặt mẹ, nàng vừa ngượng ngùng lại cảm thấy một loại kích thích khó nói nên lời. Bởi vậy bắt đầu từ lúc đó, nàng vẫn luôn ở trong trạng thái thập phần hưng phấn, hiện tại thật vất vả trông thấy dương vật khiến nàng yêu đến tận cùng này, tự nhiên muốn được một phen thống khoái. Dương vật thô cứng của Diệp Phi ra vào nhanh chóng trong tiểu huyệt mềm mại của tỷ tỷ, khiến Diệp Tư Dao vốn đã quen với sự nhẹ nhàng trở nên có chút không chịu nổi, rất nhanh liền bị hắn đâm cho sung sướng mà phát tiết. "Hảo đệ đệ, dừng lại đi, tỷ xong rồi." Cảm giác được đệ đệ vẫn tiếp tục đâm thọc sau khi mình lên đỉnh, Diệp Tư Dao cố nén khoái cảm mãnh liệt đang khiến nàng dục tiên dục tử, nói như vậy. Diệp Phi làm sao có thể không hiểu, tỷ tỷ căn bản là đang nhường cho mình, chiến lực của nàng có lẽ vẫn chưa sánh bằng mẹ và tam tỷ cuồng dã, nhưng cũng không phải là một hai lần cao trào là có thể thỏa mãn, bởi vậy hắn căn bản không để ý tới ý tốt của tỷ tỷ, tiếp tục dùng sức đâm vào nàng. Bởi vì vừa mới cao trào, tiểu huyệt của Diệp Tư Dao trở nên cực kỳ mẫn cảm, chỉ không tới trăm lần, liền bị đệ đệ đâm cho không nói ra lời, chỉ có thể bản năng lay động cái mông tròn trịa để đón ý hùa theo sự đâm thọc của hắn. Dùng hơn nửa canh giờ, Diệp Phi đưa nhị tỷ lên đỉnh năm lần liên tiếp, còn phun ra một lượng lớn tinh dịch vào trong tiểu dâm huyệt mềm mại của nàng, lúc này mới dừng lại, cười hỏi: "Tỷ, thoải mái không?" "Ừm!" Diệp Tư Dao khẽ gật đầu, thâm tình nhìn đệ đệ, tuy rằng lần này vẫn chưa tới cực hạn của nàng, nhưng nàng cũng đã phi thường thỏa mãn. Hơn nữa vì còn giữ tâm tư nhường cho đệ đệ, liền nói: "Hảo đệ đệ, tỷ không xong rồi, đệ đi tìm đại tỷ đi."</p>
+    <p>Lần này, Diệp Phi tiếp nhận ý tốt của nhị tỷ, sau khi đứng dậy liền ôn nhu đắp chăn cho nàng, lại hôn lên cái miệng nhỏ của nàng một cái, lúc này mới rời khỏi gian phòng của nàng. Vừa ra khỏi cửa, Diệp Phi liền thấy Diệp Vân Khinh đang cầm ghế ngồi trước cửa phòng nhị tỷ, hai tay cầm máy chơi game chơi đến quên cả trời đất, không khỏi có chút buồn cười, hỏi: "Sao muội không về phòng?" "Ta là người chủ trì mà, sao có thể không giám sát đệ toàn trình?" Diệp Vân Khinh đương nhiên nói, lập tức nhìn đồng hồ, vẻ mặt hồ nghi hỏi: "Sao nhanh vậy, có phải nhị tỷ nhường đệ không?" Thật là một nha đầu thông minh! Diệp Phi thầm khen trong lòng, miệng lại nói: "Sao có thể chứ, không tin muội đi hỏi nhị tỷ." Diệp Vân Khinh hừ một tiếng nói: "Nàng đều nhường đệ rồi, ta hỏi nàng có ích lợi gì?" Diệp Phi có chút im lặng nói: "Muội đã biết là như vậy, thế thì cần gì phải thủ ở chỗ này, về phòng chờ là được rồi, dù sao cũng đều dựa vào tự giác." "Ta là người chủ trì!" Diệp Vân Khinh nhấn mạnh lần nữa. Diệp Phi có chút bực mình, tiểu muội bình thường cơ trí như vậy, hôm nay sao lại thành ra thẳng thắn thế này? Nhưng nàng đã đồng ý chờ ở bên ngoài, vậy thì tùy nàng vậy. Đẩy cửa phòng đại tỷ ra, Diệp Phi lại quay đầu hỏi một câu: "Thật không theo vào giám sát?" "Ta mới không đi." Diệp Vân Khinh chơi máy chơi game, không ngẩng đầu lên nói. Chuyện cười, hiện tại đã phải dùng máy chơi game để phân tán sự chú ý, nếu còn phải thưởng thức mấy màn vật lộn của các người, vậy không phải là muốn bổn tiểu thư chết vì kích thích sao? Thời gian trôi qua trong tiếng bấm nút máy chơi game của Diệp Vân Khinh, rất nhanh Diệp Phi đã từ trong phòng đại tỷ đi ra, lần này thậm chí còn chưa tới nửa giờ, hiển nhiên đại tỷ đối với hắn càng thêm yêu thương, nhường cũng nghiêm trọng hơn. Vốn dĩ đã nói là theo thứ tự từ nhỏ đến lớn, sau khi ra khỏi phòng đại tỷ, Diệp Phi lẽ ra phải tới chỗ mẹ, nhưng sau khi suy nghĩ một chút, hắn lại đi vào phòng Thủy mụ mụ. Lần này so với đại tỷ nhị tỷ thì lâu hơn nhiều, đầy đủ hơn một tiếng đồng hồ sau, Diệp Phi mới thần thanh khí sảng từ phòng Thủy mụ mụ đi ra, mà lúc này Thủy mụ mụ, cũng đã mang theo nụ cười thỏa mãn chìm vào giấc mộng đẹp. Liếc mắt nhìn tiểu muội vẫn ngồi đó chơi máy điện tử, Diệp Phi lười hỏi thêm, trực tiếp đi về phía phòng của mẹ, trong lòng hết sức hưng phấn.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0786.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0788.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

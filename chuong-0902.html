@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 902 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 902</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 902</small>
+    Chương 902: Đường phụ buồn phiền
+  </h1>
+  <div class="chapter-body">
+    <p>Cố Thi Thi bây giờ cùng Đường Tâm đã là bạn tốt không có gì giấu nhau, lại đang ở Đường Môn mấy ngày nay, đối với một ít chuyện vô cùng hiểu rõ, lập tức liền đối với Diệp Phi êm tai nói: "Chuyện này phải nói từ hơn năm mươi năm trước, ngay lúc đó Đường Môn có một vị trưởng lão, vì cháu của mình cạnh tranh Môn Chủ thất bại, trong cơn tức giận rời khỏi Đường Môn, từ đó về sau không có tin tức. Qua nhiều năm như vậy, tất cả mọi người cho là ông ta đã chết, lại không nghĩ rằng vài ngày trước, vị trưởng lão mất tích hơn năm mươi năm này dĩ nhiên lại trở về, bên người còn dẫn theo một đệ tử chân truyền. Ông ta vừa tới, liền tự phong làm Thái Thượng Trưởng Lão, lại ép người khác để đệ tử của mình làm Thiếu môn chủ. Mà toàn bộ Đường Môn, ngoại trừ những vị Lão Tổ lánh đời không ra kia, căn bản không ai là đối thủ của ông ta, vì thế không thể làm gì khác hơn là thừa nhận thân phận của bọn họ."</p>
+    <p>"Thì ra là vậy." Diệp Phi gật gật đầu, hắn rõ ràng ý nghĩ của những Lão Tổ lánh đời kia, chỉ khi nào liên quan đến chuyện sinh tử tồn vong của toàn bộ Đường Môn, bọn họ mới ra mặt, còn chuyện gia tộc nội bộ tranh đấu thì dễ dàng sẽ không điều động. Cách làm của vị trưởng lão mất tích này tuy có chút quá đáng, nhưng dù sao cũng là tranh đấu nội bộ, vì thế họ cứ mặc kệ để tự giải quyết, ngược lại chỉ cần không làm Đường Môn chia năm xẻ bảy là được.</p>
+    <p>Mặc dù như thế, Đường Minh Hạo phỏng chừng sẽ sống rất khổ, nhưng Diệp Phi nhất thời cũng không muốn nhúng tay, dù sao người ta là Lão Tổ còn không quản, huống chi chính mình là một người ngoài. Đương nhiên, nếu đôi thầy trò này dám bắt nạt Đường Tâm, Đường Ngọc các nàng, Diệp Phi liền không ngại thuận tay diệt bọn họ.</p>
+    <p>"Vậy làm sao Thiếu môn chủ này lại đem ngày hôn lễ định vào mùng bảy tết?" Quyết định tạm thời mặc kệ sau khi, Diệp Phi lại hỏi ra một nghi vấn khác.</p>
+    <p>"Có thể trì hoãn tới hôm nay là tốt lắm rồi, dựa theo ý nghĩ của tên Thiếu môn chủ kia, mùng một tết là chuẩn bị kết hôn luôn đấy." Cố Thi Thi bĩu bĩu cái miệng nhỏ nhắn nói: "Hôm mùng một tết, có Chưởng Môn một môn phái nhỏ mang theo con gái đến đây chúc tết, tên Thiếu môn chủ kia liếc mắt liền nhìn trúng con gái người ta..."</p>
+    <p>"Cái gì mà nhìn trúng con gái người ta, ta thấy tên khốn kia vốn là nhìn trúng cả hai mẹ con nhà người ta mới đúng." Đường Tâm đột nhiên mở miệng xen vào nói: "Nhìn hắn nhìn ánh mắt của Văn a di kìa, con ngươi đều muốn trừng ra ngoài, thật chẳng ra gì!"</p>
+    <p>So sánh với sự phẫn nộ của Đường Tâm, Diệp Phi lại lạnh nhạt hơn nhiều. Nghiêm chỉnh mà nói, tên Thiếu môn chủ kia đúng là người cùng hội cùng thuyền với hắn, vì thế chỉ cần song phương đều đồng ý, dưới cái nhìn của hắn, mẹ con song thu cũng là chuyện rất bình thường. Đương nhiên, những lời như thế này không thể nói trước mặt mấy cô gái, nếu không khó tránh khỏi bị các nàng khinh bỉ một phen.</p>
+    <p>Mấy người vừa nói vừa đi về phía trước, còn chưa đi đến phòng khách chuyên dùng để yến khách trong trang viên, liền thấy Đường Minh Hạo một mình bước nhanh tới đón.</p>
+    <p>"Diệp thiếu hiệp đại giá quang lâm, thật là vinh hạnh của Đường Môn chúng ta a!" Chờ khoảng cách hai bên gần hơn một chút, Đường Minh Hạo lại nói những lời khách sáo y như gã đệ tử tiếp khách lúc nãy.</p>
+    <p>Diệp Phi chắp tay với Đường Minh Hạo, cười nói: "Đường bá phụ quá khách khí, chúng ta đều không phải người ngoài, sau này gọi con là Diệp Phi là được."</p>
+    <p>"Vậy sau này ta gọi ngươi là hiền chất." Đường Minh Hạo cũng không câu nệ, thuận nước đẩy thuyền nói: "Hiện tại vừa mới qua hết tết, Diệp hiền chất sao lại rảnh rỗi đến bên này?"</p>
+    <p>"Không gạt bá phụ, tiểu chất lần này là định đến Từ Hàng Tĩnh Trai làm chút chuyện, vì thế tiện đường ghé qua đây đón Diệu Thiền đi cùng." Diệp Phi nói thật.</p>
+    <p>"Hóa ra là vậy." Đường Minh Hạo gật gật đầu, lập tức mời: "Nếu thời gian không gấp, không bằng ở lại đây hai ngày, để bá phụ tận tình làm chủ nhà một bữa thế nào?"</p>
+    <p>"Đang muốn quấy rầy." Diệp Phi cười đáp ứng. Nguyên bản hắn muốn đón Diệu Thiền là đi luôn, có điều Đường Tâm, Đường Ngọc cùng Cố Thi Thi ba nữ nhớ nhung lại khiến hắn có chút nhẹ dạ, hơn nữa hiện tại tình cảnh Đường Môn tựa hồ có chút không ổn, vì thế quyết định lưu lại nhìn kỹ hẵng nói.</p>
+    <p>Hàn huyên qua đi, Đường Minh Hạo đích thân dẫn Diệp Phi cùng bốn nữ hướng về phía đại sảnh. Đi được mấy bước, Diệp Phi bỗng nhiên nói: "Bá phụ, ông bây giờ tựa hồ sống không tốt lắm nhỉ?"</p>
+    <p>"Được chăng hay chớ thôi." Đường Minh Hạo thở dài nói. Diệp Phi có thể nói như vậy, chứng tỏ con gái đã kể tình cảnh hiện tại của mình cho hắn biết, vì thế Đường Minh Hạo cũng không giấu giấu diếm diếm.</p>
+    <p>Nhìn thấy bộ dạng này của Đường Minh Hạo, Diệp Phi không khỏi có chút không đành lòng, liền nói: "Nếu không, ta giúp ông giải quyết phiền phức này?"</p>
+    <p>"Chuyện này... vẫn là xem xét kỹ đã." Đường Minh Hạo chần chờ một chút nói. Nói thật, đề nghị này của Diệp Phi, nói ông không động tâm tuyệt đối là giả. Hơn nữa, ông cũng biết từ miệng con gái rằng Diệp Phi là cao thủ còn mạnh hơn cả Minh Chủ Diệp Chỉ Lâm, nhưng cũng chính vì thế, trong lòng ông vẫn không có chút yên tâm. Bởi vì ông không biết Diệp Phi mạnh hơn Diệp Chỉ Lâm bao nhiêu, mà vị Thái Thượng Trưởng Lão kia lại tựa hồ lợi hại hơn Diệp Chỉ Lâm không ít. Nếu để Diệp Phi mạo muội ra tay, vạn nhất không địch lại, vậy thì hại con gái mình rồi.</p>
+    <p>Kỳ thực Đường Minh Hạo người này, mặc dù có chút tư lợi, nhưng đối với tình thân vẫn rất coi trọng. Lúc trước sở dĩ đáp ứng để con gái làm nha đầu cho Diệp Phi, ngoại trừ muốn leo lên cành cao là Diệp Chỉ Lâm, cũng là vì nhìn thấu bản chất oan gia vui vẻ của con gái và Diệp Phi, biết con gái trong lòng bất tri bất giác đã có Diệp Phi, hiện tại càng là đã có quan hệ thân mật nhất, trong lòng ông cũng coi Diệp Phi như con rể, tự nhiên không thể để hắn mạo hiểm tính mạng.</p>
+    <p>Nhìn thấy Đường Minh Hạo có chút lùi bước, Diệp Phi không những không thất vọng, trái lại rất vui mừng. Những người có thể làm Gia chủ như bọn họ, phần lớn đều là kẻ không từ thủ đoạn, như Đường Minh Hạo có thể nhớ tình thân đã là rất hiếm có rồi. Còn việc có chí lớn hay không thì cũng là thứ yếu, ngược lại có mình ở đây, vô luận như thế nào cũng sẽ không để ông chịu thiệt.</p>
+    <p>Nếu Đường Minh Hạo đã có điều lo lắng, Diệp Phi cũng sẽ không nhắc lại đề tài này nữa, chuyển sang nói: "Ông nói xem, tên Thiếu môn chủ kia nếu là đệ tử của Thái Thượng Trưởng Lão, bối phận chắc là phải lớn hơn bá phụ, như vậy để bề dưới truyền ngôi cho bề trên, có chút không ổn đâu?"</p>
+    <p>Đường Minh Hạo cười cười nói: "Hiền chất nghĩ lầm rồi, Thái Thượng Trưởng Lão mặc dù tuổi tác lớn hơn ta cả trăm tuổi, nhưng bối phận lại ngang hàng với ta, đều là chữ lót 'Minh', đệ tử của ông ta cũng chỉ tính là sư chất của ta thôi."</p>
+    <p>Diệp Phi lúc này mới hiểu rõ. Kỳ thực chuyện như vậy cũng không kỳ quái, Đường gia vốn là một đại gia tộc, mỗi chi trong lúc đó không thể nào luôn đồng thời có đời sau, vì vậy sau khi tích lũy qua nhiều thế hệ, việc người cách biệt trăm tuổi lại cùng một bối phận là chuyện rất bình thường.</p>
+    <p>Phòng khách yến khách cách chỗ mấy người gặp gỡ cũng không xa, đang khi nói chuyện đã đến nơi. Vừa mới vào phòng khách, Diệp Phi cùng bốn cô gái liền không nhịn được nhíu mày, bởi vì trong đại sảnh này so với bên ngoài thanh tĩnh thì thực sự quá huyên náo. Có tới hơn trăm người tụ tập ở trong, kẻ bàn luận trên trời dưới biển, người xì xào bàn tán, làm cho toàn bộ phòng khách ong ong vang vọng.</p>
+    <p>Hơn nữa vì tới đều là người địa phương, những người này lúc nói chuyện đều dùng phương ngôn, càng làm cho Diệp Phi cùng Diệu Thiền, Cố Thi Thi ba người ngoại lai đau đầu mà chẳng hiểu gì.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0901.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0903.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

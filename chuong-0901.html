@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 901 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 901</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 901</small>
+    Chương 901: Đường Môn việc vui
+  </h1>
+  <div class="chapter-body">
+    <p>Cảm ơn người chủ siêu thị, Diệp Phi lái xe theo đại lộ đi thẳng đến trung tâm trấn. Nơi đó quả nhiên có một tòa trang viên quy mô không nhỏ, tuy rằng xa không sánh được tòa nhà của hắn, nhưng chứa vài trăm người cũng là chuyện dễ dàng.</p>
+    <p>Trang viên ngoài cửa lớn có một tiểu quảng trường, lúc này đã đỗ đầy xe, mà cửa lớn cũng lục tục có người được đón vào, hiển nhiên đều là tân khách đến chúc mừng.</p>
+    <p>Có điều, những chiếc xe đỗ ở đây đều có biển số bắt đầu bằng chữ "Xuyên", điều này càng làm cho Diệp Phi cảm thấy kỳ quái. Đường Môn là đại môn phái có tiếng tăm trong chốn võ lâm, Thiếu môn chủ kết hôn thì phải chọn ngày lành tháng tốt, sau đó rộng rãi phát thiệp mời, mời võ lâm nhân sĩ các nơi tới tham dự mới đúng. Thế nhưng bây giờ đến đây chúc mừng lại toàn là người địa phương, hơn nữa còn chọn thời điểm ngay sau dịp Tết như thế này, thật sự có chút quái dị.</p>
+    <p>Dẫu vậy, đây là việc nhà của người khác, Diệp Phi không tiện cũng lười quản. Hiện tại điều khiến hắn băn khoăn nhất là làm sao tiến vào trang viên này. Vừa rồi nhìn thấy những người kia đi vào đều đưa ra thiệp mời, mà trong tay hắn lại không có, muốn đi vào thì chỉ có thể nhờ người thông báo. Nhưng nếu như vậy, cái sự "bất ngờ" kia tất nhiên không còn trọn vẹn nữa.</p>
+    <p>Đương nhiên, Diệp Phi cũng có thể trực tiếp Thuấn Di đi vào, nhưng Đường Môn là một trong những môn phái đứng đầu chốn võ lâm, chắc chắn không thiếu cao thủ ẩn thế. Thuấn Di sẽ tạo ra gợn sóng chân khí, rất khó giấu diếm được những người này. Đến lúc đó vạn nhất bị coi là kẻ đến khiêu khích, hắn tuy không sợ, nhưng trò cười lại trở nên lớn chuyện.</p>
+    <p>Diệp Phi vừa nghĩ ngợi, vừa lái xe vào chỗ đỗ để quan sát tình hình, không ngờ lại có người thay hắn đưa ra quyết định.</p>
+    <p>Chỉ thấy trong đám đệ tử tiếp khách ở cửa lớn, một người trông như thủ lĩnh sau khi nhìn thấy Diệp Phi liền vội vàng ghé tai nói nhỏ với người bên cạnh vài câu, rồi nhanh chân tiến lên đón. Từ đằng xa hắn đã lớn tiếng nói: "Diệp tiền bối đại giá quang lâm, thực sự khiến Đường Môn vinh hạnh vô cùng!"</p>
+    <p>"Ngươi biết ta?" Diệp Phi nhìn chàng trai trẻ đang nhanh chóng tiến lại gần mình, cẩn thận nhớ lại một chút nhưng phát hiện mình hoàn toàn không có ấn tượng gì về hắn.</p>
+    <p>"Vãn bối ngày đó theo Môn Chủ tham gia đại hội võ lâm, từng có may mắn được chiêm ngưỡng phong thái khẩu chiến quần hùng của Diệp tiền bối." Người trẻ tuổi kia nói, sau đó ra hiệu mời Diệp Phi: "Tiền bối mau mời vào, vãn bối đã phái người đi thông báo cho hai vị tiểu thư."</p>
+    <p>Thế là, màn bất ngờ này coi như đổ bể! Diệp Phi không khỏi trợn tròn mắt, nhưng cũng không trách tội, dù sao đối phương cũng có ý tốt. Hắn bèn kỳ quái hỏi: "Tại sao lại là hai vị tiểu thư? Đường gia chủ không phải chỉ có một cô con gái là Đường Tâm sao?"</p>
+    <p>"Một người khác là Đường Ngọc tiểu thư, hiện tại Gia chủ đã nhận nàng làm con gái, cho nên nàng bây giờ là nhị tiểu thư của Đường Môn chúng ta." Người đệ tử trẻ tuổi vừa dẫn đường cho Diệp Phi vào trong vừa giải thích.</p>
+    <p>"Hóa ra là vậy." Diệp Phi thuận miệng đáp, trong lòng thầm bật cười. Đường Minh Hạo này đúng là người khôn ngoan, tuy con gái ruột của ông ta hiện tại cũng đi theo hắn, nhưng trong mắt người ngoài thì hắn cưng chiều Đường Ngọc hơn, vì thế ông ta không muốn bỏ lỡ cơ hội rút ngắn khoảng cách với hắn. Còn Đường Ngọc từ nhỏ lớn lên cùng Đường Tâm, bên cạnh cũng chỉ có Đường Minh Hạo và phu nhân, đối với đề nghị này của ông ta, đương nhiên rất dễ dàng chấp nhận.</p>
+    <p>Đang nói chuyện, Diệp Phi và người kia đi vào đại môn. Khác với sự ồn ào bên ngoài, trong trang viên tuy cũng là kiến trúc hiện đại nhưng cảnh quan lại cực kỳ thanh tĩnh, mang theo mấy phần phong vị môn phái cổ xưa.</p>
+    <p>"Diệp tiền bối, ngài muốn đi gặp các tiểu thư trước, hay là gặp Gia chủ trước?" Người đệ tử trẻ tuổi hỏi.</p>
+    <p>"Chuyện này..." Diệp Phi chần chờ một chút, trên mặt lập tức lộ ra nụ cười: "Cái này không phải do ta quyết định."</p>
+    <p>Người đệ tử trẻ tuổi hơi sững sờ, nhìn theo hướng ánh mắt của Diệp Phi, chỉ thấy bốn thiếu nữ tuyệt đẹp đang xếp hàng ngang, bước nhanh về phía này. Hắn lập tức hiểu ra chuyện gì, là kẻ tinh ý, vội nói: "Nếu không cần vãn bối dẫn đường nữa, vậy vãn bối xin cáo lui trước."</p>
+    <p>"Ừm." Diệp Phi lúc này đâu còn tâm trí để ý đến hắn, chỉ nhàn nhạt đáp một tiếng rồi nhanh chân bước tới, nghênh đón bốn vị thiếu nữ xinh đẹp.</p>
+    <p>Hai bên nhanh chóng hội ngộ, Đường Tâm là người đầu tiên nhào vào lòng Diệp Phi, ôm chặt lấy hắn, hưng phấn mà kích động nói: "Diệp Phi, đúng là anh rồi, em còn tưởng rằng bọn họ lừa em chứ!"</p>
+    <p>"Toàn bộ Đường Môn này, ai dám lừa vị tiểu thư nhà em chứ!" Diệp Phi ôm lấy thân thể mềm mại của Đường Tâm, cười trêu chọc. Đường Tâm là cô nàng đanh đá này ban đầu vốn là oan gia với hắn, nhưng sau khi ở bên nhau thì lại vô cùng ân ái.</p>
+    <p>Dù nỗi nhớ nhung mấy ngày qua khiến Đường Tâm chẳng muốn rời khỏi vòng tay Diệp Phi, nhưng nàng không quên những tỷ muội khác. Chỉ ôm Diệp Phi một lát, nàng liền buông ra, cười nói: "Đừng có thiên vị nha."</p>
+    <p>Diệp Phi cười ha ha, tiến lên lần lượt ôm lấy Đường Ngọc và Diệu Thiền đang thẹn thùng, cuối cùng cũng không bỏ qua Cố Thi Thi – người chưa từng cùng hắn thành chuyện tốt. Cô gái đáng thương này, cả nhà thảm bị diệt môn, hiện tại đã không còn nơi nương tựa, cũng may nàng gặp được Diệp Phi – chủ nhân yêu thương nàng, cùng với ba cô bạn tốt là Đường Tâm và những người khác, giờ đã thoát khỏi nỗi đau mất người thân.</p>
+    <p>Sau khi lần lượt ôm các cô gái, Diệp Phi nói: "Đường bá phụ đang ở đâu, dẫn ta đi gặp ông ấy đi." Hiện tại Đường Tâm đã là người phụ nữ của hắn, Đường Minh Hạo cũng coi như là nhạc phụ, đã đến nơi thì đương nhiên phải đi bái phỏng một chút.</p>
+    <p>"Đang tiếp khách ở bên kia, chúng ta đi gặp ông ấy thôi." Đường Tâm nói, trên mặt có vẻ hơi không vui.</p>
+    <p>Nhắc đến chuyện này, Diệp Phi đang có nghi vấn, liền hỏi: "Đúng rồi, Đường Môn các người từ lúc nào lại xuất hiện Thiếu môn chủ vậy? Là ca ca hay đệ đệ của em?"</p>
+    <p>"Hừ, em làm gì có người anh em như vậy!" Đường Tâm hừ lạnh một tiếng, như thể bị sỉ nhục rất lớn, gương mặt hiện rõ vẻ căm ghét.</p>
+    <p>"Xảy ra chuyện gì?" Diệp Phi không khỏi tò mò quay sang ba nữ tử còn lại.</p>
+    <p>Đường Ngọc và Diệu Thiền đều là kiểu con gái ít nói, dù có lòng muốn giải thích cho Diệp Phi nhưng nhất thời không biết bắt đầu từ đâu. Cuối cùng, vẫn là Cố Thi Thi lên tiếng: "Vị Thiếu môn chủ này không phải con cái của Đường bá phụ, thậm chí căn bản không phải người của Đường gia, hắn chỉ là đệ tử cuối cùng mà Thái Thượng Trưởng Lão mang về mà thôi."</p>
+    <p>"Nếu không phải người của Đường gia, làm sao có thể làm Thiếu môn chủ?" Diệp Phi cau mày nói: "Còn nữa, vị Thái Thượng Trưởng Lão đó là chuyện thế nào? Các môn phái võ lâm ta đây ít nhiều cũng hiểu biết một chút, chưa từng nghe nói môn phái nào lại có chức vị này cả!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0900.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0902.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>
