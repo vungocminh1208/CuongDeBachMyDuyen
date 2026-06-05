@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1063 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1063</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1063</small>
+    Chương 1063
+  </h1>
+  <div class="chapter-body">
+    <p>============================================================ Chương 1063: Tuyệt Vọng Diễm Bình</p>
+    <p>Chương 1061: Tuyệt vọng Diễm Bình 2017-10-20 06:38:36 Rời khỏi cái nơi ngày xưa từng cảm thấy rất ấm áp, mà lúc này lại trở nên lạnh lẽo âm u hơn cả Quỷ Vực, Cổ Diễm Bình trực tiếp lái xe chạy thẳng đến bệnh viện. Bởi vì nơi đó là hy vọng duy nhất của nàng, cũng là nơi duy nhất có thể lưu giữ chút tình thân.</p>
+    <p>Cổ Diễm Bình tin rằng, người đệ đệ từ trước đến giờ luôn nghe lời hiểu chuyện của mình, chắc chắn sẽ không vì lợi ích mà coi trọng hơn tình thân giống như những người khác. Dù sao bây giờ nàng cũng xem như đã báo thù cho hắn, tin tốt này nhất định phải thông báo cho hắn biết.</p>
+    <p>Đến bệnh viện, Cổ Diễm Bình quen đường quen lối đi tới trước cửa phòng chăm sóc đặc biệt của Cổ Tranh. Đang định gõ cửa đi vào, đột nhiên nàng nghe thấy bên trong truyền ra một tràng âm thanh kỳ quái, là tiếng rên rỉ từ miệng một người đàn ông.</p>
+    <p>Nghe thấy âm thanh này, Cổ Diễm Bình giật mình, cho rằng đệ đệ đang ở đâu không thoải mái, lập tức chẳng màng gì nữa, đẩy cửa xông vào. Nhưng khi nhìn thấy cảnh tượng bên trong, nàng không khỏi sững sờ.</p>
+    <p>Chỉ thấy Cổ Tranh đang nửa nằm trên giường bệnh, miệng không ngừng rên rỉ nho nhỏ, nhưng không phải vì khó chịu, mà là đang rất hưởng thụ. Bởi vì lúc này, có một nữ y tá đang mặc đồng phục nằm rạp dưới háng hắn, đầu không ngừng chuyển động.</p>
+    <p>Tuy vì bị thân thể y tá kia che khuất mà Cổ Diễm Bình không nhìn thấy cụ thể tình hình, nhưng chỉ từ tư thế của hai người cũng có thể đoán ra họ đang làm gì. Chẳng phải đây là chuyện mà ngày đó Diệp Phi muốn bắt nàng làm giúp sao?</p>
+    <p>"Các ngươi đang làm gì vậy?" Thấy cảnh này, Cổ Diễm Bình tức giận quát lớn, thầm nghĩ đệ đệ cũng quá hồ đồ, thân thể đã ra nông nỗi này mà còn không biết giữ mình.</p>
+    <p>Nghe tiếng Cổ Diễm Bình, hai người đang đắm chìm trong khoái cảm đồng thời phản ứng lại. Y tá kia kinh hô một tiếng, luống cuống tay chân kéo chăn che người Cổ Tranh, sau đó nhảy xuống, đỏ mặt chạy ra ngoài. Còn Cổ Tranh thì chẳng chút dao động, mỉm cười nhìn về phía Cổ Diễm Bình, cười nói: "Tỷ, tỷ đến rồi."</p>
+    <p>Dù Cổ Tranh vẫn giữ nụ cười như mọi khi, nhưng Cổ Diễm Bình lại cảm thấy nụ cười hôm nay của hắn có chút quái lạ. Hơn nữa, bị chị gái bắt gặp chuyện như vậy, đáng lẽ hắn phải cảm thấy lúng túng mới đúng, nhưng lúc này hắn lại chẳng hề có chút e ngại nào.</p>
+    <p>Tuy nhiên, lúc này không phải là lúc nghĩ đến những thứ đó. Sức khỏe của đệ đệ mới là điều Cổ Diễm Bình quan tâm nhất, nàng liền lên tiếng trách cứ: "Tiểu Tranh, sao em lại không biết giữ gìn thân thể của mình thế?"</p>
+    <p>"Hết cách rồi, nhịn lâu quá mà!" Cổ Tranh cười hắc hắc nói: "Nhịn rất khó chịu, tỷ, không bằng tỷ tới thay cô ta đi."</p>
+    <p>"Em nói cái gì? ! ! !" Cổ Diễm Bình trong nháy mắt bị lời nói của đệ đệ làm cho trợn mắt hốc mồm, quả thực không thể tin vào tai mình.</p>
+    <p>"Em nói là, vừa rồi cô y tá kia mới chỉ làm được một nửa, khó chịu quá, không bằng tỷ thay cô ta làm giúp em đi." Cổ Tranh lặp lại lời vừa nói, nhìn vào mắt Cổ Diễm Bình tràn đầy dục vọng. Trước kia sở dĩ câu dẫn cô y tá kia là vì thực sự không tìm được ai khác, chứ cô y tá chỉ được coi là thanh tú, trên mặt còn đầy mụn trứng cá kia sao có thể lọt vào mắt xanh của một kẻ đã quen chơi với minh tinh như hắn. Mà Cổ Diễm Bình, lại xinh đẹp và hấp dẫn hơn những minh tinh kia không biết bao nhiêu lần.</p>
+    <p>Cổ Diễm Bình cảm thấy mình sắp phát điên rồi, đây có phải là đứa em trai luôn nghe lời hiểu chuyện của nàng từ nhỏ không? Nàng không nhịn được quát lên: "Tiểu Tranh, em có phải điên rồi không, sao có thể nói ra những lời này? Chị là chị gái của em!"</p>
+    <p>"Chính vì tỷ là chị ruột của em, nên mới càng kích thích chứ." Cổ Tranh cười dâm tà nói.</p>
+    <p>"Sao em lại trở nên như vậy?" Cổ Diễm Bình ôm hy vọng cuối cùng hỏi: "Có phải chuyện lần này đả kích em quá lớn không?"</p>
+    <p>"Em vẫn luôn như vậy mà, chưa từng thay đổi. Không gạt tỷ đâu, thực ra em đã sớm muốn làm tỷ rồi, chỉ tiếc trước đây mạch máu kinh tế của cả nhà đều nằm trong tay tỷ, em buộc phải giả vờ ngoan ngoãn trước mặt tỷ mà thôi." Cổ Tranh nói thẳng không kiêng kỵ. Quyết định trong nhà hắn đã biết, vì thế Cổ Diễm Bình đối với hắn mà nói không còn sức uy hiếp như trước nữa.</p>
+    <p>"Ngươi. . ." Mấy câu của Cổ Tranh làm Cổ Diễm Bình tức đến mức phổi muốn nổ tung, nhất thời không nói nên lời, chỉ biết thở hồng hộc.</p>
+    <p>Nhìn bộ ngực cao vút đang phập phồng liên tục vì thở dốc của Cổ Diễm Bình, dâm quang trong mắt Cổ Tranh càng thêm mãnh liệt, hắn tiếp tục nói: "Đáng tiếc thật, tỷ lại đem lần đầu tiên quý giá dâng cho thằng khốn Diệp Phi kia, thật là không đáng. Sớm biết vậy cho em thì tốt, nhưng tỷ yên tâm, em sẽ không ghét bỏ tỷ đâu."</p>
+    <p>Trái tim Cổ Diễm Bình dần nguội lạnh, không còn tức giận nữa, chỉ còn lại nỗi bi ai không cách nào diễn tả. Trước đây mình thật sự mù quáng, lại luôn coi Cổ Tranh là đứa trẻ ngoan. Những người khác trong nhà chỉ là vô tình, mà Cổ Tranh thì không chỉ vô tình, lại còn vô liêm sỉ đến thế, chẳng trách Diệp Phi lại ra tay giáo huấn hắn.</p>
+    <p>Còn mình thì sao? Vì muốn xả giận cho một kẻ như thế mà không tiếc lợi dụng sự tin tưởng của Lâm Linh để hãm hại Diệp Phi, lại còn đánh mất sự trong trắng của chính mình. Hiện tại không chỉ bị Cổ gia vứt bỏ, chỉ sợ Lâm Linh - cô gái đơn thuần kia cũng đang hận mình tận xương tủy.</p>
+    <p>Nghĩ đến những điều này, Cổ Diễm Bình không khỏi mất hết hy vọng, xoay người bước những bước chân nặng nề đi ra ngoài cửa.</p>
+    <p>"Hiện tại ông nội đã phong tỏa mọi tài khoản của tỷ, cổ phần công ty cũng bị tước đoạt, tỷ đã không còn gì cả. Ở lại bên cạnh em, sau này tỷ vẫn là tiểu thư không lo cơm áo, nếu không thì cứ chờ đi ăn xin đi!" Thấy Cổ Diễm Bình muốn đi, Cổ Tranh vội vàng nói. Hắn rất tự tin với lời đe dọa này, bởi trong mắt hắn, phụ nữ đều là những sinh vật hám hư vinh, chỉ cần vung tiền ra là sẽ ngoan ngoãn phục tùng. Huống chi Cổ Diễm Bình hiện tại chẳng có gì, cuộc sống sau này cũng thành vấn đề, chỉ cần mình cho chút ngon ngọt, nàng sẽ ngoan ngoãn làm đồ chơi của hắn.</p>
+    <p>Không ngờ Cổ Diễm Bình như thể không nghe thấy, vẫn tiếp tục đi về phía cửa, rất nhanh đã ra đến nơi.</p>
+    <p>Thấy chiêu dùng tiền không có tác dụng, Cổ Tranh không khỏi giận dữ, quát lớn: "Người đâu, bắt nàng lại cho ta!"</p>
+    <p>Theo tiếng gọi của Cổ Tranh, cửa phòng bệnh bị người đẩy ra từ bên ngoài. Thế nhưng người bước vào không phải là đám vệ sĩ trong nhà mà hắn tưởng tượng, mà là một người phụ nữ xinh đẹp trưởng thành, nhan sắc không hề thua kém Cổ Diễm Bình.</p>
+    <p>Người phụ nữ xinh đẹp trưởng thành vừa vào cửa đã đỡ lấy Cổ Diễm Bình đang đi không vững, hỏi: "Bình tỷ, chị không sao chứ? Có cần em giúp chị giết chết thứ vô sỉ này không?" Nói đoạn, nàng liếc ánh mắt lạnh băng về phía Cổ Tranh đang sững sờ.</p>
+    <p>Cổ Diễm Bình tuy đã bị những người được gọi là người thân này làm cho tổn thương sâu sắc, nhưng nàng dù sao cũng là một người phụ nữ rất trọng tình cảm. Nghe vậy, nàng nhìn Nhạc Tâm Như rồi lắc đầu: "Tâm Như, chúng ta đi thôi, chị không muốn ở lại nơi này thêm một khắc nào nữa."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1062.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1064.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

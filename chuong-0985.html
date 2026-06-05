@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 985 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 985</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 985</small>
+    Chương 985
+  </h1>
+  <div class="chapter-body">
+    <p>Nhìn theo chiếc xe của Chu Đình Đình lái đi, Tề Thế Long chỉ biết thở dài ngao ngán, nhưng cũng đành chịu. Ai bảo xe của hắn chỉ có hai chỗ ngồi chứ, sớm biết thế đã lái chiếc xe lớn hơn đến rồi. Như vậy không chỉ có thể lấy lòng Chu Đình Đình, mà còn có thể nhân cơ hội nói bóng gió thăm dò tiểu tử kia. Hắn mới là thanh mai trúc mã của Chu Đình Đình, cô ấy bắt đầu làm hàng xóm với hắn từ năm bao nhiêu tuổi, muốn nói thanh mai trúc mã thì phải là hắn mới đúng.</p>
+    <p>Bất quá bây giờ thì không còn cơ hội, cũng chẳng lẽ bắt Tề Thế Long vứt xe của mình đi để lên xe Chu Đình Đình sao?</p>
+    <p>Một nhóm hai chiếc xe cùng nhau rời khỏi địa điểm quan trọng nhất này, do Tề Thế Long dẫn đường, đi về phía nơi tổ chức tụ hội.</p>
+    <p>Bởi vì đều là người trẻ tuổi, lần tụ hội này không hề sắp xếp ở nơi nào chính thức, mà là bao trọn một hộp đêm. Khi Diệp Phi và ba người tới nơi, bãi đỗ xe của hộp đêm này đã đậu đầy những chiếc xe đắt tiền. Diệp Phi trong lòng lại một trận cảm thán: Những người đến tham gia tụ hội hôm nay đều chỉ là đám thiếu niên, bản thân không hề có năng lực kiếm tiền, mà trưởng bối của họ lại là quan chức. Tùy tiện một chiếc xe ở đây thôi cũng có thể bằng vài năm tiền lương của người thường. Cho nên mới nói, quan trường Trung Quốc đã thối nát từ tận gốc rễ!</p>
+    <p>Chiếc xe của Tề Thế Long hiển nhiên rất bắt mắt, vừa mới tiến vào bãi đỗ xe đã được không ít người chờ sẵn ở đây nhận ra. Nhất thời những người này xúm lại, bao gồm cả chủ hộp đêm cùng đám nam nữ thiếu niên.</p>
+    <p>Những người này vây quanh Tề Thế Long, miệng kêu "Tề thiếu", "Tề đại ca" không ngớt. Thậm chí có người quen thân với Tề Thế Long còn hỏi: "Tề thiếu, sao Chu tỷ không đi cùng với anh?"</p>
+    <p>"Đang ở chiếc xe phía sau." Tề Thế Long rất bực bội trả lời một câu.</p>
+    <p>Thân phận của Chu Đình Đình không hề kém cạnh Tề Thế Long, những người ở đây sau khi nghe Tề Thế Long trả lời liền quay đầu nhìn về phía sau. Tuy chiếc xe của Chu Đình Đình được xem là ít tiền nhất ở nơi này, nhưng lúc này không một ai dám có chút xem thường, trái lại trong ánh mắt đều đầy vẻ cung kính.</p>
+    <p>Mà khi họ nhìn thấy Diệp Phi xuống xe cùng Chu Đình Đình, mỗi người đều sững sờ tại chỗ, thậm chí có người không nhịn được kinh hô thành tiếng: "Diệp Phi!!!"</p>
+    <p>Đối với việc có người nhận ra mình, Diệp Phi cũng không lấy làm lạ, chỉ khẽ mỉm cười với họ. Ngược lại, Chu Đình Đình lại tỏ ra rất tự hào. Diệp Phi là bạn tốt thời thơ ấu, là đệ đệ của cô, vừa xuất hiện đã khiến mọi người kinh ngạc như vậy khiến trong lòng cô rất đắc ý.</p>
+    <p>Tề Thế Long lúc này trên mặt nóng ran. Trước đó hắn còn lấy cái danh "Bắc Tề Nam Diệp" để hù dọa người ta, kết quả người trong cuộc chính là Diệp Phi. Điều này khiến hắn cảm thấy mình nãy giờ chẳng khác nào một thằng hề.</p>
+    <p>Tuy nhiên, Tề Thế Long cũng chỉ hơi đỏ mặt, muốn nói sợ hãi thì chưa đến mức. Trong mắt hắn, Diệp Phi dù có lợi hại đến đâu cũng không dám gây sự với nhà hắn, nhiều nhất cũng chỉ là trêu chọc đám nhị lưu gia tộc như Dịch gia, hoặc giao hảo với những gia tộc đã xuống dốc như Tống gia mà thôi.</p>
+    <p>"Chu Đình Đình Chu tiểu thư, Tề Thế Long Tề đại thiếu, Diệp Phi Diệp bang chủ đến!" Ở cửa vào, người chủ trì phụ trách khuấy động bầu không khí lớn tiếng thông báo. Điều này khiến Tề Thế Long đắc ý không thôi, bởi vì người khác đặt tên hắn lên trước Diệp Phi, mà hoàn toàn không nghĩ tới việc hắn là đại thiếu, còn Diệp Phi được gọi là Bang Chủ. Việc người ta xếp hắn lên trước hoàn toàn là vì nể mặt gia gia hắn mà thôi.</p>
+    <p>Tuy nhiên, xã hội này chính là như vậy, là thời đại của việc dựa cha dựa gia thế. Nếu không nhờ có một người gia gia lợi hại, Tề Thế Long như thế này, dù không thể nói là kẻ ngu ngốc, nhưng cũng chỉ là người bình thường, sao có thể đứng ngang hàng với Diệp Phi?</p>
+    <p>Đối với loại xếp hạng nhàm chán này, Diệp Phi chẳng buồn bận tâm. Tiến vào phòng khách, hắn đưa mắt nhìn quanh, phát hiện nơi này quả nhiên đúng như hắn đoán, toàn là những thiếu niên. Lớn nhất cũng chỉ tầm tuổi Tề Thế Long, chừng hai mươi tuổi, nhỏ nhất mười lăm tuổi cũng có, nhưng bọn họ không hề đơn thuần như những đứa trẻ mười lăm tuổi thông thường, vây quanh Tề Thế Long nịnh bợ không thôi.</p>
+    <p>Rất nhanh, Diệp Phi liền thấy hai bóng dáng quen thuộc trong góc, đó là một nam một nữ, nam thì khôi ngô, nữ thì xinh đẹp, chính là hai huynh muội Tống Nhân Tông và Tống Từ.</p>
+    <p>Chỉ nhìn chỗ ngồi là có thể thấy rõ sự mạnh yếu của các gia tộc. Nếu là bạn bè tụ hội bình thường, chỉ riêng gương mặt xinh đẹp của Tống Từ – người duy nhất trong hội có thể so bì với Chu Đình Đình – cũng đủ để cô trở thành tiêu điểm. Thế nhưng ở đây, nhan sắc không dễ dùng đến. Những người trẻ tuổi này từ nhỏ đã được giáo dục, trong lòng từ lâu đã đặt quyền thế lên trên hết. Tống gia hiện tại đang lụn bại, con em Tống gia đương nhiên không được coi trọng.</p>
+    <p>Hai huynh muội trước đó cũng nghe người chủ trì báo tên Diệp Phi, cho nên khi Diệp Phi nhìn thấy bọn họ, Tống Từ đang hào hứng vẫy tay với hắn. Nếu không phải Tống Nhân Tông lôi lại, e là cô đã sớm xông tới.</p>
+    <p>"Đình Đình, bên kia ta có hai người bạn, đi qua một lát nhé." Diệp Phi nói với Chu Đình Đình rồi đi về phía hai huynh muội Tống gia.</p>
+    <p>Đều là người trong giới, Chu Đình Đình đương nhiên biết Tống Từ, cũng biết Tống Từ là đồ đệ của Diệp Phi, tất nhiên sẽ không phản đối, thậm chí còn muốn đi cùng. Chỉ là lúc này cô đang bị một đám nam nữ thiếu niên nhiệt tình vây quanh, căn bản không thoát thân được, đành phải ngậm ngùi ở lại.</p>
+    <p>"Sư phụ, người quả nhiên cũng tới!" Chờ Diệp Phi đến gần, Tống Từ vui vẻ nói, đôi mắt đẹp tràn đầy nhu tình. Dù là sư đồ, cô đã âm thầm thề sẽ làm đồ đệ của Diệp Phi cả đời, nhưng tình cảm này vốn chẳng phải thứ mà con người có thể khống chế.</p>
+    <p>So với vẻ hưng phấn của Tống Từ, Tống Nhân Tông lại tỏ ra vô cùng cung kính với Diệp Phi. Khi hắn tới gần liền gọi một tiếng "Diệp tiên sinh". Tuy tuổi tác xấp xỉ, thậm chí Tống Nhân Tông còn lớn hơn một chút, nhưng Diệp Phi là sư phụ của muội muội hắn, hơn nữa dường như còn có mối quan hệ không rõ ràng với cô của hắn, điều này khiến người được giáo dục truyền thống như hắn không cách nào tùy tiện như muội muội được.</p>
+    <p>"Quả nhiên?" Diệp Phi ngạc nhiên hỏi: "Ngươi biết ta sẽ tới?"</p>
+    <p>"Anh ấy nói, người đã đến Kinh Thành, dựa vào mối quan hệ giữa người và Chu gia thì nên đến Chu gia bái phỏng, mà hôm nay lại đúng là ngày tụ hội, vì vậy rất có khả năng sẽ cùng Chu Đình Đình đến đây." Tống Từ giải thích, cuối cùng còn bồi thêm một câu: "Nếu không phải như vậy, ta đã sớm đi rồi!"</p>
+    <p>Diệp Phi nghe xong, không khỏi thầm gật đầu. Xem ra Tống Nhân Tông quả nhiên có tài, phân tích này nhìn thì đơn giản, nhưng nếu không có năng lực trinh sát nhạy bén cùng sự tỉ mỉ, thì rất khó mà làm được.</p>
+    <p>Trong lòng thầm khen Tống Nhân Tông một hồi, Diệp Phi lại hỏi: "Tụ hội này không phải do trưởng bối các người quyết định sao, có thể tùy tiện rời đi à?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0984.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0986.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

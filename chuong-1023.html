@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1023 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1023</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1023</small>
+    Chương 1023: Tình Chọn Nữ Thợ Săn 4
+  </h1>
+  <div class="chapter-body">
+    <p>"Không được!" Nhạc Tâm Như cuống quít hét lớn, hành động này của Diệp Phi ý vị như thế nào, nàng sao lại không hiểu. "Cái này cũng không cần, cái kia cũng không cần, ngươi rốt cuộc muốn cái gì?" Diệp Phi suy nghĩ một chút: "Như vậy đi, ta cho ngươi cơ hội, ba chọn một." "Ba chọn một là cái gì?" Nhạc Tâm Như hỏi vội, hiện tại thân thể của nàng đã bị Diệp Phi chơi khắp cả, đến cả lồn cũng bị hắn hôn, thứ duy nhất còn có thể giữ gìn, chỉ còn tấm thân xử nữ. Diệp Phi cười nói: "Một, nói cho ta biết những điều ta muốn biết, ta lập tức thả ngươi đi. Hai, để ta địt lồn của ngươi, sau khi địt xong ta cũng sẽ thả ngươi đi, hơn nữa sẽ không ép hỏi ngươi nữa. Ba, giúp ta liếm dương vật, nếu trong vòng nửa canh giờ có thể làm cho ta bắn ra, ta vẫn sẽ thả ngươi. Còn nếu như không thể, điều thứ ba hết hiệu lực, phải chọn một trong hai cái còn lại, thế nào?" "Ngươi, không biết xấu hổ!" Nhạc Tâm Như nghe Diệp Phi nói xong, không nhịn được mắng, ba cái này, nàng cái nào cũng không muốn chọn. Có điều, Nhạc Tâm Như trong lòng cũng rõ ràng, nếu không chọn, Diệp Phi chắc chắn sẽ không buông tha cho mình. Cân nhắc hồi lâu, nàng rốt cục mở miệng: "Ta chọn điều thứ ba!" Tuy Nhạc Tâm Như chưa bao giờ làm chuyện như vậy, nhưng nàng từng nghe nói, nam nhân rất khó kiên trì lâu, mình ra sức một chút, chắc là có thể trong vòng nửa canh giờ khiến hắn bắn ra. Có điều, đây chỉ là hạ sách, mục đích quan trọng nhất khiến nàng lựa chọn điều này là muốn tập kích Diệp Phi, dự định nhân cơ hội cắn đứt cây đồ tồi của hắn. Như vậy dù hắn có lập tức giết mình, cũng còn hơn là chịu sự sỉ nhục này. "Ngươi không phải muốn thừa cơ hội này cắn đứt dương vật của ta chứ?" Diệp Phi cười dâm đãng, nói thẳng ra tâm tư của Nhạc Tâm Như. Nhạc Tâm Như cũng không phủ nhận, hừ một tiếng: "Có gì mà không dám!" "Có gì không dám đâu, bất quá ta phải nhắc nhở ngươi một câu, dương vật của ta là thứ mạnh mẽ nhất trên đời, ngươi không những không cắn đứt được, mà nói không chừng còn ảnh hưởng đến sự khoái lạc, khiến ta bắn càng chậm hơn đấy." Diệp Phi cười nói, đồng thời lần nữa tiến tới sát mặt mỹ nhân, đưa dương vật tới. Lần này, Nhạc Tâm Như rất thuận theo mà mở miệng nhỏ ra, chờ đợi dương vật tiến vào. Tuy nhiên, Diệp Phi lại không lập tức đưa dương vật vào, mà chỉ dùng quy đầu ma sát trên đôi môi anh đào của nàng, cười nói: "Xem ra ngươi chắc là không biết, để ta dạy cho ngươi. Chớ vội ngậm, trước tiên hãy le lưỡi ra liếm một cái, như vậy ta sẽ càng thoải mái, bắn càng nhanh hơn." Giúp tên nam nhân ghê tởm này liếm dương vật, Nhạc Tâm Như tự nhiên không muốn, nhưng vì muốn khiến hắn đưa dương vật vào miệng để mình cắn, cuối cùng nàng vẫn đưa đầu lưỡi thơm tho ra, liếm lên quy đầu to lớn của Diệp Phi một hồi. "Tê, thật thoải mái, đến, liếm nhiều hơn chút nữa, dùng đầu lưỡi đi dạo vòng quanh quy đầu đi." Diệp Phi tiếp tục dạy. Sau lần liếm đầu tiên, trong lòng Nhạc Tâm Như không còn cảm giác mâu thuẫn như ban đầu nữa. Theo lời Diệp Phi, nàng dùng đầu lưỡi thơm tho không ngừng chuyển vòng liếm láp trên quy đầu hắn, cảm giác khác thường trong lòng càng ngày càng mãnh liệt. Tuy cảm thấy Diệp Phi rất đáng ghét, nhưng Nhạc Tâm Như từng điều tra về hắn nên hiểu rõ, ngoại trừ háo sắc ra, tên này tuyệt đối là người đàn ông ưu tú nhất trên đời, đủ khiến bất kỳ nữ nhân nào cũng phải động tâm. Đặc biệt là sau khi hai người giúp đối phương làm chuyện thân mật nhất, vừa liếm dương vật hắn, trong lòng nàng đã không nhịn được nghĩ rằng, nếu như lúc này mình không phải bị hắn cưỡng bách, có lẽ sẽ cảm thấy rất hạnh phúc chăng? Chờ ngụm nước của mỹ nhân làm ướt đẫm quy đầu, Diệp Phi rốt cục đè thân thể xuống, nhẹ nhàng đẩy dương vật vào trong miệng nhỏ khiêu gợi của nàng. Miệng nhỏ bị nhồi đầy, Nhạc Tâm Như biết cơ hội của mình đã đến, nhưng không hiểu sao, lúc này trong lòng nàng lại đột nhiên dâng lên một chút không đành lòng. Tuy nhiên, vì bảo vệ thân thanh bạch của mình, cũng để trả thù tên khốn đã nhục nhã mình, Nhạc Tâm Như cuối cùng vẫn tàn nhẫn hạ quyết tâm, dùng hai hàng ngọc xỉ cắn mạnh vào quy đầu cứng rắn mà lại mềm mại kia của Diệp Phi. Nhạc Tâm Như vốn tưởng rằng sẽ nghe được tiếng kêu thảm thiết của Diệp Phi, không ngờ sự thật lại không giống như nàng nghĩ. Sau khi bị cắn, Diệp Phi chỉ cười khẽ một tiếng: "Cú này thật là tốn sức, nhưng không sao, ngươi thích thì cứ tiếp tục." Nghe Diệp Phi nói vậy, Nhạc Tâm Như trong lòng không khỏi mắng hắn biến thái. Không chỉ thực lực biến thái, mà đến cả dương vật cũng mạnh đến biến thái. Nàng vừa dùng hết sức bình sinh, với tu vi cấp Tiên Thiên của mình, ngay cả một khúc gỗ cũng có thể cắn làm hai đoạn, vậy mà cắn lên dương vật hắn lại chẳng gây ra chút tổn thương nào. Đến đây, Nhạc Tâm Như rốt cục thành thật, không nghĩ đến chuyện trả thù Diệp Phi nữa, chỉ ra sức mút vào dương vật hắn, hy vọng có thể khiến hắn bắn ra trong vòng nửa canh giờ để bảo vệ tấm thân xử nữ. Khẩu giao là chuyện Nhạc Tâm Như chưa từng làm, nhưng dường như là thiên tính, nàng rất nhanh đã nắm bắt được vài kỹ xảo, miệng nhỏ chăm chú ngậm lấy quy đầu của Diệp Phi, dùng sức mút mạnh, đồng thời không ngừng dùng lưỡi liếm láp. Mà Diệp Phi cũng rất phối hợp, không ngừng khích lệ: "Không sai, làm tốt lắm, làm dương vật ta rất thoải mái, cố gắng thêm chút nữa, ta sắp bắn rồi!" Lời nói tuy là vậy, nhưng cho đến khi nửa canh giờ trôi qua, Diệp Phi vẫn không có dấu hiệu gì là sẽ bắn. Thất vọng cùng cực, Nhạc Tâm Như nhổ dương vật của Diệp Phi ra, miệng nhỏ đã hơi tê dại, nàng thào thào không rõ chữ hỏi: "Sao ngươi lại bền bỉ như vậy?" "Còn không phải tại ngươi sao? Nếu không phải ngươi cắn một cú như vậy làm ảnh hưởng đến sự khoái lạc, nói không chừng đã bắn từ sớm rồi." Diệp Phi cười nói. Nhạc Tâm Như trong lòng khổ sở, xem ra đúng là mình tự bê đá đập chân mình. Nhưng rất nhanh nàng lại phản ứng kịp, tên khốn kiếp này nhất định là cố ý nói như vậy, tin rằng dù mình không cắn, hắn cũng sẽ không bắn, nói vậy chỉ là để khiến mình phiền muộn thôi. Đương nhiên, việc tự bê đá đập chân mình là điều chắc chắn. Vốn tưởng rằng như vậy là có thể bảo vệ tấm thân xử nữ, ai ngờ lại cam tâm tình nguyện giúp hắn khẩu giao lâu như vậy, tin rằng hắn cũng sẽ không vì thế mà buông tha mình. Quả nhiên, sau khi rút dương vật ra khỏi miệng nhỏ của Nhạc Tâm Như, Diệp Phi lại tiến xuống phía dưới, nâng đôi chân ngọc thon dài của nàng đặt lên vai mình, dùng dương vật còn dính đầy nước miếng của nàng ma sát lên vùng lồn mềm mại đang chảy dâm thủy, nói rằng: "Hiện tại chỉ còn lại hai lựa chọn, ngươi muốn để ta cắm vào, hay là nói ra tất cả?" "Ta sẽ không bán đứng bằng hữu!" Nhạc Tâm Như không chút suy nghĩ đáp lại. Tất nhiên là vì nàng thật sự không muốn bán đứng bằng hữu, nhưng sâu thẳm trong thâm tâm, nàng cũng vô thức hy vọng Diệp Phi có thể địt mình. Bởi vì chỉ mới bị dương vật to lớn của hắn ma sát thôi đã làm nàng cảm thấy sướng hơn cả lúc được liếm, nếu như thực sự làm, chẳng phải sẽ càng thoải mái hơn sao?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1022.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1024.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

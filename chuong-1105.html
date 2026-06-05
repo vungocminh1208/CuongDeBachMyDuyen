@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1105 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1105</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1105</small>
+    Chương 1103: Ám lưu phun trào 2
+  </h1>
+  <div class="chapter-body">
+    <p>"Chuyện này e rằng ngoài Diệp Phi và những người bên cạnh anh ta ra, không ai biết được." Chu Thế Xương nói. Ông ta không phải không muốn giám sát hành tung của Diệp Phi, chỉ là cao thủ bên cạnh Diệp Phi thực sự quá nhiều, thám tử kiểu gì cũng không dám xuất hiện ở những nơi Diệp Phi thường xuyên lui tới.</p>
+    <p>Thú thật, đối với thế cục hiện nay, Lý Minh Hoa rất không hài lòng. Dự định ban đầu của bà là lợi dụng Tề gia để bêu rếu, tuyên truyền về Diệp Phi, khiến con gái nhìn rõ bộ mặt thật của anh, sau đó Diệp Phi vì tức giận mà tiêu diệt Tề gia – kẻ đã dám đánh chủ ý bẩn thỉu lên con gái bà – như vậy sẽ là nhất cử lưỡng tiện.</p>
+    <p>Nhưng hiện tại, Tề gia đã ra tay, động tĩnh cũng không nhỏ, thế nhưng Diệp Phi lại chậm chạp không có phản ứng. Điều này không chỉ nằm ngoài dự liệu của bà mà còn để Tề gia nhân cơ hội lớn mạnh, chiếm được món hời không công.</p>
+    <p>"Ba, nếu không, chúng ta mở quân giới để kiềm chế, ép Tề gia phải đụng đến cả Liễu Quân Di?" Lý Minh Hoa không cam lòng đề nghị. Làm như vậy, bà không tin Diệp Phi còn có thể nhịn được mà không ra tay.</p>
+    <p>Chu Thế Xương lắc đầu: "Không được. Hiện tại Liễu Phong Nghi vừa bị tạm thời cách chức, quan trường Vọng Hải chắc chắn sẽ có một đợt động đất. Những quan viên này hiện nay chẳng có mấy kẻ tốt lành, bình thường còn có thể giả vờ giả vịt, đối mặt với nhiệm kỳ mới, vì lợi ích cá nhân, ai còn nhớ đến sự sống chết của bách tính? Hiện tại có quân khu trấn giữ nên chưa xảy ra đại loạn, nhưng nếu ngay cả quân khu cũng rối loạn, đến lúc đó e rằng ngay cả ta cũng khó mà thu thập."</p>
+    <p>Lý Minh Hoa đương nhiên biết, ngoài mối thù khắc cốt ghi tâm không thể xóa bỏ, dẫn đến những việc làm không lành mạnh, thì Chu Thế Xương vẫn là một quan tốt vì dân vì nước. Tuy nhiên, bà vẫn chưa từ bỏ ý định: "Liễu Quân Di chỉ là Tổng Chỉ Huy đặc chiến đội, động vào con bé chắc sẽ không gây ảnh hưởng gì đến quân khu đâu nhỉ?"</p>
+    <p>"Nếu là mấy tháng trước thì đương nhiên sẽ không. Nhưng hiện tại nó đã là Trung Tướng, quân hàm ngang bằng với Tư lệnh quân khu, thậm chí thực quyền còn lớn hơn một chút. Nếu đổi thành người khác, chắc chắn không thể an phận như nó, thế nào cũng muốn tranh giành quyền kiểm soát quân khu địa phương, trừ phi phái người của chúng ta qua đó." Chu Thế Xương khẽ thở dài: "Nhưng ta không muốn làm vậy, dù sao các nàng cũng là đứa trẻ ta nhìn lớn lên mà!"</p>
+    <p>Lý Minh Hoa cũng thở nhẹ một tiếng. Bà không phải kẻ vô tình, trong lòng rất rõ sự mâu thuẫn của Chu Thế Xương: vừa muốn báo thù lại không đành lòng tổn thương quá nặng đến Liễu Diệc Như và những người khác, vì vậy bà cũng không nói thêm gì nữa.</p>
+    <p>Hơn nữa suy nghĩ kỹ lại, mục đích của bà hiện tại cũng coi như đã đạt được. Chuyện giữa Diệp Phi và Liễu Diệc Như đã là điều ai ai cũng biết, tin rằng con gái bà cũng sẽ vì thế mà tuyệt vọng với Diệp Phi. Còn về Tề gia, chắc chắn chúng không thể đắc ý được bao lâu. Ngay cả khi Diệp Phi không ra tay, những người phụ nữ bên cạnh anh cũng chẳng phải hạng dễ bắt nạt, chỉ cần vài người ra tay là đủ để nhổ tận gốc Tề gia.</p>
+    <p>Không thể không nói, tâm tư của Lý Minh Hoa vô cùng kín đáo, kế sách cũng cực kỳ xuất chúng, xứng đáng với danh hiệu "Nữ Gia Cát". Thế nhưng cả đời này, bà chưa từng thực sự yêu một người đàn ông, không thể đặt mình vào lập trường của Liễu Diệc Như và những người khác để suy xét vấn đề, vì vậy lần này bà nhất định sẽ lại tính sai một lần nữa.</p>
+    <p>...</p>
+    <p>Vọng Hải, trang viên của Diệp Phi.</p>
+    <p>Trong đại sảnh tầng một tòa nhà trung tâm, bao quanh chiếc bàn hội nghị dài, gần một trăm cô gái đang ngồi vây quanh. Những người có quan hệ với Diệp Phi, hoặc những người cả hai bên đều có cảm tình nhưng chưa kịp tiến tới, hầu như đều có mặt đông đủ. Vì quá đông người nên mọi người quyết định dùng đại sảnh này làm phòng họp.</p>
+    <p>Gần một trăm người phụ nữ, bất kỳ ai trong số đó cũng đủ sức làm kinh động một phương, được vạn người săn đón, thế nhưng ở đây lại trông rất bình thường. Chỉ có mười mấy vị ngồi ở phía trên cùng mới được coi là đại mỹ nhân, đặc biệt là người ngồi ở vị trí chủ tọa kia, vẻ đẹp của nàng khiến chúng nữ dù là nữ giới nhìn vào cũng không khỏi mê mẩn.</p>
+    <p>Những người phụ nữ coi Diệp Phi là trụ cột cuộc sống này tụ họp ở đây. Ban đầu chỉ vì quá lo lắng cho sự an nguy của Diệp Phi, muốn biết ngay lập tức nếu có biến động, sau đó khi Liễu Diệc Như và Diệp Vân Khinh cảm ứng được anh vẫn không có gì nguy hiểm đến tính mạng, mọi người mới yên lòng. Hiện tại, họ đang cùng nhau bàn bạc đối sách cho cục diện hiện nay.</p>
+    <p>"Đã rõ ràng, lần này kẻ chủ mưu ra tay với Vọng Hải chính là Tề gia, sự kiện bị phơi bày trước đó cũng là do bọn chúng làm. Hừ, dám dùng thủ đoạn hèn hạ như chuyện nam nữ để đối phó với Phong Nghi đại tỷ, lại còn là chuyện vu khống, đúng là chó cùng rứt giậu." Tống Huyên là người lên tiếng đầu tiên, vẻ mặt đầy bất bình. Cô là người của Tống gia ở Kinh Thành, dù Tống gia đã xuống dốc nhưng tin tức vẫn rất nhanh nhạy.</p>
+    <p>So với sự phẫn nộ của Tống Huyên, Liễu Phong Nghi – người trong cuộc – lại tỏ ra rất cởi mở, nàng cười quyến rũ nói: "Như vậy cũng tốt, vừa vặn rảnh rỗi nhẹ nhàng. Chờ Tiểu Mãn trở về, ta có thể an tâm làm một người phụ nữ nhỏ bên cạnh anh ấy." Vì ở đây đều là chị em thân thiết, nên nàng cũng không cần giấu giếm mối tình nghiệt ngã giữa dì và cháu ngoại trai này.</p>
+    <p>"Thật tiện cho Mộ đại tỷ nha, em cũng muốn lui ra, đáng tiếc Chu bá bá không cho." Liễu Quân Di nói tiếp: "Xem ra em chỉ có thể ngoan ngoãn ở lại trong quân doanh thôi."</p>
+    <p>"Như vậy cũng tốt, những kẻ kia vẫn đang nhìn chằm chằm vào công ty của chúng ta. Tuy tạm thời chưa dám động vào Thu Phong tập đoàn, nhưng có một vị tướng quân uy hiếp thì vẫn an toàn hơn." Diệp Ngưng Sương phụ họa. Vốn dĩ Thu Phong tập đoàn do Lý Tuyết Nhi chưởng quản, lời này cũng có thể do cô nói, nhưng vì tôn trọng Diệp Ngưng Sương – vị cô cô này – nên cô đã nhường cơ hội cho Diệp Ngưng Sương.</p>
+    <p>Người cuối cùng lên tiếng là Diệp Tuyền, nàng khẽ thở dài: "Nói thảm nhất phải kể đến Lăng Vân Hội. Rõ ràng đã đóng góp lớn như vậy cho sự yên ổn ở vùng Đông Nam, hiện tại lại bị gán tội danh tổ chức khủng bố một cách khó hiểu. Nếu không muốn mang tiếng tạo phản, chỉ có thể tạm thời rút lui ra hải ngoại."</p>
+    <p>Liễu Phong Nghi đại diện cho quan trường, Liễu Quân Di đại diện cho quân đội, Diệp Ngưng Sương đại diện cho giới kinh doanh, Diệp Tuyền đại diện cho bang hội. Bốn nữ nhìn như chỉ là đang tán gẫu, nhưng thực tế đã phân tích xong tình thế trước mắt cùng những quyết định đại khái.</p>
+    <p>Chờ bốn người nói xong, ánh mắt tất cả mọi người đều đổ dồn về phía Liễu Diệc Như đang ngồi ở vị trí chủ tọa, chờ nàng đưa ra quyết định cuối cùng.</p>
+    <p>Hiện tại Diệp Phi không có ở đây, họ phải chọn ra một người làm chủ, và người đó không thể là ai khác ngoài Liễu Diệc Như. Về công, nàng là mẹ ruột của Diệp Phi, coi như là mẹ chồng của mọi người; về tư, nàng là người Diệp Phi yêu nhất, xứng danh Hậu Cung chi chủ.</p>
+    <p>Bởi vì những người phụ nữ này dành tình cảm sâu nặng cho chính con người Diệp Phi chứ không phải vì tài sản hay địa vị của anh, nên hậu cung này vô cùng hài hòa, căn bản không phải kiểu cung đấu tranh giành như các phi tần của hoàng đế ngày xưa.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1104.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1106.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

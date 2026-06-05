@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1130 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1130</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1130</small>
+    Chương 1130: Hắc Phong Trại Sơn Tặc
+  </h1>
+  <div class="chapter-body">
+    <p>Xem ra cái nơi Chân Hư Giới này rộng lớn hơn Địa Cầu nhiều lắm! Chỉ là một môn phái thôi mà đã trông coi địa bàn chu vi vạn dặm. Diệp Phi âm thầm suy nghĩ, sau đó lại cùng tiểu nhị hàn huyên vài câu. Đáng tiếc tiểu nhị biết cũng không nhiều, nói qua nói lại thì cũng chỉ biết Thúy Yên Môn bên trong cao tầng đều là nữ tử, bình thường làm việc không hề bá đạo, nhưng nếu chọc giận các nàng, thì lại là chuyện khác.</p>
+    <p>Ăn xong cơm trưa, tổ tôn hai người liền tính tiền rời khỏi khách sạn, dựa theo hướng tiểu nhị chỉ dẫn mà chạy về phía Mộ Tuyết Thành. Vương Nguyệt Dao dù sao cũng là cao thủ, trải qua thời gian ăn một bữa cơm, đã khôi phục không ít, ít nhất lúc đi đường không cần Diệp Phi dìu nữa.</p>
+    <p>Ra khỏi trấn nhỏ, bên ngoài là một vùng núi rừng. Diệp Phi vừa mới chuẩn bị ôm lấy bà ngoại để chạy tới Mộ Tuyết Thành với tốc độ nhanh nhất thì đột nhiên dừng lại, bởi vì hắn phát hiện trong vùng núi rừng này lại ẩn giấu không ít người, chẳng biết là đường nào mà lần.</p>
+    <p>Tuy nhiên, người có tài thì gan lớn, mặc kệ nơi này ẩn nấp là những ai, Diệp Phi cũng chẳng sợ. Hắn thay đổi chủ ý chỉ là vì nguyên tắc cẩn thận mọi bề khi đang ở nơi xa lạ mà thôi.</p>
+    <p>Cứ như thế chậm rãi đi ra hơn một trăm mét, đến chỗ những người kia ẩn nấp, lập tức có một nhóm người từ trong rừng rậm nhảy ra ngoài. Tên cầm đầu là một gã đại hán mặt mũi dữ tợn, đứng chặn giữa đường, miệng hét lớn bài sơn ca: "Ngọn núi này là ta mở, cây này là ta trồng, muốn đi qua đường này, để lại mua đường tài!"</p>
+    <p>Nghe lời thoại thường xuyên xuất hiện trong phim ảnh này, Diệp Phi không khỏi ngẩn ra, hỏi: "Các ngươi là... sơn tặc?"</p>
+    <p>"Không sai!" Gã đại hán dữ tợn tự hào đáp: "Chúng ta chính là sơn tặc Hắc Phong Trại, thức thời thì đem toàn bộ tài vật trên người giao ra đây!"</p>
+    <p>Hắc Phong Trại? Tên gọi có cần phải đại chúng hóa đến thế không!? Diệp Phi âm thầm châm chọc, cảm thấy hết sức thú vị, cứ như thể đang thực sự lạc vào phim võ hiệp vậy, nên cũng không vội thu thập đám sơn tặc này, chỉ nói: "Đại Vương, ngươi xem hai chúng ta, thân vô trường vật, lấy đâu ra tài vật gì chứ!"</p>
+    <p>Gã đại hán dữ tợn đảo mắt: "Thân vô trường vật, sao lúc nãy còn ra tay hào phóng như vậy? Tiểu tử, trên người các ngươi nhất định có chứa đồ loại Pháp Bảo, tốt nhất là thành thật giao ra đây, đừng ép các đại gia động thủ."</p>
+    <p>Diệp Phi lúc này mới biết, hóa ra là do mình ở khách sạn ra tay quá hào phóng, gây nên sự chú ý của đám tai mắt sơn tặc này. Hắn lập tức học theo động tác võ thuật trong điện ảnh mà nói: "Ta nếu như không giao thì sao?"</p>
+    <p>Gã đại hán dữ tợn nhìn Diệp Phi rồi lại nhìn Vương Nguyệt Dao, cười lạnh: "Một tên tiểu tử vắt mũi chưa sạch, một cô nương Kết Đan sơ kỳ, mà cũng dám giở trò ngang ngược. Nói cho các ngươi biết, Lão Tử đây là cao thủ Kết Đan hậu kỳ, đám huynh đệ này của ta cũng mỗi người thân thủ bất phàm, muốn chết thì cứ thử phản kháng xem!"</p>
+    <p>Từ lúc gã đại hán dữ tợn này xuất hiện, Diệp Phi đã nhận ra hắn có tu vi tương đương với tên hòa thượng ở đại hội võ lâm trước kia. Hơn nữa, hắn nói bà ngoại là Kết Đan sơ kỳ, rõ ràng cái gọi là Kết Đan Kỳ ở đây chính là Kim Đan Kỳ mà Lệ Thương Hải đã nhắc tới trước đây.</p>
+    <p>Chỉ là như vậy, Diệp Phi lại có chút không xác định được Chân Hư Giới này có phải là Tu Chân Giới mà Lệ Thương Hải nói hay không, vì cách gọi cảnh giới không giống nhau.</p>
+    <p>Tuy nhiên, dù sao thì gã đại hán dữ tợn này cuối cùng cũng giúp Diệp Phi hiểu được một vài chuyện, lại còn bồi tiếp hắn diễn một đoạn phim võ hiệp, Diệp Phi cũng chẳng muốn tính toán nữa, thêm nữa tiền tài đối với hắn hiện giờ đã không còn ý nghĩa gì, liền nói: "Được rồi, chúng ta giao là được chứ gì." Nói đoạn, hắn chuẩn bị lấy một ít vàng từ trong không gian ra cho đối phương coi như là lệ phí qua đường.</p>
+    <p>Không ngờ gã đại hán dữ tợn kia lại không cảm kích, cười lạnh: "Bây giờ mới nói giao? Muộn rồi!"</p>
+    <p>"Vậy ngươi muốn thế nào?" Diệp Phi bắt đầu hơi mất kiên nhẫn.</p>
+    <p>"Đương nhiên là soát người, ai biết các ngươi có giấu giếm gì không." Gã đại hán dữ tợn nhìn về phía khuôn mặt xinh đẹp như Thiên Tiên của Vương Nguyệt Dao, ánh mắt lóe lên vẻ dâm dục: "Các anh em, các ngươi soát người tên tiểu tử này, cô nương này ta tự mình xử lý."</p>
+    <p>Nghe thấy lời gã đại hán dữ tợn, Diệp Phi trong lòng nhất thời dâng lên sát cơ. Tên khốn này lại dám lộ ra dâm niệm với bà ngoại yêu quý của hắn, điều này tuyệt đối không thể tha thứ!</p>
+    <p>Tuy nhiên, ngay lúc Diệp Phi chuẩn bị động thủ, hắn lại đột nhiên dừng lại, bởi vì hắn cảm nhận được một luồng khí thế vô cùng mạnh mẽ đang nhanh chóng tiến tới. Cỗ khí thế này cực kỳ kinh người, trong số những người Diệp Phi từng gặp, chỉ có bản thân hắn và bà ngoại Vương Nguyệt Dao ở thế giới cũ mới mạnh hơn đối phương. Ngoài ra, ngay cả người mẹ đã cùng hắn song tu hơn bảy năm trong thung lũng cũng yếu hơn người này một bậc.</p>
+    <p>Chỉ vừa suy nghĩ, chủ nhân của cỗ khí thế đó đã tới trước mắt. Đó là một gã đại hán cao tới hai mét, đầu báo mắt tròn, râu ria xồm xoàm, quả thực như Trương Phi tái thế. Nhìn trang phục của hắn, hiển nhiên cùng phe với đám sơn tặc này.</p>
+    <p>Diệp Phi đang định cử động chân tay thì diễn biến tiếp theo lại ngoài dự liệu của hắn. Gã đại hán giống như Trương Phi kia sau khi tới nơi, không những không ra tay với hai người Diệp Phi, mà trái lại không nói hai lời, vung một cái tát đánh bay gã đại hán dữ tợn kia văng xa hơn ba mét, khiến nửa mặt hắn sưng vù lên.</p>
+    <p>Cảnh tượng này khiến cả hai người Diệp Phi đều trợn mắt há hốc mồm, trái lại đám sơn tặc kia lại tỏ vẻ chuyện đương nhiên.</p>
+    <p>"Đúng là một đám khốn nạn!" Sau khi đánh bay gã đại hán dữ tợn, gã "Trương Phi" nổi trận lôi đình quát: "Còn nhớ rõ thân phận của mình không hả?"</p>
+    <p>Đối mặt với sự chất vấn của gã, đám sơn tặc khúm núm, không một ai dám lên tiếng.</p>
+    <p>"Ta đã nói bao nhiêu lần rồi, chúng ta là loại sơn tặc cao cấp có lý tưởng, có kỷ luật, chứ không phải là lũ giặc cướp giết người cướp của. Ba đại giới luật ta đặt ra các ngươi còn nhớ hay không?" Gã "Trương Phi" tiếp tục quát, rồi chỉ tay vào gã đại hán vừa bị tát: "Ngươi nói đi!"</p>
+    <p>Gã đại hán dữ tợn run rẩy bò dậy từ dưới đất, thành thật đọc: "Tam đại giới luật: một không được huynh đệ tương tàn, hai không được giết bừa mạng người, ba không được dâm loạn thê nữ."</p>
+    <p>"Xem ra ngươi còn nhớ, tự nói xem, ngươi phạm vào điều thứ mấy?" Gã "Trương Phi" quát.</p>
+    <p>"Thứ... điều thứ ba." Gã đại hán dữ tợn mặt cắt không còn giọt máu, rồi đột nhiên quỳ xuống: "Đại Đương Gia, tiểu nhân nhất thời hồ đồ, vị cô nương kia lớn lên quá đẹp nên nhất thời nổi tà niệm, ta bảo đảm, sau này..."</p>
+    <p>"Nãi nãi nhà ngươi!" Không đợi gã đại hán nói xong, gã "Trương Phi" lại vung một tát, lần này đánh còn mạnh hơn, trực tiếp hất bay tên kia ra ngoài mười mét, gãy sạch răng đầy miệng, sau đó quát lên: "Ngươi còn dám ngụy biện! Người ta xinh đẹp là chuyện của người ta, không phải lý do để ngươi lên mặt làm càn. Nếu như mẹ ngươi hay bà ngươi xinh đẹp, ngươi có phải cũng sẽ nổi tà niệm hay không!? Đừng nói nhảm nữa, tự mình đi lĩnh phạt đi!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1129.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1131.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

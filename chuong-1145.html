@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1145 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1145</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1145</small>
+    Chương 1145: Cho thể diện mà không cần
+  </h1>
+  <div class="chapter-body">
+    <p>"Ha ha ha ha..." Truy Phong cười lớn, sau đó nhìn về phía vị trí của Doãn Hàm Yên ở dưới đài, lớn tiếng nói: "Duẫn tiền bối, vãn bối đã tài nghệ trấn áp quần hùng, người không nói lời không giữ lấy lời chứ?"</p>
+    <p>Nghe Truy Phong nói vậy, nhìn lại các cao thủ đã nhận thua, trong lòng Tống Niệm Dao không khỏi nguội lạnh.</p>
+    <p>"Đồ nhi, con yên tâm, sư phụ nhất định sẽ không để con gả cho hạng người như vậy!" Doãn Hàm Yên nhẹ nhàng vỗ lên bả vai Tống Niệm Dao, ánh mắt hàm sát nói. Lúc này nàng đã quyết định phải ra tay giết chết Truy Phong, dù cho có khai chiến với Oa Hoàng Cung, cũng tuyệt đối không thể để đồ nhi yêu quý chịu loại oan ức này.</p>
+    <p>Tống Niệm Dao nhìn thấy vẻ quyết tuyệt của sư phụ, vội vàng đưa tay giữ nàng lại. Bản tính hiền lành khiến Tống Niệm Dao không muốn vì mình mà liên lụy toàn bộ Thúy Yên Môn, vì vậy thà rằng chọn cái chết, cũng không muốn sư phụ khai chiến với Oa Hoàng Cung.</p>
+    <p>Ngay khi hai thầy trò đang giằng co, một thanh âm trong trẻo đột nhiên truyền tới: "Nhanh như vậy đã muốn làm người thắng, đã hỏi qua ta chưa?"</p>
+    <p>Theo tiếng nói, chỉ thấy một đạo thân ảnh thon dài nhảy lên trên lôi đài. Chỉ một cái liếc mắt, hai thầy trò Doãn Hàm Yên đã xác định, người trẻ tuổi này tuyệt đối chính là thiên tài tuyệt thế kia, bởi vì hắn lớn lên quá tuấn tú, tuyệt đối là người đẹp nhất mà họ từng gặp.</p>
+    <p>Truy Phong kia cũng coi là khá anh tuấn, nhưng so với người trẻ tuổi này thì chẳng là gì cả. Hơn nữa, trái ngược với sự hung hăng của Truy Phong, vị thiên tài tuyệt thế đứng đầu tu chân giới này lại vô cùng ôn hòa, đứng ở đó tĩnh như sơn nhạc, tuy còn trẻ nhưng đã hiện rõ phong độ tông sư của một phái.</p>
+    <p>Trong nháy mắt, hai thầy trò đều không khỏi nảy sinh hảo cảm với vị thiên tài tuyệt thế vẫn chưa biết tên này, đặc biệt là Tống Niệm Dao, nàng càng cảm thấy bản thân với mỹ thiếu niên lần đầu gặp mặt này có một sự thân cận bản năng, thậm chí là cảm giác như có huyết thống liên kết.</p>
+    <p>"Lại tới một kẻ chịu chết!" Truy Phong khinh miệt liếc nhìn Diệp Phi trên đài, hừ lạnh một tiếng, sau đó cắt ngang lời nữ đệ tử đang chuẩn bị tuyên bố thực lực hai bên: "Ta biết rồi, trong vòng mười chiêu đánh bại hắn đúng không, không thành vấn đề, tiểu tử, tiếp chiêu!"</p>
+    <p>Nói xong, phi kiếm sau lưng Truy Phong lại bay ra, thẳng tắp đâm về phía Diệp Phi, giống hệt với đòn đánh bại người khiêu chiến vừa nãy.</p>
+    <p>Thế nhưng, lần này hắn đối mặt là Diệp Phi, làm sao có thể dễ dàng đâm trúng? Chỉ nhẹ nhàng lóe lên, Diệp Phi đã tránh được đòn này.</p>
+    <p>"Ta xem ngươi có thể trốn tới khi nào!" Truy Phong lại hừ lạnh một tiếng, khống chế phi kiếm không ngừng truy kích Diệp Phi, nhưng lần nào cũng bị Diệp Phi tránh thoát trong gang tấc.</p>
+    <p>"Tốt, không hổ là thiên tài Hóa Thần từ sáu mươi năm trước, lợi hại!" Khán giả dưới đài không vì Diệp Phi chỉ né tránh mà xem nhẹ hắn, trái lại còn reo hò cổ vũ. Dù sao một cao thủ Hóa Thần sơ kỳ có thể né tránh chiêu thức của cao thủ đỉnh cao Hóa Thần hậu kỳ, vốn đã là một kỳ tích.</p>
+    <p>Nghe được tiếng reo hò, ánh mắt Truy Phong lóe lên một tia sát cơ. Hắn không ngờ đối thủ lại là một thiên tài như vậy, lòng đố kỵ lập tức sinh ra sát tâm, chiêu thức khống chế phi kiếm cũng trở nên sắc bén hơn.</p>
+    <p>Thế nhưng dù Truy Phong có dốc hết toàn lực, vẫn không chạm tới được một sợi tóc của Diệp Phi.</p>
+    <p>Trong nháy mắt, mười chiêu đã qua, nữ đệ tử kia lớn tiếng nói: "Mười chiêu đã đủ, người khiêu chiến thắng lợi, xin mời hai vị ngừng tay!"</p>
+    <p>Mọi người dưới đài lập tức hoan hô, sự hung hăng của Truy Phong đã sớm khiến họ khó chịu, giờ thấy hắn ăn quả đắng, tự nhiên ai nấy đều vui mừng khôn xiết.</p>
+    <p>Hai thầy trò Doãn Hàm Yên lúc này cũng đều vui vẻ, nhất là Tống Niệm Dao. Trận chiến này của Diệp Phi có thể nói là kéo nàng ra khỏi vực sâu tuyệt vọng, vì vậy khi nhìn lại đạo thân ảnh tuấn lãng kia, tâm nàng lại có chút xao động.</p>
+    <p>Thế nhưng, nghe thấy lời nữ đệ tử, Truy Phong căn bản không ngừng tay, trái lại công kích càng thêm sắc bén, đồng thời thẹn quá hóa giận hét lớn: "Có thân pháp như vậy, tại sao có thể chỉ là Hóa Thần sơ kỳ, hôm nay không chết không thôi!"</p>
+    <p>"Ầm!" Nghe được sự vô sỉ của Truy Phong, Doãn Hàm Yên không nhịn được nặng nề vỗ bàn một cái, chuẩn bị ra tay hạn chế hắn. Dù sao thân pháp của thiên tài tuyệt thế kia có tốt đến đâu, cũng luôn có lúc sơ suất, kéo dài mãi khó tránh khỏi sẽ không bại trong tay Truy Phong.</p>
+    <p>Nhưng chưa kịp để Doãn Hàm Yên ra tay, Diệp Phi đã lên tiếng.</p>
+    <p>"Cho thể diện mà không cần đúng không?" Diệp Phi lạnh lùng nói. Vốn ở dưới đài hắn đã nghe nói về lai lịch của Truy Phong, dựa trên nguyên tắc không gây phiền phức cho Thúy Yên Môn, hắn chỉ muốn đối phương biết khó mà lui, không ngờ tên này lại lên mặt, dây dưa không dứt, vì vậy trong lòng cũng nổi lên sát ý.</p>
+    <p>"Cho thể diện mà không cần là ngươi, thức thời thì mau mau chịu thua, nếu không đừng trách tiểu gia dùng tuyệt chiêu lấy mạng ngươi!" Truy Phong tự cho mình là đã đứng ở thế bất bại, phách lối nói.</p>
+    <p>"Tuyệt chiêu sao?" Diệp Phi cười lạnh một tiếng, không né tránh nữa, thân hình lóe lên, trực tiếp xuất hiện trước người Truy Phong.</p>
+    <p>Truy Phong không ngờ tới đối thủ trước đó còn giữ lại thực lực, kinh hãi vội vàng dùng tốc độ nhanh nhất gọi phi kiếm trở về, đâm thẳng vào ngực Diệp Phi để ép hắn lui lại.</p>
+    <p>Thế nhưng Diệp Phi không tránh không né, tùy ý phi kiếm kia đâm vào trước ngực mình.</p>
+    <p>"Keng!" Phi kiếm vốn từng đánh trọng thương sắp chết một cao thủ Hóa Thần sơ kỳ, khi đâm vào người Diệp Phi chỉ phát ra một tiếng vang nhỏ. Sau đó, trong tay Diệp Phi đột nhiên xuất hiện một thanh đoản kiếm dài hơn một thước, hắn phản tay cầm kiếm, đưa lên cổ Truy Phong, nhẹ nhàng lướt qua.</p>
+    <p>"Phốc!" Một tiếng vang nhỏ vang lên, Truy Phong hung hăng vô cùng lập tức đầu thân phân ly, một cái đầu lâu bay lên giữa không trung, một đạo Huyết Tiễn mạnh mẽ từ cái cổ bị chém đứt của hắn phun ra, cao tới hơn một trượng.</p>
+    <p>Đòn này của Diệp Phi tuy tàn nhẫn hơn cả Truy Phong lúc trước, nhưng tất cả mọi người không hề cảm thấy phản cảm, trái lại còn rất thoải mái. Hơn nữa, mọi người đều sùng bái Diệp Phi không ngớt, một cao thủ Hóa Thần đỉnh cao, vậy mà chỉ một đòn đã bị diệt thân thể.</p>
+    <p>Tuy bị diệt thân thể, nhưng Truy Phong vẫn chưa chết. Cảnh giới thứ nhất của Hóa Thần cảnh chính là Xuất Khiếu Kỳ, tên như ý nghĩa, chính là Nguyên Anh có thể thoát ly khỏi thân thể. Vì vậy, chỉ cần đến được cảnh giới này, Nguyên Anh bất diệt thì người sẽ không chết.</p>
+    <p>Thân thể còn chưa kịp ngã xuống, Nguyên Anh của Truy Phong đã thoát ra, hóa thành một tiểu nhân ba tấc, dùng tốc độ nhanh nhất bỏ chạy về phía xa.</p>
+    <p>Thế nhưng Truy Phong nhanh, Diệp Phi lại càng nhanh hơn. Chỉ một cái lắc mình, hắn đã đứng chắn trước mặt Nguyên Anh của Truy Phong, xòe bàn tay lớn nắm lấy tiểu nhân ba tấc kia, sau đó trong lòng bàn tay ánh chớp lấp lóe, giam cầm tiểu nhân đó ở bên trong.</p>
+    <p>"A!" Nguyên Anh của Truy Phong bị lôi điện chi lực trong lòng bàn tay Diệp Phi điện cho kêu thảm thiết, nó không ngừng xông trái xông phải, muốn trốn khỏi mảnh Luyện Ngục này, nhưng dù cố gắng thế nào cũng không thể thoát khỏi không gian đó, cuối cùng đành phải bỏ cuộc.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1144.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1146.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

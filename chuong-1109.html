@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1109 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1109</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1109</small>
+    Chương 1109: Dung Hợp Lôi Điện Châu
+  </h1>
+  <div class="chapter-body">
+    <p>Có nhiều Hồng Nhan Tri Kỷ như vậy, Diệp Phi hiện tại tuyệt đối cũng coi là một chuyên gia về tâm lý phụ nữ. Biểu hiện của bà ngoại đối với hắn mà nói thật sự quá trực tiếp, trước đó nàng bị chính mình giày vò thành như vậy, nhưng vẫn không ngủ, tự nhiên là vì lo lắng cho hắn. Dù sao lúc ấy Lôi Kiếp đều trực tiếp bổ vào trên người hắn, mà bây giờ, nhìn thấy có Lôi Điện Châu hấp thu thiên lôi, tâm tình vừa buông lỏng liền mệt đến ngủ thiếp đi. Xem ra cuộc mây mưa dài hơn năm tiếng đồng hồ của chính mình đã chinh phục được vị bà ngoại có chút nín nhịn này.</p>
+    <p>Tuy rằng rất muốn lập tức ôm vị bà ngoại ngoài miệng nói không nhưng thân thể lại thành thật này vào trong ngực âu yếm một phen, nhưng Diệp Phi cũng không dám làm thế. Mặc dù bây giờ có Lôi Điện Châu hấp dẫn thiên lôi, nhưng nếu hắn di chuyển, thiên lôi rất có thể sẽ đuổi theo hắn. Mà thôi, bà ngoại sau khi bị chính mình suýt chút nữa hút khô thực lực, chỉ cần bị dư âm của Lôi Kiếp lan đến gần, liền chắc chắn hồn phi phách tán, Diệp Phi nơi nào cam lòng?</p>
+    <p>Liền thẳng thắn quan sát Lôi Điện Châu.</p>
+    <p>Trải qua một giờ Lôi Điện gột rửa, lúc này Lôi Điện Châu đã từ màu lam đậm chuyển thành màu tím nhạt, năng lượng ẩn chứa bên trong so với lúc trước nhiều hơn chừng mười lần, hấp thu Lôi Kiếp cũng càng thêm ung dung.</p>
+    <p>Nhìn lại bầu trời, cái kia kiếp vân đen kịt lại không có dấu hiệu tản đi, điều này làm Diệp Phi rầu rĩ, thiên kiếp này sao lại không dứt? Là do tự mình gây chuyện hay là cao thủ đỉnh cấp của giới này ai nấy đều biến thái, có thể chịu đựng mấy ngàn hơn vạn đạo Thiên lôi gột rửa?</p>
+    <p>Kỳ thực, Thiên Kiếp lần này sở dĩ biến thái như vậy, nguyên nhân không chỉ một mặt. Đầu tiên chính là nơi này đã hơn vạn năm không người đặt chân. Dù sao cũng không phải chỉ có Thiên Kiếp cốc mới gợi ra Thiên Kiếp, chỗ khác cũng được, chỉ là khó hơn. Nhưng chỗ khác có một cái lợi là dù không cách nào Độ Kiếp cũng có thể tìm cách tránh thoát, chứ không như Thiên Kiếp cốc, độ không được kiếp liền không ra được, chỉ có thể chờ chết.</p>
+    <p>Vì vậy lâu dần, nơi này sẽ không có người đến nữa. Hơn mười ngàn năm qua, sức mạnh Lôi Kiếp đã tích tụ lại, cũng như đàn ông vậy, nhịn lâu ngày, bắn ra tự nhiên sẽ nhiều hơn một chút.</p>
+    <p>Đương nhiên đó cũng không phải nguyên nhân trọng yếu nhất, dù sao nhịn lâu đến mấy cũng luôn có hạn mức tối đa. Thiên Kiếp lần này sở dĩ biến thái như vậy, quan trọng nhất vẫn là vì thân phận của Diệp Phi.</p>
+    <p>Hắn không thuộc về giới này, Công Pháp tu luyện cũng hoàn toàn khác biệt, thậm chí có thể nói là hoàn toàn không tương dung. Vì thế Thiên Địa Pháp Tắc tự nhiên coi hắn là tà ma ngoại đạo, mà tu vi của hắn lại đạt đến, thậm chí vượt qua mức gợi ra Thiên Kiếp, nên Thiên Địa Pháp Tắc liền tự nhiên cho hắn một trận Thiên Kiếp "đảm bảo chất lượng lại đảm bảo số lượng" cực kỳ biến thái, nỗ lực một lần tiêu diệt tà ma ngoại đạo này.</p>
+    <p>Thời gian từng giây từng phút trôi qua, rất nhanh lại mấy tiếng. Từ lúc bắt đầu, Diệp Phi liền thầm đếm số lần Thiên Kiếp trong lòng, ngay cả khi đào động cũng không gián đoạn. Cho tới bây giờ, đã đánh xuống hơn 9,900 đạo, mà Lôi Điện Châu cũng đã hoàn toàn chuyển thành màu tím đậm, lôi điện chi lực ẩn chứa bên trong thậm chí còn đáng sợ hơn cả kiếp vân trên trời.</p>
+    <p>Đến lúc này, Diệp Phi đột nhiên trở nên sốt sắng. Từ khi đoán được những tia thiên lôi khó hiểu này là Thiên Kiếp, Diệp Phi vẫn luôn đoán số lần của nó, hơn nữa còn cảm thấy khẳng định có liên quan đến con số "chín". Dù sao trong Đạo Gia mà nói, chín chính là con số cực hạn, số lần Thiên Kiếp cũng có thể là chín hoặc bội số của chín, ví dụ như chín lần, tám mươi mốt lần, chín mươi chín lần vân vân.</p>
+    <p>Mà bây giờ, những con số đã qua đều không phải, trong giới hạn chịu đựng của Diệp Phi và Lôi Điện Châu, cũng chỉ còn sót lại một, đó chính là 9,999 lần. Nếu như qua con số này mà vẫn chưa kết thúc, vậy hắn chỉ còn nước tuyệt vọng.</p>
+    <p>Thời gian chớp mắt qua đi, đạo Lôi Kiếp thứ 9,999 rốt cục hạ xuống, không ngoài dự đoán bị hạt châu sấm sét màu tím hút vào. Có điều lúc này Lôi Điện Châu rõ ràng cũng đã đến cực hạn.</p>
+    <p>Lần thiên lôi này qua đi, kiếp vân trên bầu trời rốt cục có biến hóa, có điều dường như cũng không phải chuyện tốt đẹp gì, bởi vì chúng không hề tản đi, trái lại đang tụ lại từng chút một.</p>
+    <p>Rất nhanh, nửa phút trôi qua, kiếp vân lần này không bổ ra thiên lôi nữa mà tiếp tục tụ lại. Theo đó, trong đầu Diệp Phi giống như đột nhiên bị đặt lên một khối tảng đá lớn càng ngày càng nặng, cực kỳ khó chịu.</p>
+    <p>Sau mười mấy phút, kiếp vân rốt cục hoàn toàn tụ lại thành một, mà cảm giác bị đè nén trong lòng Diệp Phi lúc này cũng đạt tới đỉnh điểm. Thậm chí Lôi Điện Châu vốn đang bay giữa không trung cũng chậm lại, lơ lửng ngay phía trên cái Đại Quang Đầu của Diệp Phi chưa tới mười cm.</p>
+    <p>Sau đó bầu trời đột nhiên sáng rực, chiếu sáng toàn bộ thung lũng trắng xóa. Một đạo Thiên Kiếp lớn hơn gấp mấy chục lần những đạo trước đó ập xuống, giáng thẳng vào Diệp Phi đang đứng trên mặt đất.</p>
+    <p>Lôi Điện Châu đứng mũi chịu sào căn bản không kịp hấp thu lôi điện chi lực, đã bị đạo thiên lôi khổng lồ này ép xuống, xuyên qua cái Đại Quang Đầu của Diệp Phi mà ép thẳng vào thân thể hắn, sau đó vỡ tan, hóa thành bột mịn dung nhập vào máu thịt Diệp Phi. Theo đó, đạo Lôi Kiếp khổng lồ kia cũng toàn bộ xuyên vào cơ thể hắn.</p>
+    <p>Nếu đổi thành trước đây, cho dù là thời điểm toàn thịnh, Diệp Phi cũng không dám nói có thể đứng vững lần này. Nhưng sau khi dung hợp với Lôi Điện Châu, thân thể hắn ngay lập tức có được năng lực của Lôi Điện Châu. Đạo thiên lôi hung hiểm nhất này không những không thể gây thương tổn cho hắn, trái lại còn cung cấp cho hắn năng lượng cực kỳ khổng lồ.</p>
+    <p>Sau khi đạo Thiên Kiếp thứ mười ngàn đánh xuống, kiếp vân trên bầu trời rốt cục sụp đổ, một lát sau liền biến mất không dấu vết. Mà Diệp Phi lúc này cảm thấy cực kỳ sung mãn, không chỉ thân thể tràn đầy sức mạnh, mà sau khi dung hợp với Lôi Điện Châu, sự khống chế đối với lôi điện chi lực cũng đạt tới một cảnh giới hoàn toàn mới.</p>
+    <p>Hít một hơi thật sâu, Diệp Phi chọn một khối đá lớn trước kia bị hắn đào từ trên vách núi xuống làm mục tiêu. Chỉ cần hơi chuyển động ý nghĩ, một đạo sấm sét màu tím to bằng thùng nước không báo trước từ trên trời giáng xuống, đánh khối đá lớn kia tan nát.</p>
+    <p>"Ha ha ha ha..." Kết quả này khiến Diệp Phi không nhịn được cười lớn. Kinh mạch lần thứ hai bị bế tắc hoàn toàn, hắn vốn tưởng rằng trong thời gian dài sắp tới, khi động thủ với người khác chỉ có thể áp sát cận chiến, như vậy gặp phải đối thủ tốc độ sẽ vô cùng chịu thiệt. Nhưng bây giờ lại khác, sau khi dung hợp Lôi Điện Châu và nâng cao lôi điện chi lực lên hơn trăm lần, hắn đã có thể tùy tay phát ra đòn tấn công bằng Lôi Điện sánh ngang Thiên Kiếp, đây là chuyện sướng đến thế nào chứ?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1108.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1110.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

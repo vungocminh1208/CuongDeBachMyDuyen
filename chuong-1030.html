@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1030 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1030</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1030</small>
+    Chương 1028: Mẹ con xé lồn chiến
+  </h1>
+  <div class="chapter-body">
+    <p>Cứ như vậy, chuyện này đối với người ngoài mà nói là một đôi mẹ con cao quý thanh thuần, cùng chờ đợi nam nhân mà các nàng chung yêu thích, vừa nói khiến người ta nghe xong đều đỏ mặt cũng lẫn nhau đùa giỡn, rất nhanh sẽ trở nên quần áo xốc xếch.</p>
+    <p>Kết thúc cuộc trò chuyện với Lâm Linh, Diệp Phi liền lái xe thẳng đến nhà các nàng, có điều vì là giờ cao điểm, trên đường xe cộ rất nhiều, tốc độ dù thế nào cũng không nhanh nổi, cho nên khi Diệp Phi cuối cùng đã tới nơi, đã là hơn nửa canh giờ sau.</p>
+    <p>Chìa khóa nhà Lâm Linh thì Diệp Phi có, vì thế hắn không để vị hôn thê cùng mẹ vợ tương lai xuống mở cửa, đem xe dừng dưới lầu, sau đó trực tiếp lên lầu, dùng chìa khóa mở cửa đi vào.</p>
+    <p>Mới vừa vào cửa, Diệp Phi đã bị cảnh tượng bên trong làm cho sợ ngây người, chỉ thấy đôi mẹ con mê người đang dây dưa cùng nhau, lăn lộn trên ghế sofa ở phòng khách, hơn nữa đã không thể dùng đơn thuần "quần áo xốc xếch" để hình dung, váy của hai mẹ con đều cuốn lên, hạ thân Tiếu Hàm Nguyệt chỉ còn lại một sợi tất da chân, chiếc còn lại cùng quần lót của nàng cũng đã không còn trên người, theo những cú lăn lộn, cái dâm huyệt mê người bị lông lồn đen nhánh che lấp lúc ẩn lúc hiện, mà Lâm Linh thì càng triệt để hơn, nửa người dưới trực tiếp trần trụi.</p>
+    <p>Đây là tình huống gì? Nhìn thấy một màn mê người này, Diệp Phi trong lòng lửa nóng đồng thời cũng không khỏi hơi nghi hoặc, chẳng lẽ mẹ con nàng không kịp đợi mình đến, giống như Ngọc Vô Hà cùng dì trước kia, chơi trò bách hợp sao? Điều này làm cho hắn không khỏi càng thêm nhiệt huyết sôi trào.</p>
+    <p>Kỳ thực cũng không trách Diệp Phi suy nghĩ như vậy, mẹ con hai người sau khi đùa giỡn một trận đều hơi mệt, lúc này đang một trên một dưới ôm nhau thở gấp trên ghế sofa, tình cảnh như thế bị Diệp Phi cái tên tà ác này nhìn thấy, không hiểu lầm mới là lạ.</p>
+    <p>Bởi vì đã bắt đầu tu luyện Huyền Âm Quyết, hơn nữa đều đã được Diệp Phi dùng Huyễn Dương Quyết gột rửa qua, mặc dù không đi theo tới thung lũng, tâm linh cảm ứng với Diệp Phi còn kém rất xa so với Liễu Diệc Như các nàng, thế nhưng trong khoảnh khắc Diệp Phi tiến vào, mẹ con hai người vẫn ngay lập tức phát hiện ra hắn.</p>
+    <p>So với đó, vẫn là Lâm Linh phản ứng nhanh hơn một chút, hơn nữa nàng vốn ở phía trên, liền đột nhiên xoay người, đối mặt với Diệp Phi mới vào cửa mà cưỡi lên bụng mẹ, hai tay ban cặp chân ngọc đẹp đẽ mê người vô cùng của mẹ ra, một chân trần, một chân mang tất, dùng sức tách sang hai bên, lộ ra đại dâm huyệt đang ồ ồ tràn ra dâm thủy giữa hai đùi, nói với Diệp Phi: "Báo cáo Lão Công, dâm huyệt của mẹ vợ ngươi đã chuẩn bị xong, nhanh dùng đại dương vật của ngươi địt bà ấy đi! A!..."</p>
+    <p>Nói đến cuối, Lâm Linh đột nhiên phát ra một tiếng thét kinh hãi, là do Tiếu Hàm Nguyệt thừa dịp nàng đắc ý mà đột nhiên phản kích, một cú lật nàng ngã nhào trên ghế sofa.</p>
+    <p>Đem con gái ấn xuống ghế sofa, bày ra tư thế mông mẩy chờ địt, Tiếu Hàm Nguyệt lại dùng hai tay vạch ra hai biện mông nhỏ kiều tiếu của con gái, tương tự để tiểu lồn mềm mại của nữ nhi lộ ra trước mắt Diệp Phi, sau đó dùng âm thanh tràn ngập sự mê hoặc đặc hữu của phụ nhân thành thục nói: "Con rể ngoan, A Di già rồi, lồn cũng già rồi, địt không thoải mái đâu, con xem lồn của Linh Nhi thủy nộn biết bao, còn không mau đem đại dương vật của con cắm vào đi!"</p>
+    <p>Mẹ con hai người đều là công lực mới Nhập Môn Huyền Âm Quyết, bởi vậy sức mạnh cũng ngang nhau, Lâm Linh tự nhiên không thể bị mẹ mình chế phục lâu dài, chưa kịp để Diệp Phi có phản ứng, nàng liền một hồi tránh thoát sự khống chế của mẹ, quay người nhào lên người bà, trong phút chốc, một đôi mẹ con hoa mẫu nữ người thì thành thục gợi cảm, người thì xinh đẹp động lòng người cứ như vậy gần như trần trụi bắt đầu lăn lộn ngay trước mặt Diệp Phi.</p>
+    <p>Nhìn cảnh tượng này, Diệp Phi ngược lại không vội, tiến lên vài bước, ngồi xuống chiếc ghế sofa khác, bắt đầu thưởng thức từ khoảng cách gần trận chiến xé lồn mẹ con khó gặp này, đây mới là xé lồn theo nghĩa thực sự, mẹ con hai người công kích lẫn nhau, mục đích chỉ có một, đó chính là đem lồn của đối phương phô bày ra, mê hoặc Diệp Phi đem đại dương vật cắm vào.</p>
+    <p>Bởi tình cảnh quá mức hương diễm, Diệp Phi nhìn một lúc, liền không còn cách nào áp chế dục hỏa của mình, liền thừa dịp Lâm Linh lại một lần nữa chiếm thượng phong, đè mẹ của mình ở phía dưới, cũng khiến bà lộ lồn ra trước mặt mình, Diệp Phi liền hành động.</p>
+    <p>Đột nhiên nhảy dựng lên từ ghế sofa, Diệp Phi chưa đầy một giây đã cởi quần của mình, sau đó nhắm ngay vị trí, đem đại dương vật vốn đã bị mẹ con các nàng mê hoặc đến cứng như sắt hung hăng đâm vào đại dâm huyệt của mẹ vợ.</p>
+    <p>"A!... Thật thoải mái!" Dâm huyệt trống vắng vô cùng trong nháy mắt bị đại dương vật của con rể lấp đầy, Tiếu Hàm Nguyệt không khỏi thoải mái hét lớn một tiếng, khí lực vốn chuẩn bị phản kích hoàn toàn bị cú đâm của đại dương vật con rể làm cho tan rã, chỉ có thể ngoan ngoãn nằm ở đó, tùy ý con rể gian dâm.</p>
+    <p>Thấy Diệp Phi cuối cùng vẫn là người đầu tiên cắm dương vật vào lồn mẹ, Lâm Linh không những không có bất kỳ sự lạc lõng nào, trái lại hết sức cao hứng, cười nói: "Mẹ, thế nào, lão công của con vẫn tương đối yêu thích địt mẹ đi, còn không chịu thua sao?"</p>
+    <p>Tuy nhiên, Lâm Linh còn chưa kịp cao hứng bao lâu, thân thể nàng đã bị Diệp Phi ôm lấy, sau đó dùng hai tay nâng eo thon của nàng, khiến nàng mặt hướng xuống phía dưới, nằm phía trên thân thể của mẹ mình.</p>
+    <p>Ôm lấy vị hôn thê sau, Diệp Phi vừa bắt đầu đánh xuyên đại dương vật của mình vào trong dâm huyệt của mẹ vợ, một bên dúi đầu vào dưới khố của vị hôn thê, lại hút lại liếm trên tiểu lồn mềm mại của nàng.</p>
+    <p>Lần này, đến phiên Tiếu Hàm Nguyệt cao hứng, bà vừa hưởng thụ sự sung sướng khi đại dương vật của con rể đánh xuyên vào trong lồn mình, vừa rên rỉ đứt quãng nói: "Rốt cuộc là... người nào thua... Con rể ngoan chỉ là... dùng dương vật của hắn... địt... lồn của mụ mụ mà thôi... Còn tiểu dâm huyệt của con... lại là... dùng đầu lưỡi để liếm... Con nói xem hắn... thích người nào hơn?"</p>
+    <p>"Vậy con không quản, chúng ta so là Lão Công trước tiên địt lồn của ai, chỉ có cắm dương vật vào mới tính là địt nha, cho nên vẫn là mẹ thua rồi." Lâm Linh cười nói, lồn của nàng tuy rằng cũng bị Diệp Phi liếm đến mức rất thoải mái, nhưng cảm giác khoái lạc dù sao vẫn nhỏ hơn nhiều so với việc trực tiếp bị đại dương vật địt, bởi vậy khi nói chuyện cũng khá thông thuận.</p>
+    <p>"Được rồi... thua liền thua... thua là có thể... là người đầu tiên... được con rể tốt địt... Mụ mụ... kiếm được rồi... Ha... Con rể ngoan... tăng tốc độ lên một chút... Dùng sức chút... địt ta đi..." Tiếu Hàm Nguyệt lúc này bị đại dương vật của con rể địt đến bạo thoải mái trong dâm huyệt, nơi nào còn nhớ được việc đấu võ mồm với con gái, hơn nữa, cho dù bà thua cũng không sao, với sự mạnh mẽ và thông minh của Diệp Phi, sự lo lắng của mình cho hắn dường như vốn là dư thừa.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1029.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1031.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

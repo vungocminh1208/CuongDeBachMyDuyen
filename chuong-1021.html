@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1021 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1021</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1021</small>
+    Chương 1021: Tình chọn nữ thợ săn 2
+  </h1>
+  <div class="chapter-body">
+    <p>Nụ hôn đầu bị tên nam nhân ghê tởm này đoạt đi, hiện tại lại bị hắn đùa bỡn thân thể, Nhạc Tâm Như cảm giác như muốn chết đi cho rồi. Thế nhưng, chuyện bán đứng bạn bè và trái với nguyên tắc là điều nàng không muốn, cũng không thể làm, đành oán hận nói: "Ngươi giết ta đi!"</p>
+    <p>"Ngươi biết ta sẽ không giết ngươi, còn nói lời này làm gì?" Diệp Phi vừa nói vừa dùng ngón tay nhẹ nhàng đùa bỡn đôi nhũ hoa đang đội lên lớp áo của mỹ nhân, sau đó bỗng làm ra vẻ chợt hiểu: "Ta hiểu rồi, chắc chắn là ngươi cảm thấy bị ta chơi đùa bộ ngực như vậy rất thoải mái, muốn được chơi thêm nên mới không nói."</p>
+    <p>Nói thật lòng, tuy rằng Diệp Phi chỉ nhẹ nhàng nhào nặn hay gảy nhẹ lên núm vú Nhạc Tâm Như, nhưng bàn tay hắn tựa như có ma lực, mang lại khoái cảm mãnh liệt hơn gấp bao nhiêu lần so với nàng tự mình làm. Nó khiến nàng cảm thấy như có một luồng điện chạy từ đầu vú lan tỏa khắp cả bầu ngực, rồi trào dâng khắp toàn thân, sung sướng đến mức suýt chút nữa đã rên rỉ thành tiếng.</p>
+    <p>Tuy nhiên, Nhạc Tâm Như tất nhiên sẽ không thừa nhận mình bị tên nam nhân ghê tởm này trêu chọc đến thoải mái, nàng cố nén khoái cảm, cắn chặt hàm răng, lạnh lùng nói: "Phi! Cái tay bẩn thỉu của ngươi sờ lên, chỉ làm ta thấy buồn nôn!"</p>
+    <p>"Buồn nôn? Xem ra ngươi chê ta sờ qua lớp quần áo, làm ngươi không đủ sướng. Không sao, ta sẽ làm ngươi thỏa mãn." Diệp Phi cố ý xuyên tạc ý tứ của mỹ nhân, cười nói. Đồng thời, hắn đặt bàn tay lớn lên ngực nàng, dùng nội lực khẽ rung, bộ y phục cùng nịt ngực của mỹ nhân trong nháy mắt hóa thành mảnh vụn, rải rác xung quanh.</p>
+    <p>Theo lớp áo vỡ vụn, đôi gò bồng đào như bát ngọc của Nhạc Tâm Như lập tức nhảy ra ngoài, vừa trắng vừa tròn, lại còn lớn và đầy đặn, đặc biệt là hai hạt đậu nộn hồng đang trở nên cứng cáp kia càng khiến người ta thèm nhỏ dãi.</p>
+    <p>Thân thể chưa từng để người khác nhìn thấy nay lại bị tên nam nhân ghê tởm này phơi bày, Nhạc Tâm Như vừa thẹn vừa giận, lần thứ hai kịch liệt giằng co. Thế nhưng, hai tay và hai chân nàng đều bị Diệp Phi khống chế, chỉ có nửa thân trên là có thể cử động. Sự quằn quại này không những vô dụng mà trái lại còn khiến đôi gò bồng đào săn chắc kia đung đưa, càng thêm gợi cảm mê người.</p>
+    <p>"Xem ra ngươi đã không kịp đợi rồi." Diệp Phi cười hì hì, bàn tay rảnh rỗi nắm chặt lấy một bên ngực mỹ nhân, trực tiếp da thịt tiếp xúc xoa nắn, đồng thời cúi đầu, ngậm lấy núm vú bên kia.</p>
+    <p>"Ưm... A!..." Đầu vú bị Diệp Phi ngậm mút, khoái cảm mãnh liệt gấp trăm lần so với lúc nãy khiến Nhạc Tâm Như rốt cục không nhịn được mà rên rỉ một tiếng. Dù lập tức cắn môi nhịn lại, nhưng khuôn mặt vốn đã đỏ bừng vì xấu hổ của nàng giờ lại càng đỏ hơn, như muốn chảy ra máu.</p>
+    <p>Phản ứng của mỹ nhân khiến Diệp Phi vô cùng đắc ý. Hắn buông hạt đậu đang ngậm mút ra, nhìn khuôn mặt thẹn thùng không thể tả của mỹ nhân, cười nói: "Thế nào, có phải rất thoải mái không? Tiếp theo muốn ta làm gì thì làm, chỉ cần ngươi nói hết mọi chuyện cho ta biết, ta sẽ đáp ứng ngươi tất cả."</p>
+    <p>"Hừ!" Nhạc Tâm Như hừ lạnh một tiếng, đơn giản nhắm mắt lại, không thèm để ý đến Diệp Phi.</p>
+    <p>Diệp Phi khẽ mỉm cười, đang định trêu chọc thêm vài câu, nhưng khi cảm nhận được hơi thở quyến rũ tỏa ra từ người nàng do động tình, hắn liền ngẩn ra.</p>
+    <p>Lúc gặp mặt lần đầu, trên người Nhạc Tâm Như đã có loại khí tức quyến rũ này, chỉ là khi đó Diệp Phi còn ít kinh nghiệm, chỉ cảm thấy mỹ nhân này khá mê người, hơn nữa lúc ấy hắn đang vướng vào chuyện phiền phức nên không mấy để tâm.</p>
+    <p>Lần này, Nhạc Tâm Như đã cố ý thu liễm, cho đến lúc bị Diệp Phi khiêu khích đến dục hỏa đốt người mới bắt đầu tỏa ra.</p>
+    <p>Giờ đây Diệp Phi không còn là tiểu tử vắt mũi chưa sạch nữa, ngay khoảnh khắc khí tức của mỹ nhân tản ra, hắn liền cảm thấy có gì đó không ổn. Hắn phát hiện loại khí tức quyến rũ này rất giống với trên người Thẩm sư nương. Điều này cũng bình thường, dù sao đều là mị công, có chỗ tương đồng cũng không kỳ lạ.</p>
+    <p>Điều thực sự khiến Diệp Phi sửng sốt chính là, hắn nhận ra sau khi khí tức này tỏa ra, mỹ nhân này có một lực hấp dẫn cực mạnh đối với hắn. Điều này rất kỳ quái, từ trước đến nay, ngoài những người tu tập Huyền Âm Quyết, ngay cả thể chất Mị cốt trời sinh như Nhan Như Ngọc cũng không thể mang lại cho hắn cảm giác bị mê hoặc bản năng như vậy, thế mà giờ lại xuất hiện trên người vị nữ thợ săn này.</p>
+    <p>Không để tâm đến việc đùa nghịch thân thể mỹ nhân nữa, Diệp Phi âm thầm vận công, xét xem con đường nội công của nàng. Xem xong, hắn càng kinh ngạc không thôi, vì công pháp của mỹ nhân này có rất nhiều chỗ tương tự với Huyền Âm Quyết, chỉ là đã giản lược đi rất nhiều.</p>
+    <p>Xem ra vị mỹ nhân này có sư thừa rất có duyên nợ với mình, Diệp Phi thầm nghĩ trong lòng. Tuy nhiên hắn cũng hiểu rõ, lúc này có hỏi nàng cũng sẽ không nói, chỉ có thể quyết định chế ngự nàng trước đã.</p>
+    <p>Ban đầu Diệp Phi đối đãi với Nhạc Tâm Như như vậy chỉ là muốn ép nàng khai ra kẻ giật dây, nhưng sau phát hiện này, hắn thực sự muốn biến nàng thành người đàn bà của mình.</p>
+    <p>Thu liễm tâm thần, Diệp Phi tiếp tục đùa bỡn đôi gò bồng đào đầy đặn mê người của mỹ nhân, mãi đến khi nàng thở dốc hổn hển, động tình như lửa, lúc này mới tiếp tục tiến công xuống phía dưới, dùng phương pháp tương tự làm nát nốt quần áo hạ thân của mỹ nhân. Như vậy, vị nữ thợ săn này ngoài chiếc áo khoác dùng làm đệm giường và đôi giày dưới chân ra, đã hoàn toàn trần trụi.</p>
+    <p>Nhạc Tâm Như nhắm mắt lại, vừa nguyền rủa Diệp Phi, vừa hưởng thụ khoái cảm hắn mang lại. Bỗng nhiên cảm thấy thân thể mát lạnh, nàng vội mở mắt ra, phát hiện mình đã trần như nhộng, vừa thẹn vừa giận, nàng lại lần nữa giằng co.</p>
+    <p>Do phải cởi quần áo hạ thân của mỹ nhân, Diệp Phi đã buông lỏng việc đè ép hai chân nàng. Như thế, khi mỹ nhân giãy giụa, phạm vi cử động đã lớn hơn nhiều, thân thể cũng dần thoát khỏi sự khống chế của Diệp Phi.</p>
+    <p>Điều này làm cho Diệp Phi hiểu ra, cưỡng gian một chọi một kỳ thực không phải chuyện dễ dàng, trừ phi người phụ nữ kia vì sợ hãi hoặc lý do khác mà bỏ cuộc chống cự. Nhưng vị mỹ nhân này hiển nhiên không phải loại dễ dàng buông xuôi, dù đã bị hắn làm cho dục hỏa bốc lên điên cuồng, hơn nữa còn biết rõ không thể thoát khỏi vận mệnh này, nàng vẫn không hề phối hợp.</p>
+    <p>Bất đắc dĩ, Diệp Phi không thể làm gì khác hơn là phóng ra Lĩnh Vực, giữ chặt tứ chi của mỹ nhân, sau đó kéo chỗ tựa lưng của ghế sa lon nằm ngang ra thành một chiếc giường đôi, để mỹ nhân nằm trong tư thế "Đại" trên đó.</p>
+    <p>Giải phóng toàn thân, Diệp Phi đứng trước ghế sa lon, vừa thong dong thưởng thức thân thể khiêu gợi của mỹ nhân, vừa cười dâm đãng nói: "Mỹ nhân, bị chơi đùa bộ ngực lâu như vậy, lồn cũng đã ngứa lắm rồi chứ? Yên tâm, ta sẽ làm ngươi thỏa mãn ngay thôi!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1020.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1022.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

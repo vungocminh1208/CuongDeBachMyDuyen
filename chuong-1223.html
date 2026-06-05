@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1223 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1223</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1223</small>
+    Chương 1221: Sư phụ thêm hắc ti
+  </h1>
+  <div class="chapter-body">
+    <p>"Mặc cái này làm gì chứ?" Doãn Hàm Yên một bên duỗi tay trái, nơi còn dính chút dâm thủy sau khi tự mò mẫm, vừa nhận lấy bộ đồ kia vừa nói. Nàng thật sự hơi khó hiểu, làm tình chẳng lẽ không phải cởi hết mới đã hay sao, sao đồ nhi lại bắt mình mặc thêm quần áo.</p>
+    <p>Diệp Phi cười hắc hắc nói: "Sư phụ mặc vào rồi biết."</p>
+    <p>Doãn Hàm Yên nhìn bộ trang phục màu đen kỳ quái kia, phát hiện nó hoàn toàn trong suốt, chỉ được dệt từ những sợi tơ đen thưa thớt. Còn đôi giày cao gót thì nàng từng thấy Hà Mộ Tuyết đi rồi, nên cũng không lạ lẫm gì.</p>
+    <p>Trong lòng tưởng tượng cảnh mình mặc bộ đồ kỳ quái này, gương mặt xinh đẹp của Doãn Hàm Yên không khỏi đỏ bừng. Nàng trừng mắt lườm đồ nhi một cái, nhưng lại không đành lòng từ chối, đành nói: "Ngươi xoay người đi trước, không cho nhìn!"</p>
+    <p>"Thật là, sư phụ, trên người người chỗ nào mà đồ nhi chưa từng thấy, chưa từng sờ qua? Còn cần phải xoay người sao?" Đôi khi, Diệp Phi thật sự rất khó hiểu những người phụ nữ này, rõ ràng họ có thể cởi sạch để mặc mình trêu đùa, thậm chí tự mình vạch lồn chờ đợi, vậy mà chỉ thay mỗi bộ quần áo thôi lại trở nên thẹn thùng đến thế.</p>
+    <p>"Ngươi có quay đi không? Không quay thì ta không mặc đâu!" Doãn Hàm Yên nũng nịu nói, giọng điệu tuy là làm nũng nhưng ý tứ lại vô cùng kiên định.</p>
+    <p>"Được được được, đồ nhi nghe lời sư phụ." Diệp Phi vội vàng đầu hàng, nói xong liền lập tức xoay người đưa lưng về phía mỹ nữ sư phụ. Hắn cũng không nghĩ đến việc dùng Tinh Thần Lực nhìn lén, vì hắn rất mong chờ khoảnh khắc sư phụ xoay người lại tạo bất ngờ cho mình.</p>
+    <p>Hà Mộ Tuyết đang đứng đối diện giường. Sau khi Diệp Phi cởi sạch quần áo, nàng chỉ nhìn thấy bóng lưng của hắn. Nhưng lúc hắn xoay người lại, thứ đập vào mắt nàng đầu tiên chính là cái vật kia đang ưỡn thẳng lên cao. Không phải Hà Mộ Tuyết là kẻ háo sắc, mà là thứ đó quá nổi bật, khiến người ta không thể không chú ý.</p>
+    <p>Sao lại đáng sợ đến thế? Nhìn thấy dương vật to lớn đến đáng sợ của Diệp Phi, Hà Mộ Tuyết không khỏi thầm kinh hãi, đồng thời cũng rất lo lắng cho sư tỷ của mình.</p>
+    <p>Hà Mộ Tuyết nhỏ tuổi hơn Doãn Hàm Yên rất nhiều, là đứa trẻ bị bỏ rơi được chưởng môn đời trước - cũng chính là mẹ của Doãn Hàm Yên - nhận nuôi vài năm trước khi Độ Kiếp. Nàng chưa kịp lớn thì sư phụ đã qua đời, nàng vốn do một tay Doãn Hàm Yên nuôi nấng, tình cảm giữa hai người có thể nói vừa là chị em vừa là mẹ con.</p>
+    <p>Tuy nhiên, dù nhỏ hơn, Hà Mộ Tuyết hiện tại cũng đã ngoài hai trăm tuổi. Mặc dù chưa từng trải sự đời, nhưng những điều cần biết nàng đều đã biết. Lúc này, nhìn thấy dương vật to lớn vượt ngoài sức tưởng tượng của Diệp Phi, trong lòng nàng đột nhiên dấy lên sự tò mò, muốn biết sư tỷ làm sao đối phó được với đồ đệ của mình.</p>
+    <p>Vì vậy, Hà Mộ Tuyết vốn định chờ sư tỷ cùng đồ đệ ý loạn tình mê thì lặng lẽ rời đi để tránh gây lúng túng, nhưng lúc này, nàng lại muốn nán lại xem thêm một chút.</p>
+    <p>Bùa ẩn thân là thứ Diệp Phi chưa từng thấy, càng không thể phát giác được, vì vậy hắn hoàn toàn không biết rằng ở cách đó không xa, có một vị sư thúc xinh đẹp đang ngơ ngác nhìn chằm chằm vào dương vật của mình.</p>
+    <p>Cũng may chỉ một lát sau, hắn nghe phía sau truyền đến giọng nói có chút ngượng ngùng của mỹ nữ sư phụ: "Được rồi, ngươi quay lại đi."</p>
+    <p>Diệp Phi nghe vậy liền vội vàng xoay người nhìn về phía mỹ nữ sư phụ. Cùng lúc đó, Hà Mộ Tuyết vẫn đang ẩn thân cũng nhìn sang. Cả hai người đều sững sờ.</p>
+    <p>Doãn Hàm Yên bình thường là một nữ cường nhân oai phong lẫm liệt, hùng bá một phương; khi trần trụi thì là một nữ thần gợi cảm thuần túy. Nhưng lúc này, sự gợi cảm của nàng bỗng chốc tăng lên gấp bội. Với bộ tất chân liền thân hình lưới màu đen ôm sát, vóc dáng vốn đã nóng bỏng nay càng thêm mê người. Những sợi tơ đen tương phản với làn da trắng như tuyết làm nàng toát lên vẻ yêu diễm, đầy cám dỗ, như muốn mời gọi người ta sa ngã. Đặc biệt là đôi chân thon dài gợi cảm dưới đôi giày cao gót, với những đường cong quyến rũ, tất cả khiến Diệp Phi nhìn đến ngẩn ngơ, dương vật cứng đến mức muốn nổ tung.</p>
+    <p>"Sư phụ, mau chổng mông lên, đồ nhi muốn từ phía sau đâm vào người!" Diệp Phi đỏ mắt quát. Đối mặt với một người sư phụ như vậy, hắn không muốn đợi thêm một giây nào nữa, chỉ muốn ngay lập tức thưởng thức thân thể mềm mại của nàng, mạnh mẽ đâm vào dâm huyệt mê người kia.</p>
+    <p>Doãn Hàm Yên lúc này cũng dục hỏa bùng phát. Chỉ cần có thể để đồ nhi cắm đại dương vật vào lồn mình, hung hăng đâm rút, chuyện gì nàng cũng nguyện ý làm. Nghe vậy, nàng lập tức nghe lời xoay người, hai tay chống lên giường, cúi người, chổng cao cái mông lớn lên.</p>
+    <p>Tư thế này càng làm cho tình hình nguy cấp hơn. Nơi quyến rũ nhất trên người mỹ nữ sư phụ chính là cặp mông tròn trịa vểnh cao cùng đôi chân dài thon thả. Giờ đây, dưới tác động của tất chân, giày cao gót và tư thế này, quả thực khiến người ta muốn mạng.</p>
+    <p>Diệp Phi gầm nhẹ một tiếng, đột nhiên nhào tới. Nhưng hắn không vội đâm vào lồn sư phụ như nàng mong đợi, mà ngồi xổm xuống phía sau nàng. Hắn vừa dùng hai tay vuốt ve, vừa cúi đầu hôn liếm khắp đôi chân bọc trong tất chân và cặp mông lớn của sư phụ. Cho đến khi đôi chân dài cùng cặp mông đầy đặn đều đã đẫm nước miếng, hắn mới hài lòng chôn mặt vào giữa hai cánh mông đầy đặn của nàng, thè dài lưỡi, liếm láp lên tiểu dâm huyệt đang tràn trề dâm thủy bên trong lớp tất chân.</p>
+    <p>Bị đồ nhi làm như vậy, Doãn Hàm Yên vừa sung sướng vừa khó chịu, nhịn một chút liền không chịu nổi nữa, lắc lắc cái mông, giục: "Đồ nhi ngoan, đừng trêu sư phụ nữa, sư phụ khó chịu quá rồi. Nhanh, đem đại dương vật cắm vào lồn sư phụ đi, để sư phụ được thoải mái!"</p>
+    <p>Sư phụ đã dục hỏa khó nhịn, Diệp Phi làm sao không phải chứ. Nghe vậy, hắn liền đứng dậy, muốn cắm dương vật vào lồn nàng như lời nàng nói.</p>
+    <p>Thế nhưng, giây tiếp theo, Diệp Phi cảm thấy mình tính sai. Đôi chân của sư phụ vốn đã rất dài, chỉ ngắn hơn hắn một chút, nay lại đi thêm đôi giày cao gót mười phân, độ dài đôi chân đột nhiên vượt qua hắn, khiến dương vật của hắn không thể chạm tới lồn sư phụ.</p>
+    <p>Ngay cả khi tính hết độ dài dương vật, Diệp Phi cũng chỉ có thể cắm vào được một nửa. Nếu muốn cắm sâu vào tận gốc, hắn phải kiễng chân lên. Điều này tuy không là gì với hắn nhưng dù sao cũng khá bất tiện.</p>
+    <p>Tuy nhiên, Diệp Phi đương nhiên không chịu bó tay. Hắn vỗ nhẹ lên cặp mông gợi cảm của mỹ nữ sư phụ rồi nói: "Sư phụ, lồn của người ưỡn cao quá, đồ nhi không tới được, mau dang hai chân ra một chút."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1222.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1224.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

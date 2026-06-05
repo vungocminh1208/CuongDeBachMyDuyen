@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1232 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1232</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1232</small>
+    Chương 1232: Vô Cực Môn Thiếu Chủ
+  </h1>
+  <div class="chapter-body">
+    <p>Thu thập xong đồ vật, rời khỏi con đường này, rẽ một góc, Diệp Phi lập tức nhìn thấy đoàn người nhộn nhịp, so với con phố cực kỳ yên tĩnh lúc nãy quả thực như hai thế giới. Hiển nhiên, thân là một trong mười đại thế lực, Thúy Yên Môn có uy hiếp không hề nhỏ. Chỉ là xuất phát điểm của hắn quá cao, mới vài ngày đã biến mỹ nữ sư phụ là Chưởng môn thành người đàn bà của mình, cho nên mới không có cảm nhận sâu sắc lắm.</p>
+    <p>Nếu muốn bán thứ đủ để gây ra náo động toàn bộ Chân Hư Giới, vậy dĩ nhiên phải bán đấu giá mới có thể thu được lợi ích lớn nhất. Diệp Phi mặc dù chẳng biết gì về kinh doanh, nhưng điều này vẫn hiểu rõ, liền đi khắp đường tìm kiếm phòng đấu giá.</p>
+    <p>Chỉ là, tìm khắp toàn bộ phạm vi thế lực của Thúy Yên Môn, Diệp Phi cũng không tìm được nơi nào tương tự. Trong lòng không khỏi có chút kỳ quái, theo lý thuyết, phòng đấu giá loại này có thể nói là kinh doanh vốn ít lời nhiều, mọi người nên tranh nhau làm mới phải. Cho dù người khác sợ thế lực nhỏ không dám làm, thân là một trong mười đại thế lực Thúy Yên Môn cũng không nên có nỗi lo này mới đúng.</p>
+    <p>Tìm người hỏi thăm một chút, Diệp Phi mới biết, toàn bộ trung tâm thành này chỉ có một nhà phòng đấu giá, nằm trong phạm vi thế lực của Thanh Liên phái, hơn nữa còn là do Thanh Liên phái mở.</p>
+    <p>Đến lúc này Diệp Phi mới hiểu, đây căn bản là nhượng bộ lợi ích. Có lẽ các thế lực khác không phải không biết chỗ tốt của việc này, chỉ bất quá hiện giờ Thanh Liên phái là thế lực lớn thứ hai Chân Hư Giới, mọi người đành nhường cái bánh gatô lớn này cho họ mà thôi. Còn thế lực thứ nhất là Oa Hoàng Cung thì căn bản không cần, vì toàn bộ tiền thu thuế của trung tâm thành đều thuộc về họ, đó mới là nơi có lợi ích lớn nhất.</p>
+    <p>Thanh Liên phái và Thúy Yên Môn là hàng xóm, tuy không phải môn phái thuần nữ tử như Thúy Yên Môn, nhưng là thế lực lấy nữ tử làm chủ, nghe nói quan hệ với Thúy Yên Môn rất tốt, thuộc kiểu minh hữu. Đã như vậy, Diệp Phi cũng không ngại nhường lợi ích cho bọn họ một chút.</p>
+    <p>Tại vị trí trung tâm trong phạm vi thế lực của Thanh Liên phái, Diệp Phi tìm thấy phòng đấu giá tên là "Thanh Liên các". Quy mô thực sự không nhỏ, lớn hơn bất kỳ cửa tiệm nào Diệp Phi từng thấy, xem ra phòng đấu giá này quả nhiên là công việc rất kiếm tiền.</p>
+    <p>Ngẫm lại cũng phải, bất kể ngành nghề gì, một khi hình thành lũng đoạn thì đều rất ghê gớm, huống chi là phòng đấu giá. Bởi vì chỉ có duy nhất nhà này, hơn chín mươi phần trăm vật phẩm quý trọng cần bán đấu giá của toàn bộ Chân Hư Giới đều giao dịch ở đây. Dù phòng đấu giá chỉ lấy một phần trăm phí thuê cũng đã là con số trên trời, huống chi chiết khấu phần trăm ở đâu cũng không thể ít như vậy.</p>
+    <p>Mang theo cảm khái đó, Diệp Phi cất bước đi vào. Vừa vào tới nơi, liền có một tên Hỏa kế tiến lên đón, ân cần hỏi: "Vị thiếu hiệp này, xin hỏi ngài muốn mua đồ, hay là muốn ký gửi hoặc bán đấu giá?"</p>
+    <p>Phòng đấu giá lớn thế này, bán đấu giá không phải mỗi ngày đều tiến hành, vì vậy tự nhiên cũng có những công việc khác, nói thí dụ như bán chút đồ của bản thân Thanh Liên phái hoặc tiếp nhận một ít vật phẩm đẳng cấp không đủ để bán đấu giá để ký gửi. Bởi vì danh tiếng nơi này đủ vang dội, những người có đồ tốt nhưng lại không muốn tự tìm người mua, hoặc đơn thuần chỉ là sợ phiền phức đều rất tình nguyện ký gửi ở đây.</p>
+    <p>Diệp Phi mỉm cười nói: "Ta có món đồ cần bán đấu giá, không biết đăng ký ở đâu?"</p>
+    <p>"Bán đấu giá sao?" Tên Hỏa kế cả kinh. Bình thường muốn tham gia bán đấu giá đều không phải vật tầm thường, một Hỏa kế như hắn tự nhiên không cách nào làm chủ, liền nói: "Thiếu hiệp xin chờ một chút, ta gọi Chưởng quỹ của chúng ta đến."</p>
+    <p>Diệp Phi gật đầu ra hiệu cho hắn tự tiện, còn tên Hỏa kế thì mời hắn qua một bên ngồi xuống, dâng trà rồi mới rời đi.</p>
+    <p>Một lát sau, một người đàn ông trung niên vóc người hơi phát tướng, nhìn là biết ngay người làm ăn chuyên nghiệp, bước nhanh tới khách khí hỏi: "Tại hạ họ Lý, là một trong những Chưởng quỹ của tiệm này, nghe nói thiếu hiệp có vật muốn bán đấu giá?"</p>
+    <p>"Không sai, không biết đăng ký xong thì bao lâu mới được tham gia?" Diệp Phi hỏi, đây là điều hắn muốn biết nhất. Nếu phải đợi quá lâu thì hắn thà bán rẻ một chút, dù sao còn muốn nghiên cứu chuyện của Địa Cầu, sau này có thể không có thời gian chạy qua đây.</p>
+    <p>"Thiếu hiệp xin mời theo ta." Muốn tham gia bán đấu giá đều là những vật quý trọng, tự nhiên không thể lấy ra giữa nơi đông người trong phòng khách này. Vì vậy, Lý chưởng quỹ vừa dẫn Diệp Phi đi về phía một gian phòng nhỏ bên cạnh, vừa nói: "Bản điếm mỗi nửa tháng tổ chức bán đấu giá một lần, mà lần tới đúng là Hậu Thiên, thiếu hiệp tới đúng là rất đúng lúc."</p>
+    <p>Diệp Phi trong lòng vô cùng mãn ý, xem ra mình đã đến đúng chỗ rồi.</p>
+    <p>Vào phòng, Diệp Phi không nói nhiều, trực tiếp lấy ra Hộ Tâm Kính đưa cho Lý chưởng quỹ: "Lý chưởng quỹ mời xem, vật này có đủ tư cách tham gia bán đấu giá không?"</p>
+    <p>"Đây là?" Lý chưởng quỹ có thể lăn lộn đến địa vị hiện tại ở phòng đấu giá duy nhất này, nhãn lực tự nhiên không thể chê. Nhưng chất liệu của vật này ông ta chưa từng thấy bao giờ, lập tức vừa nghi hoặc vừa tiếp lấy. Ngay lập tức, sắc mặt ông ta biến đổi, kinh hãi thốt lên: "Đây là..."</p>
+    <p>Chưa kịp để Lý chưởng quỹ nói hết câu, gian phòng nhỏ vốn không có ai dám quấy rầy này đột nhiên bị người đẩy cửa ra, sau đó có hai người một trước một sau đi vào.</p>
+    <p>Người đi đầu là một thanh niên trông chừng hai mươi tuổi, tướng mạo khá đẹp trai, chỉ là tu vi kém chút, mới Nguyên Anh hậu kỳ. Còn người trung niên trông vẻ ngoài xấu xí đi phía sau lại rất lợi hại, là cao thủ Hóa Thần đỉnh cao.</p>
+    <p>Nhìn thấy hai người này, Lý chưởng quỹ cả kinh, theo bản năng đặt Hộ Tâm Kính xuống dưới hai tay, rồi hỏi: "Tả Thiếu môn chủ, ngài đây là?"</p>
+    <p>"Lý chưởng quỹ, nghe nói có người muốn bán một món đồ tốt, ta tới xem một chút." Người thanh niên kia dửng dưng kéo một cái ghế ngồi xuống, còn người trung niên Hóa Thần đỉnh cao kia thì đứng sau lưng hắn. Hiển nhiên trong hai người thì tên "Tả Thiếu môn chủ" này là chủ.</p>
+    <p>Lý chưởng quỹ trong lòng thầm giận, hành động này của Tả Thiếu môn chủ đã tương đương với khiêu khích Thanh Liên phái. Nhưng ông chỉ là Chưởng quỹ phòng đấu giá, không dám đắc tội đối phương, đành chần chừ nói: "Không sai, nhưng ý của vị thiếu hiệp này là muốn tham gia bán đấu giá, chứ không phải bán đứt."</p>
+    <p>"Thật phiền phức, lại còn phải đợi bán đấu giá. Nếu là đồ tốt, bổn thiếu gia mua trực tiếp, sẽ không để hắn chịu thiệt." Tả Thiếu môn chủ nói, trực tiếp giành lấy Hộ Tâm Kính từ tay Lý chưởng quỹ, lập tức sắc mặt khẽ thay đổi, bất động thanh sắc nhìn về phía người trung niên phía sau.</p>
+    <p>Người trung niên kia khẽ gật đầu, sự phối hợp ăn ý khiến hắn hiểu Thiếu môn chủ có ý gì, đó là hỏi mình rằng thanh niên này có đụng vào được không. Dù sao chính hắn không nhìn ra sâu cạn của Diệp Phi, mà người trung niên này cũng bí mật quan sát một hồi, phát hiện cũng không nhìn thấu tu vi của Diệp Phi. Vậy chỉ có hai khả năng, một là tu vi thanh niên trước mắt đã vượt qua hắn, đạt tới Đại Thừa Kỳ. Nhưng điều này hiển nhiên là không thể, dù sao toàn bộ Chân Hư Giới cũng chỉ có hai mươi mấy người Đại Thừa Kỳ, hắn không thể không quen biết.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1231.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1233.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

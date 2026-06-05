@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1225 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1225</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1225</small>
+    Chương 1223: Nhan bắn mỹ sư phụ
+  </h1>
+  <div class="chapter-body">
+    <p>Theo thời gian trôi đi, tình hình trận chiến giữa hai thầy trò càng thêm kịch liệt. Doãn Hàm Yên nơi nào còn chút uy nghiêm và rụt rè của kẻ chúa tể một phương, bị đồ nhi âu yếm thao đến cực kỳ giống một kỹ nữ dâm đãng. Nàng vừa thốt ra những lời dâm dục, vừa uốn éo eo mông phối hợp theo nhịp độ của đồ nhi.</p>
+    <p>Cứ như vậy qua mười mấy phút, Doãn Hàm Yên rốt cục đạt tới cao trào lần đầu tiên trong ngày, tiểu dâm huyệt co rút lại, đồng thời vừa dùng sức vặn vẹo thân thể mềm mại khiêu gợi, vừa hét lớn: "Đồ nhi ngoan... Nhanh... Nhanh... Nhanh hơn chút nữa... Địt sư phụ... Sư phụ muốn tới rồi... Dâm huyệt của sư phụ... Cũng bị ngươi... Địt hóa rồi... Nhanh nha... Trở lại... Dùng sức mạnh hơn... Địt sư phụ... Đại dương vật của ngươi... Thật là lợi hại... Sư phụ muốn... Chết dưới đại dương vật của ngươi... A!... Tới rồi... Tới rồi... A!..."</p>
+    <p>Doãn Hàm Yên là cao thủ Đại Thừa Kỳ, Thuần Âm Chân Nguyên vốn dĩ thâm hậu hơn bà nội Tống Tuyết Kỳ nhiều, lại thêm tối hôm qua cả một đêm song tu, Huyền Âm Quyết cũng tinh tiến rất nhiều, bởi vậy lồn của nàng so với tối hôm qua càng thêm lợi hại, đặc biệt tại thời điểm cao trào này, càng khiến dương vật của Diệp Phi bị kẹp đến tê dại, khoái cảm cực độ.</p>
+    <p>"Thật là sư phụ, lồn của người cũng thật lợi hại, dương vật của đồ nhi đều sắp bị nó kẹp hóa rồi, kẹp chặt chút nữa đi, đồ nhi cũng sắp bắn!" Diệp Phi vừa tăng nhanh tốc độ đâm rút, vừa quát.</p>
+    <p>Nghe Diệp Phi nói vậy, Doãn Hàm Yên vội vàng vận Chân Nguyên, để dâm huyệt co rút chặt hơn, thậm chí từ nơi sâu thẳm hoa tâm truyền ra một luồng sức hút, không ngừng mút vào quy đầu to lớn đang cắm sâu trong lồn mình, miệng cũng hưng phấn kêu lên: "Đồ nhi ngoan... Đến đây đi... Cùng sư phụ... Đồng thời thoải mái... Đem tinh dịch của ngươi... Toàn bộ bắn vào... Dâm huyệt của sư phụ... Để sư phụ... Càng thoải mái... A!... Tới rồi... Bay..."</p>
+    <p>Theo tiếng rên rỉ cao vút cuối cùng, Doãn Hàm Yên đang bao bọc trong đôi hắc ti gợi cảm run lên bần bật, sau đó co giật nhẹ nhàng.</p>
+    <p>Mà Diệp Phi lúc này cũng đạt tới đỉnh điểm, gầm nhẹ một tiếng, dùng sức dập mạnh, đem toàn bộ quy đầu va vào hoa tâm của mỹ nữ sư phụ, sau đó những dòng tinh dịch nóng rực liên tục bắn thẳng vào tử cung sư phụ, mãi cho đến khi gần như rót đầy.</p>
+    <p>Doãn Hàm Yên vận chuyển Huyền Âm Quyết, đem Thuần Dương tinh dịch đồ nhi bắn vào nhanh chóng luyện hóa, khiến Thuần Âm Chân Nguyên vốn có của mình biến thành Âm Dương Dung Hợp, nhờ đó càng thêm tinh khiết.</p>
+    <p>Đối với việc này, Diệp Phi cũng không có ý kiến, dù sao hiện tại mỹ nữ sư phụ còn chưa công khai quan hệ với mình, muốn nàng mang thai cũng không được, có điều ngày sau còn dài, đến lúc đó nhất định làm cho nàng sinh nhiều mấy đứa! Nghĩ vậy, dương vật đang nằm trong lồn mỹ nữ sư phụ vừa bắn xong đợt tinh dịch cuối cùng lại trong nháy mắt cứng ngắc trở lại.</p>
+    <p>Doãn Hàm Yên luyện hóa cực nhanh, Diệp Phi vừa bắn xong, nàng cũng đã thu công, sau đó di chuyển thân thể mềm mại về phía trước một chút, tạm thời để dương vật cứng ngắc của đồ nhi rút ra khỏi lồn mình, rồi xoay người đối mặt với Diệp Phi, ngồi xổm xuống trước người hắn. Nàng đưa tay nắm lấy dương vật của hắn, không quản việc trên đó còn dính đầy dâm thủy của mình, mở miệng nhỏ ngậm lấy, mút mát đầy thỏa mãn.</p>
+    <p>"Sư phụ, tiếp theo chúng ta làm tiếp." Được mỹ nữ sư phụ mút vài cái, dục hỏa của Diệp Phi càng tăng cao, lôi kéo sư phụ muốn nàng tiếp tục cho mình địt tiểu dâm huyệt.</p>
+    <p>Không ngờ Doãn Hàm Yên lại dùng miệng nhỏ ngậm chặt dương vật của đồ nhi, khẽ lắc đầu, tiếp tục dùng sức mút vào quy đầu, tay phải nắm lấy thân dương vật lộ ra bên ngoài, nhanh chóng tuốt động, tay trái thì đưa xuống dưới khố, tự mình kích thích lên tiểu dâm huyệt đang không ngừng chảy ra dâm thủy.</p>
+    <p>Thành thật mà nói, Doãn Hàm Yên dù sao cũng mới chỉ khẩu giao lần thứ hai, làm cho dương vật Diệp Phi cảm thấy kém xa so với khi cắm vào trong tiểu dâm huyệt, nhưng việc nhìn từ trên xuống cảnh nàng đang mút dương vật mình lại cho Diệp Phi một loại thỏa mãn tinh thần.</p>
+    <p>Mà Doãn Hàm Yên không hổ là cao thủ Đại Thừa Kỳ, ngộ tính không thể chê, rất nhanh đã vô sư tự thông nắm giữ không ít kỹ xảo, thậm chí còn vận dụng Chân Nguyên, khiến cái miệng nhỏ của mình tạo ra lực hút không kém gì dâm huyệt, rất nhanh đã làm cho đồ nhi âu yếm được hưởng thụ.</p>
+    <p>Thầy trò hai người kẻ hầu hạ hăng say, người hưởng thụ thoải mái, còn Hà Mộ Tuyết ở bên cạnh hoàn toàn ngẩn ngơ.</p>
+    <p>Vừa nãy việc sư tỷ dâm đãng để cho đồ nhi địt lồn mình, Hà Mộ Tuyết ít nhiều còn có thể chấp nhận, dù sao tình yêu nam nữ là chuyện rất bình thường, nhưng lúc này sư tỷ lại dùng miệng ngậm dương vật Diệp Phi, khiến nàng không thể nào tiếp nhận nổi. Đây có phải là sư tỷ cao cao tại thượng của nàng không? Nếu không phải tận mắt nhìn thấy, đánh chết nàng cũng không tin sư tỷ lại có thể như một nữ nô mà ngậm dương vật của một người đàn ông, dù là nàng cũng lén lút có chút thích Diệp Phi đi chăng nữa.</p>
+    <p>Nhưng dù Hà Mộ Tuyết có không thể tiếp nhận đến đâu, đây đã là sự thật, hơn nữa Doãn Hàm Yên nắm bắt kỹ thuật rất nhanh, chỉ dùng mấy phút đã khiến Diệp Phi đạt tới cao trào.</p>
+    <p>"Sư phụ, ta muốn bắn, để ta bắn ở đâu?" Diệp Phi vừa thả lỏng cơ quan, vừa hỏi mỹ nữ sư phụ của mình.</p>
+    <p>Doãn Hàm Yên không nói gì, nhưng dùng hành động thực tế để trả lời đồ nhi. Nghe vậy, nàng không những không phun dương vật của đồ nhi ra để hắn bắn vào lồn mình tăng trưởng công lực, trái lại còn ngậm quy đầu chặt hơn, tốc độ tay nhỏ tuốt động cũng nhanh hơn.</p>
+    <p>Diệp Phi nào còn không hiểu, sư phụ đây là muốn mình trực tiếp bắn vào trong miệng nàng, lập tức gầm nhẹ một tiếng, quy đầu dâng lên, bắt đầu cường lực phun ra.</p>
+    <p>Doãn Hàm Yên vội vàng càng thêm dùng sức mút lấy dương vật đồ nhi, muốn hắn bắn thoải mái hơn một chút, không ngờ Diệp Phi vừa bắn ra đợt thứ nhất, liền đột ngột rút dương vật ra khỏi miệng nhỏ của mỹ nữ sư phụ, sau đó nhắm ngay khuôn mặt nghiêng nước nghiêng thành của nàng, bắn từng luồng tinh dịch lên đó.</p>
+    <p>Hơn mười phát liên tiếp, đều bắn lên khuôn mặt mỹ nữ sư phụ, phủ đầy một tầng, tựa như dùng tinh dịch làm một lớp mặt nạ cho nàng vậy. Diệp Phi mới thỏa mãn đình chỉ phun ra, đem dương vật đã bắn xong lần nữa đưa đến bên miệng nhỏ của sư phụ, cúi đầu nhìn dáng vẻ kẻ chúa tể một phương thường ngày hung hăng vô cùng mà giờ mặt đầy tinh dịch của mình, trong lòng hưng phấn không thể tự chủ.</p>
+    <p>Doãn Hàm Yên mở hai cánh môi đỏ, lần nữa ngậm lấy quy đầu đồ nhi, nhẹ nhàng mút vài cái, đem chút tinh dịch còn vương lại trên quy đầu hút hết ra, sau đó phun dương vật ra, duỗi lưỡi thơm tho liếm sạch tinh dịch dính bên mép vào trong miệng ăn, cuối cùng dùng Chân Nguyên chấn động, làm bay đi những giọt tinh dịch không tới trên mặt, để khuôn mặt tuyệt mỹ của mình trở nên sạch sẽ như mới.</p>
+    <p>Làm xong tất cả, Doãn Hàm Yên đứng dậy nằm trên giường, tách rộng đôi chân dài hắc ti của mình, rồi dùng hai tay vạch mở tiểu dâm huyệt đang dâm thủy giàn giụa, nũng nịu nói: "Đồ nhi ngoan, mau lên đây, sư phụ không chịu nổi nữa rồi."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1224.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1226.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

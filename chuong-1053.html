@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1053 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1053</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1053</small>
+    Chương 1053: Diệp Phi Đặc Quyền
+  </h1>
+  <div class="chapter-body">
+    <p>Nhìn thấy cô tiểu vị hôn thê xinh đẹp động lòng người kia nước mắt như mưa, hai mắt sưng đỏ, nhìn lại bên cạnh, nhạc mẫu đại nhân gợi cảm mê người cũng gương mặt tiều tụy đầy tự trách, Diệp Phi không khỏi rất đau lòng, vội vàng tiến lên ôm lấy Lâm Linh, lại ném cho Tiếu Hàm Nguyệt một ánh mắt an ủi.</p>
+    <p>Không phải hắn không muốn ôm cả hai mẹ con đóa hoa tuyệt sắc khuynh thành này vào lòng, mà là không thể, dù sao đây không phải ở nhà, nhân viên đưa hắn tới vẫn chưa rời đi, hơn nữa ai biết nơi này có lắp đặt thiết bị giám sát hay không.</p>
+    <p>"Nha đầu ngốc, khỏe mạnh khóc cái gì." Diệp Phi ôm Lâm Linh xong, dùng giọng nhẹ nhàng nhất cười nói.</p>
+    <p>"Xin lỗi!" Lâm Linh lại lên tiếng xin lỗi, sau đó khóc lóc nói: "Đều là tại con không tốt, không nghe lời mẹ, kết quả hại anh thành ra thế này."</p>
+    <p>Diệp Phi ôm Lâm Linh ngồi xuống một chiếc ghế, đưa tay vỗ vỗ lên mông nhỏ của nàng, tiếp tục cười hỏi: "Hại anh thành ra thế nào? Em xem Lão Công em không phải vẫn khỏe mạnh, không mất một sợi tóc nào sao."</p>
+    <p>"Nhưng mà, anh bây giờ đang ở trong trại tạm giam, ngày kia phải ra tòa, nói không chừng còn có thể bị phạt, ngồi tù. Nếu như lúc trước em nghe lời mẹ, quan sát kỹ hơn Cổ tỷ... Cổ Diễm Bình người đàn bà xấu xa kia, thì đã không như thế này." Lâm Linh tự trách nói, lúc nhắc đến Cổ Diễm Bình, theo thói quen muốn gọi "Cổ tỷ tỷ", nhưng nghĩ đến sự đáng ghét của ả, lập tức sửa lại.</p>
+    <p>Bên cạnh Tiếu Hàm Nguyệt cũng tiếp lời: "Việc này cũng tại mẹ, không đủ cảnh giác, mới xảy ra chuyện như vậy. Dù cho chúng ta thắng kiện, cũng sẽ ảnh hưởng đến thanh danh của con, người khác sẽ nhìn con thế nào?"</p>
+    <p>"Nhìn con thế nào? Đánh giá cao con một chút chứ." Diệp Phi cười ha ha nói: "Mọi người quên mất thân phận của con rồi sao? Đại ca xã hội đen đấy! Nếu như ngay cả tù cũng chưa từng ngồi, sau này gặp mấy lão đại khác, đều không tiện mở miệng nói chuyện."</p>
+    <p>Nói đến đây, Diệp Phi quay đầu nhìn nhân viên kia một chút, người nọ cũng biết ý, lập tức xoay người rời khỏi phòng, còn giúp bọn họ đóng cửa lại.</p>
+    <p>Chờ người nọ rời đi, Diệp Phi nói tiếp: "Cho nên này, chuyện này đối với con mà nói, căn bản không tổn thất gì. Trái lại con còn muốn cảm ơn mọi người, để con có cơ hội hưởng dụng một siêu cấp đại mỹ nhân."</p>
+    <p>Nghe xong lời này của Diệp Phi, Tiếu Hàm Nguyệt hơi sững sờ, lập tức che miệng cười khúc khích, vẻ tự trách hoàn toàn biến mất. Đúng như Diệp Phi nói, chuyện này đối với hắn thật sự không đáng là bao, dù cho ngày kia thua kiện, bị xử hình, thì đã sao? Chẳng qua chỉ là mang thêm cái danh ngồi tù mà thôi, cuộc sống sau này vẫn cứ tiếp diễn, nhiều nhất là ít xuất hiện trước công chúng, như vậy trái lại càng có nhiều thời gian ở bên cạnh hai người hơn.</p>
+    <p>Tiếu Hàm Nguyệt đã bình thường trở lại, nhưng Lâm Linh vẫn chưa nghĩ thông suốt được.</p>
+    <p>Tuy rằng nhỏ hơn Diệp Vân Khinh vài tháng, nhưng Lâm Linh từ trước đến nay luôn chín chắn hiểu chuyện hơn, trong lòng cũng rất có chủ kiến, nếu không lúc trước đã không dùng cách cố ý xa lánh để khích lệ Diệp Phi. Thế nhưng càng như vậy, nàng lại càng không nghĩ ra, từ khi Diệp Phi trở nên mạnh mẽ, nàng cảm thấy mình chẳng giúp được gì cho hắn, hiện tại trái lại còn mang đến phiền phức, điều này khiến nàng rơi vào bế tắc.</p>
+    <p>Đối với tình huống của Lâm Linh, Diệp Phi muốn an ủi nàng rất dễ, nhưng cần một tiền đề, đó là phải ở trên giường. Bây giờ hiển nhiên không được, hắn liền lặng lẽ nháy mắt với nhạc mẫu đại nhân gợi cảm xinh đẹp, bảo bà đưa con gái về trước, mình lát nữa sẽ tìm bọn họ.</p>
+    <p>Chờ hai mẹ con rời đi, Diệp Phi trực tiếp tìm Sở trưởng trại tạm giam, nói thẳng mình cần rời khỏi nơi này một lát để giải quyết vài việc. Người sở trưởng kia dĩ nhiên không chút do dự đồng ý, rõ ràng đã nhận được ám chỉ, thậm chí là chỉ thị công khai, nếu không một Sở trưởng nhỏ bé sao có quyền hạn này?</p>
+    <p>Tiến vào trại tạm giam vẫn có thể tự do hoạt động, lại còn mở phiên tòa sớm, đây đều là đèn xanh bật riêng cho Diệp Phi. Về việc này, Diệp Phi cảm thấy hơi bất đắc dĩ, nhưng cũng hết cách, thế giới này vốn là như vậy, có quyền thế thì có đặc quyền.</p>
+    <p>Chỉ cần có thực lực, thì cái gì cũng có. Những lão đại xã hội đen kia dùng thân phận doanh nhân chính trực để tự đánh bóng mình, thậm chí còn làm đại biểu Quốc hội, mà Diệp Phi lại ở một cảnh giới khác, căn bản không cần che giấu, giương cao ngọn cờ là thủ lĩnh hắc thế lực, đặc quyền vẫn cứ có như thường, căn bản không ai dám nói gì.</p>
+    <p>Cảm khái một hồi, Diệp Phi liền ném vấn đề này ra sau đầu, bởi vì thế giới này vốn dĩ như vậy, bất luận che đậy thế nào cũng không thể thay đổi quy tắc "cá lớn nuốt cá bé".</p>
+    <p>Rời khỏi trại tạm giam, Diệp Phi không lập tức đến nhà Lâm Linh, mà tìm một quán trà ngồi xuống, bắt đầu nhắn tin cho từng người phụ nữ của mình.</p>
+    <p>Chuyện này, ngoài những người ở nhà và hai mẹ con Lâm Linh ra, những người khác tạm thời chưa biết. Diệp Phi phải thông báo và động viên các nàng một chút, nếu không đến ngày kia mở tòa, đột nhiên nhận được tin tức, sợ rằng sẽ xảy ra chuyện loạn xạ.</p>
+    <p>Tuy rằng Diệp Phi đã nói rõ ràng sự việc, bao gồm nguyên nhân Cổ Diễm Bình đối phó mình, còn có quyết định của bản thân, nhưng các nàng biết tin vẫn vô cùng kích động. Trong đó những người tính tình nóng nảy như Đường Nhu, Tống Từ, Lệ Nhược Nam, v.v., còn muốn lập tức đến gặp Diệp Phi, khiến hắn tốn bao công sức mới trấn an được các nàng.</p>
+    <p>Đây cũng là lý do Diệp Phi không nói chuyện trong nhóm chung. Hiện tại chỉ một người kích động thì còn dễ nói, nếu để các nàng tụ tập lại, xúi giục lẫn nhau, nhỡ đâu Tống Từ mấy người thật sự kích động tìm Cổ Diễm Bình để giết ả thì sao.</p>
+    <p>Cho nên nói, phụ nữ nhiều tuy rất sung sướng, nhưng đôi lúc cũng rất phiền phức. Có điều, kẻ đa tình như Diệp Phi không cảm thấy đây là phiền phức, trái lại rất thích thú, cảm thấy vô cùng hạnh phúc.</p>
+    <p>Chờ cuối cùng trấn an được các nàng thì đã hơn năm giờ chiều, trời cũng sắp tối, Diệp Phi lúc này mới bắt xe đến nhà Lâm Linh.</p>
+    <p>Vào cửa, Diệp Phi thấy Tiếu Hàm Nguyệt một mình ngồi trong phòng khách xem tivi, không thấy bóng dáng Lâm Linh đâu, liền đi tới, ngồi xuống bên cạnh bà, một tay ôm lấy vị nhạc mẫu xinh đẹp gợi cảm này, vừa nói: "Sao chỉ có mình mẹ, Linh Nhi đâu?"</p>
+    <p>"Còn đang trong phòng giận bản thân mình đấy." Tiếu Hàm Nguyệt thoải mái dựa vào lòng con rể, bất đắc dĩ nói. Con gái đi vào ngõ cụt, bà làm mẹ căn bản khuyên không được, chỉ có thể đặt hy vọng vào người con rể, dù chính bà cũng yêu tha thiết, đồng thời cũng như con gái, không muốn rời xa người đàn ông này một giây nào, nhưng ít nhiều vẫn thấy có chút không cam lòng.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1052.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1054.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1048 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1048</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1048</small>
+    Chương 1048: Cảnh hoa tính khí
+  </h1>
+  <div class="chapter-body">
+    <p>"Mấy ngày nay ta phải đến nơi khác làm ít việc, nên không về nhà." Khi ăn sáng, Diệp Phi nói với các cô như vậy. Tất nhiên, đây thực ra là nói cho bà ngoại và bọn trẻ nghe, còn những người đẹp của hắn, tối hôm qua lúc ân ái cũng đã tranh thủ từng người một trao đổi qua rồi.</p>
+    <p>Bọn trẻ vừa nghe thì nhất thời mất hứng, dồn dập chạy tới kéo góc áo Diệp Phi, chỉ sợ hắn lại đột nhiên biến mất. Từ khi rời khỏi thung lũng nơi các cô sinh sống từ nhỏ, thời gian gia gia ở bên cạnh đã ít đi rất nhiều, giờ lại muốn đi mấy ngày, các cô sao có thể hài lòng cho được.</p>
+    <p>Vương Nguyệt Dao cũng có chút không nỡ, nhưng bà cũng biết cháu ngoại mình gánh vác toàn bộ Lăng Vân Hội, bởi vậy cũng không suy nghĩ nhiều.</p>
+    <p>Ăn sáng xong, dưới sự an ủi của mọi người và Diệp Liễu Nhi đại diện, bọn trẻ mới lưu luyến không rời buông Diệp Phi ra, để hắn có thể thoát thân.</p>
+    <p>Diệp Phi tự nhiên không phải đi làm chuyện gì, mà là đi xử lý vụ án cưỡng bức. Chuyện như vậy, không để bà ngoại biết là tốt nhất. Diệp Phi rất tin tưởng vào điều này, bởi bà ngoại rất yêu thích bầu không khí trong nhà, thích dẫn bọn trẻ chơi đùa, không có hắn và tiểu muội ở bên cạnh, bà ngay cả đại môn cũng không ra. Hơn nữa, tuy bà cũng lên mạng, nhưng đều là dẫn bọn trẻ chơi game QQ, những tin tức giải trí kia xưa nay bà chưa từng liếc mắt nhìn.</p>
+    <p>Chỉ là, Diệp Phi lại quên mất, Tencent có một thứ rất đáng ghét, đó chính là thỉnh thoảng sẽ hiện ra các cửa sổ tin tức. Chính loại con vật nhỏ tầm thường này, khiến Vương Nguyệt Dao trong lúc vô tình biết được vụ án cưỡng bức kia, tiến tới phát hiện sự thật phong lưu của Diệp Phi, cuối cùng còn biết được hắn thông dâm với những người phụ nữ trong nhà hầu như đều có quan hệ huyết thống chí thân với hắn, thậm chí là cả mẹ đẻ của hắn. Từ đó dẫn đến một cuộc biến động lớn, đây là chuyện nói sau, tạm thời không nhắc tới.</p>
+    <p>Còn chưa biết nguy cơ đã lặng lẽ ập đến, Diệp Phi vẫn như thường lệ, lái xe chở tiểu muội rời khỏi biệt thự. Thế nhưng vừa ra khỏi đại môn, hắn liền xuống xe, để tiểu muội tự lái xe đi, còn hắn thì rảo bước đi về phía một góc khuất. Nơi đó là khoảng đất trống nằm giữa biệt thự nhà họ Liễu và một căn biệt thự độc lập khác, bình thường vẫn bỏ trống, lúc này nơi đó lại đỗ một chiếc xe cảnh sát.</p>
+    <p>Đối với sự xuất hiện của chiếc xe cảnh sát này, Diệp Phi vừa bất ngờ, lại cảm thấy hợp tình hợp lý. Sáng nay hắn vẫn đang nghĩ, cảnh sát sẽ dùng phương thức gì, ở đâu để mời mình đi "hỗ trợ điều tra". Nghĩ tới nghĩ lui, cảm thấy khả năng cao nhất là ở cổng trường học, không ngờ đối phương lại nằm ngoài dự liệu của hắn mà đến thẳng biệt thự, lại còn không đi vào mà chờ ở bên ngoài. Điều này khiến hắn rất hài lòng với vị cảnh sát chịu trách nhiệm "bắt" mình.</p>
+    <p>Mà khi Diệp Phi đi tới trước xe, nhìn rõ người bên trong thì càng hài lòng hơn. Trên xe cảnh sát hiện có hai người, một người là nam cảnh sát trẻ tuổi ngồi ghế lái, đối mặt với Diệp Phi, người này có vẻ khá căng thẳng. Người còn lại là một nữ cảnh sát với dung mạo tuyệt lệ, vóc người nóng bỏng. So với sự căng thẳng của cậu nhóc lái xe, khuôn mặt của nàng lại lạnh đến mức sắp kết thành băng. Bốn chữ "người cũng như tên" dùng trên người nàng quả thực không thể chính xác hơn.</p>
+    <p>Đi tới cạnh xe cảnh sát, Diệp Phi không hề do dự, như thể đang lên xe bạn cũ, kéo cửa xe sau rồi ngồi vào, sau đó cười nói với Lãnh Nhan đang ngồi ghế phụ: "Lãnh đại cảnh hoa, cảm ơn cô, không trực tiếp xông vào nhà bắt tôi."</p>
+    <p>"Không có gì, Liễu thị trưởng cũng ở đây, chúng tôi chỉ không muốn làm phiền bà ấy thôi." Lãnh Nhan thản nhiên nói. Không biết là do có người ngoài nên hơi kiêu kỳ, hay vì đang thi hành công vụ, hoặc là có chút giận Diệp Phi, nàng không còn lộ ra vẻ tiểu nữ nhân đáng yêu như mấy lần trước đối mặt với hắn, mà làm việc đúng theo quy tắc, lạnh lùng xa cách.</p>
+    <p>Diệp Phi từ lâu đã coi Lãnh Nhan là người phụ nữ của mình, hơn nữa cũng hiểu tính cách nàng, nên hoàn toàn không để tâm thái độ của nàng, tiếp tục nói: "Nhưng tôi rất kỳ lạ, vụ này nên tính là vụ án hình sự đúng không, sao lại để Tổ trưởng Phản Hắc Tổ như cô ra tay? Những thủ hạ của chị nuôi tôi đều ăn cơm khô cả sao?"</p>
+    <p>"Vụ án này chúng tôi đã lập tổ chuyên án, tôi là người phụ trách." Lãnh Nhan giải thích một câu, trong lòng lại không khỏi có chút lúng túng. Nàng sao lại không hiểu, những cấp trên kia lập ra cái gọi là tổ chuyên án này, mục đích chỉ có một, chính là để mình đứng ra bắt người, tránh việc chính bọn họ phải đối đầu với vị đại thần Diệp Phi này. Những đồng sự kiêm thủ trưởng này mỗi người đều như vậy, khiến người vốn luôn tự hào về nghề nghiệp này như Lãnh Nhan không khỏi xấu hổ.</p>
+    <p>Thấy Lãnh Nhan vẫn lạnh băng như vậy, Diệp Phi cũng mất hứng trò chuyện, đơn giản nhắm mắt lại dưỡng thần.</p>
+    <p>Hơn nửa canh giờ sau, xe cảnh sát lái thẳng vào trụ sở cảnh sát, Diệp Phi lúc này mới cùng Lãnh Nhan và nam cảnh sát kia xuống xe.</p>
+    <p>Đặt vào bình thường, thời gian này là lúc trong đồn cảnh sát đông người nhất, nhưng hôm nay dọc đường đi lại không gặp lấy một cảnh sát nào. Thậm chí sau khi vào tòa nhà văn phòng, ngay cả người cảnh sát đi cùng họ cũng mượn cớ đi vệ sinh mà chuồn mất. Hiển nhiên là họ không dám đối mặt với Diệp Phi trong thời điểm nhạy cảm này để tránh bị hắn ghi hận.</p>
+    <p>Có điều như vậy lại tiện cho Diệp Phi, vì không có người ngoài, hắn có thể không chút kiêng dè thưởng thức bóng lưng vừa thướt tha lại lộ ra mấy phần anh khí của vị cảnh sát xinh đẹp đi phía trước. Đặc biệt là hai bên hông của chiếc quần cảnh phục khá rộng lại ôm sát lấy vòng mông đầy đặn, mỗi khi nàng bước đi lại khẽ đung đưa, khiến Diệp Phi nhìn đến tâm trì thần diêu.</p>
+    <p>Dẫn Diệp Phi vào một phòng thẩm vấn, Lãnh Nhan ngồi xuống trước bàn, rồi ra hiệu cho Diệp Phi ngồi vào ghế đối diện.</p>
+    <p>"Này Lãnh đại cảnh hoa, cô không định hỏi tôi họ tên, giới tính này nọ chứ?" Diệp Phi đi tới, ngồi xuống ghế, vắt chéo chân, cười hì hì hỏi.</p>
+    <p>Một câu của Diệp Phi khiến Lãnh Nhan không khỏi nhớ lại cảnh tượng lần đầu gặp mặt giữa hai người, không nhịn được mà nhoẻn miệng cười. Nhưng lập tức lại nghĩ đến sự đáng ghét của hắn, nàng liền lạnh mặt xuống.</p>
+    <p>Nhìn thấy Lãnh Nhan như vậy, Diệp Phi trong lòng khá kỳ lạ. Vị cảnh sát tỷ tỷ này tuy hết sức lãnh diễm, nhưng kể từ sau vài lần ám muội với mình, mỗi khi chỉ có hai người nàng đều không như vậy, sao hôm nay lại lạnh lùng? Liền nói: "Cảnh sát tỷ tỷ, giờ không có người ngoài, cô không cần phải làm đúng quy tắc như vậy có được không? Làm tôi áp lực lớn lắm đấy!"</p>
+    <p>Từ khi trong lòng bất tri bất giác có hình bóng Diệp Phi, Lãnh Nhan luôn không chịu nổi sự trêu chọc của hắn, nhưng hôm nay không biết tại sao, nhìn thấy bộ dạng cà lơ phất phơ này, trong lòng ngược lại càng tức giận hơn, khẽ quát: "Ít nói nhảm, ngồi yên!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1047.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1049.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1219 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1219</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1219</small>
+    Chương 1219: Song Phi Hai Tổ Mẫu (23)
+  </h1>
+  <div class="chapter-body">
+    <p>Giờ khắc này, hạnh phúc nhất chính là Diệp Phi, không chỉ có thể dùng dương vật đâm vào thân bà nội, còn có thể đồng thời đùa bỡn thân bà ngoại, mà tiếp đó chính là bà nội, nàng lúc này đang hưởng thụ việc Tôn nhi ở sau lưng đâm vào dâm huyệt của mình, mỗi một lần đâm sâu đều chạm tới vị trí mẫn cảm nhất bên trong dâm huyệt bà nội, khiến cho bà nội lúc này vô cùng thần hồn điên đảo, si mê hưởng thụ sự tấn mãnh của Tôn nhi! Theo những tiếng rên rỉ dâm đãng vang lên, thậm chí, dưới sự tấn mãnh công kích này, bà nội Tống Tuyết Kỳ đột nhiên phát hiện ra ngọc môn của mình sắp mở ra, cảm giác kích động khi muốn tiết ra âm tinh!</p>
+    <p>Cái cảm giác này kích thích bà nội Tống Tuyết Kỳ lắc đầu tiến vào cảnh giới hoàn toàn vong ngã, trong đầu chỉ còn lại sự xung kích tấn mãnh của Tôn nhi, dâm huyệt gào khóc lại một lần nữa tiết ra nồng nặc dâm thủy, thấm ướt cả ga trải giường nơi Diệp Phi đang ra sức cày cấy.</p>
+    <p>"Ồ... Bà nội, người xem, Tôn nhi đâm người thoải mái hơn, người đều chảy nhiều dâm thủy như vậy, bà nội, sướng hay không sướng, nói cho Tôn nhi, sướng hay không sướng, dương vật của Tôn nhi có lợi hại hay không?"</p>
+    <p>Đại dương vật của Diệp Phi đâm xuyên khiến bà nội Tống Tuyết Kỳ có cảm giác hồn phi phách tán, không khỏi cao giọng lãng kêu: "A! A! A!... Tôn nhi... thật là xấu hổ... nhưng mà... có lẽ thật sự quá thoải mái... Bà nội bị Tôn nhi... đâm thật là thoải mái... Dương vật của Tôn nhi... lợi hại nhất... lại tiếp tục đâm... cái thân sinh bà nội này của con... A! A! A!..."</p>
+    <p>Diệp Phi nghe được hưng phấn, càng thêm nhanh chóng đâm vào dâm huyệt của bà nội, mỗi một lần đâm vào đều vô cùng sâu, dường như muốn cứ thế giữ chặt lấy nàng! Dưới sự khiêu khích đủ kiểu này, bà nội sớm đã bị đâm đến mức dâm loạn không chịu nổi, không chỉ cả người nhũn ra, mà dâm huyệt cũng tràn đầy dâm thủy!</p>
+    <p>Đâm bà nội, Diệp Phi tự nhiên cũng sẽ không thiên vị! Bàn tay đang đùa bỡn dâm huyệt của bà ngoại cũng không ngừng xoa nắn, khiến bà ngoại tiết ra không ít nước, tình dục dần dần dâng cao, ánh mắt càng thêm nhu tình!</p>
+    <p>Bà ngoại Vương Nguyệt Dao bị ngón tay của ngoại tôn đùa bỡn những điểm mẫn cảm bên trong dâm huyệt thì giãy dụa vô lực, dường như hoàn toàn chìm đắm, chỉ biết đón ý hùa theo sự đùa bỡn của ngoại tôn! Còn bà nội Tống Tuyết Kỳ, lại càng thêm tập trung, không chỉ chịu đựng thế tấn công ngày một mãnh liệt của Tôn nhi trong dâm huyệt mình, mà còn hưởng thụ cảm giác ấm áp khi Tôn nhi áp sát trên lưng mình!</p>
+    <p>Giờ khắc này, một đôi tuyệt mỹ mỹ thục phụ dưới sự đùa bỡn của cùng một người đàn ông nhỏ bé trông vô cùng xuân tình dạt dào, vẻ mặt vô cùng mê say!</p>
+    <p>"A! A! A!... Ngoan Tôn nhi... mạnh thật... Tại sao lại như vậy... Bà nội rõ ràng... đã nghỉ ngơi rất lâu... Nhưng là... nhưng là... A! A! A!... Vẫn không thể chống cự nổi... Sự gian dâm của Tôn nhi... Đại dương vật của Tôn nhi... quá mạnh... Vui sướng quá mãnh liệt... Ừ ừ ừ ừ... Tôn nhi... tăng nhanh tốc độ... Hung hăng... đâm bà nội... Bà nội dĩ nhiên... muốn mất khống chế... lại muốn cao trào... Quá tuyệt vời... A! A! A!... Thoải mái quá!... Tôn nhi... người... người làm sao... lại lợi hại như vậy... Để bà nội... trải qua thêm lần nữa... không được sao... A! A! A!... Bà nội lại bị... Tôn nhi của mình... đâm đến cao trào... Nha... Tôn nhi... đâm thật là sâu... Thật là thoải mái... Ngay chỗ này... đâm thêm vài lần nữa... dâm huyệt của bà nội... đều sẽ bị con... đâm hỏng mất... Bà nội... A! A! A!... Bà nội không xong rồi... Bị Tôn nhi... đâm đến quá sung sướng... Bà nội cao trào rồi... A! A! A!... Ồ ồ ồ..."</p>
+    <p>Tống Tuyết Kỳ lúc này vô cùng ảo não, cảm giác bị Tôn nhi gian dâm lại mãnh liệt và thoải mái như vậy, nhưng tại sao mình vừa muốn hưởng thụ thêm một chút đã không thể tả nổi thế này, Tôn nhi mới chỉ đâm mấy phút, chính mình dĩ nhiên lại muốn cao trào.</p>
+    <p>Tống Tuyết Kỳ mới hiểu được lực lượng của cấm kỵ tổ tôn thông dâm cường đại đến nhường nào, dĩ nhiên khiến một người bà như nàng căn bản không thể chống lại sự ăn mòn từ dương vật của Tôn nhi, giờ khắc này, Tống Tuyết Kỳ u oán kêu thảm thiết rên rỉ! Thế nhưng lại trong sự vui sướng khi sắp cao trào do Tôn nhi mang lại mà uốn éo, đáp lại, càng thêm si mê cảm thụ kích thích nóng bỏng đó, theo tốc độ đâm của Tôn nhi ngày một nhanh, nàng chỉ cảm thấy tinh quan nơi tiểu dâm huyệt giữa hai chân mình đã bị Tôn nhi phía sau hoàn toàn công phá, chính mình căn bản không thể dấy lên chút năng lực chống cự nào!</p>
+    <p>"Bà nội, người, người dĩ nhiên mẫn cảm giống hệt bà ngoại, Tôn nhi mới đâm người có mấy phút, bà nội, bà nội đã có thể cao trào, quá nhanh, nhưng mà, khà khà, còn có bà ngoại, thế thì bà nội cứ cao trào đi, Tôn nhi đi đâm bà ngoại, lát nữa lại đâm bà nội! Ngày hôm nay, Tôn nhi muốn luân phiên đâm dâm huyệt của bà nội và bà ngoại, để cho hai người cùng hưởng thụ dương vật của Tôn nhi, cũng đồng thời thưởng thức sự vui sướng của bà nội và bà ngoại!"</p>
+    <p>Diệp Phi lại một lần nữa nhanh chóng đâm vào tiểu dâm huyệt giữa hai chân bà nội, đại dương vật cứng rắn mà nóng bỏng đâm khiến bà nội kêu la oai oái, ngay lúc bà nội sắp cao trào, Diệp Phi lại cuồng quất mạnh đưa, đâm thật sâu vào, càng chống đỡ càng sâu, hai tay ôm thật chặt eo nhỏ của bà nội, khiến nàng có thể nghênh tiếp thế công cuồng mãnh của mình một cách hoàn mỹ nhất.</p>
+    <p>Cái mông to kiều cao, dưới sự thúc đẩy tấn mãnh của Tôn nhi, sức mạnh nồng nhiệt khiến Tống Tuyết Kỳ suýt chút nữa phát điên, nàng trong giây lát rên rỉ vui sướng: "A! A! A! A! A!... Tôn nhi ngoan... A! A! A!... Bà nội không xong rồi... Bà nội thật sự... không xong rồi... Muốn mất khống chế rồi... Thật sự muốn mất khống chế rồi... Tôn nhi... Bà nội chết mất... Ô ô... Bà nội... bà nội cho con... đưa đại dương vật của con... đâm... đâm cho thật mạnh... Tiểu dâm huyệt muốn bay mất rồi... Tuyệt quá... Tuyệt quá... Thật là tuyệt nha... Ta... ta muốn chết..."</p>
+    <p>Diệp Phi nghe thấy những tiếng rên rỉ sung sướng điên cuồng của bà nội, rốt cuộc cũng không nhịn được mà cuồng bắn trong sự xung kích tấn mãnh đó! Dâm thủy nóng bỏng phun lên trên dương vật của Diệp Phi, nóng khiến Diệp Phi một trận thoải mái, càng nhanh chóng đâm vào dâm huyệt bà nội, khiến cao trào của bà nội càng thêm mãnh liệt!</p>
+    <p>Bà nội mềm nhũn nằm sấp trên giường, mông vểnh lên như bà ngoại, giờ khắc này, cả người nàng bị cảm giác sảng khoái tràn trề chiếm cứ toàn thân, khẽ thì thầm: "Tiểu Mãn, bà nội có chút thỏa mãn, đi, đâm bà ngoại của con đi, đâm một hồi rồi lại đâm bà nội, ngày hôm nay, bà nội không thèm để ý nữa, để Tôn nhi thỏa mãn trên người bà nội và bà ngoại!"</p>
+    <p>"Bà nội...!"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1218.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1220.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

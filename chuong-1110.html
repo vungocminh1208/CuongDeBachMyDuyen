@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1110 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1110</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1110</small>
+    Chương 1110: Đùa Giỡn Mỹ Bà Ngoại
+  </h1>
+  <div class="chapter-body">
+    <p>Hơn nữa, vừa nãy đòn tấn công cường đại kia chỉ tiêu hao khoảng một phần trăm Lôi Điện năng lượng trong cơ thể hắn. Chỉ qua mấy hơi thở, nó đã tự mình hấp thu Thiên Địa Linh Khí để bù đắp. Sau đó, nếu hắn muốn động thủ, không nói đến kiểu Thiên Kiếp như tên biến thái này, một lần bổ xuống là hơn vạn đạo, ít nhất một hơi phóng ra mấy trăm ngàn đạo cũng không thành vấn đề. Công kích như vậy, ngoại trừ những cao thủ Đại Thừa Kỳ trong truyền thuyết, ai có thể chịu nổi? (Kẻ này cũng không hiểu biết về Tu Chân Giới, còn tưởng rằng mỗi cao thủ Đại Thừa Kỳ đều phải vượt qua Thiên Kiếp, hơn nữa những Thiên Kiếp đó cho dù kém cũng chẳng kém hơn cái của hắn là bao).</p>
+    <p>Cao hứng qua đi, Diệp Phi hủy bỏ biến thân, nhìn về phía bà ngoại. Chỉ thấy nàng đang lẳng lặng nhìn bên này, hai tay ôm đầu gối ngồi, che chắn những vị trí gợi cảm trên người. Tuy rằng toàn thân trần trụi, nhưng trong sự gợi cảm không hề mang theo chút dâm mỹ nào, trái lại có một vẻ đẹp thánh khiết cao quý. Hắn lập tức nhanh chân chạy về phía nàng.</p>
+    <p>Ngay khi đạo thiên lôi thứ mười ngàn nhấp nhoáng, Vương Nguyệt Dao đã bị đánh thức. Nhìn thấy một đạo thiên lôi to lớn như vậy bổ về phía Diệp Phi, nàng nói không lo lắng thì tuyệt đối là giả. Thế nhưng chưa kịp bắt đầu lo lắng, Diệp Phi đã an toàn vượt qua, thậm chí còn nhân lúc này chơi đùa với Lôi Điện, làm cho nàng không khỏi khó chịu.</p>
+    <p>Bây giờ nhìn hắn chạy về phía mình, theo từng bước chạy, thứ bên dưới đã mềm xuống kia vung qua vung lại, khiến trong lòng nàng vừa ngượng ngùng lại khuất nhục, đồng thời lại có một tia mong chờ nho nhỏ.</p>
+    <p>Chạy đến bên người bà ngoại, Diệp Phi cũng ngồi xuống, sau đó kéo thân thể mềm mại trần trụi của nàng vào trong lồng ngực, cười nói: "Bà ngoại ngoan, ta đã vượt qua thiên kiếp này rồi, hơn nữa còn nắm giữ cường đại lôi điện chi lực, người cũng vì ta cao hứng chứ?"</p>
+    <p>Vương Nguyệt Dao nhẹ nhàng giãy giụa, kiều hừ một tiếng nói: "Cao hứng cái gì, ta hận không thể ngươi bị đánh chết!"</p>
+    <p>"Không thể nào, nếu như ta bị đánh chết rồi, người chẳng phải là lại muốn thủ tiết?" Diệp Phi trơ mặt ra, cười hắc hắc nói. Vừa nói, hắn vừa đưa bàn tay lớn tới trước ngực bà ngoại, nhẹ nhàng vuốt ve bộ ngực đầy đặn của nàng.</p>
+    <p>"Đừng đụng ta!" Vương Nguyệt Dao đột nhiên hất tay Diệp Phi ra, lạnh mặt mắng. Tuy rằng tận sâu trong nội tâm nàng đã không còn bài xích việc bị ngoại tôn khinh bạc, nhưng nàng không chịu nổi dáng vẻ cợt nhả này của hắn. Điều này khiến nàng cảm thấy tôn nghiêm của một người bà ngoại bị khiêu khích.</p>
+    <p>Diệp Phi vẫn cười hì hì: "Bà ngoại ngoan, đừng như vậy mà, trước đó chúng ta không phải đùa rất vui vẻ sao? Người còn không ngừng muốn nữa kìa."</p>
+    <p>Nghe Diệp Phi nhắc tới chuyện lúc trước, mặt Vương Nguyệt Dao không khỏi đỏ bừng vì thẹn thùng, mạnh miệng nói: "Đó là do ngươi ép, sau này không được nói chuyện với ta, càng không nên nhắc lại chuyện này nữa!"</p>
+    <p>"Thật sự không thèm để ý tới ta nữa?" Diệp Phi không chút sốt ruột, vẫn cười hì hì hỏi.</p>
+    <p>"Hừ!" Vương Nguyệt Dao lần này đến trả lời cũng không có, chỉ hừ lạnh một tiếng.</p>
+    <p>"Ai nha, thực sự là lòng tốt không được đền đáp, ta còn định lấy cho người bộ quần áo mặc đây, bây giờ nhìn lại không cần thiết rồi." Diệp Phi làm bộ cảm thán, đồng thời lấy từ trong không gian ra một bộ quần áo.</p>
+    <p>Quần áo?! Đôi mắt đẹp của Vương Nguyệt Dao đột nhiên sáng lên. Nói thật, mặc dù đã bị Diệp Phi liên tục làm chuyện đó hơn 5 tiếng đồng hồ, nhưng việc cứ trần truồng ngay trước mặt hắn vẫn khiến nàng vô cùng xấu hổ. Bởi vậy, nàng vội vã quay sang Diệp Phi, gấp giọng nói: "Nhanh cho ta!"</p>
+    <p>"Lúc này ta không ép người đi, người lại muốn à?" Diệp Phi cười dâm đãng nói.</p>
+    <p>"Khốn nạn!" Bị đùa giỡn, Vương Nguyệt Dao không nhịn được mắng một tiếng: "Ta nói là quần áo!"</p>
+    <p>"Được rồi, ai bảo người là bà ngoại ta cơ chứ, tuy rằng thái độ không tốt, nhưng ta vẫn là người rất hiếu thuận." Diệp Phi cười, đưa bộ quần áo trong tay cho Vương Nguyệt Dao.</p>
+    <p>Vương Nguyệt Dao sau khi nhận lấy liền vội vàng trải ra, lại phát hiện đó chỉ là một chiếc sườn xám màu đỏ, hơn nữa còn là loại xẻ tà cao lên tới tận bắp đùi đầy gợi cảm, ngoài ra cũng chỉ có một đôi giày cao gót màu đen, ngay cả nội y cũng không có.</p>
+    <p>Tính cách bảo thủ như Vương Nguyệt Dao làm sao từng mặc y phục như thế, nàng bất mãn nói: "Ta không mặc loại này, cho ta cái khác!"</p>
+    <p>"Chỉ có bộ này thôi, người nếu không muốn mặc thì trả lại cho ta." Diệp Phi cười hắc hắc nói.</p>
+    <p>"Ta... Ta mặc!" Vương Nguyệt Dao hận hận nói. Tuy rằng bộ y phục này mặc lên người sẽ khiến nàng rất ngượng ngùng, nhưng dù sao cũng đỡ hơn là trần truồng, thế là nàng mặc vào rất nhanh.</p>
+    <p>Nhìn bà ngoại mặc sườn xám, mắt Diệp Phi suýt chút nữa lồi cả ra. Vóc người bà ngoại vốn dĩ đã cực kỳ gợi cảm, nay lại được bộ y phục này tôn lên, quả thực khiến người ta muốn phun máu mũi.</p>
+    <p>Bởi vì không mặc nội y, mà chất liệu của bộ sườn xám này lại cực mỏng, dán chặt lấy thân thể Vương Nguyệt Dao, khiến những cảnh xuân trước ngực nàng bị Diệp Phi nhìn thấy rõ mồn một. Bộ ngực đầy đặn, thậm chí ngay cả hai nhũ hoa nhô lên ở đỉnh cũng nhìn thấy rõ ràng. Lại phối hợp với vòng eo thon nhỏ, khiến Diệp Phi nhìn mà hai mắt phun lửa, không nhịn được khen ngợi: "Bà ngoại ngoan, người thực sự là quá đẹp quá hấp dẫn, nhìn ta đến mức dương vật cũng cứng cả rồi!" Nói xong, để chứng minh lời mình nói chân thành đến mức nào, hắn còn vươn cái thứ đang cương cứng của mình về phía bà ngoại.</p>
+    <p>Đôi mắt đẹp của Vương Nguyệt Dao không tự chủ được liếc xuống dưới, sau đó mặt đỏ bừng quay người đi, không nhìn Diệp Phi nữa.</p>
+    <p>Không ngờ nàng vừa quay người lại, tình hình càng trở nên nguy hiểm hơn. Vương Nguyệt Dao trên người có những điểm hấp dẫn nhất đối với Diệp Phi, ngoại trừ thân phận bà ngoại, chính là cái lồn no đủ như của mẹ, cặp mông khiêu gợi như dì cả cùng tính cách cương liệt như dì.</p>
+    <p>Tính cách thì không nhìn thấy, không sờ được, mà lồn trong tình huống này cũng không thấy, nhưng cái mông thì khác. Vì đưa lưng về phía Diệp Phi, hai bên mông đầy đặn của Vương Nguyệt Dao đập thẳng vào tầm mắt của hắn. Hai cái mông căng tròn ấy làm chiếc sườn xám màu đỏ bị căng ra hết mức, như muốn rách áo. Vài cơn gió thổi qua, làn váy nhẹ nhàng tung bay, khiến cặp đùi đẹp trắng như tuyết dài lại thẳng của nàng lúc ẩn lúc hiện. Phong cảnh gợi cảm vô cùng ấy làm cho dương vật của hắn lại càng cứng hơn.</p>
+    <p>"Bà ngoại ngoan, mau cúi người xuống đi, ta muốn địt người!" Diệp Phi thở hổn hển nói: "Ta muốn sờ cặp mông khiêu gợi như dì cả của người, địt cái dâm huyệt tươi đẹp như mẹ ta của người, muốn đem người có tính cách cương liệt như dì địt đến mức lãng tiếng kêu gào!"</p>
+    <p>"Đồ khốn kiếp!" Vương Nguyệt Dao đột nhiên xoay người lại, đôi mắt đẹp hận hận trừng mắt nhìn Diệp Phi: "Chẳng lẽ Phong Nghi cùng Quân Di cũng..."</p>
+    <p>Diệp Phi cười hắc hắc nói: "Không sai, mẹ cùng hai vị dì đều là nữ nhân của ta, hiện tại ta thật nhớ các nàng! Bà ngoại ngoan, người có đủ ưu điểm của cả ba người bọn họ, địt người chẳng khác nào đồng thời địt cả ba người bọn họ, bà ngoại ngoan, hãy tác thành cho ta đi!"</p>
+    <p>"Cút! Ngươi cút cho ta! Nếu không ta sẽ giết ngươi!" Đôi mắt đẹp của Vương Nguyệt Dao đỏ bừng, thét lên đầy phẫn nộ.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1109.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1111.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

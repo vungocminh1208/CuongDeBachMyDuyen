@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1003 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1003</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1003</small>
+    Chương 1003: Đau nhức cũng vui sướng
+  </h1>
+  <div class="chapter-body">
+    <p>"Á... A..." Như thế một cái, Diệp Vân Khinh quả thực không thể động đậy được nữa, thế nhưng lại không nhịn được phát ra một trận rên rỉ đè nén từ trong cổ họng. Đó cũng không phải Diệp Vân Khinh cố ý, mà là thật không nhịn được. Tuy rằng nàng từng bị ca ca địt qua mấy ngàn lần, nhưng dĩ vãng vào lúc mãnh liệt nhất, ca ca cũng bất quá là đem đại dương vật tận gốc cắm vào, quy đầu đỉnh tiến vào hoa tâm, thoáng dò vào tử cung mà thôi. Nhưng lúc này đây, bởi vì quá sốt sắng, ca ca dùng sức mạnh lớn hơn rất nhiều so với bất kỳ lần nào trước đây, cho tới toàn bộ đại quy đầu của hắn đều chui vào trong tử cung, khiến cho lồn cùng tử cung của Diệp Vân Khinh vừa tê vừa ngứa, lại đau lại sướng, cái mùi vị đó vừa khó chịu lại thoải mái tới cực điểm, bởi vậy cho dù là kẻ đã quen được đại dương vật của ca ca đưa lên tuyệt đỉnh cao trào như nàng cũng nhịn không được. Nghe được tiếng kêu của tiểu muội, Diệp Phi càng căng thẳng hơn, tiếp tục dùng dương vật đè chặt nàng trên mặt đất, một bên nằm rạp người xuống, dùng sức hôn lên cái miệng nhỏ nhắn của nàng, ngăn chặn thanh âm của nàng lại. Đã như thế, Diệp Vân Khinh cũng không thể động đậy, cũng không thể kêu ra tiếng. Có thể chính vì như thế, cảm giác của thân thể lại càng thêm nhạy cảm, cảm giác vừa khó chịu lại vừa sảng khoái kia khiến cho thân thể nhỏ nhắn của nàng không khỏi run rẩy. Diệp Phi trong lòng thở dài một cái, thầm trách mình nghĩ quá đơn giản, cho rằng niêm phong lại tu vi của bà ngoại thì nàng sẽ mất đi năng lực nhận biết, do đó yên tâm to gan cùng tiểu muội tới nơi này vụng trộm, nhưng lại không cân nhắc đến thân phận "Đại địa chi mẫu" của bà ngoại. Càng nghĩ như vậy, Diệp Phi càng thêm căng thẳng. Mình và tiểu muội đây chính là đang ở dưới đất a! Có thể giấu diếm được bà ngoại là Đại địa chi mẫu sao? Nàng đang đi thẳng về phía hướng này, vạn nhất bị nàng phát hiện, vậy thì phiền phức lớn rồi. Có điều, sự thật chứng minh, là người thì có lúc phạm sai lầm. Diệp Phi từ trước đến giờ tính toán không sai sót một li lần này lại căng thẳng quá mức. Chỉ nghe tiếng bước chân của bà ngoại đi tới phía trên đầu huynh muội bọn họ, sau đó cũng không hề dừng lại, trực tiếp đi tiếp về phía trước. Hiển nhiên là đến hậu viện tìm người, vừa vặn đi ngang qua nơi này mà thôi. Kỳ thực điều này cũng khó trách Diệp Phi, dù sao Vương Nguyệt Dao tới thật trùng hợp, ngay từ đầu liền đi thẳng đến nơi này, mà thân phận "Đại địa chi mẫu" của nàng lại quá mức thần bí mạnh mẽ, dưới tình huống như vậy, chỉ sợ ai cũng sẽ suy nghĩ nhiều. Nghe được tiếng bước chân của bà ngoại đã đi xa, Diệp Phi thầm thở phào nhẹ nhõm, đang chuẩn bị buông tiểu muội đang bị hắn chăm chú đè ép ra, nhưng không ngờ tiểu muội vẫn luôn khẽ run đột nhiên cả người một cái linh, tiếp theo dùng tứ chi quấn chặt lấy hắn, thân thể run rẩy dữ dội, tiểu dâm huyệt bên trong càng bắt đầu kịch liệt rung động, cắn chặt lấy dương vật của hắn. Đối với phản ứng này, Diệp Phi thật sự là quá quen thuộc, có điều cũng vì vậy mà càng thêm kinh ngạc. Lấy sức chiến đấu hiện tại của tiểu muội, nếu không dùng những năng lực đặc thù như lôi điện chi lực, mình muốn địt nàng gần nửa giờ mới có thể làm cho nàng cao trào, nhưng lúc này đây, mình còn chưa thực sự đâm xuyên qua, nàng đã lên đỉnh rồi, hơn nữa còn vô cùng mãnh liệt. "Hô... Hô..." Phải mất gần một phút, Diệp Vân Khinh mới từ đỉnh cao nhất bay xuống, tứ chi vô lực buông ca ca ra, nằm trên đất thở hổn hển. Một lát sau, nàng mới ra vẻ ủy khuất nói: "Ca, anh quá nhẫn tâm, em là em gái ruột của anh mà, anh không sợ làm chết em sao!" Nghe được lời tiểu muội, Diệp Phi không khỏi thẹn thùng. Tiểu muội mặc dù là một trong những người phụ nữ bị hắn địt lồn nhiều lần nhất, nhưng bởi vóc người nhỏ nhắn đơn bạc, so với những mỹ nhân có da có thịt như mụ mụ, lồn lại cạn hơn một chút, vì thế mỗi lần xen vào trong lồn nàng, dương vật của Diệp Phi sẽ tự động nhỏ lại một chút. Mà lần này, bởi quá sốt sắng, Diệp Phi vì muốn đâm tiểu muội sâu hơn một chút, theo bản năng đã khống chế dương vật, khiến nó không những không tự động nhỏ đi, trái lại còn trở nên to lớn hơn ngày thường. Đến mức cái quy đầu to lớn kia hoàn toàn nhét vào trong tử cung của muội muội. Nếu đổi thành một người đàn bà bình thường, chắc chắn đã bị mình làm cho xuất huyết không ngừng, mà tiểu muội tuy rằng không đến nỗi như vậy, nhưng chỉ sợ cũng chẳng dễ chịu gì, điều này làm cho trong lòng hắn rất áy náy. Có điều, chưa kịp để Diệp Phi xin lỗi, Diệp Vân Khinh đã đổi giận thành vui, cười nói: "Có điều như vậy, lại rất thống khoái, ca, anh tiếp tục địt em như vậy có được không?" "Này, e là không được đâu." Diệp Phi chần chờ nói. Tuy rằng lấy nội công tu vi của tiểu muội, thỉnh thoảng làm như thế một lần sẽ không có chuyện gì, nhưng nếu cứ tiếp tục như vậy, sợ rằng sẽ tổn hại cơ thể. Dù sao lồn cùng tử cung đều là những nơi mềm mại nhất trên người phụ nữ, đặc biệt là tử cung, mình lại đâm toàn bộ quy đầu vào, vạn nhất vì vậy mà bị thương, ảnh hưởng đến việc sinh dục sau này, thì đúng là quá tệ hại. Diệp Vân Khinh thấy ca ca chần chờ, đương nhiên hiểu rõ hắn là vì muốn tốt cho mình, nhưng cảm giác vừa đau vừa thoải mái lúc nãy thật sự quá kích thích, khiến nàng có chút muốn ngừng mà không được, liền làm nũng nói: "Hảo ca ca, van anh, chỉ lần này thôi, có được không? Khinh Khinh thật sự rất thích cảm giác cả người bị đại dương vật của anh xuyên qua nha!" Diệp Phi chịu nhất là sự ôn nhu của mụ mụ và sự nũng nịu của tiểu muội. Lúc này bị nàng cầu xin như thế, tâm nhất thời mềm nhũn ra, hơn nữa ngẫm lại, như vậy cũng chưa chắc làm bị thương nàng, liền gật đầu nói: "Vậy cũng tốt!" "Ca ca Vạn Tuế!" Diệp Vân Khinh trầm thấp hoan hô một tiếng, sau đó thúc giục: "Vậy còn chờ gì, mau địt em đi, thời gian của chúng ta không còn nhiều đâu."</p>
+    <p>Lúc này Diệp Phi không nói thêm gì nữa, mà dùng hành động thực tế để trả lời tiểu muội. Hai tay nâng cái mông nhỏ của nàng lên, dùng dương vật đã vượt quá hai mươi centimet đang được hắn hết sức khống chế, mãnh liệt đâm xuyên vào trong lồn mềm của tiểu muội. Bởi vì mỗi một lần đều là tận gốc mà vào, cho nên thạc đại quy đầu của Diệp Phi mỗi lần đều có thể đâm toàn bộ vào trong tử cung của tiểu muội như vừa nãy, trong lúc nhất thời, dường như đã đả thông âm đạo cùng tử cung của tiểu muội. Diệp Vân Khinh nhất thời cảm giác, cảm giác vừa đau vừa thoải mái kia đã trở lại, hơn nữa bởi vì ca ca lần này không ngừng đâm xuyên, cảm giác kia so với vừa nãy càng thêm mãnh liệt, khiến nàng bị địt đến trợn ngược mắt, ngay cả tiếng kêu cũng không phát ra nổi. Dưới sự kích thích mãnh liệt như vậy, Diệp Vân Khinh lại nghênh đón bảy lần cao trào trong vòng chưa đầy mười phút. Thật có thể nói là sóng sau xô sóng trước, thường thường lần cao trào trước vẫn chưa lắng lại, lần sau đã ập tới, khiến cho nàng suýt nữa ngất đi. So sánh với đó, sự khoái lạc mà Diệp Phi nhận được lại nhỏ hơn rất nhiều. Khi địt lồn những người đàn bà của mình, thời điểm hắn thoải mái nhất là lúc các nàng lên đỉnh, dâm huyệt co rút mạnh mẽ kẹp chặt dương vật mang lại khoái cảm. Nhưng bây giờ, mỗi lần tiểu muội cao trào, hắn đều đã đâm toàn bộ quy đầu vào tử cung của nàng, vì thế khi lồn mềm của tiểu muội co rút, chỉ có thể kẹp lấy phần thân dương vật của hắn, quy đầu mẫn cảm nhất lại không nhận được kích thích.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1002.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1004.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

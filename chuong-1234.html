@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1234 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1234</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1234</small>
+    Chương 1234: Vận Mạng Chỗ Rẽ
+  </h1>
+  <div class="chapter-body">
+    <p>Thanh Liên phái đương nhiên sẽ không sợ Vô Cực Môn, nhưng đây là cả Thanh Liên phái, chứ không phải Lý chưởng quỹ. Nếu như sự tình làm lớn, sơ sẩy một chút hắn liền sẽ trở thành người chết thế. Hiện tại Diệp Phi nói như vậy khiến trong lòng hắn âm thầm cảm kích không ngớt, thái độ đối với Diệp Phi cũng càng thêm cung kính.</p>
+    <p>Sau đó, hai người đem Hộ Tâm Kính đăng ký, cũng định xong giá quy định, Diệp Phi liền cáo từ rời khỏi phòng đấu giá.</p>
+    <p>Ra cửa, dùng bùa truyền âm hỏi rõ vị trí hiện tại của sư thúc xinh đẹp, Diệp Phi liền chuẩn bị đi tìm nàng. Lần này đi cùng là phụng lệnh mỹ nữ sư phụ đến đây bảo vệ sư thúc, tuy rằng lấy thực lực của nàng ở đây căn bản không khả năng xảy ra chuyện gì ngoài ý muốn.</p>
+    <p>Lúc ở trụ sở Thúy Yên Môn đi ra, ngự tỷ sư thúc đã cho bọn họ mỗi người một tấm bản đồ trung tâm thành phố. Bởi vậy tuy rằng Diệp Phi là lần đầu tiên tới nơi này, nhưng cũng không sợ không tìm được sư thúc xinh đẹp.</p>
+    <p>Chọn một con đường tắt, Diệp Phi bước nhanh hướng về phía sư thúc xinh đẹp chạy đi. Vừa chuyển vào một con đường nhỏ yên tĩnh, còn chưa kịp nhìn rõ tình hình xung quanh, chỉ thấy một đạo bóng người màu xanh lục nhạt chạy như bay đến với tốc độ cực nhanh, thẳng tắp va vào mình.</p>
+    <p>Tốc độ của thân ảnh kia nhanh đến cực hạn, thậm chí lấy phản ứng cùng tốc độ của Diệp Phi cũng không kịp né tránh. Hai người "Ầm" một tiếng đụng vào nhau, Diệp Phi chỉ cảm thấy trên bụng đụng phải hai đám gì đó mềm mại, bóng dáng nhỏ nhắn kia liền bay ngược ra ngoài, té nhào xuống đất, không còn động tĩnh.</p>
+    <p>Diệp Phi tiến lên hai bước, cúi đầu nhìn lại, đã thấy đó là một bé gái cao không tới một mét sáu, xem dáng dấp đại khái chỉ có mười bốn, mười lăm tuổi. Trên mặt cô gái tuy rằng lượn lờ một tầng hắc khí, nhưng nhìn qua lại cực kỳ xinh đẹp. Một thân quần áo màu xanh lục nhạt, dưới trạng thái bình thường tuyệt đối là một tiểu loli hết sức thanh thuần xinh đẹp. Càng khó tin hơn chính là, con loli này dĩ nhiên dài ra một đôi vòng một trông còn đồ sộ hơn cả hai vị mỹ tổ mẫu và mỹ nữ sư phụ, vừa nãy chỗ mềm mại Diệp Phi cảm giác được trên bụng chính là thủ phạm của chúng.</p>
+    <p>Đương nhiên, tuy rằng tiểu loli ngực bự như vậy rất mê người, nhưng đối với Diệp Phi thường thấy mỹ nữ mà nói còn chưa đủ để trong lòng hắn có gợn sóng. Chân chính khiến hắn kinh ngạc chính là, tiểu loli mới nhìn qua chưa đầy vị thành niên này, trên người lại có gợn sóng Chân Nguyên cực không ổn định, thậm chí đạt tới tu vi Đại Thừa Kỳ.</p>
+    <p>Lúc này, vị tiểu loli ngực bự Đại Thừa Kỳ này đã hôn mê, dĩ nhiên không phải bởi vì cú va chạm với Diệp Phi. Nhìn dáng vẻ hiện tại của nàng, hẳn là trúng độc gì đó, tóm lại tình huống rất không ổn.</p>
+    <p>Thấy chết mà không cứu từ trước đến nay không phải phong cách của Diệp Phi. Bất quá đối với Chân Hư Giới này, hắn hiểu biết thực sự có hạn, muốn cứu cũng không biết bắt đầu từ đâu, chỉ đành đem hy vọng ký thác vào sư thúc xinh đẹp Hà Mộ Tuyết. Liền đó, hắn đưa tay bế tiểu loli ngực bự kia lên, tiếp tục chạy về phía vị trí của sư thúc.</p>
+    <p>Đi tới điểm hẹn, Diệp Phi từ xa đã thấy sư thúc xinh đẹp đang đứng ở cửa một cửa tiệm, lẳng lặng chờ đợi mình. Tuy rằng xung quanh có không ít người đều đang len lén đánh giá nàng, nhưng không một ai dám lên trước lại gần, trái lại còn tạo ra một vùng chân không xung quanh nàng, khiến nàng đứng một mình ở nơi đó hiển nhiên vô cùng xuất chúng.</p>
+    <p>"Sư thúc." Diệp Phi từ xa gọi một tiếng khiến lòng người xao động như hoa lan trong cốc vắng, bước nhanh hướng về phía Hà Mộ Tuyết đi đến.</p>
+    <p>Nghe được Diệp Phi bắt chuyện, Hà Mộ Tuyết vốn là rất cao hứng, nhưng lúc nhìn thấy trong lồng ngực hắn dĩ nhiên ôm một cô gái, nhất thời liền không vui. Chờ hắn đi tới bên người, liền lạnh lùng nói: "Ngươi cũng thật có thủ đoạn nha, chỉ chốc lát như vậy, liền có con mồi tới tay."</p>
+    <p>Dáng vẻ ghen tuông của sư thúc xinh đẹp khá là đáng yêu, bất quá bây giờ cũng không phải là lúc để thưởng thức. Diệp Phi giải thích: "Sư thúc, nàng là ta trong lúc vô tình đụng phải, tựa hồ là trúng độc, người xem thử xem."</p>
+    <p>"Vận may của ngươi đúng là tốt, tùy tiện đi một chút liền có thể gặp được một cô gái trúng độc." Hà Mộ Tuyết có chút khó chịu nói, đồng thời nhìn về phía tiểu loli ngực bự trong lồng ngực Diệp Phi, lập tức sắc mặt biến đổi, thất thanh nói: "Thanh Hà muội muội!"</p>
+    <p>Nghe được sư thúc xinh đẹp nói, Diệp Phi sững sờ, hỏi: "Sư thúc, người biết nàng?"</p>
+    <p>"Đương nhiên nhận thức, còn rất quen đây." Hà Mộ Tuyết nói: "Nàng là Hà Hoa tiên tử Đường Thanh Hà của Thanh Liên phái, cũng là bạn tốt của ta với sư phụ ngươi."</p>
+    <p>Nàng chính là Hà Hoa tiên tử? Diệp Phi không khỏi ngây dại. Lúc trước nghe Lệ Thương Hải nhắc đến, Diệp Phi vốn thấy Tu Chân Giới rất thần bí, còn muốn hình dung dáng vẻ của vị thiên tài ngàn năm khó gặp này, cảm thấy hẳn là một người phụ nữ không dính khói bụi trần gian, tựa như tiên tử trong tranh. Nào ngờ tới dĩ nhiên là một tiểu loli mặt trẻ con ngực bự, sự tương phản này thật sự là hơi lớn.</p>
+    <p>Nhận ra Đường Thanh Hà, Hà Mộ Tuyết nơi nào còn nhớ được việc ghen tuông, gấp giọng hỏi: "Ngươi đụng phải nàng ở đâu, rốt cuộc xảy ra chuyện gì?"</p>
+    <p>Diệp Phi đem việc đã trải qua kể lại một lần, cuối cùng hỏi: "Sư thúc, ta xem nàng tựa hồ là trúng độc, có phải như vậy không?"</p>
+    <p>"Là trúng độc, hơn nữa còn là một loại độc vô cùng bá đạo hung tàn." Hà Mộ Tuyết nói. Đối với y đạo, nàng cũng có trải qua. Kỳ thực không chỉ là nàng, mà toàn bộ người ở Chân Hư Giới, đặc biệt là Tu Chân Giả, đều có kiến thức về phương diện này. So với người địa cầu, tuổi thọ đáng kể cho phép họ có nhiều thời gian hơn để học tập một lượng lớn tri thức, mà y đạo loại món đồ bảo mệnh này, càng là thứ mỗi người đều hiểu một ít.</p>
+    <p>Thấy sư thúc xinh đẹp tựa hồ có chút rối loạn tâm trí, Diệp Phi đề nghị: "Bất kể nói thế nào, vẫn là trước tiên tìm một nơi dàn xếp cho nàng đi."</p>
+    <p>Hà Mộ Tuyết vì quá sốt ruột, đã hoàn toàn không còn chủ ý, tự nhiên là Diệp Phi nói thế nào nàng liền làm như thế đó.</p>
+    <p>Tình huống bây giờ khẩn cấp, chạy về trụ sở Thúy Yên Môn là không kịp nữa rồi, hai người liền tìm khách sạn gần nhất, để Diệp Phi bế Đường Thanh Hà đi vào.</p>
+    <p>Mở gian phòng, đặt Đường Thanh Hà xuống xong, Hà Mộ Tuyết gấp đến độ xoay quanh trong phòng, miệng không ngừng tự lẩm bẩm: "Làm sao bây giờ, làm sao bây giờ?"</p>
+    <p>Bỗng nhiên, ánh mắt Hà Mộ Tuyết sáng lên, kéo tay Diệp Phi nói: "Ngươi nhất định có biện pháp, có đúng không?" Nàng bây giờ, đã giống như Doãn Hàm Yên, bắt đầu đặt niềm tin mù quáng vào Diệp Phi.</p>
+    <p>Tuy rằng cảm giác bị mỹ nữ mù quáng tin tưởng rất tốt, nhưng Diệp Phi thật sự không nghĩ ra biện pháp nào, cười khổ nói: "Sư thúc, ta ngay cả nàng trúng loại độc gì cũng không biết, làm sao có thể có biện pháp?"</p>
+    <p>"Đây là một loại độc dược rất thâm độc, gọi là Phệ Dương Tán. Tên như ý nghĩa, loại độc chất này sẽ không ngừng thôn phệ Dương khí trong cơ thể, do đó khiến người trúng độc tu vi không ngừng yếu bớt." Hà Mộ Tuyết giải thích.</p>
+    <p>Diệp Phi cũng cả kinh, nói: "Đã như thế, chẳng phải là đem một cao thủ mạnh mẽ biến thành một người bình thường? Quả nhiên đủ bá đạo."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1233.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1235.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

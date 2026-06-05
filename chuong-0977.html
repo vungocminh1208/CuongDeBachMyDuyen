@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 977 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 977</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 977</small>
+    Chương 977: Cứu Mạng Điện Thoại
+  </h1>
+  <div class="chapter-body">
+    <p>Liễu Diệc Như như vậy, đám người cùng ở trong sơn cốc sững sờ bảy năm kia cũng là như thế, mà những cô gái không cùng bọn họ vào cốc như Diệp Vân Anh, lúc này cũng u oán không ngớt. Mặc dù chỉ là cùng Diệp Phi phân biệt bảy ngày, nhưng các nàng cũng cảm thấy đã qua thật lâu, tự nhiên rất muốn cùng người đàn ông âu yếm thân thiết một phen, mà bây giờ lại không thể không nhịn.</p>
+    <p>Ngoại trừ Diệp Phi cùng những người phụ nữ yêu mến của hắn ra, người mất ngủ còn có Vương Nguyệt Dao. Thế nhưng việc mất ngủ của bà hoàn toàn là vì tâm tình khuấy động; phân biệt ba mươi năm, rốt cục cùng các con gái đoàn tụ, mặc dù là cao thủ siêu cấp như bà cũng căn bản không cách nào bình phục sự vui sướng cùng kích động trong lòng.</p>
+    <p>Sáng ngày thứ hai sau khi thức dậy, chúng nữ đều có chút tinh thần không phấn chấn. Kỳ thực với thực lực của các nàng, coi như mấy ngày không ngủ cũng không có vấn đề gì, nhưng tối hôm qua đâu chỉ là không ngủ đơn giản như vậy, mà còn có sự dày vò về tinh thần, còn Diệp Phi và Diệp Vân Khinh hai anh em thì trực tiếp ngủ nướng, mãi tới giữa trưa mới dậy.</p>
+    <p>Không ngờ sự tình lại vô tình mà thành, nguyên bản Vương Nguyệt Dao vì là người vào trước, hơn nữa thực lực của Diệp Phi siêu cường, khiến bà không tự chủ được mà xem đứa cháu ngoại này như người cùng đẳng cấp, không khỏi ít đi cảm giác thân cận như đối với Diệp Vân Khinh. Mà biểu hiện giống như đứa trẻ của Diệp Phi ngày hôm nay, lại khiến bà cảm thấy thân thiết hơn nhiều.</p>
+    <p>Sau khi ăn cơm trưa xong, chúng nữ đều rời đi làm chuyện của mình. Ở trong sơn cốc bảy năm, khó tránh khỏi sẽ có chút mới lạ, các nàng đương nhiên phải đi làm quen một chút, đặc biệt là Liễu Phong Nghi cùng Liễu Quân Di, trách nhiệm càng trọng đại, bảy ngày qua đi, khẳng định có không ít sự tình chờ các nàng xử lý.</p>
+    <p>Vương Nguyệt Dao cô tịch ba mươi năm, rất hưởng thụ cảm giác gia đình này, bởi vậy ở lại trong biệt thự, không ra ngoài, mà Diệp Phi cùng Diệp Vân Khinh, hai người cháu ngoại này lại mang theo một đám trẻ con xuống tiếp bà.</p>
+    <p>Điều này làm cho Diệp Phi rất khổ não, thậm chí có chút oán giận thuộc hạ của mình có năng lực quá mạnh mẽ. Hiện tại Lăng Vân Hội gió êm sóng lặng, được Trương Nhất Đức cùng Diệp Tuyền bọn họ quản lý đâu vào đấy, tự mình muốn tìm cớ đi ra ngoài, sau đó lén lút tìm mẹ các nàng "nóng người" một chút cũng không được.</p>
+    <p>Vào buổi tối, mọi người lần thứ hai tụ họp, nhưng lại phải tiếp tục chịu đựng dày vò. Vốn dĩ, Vương Nguyệt Dao trở về đối với mọi người, đặc biệt là Liễu gia Tam tỷ muội mà nói, tuyệt đối là hỉ sự to lớn, nhưng bây giờ, trong việc vui này lại tăng thêm nỗi phiền muộn, mọi người cũng chỉ có thể dùng những lời như "được cái này mất cái kia" để an ủi mình.</p>
+    <p>Cuộc sống như thế liên tiếp trôi qua ba ngày, Diệp Phi cảm giác mình sắp bị nghẹn điên rồi, cũng may đến ngày thứ tư, rốt cục có khả năng chuyển biến tốt.</p>
+    <p>Trưa hôm nay, Diệp Phi bồi tiếp bà ngoại, tiểu muội cùng bọn trẻ ăn cơm trưa, đang chuẩn bị mang theo các con gái ra sân chơi, chiếc điện thoại yên lặng mấy ngày đột nhiên vang lên.</p>
+    <p>Nghe tiếng chuông điện thoại, Diệp Phi không khỏi tinh thần chấn động, vội vàng lấy điện thoại ra, lại phát hiện dãy số gọi đến không phải là số quen thuộc, mà là một dãy số riêng.</p>
+    <p>"Này, vị nào thế?" Nhận cuộc gọi, Diệp Phi hỏi.</p>
+    <p>"Diệp đại lão bản, anh sẽ không quên cả dãy số công ty mình đấy chứ?" Trong điện thoại truyền ra một thanh âm trầm thấp mà vui tươi, trong giọng nói có chút oán giận.</p>
+    <p>"Hóa ra là Ảnh tỷ, có chuyện gì không?" Công ty điện thoại Diệp Phi quả thực không nhớ, nhưng âm thanh này thì đã sớm khắc sâu trong lòng hắn, chính là biên đạo thiên tài của công ty truyền hình, mỹ nhân siêu cấp ẩn núp Tư Đồ Ảnh.</p>
+    <p>Thấy Diệp Phi nghe máy cái liền nhận ra mình, Tư Đồ Ảnh trong lòng không khỏi một trận hài lòng, nhưng cũng chỉ vui vẻ một chút, bởi vì lúc này công ty có chút phiền phức, liền không cãi cọ với Diệp Phi nữa, trực tiếp nói: "Trong công ty xuất hiện một số tình hình, anh có thể tới đây một chuyến không?"</p>
+    <p>"Được, ta tới ngay!" Diệp Phi lập tức trả lời, mấy ngày nay, hắn vẫn mong ngóng chuyện như vậy. Tuy rằng mong chờ mình ra tay gặp sự cố là có vấn đề, nhưng mấy ngày này thực sự quá mức đau khổ, lời nói này của Tư Đồ Ảnh đối với hắn mà nói không khác gì tiếng trời.</p>
+    <p>Sau khi cúp điện thoại, Diệp Phi áy náy nói với Vương Nguyệt Dao đang bồi bọn trẻ chơi đùa: "Bà ngoại, công ty truyền hình của con xảy ra một số chuyện, con muốn đi xử lý một chút."</p>
+    <p>Mấy ngày nay, bởi vì tính trẻ con của Diệp Phi, Vương Nguyệt Dao đối với hắn càng ngày càng thương yêu, thậm chí có chút bỏ quên chuyện hắn chẳng những là Bang Chủ Lăng Vân Hội, trong tay còn có mấy công ty không nhỏ. Mà tư tưởng truyền thống của bà rất công nhận câu nói "nam nhi chí tại bốn phương", đương nhiên sẽ không ngăn cản Diệp Phi đi làm việc chính, vui vẻ gật đầu nói: "Đi đi, Tiểu Mãn, con là người đàn ông duy nhất của Liễu Diệp hai nhà, vẫn là nên lấy sự nghiệp làm trọng, không cần ngày nào cũng ở nhà bồi bà ngoại."</p>
+    <p>Sau đó Diệp Phi lại nói với tiểu muội cùng các con gái một lần, bọn trẻ đương nhiên rất không nỡ để ba ba rời đi, cũng may có Diệp Liễu Nhi hiểu chuyện, rất nhanh đã giúp ba ba dỗ dành các em.</p>
+    <p>Ngược lại là Diệp Vân Khinh lại bất mãn bĩu môi, ca ca ngược lại tốt, đi ra ngoài cùng những người phụ nữ khác phong lưu khoái hoạt, chính mình lại chỉ có thể ở nhà, vào lúc này, nàng cực kỳ mong chờ ngày tựu trường tới.</p>
+    <p>Rời khỏi biệt thự, Diệp Phi lái xe hướng về phía công ty truyền hình, tuy rằng lúc này việc hắn muốn làm nhất là đến Liễu Thị tập đoàn tìm mẹ, "nóng người" một chút với nàng, nhưng lại không làm như thế, bởi vì Tư Đồ Ảnh, Trác Phượng Nhi cùng Mộc Linh đều là những người phụ nữ rất có năng lực, chuyện bình thường rất dễ dàng giải quyết, mà bây giờ lại tìm tới mình, hiển nhiên chuyện lần này không nhỏ.</p>
+    <p>Tài sản của công ty truyền hình đối với Diệp Phi mà nói vốn chỉ như muối bỏ bể, vốn không cần để tâm, nhưng nó là tâm huyết của mấy người phụ nữ của mình, cũng là sự nghiệp của các nàng, bởi vậy Diệp Phi đối với nó cũng hết sức coi trọng.</p>
+    <p>Hơn nửa canh giờ sau, Diệp Phi tới công ty truyền hình, đi thẳng tới phòng làm việc của Tư Đồ Ảnh. Lúc này trong phòng làm việc không chỉ có Tư Đồ Ảnh, mà cả Trác Phượng Nhi cùng mẹ con Mộc Linh đều ở đây, sắc mặt bốn người đều có chút nghiêm nghị.</p>
+    <p>Nhìn thấy Diệp Phi, bốn người đều rất vui vẻ, đặc biệt là Mộc Linh cùng Trác Phượng Nhi, các nàng đã hơn mười ngày không gặp người đàn ông nhỏ bé âu yếm của mình, lúc này nhìn thấy hắn, chỉ hận không thể lập tức nhào vào lòng hắn để hắn thương yêu một phen.</p>
+    <p>Tuy nhiên, ý niệm này cũng không biến thành hành động, bởi vì hiện tại Tư Đồ Ảnh cùng Hứa Vi Nhi đều ở đây, hơn nữa hiện tại xác thực có chuyện rất quan trọng.</p>
+    <p>Chào hỏi đơn giản xong, Diệp Phi không nói nhảm, trực tiếp hỏi: "Đã xảy ra chuyện gì?"</p>
+    <p>"Là liên quan đến vấn đề chiếu phim bộ phim mới của công ty chúng ta." Tư Đồ Ảnh nói.</p>
+    <p>"Chiếu phim? Làm sao vậy?" Diệp Phi kỳ quái hỏi. Sau khi bộ (Phi Thiên) nổi tiếng một lần là thành danh, công ty truyền hình này từ lâu đã có danh tiếng lẫy lừng ở trong nước, chỉ cần là phim công ty xuất phẩm, không bộ nào không được mọi người săn đón, theo lý thuyết không nên xảy ra vấn đề gì mới đúng.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-0976.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-0978.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>
