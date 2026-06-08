@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1353 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1353</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1353</small>
+    Chương 1353: Vô Sỉ Thân Thích 2
+  </h1>
+  <div class="chapter-body">
+    <p>Lưu Minh lái xe đến bờ sông, nơi này vô cùng hẻo lánh, ngay cả đèn đường cũng không có, vào giờ này đương nhiên cũng chẳng có ai tới, cho nên dù Tiểu Bạch Hoa có kêu cứu lớn đến đâu cũng không ai đến cứu nàng.</p>
+    <p>Điều này càng làm Lưu Minh thêm tự tin, hắn lập tức từ ghế lái lao sang, đè lên người Tiểu Bạch Hoa. Lúc này, Tiểu Bạch Hoa không còn chút sức lực nào, cơ thể sớm đã sợ đến mềm nhũn. Nàng cũng hiểu rõ Lưu Minh muốn làm gì, ngoài việc kêu thét, cơ thể nàng không còn chút sức lực, trong đầu càng trống rỗng.</p>
+    <p>Lưu Minh vốn vạm vỡ, cao to hơn hẳn Tiểu Bạch Hoa vốn chỉ cao hơn mét sáu, nặng chưa tới năm mươi cân. Hắn đè lên người nàng, nàng dù giãy giụa thế nào cũng không thoát ra được, huống hồ cửa xe đã sớm bị Lưu Minh khóa chặt.</p>
+    <p>Chuyện kế tiếp không cần nói nhiều, Lưu Minh đã thực hiện được ý đồ, hắn cưỡng ép chinh phục Tiểu Bạch Hoa, mặc cho nàng phản kháng thế nào cũng vô ích.</p>
+    <p>Đêm đó, Lưu Minh không đưa Tiểu Bạch Hoa về nhà mà tìm một khách sạn cao cấp. Nơi này Lưu Minh thường tới nên rất quen thuộc, hắn mạnh mẽ lôi kéo Tiểu Bạch Hoa vào, rồi lại cưỡng ép nàng thêm hai lần nữa.</p>
+    <p>Không phải Tiểu Bạch Hoa yếu đuối, không biết bảo vệ mình, mà sau lần đầu tiên bị cưỡng ép, cả người nàng đều đờ đẫn, cơ thể không còn chút sức lực, lòng gan cũng vỡ vụn, cho dù có nhìn thấy người trong khách sạn, nàng cũng không dám kêu cứu.</p>
+    <p>Chính mình lại bị cưỡng gian, điều này khiến nàng làm sao dám lên tiếng?</p>
+    <p>Thêm vào đó, Lưu Minh còn nói rất nhiều lời đe dọa khiến Tiểu Bạch Hoa càng thêm bất lực. Tất nhiên, hắn cũng nói nhiều lời ngon ngọt, hứa hẹn đủ điều như tăng lương, thăng chức vân vân.</p>
+    <p>Tiểu Bạch Hoa một đêm không về, điện thoại tắt máy. Bạn trai nàng vốn tăng ca cả đêm, nhưng trùng hợp đêm nay công việc kết thúc sớm, liền muốn chạy về nhà vì lo bạn gái ở một mình sẽ sợ. Kết quả về đến nhà phát hiện bạn gái không thấy đâu, gọi điện không thông, đi công ty tìm thì công ty đã đóng cửa, một đêm này hắn trải qua vô cùng gian nan.</p>
+    <p>Đến trưa ngày thứ hai hắn mới tìm được Tiểu Bạch Hoa. Nhìn dáng vẻ của bạn gái, hắn liền đoán được chuyện chẳng lành đã xảy ra. Vừa hỏi tới, Tiểu Bạch Hoa liền nằm trong lòng hắn khóc rống lên.</p>
+    <p>"Ta muốn giết hắn!" Bạn trai biết rõ ngọn nguồn sự việc, lập tức nổi giận đùng đùng, lấy ra một con dao găm rồi lao ra ngoài. Tiểu Bạch Hoa còn đang bàng hoàng, muốn ngăn cản bạn trai nhưng thấy hắn đã chạy đi rất xa.</p>
+    <p>Sau khi đắc thủ, Lưu Minh vẫn đi làm như thường lệ, tuy tốn không ít thể lực nhưng trong lòng vô cùng đắc ý. Theo tính toán của Lưu Minh, hắn dự định biến Tiểu Bạch Hoa thành tình nhân trong bóng tối, có thể cho nàng những thứ nàng muốn, nhưng hắn tuyệt đối sẽ không chỉ có một người phụ nữ này.</p>
+    <p>Đang đắc ý lái xe, hắn quay trở lại văn phòng, chuẩn bị ngủ một giấc để hồi phục nguyên khí, hai ngày nữa sẽ dàn dựng một câu chuyện để Tiểu Bạch Hoa cùng bạn trai nàng chia tay. Sau đó, Tiểu Bạch Hoa sẽ hoàn toàn nằm trong tầm kiểm soát của hắn.</p>
+    <p>Suy tính rất tốt đẹp, Lưu Minh vừa mới ngủ thì cửa văn phòng đã bị đạp văng. Bạn trai của Tiểu Bạch Hoa lao vào, giơ con dao trong tay định chém Lưu Minh. Lưu Minh vội vàng né tránh, miệng bạn trai Tiểu Bạch Hoa liên tục chửi bới, tiếng động lúc xông vào đã kinh động bảo an. Lưu Minh né được mấy lần, vai trúng một nhát dao thì bảo an đã khống chế được bạn trai Tiểu Bạch Hoa.</p>
+    <p>"Đồ điên!" Lưu Minh là phó tổng, đương nhiên phải giữ hình tượng, dù hắn biết rõ lý do đối phương đến chém mình.</p>
+    <p>Bạn trai Tiểu Bạch Hoa vẫn giận dữ chửi bới, giãy giụa, rất nhanh một nửa công ty đều biết lý do hắn đến chém người. Điều này khiến Lưu Minh cảm thấy mất mặt, hắn hừ lạnh một tiếng rồi nói: "Đánh, đánh nó cho ta."</p>
+    <p>Mấy bảo an nhìn nhau, cuối cùng vẫn ra tay, hành hung bạn trai Tiểu Bạch Hoa một trận.</p>
+    <p>Sự việc đến lúc này đã làm lớn, tổng giám đốc công ty chạy ra, nhìn thấy cảnh tượng này thì choáng váng, quát lệnh những nhân viên khác trở về vị trí, lại bảo bảo an lôi bạn trai Tiểu Bạch Hoa vào phòng họp khống chế lại. Còn Lưu Minh lúc này căn bản chẳng để tâm, vẫn giữ thái độ hống hách kia.</p>
+    <p>"Rốt cuộc đã xảy ra chuyện gì?" Tổng giám đốc thấp giọng hỏi.</p>
+    <p>Lưu Minh nhếch mép cười, thờ ơ nói: "Chẳng có gì, luyến ái tự do thôi, hắn không chấp nhận được rồi đến gây sự, chẳng lẽ lại thành lỗi của ta?"</p>
+    <p>Đổi trắng thay đen, Lưu Minh tự cảm thấy thân phận mình đặc biệt, cho dù tỷ tỷ có biết thì cũng chỉ tốn ít tiền giải quyết. Nếu xử lý tốt, sự việc vẫn có thể diễn ra theo đúng dự tính của hắn.</p>
+    <p>Tổng giám đốc nghe xong liền biết trong đó có uẩn khúc, chuyện này ông không giải quyết được nên báo cáo lên tổng công ty, thậm chí Diệp Phi cũng đã biết chuyện.</p>
+    <p>Lúc này, Tiểu Bạch Hoa đã đi giám định, bạn trai bị đánh không nhẹ, đang nằm viện điều trị. Lưu Minh vốn không coi là chuyện lớn thì lúc này đã bị khống chế, nhưng hắn vẫn không sợ, cho rằng sự khống chế này ngược lại là một loại bảo vệ cho hắn.</p>
+    <p>Hừ, Lão Tử có năng lực, lại có một người chị gái tốt, cho dù Tỷ phu có biết cũng không làm gì được ta. Đây là suy nghĩ trong lòng Lưu Minh, hắn thậm chí còn nói như vậy với người trông giữ mình.</p>
+    <p>Thời đại này, có vài việc chính là như vậy, thế nên ngay cả người trông giữ hắn cũng cảm thấy sự việc rất có thể sẽ tiếp tục phát triển theo hướng này.</p>
+    <p>Cha mẹ Tiểu Bạch Hoa, cha mẹ bạn trai nàng cũng đều biết chuyện, đang vội vã chạy tới, sự việc sắp sửa làm lớn. Truyền thông địa phương và cơ quan cảnh sát đều biết, nhưng họ đều lựa chọn giữ im lặng. Họ không phải không biết tính chất nghiêm trọng của sự việc, mà thật sự là... không dám quản. Ai bảo đây là việc của Diệp gia, trong phạm vi toàn bộ Đông Nam, việc của Diệp gia không phải việc nhỏ, nhưng Diệp gia bảo đó là việc nhỏ thì đó chính là việc nhỏ.</p>
+    <p>Lưu Minh bưng chén trà, tựa vào ghế sô pha, vắt chéo chân, thảnh thơi uống trà. Những lời nên đe dọa, tối qua hắn đều đã nói với Tiểu Bạch Hoa. Dưới cái nhìn của hắn, chỉ cần cô ta còn chút đầu óc thì sẽ không làm càn, cùng lắm là chia tay, mình bồi thường ít tiền là xong.</p>
+    <p>Thế nhưng, sự việc thật sự đơn giản như vậy sao?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1352.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1354.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

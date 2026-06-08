@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1511 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1511</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1511</small>
+    Chương 1511: Ra đời địa phương 2
+  </h1>
+  <div class="chapter-body">
+    <p>Chương 1508: Ra đời địa phương 2</p>
+    <p>Đã như thế, sự tình liền rất rõ ràng, trên máy tính của con trai chắc chắn là một trang web đen nào đó. Đương nhiên, đây cũng không phải là nguyên nhân khiến Liễu Diệc Như tức giận, chủ yếu vẫn là nàng nghĩ đến, nếu trên máy tính của con trai là web đen, cái kia tuyệt đối không thể nào chỉ có văn tự thuyết minh, chắc chắn sẽ có hình ảnh thậm chí video đi kèm. Mà nếu như vậy, con trai nhất định đã nhìn thấy thân thể của nữ nhân khác, thậm chí là lồn của các nàng. Nghĩ đến những thứ này, trong lòng nàng cũng có chút cảm giác khó chịu.</p>
+    <p>"Ai kêu ngài không nói cho con biết, con không thể làm gì khác hơn là tự mình tra xét." Diệp Phi phảng phất không phát hiện mẹ đã tức giận, nói như thế, sau đó cười hì hì: "Mẹ, cho con nhìn một chút lồn của ngài có được hay không? Con còn chưa từng thấy đây."</p>
+    <p>"Đi đi, con không phải đang tra trên mạng sao? Tự mình tới máy tính mà nhìn lại!" Liễu Diệc Như không vui nói.</p>
+    <p>"Nhưng là con không muốn xem trên đó, hôm nay lúc kiểm tra thì có hình ảnh, bất quá con chỉ nhìn mấy dòng giới thiệu văn tự liền đóng lại." Diệp Phi nói rất chân thành.</p>
+    <p>"Tại sao không nhìn?" Liễu Diệc Như ngạc nhiên nói. Lẽ ra con trai ở độ tuổi này, chính là thời điểm đối với chuyện như vậy cảm thấy hứng thú nhất, bằng không nó cũng sẽ không luôn phát tình với mình, cho nên nàng có chút không cách nào hiểu được tại sao con trai lại có thể chịu không nhìn những thứ đó.</p>
+    <p>Diệp Phi cười nói: "Bởi vì con hi vọng cái lồn đầu tiên con nhìn thấy trong đời, phải là cái lồn của người mẹ mà con yêu nhất."</p>
+    <p>"Tiểu tử thối, con càng ngày càng biến thái!" Liễu Diệc Như mắng, có điều trong lòng lại không rõ vui vẻ.</p>
+    <p>Diệp Phi không chút phật lòng, tiếp tục nói: "Mẹ, có thể không?"</p>
+    <p>"Đừng có mơ, đương nhiên không thể, làm gì có chuyện con trai muốn xem lồn của mẹ." Liễu Diệc Như không vui nói.</p>
+    <p>"Nhưng là con chính là muốn nhìn mà." Diệp Phi đem đầu chôn vào giữa hai bầu ngực đầy đặn của mẹ, không ngừng giãy dụa làm nũng nói: "Hảo mụ mụ, van xin ngài, ngài liền cho con xem một chút lồn của ngài đi."</p>
+    <p>Nghe con trai luôn miệng nói muốn thấy lồn của mình, còn không ngừng dùng đầu cọ xát vào đôi vú nhạy cảm, Liễu Diệc Như hưng phấn đến mức khó mà tự kiềm chế. Có điều nàng vẫn kiên thủ ranh giới cuối cùng, bất luận con trai làm sao làm nũng, vẫn nhất quyết không đồng ý.</p>
+    <p>Mắt thấy làm nũng vô dụng, Diệp Phi lại thay đổi một cách khác, ngẩng đầu lên nói: "Mẹ, này không công bằng!"</p>
+    <p>"Cái gì không công bằng?" Liễu Diệc Như hỏi.</p>
+    <p>"Dương vật của con ngài đều xem qua, thậm chí còn sờ soạng, hôn hít, tại sao con lại không thể nhìn, sờ sờ, hôn nhẹ lồn của ngài?" Diệp Phi lý trực khí tráng nói.</p>
+    <p>Liễu Diệc Như dở khóc dở cười nói: "Vậy sao có thể như thế được? Cả người con đều là mẹ sinh ra, nơi nào của con mà mẹ chưa từng thấy?"</p>
+    <p>Diệp Phi nháy mắt một cái, đột nhiên hỏi: "Mẹ, ngài luôn nói con là ngài sinh, nhưng rốt cuộc là ngài đã sinh con ra như thế nào nhỉ?"</p>
+    <p>Liễu Diệc Như chần chờ một chút, vốn định qua loa cho xong, thậm chí là biên một lời nói dối. Nhưng nghĩ đi nghĩ lại, đây cũng không phải chuyện bí mật gì, quay đầu lại con trai tra trên mạng một cái liền biết rồi, như vậy trái lại không tốt lắm, liền thành thật nói: "Chính là sinh ra từ trong lồn của mẹ."</p>
+    <p>"Thật sao?" Ánh mắt Diệp Phi sáng lên, vội vàng nói: "Cái kia nhanh cho con xem một chút!"</p>
+    <p>"Tiểu tử thối, không phải đã bảo là không cho phép nhìn sao?" Thấy con trai cứ tâm tâm niệm niệm muốn thấy lồn của mình, trong lòng Liễu Diệc Như thật sự là ngũ vị tạp trần, vừa có chút ngượng ngùng nhàn nhạt, cũng có một loại tội ác cảm không rõ, nhưng nhiều hơn cả vẫn là sự hưng phấn khó tả.</p>
+    <p>Diệp Phi ngụy biện nói: "Con lại không nói muốn xem lồn của ngài, con chỉ là muốn nhìn địa phương mà mình ra đời, chẳng lẽ không nên sao?"</p>
+    <p>"Này có khác nhau sao?" Liễu Diệc Như dở khóc dở cười nói, nhưng trong lòng lại phát hiện, khi con trai nói đến "địa phương ra đời", dĩ nhiên khiến cho mình càng thêm hưng phấn hơn so với khi hắn đòi xem "lồn".</p>
+    <p>Diệp Phi tiếp tục ngụy biện: "Đương nhiên là có khác biệt, con chỉ là muốn xem nơi mình ra đời, lại không nói là muốn xem lồn của ngài, có trách thì chỉ trách năm đó ngài cứ nhất quyết sinh con ra từ trong lồn của ngài."</p>
+    <p>"Tiểu tử thối, sớm biết con vô lại như vậy, lúc trước mẹ thà chỉ sinh một mình Khinh Khinh còn hơn." Liễu Diệc Như cười mắng.</p>
+    <p>"Cái đó hết cách rồi, ngài sinh cũng đã sinh rồi, cũng không thể nhét trở về đi thôi." Diệp Phi cười hắc hắc nói, tiếp theo lại làm nũng: "Mẹ, hảo mụ mụ của con, liền cho con xem một chút nơi con đã ra đời đi!"</p>
+    <p>Việc con trai cứ một câu "địa phương ra đời", khiến tâm tình Liễu Diệc Như khuấy động không ngớt, hưng phấn không nói nên lời. Hơn nữa, nàng thật sự không cách nào từ chối thế tấn công làm nũng của con trai, rốt cục gật đầu nói: "Vậy cũng tốt, có điều con phải đáp ứng mẹ, chỉ được xem, không cho phép chạm!"</p>
+    <p>"Được được được, con chỉ xem thôi." Diệp Phi nhanh chóng gật đầu, hàm hồ nói.</p>
+    <p>Liễu Diệc Như cũng không biết là có nghe ra sự qua loa của con trai hay không, cũng không lặp lại thêm gì nữa, từ từ cởi bỏ quần áo hạ thân của mình.</p>
+    <p>Nguyên bản Liễu Diệc Như còn muốn giữ lại quần lót, nhưng vì hưng phấn, hiện tại quần lót của nàng đã ướt đẫm. Nếu như con trai hỏi tới, càng khó giải thích, liền quyết tâm liều mạng, cởi luôn cả quần lót xuống.</p>
+    <p>Đến đây, hai mẹ con đã là trần như nhộng. Hơn nữa, dương vật của con trai thì cứng ngắc, lồn của mình thì ngứa ngáy, điều này khiến Liễu Diệc Như không khỏi sinh ra một loại ảo giác, đó chính là giống như mình lập tức muốn làm tình với con trai ruột vậy.</p>
+    <p>Ảo giác này khiến Liễu Diệc Như vừa xấu hổ không thôi, lại vừa có sự hưng phấn chưa từng có, đến mức toàn thân mềm mại gợi cảm đều khẽ run lên.</p>
+    <p>"Mẹ, nhanh lên nha, nhanh cho con nhìn lồn của ngài!" Thấy mẹ cởi sạch quần áo sau liền bất động, Diệp Phi không nhịn được thúc giục.</p>
+    <p>"Tiểu tử thối, xem đi!" Liễu Diệc Như nằm xuống, đôi chân thon dài gợi cảm cong lên, tách ra thành hình chữ M, triệt để phơi bày tiểu dâm huyệt mà mình chưa bao giờ cho người khác thấy trước mắt con trai.</p>
+    <p>Ngoại trừ bản thân Liễu Diệc Như, lồn của nàng xưa nay chưa từng bị ai nhìn thấy, cho dù là Diệp Lăng Vân, năm đó cũng không có. Lần duy nhất bọn họ làm là đêm tân hôn tắt đèn, Liễu Diệc Như vốn tưởng rằng đời này cũng sẽ không có người thấy được, nhưng không ngờ hôm nay lại phá lệ, mà lại còn là với con trai ruột của mình.</p>
+    <p>Điều này khiến trong lòng Liễu Diệc Như, người vốn đã sớm có tư niệm không nên có, ngoại trừ sự hưng phấn dị thường ra, còn vô cùng ngượng ngùng. Trong lúc tách đôi chân ra, đôi mắt đẹp nhắm chặt lại.</p>
+    <p>Thời gian qua đi mấy ngày, lần thứ hai nhìn thấy lồn bánh màn thầu mê người vô cùng của mẹ, có lẽ là đang trong lúc nàng mất trí nhớ biến thành nữ thần, sự hưng phấn trong lòng Diệp Phi có thể tưởng tượng được, hận không thể lập tức đem dương vật cứng rắn của mình cắm vào, hung hăng địt nàng một phen.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1510.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1512.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

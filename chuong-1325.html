@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1325 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1325</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1325</small>
+    Chương 1325: Trực Tiếp Ngả Bài
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi đã nói như vậy, Trương Giai tự nhiên không có gì để nói, liền cùng Chu Đình Đình trò chuyện về những chủ đề của nữ sinh, chỉ là Chu Đình Đình mặc dù đang nói chuyện với nàng, nhưng ánh mắt vẫn luôn dừng lại trên người Diệp Phi.</p>
+    <p>Giao thông kinh thành thật sự không dám khen tặng, tốn trọn vẹn gần một canh giờ mới đưa Trương Giai về đến nhà. Cũng may nhà nàng cách chỗ đó không xa, nếu không Diệp Phi và Chu Đình Đình đến Chu gia, sợ là đã qua giờ ăn trưa.</p>
+    <p>Mà lúc này Chu gia đã có chút rối loạn, nguyên nhân chính là Chu Đình Đình gọi điện thoại cho mẹ nàng là Lý Minh Hoa, nói Diệp Phi buổi trưa muốn tới nhà làm khách.</p>
+    <p>Cúp điện thoại, Lý Minh Hoa vội vã đi vào thư phòng của Chu lão gia tử, câu đầu tiên là: "Ba, Diệp Phi tới!"</p>
+    <p>"Chuyện này ta sớm đã biết rồi." Chu Thế Xương có chút kỳ quái cử động của con dâu. Ngày hôm qua Diệp Phi tới Kinh Thành, sau giờ ngọ đã thu thập hai gia tộc, nên biết thì đã biết, hắn tự nhiên cũng ở trong đó, vì thế rất không hiểu tại sao Lý Minh Hoa lại tới nói một lần nữa.</p>
+    <p>Nhìn thấy phản ứng của Chu Thế Xương, Lý Minh Hoa biết mình có chút thất thố, vội hít sâu một hơi, giải thích: "Con là nói, hắn muốn tới nhà chúng ta."</p>
+    <p>"Cái gì?" Chu Thế Xương kinh hô: "Ý của con là..."</p>
+    <p>Lý Minh Hoa gật đầu một cái nói: "Không sai, con nghi ngờ hắn đã biết chuyện gì đó, nếu không lấy tính cách của hắn, nhất định phải đi tìm đám người Túc gia gây phiền phức trước."</p>
+    <p>Không thể không nói, Lý Minh Hoa xác thực rất lợi hại, chỉ thông qua nghe đồn cùng một ít tình báo, cũng đã nắm rõ tính cách của Diệp Phi, thậm chí ngay cả hắn muốn làm gì cũng đoán được tám chín phần mười. Với cái tính cách bao che người thân của Diệp Phi, sau khi tới Kinh Thành, chuyện thứ nhất chính là muốn đòi lại công bằng cho người nhà của hắn, còn về việc bái phỏng thế giao vân vân, cái đó phải xếp sau. Mà bây giờ lại là người đầu tiên muốn tới Chu gia, liền đủ để chứng minh không phải chuyện nhỏ.</p>
+    <p>Đối với Lý Minh Hoa, Chu Thế Xương rất tin phục, trong lúc nhất thời không khỏi có chút hoang mang. Tuy nhiên, ông dù sao cũng là người đã trải qua sóng to gió lớn, rất nhanh liền bình tĩnh lại, thở dài nói: "Tới thì tới đi, chỉ là đừng làm phiền hà các con."</p>
+    <p>Lý Minh Hoa cũng không nói gì nữa, chỉ đi ra ngoài phân phó một chút với cảnh vệ rồi lại quay về thư phòng.</p>
+    <p>Khi Diệp Phi và Chu Đình Đình đi tới Chu gia, ở cửa lớn liền được báo là Chu lão gia tử cùng Lý Minh Hoa đang đợi bọn họ trong thư phòng.</p>
+    <p>"Thực sự là kỳ quái, cậu chỉ là tới làm khách thôi mà, cũng không phải có chuyện quan trọng gì, sao lại trực tiếp đi vào thư phòng?" Chu Đình Đình rất khó hiểu nói với Diệp Phi, mà Diệp Phi lại đang đăm chiêu.</p>
+    <p>Tiến vào thư phòng, Lý Minh Hoa câu đầu tiên là cản người: "Đình Đình, con đi ra ngoài trước đi, ta với ông nội con có một số việc muốn nói với Diệp Phi."</p>
+    <p>Chu Đình Đình là một cô gái rất ngoan ngoãn nghe lời, ngoại trừ chuyện của Diệp Phi ra thì cô rất bướng bỉnh, còn lại cơ bản Lý Minh Hoa nói gì cô nghe nấy. Lúc này cũng không ngoại lệ, tuy rằng rất hiếu kỳ, nhưng vẫn ngoan ngoãn đi ra ngoài.</p>
+    <p>Sau khi Chu Đình Đình rời đi, ba người trầm mặc một hồi, cuối cùng vẫn là Diệp Phi mở lời trước: "Chu lão gia tử, ông còn gì để giải thích không?"</p>
+    <p>Tuy rằng Diệp Phi nói không rõ ràng, nhưng Chu lão gia tử cùng Lý Minh Hoa đều nghe hiểu.</p>
+    <p>"Không có gì hay để giải thích cả." Chu Thế Xương thở dài một cái nói: "Ta Chu Thế Xương cả đời này, trên không thẹn với quốc gia, dưới không thẹn với bách tính, nhưng cũng không thể nói là ngẩng đầu không thẹn, bởi vì ta đã từng vì che giấu lương tâm mà làm hai việc."</p>
+    <p>Nói tới đây, Chu Thế Xương quay đầu nhìn về phía Lý Minh Hoa: "Việc thứ nhất, chính là lợi dụng một chút ân tình, buộc Minh Hoa gả cho Chu Bác. Đứa nhỏ à, ta biết con vẫn luôn không coi trọng Chu Bác, những năm này thực sự đã oan ức cho con rồi."</p>
+    <p>"Ba, ngài ngàn vạn lần đừng nói như vậy. Trước tiên không nói việc ngài đối với con không chỉ là một chút ân tình đơn giản như vậy, chính là chuyện gả cho Chu Bác, con cũng không hối hận." Lý Minh Hoa vội vàng nói: "Ngài cũng biết tính cách của con, nếu không phải gả cho Chu Bác, e rằng đến bây giờ con vẫn còn độc thân, mà bây giờ lại có một đứa con gái tốt như vậy, con cũng không có gì phải tiếc nuối."</p>
+    <p>Nói thật lòng, Chu Bác kỳ thực không kém chút nào, mặc dù so với Liễu Quân Di thì kém một bậc, thế nhưng mới bốn mươi tuổi mà chỉ bằng nỗ lực của bản thân đã làm đến địa vị Thiếu Tướng, nói một câu rồng phượng trong loài người cũng không quá đáng.</p>
+    <p>Chỉ là, Lý Minh Hoa vừa có đại tài, lại vừa có lòng dạ quá cao. Đúng như nàng đã nói, nếu không gả cho Chu Bác, chỉ sợ đến bây giờ nàng vẫn còn độc thân, vì người đàn ông vào được mắt nàng trên thiên hạ này căn bản là không có.</p>
+    <p>Nghĩ tới đây, Lý Minh Hoa không nhịn được nhìn Diệp Phi một chút, trong lòng lại sửa lại một chút: Không phải là không có, chỉ là nàng sinh không gặp thời thôi. Nếu có thể trẻ lại hai mươi tuổi, nàng có thể khẳng định, mình cũng sẽ như con gái mà không thể tự kiềm chế mà thích người đàn ông ưu tú đến không cách nào hình dung này, dù cho cuộc sống riêng tư của hắn hỗn loạn đến mức Nghịch Thiên.</p>
+    <p>"Mà việc thứ hai, chính là biết rõ Liễu Diệp hai nhà bọn nhỏ đều là vô tội, nhưng vẫn âm thầm đối phó với các ngươi, hơn nữa còn dẫn đến việc Lăng Thiên bị hại." Chu Thế Xương nói tiếp, sau đó nhìn về phía Diệp Phi: "Vì lẽ đó, cậu có lấy mạng già này của ta đi, ta cũng không có một chút oán hận nào, chỉ hy vọng cậu có thể buông tha cả nhà Minh Hoa, bọn họ đều là vô tội."</p>
+    <p>"Yêu cầu của ông cũng thật không thấp nhỉ!" Diệp Phi cười lạnh nói: "Ông cũng nói, thúc thúc ta chính là do ông hại chết, hiện tại lại muốn cầu ta buông tha con trai của ông, lẽ nào thân nhân của ông là người, thân nhân của ta thì không phải là người sao?"</p>
+    <p>"Có thể cả nhà bọn họ, cũng là thân nhân của cậu mà!" Chu Thế Xương nói: "Chu Bác, thực ra là cậu của cậu."</p>
+    <p>"Cậu gì cơ?" Diệp Phi cau mày nói. Nếu không phải biết Chu Thế Xương căn bản không phải loại người vì mạng sống mà ăn nói bừa bãi, hắn cũng không nhịn được mà muốn động thủ. Nhưng mà, dù thế nào đi nữa, con trai của ông ta cũng không thể nào là cậu của hắn được.</p>
+    <p>"Bí mật này nghẹn ở trong lòng ta đã bốn mươi năm. Chu Bác kỳ thực không phải con ruột của ta, mà là con của ông ngoại cậu với một người phụ nữ khác." Chu Thế Xương nói rất chân thành: "Cũng chính là anh em cùng cha khác mẹ với mẹ cậu."</p>
+    <p>"Cái gì?!" Diệp Phi lần này triệt để chấn kinh rồi. Có điều nhìn thế nào Chu Thế Xương cũng không giống dáng vẻ đang nói dối, hơn nữa Lý Minh Hoa cũng không kinh ngạc, hiển nhiên sớm đã biết.</p>
+    <p>Có điều Diệp Phi dù sao không phải người bình thường, sau khi chấn động một chút, rất nhanh liền bình tĩnh lại, nhưng trong lòng càng thêm không hiểu, liền hỏi: "Đã như vậy, tại sao ông còn muốn đối phó với chúng ta?"</p>
+    <p>Chu Thế Xương vốn không muốn nói quá nhiều, nhưng nghi vấn của Diệp Phi lại làm dấy lên bi phẫn trong lòng ông. Sau một tràng cười quái dị, ông căm giận nói: "Tại sao? Cậu còn hỏi tại sao, cậu có biết mẫu thân của Chu Bác là ai không?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1324.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1326.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1483 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1483</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1483</small>
+    Chương 1483
+  </h1>
+  <div class="chapter-body">
+    <p>"Vậy sao không kết thúc luôn đi, nàng đã thích ngươi, ngươi cũng thích nàng, hiện tại nàng lại nhìn lâu như thế, vậy còn có gì không thể làm." Chúc Ngọc Nghiên cười nói.</p>
+    <p>Giang Mạn Quân mặc dù có chút khí thế nữ hán tử, nhưng dù sao cũng là cô gái chưa từng yêu đương, nghe mẹ nói thẳng ra bí mật của chính mình, trong lòng giật mình theo bản năng phản bác: "Ai thích hắn?"</p>
+    <p>"Được được được, ngươi không thích hắn." Chúc Ngọc Nghiên không tranh với con gái, thuận theo nàng nói một câu, sau đó ngữ khí thay đổi: "Lẽ nào ngươi muốn làm gái lỡ thì cả đời?"</p>
+    <p>Giang Mạn Quân sau khi thốt ra câu nói kia thì lập tức hối hận. Hiện tại Diệp Phi có quá nhiều người phụ nữ, hơn nữa sau khi được hắn thỏa mãn, mỗi người đều có mị lực hơn Giang Mạn Quân. Nếu như muốn thuận theo tự nhiên mà ở bên hắn, không biết phải chờ tới bao giờ. Vốn dĩ hôm nay là cơ hội rất tốt, vì Diệp Phi vừa nãy đã thừa nhận thích nàng, chỉ cần nàng cũng thuận thế thừa nhận, vậy hai người có thể tự nhiên ở bên nhau.</p>
+    <p>Nhưng lúc này Giang Mạn Quân lại bị sự kiêu ngạo của chính mình làm khó, xuất phát từ sĩ diện của cô gái, nàng không tiện đổi giọng ngay lập tức, đành nhắm mắt nói: "Thiên hạ đâu chỉ mình hắn là đàn ông."</p>
+    <p>"Phải, thiên hạ không chỉ mình hắn là đàn ông, nhưng mà, ngươi có thể tìm được ai tốt hơn hắn sao?" Chúc Ngọc Nghiên cười xấu xa nói: "Hơn nữa đừng quên, ngươi cũng tu luyện Huyền Âm Quyết."</p>
+    <p>Mới vừa rồi mẹ không những không giúp mình xuống bậc thang, còn liên tục gạt mình, Giang Mạn Quân trong lòng một trận khí khổ, có chút nổi giận nói: "Vậy ta cứ làm gái lỡ thì cả đời là được chứ gì!"</p>
+    <p>"Ngươi nghĩ vậy thì mẹ cũng không xen vào, dù sao ngươi cũng đã lớn rồi. Nhưng mà, cứ như thế thì ngươi quá đáng thương, cả đời cũng không hưởng thụ được niềm vui lớn nhất." Chúc Ngọc Nghiên lộ vẻ thương hại: "Làm tình thoải mái đến nhường nào, vừa nãy ngươi cũng đã thấy rồi."</p>
+    <p>"Ta..." Giang Mạn Quân tuy rằng chưa từng thể nghiệm qua cảm giác làm tình, nhưng sống trong cung điện này đã lâu, sao có thể không xem, trong lòng cũng sớm đã nghĩ đến không xong rồi. Quan trọng hơn là, nếu như vì vài câu nói dại dột hôm nay mà sau này không thể ở bên sư đệ, vậy thì sống cũng chẳng còn ý nghĩa gì. Thế nên Giang Mạn Quân không tiếp tục mạnh miệng nữa.</p>
+    <p>Lúc này, Thẩm Tuệ Nhã đứng ra giải vây: "Được rồi Tiểu Quân, ngươi muốn làm gái lỡ thì Thẩm di cũng không ý kiến. Có điều, ai quy định gái lỡ thì không thể có đời sống tình dục? Sau này ngươi cứ như mẹ ngươi, làm pháo hữu của Diệp Phi là được."</p>
+    <p>Giang Mạn Quân cũng không ngốc, lúc này có bậc thang, đương nhiên sẽ không tiếp tục cứng đầu, hừ một tiếng nói: "Làm pháo hữu thì pháo hữu, các ngươi là trưởng bối còn không sợ, ta là sư tỷ thì sợ cái gì?"</p>
+    <p>"Pháo hữu đâu phải muốn làm là được." Chúc Ngọc Nghiên lại dội gáo nước lạnh vào con gái: "Cô nàng chưa nở nang như ngươi, cũng không biết Tiểu Mãn nhà người ta có nguyện ý địt ngươi hay không."</p>
+    <p>Giang Mạn Quân bị mẹ sỉ nhục hết lần này đến lần khác, đến mức tức muốn xỉu, nghe vậy liền không biết lựa lời hỏi Diệp Phi: "Sư đệ, ngươi, ngươi có đồng ý địt ta không?"</p>
+    <p>Diệp Phi cười nói: "Sư tỷ là đại mỹ nhân như vậy, e rằng chỉ có gay mới không muốn địt. Ta không phải gay, huống chi ta đã nói rồi, ta sớm đã thích sư tỷ ngươi."</p>
+    <p>Thời khắc này, Giang Mạn Quân phát huy tính cách hào sảng của mình một cách triệt để. Đầu tiên là đắc ý nhìn mẹ một cái, sau đó nhanh nhẹn cởi bỏ quần áo, nằm lên ghế sofa, dạng rộng đôi chân, nói với Diệp Phi: "Sư đệ, đến đây đi!"</p>
+    <p>Diệp Phi đứng dậy, chậm rãi đi về phía sư tỷ, đồng thời thưởng thức thân thể ngọc ngà tươi đẹp của nàng.</p>
+    <p>Giang Mạn Quân mới hơn hai mươi tuổi, về độ nóng bỏng gợi cảm, quả thực có chút chênh lệch so với hai vị sư nương đã chín muồi, nhưng nàng lại có nét mê người riêng, đó chính là vóc dáng vô cùng kiện mỹ. Việc tập võ quanh năm khiến thân thể nàng vô cùng rắn chắc, khắp người không có nửa điểm sẹo lồi, tràn đầy vẻ đẹp dã tính.</p>
+    <p>Đi tới trước người sư tỷ, Diệp Phi kéo cặp chân dài thon thả kiện mỹ của nàng đặt lên vai mình, vừa cố kiềm chế dương vật vẫn chưa mềm xuống của mình tiến gần đến nơi xử nữ đang dâm thủy giàn giụa của nàng, vừa nói: "Sư tỷ, ta tới đây!"</p>
+    <p>Mặc dù tận mắt thấy mẹ và Thẩm di có thể thành thạo điêu luyện dùng nơi đó trông cũng chẳng lớn hơn mình bao nhiêu để nuốt lấy dương vật của Diệp Phi, nhưng khi nước đã đến chân, Giang Mạn Quân vẫn còn chút căng thẳng, nhỏ giọng nói: "Sư đệ, ngươi phải nhẹ một chút đấy!"</p>
+    <p>"Yên tâm đi, ta không nỡ làm đau sư tỷ tốt của ta đâu." Diệp Phi nói, thân thể nhích về phía trước, quy đầu to lớn nhẹ nhàng chạm vào nơi xử nữ mềm mại chưa từng được ai chạm đến của Giang Mạn Quân.</p>
+    <p>Trước đó xem kịch hay lâu như vậy, Giang Mạn Quân vốn đã dục hỏa đốt người, lại vô cùng mẫn cảm, nơi mềm mại vừa mới bị dương vật của Diệp Phi chạm vào, nàng liền không nhịn được mà run lên.</p>
+    <p>Diệp Phi cũng không vội đâm vào, chỉ dùng quy đầu thô ráp ma sát lên xuống trong khe thịt mềm mại của sư tỷ, rồi ôn nhu hỏi: "Sư tỷ, cảm giác thế nào?"</p>
+    <p>"Hơi ngứa, nhưng mà thật thoải mái!" Giang Mạn Quân lẩm bẩm nói. Âm thần nhỏ nhạy cảm và nơi đó bị quy đầu sư đệ ma sát như thế, khiến toàn thân nàng đều run rẩy theo.</p>
+    <p>Bởi vì nơi mềm mại của Giang Mạn Quân đã sớm đủ ướt át, căn bản không cần bất kỳ bước khởi động nào, Diệp Phi ma sát nhẹ nhàng vài cái rồi từ từ đưa quy đầu đỉnh vào trong nơi chưa từng mở ra ấy. Có điều, mới chỉ cắm vào nửa quy đầu thì ngừng lại, sau đó cứ nhè nhẹ đâm rút như vậy.</p>
+    <p>"Sư tỷ, hiện tại thế nào?" Vừa từ từ đâm vào, Diệp Phi không quên hỏi cảm nhận của sư tỷ.</p>
+    <p>"Có chút căng, nhưng còn thoải mái hơn lúc nãy." Giang Mạn Quân thành thật nói. Nàng cuối cùng đã hiểu tại sao mẹ và Thẩm di lại lãng đến vậy, bởi vì cảm giác này thực sự quá tuyệt vời. Hiện tại chỉ mới bị dương vật của sư đệ chen vào một chút như vậy thôi mà đã thoải mái đến mức muốn kêu to, chưa nói đến việc mẹ nàng bị cắm sâu đến mức nào.</p>
+    <p>"Một lát nữa còn thoải mái hơn nữa." Diệp Phi cười nói. Vừa thấy sư tỷ không còn căng thẳng, hắn liền lấy hết can đảm, cái mông đột nhiên ưỡn về phía trước, dương vật trong nháy mắt phá tan tầng màng trinh tiết của sư tỷ, cắm vào hơn một nửa.</p>
+    <p>"A!" Nơi đó truyền đến nỗi đau như bị xé rách, khiến Giang Mạn Quân không nhịn được hét thảm một tiếng, hai tay nắm chặt đấm liên hồi vào ngực Diệp Phi, miệng mang theo tiếng khóc nức nở nói: "Đồ khốn kiếp này, đau chết mất!"</p>
+    <p>Diệp Phi vội vàng bất động, hai tay nắm chặt đôi vú vừa phải trước ngực sư tỷ nhẹ nhàng xoa nắn, miệng an ủi: "Sư tỷ, xin lỗi, lần đầu tiên đều là như vậy, một lát nữa là hết đau thôi, ngươi hãy bình tĩnh lại."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1482.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1484.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

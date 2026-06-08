@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1415 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1415</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1415</small>
+    Chương 1415
+  </h1>
+  <div class="chapter-body">
+    <p>============================================================ Chương 1415: Tái Chiến Kỷ Thủy Tú (11)</p>
+    <p>"A! A! A! A! A!. . . Con rể tốt. . . Tinh dịch của ngươi. . . A!. . . Nóng quá, làm nhạc mẫu thoải mái chết rồi. . . Ác. . . Nóng đến hoa tâm nhạc mẫu thoải mái quá. . . Ừ. . . Con rể ngoan. . . Ôm chặt nhạc mẫu. . . Ác. . . Ta lại. . . Ra. . . Rồi. . . A!. . .. . . Ác. . ." Bị Diệp Phi ra sức đâm rút, cộng thêm tinh dịch nóng bỏng của Diệp Phi bắn vào, cả người mỹ thục phụ lại run rẩy thêm một lần đạt tới cao trào. Âm tinh nồng đậm hòa quyện cùng dương tinh của Diệp Phi, dưới sự thúc đẩy của Huyễn Dương Quyết, tự nhiên chuyển hóa thành từng đạo Linh Khí, nuôi dưỡng thân thể của cả hai. Thân thể hai người đều đang xảy ra những thay đổi vô hình, vào khoảnh khắc này, dù là thân thể hay linh hồn đều đã kết hợp chặt chẽ với nhau.</p>
+    <p>Sau khi đạt tới cao trào, Diệp Phi ôm chặt lấy thân thể mỹ nhạc mẫu Kỷ Thủy Tú nằm ườn trên giường, cùng mẹ của Đường Nhu tận hưởng dư âm ngọt ngào. Đặc biệt là khi tầng tinh khí cuối cùng hóa thành Linh Khí, khiến tâm trí hai người dán chặt lấy nhau, Kỷ Thủy Tú cảm thấy mình chính là một phần thân thể của Diệp Phi, con rể tốt của mình đã hoàn toàn chiếm hữu thân tâm nàng, cảm giác này thật là tuyệt diệu!</p>
+    <p>Diệp Phi cũng hiểu rõ người đàn bà dưới thân này từ nay sẽ mãi mãi thuộc về mình, phong thái thục phụ này về sau chắc chắn sẽ một lòng một dạ với hắn.</p>
+    <p>"Diệp Phi, cuối cùng ta đã hiểu vì sao Đường Nhu lại yêu con đến thế!" Kỷ Thủy Tú cố gắng nghiêng người, ánh mắt nhìn ái tế: "Cái thứ của con thật lợi hại, làm nhạc mẫu phục tùng ngoan ngoãn!"</p>
+    <p>"Nhạc mẫu, con chỉ dùng thứ đó với người vì con yêu người, đây là cách hiếu thuận tốt nhất của con đấy!" Diệp Phi hôn lên trán mỹ nhạc mẫu, thứ đó trong dâm huyệt của nàng còn hơi ưỡn nhẹ. Hắn cảm thấy mình bắt đầu mềm xuống cũng không bận tâm, lúc này bụng kêu rột rột mới nhớ tới hai người vẫn chưa ăn cơm: "Nhạc mẫu, chúng ta đi nhà bếp làm cơm thôi, vừa nãy vì để người thoải mái, con đã tốn không ít sức lực rồi!"</p>
+    <p>"Hừ, con đúng là đồ tiểu bại hoại, được tiện nghi còn khoe mẽ, nhạc mẫu biết con hiếu thuận là được rồi! Chuyện lần này tuyệt đối không được nói cho Đường Nhu biết đấy!!" Nói đến đoạn sau, Kỷ Thủy Tú trừng mắt nhìn Diệp Phi, nhưng làm sao nàng biết, con gái mình từ lâu đã đoán được hết thảy.</p>
+    <p>"Tại sao chứ? Sớm muộn gì nàng cũng biết thôi, nếu người thấy ngại, con để Nhu tỷ nói ra trước!" Diệp Phi không hề sợ hãi, chỉ ôm lấy thân thể mềm mại nõn nà của Kỷ Thủy Tú, đắc ý nói: "Nhu tỷ hiếu thuận với người như vậy, đề nghị của con nàng nhất định sẽ ủng hộ! Người cứ chờ mà làm lão công con rể của con đi!"</p>
+    <p>"Lão công con rể, hừ, cách xưng hô gì thế?" Kỷ Thủy Tú lắc lắc cái mông to, ngồi dậy từ trên giường: "Đi, đi làm cơm tối thôi, ta đói rồi, con đúng là một con trâu hoang. Hành hạ người ta gần hai tiếng đồng hồ, con xem, đã gần trưa rồi!" Kỷ Thủy Tú liếc nhìn đồng hồ treo trên tường phòng ngủ, hờn dỗi véo vào bắp đùi Diệp Phi.</p>
+    <p>"Ha ha, nhạc mẫu, người không thể qua cầu rút ván như vậy chứ, vừa nãy là ai ở trên người con cưỡi mà kêu gào?" Diệp Phi bắt chước giọng điệu tiêu hồn vừa nãy: "A!, thoải mái quá, a!, thoải mái quá."</p>
+    <p>"Đồ tiểu bại hoại, xấu xa hết chỗ nói!" Kỷ Thủy Tú thấy hắn học theo giọng mình thì tức giận trong lòng, nhưng cũng chẳng làm gì được, đành lắc lư thân thể trắng nõn xuống giường đi tìm quần áo mặc.</p>
+    <p>"Nhạc mẫu, trong nhà có tạp dề không?" Diệp Phi nhìn đôi mông trắng nõn của nhạc mẫu, đột nhiên nhớ tới trò chơi từng chơi với mẹ, trong lòng nảy sinh ý đồ xấu. Nếu để cho Kỷ Thủy Tú chỉ mặc một chiếc tạp dề trên thân thể trần trụi, chắc cũng chẳng kém cạnh mẹ là bao, ha ha, Diệp Phi ta đúng là diễm phúc không cạn mà!!</p>
+    <p>"Có chứ, làm sao vậy?"</p>
+    <p>"Khà khà!" Diệp Phi cười nham hiểm một tiếng, đứng dậy ôm mỹ nhạc mẫu đi về phía phòng bếp.</p>
+    <p>Chốc lát sau, không gian phòng bếp đã yên tĩnh trở lại, Diệp Phi lấy từ trong không gian ra rất nhiều rau củ, bản thân hắn cởi trần rửa rau, còn mỹ nhạc mẫu Kỷ Thủy Tú chỉ mặc mỗi chiếc tạp dề màu đỏ kẻ ô đứng trước thớt thái rau. Diệp Phi vừa quay đầu lại đã nhìn thấy hai bên mông tròn trịa của nhạc mẫu, một đôi mông tuyệt đẹp, theo từng cử động thái rau của Kỷ Thủy Tú, cặp mông đầy đặn ấy lại lắc lư, nhìn đến mức Diệp Phi trợn tròn cả mắt.</p>
+    <p>Trên eo nhỏ buộc một sợi dây tạp dề đỏ, thắt thành chiếc nơ xinh xắn, chiếc nơ cùng dây lưng vừa vặn treo lơ lửng giữa hai khe mông của mỹ nhạc mẫu, khiến rãnh mông sâu thẳm đầy vẻ mê hoặc.</p>
+    <p>Lướt qua tấm lưng trơn nhẵn lên đến tận gáy ngọc, ở giữa là một mảng trắng nõn để trần, trên cổ đeo sợi dây tạp dề màu đỏ.</p>
+    <p>Thật mê hoặc! A!! Nội tâm Diệp Phi chấn động, chỉ đứng nhìn như vậy thôi cũng đã khiến hắn muốn ngừng mà không được! Chiếc tạp dề mà Kỷ Thủy Tú đang mặc là thứ Diệp Phi lấy từ trong không gian của mình ra, chất vải tuyệt đối là hàng chuẩn!</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1414.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1416.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

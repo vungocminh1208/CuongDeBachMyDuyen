@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1313 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1313</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1313</small>
+    Chương 1313
+  </h1>
+  <div class="chapter-body">
+    <p>Nhìn thấy sắc mặt của số một, Ninh Trường Chinh trong lòng "hồi hộp" một cái, thầm kêu gay go. Hôm nay hắn sở dĩ đến đây giở trò, cũng là bởi vì hắn hiểu rất rõ số một, biết tâm tư đối phương đều đặt vào đại sự, hơn nữa làm người quang minh chính đại, chưa bao giờ tiếc vì loại kia khôn vặt, vì thế Ninh Trường Chinh có niềm tin rất lớn số một sẽ không nhìn ra kế vặt của mình.</p>
+    <p>Thế nhưng, Ninh Trường Chinh không nghĩ tới chính là, Diệp Phi như thế một tiểu tử chưa ráo máu đầu, mắt lại độc đến vậy, chưa kịp thế nào đã trực tiếp động thấu tâm tư của mình, hơn nữa còn ngay trước mặt số một nói ra. Đã như thế, số một sẽ nhìn mình thế nào đây? Việc này quả thực chính là nâng tảng đá đập vào chân mình.</p>
+    <p>Có điều, chuyện đã đến nước này, Ninh Trường Chinh vẫn quyết định phải đâm lao thì phải theo lao. Nguyên nhân cũng là bởi vì hắn hiểu rất rõ cách làm người của số một, chỉ cần hắn có thể bắt Diệp Phi, sau đó lấy danh nghĩa nể mặt số một mà tha cho Diệp Phi một mạng, thì coi như đã thiếu số một một món nợ ân tình. Dù trong lòng không thoải mái, số một cũng tất nhiên sẽ có chút bồi thường cho hắn, dù sao vẫn hơn là đắc tội người ta mà chẳng vớt vát được gì.</p>
+    <p>Sau một thoáng sửng sốt, Ninh Trường Chinh lập tức quát to với bốn thủ hạ của mình: "Bắt lại cho ta!"</p>
+    <p>Bốn người kia nghe vậy, lập tức động tác nhất trí kéo chốt an toàn trên súng, tám con mắt nhìn chòng chọc vào Diệp Phi, đề phòng hắn chạy thoát.</p>
+    <p>Diệp Phi lại chẳng có chút ý định chạy trốn nào, bình chân như vại đứng ở đó, mỉm cười nói: "Bốn vị tiên sinh là cao thủ đỉnh phong, còn mỗi người cầm súng, thật là dọa người a! Có điều, ngươi không sợ ta lấy lão đại của ngươi làm con tin sao?"</p>
+    <p>Lời nói này của Diệp Phi, quả thực có thể nói là lời nói tru tâm, khiến Ninh Trường Chinh nhất thời biến sắc. Tuy rằng bất kể là hắn hay số một đều biết Diệp Phi không thể thực sự làm như thế, nhưng chỉ cần có khả năng này, thì đã đủ rồi.</p>
+    <p>Từ xưa đến nay, bất luận triều đại nào, vấn đề an toàn của Đế Vương đều là trọng yếu nhất, không dung nạp lấy một điểm uy hiếp nào. Mà hành động hôm nay của Ninh Trường Chinh, bị Diệp Phi nói như thế, đã không đơn thuần là không nể mặt số một, mà là đặt an nguy của số một vào chỗ hiểm. Nếu đặt ở cổ đại, thậm chí khép cho hắn tội danh "hành thích vua mưu phản" cũng không quá đáng.</p>
+    <p>Đương nhiên, số một không phải Hoàng đế cổ đại, hơn nữa với tính cách của ông cũng sẽ không vì vậy mà thực sự trách tội lão hữu của mình, nhưng đây vẫn là việc nhỏ không thể sơ suất.</p>
+    <p>Chuyện đến nước này, thế cục đã không cho phép Ninh Trường Chinh tiếp tục nữa, hơn nữa dù hắn muốn tiếp tục cũng không thể, bởi vì bốn cao thủ bên người hắn chỉ là số tiền lớn thuê về, chứ không phải tử sĩ. Trong tình huống bản thân không nguy hiểm gì thì phối hợp hắn làm màu một chút cũng không thành vấn đề, nhưng bây giờ đã dính đến vấn đề an toàn của số một, bốn người kia cũng không phải kẻ ngốc, đương nhiên sẽ không cùng hắn hồ đồ theo.</p>
+    <p>Vốn dĩ là tình thế bắt buộc muốn cho số một nợ một ân tình, hiện tại không những không toại nguyện, trái lại còn đắc tội số một. Ninh Trường Chinh trong lòng hận đến mức nào có thể tưởng tượng được, hung hăng trừng mắt nhìn Diệp Phi, nghiến răng nghiến lợi nói: "Hay, hay, đúng là anh hùng xuất thiếu niên, không ngờ Diệp bang chủ không chỉ thực lực mạnh mẽ, mà công phu gây xích mích ly gián cũng rất khá!"</p>
+    <p>"Ta không rảnh làm công phu gây xích mích ly gián gì cả, ta chỉ muốn nói cho ngươi biết, đừng tưởng rằng chỉ có mình ngươi thông minh, người khác đều là kẻ ngốc. Còn đám người bên cạnh ngươi, đối với ta mà nói, căn bản chẳng có chút uy hiếp nào." Diệp Phi khinh thường cười một cái, sau đó chẳng thấy hắn có động tác gì, bốn tên cao thủ kia đồng thời cảm giác trong tay nhẹ bẫng, những khẩu súng cầm chặt trong tay đã không cánh mà bay, trong nháy mắt đã đến trong tay Diệp Phi.</p>
+    <p>Nhìn thấy màn ma huyễn này, sắc mặt Ninh Trường Chinh nhất thời trắng bệch. Nguyên bản hắn còn cảm thấy hôm nay thua rất oan uổng, bây giờ mới biết mình đã chọc phải hạng người gì.</p>
+    <p>"Người có ác ý với ta, ta đều sẽ không dễ dàng tha thứ, bất quá hôm nay ta nể mặt Thủ Trưởng, việc này cứ tính như vậy đi, nhớ kỹ sau này đừng tái phạm vào tay ta." Diệp Phi nói, bàn tay lớn vung lên, bốn khẩu súng lại trở về tay bốn cao thủ, sau đó vẫy vẫy tay với Ninh Trường Chinh nói: "Ngươi đi đi!"</p>
+    <p>Thời khắc này, Ninh Trường Chinh hối hận muốn chết, bàn tính để số một nợ ân tình không những không thực hiện được, trái lại còn lộ ra lòng tiểu nhân của mình, đắc tội với ông, hiện tại càng là thiếu số một một ân huệ lớn, khiến hắn sau này đến mặt dày quay lại hòa giải cũng không còn cơ hội.</p>
+    <p>Nhìn theo Ninh Trường Chinh mang người rời đi, số một lặng lẽ đứng hồi lâu, mới khẽ thở dài, trong nháy mắt, phảng phất như già nua thêm vài phần.</p>
+    <p>Tuy rằng số một không nói gì, nhưng Diệp Phi hiểu rõ tâm tình của ông bây giờ. Đến địa vị như ông, vốn đã rất khó kết giao bằng hữu chân chính, mà hôm nay, chiếc thuyền nhỏ hữu nghị được xây dựng từ thời trẻ này cũng đã lật mất, tâm lý ông đương nhiên không dễ chịu.</p>
+    <p>Có điều Diệp Phi cũng không an ủi gì, số một dù sao không phải người thường, đả kích này tin rằng ông rất nhanh sẽ khôi phục như cũ, liền chờ Ninh Trường Chinh đi xa, cũng cáo từ rời đi.</p>
+    <p>Ra khỏi nơi quan trọng nhất Trung Quốc này, Diệp Phi đứng đầu đường, trong lòng không khỏi hơi xúc động. Vừa nói số một không dễ kết giao bằng hữu chân chính, chính hắn chẳng phải cũng vậy sao? Ngoại trừ đầu trọc bọn họ và những chiến hữu trong Vọng Hải đặc chiến đội, người duy nhất có thể coi là bằng hữu chân tâm của hắn cũng chỉ có Triệu Tuyên. Vốn dĩ sau khi Triệu Vô Kỵ trở về đoàn tụ với bọn họ, là nên đến đây gặp Diệp Phi một lần, có lẽ họ không đến là vì Triệu Vô Kỵ đã biết quan hệ thực sự giữa Diệp Phi và Tống Tuyết Kỳ, trong lúc nhất thời không biết nên đối mặt với nhau như thế nào.</p>
+    <p>Mà ngoại trừ những người kể trên, còn có một người có thể coi là bằng hữu, đó chính là Lệ Thương Hải. Ông có thể nói là người anh em kết nghĩa cởi mở của Diệp Phi, sở dĩ chưa từng xếp ông vào trong hàng ngũ bằng hữu, là bởi vì ông còn một thân phận khác, đó chính là Nhạc Phụ đại nhân của Diệp Phi.</p>
+    <p>Giờ này khắc này, Lệ Thương Hải hẳn là đang ở trong bang hội của mình, Diệp Phi cũng không báo trước cho ông, thậm chí không động tới bất kỳ ai, trực tiếp đi tới văn phòng nơi Lệ Thương Hải đang làm việc.</p>
+    <p>Trong phòng đột nhiên xuất hiện một người, Lệ Thương Hải đang nghiên cứu tài liệu không khỏi cả kinh, có điều sau khi nhìn rõ người tới lại chuyển thành mừng như điên, cười ha ha nói: "Tiểu tử ngươi cuối cùng cũng xuất hiện rồi!"</p>
+    <p>Diệp Phi cũng cười theo, nhưng không lên tiếng.</p>
+    <p>Lệ Thương Hải phảng phất như nhìn thấu tâm tư của Diệp Phi, cười nói: "Tiểu tử ngươi sao lại nhăn nhó thế, tuy rằng ngươi đoạt đi con gái của ta, nhưng giao tình của chúng ta vẫn như thuở ban đầu, vì thế cứ phân định theo từng vai vế đi!"</p>
+    <p>Diệp Phi cũng không phải loại người xoắn xuýt, nghe vậy lập tức buông bỏ tâm tư, cười nói: "Được rồi, Lệ lão ca, đang bận gì thế?"</p>
+    <p>"Bận bịu vớ vẩn ấy mà." Lệ Thương Hải ném văn kiện trong tay sang một bên, kéo Diệp Phi ngồi xuống, sau đó vội vàng hỏi: "Nghe nói một năm nay ngươi chạy đến Chân Hư Giới sao?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1312.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1314.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

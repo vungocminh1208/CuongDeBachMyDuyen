@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1546 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1546</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1546</small>
+    Chương 1546: Mẹ con động tác võ thuật 1
+  </h1>
+  <div class="chapter-body">
+    <p>Nhìn Lưu Vân Nhi thất lạc, Liễu Diệc Như an ủi nàng: "Kỳ thực Vân Nhi ngươi cũng rất lợi hại nha, của ngươi gọi là Hồ Điệp, cũng là phi thường hi hữu, không tin ngươi hỏi hắn, có phải là rất yêu thích không?"</p>
+    <p>Lưu Vân Nhi vội vã chuyển ánh mắt sang Diệp Phi, bà bà thật sự là quá hoàn mỹ, hoàn mỹ đến mức khiến nàng vốn luôn tự tin không khỏi sinh lòng tự ti, vì lẽ đó rất cần trượng phu khẳng định.</p>
+    <p>Diệp Phi cười nói: "Mẹ ta nói không sai, của ngươi Hồ Điệp cũng rất mê người, đáng tiếc a!"</p>
+    <p>"Đáng tiếc cái gì?" Lưu Vân Nhi hỏi vội.</p>
+    <p>Diệp Phi thở dài nói: "Đáng tiếc chỉ có một con, nếu như tập hợp thành một đôi thì càng tốt hơn."</p>
+    <p>Lưu Vân Nhi sững sờ một chút, lập tức hiểu ý tứ của Diệp Phi, không khỏi không vui nói: "Tốt, ngươi quả nhiên đang đánh chủ ý lên mẹ ta!"</p>
+    <p>Lập tức, Lưu Vân Nhi liền nghĩ tới một chuyện: "Vừa nãy ta và A Di mỗi lần cao trào, ngươi đều đi theo bắn một lần, ngươi thật sự có thể khống chế thời điểm xuất tinh đúng không, không phải vậy sao lại biết cái này điệu nghệ như thế?"</p>
+    <p>"Đúng vậy, ta không phải đã sớm nói với ngươi rồi sao?" Diệp Phi cũng không phủ nhận.</p>
+    <p>"Vậy việc ngươi để Lâm Lâm nói cho ta biết mẹ ngươi là cố ý nhẫn nhịn, chính là vì muốn chơi nàng lâu một chút, cũng đều là thật sao?" Lưu Vân Nhi có chút kích động hỏi, lúc trước tuy rằng Diệp Phi cùng Diệp Chỉ Lâm đều nói như thế, nhưng nàng cũng không tin, chỉ cho rằng Diệp Phi cố ý nói vậy, mục đích chính là gây nên lòng thù hận trong lòng mẹ, không để cho nàng lại coi thường mạng sống bản thân. Thế nhưng bây giờ nhìn lại, tựa hồ không đơn giản như vậy.</p>
+    <p>"Nếu như ta cho ngươi biết, tuy rằng ta là thật muốn cho mẹ ngươi hận ta do đó không hề coi thường mạng sống bản thân, nhưng khi đó ta cũng không có nói dối, ngươi có tức giận hay không?" Diệp Phi cẩn thận hỏi.</p>
+    <p>"Ngươi... Ngươi sao có thể như vậy?" Lưu Vân Nhi lớn tiếng hỏi, thậm chí mang theo một tia nghẹn ngào.</p>
+    <p>"Vân Nhi ngươi đừng vội, nghe A Di nói." Liễu Diệc Như vội vàng hòa giải: "Kỳ thực điều này cũng tại mẹ ngươi quá đẹp quá hấp dẫn, mà tiểu tử này lại là cái tên ngốc nhìn thấy mỹ nhân liền muốn lên, không nói gạt ngươi, ngay cả A Di lúc trước đều là bị hắn lừa lên giường."</p>
+    <p>Lưu Vân Nhi mặc dù có chút tức giận, nhưng đây dù sao đã là chuyện đã qua, mặc kệ Diệp Phi là có tâm hay bị ép, cũng đã thành sự thật, chẳng qua là ý nghĩ trong lòng không giống mà thôi, mà nàng lại vừa trải qua ân ái với hắn, vì lẽ đó cũng không thực sự trách hắn.</p>
+    <p>Hiện tại nghe Liễu Diệc Như nói như vậy, lập tức bị phân tán sự chú ý, vì nàng thật sự rất tò mò, Liễu Diệc Như mặc dù đang trên giường biểu hiện rất dâm đãng, nhưng nàng lại biết, vị bà bà này tuyệt đối không phải một người dâm đãng, ngược lại là một Nữ Thần hoàn mỹ. Mà một người như nàng, lại sao có thể cùng con trai ruột của mình làm ra chuyện đó?</p>
+    <p>Vừa rồi Lưu Vân Nhi chú ý tới bản thân, Liễu Diệc Như liền thẳng thắn đem lúc trước nhi tử giả bộ hôn mê, cùng Đông Phương Nhược Lan liên hợp lại lừa gạt mình giúp hắn phát tiết, từng bước một dụ dỗ chính mình, cuối cùng khiến bản thân ở trong sự hành hạ của dục vọng mà chủ động cho hắn, những chuyện đó nói sơ lược một lần.</p>
+    <p>Cuối cùng, Liễu Diệc Như nói: "Vốn là A Di cũng nghĩ tới muốn đoạn tuyệt loại quan hệ không chính đáng này với hắn, dù sao đây không phải là chuyện gì vẻ vang, thế nhưng Vân Nhi ngươi cũng cảm thụ qua, dương vật của tiểu tử này lợi hại bao nhiêu, A Di bị hắn làm qua một lần sau liền nghiện, hiện tại mỗi ngày phải để hắn làm một lần, sẽ cảm thấy toàn thân không thoải mái, vì lẽ đó vẫn như vậy tới giờ."</p>
+    <p>Nghe xong Liễu Diệc Như giải thích, Lưu Vân Nhi không khỏi trợn mắt ngoác mồm, nhìn Diệp Phi lẩm bẩm nói: "Không nghĩ tới ngươi lại là người như vậy."</p>
+    <p>"Cái đó hết cách rồi, ai bảo mẹ ta mê người như thế, ta mặc dù là con trai của nàng, nhưng ta cũng là đàn ông, sao có thể nhịn được không muốn nàng?" Diệp Phi cười nói.</p>
+    <p>"Chỉ là vì cái này?" Lưu Vân Nhi có chút không tin. Mặc dù bây giờ Liễu Diệc Như khiến cho người cùng là nữ nhân như nàng cũng kinh diễm cực kỳ, nhưng cuộc kết hợp của mẹ con họ là chuyện từ hơn một năm trước. Khi đó Liễu Diệc Như nàng từng thấy, tuy rằng cũng là đỉnh cấp mỹ nhân, nhưng còn kém xa vẻ xinh đẹp tuyệt trần như bây giờ, người có thể sánh vai với nàng lúc trước vẫn không ít, tuyệt không đến nỗi khiến người ta phải liều lĩnh.</p>
+    <p>"Lại bị ngươi phát hiện, được rồi, ta thừa nhận, ta điên cuồng muốn có được mẹ ta, không chỉ là vì vẻ đẹp của nàng, càng vì nàng là người mẹ ruột sinh ta nuôi ta, cùng mẹ ruột làm tình, so với bất kỳ nữ nhân nào đều càng làm cho ta hưng phấn." Diệp Phi không đỏ mặt chút nào thừa nhận ý nghĩ biến thái của mình.</p>
+    <p>Lưu Vân Nhi lườm Diệp Phi một cái, nửa đùa nửa thật thăm dò: "Hiện tại mẹ ta sắp trở thành nhạc mẫu của ngươi, ngươi có phải đối với nàng càng có ý nghĩ không?"</p>
+    <p>Không ngờ Diệp Phi lại trực tiếp gật đầu thừa nhận: "Đúng vậy, trong lòng ta vẫn luôn có nàng, hiện tại liền càng không cần phải nói, Vân Nhi, không bằng ngươi hỗ trợ khuyên nhủ một chút, để mẹ ngươi cũng gia nhập với chúng ta."</p>
+    <p>"Cha ta còn chưa có chết đấy!" Lưu Vân Nhi không nghĩ tới Diệp Phi lại vô liêm sỉ như vậy. Trước đây hắn thừa nhận ban đầu là cố ý làm lâu một chút, còn nói trong lòng có ý nghĩ với mẹ, Lưu Vân Nhi đều nhịn, dù sao một chuyện đã qua, một chỉ là ý nghĩ trong lòng. Nhưng bây giờ, hắn lại muốn để mình kéo mẹ ruột của mình ra cho hắn làm, điều này làm cho nàng thực sự giận dữ.</p>
+    <p>Nói xong, Lưu Vân Nhi buông bàn tay nhỏ vẫn nắm trên dương vật của Diệp Phi, cũng quay người đưa lưng về phía hắn, không thèm để ý tới hắn nữa.</p>
+    <p>"Vân Nhi, ngươi trước tiên đừng nóng giận, nghe một chút xem hắn nói thế nào." Liễu Diệc Như lần thứ hai hòa giải.</p>
+    <p>Lưu Vân Nhi tuy rằng rất tức giận, nhưng trong lòng đối với Diệp Phi yêu thương cũng không có một chút nào giảm thiểu, nàng có thể nổi nóng với Diệp Phi, nhưng mặt mũi của vị bà bà Liễu Diệc Như này vẫn là phải cho, chỉ đành buồn bực nói: "Nói đi."</p>
+    <p>Diệp Phi từ lâu đã ngờ tới việc thẳng thắn sẽ làm Lưu Vân Nhi tức giận, vì lẽ đó cũng sớm chuẩn bị xong lý lẽ: "Vân Nhi, trước tiên ta hỏi ngươi, sau sự kiện kia, mẹ ngươi cùng trước đây có gì không giống?"</p>
+    <p>"Nàng quả thực như biến thành người khác, vẫn rầu rĩ không vui, cũng rất ít nói chuyện với ta cùng ba ba, càng không cho ba ba ta thân cận nàng, trước đây nàng chưa bao giờ như vậy." Lưu Vân Nhi nói, không nhịn được quay đầu lại trừng Diệp Phi một cái, mẹ sở dĩ sẽ như vậy, hoàn toàn là do hắn hại.</p>
+    <p>Diệp Phi nói: "Rầu rĩ không vui thì có thể lý giải, nhưng tại sao lại không cho ba ba ngươi thân cận?"</p>
+    <p>"Nhất định là nàng cảm thấy thân thể mình ô uế, có lỗi với ba ba ta." Lưu Vân Nhi không hề suy nghĩ trả lời.</p>
+    <p>"Như ngươi nghĩ vậy là sai rồi." Liễu Diệc Như chen lời: "Phụ nữ đến độ tuổi của A Di và mẹ ngươi, nhu cầu về chuyện đó là rất lớn, quả thực như hổ như sói, cho nên mới gọi là Hổ Lang chi niên. Giống như A Di, một ngày không làm tình với Tiểu Mãn, liền cảm thấy ngủ cũng không yên ổn. Mẹ ngươi dù nhu cầu không lớn như A Di, nhưng cũng không thể không nghĩ tới, mà trong tình huống như vậy, lại vẫn không cho người chồng vốn rất ân ái với mình chạm vào, ngươi không thấy kỳ quái sao?"</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1545.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1547.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

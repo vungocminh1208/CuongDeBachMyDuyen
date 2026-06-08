@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1462 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1462</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1462</small>
+    Chương 1462
+  </h1>
+  <div class="chapter-body">
+    <p>Diệp Phi cũng không đẩy mạnh dương vật về phía trước, mà chống hai tay xuống giường, cúi người hút lấy đầu vú hồng hào, đứng thẳng trên bầu ngực đầy đặn của người nhạc mẫu xinh đẹp, chậm rãi mút mát trong miệng. Eo hắn di chuyển, dùng dương vật to lớn chống ở nơi cửa huyệt ướt át của nàng ma sát qua lại, nhưng nhất quyết không chịu cắm vào.</p>
+    <p>Người phụ nữ xinh đẹp Văn Tố Cầm hai chân ôm chặt lấy hông Diệp Phi, cảm nhận được dương vật nóng hổi đang đặt ngay miệng dâm huyệt, chỉ cần nàng rướn người về phía trước một chút là có thể nuốt trọn lấy nó vào trong thân thể trống vắng. Thế là, người phụ nữ dùng hết sức bình sinh chống hai tay, cố gắng đẩy bụng dưới về phía trước. Ngay khi sắp được toại nguyện, Diệp Phi lại lắc hông một cái, đùa bỡn giống như mèo vờn chuột, khiến dương vật của hắn rời xa mật huyệt ấm áp của người nhạc mẫu.</p>
+    <p>"Tiểu bại hoại, ngươi cố ý phải không... Mau cho A Di đi... A Di chịu không nổi rồi... Á!" Văn Tố Cầm cả người dục hỏa sôi trào, đã sớm quên hết thảy rụt rè, chỉ khao khát dương vật của người con rể Diệp Phi cắm vào bên trong cơ thể mình.</p>
+    <p>"A Di, người tự mình đỡ lấy, nhét nó vào đi!" Diệp Phi buông đầu vú đang cắn xé ra, cười xấu xa một trận. Hắn muốn người nhạc mẫu xinh đẹp chủ động nhét dương vật của mình vào trong ngọc thể mềm mại nhạy cảm của nàng, để nàng hoàn toàn tự nguyện mặc cho hắn đùa nghịch.</p>
+    <p>"Ưm... Được..." Bị dục hỏa hoàn toàn khống chế, người phụ nữ xinh đẹp không còn bận tâm đến sự rụt rè nữa. Nàng vươn cánh tay ngọc trắng muốt ra, bàn tay nhỏ bé tìm đến dương vật của Diệp Phi, nắm chặt lấy rồi dùng móng tay bấm nhẹ một cái.</p>
+    <p>"Á!... A Di... Đau..." Bị bàn tay nhỏ của người nhạc mẫu nắm lấy, lại thêm cú bấm của móng tay vào chỗ nhạy cảm khiến một luồng tê dại chạy dọc cơ thể, Diệp Phi không nhịn được buông đầu vú hồng hào ra, hừ nhẹ một tiếng.</p>
+    <p>"Đáng đời... Ai bảo ngươi trêu chọc A Di... Được rồi... Đỡ lấy... Ngươi mau vào đi..." Người phụ nữ xinh đẹp đưa dương vật mà mình vô cùng khao khát áp sát vào cửa ngọc hộ, dùng sức ấn vào trong. Thế nhưng Diệp Phi lại lùi về sau, không muốn tiến vào dễ dàng như vậy: "Con rể ngoan, vừa nãy là A Di sai rồi... A Di xin lỗi ngươi... Ngươi mau cắm vào thân thể A Di đi mà!..."</p>
+    <p>"A Di có phải là muốn cho ta địt ngươi không!?" Diệp Phi thốt ra một câu vô cùng dâm đãng.</p>
+    <p>"Nói năng khó nghe quá... Mau lên đi!!" Người phụ nữ xinh đẹp bị chữ "địt" của Diệp Phi làm cho cảm xúc dâng trào không chịu nổi, chỉ cảm thấy âm hộ mình càng thêm ướt át.</p>
+    <p>"Nhạc mẫu đại nhân không nói muốn cho con rể địt người, ta sẽ không vào đâu!" Diệp Phi nhắm ngay nhu cầu của nhạc mẫu, để dương vật ma sát chậm rãi trên cánh hoa âm thần hồng hào của nàng, giống như một đứa trẻ nhỏ, nhất quyết không chịu tiến vào.</p>
+    <p>"Được... Ngươi đúng là tiểu bại hoại... Nhạc mẫu muốn cho con rể địt... Con rể tốt, ngươi mau địt nhạc mẫu đi, lồn nhỏ của nhạc mẫu đã sớm muốn cho ngươi địt rồi!" Tiếng gọi "Nhạc mẫu" này của Diệp Phi không những không làm Văn Tố Cầm thẹn thùng, trái lại còn khiến nàng hưng phấn hơn. Sau khi nói ra câu ấy, nàng không cảm thấy chán ghét, mà trong lòng lại mơ hồ có chút kích động, chẳng lẽ nàng lại thích nghe những lời lẽ dâm đãng này?</p>
+    <p>Nghe người nhạc mẫu đoan trang thục nhã lại thực sự nói ra những lời dâm đãng như vậy, Diệp Phi hiểu rằng nàng thực sự đang cần dương vật của mình an ủi. Hắn không dám trêu đùa quá đáng nữa, sợ người nhạc mẫu bỏ dở giữa chừng thì "con vịt đã dọn sẵn trên đĩa" sẽ bay mất.</p>
+    <p>Diệp Phi lập tức ưỡn hông, đem dương vật to lớn chậm rãi cắm vào dâm huyệt chật hẹp, non mềm như xử nữ của nhạc mẫu. Khi tiến vào bên trong cơ thể Văn Tố Cầm, hắn mới thấu hiểu được cái hay của người nhạc mẫu xinh đẹp này. Ngoài khuôn mặt đẹp trời sinh chỉ có Bạch Oánh Thi mới sánh bằng ra, thì lồn của nàng cũng là cực phẩm, phải biết rằng đa số phụ nữ bên cạnh hắn đều phải trải qua quá trình khai phá mới dần trở nên khít khao như vậy.</p>
+    <p>Nếu không phải nhờ màn dạo đầu lâu khiến dâm huyệt của người nhạc mẫu tràn đầy mật dịch, cùng với sự đàn hồi vốn có của cơ thịt âm đạo, thì khó mà nhét được dương vật to lớn của hắn vào. Sau khi dương vật của Diệp Phi tiến vào, chỉ cảm thấy ngọc hành to lớn bị từng tầng thịt non ấm áp bao bọc, những nếp gấp thịt siết chặt lấy dương vật, ngay cả phần gốc và hai hòn tinh hoàn cũng bị đám lông mu bao quanh chặt chẽ.</p>
+    <p>Diệp Phi mượn lực trơn trượt của dâm dịch, tiếp tục thúc mạnh dương vật vào sâu bên trong.</p>
+    <p>"Á!... Lớn quá... Đau... Ngươi chậm một chút..." Đối với người phụ nữ lần đầu tiếp xúc với dương vật thô to như vậy thì cực kỳ thỏa mãn, thế nhưng cây dương vật dị bẩm thiên phú của Diệp Phi lại quá mức to lớn so với lồn nhỏ hẹp của nàng. Vốn rất tự tin, người phụ nữ bỗng nhiên sợ hãi, thậm chí nghĩ rằng hắn sẽ làm âm đạo mình nổ tung.</p>
+    <p>Thế nhưng rất nhanh, nàng không còn lo lắng nữa. Vì dương vật của Diệp Phi trượt vào âm đạo, tiến sâu vào bên trong vô cùng thuận lợi. Chỉ cần thoáng dùng sức là đã chạm đến nơi sâu nhất đầy nhạy cảm của nàng, cảm giác no đủ, phong phú đó là điều mà Văn Tố Cầm chưa từng có được. "Ưm... Thật thoải mái... Sâu quá!... Ư... Ư... Thật thoải mái..." Kèm theo tiếng rên rỉ dâm đãng của người phụ nữ, yêu dịch ngọt ngào chảy ra theo dương vật của Diệp Phi. Cảm giác bành trướng đầy đặn khiến Văn Tố Cầm biết dương vật của Diệp Phi đã hoàn toàn tiến vào cơ thể mình. Trong lòng nàng dâng lên một luồng hạnh phúc, mình đã là người của hắn rồi. Được dương vật của hắn cắm vào thật thoải mái, Văn Tố Cầm cảm thấy dương vật của người con rể Diệp Phi như được sinh ra là để dành cho lồn nhỏ của nàng vậy.</p>
+    <p>Diệp Phi cắm dương vật vào âm đạo nhạc mẫu, chậm rãi thở một hơi: "Lồn nhỏ của nhạc mẫu đại nhân... thực sự chặt vô cùng... Kẹp ta thoải mái quá... Nhạc mẫu... lồn nhỏ của người sao mà như xử nữ vậy..."</p>
+    <p>Người phụ nữ nghe Diệp Phi tán dương, trong lòng vừa thoải mái vừa bất đắc dĩ, cảm giác no đủ khiến nàng không nhịn được rên rỉ, miệng khẽ nói: "Diệp Phi... Nhạc mẫu... lâu lắm rồi không làm chuyện đó... cho nên mới chặt như vậy... Ngươi phải ôn nhu một chút... được không?... Chờ nhạc mẫu thích ứng với dương vật của ngươi... rồi ngươi hãy dùng sức đánh xuyên lồn nhỏ của nhạc mẫu... có được không?... Bây giờ lồn ta bị ngươi đâm vào rất thoải mái đây... Nha... thật thoải mái... Con rể ngoan... ngươi đâm vào nhạc mẫu thật thoải mái... Địt nhạc mẫu đi!"</p>
+    <p>Diệp Phi khống chế hông mình chậm rãi co rút, rút dương vật ra khỏi lồn của người nhạc mẫu. Văn Tố Cầm không nhịn được "Hừ" một tiếng. Khi dương vật to lớn hoàn toàn thoát ra khỏi cánh hoa u cốc của nàng, một luồng trống vắng khó tả tràn ngập tâm trí. Người phụ nữ không nhịn được dùng hai chân kẹp chặt hông Diệp Phi, dùng sức đẩy bụng tới trước, không muốn để dương vật kia rút ra: "Đừng... Á!... Diệp Phi... đừng rút ra... Nhanh... nhanh cắm vào đi... Nhạc mẫu khó chịu quá... Cầu xin ngươi... Con rể tốt... Không... Ngươi không phải con rể ta... Ngươi là ca ca của ta... Hảo ca ca... Cầu xin ngươi... cầu xin ngươi... Ngươi mau địt vào đi... Á!... Khó chịu quá..." Văn Tố Cầm bị sự trống trải to lớn đánh vào linh hồn, hận không thể gọi Diệp Phi là hảo ca ca để hắn địt mình.</p>
+    <p>"Đừng gấp... Nhạc mẫu đại nhân... ta mãi mãi là con rể của người... Ta lại đâm vào đây... Nhạc mẫu... lồn nhỏ của người vẫn chặt như vậy... Ta không tin không chống nở ra được nó..." Diệp Phi khống chế cảm giác thoải mái khi dương vật bị âm đạo chặt chẽ của nhạc mẫu bao bọc, nhịn lấy khát vọng bắn tinh, từ từ đẩy dương vật vào sâu trong âm đạo của người nhạc mẫu xinh đẹp.</p>
+    <p>"Ồ... Con rể tốt... Ư... Ư... Thật thoải mái... Lại đâm vào được rồi... Lớn quá... Thật thoải mái... Thoải mái chết mất... Con rể tốt... Ngươi biết không... Nhạc mẫu sắp thoải mái chết rồi... Đâm sâu thêm đi... Nha dùng sức..." Người phụ nữ xinh đẹp hai chân ôm chặt hông Diệp Phi, thỏa thích hưởng thụ khoái cảm khi dương vật của Diệp Phi toàn bộ cắm vào. Cảm giác phong phú kia lại trở về, Văn Tố Cầm cảm thấy mình như người trong sa mạc uống được nước ốc đảo, như kẻ đói ba ngày nhìn thấy bát cháo nóng, cảm giác thoải mái phong phú từ sâu trong linh hồn truyền đến là một trải nghiệm chưa từng có.</p>
+    <p>Cảm thấy dương vật dần thích ứng với âm đạo chặt chẽ của nhạc mẫu, Diệp Phi có quy luật thúc đẩy dương vật. Tay trái hắn không an phận xoa nắn bầu vú mềm mại, từng đợt nhào nặn khiến đầu vú vừa dịu đi nay lại bắt đầu sung huyết cương cứng, màu sắc dần sẫm lại. Từ nơi sâu thẳm của người nhạc mẫu, khoái cảm vẫn chưa tan đi, phía trên ngực lại truyền tới từng đợt tê dại sảng khoái: "Ồ... Thật ma... Ư chua quá... Á ác... Con rể tốt... Nhạc mẫu bị ngươi làm cho thoải mái chết mất... Dùng sức địt ta đi... Ư... Oa oa oa... Địt nhạc mẫu thoải mái chết đi được... Con rể tốt..."</p>
+    <p>Khi dương vật của Diệp Phi có thể nhún nhảy ra vào sảng khoái, một luồng run rẩy mãnh liệt đánh úp về phía Văn Tố Cầm. Nơi sâu nhất của dâm huyệt tràn trề dâm dịch bị dương vật to lớn xuyên qua, thẳng tiến tới tận hoa tâm. Âm đạo bị dương vật thô to lấp đầy, nhưng đó chỉ là lúc mới bắt đầu. Khi dương vật nhiều lần ra vào trong cơ thể, cảm giác ngứa ngáy, chua xót, tê dại khiến nàng không nhịn được rướn người phối hợp, từng đợt khoái lạc lấy âm đạo làm trung tâm lan tỏa toàn thân, khiến tính dục nguyên thủy bị kìm nén bấy lâu của người nhạc mẫu được khơi dậy.</p>
+    <p>Diệp Phi nỗ lực thúc đẩy trong lồn nhỏ mềm mại nhạy cảm của nhạc mẫu, nàng không khỏi thon thả đung đưa, co rút, phối hợp động tác của Diệp Phi mà lắc hông. Cuối cùng, nàng từ trên giường ngửa người ra tựa vào lòng Diệp Phi, hai tay ôm lấy cổ người con rể, khiến dương vật của Diệp Phi có thể xuyên vào sâu hơn.</p>
+    <p>Diệp Phi một tay nâng cặp mông đẫy đà của nhạc mẫu, lên xuống không ngừng thúc đẩy, tay kia vò vuốt bầu vú khổng lồ đang lắc lư trước mặt. Ở góc độ này, Văn Tố Cầm vừa vặn nhìn thấy rõ ràng dâm huyệt của mình, những sợi lông mu mềm mại và cánh hoa ướt át. Điều khiến nàng tâm thần chập chờn hơn cả chính là cây dương vật màu đỏ tím không ngừng ra vào sâu tận hoa tâm, lồn nhỏ của mình sao lại có thể nuốt chửng lấy nó? Văn Tố Cầm đột nhiên nhớ tới một câu tục ngữ: Nam nhân dù vĩ đại đến đâu cũng cần sự bao dung của nữ nhân, chẳng lẽ ý nghĩa lại nằm ở chỗ này?</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1461.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1463.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

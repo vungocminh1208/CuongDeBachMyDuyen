@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1538 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1538</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1538</small>
+    Chương 1538: Vân Nhi khúc mắc
+  </h1>
+  <div class="chapter-body">
+    <p>Buổi tối, Liễu Diệc Như cùng Diệp Phi không đi ra ngoài ở, mà tiến vào Lưu gia. Liễu Diệc Như cùng Kiều Nhã ở phòng dưới, Diệp Phi thì ở cùng Lưu Thiên Lâm. Người đàn ông đáng thương này vì quá chiều chuộng vợ, sau sự kiện kia đã chủ động chuyển xuống lầu dưới, tránh cho thê tử khó xử, bản thân cũng không phải chịu cảnh ở cùng tầng mà không được chung phòng.</p>
+    <p>Về tới phòng được sắp xếp cho mình, Diệp Phi không đi ngủ ngay, mà đợi một lúc, chờ sát vách Lưu Thiên Lâm ngủ rồi, liền lặng lẽ ra cửa, thẳng hướng tới mấy cứ điểm của tổ chức Thánh Chiến.</p>
+    <p>Diệp Phi tuy không thích lạm sát kẻ vô tội, nhưng cũng không phải người ba phải. Tổ chức Thánh Chiến nhiều lần đối nghịch với hắn, giờ lại tìm đến tận cửa Trung Hoa lâu, tất nhiên hắn sẽ không nương tay. Chỉ trong chưa đầy hai giờ, hắn đã nhổ sạch 5 cứ điểm của Thánh Chiến trong thành phố này, không tha một ai.</p>
+    <p>Là tổ chức dưới đất mạnh nhất nước Mỹ, cao thủ trong Thánh Chiến đương nhiên không ít. Sau khi biến thân tiêu diệt bọn họ, dù không lấy được linh châu bảo vật như từ chỗ bốn Thần, nhưng hắn vẫn có thu hoạch khác, đó là một loại thuốc gọi là "Toàn diện khôi phục hoàn".</p>
+    <p>Dựa vào kinh nghiệm về thuốc phục hồi, Diệp Phi biết món đồ mới lấy được này hẳn giống như "Toàn diện khôi phục sức sống thuốc" trong game, chính là loại trong nháy mắt hồi phục đầy máu đầy lam, chỉ cần còn sót lại một hơi là có thể hồi sinh.</p>
+    <p>Điều này khiến Diệp Phi vô cùng hứng khởi. Dù sao hắn còn phải đối mặt với một kẻ địch mạnh mẽ chưa rõ danh tính, có thứ này chẳng khác nào có thêm vô số mạng, chỉ cần không bị giết trong một đòn, hắn hoàn toàn có thể dựa vào đó mà mài chết đối phương.</p>
+    <p>Tuy nhiên, sau khi thử một viên, Diệp Phi lại thất vọng. Thứ này đối với hắn quả thực có tác dụng, hiệu quả cũng mạnh hơn khôi phục hoàn thông thường rất nhiều, nhưng chỉ có thể hồi phục một phần nhỏ thể lực cùng nội lực, căn bản không đạt đến trạng thái đầy tràn như mong đợi.</p>
+    <p>Ngẫm lại, Diệp Phi cũng thấy bình thường. Thực tế dù sao không phải game, hơn nữa so với sức mạnh có được từ trong game trước kia, sức mạnh hiện tại của hắn đã chênh lệch quá nhiều. Biến thân sở dĩ còn lợi hại như vậy, phần lớn là do bản thân hắn đã trở nên mạnh mẽ, chứ không phải năng lực trong game cũng mạnh lên theo. Vì thế, thứ này còn tác dụng đã khiến hắn rất hài lòng.</p>
+    <p>Hài lòng thu hơn hai mươi viên toàn diện khôi phục hoàn cùng vô số khôi phục hoàn phổ thông vào không gian, Diệp Phi Thuấn Di về biệt thự Lưu gia. Hắn không về phòng mình mà mò lên lầu hai, thực hiện ý định "trộm hoa" của mình.</p>
+    <p>Bằng vào hơi thở quen thuộc, Diệp Phi trực tiếp tìm đến phòng của mẹ mình, phát hiện cửa đã khóa trái. Tuy nhiên, điều đó không phải trở ngại, hắn thả ra một tia Chân Khí, lặng lẽ mở cửa đi vào.</p>
+    <p>Lúc này Liễu Diệc Như đã ngủ, nhưng vì tâm linh tương thông với con trai nên bà lập tức phát hiện ra ngay khi hắn bước vào. Bà nhắm mắt, nửa mê nửa tỉnh nói: "Tiểu tặc phương nào, dám đến nơi này thiết ngọc thâu hương!"</p>
+    <p>"Vốn con không dám, nhưng ngọc ở đây đẹp quá, mùi hương lại quá mê người, không nhịn nổi a!" Diệp Phi cười hắc hắc, đi tới bên giường ngồi xuống, thò tay vào trong chăn, sờ soạng trên bộ ngực đầy đặn của mẹ qua lớp áo ngủ.</p>
+    <p>Liễu Diệc Như chậm rãi mở đôi mắt đẹp, biết mà còn hỏi: "Nửa đêm không ngủ, chạy đến phòng mẹ làm gì?"</p>
+    <p>"Con đến thu nợ ạ, sáng nay người đã hứa gì với con, chắc không quên chứ?" Diệp Phi cười, vén chăn lên, cởi áo ngủ của mẹ, rồi nắm lấy đôi gò bồng đảo đang chứa đầy sữa mẹ càng thêm đầy đặn kia mà nhẹ nhàng nắn bóp.</p>
+    <p>Bị con trai trêu chọc như vậy, Liễu Diệc Như lập tức tỉnh ngủ, hơn nữa còn thấy hưng phấn. Tuy nhiên ngoài miệng bà vẫn nói: "Bây giờ đang ở nhà người ta, lại còn có vợ chưa cưới của con ở sát vách, con không thể yên tĩnh một chút sao?"</p>
+    <p>"Thì đã sao, chưa cưới cũng coi như đã qua cửa, nàng cũng không thể ngăn con hiếu thuận với mẹ chứ! Mẹ, con muốn uống sữa, con muốn đâm lồn!" Diệp Phi nói xong, không đợi mẹ đồng ý, liền cúi đầu ngậm lấy một bên núm vú, thích thú mút mát, nhanh chóng hút ra dòng sữa ngọt ngào.</p>
+    <p>Liễu Diệc Như nhẹ nhàng vuốt ve đầu con trai, nói: "Bú sữa thì được, muốn đâm lồn thì sang bên cạnh đâm vợ con đi."</p>
+    <p>"Không, con chỉ muốn đâm mẹ!" Diệp Phi ngậm lấy đầu vú mẹ, lí nhí nói.</p>
+    <p>Liễu Diệc Như cười nói: "Đừng quên, Vân Nhi vẫn còn là con gái, đâm lồn xử nữ chẳng lẽ không thoải mái hơn mẹ sao?"</p>
+    <p>"Đó là đương nhiên, nhưng đối với con, kim lồn ngân lồn cũng không bằng lồn bánh bao mẹ đã sinh ra con!" Diệp Phi tiếp tục ăn, bàn tay lớn trượt xuống dưới, chui vào trong váy ngủ của mẹ, vuốt ve nơi bánh bao no đủ của bà.</p>
+    <p>Liễu Diệc Như nằm đó, hưởng thụ khoái cảm mà miệng cùng ngón tay con trai mang lại. Một lát sau, bà đột nhiên nói: "Vân Nhi hình như vẫn còn khúc mắc chưa mở ra đúng không?"</p>
+    <p>"Đúng vậy, nàng cứ mãi không quên được chuyện con từng đâm mẹ nàng." Diệp Phi trả lời ngay.</p>
+    <p>"Phí lời, thân là bạn trai người ta, lại đâm mẹ người ta ngay trước mặt, đổi thành ai cũng cả đời không quên được nha." Liễu Diệc Như không vui nói, sau đó hỏi tiếp: "Con có biện pháp nào gỡ rối không?"</p>
+    <p>"Có, hơn nữa còn hai cách. Một loại là con tự nghĩ, giải quyết hơi phiền phức; loại thứ hai cần mẹ giúp, giải quyết cực kỳ dễ dàng." Diệp Phi nói.</p>
+    <p>Liễu Diệc Như vội hỏi: "Mẹ giúp thế nào?"</p>
+    <p>Diệp Phi nhả đầu núm vú đã bị mình mút đến cương lên, ghé sát vào tai mẹ thì thầm một hồi.</p>
+    <p>Nghe xong lời con, dù là người đã trải qua bao sóng gió như Liễu Diệc Như cũng không khỏi đỏ mặt, gắt một cái: "Thằng nhóc thối, chỉ biết làm khổ mẹ. Nếu là vậy, Vân Nhi chẳng phải sẽ coi mẹ chồng này là dâm phụ sao?"</p>
+    <p>"Thì đã sao, chỉ cần mẹ giúp, con lập tức có thể thu phục nàng, đến lúc đó cũng biến nàng thành dâm phụ, hai người bà tức ai cũng chẳng nói được ai." Diệp Phi cười hắc hắc, nói xong lại cúi đầu, tiếp tục tận hưởng bầu sữa của mẹ.</p>
+    <p>Đối với chuyện của con, Liễu Diệc Như từ trước đến nay chưa bao giờ từ chối. Dù làm vậy khiến bà thấy khó xử, nhưng chỉ cân nhắc một chút, bà đã đưa ra quyết định. Bà đẩy nhẹ đầu con trai, nói: "Vậy còn không mau đi đi?"</p>
+    <p>"Không muốn, con chưa ăn no." Diệp Phi vẫn bám lấy ngực mẹ, tiếp tục mút sữa, nhất quyết không rời đi.</p>
+    <p>"Muốn ăn thì lát nữa mẹ cho ăn đủ, con mà không đi bây giờ, mẹ sẽ không giúp con đâu đấy." Liễu Diệc Như bất đắc dĩ đe dọa.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1537.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1539.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

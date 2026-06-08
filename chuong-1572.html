@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1572 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1572</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1572</small>
+    Chương 1572: Chân Chính Cường Địch 2
+  </h1>
+  <div class="chapter-body">
+    <p>Nhìn thấy Diệp Phi biến thân, Dalba phát ra một tiếng rống to hưng phấn, hắn vừa nhào tới đã nện một quyền xuống ngực Diệp Phi.</p>
+    <p>Diệp Phi không tránh không né, thậm chí không hề chặn cú đấm của Dalba, mà đồng dạng vung quyền đánh ra, đập thẳng về phía lồng ngực Dalba.</p>
+    <p>Nếu lúc này có người ngoài ở đây, nhìn thấy chắc chắn sẽ cảm thấy hết sức kỳ quái. Bởi vì khi hai người khí thế hung hăng tấn công nhau, căn bản không phát ra một chút tiếng động nào, ngay cả âm thanh va chạm cũng không có, chỉ là sau khi trúng đòn của đối phương, cả hai đồng thời phát ra một tiếng rên.</p>
+    <p>Đây đương nhiên không phải hai người thu tay ở giây cuối cùng. Đòn đánh này, bọn họ đều dùng hết toàn lực. Nếu như kình lực tỏa ra ngoài, dù là ở trên không vạn mét, cũng đủ gây ảnh hưởng to lớn đến mặt đất, gây ra địa chấn hay sóng thần chỉ là chuyện nhỏ, sau một thời gian thậm chí có thể đánh nát toàn bộ Địa Cầu.</p>
+    <p>Có điều, khi tu luyện đến trình độ của Diệp Phi và Dalba, việc nắm giữ lực lượng đã đạt đến đỉnh cao. Họ đương nhiên không để năng lượng tiêu tán lãng phí ra ngoài, mà dồn toàn bộ sức mạnh vào cơ thể đối phương, nên tự nhiên sẽ không có động tĩnh gì.</p>
+    <p>"Được! Đã lâu không đánh thống khoái như vậy!" Dalba hưng phấn kêu lên, lại tiếp tục ra tay.</p>
+    <p>Diệp Phi cũng bị khơi dậy toàn bộ huyết tính, nửa bước không lùi, tiếp tục cùng đối phương đấu quyền cước với nhau.</p>
+    <p>Hai người này tuyệt đối là những kẻ mạnh nhất trong không gian Địa Cầu, nhưng lúc này chiến đấu với nhau, thanh thế thậm chí còn không bằng hai gã lưu manh đầu đường. Thế nhưng, sự hung hiểm bên trong chỉ có họ mới thấu hiểu.</p>
+    <p>Cơ thể cả hai đều mạnh mẽ cực kỳ, dù là bị bom với đương lượng lớn nhất nổ trúng cũng không tổn thương chút nào. Thế nhưng mỗi khi chịu một quyền của đối phương, họ đều phải chịu tổn thương cực lớn vì sức mạnh của họ thật sự quá kinh khủng.</p>
+    <p>Không thể không nói, Dalba không hổ là kẻ bước ra từ nơi mạnh nhất. Diệp Phi dù đã biến thân, nhưng ở phương diện sức mạnh và tốc độ vẫn kém hắn một chút. Tới cấp độ này, chiến đấu suy cho cùng cũng chỉ là so bì sức mạnh và tốc độ, ngoài ra bất kỳ hoa chiêu nào cũng không có nửa điểm tác dụng.</p>
+    <p>Theo thời gian trôi qua, Diệp Phi dần rơi vào thế hạ phong, cơ thể đã bị thương không nhẹ, Chân Khí cũng tổn hao hơn nửa. Đương nhiên, Dalba cũng chẳng khá hơn là bao, nhưng hắn dường như không chịu chút ảnh hưởng nào, vẫn mãnh liệt như lúc ban đầu.</p>
+    <p>Kết hợp với đặc tính của tên người áo đen trong Chân Hư Giới, Diệp Phi cuối cùng đã hiểu tại sao Dalba lại muốn mình sống lâu thêm một chút. Đối với hắn, có lẽ phải đợi mình mạnh hơn thì mới có thể thực sự đánh cho đã ghiền. Dù sao cơ thể người ở chỗ bọn họ quá mức biến thái, mặc kệ bị thương nặng bao nhiêu, chỉ cần chưa chết thì sẽ không ảnh hưởng đến chiến đấu.</p>
+    <p>Giờ khắc này, Diệp Phi cực kỳ vui mừng vì mình từng đột kích mấy phân bộ của thánh chiến tổ chức, lấy được không ít khôi phục hoàn. Nếu không, trận chiến này chắc chắn mình sẽ lành ít dữ nhiều.</p>
+    <p>Lần thứ hai gắng gượng đỡ một đòn toàn lực của Dalba, Diệp Phi dựa vào sức mạnh bay ngược ra sau mấy ngàn mét, sau đó nhanh chóng lấy từ trong không gian ra ba viên toàn diện khôi phục hoàn, nuốt một hơi hết sạch. Chỉ trong nháy mắt, cả cơ thể lẫn Chân Khí đều khôi phục lại trạng thái đỉnh cao.</p>
+    <p>Nhìn thấy Diệp Phi có cách khôi phục, Dalba không kinh sợ mà còn lấy làm mừng. Đối với người ở chỗ hắn, chiến đấu chính là tất cả, cho dù là chết cũng phải chết trong chiến đấu. Hắn lập tức bạo quát một tiếng, lại nhào tới đánh nhau với Diệp Phi.</p>
+    <p>Theo thời gian trôi đi, hai người càng đánh càng hăng. Mãi đến khi Diệp Phi dùng hết mười lăm viên toàn diện khôi phục hoàn, năm lần liên tiếp khôi phục lại đỉnh cao, Dalba mới rốt cục bị hắn áp chế. Lúc này, Diệp Phi có thể cảm nhận rất rõ ràng, Dalba ngoại trừ cái đầu ra, toàn thân chỉ còn lại một tầng biểu bì, còn huyết nhục và nội tạng bên trong đã bị sức mạnh của hắn đánh thành một đám tương hồ.</p>
+    <p>"Dalba, chúng ta dừng tay tại đây được không?" Sau một lần đẩy lùi Dalba đã gần đèn cạn dầu, Diệp Phi đề nghị.</p>
+    <p>Dalba có mạnh hơn cũng chỉ là một thủ hạ của cái gọi là "Hỗn Độn Chúa Tể". Diệp Phi không biết giết hắn xong có dẫn dụ tên kia ra hay không, mà theo lời Dalba, chính mình căn bản không thể nào là đối thủ của kẻ chúa tể kia, vì thế hắn không muốn mạo hiểm.</p>
+    <p>Huống chi, Diệp Phi đối với Dalba cũng không có ác cảm, ngược lại có chút kính trọng. Bởi vì gã này tuy mục đích không thuần túy, nhưng làm việc lại quang minh lỗi lạc. Nếu ngày sau có thể chung sống hòa bình, Diệp Phi không ngại tha cho hắn một lần.</p>
+    <p>Không ngờ Dalba không những không cảm kích, trái lại còn vô cùng phẫn nộ, hét lớn: "Chiến đấu chỉ có sinh tử, không có thắng bại, ngươi vốn là đang khinh nhờn chiến đấu!" Nói xong lại nhào tới.</p>
+    <p>Đối mặt với gã thẳng thắn này, Diệp Phi chỉ biết thở dài một tiếng, tiếp tục nghênh chiến.</p>
+    <p>Lạc đà gầy còn lớn hơn ngựa, Dalba dù đã nỏ mạnh hết đà, nhưng sức mạnh bùng phát vẫn không thể khinh thường, Diệp Phi buộc phải dốc toàn lực ứng phó.</p>
+    <p>Lại một lần tiêu hao hơn nửa Chân Khí và sức mạnh cơ thể, Diệp Phi cuối cùng đã nhìn thấy ánh sáng chiến thắng. Cơ thể Dalba lúc này đã gần như tan vỡ hoàn toàn, chỉ còn lại một tầng biểu bì rất mỏng duy trì sự sống, ngoài ra chính là cái đầu to như cá sấu kia.</p>
+    <p>Nhưng ngay khi Diệp Phi thầm nghĩ có nên tha cho đối phương một mạng hay không, Dalba đột nhiên há cái miệng lớn như chậu máu, hung hăng cắn mạnh vào cánh tay trái của Diệp Phi. Răng nanh sắc bén đâm thủng lớp cơ bắp ngay cả đạn bắn cũng không xuyên qua, cắn vào tận xương, liều mạng nghiến qua lại như lưỡi cưa.</p>
+    <p>"Á!..." Diệp Phi không khỏi phát ra tiếng gào đau đớn. Sự dây dưa không chết không thôi của đối phương đã hoàn toàn kích phát lửa giận của hắn, đồng thời hắn cũng nhận thức rõ ràng rằng, nếu hai người không có một kẻ chết đi, Dalba sẽ mãi dây dưa không dứt. Vì thế, hắn không kiêng dè gì nữa, vận toàn thân Chân Khí lên cánh tay trái, chấn động mạnh, hất văng miệng Dalba ra.</p>
+    <p>Sau đó, Diệp Phi chắp hai tay lại, vận lên toàn bộ kình lực, từ trên xuống dưới mạnh mẽ đánh lên đầu Dalba.</p>
+    <p>Trước kia gặp phải đòn tấn công như vậy, Dalba đều trực tiếp cứng rắn đón đỡ. Nhưng lần này, không biết là không muốn hay không thể làm được, sau khi trúng đòn này, cơ thể Dalba trực tiếp bị đánh đến biến mất khỏi tầm mắt Diệp Phi trong nháy mắt, cấp tốc rơi xuống phía dưới.</p>
+    <p>Nhìn hướng Dalba rơi xuống, sắc mặt Diệp Phi không khỏi biến đổi. Bởi vì bọn họ chiến đấu trên không trung bất tri bất giác đã lệch khỏi chỗ cũ rất xa, lúc này nơi Dalba rơi xuống không phải biển cả mà là một vùng lục địa. Chính xác hơn là một bán đảo, một bán đảo bị chia làm hai quốc gia, hướng rơi của Dalba chính là vị trí trung tâm của quốc gia kia.</p>
+    <p>Khoảng cách hơn một vạn mét, Dalba chỉ mất chưa đầy một giây đã vượt qua. Vì cơ thể đã không còn sự khống chế, hắn trực tiếp đập mạnh xuống đất, tạo ra một lỗ thủng sâu không thấy đáy.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1571.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1573.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

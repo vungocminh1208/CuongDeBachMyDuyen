@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1505 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1505</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1505</small>
+    Chương 1502: Bánh bao giáp bánh quẩy 2
+  </h1>
+  <div class="chapter-body">
+    <p>"Rất nhiều nơi cũng có thể, tỷ như ngươi vừa nãy mò mẹ nó cái vú, mẹ cũng rất thoải mái." Liễu Diệc Như hồi đáp, làm mẹ cùng nhi tử đàm luận vấn đề làm sao khiến đối phương cao trào là hết sức không thích hợp, nhưng nàng vẫn rất tự nhiên nói ra. Có điều, nàng cũng kiên trì giữ vững điểm mấu chốt, chỉ nói cho nhi tử những chỗ hắn đã từng xoa nắn qua.</p>
+    <p>Diệp Phi lập tức ngồi dậy, kéo bàn tay nhỏ của mẹ không cho nàng lại ve vuốt dương vật mình, nói: "Mẹ, hiện tại đổi ngươi nằm, ta muốn cho ngươi thoải mái."</p>
+    <p>Liễu Diệc Như nhìn cái đại dương vật phảng phất như tràn đầy khí lực kia của hắn, hỏi: "Nhưng là, như vậy ngươi không nghẹn đến khó chịu sao?"</p>
+    <p>"Khó chịu thì khó chịu, mẹ đã để ta cao trào nhiều lần, ta cũng phải để mẹ tới một lần." Diệp Phi nói thật.</p>
+    <p>Liễu Diệc Như vốn định nói cho nhi tử rằng chỉ mò cái vú căn bản không thể cao trào, nhưng khi nhìn thấy vẻ mặt vội vã muốn để cho mình thoải mái của hắn, lại không đành lòng phụ tấm lòng này, đành phải nằm xuống: "Vậy cũng tốt."</p>
+    <p>Diệp Phi đứng dậy hư cưỡi ở trên người mẹ, cởi cúc áo ngủ của nàng, một đôi ngực to đầy đặn mà cao vót của mẹ nhất thời hiện ra trước mắt hắn.</p>
+    <p>Nhờ bảo dưỡng tốt, và quan trọng hơn là có công hiệu mạnh mẽ của Huyền Âm Quyết, đôi vú của Liễu Diệc Như không hề vì quá to lớn mà rũ xuống dù chỉ một chút. Dù nằm như vậy, chúng vẫn cao vót, tựa như hai bát ngọc Bạch Ngọc úp ở trước ngực nàng, phối hợp cùng quầng vú màu phấn hồng chỉ có kích thước bằng đồng xu, cùng với hai đầu vú đã sung huyết đứng thẳng như hạt lạc, dưới ánh đèn dìu dịu, trông vừa thần bí lại mỹ lệ, đồng thời cũng cực kỳ gợi cảm, đơn giản là đem thánh khiết cùng dâm đãng triệt để dung hợp lại một chỗ.</p>
+    <p>Tuy rằng đôi ngực to của mẹ đã được Diệp Phi thưởng thức mút vào không biết bao nhiêu lần, nhưng mỗi lần nhìn thấy chúng, hắn vẫn vô cùng rung động. Hơn nữa, bởi vì mẹ mất trí nhớ, tâm thái không giống, chúng càng có sức mê hoặc nguy hiểm với hắn, khiến hắn nhanh chóng duỗi hai tay nhẹ nhàng nắm lấy chúng.</p>
+    <p>Hai tay nhẹ nhàng vuốt ve trên đôi ngực to vừa trơn vừa mềm, lại đàn hồi của mẹ, Diệp Phi mở miệng hỏi: "Mẹ, như vậy ngươi thoải mái không?"</p>
+    <p>Liễu Diệc Như chậm rãi nhắm đôi mắt đẹp lại, một nửa là vì thoải mái say sưa, nửa kia là vì bị nhi tử thưởng thức cái vú như vậy khiến nàng có chút ngượng ngùng, nhưng ngoài miệng vẫn rất thành thực hồi đáp: "Ừm, hảo nhi tử, ngươi mò như vậy, mẹ rất thoải mái."</p>
+    <p>"Vậy dạng này thì sao?" Diệp Phi vừa hỏi, vừa dùng ngón tay nhẹ nhàng gảy hai cái núm vú đã trở nên hơi gắng gượng của mẹ.</p>
+    <p>"Ừm..." Liễu Diệc Như không nhịn được rên rỉ một tiếng: "Như vậy liền càng thoải mái."</p>
+    <p>Diệp Phi phảng phất như được cổ vũ, biến đổi trò gian thưởng thức cái vú của mẹ, một lát sau, đột nhiên cúi thân xuống, há miệng ngậm lấy núm vú bên trái của mẹ, nhẹ nhàng hút.</p>
+    <p>Liễu Diệc Như cảm giác núm vú mình tiến vào một chỗ ấm áp ướt át, không khỏi mở mắt ra, thấy nhi tử đang ngậm lấy núm vú mình mút vào, điều này khiến nàng hồi tưởng lại hơn mười năm trước.</p>
+    <p>Khi đó, sinh ra một đôi Long Phượng Thai, sữa của Liễu Diệc Như căn bản không đủ cho hai đứa bé ăn. Vì Diệp Phi từ khi sinh ra thân thể đã không tốt, nên mẫu nhũ đều dành cho hắn, còn Diệp Vân Khinh đáng thương thì chỉ có thể dùng sữa bột nuôi lớn.</p>
+    <p>Hiện tại núm vú lại một lần nữa bị nhi tử ngậm như thế, tình mẫu tử trong lòng Liễu Diệc Như vốn đang bị dục vọng áp chế, trong nháy mắt đã chiếm thế thượng phong, đẩy lùi dục vọng, chỉ còn lại từng tia một.</p>
+    <p>Nhưng không biết tại sao, tình mẹ vốn nên rất thuần khiết, dưới sự lay động của những tia dục niệm còn sót lại kia, lại biến thành động lực kích thích dục vọng của nàng, khiến dục hỏa trong nháy mắt thiêu đốt dữ dội hơn. Hơn nữa, càng cố ý nhắc nhở rằng người đang đùa bỡn vú mình là con trai ruột, dục hỏa lại càng thiêu đốt mạnh mẽ.</p>
+    <p>Trong lòng suy nghĩ những chuyện lộn xộn này, nhưng tay Liễu Diệc Như lại không tự chủ được xoa đầu nhi tử đang chôn trước ngực mình, ôn nhu vuốt ve như lúc cho hắn bú sữa ngày xưa.</p>
+    <p>Được bàn tay ngọc của mẹ xoa xoa, Diệp Phi lập tức cảm nhận được tình mẫu tử nồng nàn ấy, trong lòng càng thêm hưng phấn, nhưng hắn vẫn giả vờ không hiểu mà ngẩng đầu hỏi: "Mẹ, làm sao vậy?"</p>
+    <p>"Không có gì, mẹ chỉ là nhớ tới ngươi khi còn bé, cũng là mỗi ngày đều ngậm núm vú mẹ mút như vậy." Liễu Diệc Như cưng chiều cười nói.</p>
+    <p>"Thật sao?" Diệp Phi lập tức hưng phấn nói: "Nguyên lai ta khi còn bé đã hiểu chuyện như vậy, biết làm thế nào để mẹ thư thái."</p>
+    <p>"Đứa nhỏ ngốc, cái gì mà làm mẹ thoải mái, đó là ngươi bú sữa." Liễu Diệc Như dở khóc dở cười nói.</p>
+    <p>Diệp Phi cười hắc hắc: "Bất kể là gì, dù sao khi còn bé ta đều ngậm nhiều lần như vậy, làm sao hiện tại ngài còn không cho ta sờ."</p>
+    <p>Liễu Diệc Như lườm nhi tử một cái nói: "Vậy sao có thể giống nhau, ngươi đã lớn rồi, hơn nữa, mẹ hiện tại cũng không có sữa."</p>
+    <p>"Không sao, ta hút nhiều lần, nhất định có thể hút ra ngoài." Diệp Phi nói, lại cúi đầu ngậm lấy núm vú nhỏ của mẹ bắt đầu hút.</p>
+    <p>Kỳ thực, hiện tại bốn đứa con gái nhỏ chưa đầy một tuổi, Liễu Diệc Như cũng không cai sữa cho chúng, chỉ có điều Diệp Phi lúc phong ấn trí nhớ của nàng đã tạm thời ngăn chuyện này lại, nếu không, đã không có sữa nhiều năm như vậy, đột nhiên hút ra sữa, với sự khôn khéo của mẹ, chắc chắn sẽ có hoài nghi.</p>
+    <p>Diệp Phi nguyên bản còn đang suy nghĩ có nên đợi đến khi giải phong ấn ký ức của mẹ thì mới mở cái này ra không, nhưng bây giờ lại thay đổi chủ ý, chuẩn bị thêm vài lần nữa là mở ra. Đến lúc đó, chính mình đã bắt được mẹ, ngẫm lại cảnh vừa ăn sữa của nàng, vừa dùng dương vật cắm vào lồn nàng, đem chức trách nhi tử cùng Lão Công kết hợp hoàn mỹ, hắn cảm giác hưng phấn sắp muốn nổ tung.</p>
+    <p>Đúng là mẹ con đồng lòng, tuy rằng sau khi bị phong ấn Huyền Âm Quyết, Liễu Diệc Như đã không còn năng lực tâm linh tương thông với nhi tử, nhưng lúc này, nàng vẫn nghĩ cùng một hướng với hắn. Trong lòng hưng phấn không rõ, cũng không khỏi âm thầm cảnh giác, trái tim của chính mình thực sự càng ngày càng hư hỏng.</p>
+    <p>Bởi quá mức hưng phấn, Diệp Phi cảm giác dương vật mình nếu không an ủi một chút thì sắp nổ tung, liền dời vị trí, từ phía trên thân thể mẹ đi tới bên cạnh nàng, một bên tiếp tục hôn môi thưởng thức ngực nàng, một bên kéo cánh tay ngọc của nàng đặt trên dương vật mình, ngậm núm vú nói: "Mẹ, dương vật của ta nghẹn khó chịu quá, ngươi giúp ta làm một chút đi."</p>
+    <p>Cảm giác mình ngày càng trầm luân, Liễu Diệc Như vốn đã không muốn để nhi tử tiếp tục đùa bỡn ngực mình để tránh bản thân càng thoải mái dẫn đến càng sa đọa, nhưng câu nói này của nhi tử đúng ý nàng, liền vừa nắm lấy dương vật lớn của nhi tử ve vuốt mấy cái, vừa nói: "Con ngoan, như vậy mẹ không tiện phát lực, không bằng ngươi nằm xuống, để mẹ làm cho ngươi."</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1504.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1506.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

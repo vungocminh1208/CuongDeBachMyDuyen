@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1455 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1455</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1455</small>
+    Chương 1452: Chiến tranh và hoà bình
+  </h1>
+  <div class="chapter-body">
+    <p>Sở dĩ đối tượng này là Diệp Phi, không phải vì trong thời gian ngắn ngủi này Hải Tâm Nhi đã thích hắn, mà là cả đời này, người đàn ông duy nhất nàng từng có tiếp xúc chân chính cũng chỉ có Diệp Phi, hơn nữa còn có sự cổ động của Vương Nguyệt Dao, vì thế Diệp Phi may mắn trở thành lựa chọn hàng đầu. Đặc biệt là sau khi xem video và biết được sự "mềm yếu" của những người đàn ông khác, Hải Tâm Nhi lại càng thêm khẳng định lựa chọn Diệp Phi.</p>
+    <p>Không Linh không để ý đến những lời lẩm bẩm của Hải Tâm Nhi, có điều khi nghe nàng nói xong, tay phải lại không tự chủ được hư nắm một cái, trong lòng không khỏi hồi tưởng lại cảm giác lúc nắm lấy đại dương vật của Diệp Phi.</p>
+    <p>Đây không phải là Không Linh nổi lên sắc tâm, mà là một loại phản ứng bản năng, cũng giống như nam giới thích sờ ngực phụ nữ vậy, đây cơ bản là thiên tính của con người. Khi dương vật nam giới mạnh mẽ lên, cảm giác cứng cáp xen lẫn mềm mại đó sẽ khiến phần lớn phụ nữ cảm thấy cực kỳ hài lòng, mà Không Linh chính là kiểu phụ nữ này. Hiện tại hồi tưởng lại, nàng cảm thấy dương vật của Diệp Phi thực sự là thứ khiến nàng cảm thấy thích thú nhất từ trước đến nay.</p>
+    <p>Phảng phất như biết Không Linh đang suy nghĩ gì, Hải Tâm Nhi đột nhiên hỏi: "Tỷ tỷ, mau nói cho ta biết, dương vật của Diệp Phi sờ vào có cảm giác gì?"</p>
+    <p>Đang suy nghĩ miên man, Không Linh giật mình, mặt hơi đỏ lên, ấp úng nói: "Ta không biết, ngươi muốn biết thì tự mình đi mà sờ."</p>
+    <p>"Người ta cũng muốn sờ mà, nhưng lại bị tỷ lôi đi, nhất định là tỷ muốn ăn mảnh!" Hải Tâm Nhi tức giận bất bình nói.</p>
+    <p>"Hắn có nhiều nữ nhân như vậy, ta ăn mảnh cái gì chứ!" Không Linh dở khóc dở cười nói, chỉ sợ Hải Tâm Nhi lại nói ra những lời khiến nàng đỏ mặt hơn, bèn vội vàng chuyển chủ đề: "Được rồi, bọn hắn bây giờ chắc đều ở nhà, vẫn là nên để họ tới đây thương lượng chuyện kia đi."</p>
+    <p>Hải Tâm Nhi tuy có tâm tính Loli, hơn nữa còn là người tò mò, nhưng với tư cách là Thủ Hộ Giả, nàng vẫn có trách nhiệm rất lớn, đồng thời cũng biết chuyện Không Linh nói rất quan trọng, vì vậy lập tức tắt máy tính, đứng dậy muốn đi thông báo cho Vương Nguyệt Dao. Không ngờ vừa mới đứng lên, nàng lại "ối" một tiếng rồi ngồi xuống.</p>
+    <p>"Xảy ra chuyện gì?" Không Linh kỳ quái hỏi. Tuy hai người họ ngồi đó suốt hai ngày không nhúc nhích, nhưng cũng không đến mức giống người thường bị tê chân, dù sao thì mấy năm hay mấy thập kỷ bế quan ngồi không nhúc nhích cũng là chuyện bình thường.</p>
+    <p>"Ta hình như tìm thấy cảm giác hưng phấn đó rồi, phía dưới ướt hết cả." Hải Tâm Nhi cười hì hì nói, vừa nói vừa đưa tay nhỏ xuống dưới háng, nhẹ nhàng sờ soạng một hồi, đột nhiên lại nũng nịu rên rỉ: "Ồ... thật sự rất thoải mái, chỉ mới sờ một cái đã khiến người ta không chịu nổi rồi."</p>
+    <p>Nghe thấy lời Hải Tâm Nhi, Không Linh ban đầu ngẩn ra, ngay lập tức nàng cảm nhận được giữa hai chân mình cũng vô tình trở nên ướt át. Nàng vội vã theo bản năng khép hai chân lại, nhưng hành động ép chặt này khiến sự khoái cảm truyền đến, đồng thời còn có nhiều dịch thể trào dâng hơn.</p>
+    <p>Khoái cảm xa lạ chưa từng có trong đời này khiến Không Linh suýt chút nữa cũng rên rỉ lên tiếng như Hải Tâm Nhi. Tim đập loạn nhịp, vô cùng lúng túng, nàng vội vàng vừa vận công phân giải những chất lỏng xấu hổ kia thành phân tử cho tiêu biến đi, vừa tức giận quát Hải Tâm Nhi: "Phát cái gì mà lãng, còn không mau đi!"</p>
+    <p>Tâm tư đơn thuần như Hải Tâm Nhi không biết nội tình, còn tưởng tỷ tỷ đang trách mình không quan tâm đến đại cục, ngượng ngùng lè lưỡi, trong nháy mắt dọn dẹp phần dưới đang bừa bãi của mình rồi đi ra ngoài tìm Vương Nguyệt Dao.</p>
+    <p>Trải qua hai ngày nỗ lực, cộng thêm sự "không ngại cực khổ" cày cấy của Diệp Phi tối hôm qua, Vương Nguyệt Dao đã hoàn toàn ổn định cảnh giới mới tăng lên. Bây giờ nàng so với hai vị trưởng bối Nữ Thần thì cảnh giới khó nói, lực lượng vẫn còn một chút chênh lệch, nhưng về chất thì đã vượt qua Không Linh và Hải Tâm Nhi. Điều này khiến Vương Nguyệt Dao phải thán phục sự kỳ diệu của ngoại tôn, vốn tưởng lực lượng bản nguyên của Thủ Hộ Giả đã là tinh khiết nhất thế gian, nhưng sau khi Hợp Thể song tu với ngoại tôn vẫn có thể tiếp tục tối ưu hóa, có thể thấy Thuần Dương lực lượng của hắn là nguồn sức mạnh cấp bậc cao hơn.</p>
+    <p>Sau khi hai nữ hội hợp, họ đi tìm Diệp Phi đang cùng Trác Phượng Nhi tiếp tục nghiên cứu chuyện Internet. Hiện tại chuyện này tuy càng ngày càng lớn, nhưng cũng coi như đã vững vàng xuống, không có khuôn mặt mới nào gia nhập, chỉ là hai trận doanh không ngừng công kích lẫn nhau mà thôi.</p>
+    <p>Sau khi hoan hảo đêm qua, Vương Nguyệt Dao đã nói với Diệp Phi rằng hai vị Nữ Thần có chuyện quan trọng tìm hắn, cho nên hắn tạm thời buông chuyện bên này xuống, theo hai nữ đi đến chỗ Không Linh.</p>
+    <p>Không Linh dù sao không phải người thường, trong lúc Hải Tâm Nhi đi ra ngoài, nàng đã thu lại tâm thần. Tuy nhìn thấy Diệp Phi vẫn không tránh khỏi chút e thẹn, nhưng nàng đã có thể kiểm soát tốt, trực tiếp nói với hắn về chuyện lớn kia.</p>
+    <p>Không Linh tiếp nhận Thiên Không thủ hộ đã gần ngàn năm, trong gần ngàn năm này và cả lịch sử xa xưa hơn, có một hiện tượng khiến nàng chú ý, đó là mỗi một vị Quân Vương hùng tài đại lược trong nhân loại đều không hề trường thọ.</p>
+    <p>Với tư cách là một trong tam đại bảo vệ, chức trách của Không Linh là giữ cho thế giới này hoà bình, mà muốn hoàn toàn hoà bình, cách tốt nhất chính là một chính quyền cường đại thống nhất toàn bộ thế giới, đồng thời thiết lập một chế độ tương đối công bằng, khiến quốc gia với quốc gia không còn tranh chấp.</p>
+    <p>Nhưng nhìn chung lịch sử, người có năng lực làm được điều thứ nhất đã cực ít, hơn nữa đều chưa kịp làm xong đã sớm qua đời, khiến thế giới lại rơi vào hỗn loạn.</p>
+    <p>Trước đây, Không Linh chỉ cảm thấy kỳ lạ chứ không để ý nhiều, cho rằng đó là hiện tượng tự nhiên. Nhưng sự xuất hiện đột ngột của Diệp Phi lần này đã phá vỡ suy nghĩ của nàng. Nếu thế giới này có thể xuất hiện một cường giả như Diệp Phi, vậy ai dám nói không có người thứ hai, người thứ ba, thậm chí nhiều hơn thế? Thế giới chưa từng có hoà bình thực sự này có phải đang bị những cường giả này thao túng phía sau màn hay không?</p>
+    <p>Nghe xong lời kể của Không Linh, Diệp Phi lập tức nghĩ đến mấy người, một trong số đó là Hoàng Đế đầu tiên của Trung Quốc - Tần Thủy Hoàng. Tuy hắn là một bạo chúa, nhưng tráng cử thống nhất Lục Quốc là điều không thể phủ nhận. Hơn nữa, hắn là một Hoàng Đế chú trọng Trường Sinh, thậm chí từng phái người ra biển tìm thuốc trường sinh bất lão.</p>
+    <p>Đương nhiên, thuốc trường sinh bất lão chắc chắn là không có, nhưng với quyền thế của Tần Thủy Hoàng, dù không tìm được thuốc trường sinh, cũng không tìm được công pháp tu hành cao cấp nhất, thì muốn tìm một bộ pháp môn kéo dài tuổi thọ là chuyện không khó. Thế nhưng hắn lại chết rất sớm, mà hậu quả là không bao lâu sau thiên hạ lại đại loạn, bách tính một lần nữa rơi vào cảnh chiến loạn ăn bữa nay lo bữa mai. Ngoài Tần Thủy Hoàng ra còn có mấy người khác, tao ngộ cũng gần như tương tự. Một lần là trùng hợp, nhưng không thể nào ai cũng là trùng hợp được.</p>
+    <p>Đồng thời, Diệp Phi và Vương Nguyệt Dao cũng đồng thời nhớ tới người áo đen xuất hiện ở Chân Hư Giới. Lại được Không Linh nhắc nhở như thế, họ chợt nhận ra, những người đó rất có thể cũng đang tồn tại trên Địa Cầu.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1454.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1456.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

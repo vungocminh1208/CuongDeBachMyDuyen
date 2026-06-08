@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1553 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1553</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1553</small>
+    Chương 1553: Tiến Vào Sai Động Phòng
+  </h1>
+  <div class="chapter-body">
+    <p>"Yên tâm, trước khi khối băng hoàn toàn tan chảy, ta nhất định trở về!" Diệp Phi hôn nhẹ lên mặt Lưu Vân Nhi, thân hình lóe lên rồi biến mất trước mắt mọi người.</p>
+    <p>Diệp Phi cảm ứng được người kia, tuy khí thế cùng địch ý đều rất mạnh, nhưng tốc độ tiếp cận lại rất chậm. Chờ Diệp Phi chủ động đón đầu hắn thì đã ra khỏi nội thành, cuối cùng hai người chạm trán tại một nơi vô cùng trống trải, có lẽ đây vốn là sự sắp đặt từ trước của đối phương.</p>
+    <p>Khi nhìn thấy đối phương, Diệp Phi không khỏi ngẩn người. Hắn sở dĩ xác định người đến chính là Sinh Mệnh chi thần ngay khi cảm ứng được, là vì cảm giác được hắn mạnh hơn nhiều so với Tứ Thần, thậm chí không kém Không Linh cùng Hải Tâm Nhi bao nhiêu. Tại Mỹ quốc, người mạnh mẽ như vậy trong ấn tượng của Diệp Phi chỉ có hai cái. Một người là thủ lĩnh thánh chiến tổ chức, cũng chính là Sinh Mệnh chi thần; người kia là kẻ luôn ẩn nấp trong suy đoán của hắn, đến từ một tổ chức lớn cường đại vượt qua vô số Vị Diện. Nhưng nếu người đó chỉ có trình độ này, sợ là đã sớm bị Không Linh tìm ra giết chết, vì vậy thân phận người đến đã rõ ràng như ban ngày.</p>
+    <p>Trước khi gặp Sinh Mệnh chi thần, Diệp Phi vẫn nghĩ hắn hẳn là một lão già yêu quái bất tử, nhưng tận mắt nhìn thấy lại mở rộng tầm mắt. Xuất hiện trước mắt hắn là một lão già Tây Phương, vóc dáng gầy yếu không tới một mét sáu, tướng mạo hèn mọn.</p>
+    <p>Tuy nhiên, dù là bộ dáng này, Diệp Phi vẫn khẳng định hắn chính là Sinh Mệnh chi thần, vì trên người lão, Diệp Phi cảm nhận được một luồng sức sống vô cùng bàng bạc, nhưng sức sống này lại mang đến cảm giác cực kỳ quỷ dị.</p>
+    <p>Thông thường, kẻ có sức sống mênh mông như vậy đi đến đâu cũng sẽ ảnh hưởng đến vạn vật xung quanh, khiến chúng thêm phần phồn vinh. Nhưng vị Sinh Mệnh chi thần này lại hoàn toàn ngược lại. Bản thân lão sức sống rất mạnh mẽ nhưng không hề tỏa ra chút nào, trái lại còn không ngừng hấp thu sinh mệnh năng lượng của ngoại giới. Ví dụ như khoảnh rừng nhỏ ngay dưới chân lão, dù đang là mùa xuân, vốn phải cành lá xum xuê nhưng chỉ vì lão dừng lại phía trên mà lá đã khô héo như mùa thu.</p>
+    <p>"Ngươi chính là thủ lĩnh thánh chiến tổ chức, Sinh Mệnh chi thần?" Diệp Phi dừng lại cách lão già hèn mọn, trái ngược hoàn toàn với tưởng tượng của mình hơn mười mét, lên tiếng hỏi.</p>
+    <p>"Tiểu tử, ngươi cũng thật thông minh đấy." Sinh Mệnh chi thần nhếch miệng, phát ra tiếng cười quái dị khàn khàn khô khốc: "Nhưng ngươi vẫn chưa đủ thông minh. Giết bốn tên thủ hạ của ta, lại còn dám chạy đến địa bàn của ta, xem ra cha mẹ ngươi đã không dạy ngươi chữ chết viết thế nào sao!"</p>
+    <p>Diệp Phi không khỏi cạn lời. Xem ra Leona nói không sai, lão già này quả thực quá mức tự đại, không hề coi hắn ra gì. Càng như vậy, Diệp Phi càng muốn đả kích lão, liền nói: "Ngươi đã lợi hại như thế, sao không đến Trung Quốc giết ta? À, ta hiểu rồi, chắc chắn là ngươi sợ vượt giới nên bị Tam Đại Bảo Vệ thu thập chứ gì."</p>
+    <p>Nghe Diệp Phi nói vậy, khuôn mặt già nua nhăn nheo như vỏ cây của Sinh Mệnh chi thần run lên, hiển nhiên tức giận không nhẹ. Một lát sau, lão lại khà khà cười quái dị: "Tiểu tử, vốn dĩ ta còn muốn cho ngươi sống thêm một lát, nhưng bây giờ ngươi đã chọc giận ta, vậy thì chuẩn bị nói lời từ biệt với thế giới này đi!"</p>
+    <p>"Vừa vặn, ta cũng nghĩ như vậy. Hiện tại tiệc cưới của lão tử đang diễn ra, hơi sức đâu mà dây dưa với lão già mù nhà ngươi?" Diệp Phi cười lạnh một tiếng, thân hình lóe lên đã xuất hiện phía sau Sinh Mệnh chi thần. Cái đầu hèn mọn của đối phương đã bị hắn xách gọn trong tay, cứng rắn xé xuống khỏi cơ thể.</p>
+    <p>Nhưng khi Diệp Phi quay đầu lại thì ngây người. Trên thân thể gầy gò của Sinh Mệnh chi thần, một cái đầu giống hệt cái trong tay hắn đã mọc ra trong nháy mắt.</p>
+    <p>Sinh Mệnh chi thần lại cười quái dị: "Không thể phủ nhận ta đã đánh giá thấp ngươi, không ngờ thực lực của ngươi còn mạnh hơn cả Tam Đại Bảo Vệ. Nhưng thì đã sao? Ta là Sinh Mệnh chi thần, bất kỳ sự sống nào trên thế giới này đều có thể chuyển hóa thành năng lượng của ta. Vì thế chỉ cần thế giới này không tan vỡ, sẽ không ai có thể giết được ta. Tam Đại Bảo Vệ không được, ngươi cũng không được!"</p>
+    <p>Diệp Phi tiện tay ném cái đầu buồn nôn kia sang một bên, đứng chắp tay, cười nhàn nhạt: "Vậy thì sao? Thực lực của ngươi quá kém, đối với ta chẳng có chút đe dọa nào. Cùng lắm chỉ là một bao cát siêu cấp bền bỉ, ta có thể giữ lại ngươi, lúc nào tâm tình không tốt thì lôi ra thu thập để xả giận."</p>
+    <p>Sau khi chứng kiến thực lực thực sự của Diệp Phi, Sinh Mệnh chi thần đã nảy ý định thoái lui. Nếu lão rút lui, Diệp Phi cũng sẽ không đuổi cùng giết tận. Dù là thế lực đối địch, nhưng lão vẫn là người của thế giới này, lại có năng lực mạnh mẽ như vậy, nếu thế lực bí ẩn kia xâm lấn thì vẫn có thể liên kết để đối kháng, thêm được một phần sức mạnh.</p>
+    <p>Nhưng có những kẻ luôn thích tìm đường chết, ví dụ như Sinh Mệnh chi thần này. Rõ ràng đã sợ, nhưng lại không cam lòng nên buông lời ngạo mạn: "Thực lực của ngươi tuy mạnh, nhưng ta không tin thân nhân của ngươi cũng có bản lĩnh như vậy. Sau này ngươi cứ chờ xem bọn họ chết đi thế nào, trừ phi ngươi lúc nào cũng kè kè bên cạnh họ, hoặc là đuổi theo ta không tha. Khà khà, so thực lực ta không bằng ngươi, nhưng nếu so độ bền bỉ, mười kẻ như ngươi cũng không bằng ta!"</p>
+    <p>Nghe những lời này, sát cơ trong lòng Diệp Phi dâng trào. Dù hắn biết rất có thể đây chỉ là lời nói suông, nhưng hắn không muốn mạo hiểm. Dù chỉ có một phần tỉ khả năng, hắn cũng phải bóp chết từ trong trứng nước, tuyệt đối không để thân nhân và những người phụ nữ mình yêu có bất kỳ mầm mống tai họa nào.</p>
+    <p>Gào thét một tiếng, Diệp Phi lập tức kích hoạt biến thân, trong nháy mắt từ một thiếu niên khôi ngô biến thành cự hán dữ tợn cao ba mét, thân hình lóe lên bên cạnh Sinh Mệnh chi thần, đưa tay bóp cổ lão.</p>
+    <p>"Khà khà, biến thân? Không tệ, sức mạnh quả nhiên mạnh hơn, nhưng thì làm sao chứ? Ngươi có đánh ta thành phấn vụn thì ta cũng có thể phục sinh trong nháy mắt, trừ phi sức mạnh của ngươi lớn tới mức có thể trực tiếp hủy diệt thế giới này." Sinh Mệnh chi thần cười đắc ý, nhưng trong lòng lại rất uất ức. Diệp Phi quá mạnh, lão thậm chí còn không kịp phản ứng hay chạy trốn trước các đòn tấn công.</p>
+    <p>Diệp Phi nhe hàm răng sắc nhọn, trầm giọng nói: "Ta không hủy diệt được thế giới, nhưng ta có thể đưa ngươi đến một thế giới khác!"</p>
+    <p>"Vô ích thôi, chỉ cần nơi nào có sự sống, ta chính là bất tử." Sinh Mệnh chi thần cười quái dị.</p>
+    <p>"Vậy thì đến nơi không có sự sống là được chứ gì!" Diệp Phi quát lớn, tay phải tiếp tục nắm chặt lấy Sinh Mệnh chi thần, tay trái vung lên xé rách không gian, tạo ra một vết nứt lớn thông thẳng tới vô biên Hỗn Độn.</p>
+    <p>"Đồ điên, ngươi đúng là tên điên! Mau đóng nó lại, nếu không không chỉ ta chết, mà cả ngươi cũng không sống nổi đâu!" Nhìn thấy vết nứt không gian và cảm nhận được sức hút mạnh mẽ từ đó, sắc mặt Sinh Mệnh chi thần rốt cục thay đổi, vừa gào thét vừa cố sức giãy giụa. Nhưng sức mạnh của lão kém Diệp Phi quá xa, vùng vẫy chỉ là công dã tràng.</p>
+    <p>"Không sống nổi thì cùng chết là xong!" Diệp Phi quát lớn, nhét cả Sinh Mệnh chi thần và cánh tay phải của chính mình vào trong vết nứt không gian.</p>
+    <p>"A!" Dù ý chí của Diệp Phi kiên cường đến đâu, khi luồn cánh tay vào vết nứt không gian cũng không nhịn được hét thảm một tiếng. Hắn vội vàng kéo tay ra, rồi bít kín vết nứt lại.</p>
+    <p>Tay phải vào rồi ra chưa đầy nửa giây, nhưng toàn bộ cánh tay phải đã da tróc thịt bong, có chỗ còn lộ cả bạch cốt âm u. Điều này khiến hắn không khỏi toát mồ hôi hột. Không ngờ Hỗn Độn khí lại lợi hại như thế, thân thể đã trải qua vạn đạo Thiên Kiếp gột rửa của hắn cũng không chịu nổi. Vừa rồi nếu phản ứng chậm một chút, sợ là toàn bộ cánh tay đã mất.</p>
+    <p>Nén đau, Diệp Phi lấy ra một viên toàn diện khôi phục hoàn nuốt xuống. Một lát sau, cánh tay phải đã hồi phục như cũ, thậm chí hắn còn cảm thấy sau khi được Hỗn Độn khí gột rửa, cánh tay đã trở nên mạnh mẽ hơn.</p>
+    <p>Tuy vậy, Diệp Phi cũng không muốn thử lại lần nữa, vì đó là lấy mạng ra đánh cược. Trước khi tìm được cách chống đỡ Hỗn Độn khí, hắn sẽ không làm liều.</p>
+    <p>Sau khi cánh tay hồi phục, Diệp Phi buông nắm đấm, không nhịn được bật cười. Trong tay hắn lúc này đang cầm một viên châu tỏa ánh sáng xanh lục. Tên gọi gần giống Thủy Linh Châu hay Hỏa Linh Châu, chính là Mộc Linh Châu, nhưng năng lượng bên trong mạnh hơn nhiều, thậm chí không kém hơn Lôi Linh Châu đã hấp thụ đầy sấm sét là bao.</p>
+    <p>Điều này càng khẳng định Ngũ Hành Linh Châu không phân cao thấp, chỉ phụ thuộc vào việc vận dụng đến mức độ nào. Nếu hắn tìm được cách làm đầy năng lượng cả năm viên châu này rồi dung hợp vào thân thể, khi đó chính mình sẽ tụ hội Ngũ Hành. Lại thông qua Âm Dương Quyết để có được nội lực Âm Dương giao hòa, khi đó chính là Âm Dương Ngũ Hành đầy đủ. Nói không chừng lúc ấy hắn có thể chịu đựng được Hỗn Độn khí, vì Âm Dương Ngũ Hành chính là gốc rễ của vạn vật, bản chất cũng giống như Hỗn Độn.</p>
+    <p>Tuy nhiên, giờ không phải lúc nghiên cứu việc này. Vừa rồi đã hứa với Lưu Vân Nhi sẽ trở lại trước khi khối băng tan, thời gian cũng đã không còn sớm, hắn liền hủy bỏ biến thân, lấy bộ quần áo trong không gian mặc vào rồi quay lại Trung Hoa Lâu.</p>
+    <p>"Sao rồi, ngươi không sao chứ? Có bị thương ở đâu không? Sao lại thay quần áo?" Thấy Diệp Phi trở về, Lưu Vân Nhi lập tức nhào tới, vừa sờ soạng trên người hắn vừa hỏi liên tục.</p>
+    <p>Diệp Phi để mặc Lưu Vân Nhi sờ soạng, cười nói: "Đương nhiên không sao, chỉ là lão già kia thật sự có chút bản lĩnh, làm ta phải thay bộ đồ mới giết được hắn. Lễ phục bị nổ tung nên mới phải thay thôi."</p>
+    <p>Thấy Diệp Phi trung khí mười phần, hơn nữa cũng không thấy vết thương, Lưu Vân Nhi mới thở phào nhẹ nhõm.</p>
+    <p>Cùng lúc đó, chỉ có Diệp Phi và Liễu Diệc Như chú ý tới Kiều Nhã – người vốn đang cố làm ra vẻ không có chuyện gì, nhưng cả người vẫn run rẩy – bỗng chốc trở nên tĩnh lặng. Mẹ con hai người nhìn nhau, đồng thời lộ ra nụ cười đầy ẩn ý.</p>
+    <p>Sự việc giải quyết, tiệc cưới tiếp tục. Đối với những người không biết tình huống, việc Diệp Phi biến mất một lúc chỉ như đi vệ sinh, nên không gây ra sự hoảng loạn nào.</p>
+    <p>Mất hơn hai tiếng đồng hồ, Diệp Phi và Lưu Vân Nhi mới đi mời rượu xong. Đây là kết quả của việc mỗi bàn chỉ uống một chút, nếu mỗi người đều đối ẩm thì đến tận đêm cũng không xong.</p>
+    <p>Mời rượu xong, các tân khách cũng vui vẻ ra về. Liễu Diệc Như, Kiều Nhã và Lưu Vân Nhi rời chỗ lên lầu nghỉ ngơi, nhưng Diệp Phi lại dẫn theo Đầu Trọc và mấy tên, lôi kéo Lưu Thiên Lâm cùng mấy quản lý cấp cao của Trung Hoa Lâu ngồi uống từ chiều đến tận tối.</p>
+    <p>Cuối cùng ai nấy đều say mèm, đặc biệt là Lưu Thiên Lâm, bị Đầu Trọc chuốc đến bất tỉnh nhân sự, cuối cùng phải có người khiêng vào phòng.</p>
+    <p>Tiễn khách xong, Diệp Phi bước đi loạng choạng, dường như bất cứ lúc nào cũng có thể ngã sấp mặt mà tiến lên lầu.</p>
+    <p>Con gái kết hôn, hôm nay Kiều Nhã nhường phòng ngủ chính cho họ làm động phòng, còn mình thì về phòng của con gái. Những chuyện này Diệp Phi đều biết, nhưng sau khi lên lầu, hắn dường như quên sạch, bước những bước chân ma quỷ tiến thẳng tới trước phòng ngủ của Lưu Vân Nhi, đẩy cửa đi vào.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1552.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1554.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

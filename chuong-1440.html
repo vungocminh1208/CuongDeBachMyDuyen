@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1440 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1440</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1440</small>
+    Chương 1440: Sau Màn Duỗi Tay
+  </h1>
+  <div class="chapter-body">
+    <p>Những chuyện này, cho dù người trong nhà không cố ý tuyên truyền, đám cư dân mạng ở Đông Nam cũng tự phát đi quảng bá, đi tán dương. Đối với dân chúng bình thường mà nói, những ân huệ nhỏ bé chân thành hay sự giúp đỡ dành cho người yếu thế là đủ để khiến họ tâm phục khẩu phục. Những tin tức này lại được lan truyền trên mạng, càng làm tăng thêm uy vọng của Diệp Phi.</p>
+    <p>Uy vọng! Hai chữ này rất nặng. Trong mắt người Đông Nam, Diệp Phi là một vị thần, một vị thần bằng xương bằng thịt. Hắn là người có huyết tính, những lời nói trước kia không phải lời sáo rỗng, mà là làm được rồi mới nói ra, cũng không sợ người khác chê trách. Hôm nay cũng vậy, chuyện của Trác Phượng Nhi, nếu Diệp Phi có đao trong tay, bạn bè người hâm mộ đã ngưng tụ đao cho hắn, vậy tại sao không dùng? Giúp người phụ nữ của mình thu thập kẻ địch, đây quả thực là việc đáng làm nhất.</p>
+    <p>Đặc biệt là bài blog cuối cùng, giọng điệu của Diệp Phi nghe như lưu manh đầu đường, thậm chí còn chửi người. Điều này càng làm dấy lên một phen bàn tán sôi nổi. Có người cho rằng Diệp Phi tính tình thẳng thắn, hảo hán tử nên như vậy, ra mặt vì người phụ nữ của mình... Đương nhiên, vế sau là do cư dân mạng tự suy diễn, thế nhưng cũng có người cảm thấy Diệp Phi lập tức trở nên "thấp kém" khi dùng phương thức như vậy để đôi co với người khác.</p>
+    <p>Tuy nhiên, ý kiến đó rất nhanh bị nhấn chìm trong làn sóng của cư dân mạng. Diệp Phi vốn dĩ không phải người trong giới giải trí, hắn là một tên xã hội đen, một tên xã hội đen có tiền, một "đại ca xã hội đen" làm việc thật, nói sự thật mà thôi. Tại sao hắn phải hành xử theo quy tắc của giới giải trí? Hơn nữa, những bài viết mà hắn chặn lại kia, chỉ riêng tiêu đề đã đầy rẫy sự công kích cá nhân đối với Trác Phượng Nhi, đã là loại tư cách rất thấp kém, lẽ nào các người không thấy sao? Trong bài viết còn khắp nơi dẫn dắt người đọc suy nghĩ lệch lạc, lời trong lời ngoài nói Trác Phượng Nhi thanh thuần ngọc nữ là giả, thực tế là hạng người muốn dựa vào thân thể để bò lên vị trí cao.</p>
+    <p>Đây không phải là tư cách thấp kém sao? Đây không phải là bôi nhọ người khác sao? Đây không phải là hành vi đáng bị công kích sao? Vậy tại sao không cho phép Diệp Phi chửi lại? Huống hồ hắn cũng chỉ nói một câu "ngốc nghếch", rồi nói rõ sẽ kiện những kẻ này mà thôi. Trong mắt rất nhiều cư dân mạng, đây đã là phản ứng rất kiềm chế rồi.</p>
+    <p>Đương nhiên, mọi người không biết rằng, Diệp Phi như vậy đã là đang nương theo quy tắc của giới giải trí rồi. Nếu không, những kẻ này dám khiến người phụ nữ của hắn chịu oan ức, hắn đã sớm tra ra từng tên một và khiến chúng thực sự biến mất khỏi thế gian.</p>
+    <p>Vì vậy, Diệp Phi liên tiếp đăng hai bài blog, sau một phen ngôn từ đanh thép, hắn cũng không bỏ qua mà tiếp tục để ý đến xu hướng trên mạng.</p>
+    <p>Đồng thời, Trác Phượng Nhi nói: "Lão công, làm lớn chuyện này thực sự tốt sao?"</p>
+    <p>"Em là người lăn lộn trong giới, bất kỳ nguy cơ nào cũng là cơ hội, em hiểu rõ hơn anh. Hơn nữa đối phương còn công kích cá nhân em một cách buồn nôn như vậy, với tư cách là đàn ông của em, anh không thể nhịn được!" Diệp Phi đưa tay nặn nặn đôi môi nhỏ đang bĩu ra của Trác Phượng Nhi, trên mặt mỉm cười nói: "Ai bắt nạt bảo bối của anh cũng không được, chính anh cũng không cho phép!"</p>
+    <p>Trác Phượng Nhi quả nhiên nở nụ cười, hôn lên ngón tay Diệp Phi, đôi mắt trừng lên, lộ ra vẻ không phục: "Vậy thì làm tới đi, em lăn lộn trong cái giới này lâu như vậy, tuy đã nhạt lòng nhưng không có nghĩa là ai cũng có thể giẫm lên!"</p>
+    <p>Thực ra trong khoảng thời gian Diệp Phi gây chuyện với người khác, Trác Phượng Nhi đã sớm làm rõ đầu đuôi sự việc. Công ty Long Ngu, tên đầy đủ là Công ty Truyền hình Giải trí Trung Quốc, là một trong những công ty giải trí hàng đầu Trung Quốc. Dưới trướng nắm giữ đông đảo minh tinh, từ diễn viên truyền hình hạng nhất đến ca sĩ, công ty thành lập hơn mười năm, cơ ngơi hùng hậu, thực lực mạnh mẽ. Hai năm nay vì thành công lăng-xê được mấy tiểu thịt tươi, danh tiếng càng thêm rầm rộ, đâu đâu cũng có người hâm mộ bao vây. Đương nhiên, tiểu thịt tươi chỉ có cái mặt, còn diễn xuất, giọng hát, thậm chí đạo đức cá nhân thì không có gì để khen. Nói cách khác, ngoài gương mặt và lớp vỏ bọc bên ngoài, nội bộ bên trong đã rối tinh rối mù. Có người đặt biệt danh cho mấy tiểu thịt tươi của Long Ngu là "trúc rỗng ruột", nghĩa là họ không có chân tài thực học, không có thực lực thực sự. Năm gần đây, liên tiếp có tin tức vài tiểu thịt tươi ngủ với người hâm mộ, hơn nữa còn là nhóm lớn, có thể thấy được phần nào.</p>
+    <p>Trác Phượng Nhi trước đây không thuộc công ty Long Ngu, nhưng nàng thực sự có chút ân oán với công ty này, chính xác hơn là có quan hệ. Vào thời điểm nàng đang nổi tiếng nhất, thuộc hàng nữ minh tinh hàng đầu Trung Quốc, đồng thời xây dựng hình tượng thanh thuần ngọc nữ, không nói là trước sau như một hoàn hảo tuyệt đối thì cũng gần như vậy. Bất kể là hát hay diễn kịch, nàng đều giữ vững điểm mấu chốt rất cao, không bán rẻ bản thân, không truyền tin đồn nhảm, không mập mờ với nam minh tinh hay phú hào nào. Nếu không phải vì đoạn ân oán đó, nàng bây giờ tuyệt đối là đại minh tinh số một số hai trong giới, hơn nữa còn là loại không có scandal.</p>
+    <p>Lão tổng của Long Ngu tên là Hạ Hải, nghe tên đã có cảm giác của thập niên tám mươi, chín mươi. Thực tế năm nay ông ta đã năm mươi lăm tuổi. Khi hơn ba mươi tuổi, Hạ Hải sáp nhập mấy công ty giải trí nhỏ, mới bắt đầu thực lực không mạnh, thậm chí nghệ sĩ ký kết cũng không có mấy ai, truyền hình hay ca nhạc đều cực kỳ yếu. Tuy nhiên Hạ Hải rất lợi hại, gia thế cũng ở kinh thành, vì thế dựa vào những thứ này, Hạ Hải nhanh chóng phát triển Long Ngu, dùng đủ mọi thủ đoạn để ký hợp đồng với một nhóm minh tinh truyền hình. Đám nghệ sĩ ký kết này, có một số người đạt được sự phát triển tốt hơn trong công ty ông ta, nhưng cũng có một nhóm hoàn toàn trầm luân, không chút danh tiếng, thậm chí đã rút lui khỏi giới.</p>
+    <p>Tương tự, hai nữ minh tinh hàng đầu năm đó, bây giờ một người đã chết, người kia cũng trở thành kẻ qua đường, nghe nói tình cờ có người nhìn thấy, phát hiện đã già nua không chịu nổi. Tin tức giải trí có nhiều đánh giá về việc này, nhưng Trác Phượng Nhi thì biết rõ, hai nữ minh tinh đó lúc trước muốn nhan sắc có nhan sắc, muốn diễn xuất có diễn xuất, hơn nữa hát cũng rất hay, nhưng chính vì Hạ Hải, hai người họ trở thành vật sở hữu của ông ta. Long Ngu dần dần trở thành cự phách trong ngành, chèn ép công ty nhỏ, đè ép đồng nghiệp, hoành hành độc quyền thị trường một thời gian dài. Minh tinh dưới trướng vừa hưởng thụ đãi ngộ, cũng phải bỏ ra vài thứ. Ví dụ như hai nữ minh tinh vừa nhắc tới, số phận của họ đã thay đổi cực lớn. Họ bị Hạ Hải chiếm đoạt, nhưng lại không có được tương lai tốt đẹp. Nguyên nhân cụ thể không ai biết, nhưng tóm lại là họ bị Hạ Hải vứt bỏ, đồng thời còn bị phong sát trong ngành, dẫn đến sự nghiệp diễn xuất chấm dứt, người cũng trở nên sa sút.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1439.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1441.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>

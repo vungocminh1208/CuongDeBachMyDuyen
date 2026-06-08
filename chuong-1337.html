@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chương 1337 — CuongDeBachMyDuyen</title>
+<style>
+
+/* ── Google Fonts ─────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Crimson+Pro:wght@300;400;600&family=Space+Mono:wght@400;700&display=swap');
+
+/* ── CSS Variables ────────────────────────────────────────────── */
+:root {
+  --bg:          #0f0e17;
+  --bg2:         #1a1826;
+  --bg3:         #252336;
+  --surface:     #1e1c2e;
+  --border:      #2e2b45;
+  --accent:      #e8c547;
+  --accent2:     #c97d4e;
+  --text:        #e2dff0;
+  --text-muted:  #8b87a8;
+  --text-dim:    #5a5674;
+  --serif:       'Lora', 'Crimson Pro', Georgia, serif;
+  --mono:        'Space Mono', monospace;
+  --radius:      10px;
+  --shadow:      0 8px 32px rgba(0,0,0,.45);
+  --transition:  .22s cubic-bezier(.4,0,.2,1);
+  /* reader overrides (JS-controlled) */
+  --reader-font-size: 1.15rem;
+  --reader-line-height: 1.9;
+  --reader-max-width: 720px;
+}
+[data-theme="light"] {
+  --bg:         #faf8f2;
+  --bg2:        #f0ede3;
+  --bg3:        #e8e3d5;
+  --surface:    #ffffff;
+  --border:     #d6d0c0;
+  --accent:     #b5860d;
+  --accent2:    #a0522d;
+  --text:       #1c1a14;
+  --text-muted: #6b6555;
+  --text-dim:   #9e9580;
+}
+[data-theme="sepia"] {
+  --bg:         #f4efe6;
+  --bg2:        #ece5d8;
+  --bg3:        #e2d9c8;
+  --surface:    #fdf6ec;
+  --border:     #c9bfa8;
+  --accent:     #8b6914;
+  --accent2:    #7a4010;
+  --text:       #2c2416;
+  --text-muted: #6e5c3e;
+  --text-dim:   #a8987c;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--serif);
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  transition: background var(--transition), color var(--transition);
+  line-height: 1.6;
+}
+a { color: var(--accent); text-decoration: none; transition: opacity var(--transition); }
+a:hover { opacity: .75; }
+
+/* ── Scrollbar ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
+
+/* ── Top bar ──────────────────────────────────────────────────── */
+.topbar {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: .65rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem;
+  backdrop-filter: blur(12px);
+}
+.topbar-title {
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.topbar-title a { color: var(--text-muted); }
+.topbar-title a:hover { color: var(--accent); opacity: 1; }
+
+/* ── Buttons ──────────────────────────────────────────────────── */
+.btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .45rem .9rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: .7rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.btn:hover { background: var(--surface); border-color: var(--accent); color: var(--accent); opacity: 1; }
+.btn.active { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+.btn-icon { padding: .45rem .6rem; }
+
+
+/* ── Reader controls ─────────────────────────────────────────── */
+.reader-bar {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  flex-wrap: wrap;
+  padding: .5rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg2);
+}
+.reader-bar label {
+  font-family: var(--mono);
+  font-size: .68rem;
+  color: var(--text-dim);
+  letter-spacing: .08em;
+  margin-right: .2rem;
+}
+input[type=range] {
+  -webkit-appearance: none;
+  width: 90px;
+  height: 4px;
+  border-radius: 99px;
+  background: var(--border);
+  outline: none;
+  cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+/* ── Article ─────────────────────────────────────────────────── */
+.chapter-wrap {
+  max-width: var(--reader-max-width);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+}
+.chapter-title {
+  font-family: 'Crimson Pro', var(--serif);
+  font-weight: 300;
+  font-size: 2rem;
+  letter-spacing: -.01em;
+  color: var(--text);
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid var(--border);
+}
+.chapter-title small {
+  display: block;
+  font-family: var(--mono);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: .5rem;
+}
+.chapter-body p {
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--text);
+  margin-bottom: 1.1em;
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .7rem 1.2rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-muted);
+  font-family: var(--mono);
+  font-size: .72rem;
+  letter-spacing: .05em;
+  cursor: pointer;
+  transition: all var(--transition);
+  text-decoration: none;
+}
+.nav-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--bg3); opacity: 1; }
+.nav-btn.disabled { opacity: .25; pointer-events: none; }
+.nav-home {
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-dim);
+}
+.nav-home:hover { color: var(--accent); opacity: 1; }
+
+/* ── Progress bar ────────────────────────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: var(--accent);
+  width: 0%;
+  transition: width .1s;
+  z-index: 200;
+}
+
+/* ── Theme row ───────────────────────────────────────────────── */
+.theme-row { display: flex; gap: .4rem; margin-left: auto; }
+</style>
+</head>
+<body>
+<div class="progress-bar" id="progress"></div>
+
+<div class="topbar">
+  <span class="topbar-title"><a href="index.html">CuongDeBachMyDuyen</a> / Chương 1337</span>
+  <div class="theme-row">
+    <button class="btn btn-icon" onclick="setTheme('dark')"  title="Dark">🌙</button>
+    <button class="btn btn-icon" onclick="setTheme('sepia')" title="Sepia">📜</button>
+    <button class="btn btn-icon" onclick="setTheme('light')" title="Light">☀️</button>
+  </div>
+</div>
+
+<div class="reader-bar">
+  <label>CỠ CHỮ</label>
+  <input type="range" min="14" max="24" value="18" oninput="setFontSize(this.value)">
+  <label style="margin-left:.8rem;">DÃN DÒNG</label>
+  <input type="range" min="150" max="220" value="190" oninput="setLineHeight(this.value)">
+  <label style="margin-left:.8rem;">ĐỘ RỘNG</label>
+  <input type="range" min="500" max="900" value="720" oninput="setWidth(this.value)">
+</div>
+
+<div class="chapter-wrap">
+  <h1 class="chapter-title">
+    <small>Chương 1337</small>
+    Chương 1337: Vỡ Tổ Tề Gia
+  </h1>
+  <div class="chapter-body">
+    <p>Chu Đình Đình làm sao biết Diệp Phi nghĩ gì, thấy mẹ mình tự nhiên nhìn về phía hắn, đột nhiên cảm giác được, bây giờ mẹ mình coi như đang làm việc cho Diệp Phi, vậy thì để Diệp Phi tự mình mở miệng chẳng phải càng tốt hơn, liền vội hỏi: "Tiểu Mãn đệ đệ, ngươi nói ta có nên chuyển trường đến Vọng Hải hay không?"</p>
+    <p>Bị Chu Đình Đình gọi như vậy, Diệp Phi mới phục hồi tinh thần lại, không nghĩ lung tung nữa, thuận miệng trả lời: "Chuyển qua đó cũng tốt, đến lúc đó có Khinh Khinh các nàng bầu bạn, cũng đỡ cô đơn, hơn nữa cũng không cần kết giao với mấy kẻ bằng hữu vô căn cứ."</p>
+    <p>Nghe Diệp Phi nói như thế, Lý Minh Hoa càng thêm khẳng định tiểu tử này đang đánh chủ ý lên con gái mình, tuy nhiên nàng cũng không phản đối, chỉ lườm Diệp Phi một cái, phong tình đặc hữu của phụ nữ đã có gia đình triển lộ không sót chút nào, khiến Diệp Phi giật mình trong lòng. May mà những người khác hiện tại đều đặt sự chú ý lên người Diệp Phi, nếu không chỉ một cái lườm nguýt nũng nịu này, chưa chắc đã không bị người khác nhìn ra manh mối.</p>
+    <p>Chu Đình Đình lại vui mừng khôn xiết, không cho người khác thời gian phản đối, vội vàng hỏi: "Vậy chúng ta khi nào xuất phát?"</p>
+    <p>"Cái này không vội, mấy ngày nay ta ở kinh thành còn muốn làm một số chuyện, chờ hết bận mấy ngày nay chúng ta lại đi." Diệp Phi cười nói.</p>
+    <p>"Làm sao vậy, tôn nữ ngoan của ta, ở lại bồi gia gia vài ngày cũng không được sao?" Chu lão gia tử cười trêu chọc, đối với việc con dâu và tôn nữ đến Vọng Hải, ông cũng không có ý kiến gì, bởi vì ông cùng Chu Bác đều rất bận, coi như các nàng ở lại kinh thành, bình thường cũng chẳng có bao nhiêu thời gian gần gũi.</p>
+    <p>Hơn nữa, Chu lão gia tử cũng biết Diệp Phi định làm chuyện gì, bất quá ông cũng không có ý định cầu xin thay cho những người đó. Làm một người lính, ngoại trừ trước đây có chút tư tâm trong việc trả thù nhà họ Liễu và nhà họ Diệp, ông là người vô cùng chính trực, đối với những gia tộc càng ngày càng làm càn những năm gần đây, ông sớm đã rất có ý kiến.</p>
+    <p>Nói xong chính sự, Diệp Phi cũng không lập tức rời đi, mà ở lại trò chuyện cùng người nhà họ Chu để giết thời gian. Chu lão gia tử dù sao cũng là người nhìn mẹ con họ lớn lên, đối với họ có một loại tình cảm từ ái, mà Chu Bác càng là cậu của Diệp Phi, hiện tại Diệp Phi còn "cướp" vợ người ta, trong lòng ít nhiều cũng có chút hổ thẹn.</p>
+    <p>Trong lúc đó, Diệp Phi còn giao cho Lý Minh Hoa một vài nhiệm vụ, dù sao mấy ngày nay việc tìm đám gia tộc kia gây phiền phức căn bản không cần đến nàng, vì vậy Diệp Phi liền để nàng bắt tay vào làm chuyện Internet đạo bản, đồng thời giao cho nàng một vài con đường trong tay, hơn nữa với năng lực của bản thân nàng, tin tưởng có thể làm rất tốt.</p>
+    <p>Phía Chu gia đầm ấm hòa thuận, mà cách đó không xa nhà họ Tề, lúc này lại mây đen bao phủ.</p>
+    <p>Sau khi Diệp Phi thu thập Ninh Trường Chinh, Tề lão gia tử nhận được tin tức liền hoảng loạn, lập tức ra lệnh cho người của mình thu nạp sức mạnh với tốc độ nhanh nhất, đặc biệt là khu vực quanh Vọng Hải, gần như từ bỏ hoàn toàn, để có thể làm dịu cơn giận của Diệp Phi.</p>
+    <p>Chỉ là thứ thuộc về nhà họ Tề quá nhiều, người một nhà không ngừng vó bận rộn đến tận trưa hôm nay mới coi như bước đầu hoàn thành, sau đó bọn họ tụ tập lại với nhau để bàn bạc đối sách sau này.</p>
+    <p>Lúc này tại nhà họ Tề, tất cả trực hệ đều đã có mặt, mọi người tụ tập trong một phòng họp, tuy nhiên đều không nói gì, chỉ liều mạng hút thuốc, khiến trong phòng họp khói bay mù mịt.</p>
+    <p>Cuối cùng vẫn là kẻ trẻ tuổi nóng tính Tề Thế Long, ỷ vào việc được Tề lão gia tử sủng ái mà lên tiếng trước: "Gia gia, chúng ta cần phải khẩn trương như vậy sao? Cái tên Diệp Phi kia lợi hại đến đâu, chẳng lẽ còn dám làm gì ngài hay sao?"</p>
+    <p>Tề lão gia tử thở dài nói: "Trước đây ta cũng nghĩ như vậy, nhưng bây giờ ngay cả số một cũng ủng hộ hắn, ta mới biết, trước đây chúng ta thực sự đánh giá thấp hắn."</p>
+    <p>"Nhưng mà, tên Ninh Trường Chinh kia dù sao cũng đã lui xuống, mà gia gia ngài vẫn còn tại vị, vậy chẳng lẽ còn làm gì được chúng ta?" Tề Thế Long vẫn còn chút không phục, trong mắt hắn, chỉ cần nhà họ Tề có Tề lão gia tử ở đó thì vạn sự vô lo, chẳng ai động được đến bọn họ.</p>
+    <p>Tề Thế Long nghĩ như vậy, nhưng đám con cháu đời thứ hai kia lại không ngây thơ như thế. Bọn họ biết rõ, đừng xem Tề lão gia tử quyền cao chức trọng, ở trong bảng xếp hạng cốt cán cũng rất cao, nhưng nếu số một muốn bắt ông, vẫn là chuyện rất dễ dàng. Mà bây giờ, Diệp Phi lại nhận được sự coi trọng của số một, địa vị đã không còn ở dưới Tề lão gia tử, chưa kể đến thực lực thần quỷ khó lường của hắn...</p>
+    <p>Ví như, Tề lão gia tử là trọng thần bên cạnh Hoàng đế thời cổ đại, mà Diệp Phi lại là thái giám đang "được sủng ái" nhất bên cạnh Hoàng đế. Tuy rằng về tình về lý mà nói, đại thần vẫn quan trọng hơn, nhưng sự thật thế nào, chỉ cần không phải kẻ ngốc thì ai cũng có thể thấy rõ.</p>
+    <p>Nghĩ tới đây, Tề gia lão nhị Tề Đông Cường không nhịn được oán trách cháu trai mình: "Thế Long à, ngươi nói ngươi không có chuyện gì thì đi trêu chọc Diệp Phi làm gì? Nếu không chọc giận hắn, chúng ta hiện tại sao lại bị động như vậy?"</p>
+    <p>Nghe Tề Đông Cường nói như thế, những người khác cũng dồn dập chỉ trích Tề Thế Long, quở trách đủ thứ lỗi lầm của hắn.</p>
+    <p>Mà Tề Thế Long cũng không phải kẻ tầm thường, lớn tiếng phản bác: "Lúc này mới nhớ tới trách ta? Lúc trước mọi người không phải cũng đồng ý sao? Hơn nữa còn tranh nhau động thủ nhanh, chỉ sợ mình vơ vét được ít lợi lộc, không phải sao?"</p>
+    <p>Tuy rằng Tề Thế Long nói là sự thật, nhưng người nhà họ Tề làm sao chịu thừa nhận? Hơn nữa một mình hắn sao tranh cãi lại được nhiều người như vậy, vì thế rất nhanh sự kiêu ngạo đã bị đè bẹp.</p>
+    <p>Có điều, cho dù Tề Thế Long ngậm miệng, mọi người vẫn không buông tha cho hắn, còn đang nhao nhao chỉ trích. Trong chốc lát, một nhà họ Tề lớn như vậy, dường như vỡ tổ, tiếng la hét còn lớn hơn cả chợ bán thức ăn.</p>
+    <p>"Đều câm miệng hết cho lão tử!" Thấy cảnh này, Tề lão gia tử vốn luôn giữ vẻ ôn văn nhĩ nhã trước mặt người khác không nhịn được văng tục, đồng thời đập mạnh tay xuống bàn, đối với đám tử tôn này thực sự thất vọng tột cùng.</p>
+    <p>Ở bên ngoài, những kẻ này ai nấy đều ra dáng lắm, trong đó mấy người thậm chí còn là quan to quyền cao chức trọng, mà ở hiện tại, khi đối mặt với thời điểm sống còn của nhà họ Tề, bọn họ không những không nghĩ cách, trái lại còn đấu đá nội bộ, từng kẻ chỉ biết đổ lỗi cho nhau.</p>
+    <p>Rất sớm trước đây, Tề lão gia tử đã biết số một có ý định muốn suy yếu thế lực các gia tộc, khi đó ông còn rất phản đối, nhưng bây giờ nghĩ lại, lại cảm thấy số một thực sự quá nhìn xa trông rộng. Giống như đám con em trong gia tộc kiểu này, thực sự rất khó tạo ra nhân tài chân chính, dù cho thiên phú có tốt đến mấy cũng vô dụng.</p>
+    <p>Cũng ví dụ như Tề Thế Long, nếu như hắn sau khi tốt nghiệp muốn bước vào hoạn lộ, cho dù là đến cơ sở làm một chủ tịch xã, nhưng sau lưng hắn lại có nhà họ Tề làm cây đại thụ che chở, đến lúc đó chỉ sợ lãnh đạo trong huyện, trong thành phố thậm chí trong tỉnh đều sẽ ba kết hắn, mọi chuyện đều chiều theo ý hắn. Đã như thế, thì làm sao có thể tôi luyện được bản lĩnh? Mà loại người không trải qua tôi luyện, bình thường giả vờ giả vịt thì còn được, nhưng đụng đến đại sự, lập tức sẽ lộ tẩy ngay.</p>
+  </div>
+
+  <nav class="chapter-nav">
+    <a href="chuong-1336.html" class="nav-btn ">← Chương trước</a>
+    <a href="index.html" class="nav-home">📚 Mục lục</a>
+    <a href="chuong-1338.html" class="nav-btn ">Chương sau →</a>
+  </nav>
+</div>
+
+<script>
+function setFontSize(v)    { document.documentElement.style.setProperty('--reader-font-size',   v+'px'); }
+function setLineHeight(v)  { document.documentElement.style.setProperty('--reader-line-height', v/100); }
+function setWidth(v)       { document.documentElement.style.setProperty('--reader-max-width',   v+'px'); }
+function setTheme(t)       { document.documentElement.setAttribute('data-theme', t); localStorage.setItem('theme', t); }
+
+// Restore preferences
+(function() {
+  const t = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', t);
+  const fs = localStorage.getItem('fontSize');
+  const lh = localStorage.getItem('lineHeight');
+  const mw = localStorage.getItem('maxWidth');
+  if (fs) { setFontSize(fs);     document.querySelectorAll('input[type=range]')[0].value = fs; }
+  if (lh) { setLineHeight(lh);   document.querySelectorAll('input[type=range]')[1].value = lh; }
+  if (mw) { setWidth(mw);        document.querySelectorAll('input[type=range]')[2].value = mw; }
+})();
+
+// Save on change
+document.querySelectorAll('input[type=range]').forEach((el, i) => {
+  el.addEventListener('input', () => {
+    const keys = ['fontSize','lineHeight','maxWidth'];
+    localStorage.setItem(keys[i], el.value);
+  });
+});
+
+// Reading progress bar
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = doc.scrollTop / (doc.scrollHeight - doc.clientHeight) * 100;
+  document.getElementById('progress').style.width = pct + '%';
+});
+</script>
+</body>
+</html>
